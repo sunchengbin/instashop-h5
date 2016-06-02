@@ -1,0 +1,14 @@
+                    关于css开发的规范和习惯
+1:对于class命名规则单词以"-"隔开(如class="my-class")
+2:节点样式深度最多三层(如.my-class div span)
+3:可共用部分按模块提出来(最后以@import形式引入到具体页面样式中,有利于测试和压缩)
+
+
+
+
+                    压缩方法
+1:首先搭建环境需要安装node.js
+2:首先进入通过命令css进入css文件夹
+3:执行node compress app(整个文件夹的压缩)
+4:执行node compress app/test.css(单个文件的压缩)
+5:压缩好的文件都会在dist文件夹看到(具体页面可以直接引用压缩后的css文件)

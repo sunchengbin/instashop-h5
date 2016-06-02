@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expect" content="0">
+    <link href="../../../../css/base/base.css" rel="stylesheet">
+    <title>btn-demo</title>
+    <style>
+        button{
+            height: 4rem;
+            line-height: 4rem;
+            text-align: center;
+            padding: 0 2rem;
+            font-size: 1.6rem;
+            background-color:#01579b;
+            color:#fff;
+            border: none;
+        }
+        div{
+            margin-top:4rem;
+            text-align: center;
+        }
+    </style>
+    <script src="../../../base/require-zepto.js"></script>
+    <script src="../../../base/require-config.js"></script>
+</head>
+<body>
+    <div class="test">
+        <button class="j_btn">提交</button>
+    </div>
+    <div class="test1">
+        <button class="j_btn_1">提交</button>
+    </div>
+</body>
+    <script>
+        require(['btn'],function(btn){
+            var _btn = btn({
+                wraper : '.test',
+                target : '.j_btn',
+                event_type : 'tap',
+                callback : function(dom){
+                    this.cancelDisable();
+                    var _this = this;
+                    setTimeout(function(){
+                        _this.setBtnTxt(dom,'提交');
+                    },1000);
+                    console.log(dom);
+                }
+            });
+            var _btn1 = btn({
+                target : '.j_btn_1',
+                callback : function(dom){
+                    //this.cancelDisable();
+                    var _this = this;
+                    setTimeout(function(){
+                        _this.setBtnTxt(dom,'提交');
+                    },1000);
+                    console.log(dom);
+                }
+            })
+        });
+    </script>
+</html>

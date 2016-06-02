@@ -1,0 +1,19 @@
+                    关于js开发的规范和习惯
+
+1:全局变量由组成单词的大写字母来编辑(如MyLife)
+2:局部变量由_来开头并且单词由_隔开(如_my_life)
+3:方法名采用驼峰模式(如myLife)
+4:与dom的配合,dom节点的标识命名方法(如j_my_lift)
+
+
+
+
+
+
+                    关于js的压缩
+1:首先搭建环境需要安装node.js
+2:首先进入通过命令js进入js文件夹
+(压缩的配置,如果新加入了js模块需要在js文件夹下面的build.js中配入模块命名和路径(和js/base/require-config.js中的模块配置路径相似))
+3:执行node compress app(整个文件夹的压缩)
+4:执行node compress app/test.js(单个文件的压缩)
+5:压缩好的文件都会在dist文件夹看到(具体页面可以直接引用压缩后的js文件)

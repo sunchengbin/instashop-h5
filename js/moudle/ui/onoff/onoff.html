@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expect" content="0">
+    <link href="../../../../css/moudle/ui/onoff/onoff.css" rel="stylesheet">
+    <script src="../../../base/require-zepto.js"></script>
+    <script src="../../../base/require-config.js"></script>
+    <title>开关</title>
+    <style>
+
+        div{
+            /*text-align: center;*/
+            padding:10rem;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span class="j_on_off on-off off">
+            <i></i>
+        </span>
+    </div>
+
+<script>
+    require(['onoff'],function(onoff){
+        var onoff1 = onoff({
+            callBack : function(){
+                console.log(this.getValue())
+            }
+        });
+
+    })
+</script>
+</body>
+</html>
