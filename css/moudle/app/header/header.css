@@ -1,0 +1,39 @@
+.header-nav{
+    padding:1rem;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    background-color: #43CB9C;
+    font-size: 2rem;
+    color: #fff;
+}
+.header-nav .iconfont{
+    font-size: 2.4rem;
+}
+.header-nav button{
+    float: right;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    font-size: 1.6rem;
+    color: #fff;
+}
+/*漂浮的后退按钮和购物车按钮*/
+.shop-header-nav{
+    padding:.5rem 0 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.shop-header-nav button{
+    display: inline-block;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    background-color: #777;
+    margin-left:1rem;
+    margin-right: 1rem;
+}
+.shop-header-nav button i{
+    font-size: 2.2rem;
+    color: #fff;
+}

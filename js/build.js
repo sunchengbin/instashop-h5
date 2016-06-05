@@ -15,8 +15,9 @@
         "slide" : "moudle/ui/slidebanner/slidebanner",
         "config" : "moudle/config/config",
         "audio":"moudle/ui/audio/audio",
-        "down_app":"app/dfb/downapp",
-        "wxdfb":"moudle/app/dfb/wx"
+        "ajax":"moudle/ui/ajax/ajax",
+        "city":"moudle/data/city",
+        "lang":"moudle/data/lang"
     },
     "fileExclusionRegExp": "/.hbs$/",
     "keepBuildDir": true,

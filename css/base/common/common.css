@@ -22,7 +22,7 @@ html { font-size: 62.5%; }
     html { font-size: 62.5% !important; }
 }
 body, button, input, select,option,td, textarea /* for ie */ {
-    font: 1.2rem/1.5 Arial, Helvetica, sans-serif;
+    font: 1.2rem/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 .fl{
     float:left;
@@ -36,4 +36,13 @@ img{
 }
 .block{
     display: block;
+}
+.clearfix:after {
+    content: '\20';
+    display: block;
+    height: 0;
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
 }

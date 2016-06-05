@@ -17,6 +17,7 @@ require.config({
         slideselect:'moudle/ui/slideselect/slideselect',
         onoff:'moudle/ui/onoff/onoff',
         audio:'moudle/ui/audio/audio',
+        ajax:"moudle/ui/ajax/ajax",
         //配置
         config:'moudle/config/config',
         //数据存储js

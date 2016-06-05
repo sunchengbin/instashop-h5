@@ -2,10 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  */
 define(['config'],function(Config){
-    var Ajax = function(){
-
-    };
-    Ajax.prototype = {
+    var Ajax = {
         getJsonp : function ( url, success, error ) {
             $.ajax( {
                 url: url + "&callback=?",
@@ -18,26 +15,24 @@ define(['config'],function(Config){
                 }
             } )
         },
-        postJsonp : function ( url, data, type, success, error ) {
+        postJsonp : function (opts) {//{url:, data:, type:, success:, error:}
             $.ajax({
-                url: '../../router/api.php?_path_=' + url,
+                url: Config.host.hostUrl+'router/api.php?_path_=' + opts.url,
                 dataType: "JSON",
-                data: data,
+                data: opts.data,
                 type: "POST",
                 headers: {
-                    "X-Http-Method-Override": type || "PUT"
+                    "X-Http-Method-Override": opts.type || "PUT"
                 },
                 success: function (res) {
-                    success && success(JSON.parse(res));
+                    opts.success && opts.success(JSON.parse(res));
                 },
                 error: function (err) {
-                    error && error(err);
+                    opts.error && opts.error(err);
                 }
             })
         }
     };
-    return function(opts){
-        return new Ajax(opts);
-    }
+    return Ajax;
 })
 

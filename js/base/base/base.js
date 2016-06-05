@@ -77,7 +77,7 @@ define(function(){
         /*数组去重*/
 
         unique : function(arr){
-            if(!$.isArray(arr)){
+            if(!SUN.others.isArray(arr)){
                 alert('请传入数组');
                 return;
             }
@@ -278,8 +278,51 @@ define(function(){
                 return false;
             };
             return enable && isWebpSupported() ? url.replace('.jpg', '.jpg.webp') : url;
+        },
+        /*
+         *判断是不是数组
+         */
+        isArray : function(arr){
+            if (typeof Array.isArray === "function") {
+                return Array.isArray(arr);
+            }else{
+                return Object.prototype.toString.call(arr) === "[object Array]";
+            }
+        },
+        /*
+         *循环遍历
+         */
+        each : function(arr,callback){
+            var i = 0,
+                _len = arr.length;
+            if(this.isArray(arr)){
+                for(i;i < _len;i++){
+                    callback && callback(arr[i],i);
+                }
+            }else{
+                throw new Error('not Array');
+            }
+        },
+        /*
+         *将人民币格式化印尼货币格式
+         */
+        priceFormat : function( price ) {
+            // e.g. 100.00 => 100
+            // e.g 1000.00 => 1.000
+            // 去掉 "." 后面的所有数字，然后每隔 3 个数加一个点
+            var price, result = [];
+            price = '' + price;
+            price = price.split( '.' )[ 0 ];
+            price = price.split( '' ).reverse();
+            this.each( price, function( num, index ) {
+                if( index && ( index % 3 === 0 ) ) {
+                    result.push( '.' )
+                }
+                result.push( num )
+            } );
+            result = result.reverse().join( '' );
+            return result;
         }
-
     };
     return SUN;
 })
