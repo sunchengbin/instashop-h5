@@ -1,4 +1,4 @@
-define(['handlebars'], function(HBS) {
+define(['handlebars','base'], function(HBS,Base) {
     function isEmpty(val) {
         var x = false;
         switch (typeof val) {
@@ -97,31 +97,31 @@ define(['handlebars'], function(HBS) {
     });
 
 
-    HBS.registerHelper('list', function(items, options) {
-        var out = "";
-
-        for (var k in items) {
-            out = out + options.fn(items[k]);
+    HBS.registerHelper('hotItemList', function(items, options) {
+        var out = "",
+            i = 0;
+        for (i; i < items.length;i++) {
+            if(items[i].is_top == 1) {
+                out += '<li><a class="item-info" href="' + items[i].h5_url + '">'
+                    + '<div class="lazy" data-img="' + items[i].img + '"></div>'
+                    + '<p class="title">' + items[i].item_comment + '</p>'
+                    + '<p class="price">RP ' + Base.others.priceFormat(items[i].price) + '</p>'
+                    + '</a></li>';
+            }
         }
-
         return out;
     });
-
-    HBS.registerHelper('objItem', function(items, k, options) {
-        if(typeof items == 'object'&& item instanceof Array){
-            k = parseInt(k);
-        }
-        return options.fn({
-            val: items[k]
-        });
-    });
-
-    HBS.registerHelper('arrValueList', function(items, options) {
-        var out = "";
-        for (var i = 0, l = items.length; i < l; i++) {
-            out = out + options.fn({
-                    'val': items[i]
-                });
+    HBS.registerHelper('itemList', function(items, options) {
+        var out = "",
+            i = 0;
+        for (i; i < items.length;i++) {
+            if(items[i].is_top == 0){
+                out += '<li><a class="item-info" href="'+items[i].h5_url+'">'
+                    +'<div class="lazy" data-img="'+items[i].img+'"></div>'
+                    +'<p class="title">'+items[i].item_comment+'</p>'
+                    +'<p class="price">RP '+Base.others.priceFormat(items[i].price)+'</p>'
+                    +'</a></li>';
+            }
         }
         return out;
     });

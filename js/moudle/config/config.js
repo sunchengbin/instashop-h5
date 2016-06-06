@@ -8,7 +8,8 @@ define([],function(){
     var CONFIG = {
         host : {
             //本地测试
-            hostUrl : 'http://127.0.0.1/router',
+            hostUrl : 'http://127.0.0.1/',
+            actionUrl:'https://api-m-test.instarekber.com',
             imgUrl : 'http://127.0.0.1/instashop/images',
             hrefUrl : 'http://127.0.0.1/instashop/html'
             //测试环境
@@ -21,7 +22,7 @@ define([],function(){
             //hrefUrl : 'http://m-test.instashop.co.id/html'
         },
         actions : {
-
+            shopList : '/instashop/v1/shops/'//商家首页商品数据获取接口
         }
     };
     return CONFIG;

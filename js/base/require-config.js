@@ -1,6 +1,6 @@
 //baseUrl 放在服务端写入页面
 require.config({
-    baseUrl: "/instashop/js/",
+    baseUrl: "/instashopnew/js/",
     paths: {
         //基础框架配置
         base: 'base/base/base',

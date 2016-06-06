@@ -63,6 +63,14 @@
     content: "\e60b";
     color: #43CB9B;
 }
+/*联系客服*/
+.ser-icon{
+    font-size: 2rem;
+}
+.ser-icon:before{
+    content: "\e6b3";
+    color: #52CDF0;
+}
 
 
 
