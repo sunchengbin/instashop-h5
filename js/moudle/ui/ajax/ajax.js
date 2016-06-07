@@ -31,6 +31,12 @@ define(['config'],function(Config){
                     opts.error && opts.error(err);
                 }
             })
+        },
+        transData : function(data){
+            var _data = {};
+            data.client_uuid = localStorage.getItem('ClientUuid');
+            _data.edata = data;
+            return _data;
         }
     };
     return Ajax;
