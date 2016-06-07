@@ -77,7 +77,7 @@ section{
 }
 .item-title{
     font-size: 1.4rem;
-    padding: .5rem 0 .1rem;
+    padding: 1rem 0 .5rem;
 }
 .item-title span{
     display: inline-block;
@@ -121,6 +121,7 @@ section{
 .price{
     color: #F5A623;
     margin-bottom: 1rem;
+    height: 1.8rem;
 }
 /*联系客服*/
 .contact-services{

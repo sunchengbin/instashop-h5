@@ -102,11 +102,15 @@ define(['handlebars','base'], function(HBS,Base) {
             i = 0;
         for (i; i < items.length;i++) {
             if(items[i].is_top == 1) {
-                out += '<li><a class="item-info" href="' + items[i].h5_url + '">'
-                    + '<div class="lazy" data-img="' + items[i].img + '"></div>'
-                    + '<p class="title">' + items[i].item_comment + '</p>'
-                    + '<p class="price">RP ' + Base.others.priceFormat(items[i].price) + '</p>'
-                    + '</a></li>';
+                out += '<li><a class="item-info" href="'+items[i].h5_url+'">'
+                    +'<div class="lazy" data-img="'+items[i].img+'"></div>'
+                    +'<p class="title">'+items[i].item_comment+'</p>';
+                if(Base.others.priceFormat(items[i].price) < 0){
+                    out +='<p class="price"></p>';
+                }else{
+                    out +='<p class="price">RP '+Base.others.priceFormat(items[i].price)+'</p>';
+                }
+                out +='</a></li>';
             }
         }
         return out;
@@ -118,9 +122,13 @@ define(['handlebars','base'], function(HBS,Base) {
             if(items[i].is_top == 0){
                 out += '<li><a class="item-info" href="'+items[i].h5_url+'">'
                     +'<div class="lazy" data-img="'+items[i].img+'"></div>'
-                    +'<p class="title">'+items[i].item_comment+'</p>'
-                    +'<p class="price">RP '+Base.others.priceFormat(items[i].price)+'</p>'
-                    +'</a></li>';
+                    +'<p class="title">'+items[i].item_comment+'</p>';
+                if(Base.others.priceFormat(items[i].price) < 0){
+                    out +='<p class="price"></p>';
+                }else{
+                    out +='<p class="price">RP '+Base.others.priceFormat(items[i].price)+'</p>';
+                }
+                out +='</a></li>';
             }
         }
         return out;
