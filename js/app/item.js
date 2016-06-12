@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug){
+require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug','slide'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug,Slide){
     var ITEM = {
         init : function(){
             Lazyload();
@@ -16,6 +16,10 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 ItemHtm = '<div>数据出错</div>';
             }
             $('body').prepend(ItemHtm);
+            Slide.createNew({
+                dom : document.querySelector('.j_banner'),
+                needTab : true
+            });
             Buyplug({
                 data : init_data
             });

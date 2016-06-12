@@ -13,7 +13,11 @@
     </div>
 </nav>
 <section class="item-info">
-    <div class="lazy" data-img="{{data.item.imgs}}"></div>
+    <div class="banner-box">
+        <ul class="item-banner j_banner clearfix">
+            {{{itemimgs data.item.imgs}}}
+        </ul>
+    </div>
     <div class="info-box">
         <p class="title">
             {{data.item.item_name}}

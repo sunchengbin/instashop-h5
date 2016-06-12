@@ -170,6 +170,18 @@ define(['handlebars','base'], function(HBS,Base) {
         return _htm;
     });
 
+    HBS.registerHelper('itemimgs', function(imgs) {
+        var _htm = '';
+        if(imgs && imgs.length){
+            Base.others.each(imgs,function(item,i){
+                _htm += '<li class=""><img src="'+item+'"/></li>';
+            });
+        }else{
+            _htm += '<li class=""><img src="'+item+'"/></li>';
+        }
+        return _htm;
+    });
+
     HBS.registerHelper('replace', function(str, a, b, options) {
         var r = new RegExp(a, 'gi');
         return str.replace(r, b);
