@@ -94,13 +94,6 @@ section{
     display: block;
     padding-right: 2rem;
 }
-.lazy{
-    height: 0;
-    padding-top:100%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-color: #f5f5f5;
-}
 .title{
     word-break: break-all;
 }

@@ -22,7 +22,7 @@ a {
     text-decoration: none;
 }
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 fieldset, img {
     border: 0;

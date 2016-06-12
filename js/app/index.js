@@ -1,10 +1,11 @@
 /**
  * Created by sunchengbin on 16/6/6.
  */
-require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base){
+require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base','common'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base,Common){
     var I = {
         init : function(init_data){
             Lazyload();
+            Common.initShopInfo(init_data);
             var IndexHtm = '<div>加载数据中</div>';
             if(init_data){
                 IndexHtm= Hbs.compile(Index)({
@@ -45,6 +46,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                             };
                             if(obj.item_list.list.length > 0){
                                 $('.j_item_list').append(_this.addItem(obj.item_list.list));
+                                Common.addItems(obj.item_list.list);
                                 getData = true;
                             }else{
                                 getData = false;
@@ -57,13 +59,20 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                     });
                 }
             });
+            $('body').on('click','.j_item_info',function(){
+                var _this = $(this),
+                    _url = _this.attr('data-url');
+                Common.saveFromUrl(function(){
+                    location.href = _url;
+                });
+            });
         },
         addItem : function(items){
             var out = "",
                 i = 0;
             for (i; i < items.length;i++) {
                 if(items[i].is_top == 0){
-                    out += '<li><a class="item-info" href="'+items[i].h5_url+'">'
+                    out += '<li><a class="item-info j_item_info" data-url="'+items[i].h5_url+'" href="javascript:;">'
                         +'<div class="lazy" data-img="'+items[i].img+'"></div>'
                         +'<p class="title">'+items[i].item_comment+'</p>'
                         +'<p class="price">RP '+Base.others.priceFormat(items[i].price)+'</p>'

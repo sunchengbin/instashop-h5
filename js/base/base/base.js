@@ -101,7 +101,7 @@ define(function(){
          * 用于同一页面出现多个弹窗或者弹出块的zindex值
          */
 
-        zindex : 2015,
+        zIndex : 2015,
 
         /*
          * json对象转化为字符串

@@ -17,7 +17,8 @@
         "audio":"moudle/ui/audio/audio",
         "ajax":"moudle/ui/ajax/ajax",
         "city":"moudle/data/city",
-        "lang":"moudle/data/lang"
+        "lang":"moudle/data/lang",
+        "common":"moudle/app/common/common"
     },
     "fileExclusionRegExp": "/.hbs$/",
     "keepBuildDir": true,

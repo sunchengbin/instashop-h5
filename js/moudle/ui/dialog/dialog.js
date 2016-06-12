@@ -129,7 +129,7 @@ define(['base'],function(base){
 
             if(_this.opts.is_cover && !$('.j_dialog_cover').length){
                 var _cover = $('<div class="dialog-cover j_dialog_cover"></div>'),
-                    _zindex = base.others.zindex++;
+                    _zindex = base.others.zIndex++;
                 _cover.css('zIndex',_zindex);
                 $('body').append(_cover);
                 $('.j_dialog_cover').css(_cover_css);
@@ -143,7 +143,7 @@ define(['base'],function(base){
         },
         setPosition : function(){
             var _this = this,
-                _zindex = base.others.zindex++,
+                _zindex = base.others.zIndex++,
                 _wraper_css = _this.opts.wraper_css,
                 _count_position = _this.countPosition();
             if(_this.opts.wraper_class){

@@ -1,0 +1,46 @@
+<nav class="shop-header-nav clearfix">
+    <div class="fl">
+        <button class="">
+            <i class="icon iconfont">&#xe62a;</i>
+        </button>
+        <div class="btn-cover"></div>
+    </div>
+    <div class="fr">
+        <button class="">
+            <i class="icon iconfont">&#xe643;</i>
+        </button>
+        <div class="btn-cover"></div>
+    </div>
+</nav>
+<section class="item-info">
+    <div class="lazy" data-img="{{data.item.imgs}}"></div>
+    <div class="info-box">
+        <p class="title">
+            {{data.item.item_name}}
+        </p>
+        <p class="price">
+            BR {{transprice data.item.price}}
+        </p>
+        <a href="javascript:;" data-url="{{data.item.shop.url}}" class="go-shop">
+            <div class="clearfix shop-info">
+                <i class="icon iconfont fr">&#xe63e;</i>
+                <img class="fl" src="{{data.item.shop.logo}}"/>
+                <p>{{data.item.shop.name}}</p>
+            </div>
+        </a>
+    </div>
+</section>
+<section class="buy-box">
+    <a href="{{item.shop.im_url}}" class="ser-box fl">
+        <i class="icon iconfont ser-icon"></i>
+        <p>联系客服</p>
+    </a>
+    <div class="clearfix buy-btns">
+        <a class="add-cart j_add_cart" data-id="{{data.item.id}}" href="javascript:;">
+            SHOP CART
+        </a>
+        <a href="javascript:;" class="buy-now">
+            BUY NOW
+        </a>
+    </div>
+</section>

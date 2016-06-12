@@ -1,0 +1,90 @@
+@import "../base/base.css";
+@import "../moudle/app/header/header.css";
+@import "../moudle/app/common/common.css";
+@import "../moudle/app/buyplug/buyplug.css";
+@import "../moudle/ui/dialog/dialog.css";
+body{
+    color: #666;
+    background-color: #f5f5f5;
+    padding-bottom: 4.8rem;
+}
+.info-box{
+    padding:1rem 2rem;
+}
+.info-box > p {
+    font-size: 1.4rem;
+    line-height: 1.3;
+    word-break: break-all;
+}
+.info-box .title {
+    color: #999;
+    margin-bottom: 1rem;
+}
+.info-box .price {
+    color: #F5A623;
+    height: 1.8rem;
+    margin-bottom: 2rem;
+}
+.go-shop{
+    display: block;
+}
+.shop-info{
+    border-top:1px solid #D8D8D8;
+    padding:2rem 0;
+    font-size: 1.4rem;
+    color: #333;
+}
+.shop-info img{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-right:1rem;
+}
+.shop-info p{
+    margin:0 3rem;
+    font-size: 1.6rem;
+}
+.shop-info i{
+    font-size: 1.8rem;
+    color: #999;
+}
+.buy-box{
+    position: fixed;
+    bottom:0;
+    left: 0;
+    width: 100%;
+    height: 4.6rem;
+    border-top:1px solid #D8D8D8;
+    background-color: #f5f5f5;
+}
+.ser-box{
+    width: 20%;
+    height: 4.6rem;
+    text-align: center;
+}
+.ser-box p{
+    color: #999;
+    font-size: 1.2rem;
+    margin-top: -.5rem;
+}
+.ser-icon{
+    font-size: 2.3rem;
+}
+.buy-btns{
+    margin-left:20%;
+}
+.buy-btns a{
+    float:left;
+    display: block;
+    width: 50%;
+    height: 4.6rem;
+    line-height: 4.6rem;
+    text-align: center;
+    color: #fff;
+}
+.add-cart{
+    background-color: #F5A623;
+}
+.buy-now{
+    background-color: #F58823;
+}
