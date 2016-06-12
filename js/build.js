@@ -18,7 +18,8 @@
         "ajax":"moudle/ui/ajax/ajax",
         "city":"moudle/data/city",
         "lang":"moudle/data/lang",
-        "common":"moudle/app/common/common"
+        "common":"moudle/app/common/common",
+        "buyplug":"moudle/app/buyplug/buyplug"
     },
     "fileExclusionRegExp": "/.hbs$/",
     "keepBuildDir": true,
