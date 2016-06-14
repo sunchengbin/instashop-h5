@@ -41,18 +41,18 @@ define(['base'],function(Base){
                 _this.cart = {};
                 _this.cart[_shop_id] = {};
             }else{
-                if(!_this.cart[_shop_id]){
+                if(!_this.cart[_shop_id]){//当前店铺cart是否存在
                     _this.cart[_shop_id] = {};
                 }
             }
-            if(opts.sku){
-                if(!_this.cart[_shop_id][opts.sku.id]){
+            if(opts.sku){//有规格的商品以规格id为key
+                if(!_this.cart[_shop_id][opts.sku.id]){//某个商品的某个规格
                     _this.cart[_shop_id][opts.sku.id] = {};
                 }else{
                     opts.num += _this.cart[_shop_id][opts.sku.id].num;
                 }
                 _this.cart[_shop_id][opts.sku.id] = opts;
-            }else{
+            }else{//没有规格的商品以商品id为key
                 if(!_this.cart[_shop_id][_item_id]){
                     _this.cart[_shop_id][_item_id] = {};
                 }else{
