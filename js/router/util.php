@@ -1,5 +1,4 @@
 <?php
-ini_set("display_errors", 0);
 
 function check_api($path, $params){
     if (strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
@@ -35,7 +34,10 @@ function deal_headers() {
     return $headers;
 }
 
-function get_init_data($path, $params){
+function get_init_php_data($path, $params){
+    error_reporting(E_ALL);
+    ini_set("display_errors", 0);
+
     require_once('HttpProxy.php');
 
     if (strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
@@ -43,29 +45,36 @@ function get_init_data($path, $params){
     }else{
         $host = 'https://apip.instarekber.com/instashop/';
     }
-    $browser_id = $_COOKIE["browser_id"];
+    $domain = "instashop.co.id";
+    if (strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
+        $cookie_name = "test_browser_id";
+    } else {
+        $cookie_name = "browser_id";
+    }
+
+    $browser_id = $_COOKIE[$cookie_name];
     $params['client_uuid'] = $browser_id;
 
     $api = $host.$path.'?param='.json_encode([ 'edata' => $params  ]);
 
-    if (strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
-        $domain = "m-test.instashop.co.id";
-    } else {
-        $domain = "m.instashop.co.id";
-    }
-
-    error_log("\nall_headers=".json_encode(get_all_headers(), true), 3, "/data/logs/php/error.log");
-    error_log("\ndeal_headers=".json_encode(deal_headers(), true), 3, "/data/logs/php/error.log");
-    error_log("\napi=".$api, 3, "/data/logs/php/error.log");
+    //error_log("\nall_headers=".json_encode(get_all_headers(), true), 3, "/data/logs/php/error.log");
+    //error_log("\ndeal_headers=".json_encode(deal_headers(), true), 3, "/data/logs/php/error.log");
+    //error_log("\napi=".$api, 3, "/data/logs/php/error.log");
 
     $ret = HttpProxy::getInstance(array('timeout'=>20000, 'conn_timeout'=>20000))->callInterfaceCommon($api, 'POST', [], deal_headers());
     //$ret = file_get_contents($api);
 
     $json = json_decode($ret, true);
     $browser_id = $json["client_uuid"];
-    setcookie("browser_id", $browser_id, time() + 3650*24*3600, '/', $domain);
-    error_log("\nbrowser_id=".$browser_id, 3, "/data/logs/php/error.log");
+    setcookie($cookie_name, $browser_id, time() + 3650*24*3600, '/', $domain);
+    //error_log("\nset cookie=".$cookie_name." domain=".$domain, 3, "/data/logs/php/error.log");
+    //error_log("\nbrowser_id=".$browser_id, 3, "/data/logs/php/error.log");
 
+    return $ret;
+}
+
+function get_init_data($path, $params){
+    $ret = get_init_php_data($path, $params);
     return json_encode($ret);
 }
 

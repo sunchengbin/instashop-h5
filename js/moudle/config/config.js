@@ -32,7 +32,8 @@ define([],function(){
         actions : {
             shopList : 'v1/shops/',//商家首页商品数据获取接口
             testCart : 'v1/carts/',//验证购物车商品是否可以下单
-            orderConfirm : 'v1/orders'//下单
+            orderConfirm : 'v1/orders',//下单
+            imNum:'v1/im/'//获取im的回复信息数
         }
     };
     return CONFIG;

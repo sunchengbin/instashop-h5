@@ -65,6 +65,13 @@ define(['base'],function(Base){
             localStorage.setItem('ShopData',JSON.stringify(_this.data));
             opts.callback && opts.callback.apply(_this);
         },
+        clearCarts : function(){//创建订单后清空购物车
+            var _json_shop_data = localStorage.getItem('ShopData')?JSON.parse(localStorage.getItem('ShopData')):null;
+            if(_json_shop_data){
+                _json_shop_data.Cart = null;
+                localStorage.setItem('ShopData',JSON.stringify(_json_shop_data));
+            }
+        },
         removeItem : function(id,callback){
             var _this = this;
             _this.initCart();

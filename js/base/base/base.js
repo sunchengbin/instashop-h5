@@ -338,6 +338,15 @@ define(function(){
                 console.log('请传object');
                 return false;
             }
+        },
+        //获取cookie
+        getCookie : function( name ) {
+            var arr, reg = new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+            if( arr = document.cookie.match(reg)) {
+                return unescape(arr[2]);
+            } else {
+                return null;
+            }
         }
     };
     return SUN;

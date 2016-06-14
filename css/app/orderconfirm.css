@@ -90,3 +90,9 @@ body{
     line-height: 3rem;
     font-size: 1.4rem;
 }
+.empty-cart{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.4rem;
+    color: #999;
+}

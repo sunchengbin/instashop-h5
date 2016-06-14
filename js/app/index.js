@@ -18,7 +18,8 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 IndexHtm = '<div>数据出错</div>';
             }
             $('body').prepend(IndexHtm);
-           this.handleFn();
+            this.getImNum();
+            this.handleFn();
         },
         handleFn : function(){
             var page_num = 2,
@@ -90,6 +91,29 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 }
             }
             return out;
+        },
+        getImNum : function(){
+            var im_id = Base.others.getCookie('insta-im-id');
+            if (!im_id) {
+                im_id = Base.others.getCookie('test-insta-im-id');
+            }
+            var toImId = init_data.shop['im_id'];
+            if (im_id && toImId) {
+                var reqData = {
+                    edata: {
+                        action: 'unreadnum',
+                        uid: toImId,
+                        uid2: im_id
+                    }
+                };
+                Ajax.getJsonp(Config.actions.imNum + '?param=' + JSON.stringify(reqData), function(data){
+                    if (data && data.count > 0) {
+                        $('#im-num').show();
+                    } else {
+                        $('#im-num').hide();
+                    }
+                });
+            }
         }
     };
     I.init(init_data);

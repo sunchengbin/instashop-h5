@@ -43,7 +43,8 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                             _that.cancelDisable();
                             _that.setBtnTxt(dom,'购买');
                             if(obj.code == 200){
-                                alert('成功')
+                                alert('成功');
+                                Cart().clearCarts();
                             }else{
 
                             }
@@ -121,7 +122,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     "buyer_address": _address,
                     "frm": 2
                 }
-            }
+            };
             return _data;
         },
         countSum : function(carts){
