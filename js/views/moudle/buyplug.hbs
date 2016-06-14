@@ -1,18 +1,22 @@
 <section class="buy-plug j_buy_plug">
     <div class="item-info-title clearfix">
-        <img src="http://imghk0.geilicdn.com/test_instashop40730-1460555107839-1.png?w=110&h=110&cp=1">
+        <img src="{{item.shop.logo}}">
         <div class="j_buy_info">
-            <p class="price">RP {{itemprice this}}</p>
-            <p class="title j_buy_info_title">{{item_name}}</p>
+            <p class="price j_buy_info_price">RP {{itemprice item}}</p>
+            <p class="title j_buy_info_title">{{item.item_name}}</p>
         </div>
         <i class="icon iconfont j_close_btn">&#xe602;</i>
     </div>
+    {{#if item.sku}}
     <div class="item-info-cont">
+
         <p>Type Size</p>
         <ul class="clearfix j_type">
-            {{{itemtype this}}}
+            {{{itemtype item}}}
         </ul>
+
     </div>
+    {{/if}}
     <div class="item-info-num">
         <div class="item-num-box clearfix">
             <span class="j_reduce_btn">

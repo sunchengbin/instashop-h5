@@ -164,7 +164,7 @@ define(['handlebars','base'], function(HBS,Base) {
         var _htm = '';
         if(data.sku && data.sku.length){
             Base.others.each(data.sku,function(item,i){
-                _htm += '<li class="j_type_li" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
+                _htm += '<li class="j_type_li" data-price="'+item.price+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
             });
         }
         return _htm;
@@ -178,6 +178,63 @@ define(['handlebars','base'], function(HBS,Base) {
             });
         }else{
             _htm += '<li class=""><img src="'+item+'"/></li>';
+        }
+        return _htm;
+    });
+
+    HBS.registerHelper('carts', function(carts) {
+        var _htm = '';
+        if(!Base.others.testObject(carts)){
+            for(var item in carts){
+                var _id = (carts[item].sku?carts[item].sku.id:carts[item].item.id);
+                _htm += '<li class="clearfix cart-item j_cart_item" data-id="'+_id+'">'
+                    +'<i class="icon iconfont j_del_cart" data-id="'+_id+'">&#xe646;</i>'
+                    +'<img src="'+carts[item].item.img+'">'
+                    +'<div class="">'
+                    +'<p class="name">'+carts[item].item.item_name+'</p>'
+                    +(carts[item].sku?'<p class="type">'+carts[item].sku.title+'</p>':'')
+                    +'<p class="num">数量:'+carts[item].num+'</p>'
+                    +'<p class="price">RP '+carts[item].price+'</p>'
+                    +'</div>'
+                    +'</li>';
+            }
+        }else{
+            _htm = '<li class="empty-cart">购物车为空</li>'
+        }
+        return _htm;
+    });
+
+    HBS.registerHelper('cartsconfirm', function(carts) {
+        var _htm = '';
+        if(!Base.others.testObject(carts)){
+            for(var item in carts){
+                var _id = (carts[item].sku?carts[item].sku.id:carts[item].item.id);
+                _htm += '<li class="clearfix cart-item j_cart_item" data-itemid="'+(carts[item].item.id)+'" data-id="'+_id+'">'
+                    +'<i class="icon iconfont j_del_cart" data-id="'+_id+'">&#xe63e;</i>'
+                    +'<img src="'+carts[item].item.img+'">'
+                    +'<div class="">'
+                    +'<p class="name">'+carts[item].item.item_name+'</p>'
+                    +(carts[item].sku?'<p class="type">'+carts[item].sku.title+'</p>':'')
+                    +'<p class="num">数量:'+carts[item].num+'</p>'
+                    +'<p class="price">RP '+carts[item].price+'</p>'
+                    +'</div>'
+                    +'</li>';
+            }
+        }else{
+            _htm = '<li class="empty-cart">购物车为空</li>'
+        }
+        return _htm;
+    });
+
+    HBS.registerHelper('logistics', function(data) {
+        var _htm = '';
+        for(var item in data){
+            for(var i in data[item]){
+                _htm += '<li class="j_logistics_li"  data-level="'+data[item][i].level+'" data-id="'+data[item][i].id+'">'
+                    +'<i class="icon iconfont check-btn" data-company="'+item+'" data-price="'+data[item][i].price+'"  data-level="'+data[item][i].level+'" data-id="'+data[item][i].id+'"></i>'
+                    +data[item][i].level+'('+data[item][i].cost_days+')'+':RP '+data[item][i].price
+                    +'</li>';
+            }
         }
         return _htm;
     });

@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/6.
  */
-require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base','common'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base,Common){
+require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base','common','cart'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base,Common,Cart){
     var I = {
         init : function(init_data){
             Lazyload();
@@ -10,7 +10,9 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             if(init_data){
                 IndexHtm= Hbs.compile(Index)({
                     data : init_data,
-                    lang : Lang
+                    lang : Lang,
+                    hrefUrl : Config.host.hrefUrl,
+                    num : Cart().getCartNum()
                 });
             }else{
                 IndexHtm = '<div>数据出错</div>';
@@ -66,6 +68,14 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                     location.href = _url;
                 });
             });
+            $('body').on('click','.j_cart_wraper',function(){
+                var _this = $(this),
+                    _url = _this.attr('data-url');
+                Common.saveFromUrl(function(){
+                    location.href = _url;
+                });
+            });
+
         },
         addItem : function(items){
             var out = "",

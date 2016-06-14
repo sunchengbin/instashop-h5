@@ -322,6 +322,22 @@ define(function(){
             } );
             result = result.reverse().join( '' );
             return result;
+        },
+        // 验证是否为空{}
+        testObject : function(obj){
+            if(typeof obj == 'object'){
+                for(var name in obj)
+                {
+                    if(obj.hasOwnProperty(name))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }else{
+                console.log('请传object');
+                return false;
+            }
         }
     };
     return SUN;

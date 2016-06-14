@@ -1,0 +1,41 @@
+<nav class="header-nav clearfix j_go_back">
+    <i class="icon iconfont">&#xe62a;</i>
+    order
+</nav>
+<section class="">
+    <div class="address-box j_address_wraper">
+        <div class="clearfix user-info">
+            <span class="fr">{{address.telephone}}</span>
+            <i class="icon iconfont fr">&#xe60a;</i>
+            <i class="icon iconfont fl">&#xe630;</i>
+            <span class="fl">{{address.name}}</span>
+        </div>
+        <div class="user-address-info">
+            <i class="icon iconfont fr">&#xe63e;</i>
+            <div class="address-info">
+                {{address.address.street}},{{address.address.country}},{{address.address.city}},{{address.address.province}}
+            </div>
+        </div>
+    </div>
+    <div class="logistics-box j_sel_logistics">
+        选择物流类型
+        <div class="fr">
+            <span class="j_logistics_info"></span>
+            <i class="icon iconfont fr">&#xe63e;</i>
+        </div>
+    </div>
+    <div class="list-box">
+        <div class="shop-info clearfix">
+            <img src="{{data.ShopInfo.logo}}">
+            <p>{{data.ShopInfo.name}}</p>
+        </div>
+        <ul class="order-items">
+            {{{cartsconfirm carts}}}
+        </ul>
+        <div class="order-info">
+            <p class="clearfix"><span class="fr j_post">RP : 0</span>Shipping cost:</p>
+            <p class="clearfix"><span class="fr j_sum">Rp : {{sum}}</span>Total:</p>
+        </div>
+        <button class="btn confirm-btn j_submit_buy">购买此商品</button>
+    </div>
+</section>

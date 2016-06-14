@@ -1,0 +1,17 @@
+@import "../base/base.css";
+@import "../moudle/app/header/header.css";
+@import "../moudle/app/common/common.css";
+@import "../moudle/ui/dialog/dialog.css";
+@import "../moudle/app/item/item.css";
+.cart-list{
+    padding:0 1rem;
+}
+.confirm-btn{
+    margin-top:2rem;
+}
+.empty-cart{
+    text-align: center;
+    font-size: 1.6rem;
+    margin-top: 2rem;
+    color: #999;
+}

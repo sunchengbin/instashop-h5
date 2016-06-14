@@ -31,6 +31,6 @@
 <body>
   <script src="../js/base/require-zepto.js?v=1"></script>
   <script src="../js/base/require-config.js?v=1"></script>
-  <script src="../js/dist/app/index.js?v=1"></script>
+  <script src="../js/app/index.js?v=1"></script>
 </body>
 </html>

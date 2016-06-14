@@ -1,0 +1,15 @@
+<nav class="header-nav clearfix j_go_back">
+    <i class="icon iconfont">&#xe62a;</i>
+    返回
+</nav>
+<section class="cart-list j_cart_list">
+    <ul class="">
+        {{{carts this}}}
+    </ul>
+    {{#if this}}
+        <button class="btn j_submit_btn confirm-btn">去结算</button>
+        {{else}}
+        <button class="btn j_go_shop confirm-btn">去逛逛</button>
+    {{/if}}
+
+</section>

@@ -1,0 +1,85 @@
+@import "../base/base.css";
+@import "../moudle/app/header/header.css";
+@import "../moudle/app/common/common.css";
+body{
+    background-color: #F5F5F5;
+    width: 100%;
+    overflow: hidden;
+}
+.user-info,.user-address{
+    background-color: #fff;
+}
+.info-box{
+    color: #aaa;
+    font-size: 1.4rem;
+    padding:1rem;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    border-bottom: 1px solid #ececec;
+}
+.user-tel{
+    border-bottom: none;
+}
+.info-box input{
+    color: #666;
+    font-size: 1.4rem;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    width: 100%;
+}
+.info-box-address{
+    padding:1rem;
+}
+.info-box-address textarea{
+    width: 100%;
+    resize: none;
+    height: 10rem;
+    font-size: 1.4rem;
+}
+.user-info{
+    margin-bottom:2rem;
+}
+.act{
+    color: #666;
+}
+.address-list{
+    position: absolute;
+    left: 100%;
+    top:0;
+    z-index: 10;
+    background: #fff;
+    width: 100%;
+    bottom:0;
+}
+.show{
+    transition-duration: .6s;
+    transform:translate3d(-100%,0,0);
+    -webkit-transition-duration: .6s;
+    -webkit-transform:translate3d(-100%,0,0);
+}
+.hide{
+    transition-duration: .6s;
+    transform:translate3d(100%,0,0);
+    -webkit-transition-duration: .6s;
+    -webkit-transform:translate3d(100%,0,0);
+}
+.address-list div{
+    color: #aaa;
+    font-size: 1.4rem;
+    padding:1rem;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    position: relative;
+}
+.address-list div:after{
+    content: ' ';
+    position: absolute;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ececec;
+}
+.address-list div:last-child::after{
+    display:none ;
+}

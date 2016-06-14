@@ -2,12 +2,13 @@
  * Created by sunchengbin on 16/6/2.
  * 添加到购物车插件
  */
-define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog'],function(Common,Base,Hbs,Buyplughtm,Btn,Dialog){
+define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','cart'],function(Common,Base,Hbs,Buyplughtm,Btn,Dialog,Cart){
     var BuyPlug = function(opts){
         var _this = this;
         _this.config = $.extend({
             wraper : 'body',
             btn : '.j_add_cart',
+            buyNow:'.j_buy_btn',
             closeBtn : '.j_close_btn',
             transformSpeed:'.6s'
         },opts);
@@ -24,7 +25,21 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog'],fu
                 _w_h = $(window).height(),
                 _b_h = _wraper.height();
             $(_config.wraper).on('tap',_config.btn,function(){
-                _this.createHtm(_config.data.item).toShow();
+                _this.createHtm(_config.data).toShow();
+            });
+            $(_config.wraper).on('tap',_config.buyNow,function(){
+                if(_config.data.item.sku.length){
+                    _this.createHtm(_config.data).toShow();
+                }else{
+                    Cart(_config.data).addItem({
+                        item : _config.data.item,
+                        num : 1,
+                        price:_config.data.item.price,
+                        callback : function(){
+                            _this.resetNum.apply(this);
+                        }
+                    });
+                }
             });
             $(_config.wraper).on('tap',_config.closeBtn,function(){
                 _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
@@ -42,6 +57,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog'],fu
                     }else{
                         $('.j_buy_info').prepend('<p class="j_type_title">'+_that.html()+'</p>');
                     }
+                    $('.j_buy_info_price').html('RP '+_that.attr('data-price'));
                     $('.j_buy_info_title').html('库存:'+_that.attr('data-stock'));
                 }
             });
@@ -58,26 +74,66 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog'],fu
             $(_config.wraper).on('tap','.j_plug_submit',function(){
                 var _item_num = $('.j_item_num'),
                     _num = Number(_item_num.val()),
+                    _has_sku = $('.j_type li').length,
                     _type = $('.j_type .act'),
-                    _stock = _type.length?_type.attr('data-stock'):null;
-                if(!_stock){
-                    Dialog.tip({
-                        body_txt : '没有库存',
-                        c_fn : function(dom){
-                            console.log(dom);
+                    _stock = _type.length?_type.attr('data-stock'):null,
+                    _sku_price = _type.length?_type.attr('data-price'):init_data.item.price,
+                    _sku_id = _type.length?_type.attr('data-id'):null,
+                    _sku_title = _type.length?_type.html():null;
+                if(!_has_sku){
+                    Cart(init_data).addItem({
+                        item : init_data.item,
+                        num : _num,
+                        price:_sku_price,
+                        callback : function(){
+                            _this.resetNum.apply(this);
+                            _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
                         }
                     });
                 }else{
-                    if(_num > _stock){
+                    if(!_stock){
                         Dialog.tip({
-                            body_txt : '购买数量超过库存',
+                            body_txt : '没有库存',
                             c_fn : function(dom){
                                 console.log(dom);
                             }
                         });
+                    }else{
+                        if(_num > _stock){
+                            Dialog.tip({
+                                body_txt : '购买数量超过库存',
+                                c_fn : function(dom){
+                                    console.log(dom);
+                                }
+                            });
+                        }else{
+                            Cart(init_data).addItem({
+                                item : init_data.item,
+                                sku : {
+                                    price : _sku_price,
+                                    id : _sku_id,
+                                    title : _sku_title,
+                                    stock : _stock
+                                },
+                                price:_sku_price,
+                                num : _num,
+                                callback : function(){
+                                    _this.resetNum.apply(this);
+                                    _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
+                                }
+                            });
+                        }
                     }
                 }
             });
+        },
+        resetNum : function(){
+            var _this = this;
+            if($('.j_cart_wraper span').length){
+                $('.j_cart_wraper span').html(_this.getCartNum());
+            }else{
+                $('.j_cart_wraper').prepend('<span class="cart-num">'+_this.getCartNum()+'</span>');
+            }
         },
         createHtm : function(info){
             if($('.j_buy_plug').length)return this;

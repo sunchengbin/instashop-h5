@@ -1,0 +1,35 @@
+<nav class="header-nav clearfix">
+    <i class="icon iconfont j_go_back">&#xe62a;</i>
+    收货地址
+    <button class="fr j_save_address">保存</button>
+</nav>
+<section class="address-wraper">
+    <div class="user-info">
+        <div class="user-name info-box">
+            <input class="j_name" type="text" value="{{name}}" placeholder="您的姓名"/>
+        </div>
+        <div class="user-tel info-box">
+            <input class="j_tel" type="text" value="{{telephone}}" placeholder="您的手机号"/>
+        </div>
+    </div>
+    <div class="user-address j_user_address">
+        <div class="info-box act clearfix" data-name="province">
+            <i class="icon iconfont fr">&#xe63e;</i>
+            <p class="j_province">{{#if address.province}}{{address.province}}{{else}}省份{{/if}}</p>
+        </div>
+        <div class="info-box {{#if address.city}}act{{/if}} clearfix" data-name="city">
+            <i class="icon iconfont fr">&#xe63e;</i>
+            <p class="j_city">{{#if address.city}}{{address.city}}{{else}}城市{{/if}}</p>
+        </div>
+        <div class="info-box {{#if address.country}}act{{/if}} clearfix" data-name="country">
+            <i class="icon iconfont fr">&#xe63e;</i>
+            <p class="j_country">{{#if address.country}}{{address.country}}{{else}}街道{{/if}}</p>
+        </div>
+        <div class="info-box-address">
+            <textarea class="j_street" placeholder="详细地址">{{#if address.street}}{{address.street}}{{/if}}</textarea>
+        </div>
+    </div>
+</section>
+<section class="address-list j_address_list">
+    <!--<div class="address-list-item" data-val="">sfasdfa</div>-->
+</section>

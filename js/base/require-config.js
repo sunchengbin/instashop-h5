@@ -1,6 +1,6 @@
 //baseUrl 放在服务端写入页面
 require.config({
-    baseUrl: "/js/",
+    baseUrl: "/instashopnew/js/",
     paths: {
         //基础框架配置
         base: 'base/base/base',
@@ -20,6 +20,8 @@ require.config({
         ajax:"moudle/ui/ajax/ajax",
         common:"moudle/app/common/common",
         buyplug:"moudle/app/buyplug/buyplug",
+        cart:"moudle/app/cart/cart",
+        logistics:"moudle/app/logistics/logistics",
         //配置
         config:'moudle/config/config',
         //数据存储js

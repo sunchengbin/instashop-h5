@@ -1,0 +1,42 @@
+.logistics-plug {
+    width: 100%;
+     position: fixed;
+    background-color: #fff;
+}
+.logistics-plug-top,.logistics-list{
+    padding:0 1rem;
+}
+.logistics-list li{
+    padding: .5rem 0 0;
+    line-height: 2rem;
+    color: #666;
+}
+.logistics-list{
+    padding-bottom: .5rem;
+}
+.logistics-list i{
+    font-size: 2rem;
+    vertical-align: middle;
+    margin-right: .5rem;
+}
+.logistics-plug-top i{
+    font-size: 2.4rem;
+    color: #999;
+
+}
+.logistics-plug-top p{
+    font-size: 1.4rem;
+    line-height: 3rem;
+}
+.btn{
+    border-radius: 0;
+}
+.logistics_plug_cover{
+    display: none;
+    position: fixed;
+    left: 0;
+    right:0;
+    top:0;
+    bottom:0;
+    background-color: rgba(0,0,0,.5);
+}

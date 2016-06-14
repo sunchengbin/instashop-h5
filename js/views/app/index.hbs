@@ -1,6 +1,9 @@
 <nav class="shop-header-nav clearfix">
     <div class="fr">
-        <button class="">
+        <button class="j_cart_wraper" data-url="{{hrefUrl}}cart.html">
+            {{#if num}}
+            <span class="cart-num">{{num}}</span>
+            {{/if}}
             <i class="icon iconfont">&#xe643;</i>
         </button>
         <div class="btn-cover"></div>
