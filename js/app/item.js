@@ -21,13 +21,38 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             if(init_data) {
                 Slide.createNew({
                     dom: document.querySelector('.j_banner'),
-                    needTab: true
+                    needTab: true,
+                    auto : false
                 });
                 Buyplug({
                     data: init_data
                 });
             }
+            this.getImNum();
             this.handleFn();
+        },
+        getImNum : function(){
+            var im_id = Base.others.getCookie('insta-im-id');
+            if (!im_id) {
+                im_id = Base.others.getCookie('test-insta-im-id');
+            }
+            var toImId = init_data.item.shop['im_id'];
+            if (im_id && toImId) {
+                var reqData = {
+                    edata: {
+                        action: 'unreadnum',
+                        uid: toImId,
+                        uid2: im_id
+                    }
+                };
+                Ajax.getJsonp(Config.host.actionUrl+Config.actions.imNum + '?param=' + JSON.stringify(reqData), function(data){
+                    if (data && data.count > 0) {
+                        $('.j_im_num').show();
+                    } else {
+                        $('.j_im_num').hide();
+                    }
+                });
+            }
         },
         handleFn : function(){
             $('body').on('click','.j_shop_info',function(){

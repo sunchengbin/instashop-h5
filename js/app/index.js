@@ -18,6 +18,9 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 IndexHtm = '<div>数据出错</div>';
             }
             $('body').prepend(IndexHtm);
+            if($('.txt-hide').height() > 20){
+                $('.down-btn').show();
+            }
             this.getImNum();
             this.handleFn();
         },
@@ -32,6 +35,16 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                         page_num: page_num
                     }
                 };
+            $('body').on('tap','.j_down_btn',function(){
+                if($(this).is('.down-btn')){
+                    $(this).removeClass('down-btn').addClass('up-btn');
+                    $('.txt').css({'maxHeight':'none'});
+                }else{
+                    $(this).removeClass('up-btn').addClass('down-btn');
+                    $('.txt').css({'maxHeight':'3rem'});
+                }
+
+            });
             $(document).on('scroll', function(e) {
                 var _st = $('body').scrollTop(),
                     _wh = $(window).height(),
@@ -106,11 +119,11 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                         uid2: im_id
                     }
                 };
-                Ajax.getJsonp(Config.actions.imNum + '?param=' + JSON.stringify(reqData), function(data){
+                Ajax.getJsonp(Config.host.actionUrl+Config.actions.imNum + '?param=' + JSON.stringify(reqData), function(data){
                     if (data && data.count > 0) {
-                        $('#im-num').show();
+                        $('.j_im_num').show();
                     } else {
-                        $('#im-num').hide();
+                        $('.j_im_num').hide();
                     }
                 });
             }

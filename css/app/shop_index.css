@@ -39,9 +39,10 @@ section{
     padding:4rem 2rem 2rem;
 }
 .shop-explain > div{
-    padding:1rem 1rem .5rem;
+    padding:1rem 1rem;
     background-color: #f5f5f5;
     position: relative;
+    z-index: 1;
 }
 .shop-explain > div p{
     text-align: center;
@@ -50,6 +51,15 @@ section{
     max-height: 3rem;
     overflow: hidden;
 }
+.txt-hide{
+    position: absolute;
+    margin:1rem;
+    left: 0;
+    top:0;
+    z-index: -1;
+    opacity: 0;
+}
+
 .top-angle{
     position:absolute;
     display: inline-block;
@@ -64,11 +74,14 @@ section{
     font-size: 1.6rem;
     color: #999;
 }
+.down-btn:before{
+    content: "\e615";
+}
 .up-btn:before {
     content: "\e667";
 }
-.down-btn:before{
-    content: "\e615";
+.down-btn{
+    display: none;
 }
 /*产品展示列表*/
 .items-box{
@@ -126,7 +139,25 @@ section{
     height: 3rem;
     line-height: 3rem;
     padding: 0 1rem;
+    font-size: 1.4rem;
     color: #52CDF0;
     z-index: 3;
     border-radius: 4rem 0 0 4rem;
+}
+.im-num{
+    position: absolute;
+    display: none;
+    width: 1rem;
+    height: 1rem;
+    line-height: 1.6rem;
+    background: #FF584C;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    left: 2.4rem;
+    top: .3rem;
+}
+.ser-icon{
+    font-size: 2.4rem;
+    vertical-align: middle;
 }
