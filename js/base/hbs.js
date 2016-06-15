@@ -1,4 +1,4 @@
-define(['handlebars','base'], function(HBS,Base) {
+define(['handlebars','base','config'], function(HBS,Base,Config) {
     function isEmpty(val) {
         var x = false;
         switch (typeof val) {
@@ -101,7 +101,7 @@ define(['handlebars','base'], function(HBS,Base) {
             i = 0;
         for (i; i < items.length;i++) {
             if(items[i].is_top == 1) {
-                out += '<li><a class="item-info j_item_info" data-url="'+items[i].h5_url+'" href="javascript:;">'
+                out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
                     +'<div class="lazy" data-img="'+items[i].img+'"></div>'
                     +'<p class="title">'+items[i].item_comment+'</p>';
                 if(Base.others.priceFormat(items[i].price) < 0){
@@ -120,7 +120,7 @@ define(['handlebars','base'], function(HBS,Base) {
             i = 0;
         for (i; i < items.length;i++) {
             if(items[i].is_top == 0){
-                out += '<li><a class="item-info j_item_info" data-url="'+items[i].h5_url+'" href="javascript:;">'
+                out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
                     +'<div class="lazy" data-img="'+items[i].img+'"></div>'
                     +'<p class="title">'+items[i].item_comment+'</p>';
                 if(Base.others.priceFormat(items[i].price) < 0){
