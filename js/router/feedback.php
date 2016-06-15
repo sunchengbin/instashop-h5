@@ -13,9 +13,9 @@ function dealHeaders()
 }
 
 if(strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
-    $host = 'https://api-m-test.instarekber.com/instashop/';   // 测试
+    $host = 'https://apip-test.instashop.co.id/instashop/';   // 测试
 }else{
-    $host = 'https://apip.instarekber.com/instashop/';
+    $host = 'https://apip.instashop.co.id/instashop/';
 }
 
 $api = 'v1/feedback';

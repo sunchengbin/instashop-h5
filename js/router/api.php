@@ -46,13 +46,9 @@ function curl_post($url,$data)
 }
 
 if(strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
-    $host = 'https://api-m-test.instarekber.com/instashop/';   // 测试
-      // $host = 'http://10.5.15.10:8888/instashop/';  //本地
-    // $host = 'https://apip.instarekber.com/instashop/';
+    $host = 'https://apip-test.instashop.co.id/instashop/';   // 测试
 }else{
-    // $host = 'https://api-m.instarekber.com/';
-    // $host = 'http://10.5.15.10:8888/instashop/';
-    $host = 'https://apip.instarekber.com/instashop/';
+    $host = 'https://apip.instashop.co.id/instashop/';
 }
 
 $api = trim($_GET['_path_'],' /');

@@ -92,7 +92,12 @@ define([],function(){
             'H5_NO_PRICE':'卖家没有设定商品价格，请联系卖家购买',
             'H5_NO_STOCK':'请先联系卖家确认有货后再购买',
             'H5_CONTINUE_ORDER':'继续下单',
-            'H5_CANCEL':'取消'
+            'H5_CANCEL':'取消',
+            'H5_ORDER_DETAIL_QUICK_PAY_ADDRESS_TIPS':'快速收款订单，无收货地址',
+            'H5_ORDER_DETAIL_QUICK_PAY_ITEM_TIP' : '总价为#的商品',
+            'H5_MAKE_ORDER': '去结算',
+            'H5_BROWSE_SHOP': '去逛逛',
+            'H5_NO_ADDR_TIP': '你还没有收货地址，请先填写地址',
         },
 
         id : {
@@ -279,6 +284,12 @@ define([],function(){
             'H5_NO_STOCK':'Silakan hubungi penjual untuk memastikan ketersediaan stok sebelum membeli',
             'H5_CONTINUE_ORDER':'Lanjutkan Order',
             'H5_CANCEL':'Batal',
+            'H5_ORDER_DETAIL_QUICK_PAY_ADDRESS_TIPS':'Pesanan ini dibuat dengan menu Penagihan Instan, alamat pengiriman belum dicantumkan',
+            'H5_ORDER_DETAIL_QUICK_PAY_ITEM_TIP' : 'Produk senilai #',
+            'H5_MAKE_ORDER': 'Checkout',
+            'H5_BROWSE_SHOP': 'Beli Lagi',
+            'H5_NO_ADDR_TIP': 'Kamu belum mengisi alamat pengiriman, silakan isi alamat pengiriman dulu',
+            'H5_CONFIRM':'Ya'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

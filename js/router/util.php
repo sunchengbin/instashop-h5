@@ -2,9 +2,9 @@
 
 function check_api($path, $params){
     if (strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
-        $host = 'https://api-m-test.instarekber.com/instashop/';   // 测试
+        $host = 'https://apip-test.instashop.co.id/instashop/';   // 测试
     }else{
-        $host = 'https://apip.instarekber.com/instashop/';
+        $host = 'https://apip.instashop.co.id/instashop/';
     }
     $api = $host.$path.'?param='.(json_encode([ 'edata' => $params  ]));
     return $api;
@@ -41,9 +41,9 @@ function get_init_php_data($path, $params){
     require_once('HttpProxy.php');
 
     if (strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
-        $host = 'https://api-m-test.instarekber.com/instashop/';   // 测试
+        $host = 'https://apip-test.instashop.co.id/instashop/';   // 测试
     }else{
-        $host = 'https://apip.instarekber.com/instashop/';
+        $host = 'https://apip.instashop.co.id/instashop/';
     }
     $domain = "instashop.co.id";
     if (strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){

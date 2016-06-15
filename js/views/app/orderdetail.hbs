@@ -1,0 +1,68 @@
+<nav class="header-nav clearfix">
+    订单详情
+</nav>
+<section class="order-state">
+    <p>订单状态:{{data.order.state_txt}}</p>
+    <p>
+        <a href="{{hrefUrl}}ordersuccess.html" class="">
+            <i class="icon iconfont fr">&#xe63e;</i>查看收款账户:
+        </a>
+    </p>
+</section>
+<section class="user-info-box">
+    <div class="address-box">
+        <div class="clearfix user-info">
+            <span class="fr">{{data.order.buyer_telephone}}</span>
+            <i class="icon iconfont fr">&#xe60a;</i>
+            <i class="icon iconfont fl">&#xe630;</i>
+            <span class="fl">{{data.order.buyer_name}}</span>
+        </div>
+        <div class="user-address-info">
+            <div class="address-info">
+                {{data.order.buyer_address.street}},{{data.order.buyer_address.country}},{{data.order.buyer_address.city}},{{data.order.buyer_address.province}}
+            </div>
+            <div>物流类型:cepat</div>
+        </div>
+    </div>
+</section>
+<section class="">
+    <div class="list-box">
+        <div class="shop-info clearfix">
+            <img src="{{data.order.shop_info.logo}}">
+            <p>{{data.order.shop_info.name}}</p>
+        </div>
+        <ul class="order-items">
+            {{#each data.order.items}}
+            <li class="clearfix cart-item">
+                <img src="{{img_head}}">
+                <div class="">
+                    <p class="name">{{item_title}}</p>
+                    {{#if item_sku_title}}
+                        <p class="type">型号:{{item_sku_title}}</p>
+                    {{/if}}
+                    <p class="num">数量:{{quantity}}</p>
+                    <p class="price">RP {{price}}</p>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+        <div class="order-info">
+            <p class="clearfix"><span class="fr">RP : {{data.order.express_fee}}</span>Shipping cost:</p>
+            <p class="clearfix"><span class="fr">Rp : {{data.order.need_pay_price}}</span>Total:</p>
+        </div>
+        <div class="href-box clearfix">
+            <a href="{{host}}s/{{data.order.shop_info.id}}" class="go-home">
+                <div class="clearfix">
+                    <i class="icon iconfont">&#xe627;</i>
+                    进入店铺
+                </div>
+            </a>
+            <a href="tel:{{data.order.shop_info.telephone}}" class="contact-user fr">
+                <div class="clearfix">
+                    <i class="icon iconfont">&#xe60a;</i>
+                    联系卖家
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
