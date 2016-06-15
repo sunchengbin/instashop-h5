@@ -36,6 +36,10 @@ define(['base'],function(Base){
             var _this = this,
                 _shop_id = opts.item.shop.id,//商铺id
                 _item_id = opts.item.id;//商品id
+            if(opts.price < 0 || (opts.sku && (opts.sku.stock >= 9999999)) || (!opts.sku && (opts.item.stock >= 9999999))){
+                alert('请联系商家,进行购买');
+                return;
+            }
             _this.initCart();
             if(!_this.cart){//cart不存在
                 _this.cart = {};
@@ -49,14 +53,26 @@ define(['base'],function(Base){
                 if(!_this.cart[_shop_id][opts.sku.id]){//某个商品的某个规格
                     _this.cart[_shop_id][opts.sku.id] = {};
                 }else{
-                    opts.num += _this.cart[_shop_id][opts.sku.id].num;
+                    var _test_num = opts.num + _this.cart[_shop_id][opts.sku.id].num;
+                    if(_this.verifyItem(_test_num,opts.sku.stock)){
+                        opts.num += _this.cart[_shop_id][opts.sku.id].num;
+                    }else{
+                        alert('超出库存');
+                        return;
+                    }
                 }
                 _this.cart[_shop_id][opts.sku.id] = opts;
             }else{//没有规格的商品以商品id为key
                 if(!_this.cart[_shop_id][_item_id]){
                     _this.cart[_shop_id][_item_id] = {};
                 }else{
-                    opts.num += _this.cart[_shop_id][_item_id].num;
+                    var _test_num = opts.num + _this.cart[_shop_id][_item_id].num;
+                    if(_this.verifyItem(_test_num,opts.item.stock)){
+                        opts.num += _this.cart[_shop_id][_item_id].num;
+                    }else{
+                        alert('超出库存');
+                        return;
+                    }
                 }
                 _this.cart[_shop_id][_item_id] = opts;
             }
@@ -103,25 +119,11 @@ define(['base'],function(Base){
             }
             return _num;
         },
-        verifyItem : function(num,item){
-            var _carts = this.cart,
-                _shop_id = item.shop.id;
-            if(_carts){
-                if(_carts[_shop_id] && _carts[_shop_id][item.id]){
-                    var _num = Number(_carts[item.id].num),
-                        _now_num = _num+num;
-                    if(_now_num > _carts[_shop_id][item.id].stack){
-                        return {
-                            val : false,
-                            msg : '超出库存'
-                        };
-                    }
-                }
+        verifyItem : function(num,stock){
+            if(num > stock){
+                return false;
             }
-            return {
-                val : true,
-                msg :''
-            };
+            return true;
         }
 
     };
