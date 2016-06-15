@@ -19,7 +19,9 @@
         "city":"moudle/data/city",
         "lang":"moudle/data/lang",
         "common":"moudle/app/common/common",
-        "buyplug":"moudle/app/buyplug/buyplug"
+        "buyplug":"moudle/app/buyplug/buyplug",
+        "cart":"moudle/app/cart/cart",
+        "logistics":"moudle/app/logistics/logistics"
     },
     "fileExclusionRegExp": "/.hbs$/",
     "keepBuildDir": true,

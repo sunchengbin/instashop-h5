@@ -7,7 +7,7 @@
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-  <link href="../css/app/shop_index.css?v=1" rel="stylesheet"/>
+  <link href="../css/dist/app/shop_index.css?v=1" rel="stylesheet"/>
   <title>Instashop</title>
   <script>
     <?php
@@ -30,7 +30,7 @@
 </head>
 <body>
   <script src="../js/base/require-zepto.js?v=1"></script>
-  <script src="../js/base/require-config.js?v=1"></script>
-  <script src="../js/app/index.js?v=1"></script>
+  <!--<script src="../js/base/require-config.js?v=1"></script>-->
+  <script src="../js/dist/app/index.js?v=1"></script>
 </body>
 </html>
