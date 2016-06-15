@@ -32,7 +32,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     var _data = _this.getData();
                     if(!_data){
                         _that.cancelDisable();
-                        _that.setBtnTxt(dom,'购买');
+                        _that.setBtnTxt(dom,'购买此商品');
                         return;
                     }
                     Ajax.postJsonp({
@@ -41,17 +41,19 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         type : 'POST',
                         success : function(obj){
                             _that.cancelDisable();
-                            _that.setBtnTxt(dom,'购买');
+                            _that.setBtnTxt(dom,'购买此商品');
                             if(obj.code == 200){
-                                alert('成功');
+                                //alert('成功');
+                                localStorage.setItem('OrderTotal',_this.countSum(Cart().getCarts()));
                                 Cart().clearCarts();
+                                location.href = Config.host.hrefUrl+'ordersuccess.html';
                             }else{
 
                             }
                         },
                         error : function(error){
                             _that.cancelDisable();
-                            _that.setBtnTxt(dom,'购买');
+                            _that.setBtnTxt(dom,'购买此商品');
                         }
                     });
                 }

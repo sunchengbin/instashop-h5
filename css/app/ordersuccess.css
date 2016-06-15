@@ -1,0 +1,47 @@
+@import "../base/base.css";
+@import "../moudle/app/header/header.css";
+body{
+    background-color: #F5F5F5;
+}
+section{
+    padding:1rem;
+    font-size: 1.4rem;
+    background-color: #fff;
+}
+p{
+    line-height: 2.4rem;
+}
+.order-box{
+    margin-bottom: 2rem;
+}
+.order-info span{
+    color: #f9b42d;
+    font-weight: bolder;
+}
+.order-content{
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #666;
+}
+.bank-info{
+    border-bottom:1px solid #D8D8D8;
+    padding-bottom: 1rem;
+}
+.bank-info img{
+    width: 4rem;
+    margin-top:.4rem;
+    float: left;
+    vertical-align: middle;
+    margin-right:1rem;
+}
+.pay-content{
+    padding-top:1rem;
+}
+.last-explain{
+    color: #d6d6d6;
+}
+.pay-content-explain{
+    margin:1rem 0;
+    font-size: 1.3rem;
+    color: #999;
+}
