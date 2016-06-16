@@ -15,7 +15,7 @@ define([],function(){
             //hrefUrl : 'http://mnew-test.instashop.co.id/html/'
             //测试环境
             hostUrl : 'http://m-test.instashop.co.id/js/',//内部router的路径
-            actionUrl : 'https://apip-test.instarekber.com/instashop/',
+            actionUrl : 'https://apip-test.instashop.co.id/instashop/',
             host : 'http://m-test.instashop.co.id/',
             imgUrl : 'http://m-test.instashop.co.id/images',
             hrefUrl : 'http://m-test.instashop.co.id/html/'
