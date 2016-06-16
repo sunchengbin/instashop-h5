@@ -96,11 +96,37 @@ body{
     font-size: 1.4rem;
     color: #999;
 }
-.order-state p{
+.order-state > p{
     line-height: 3rem;
     font-size: 1.4rem;
     padding: .5rem 0;
     color: #999;
+}
+.logistics-info{
+    border-top: #ececec 1px solid;
+    padding: .5rem 0;
+    line-height: 2.4rem;
+    font-size: 1.4rem;
+}
+.logistics-info a{
+    color: #999;
+    display: block;
+    position: relative;
+}
+.logistics-info p{
+    margin-right:2rem;
+}
+.logistics-info i{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -1rem;
+}
+.logistics-info p:nth-child(2){
+    color: #43CB9C;
+}
+.logistics-info p:last-child{
+    color: #ccc;
 }
 .order-state p a{
     display: block;

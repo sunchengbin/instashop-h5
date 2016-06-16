@@ -4,10 +4,19 @@
 <section class="order-state">
     <p>订单状态:{{data.order.state_txt}}</p>
     <p>
-        <a href="{{hrefUrl}}ordersuccess.html" class="">
+        <a href="{{hrefUrl}}ordersuccess.php" class="">
             <i class="icon iconfont fr">&#xe63e;</i>查看收款账户:
         </a>
     </p>
+    {{#if data.order.logistics_info.last_checkpoint.message}}
+    <div class="logistics-info">
+        <a href="{{hrefUrl}}logistics.php?order_id={{data.order.id_hash}}&logistics_id={{data.order.express_info_id}}" class="clearfix">
+            <i class="icon iconfont fr">&#xe63e;</i>
+            <p>{{data.order.logistics_info.last_checkpoint.message}}</p>
+            <p>{{data.order.logistics_info.express.title}} {{data.order.logistics_info.express.express_no}}</p>
+        </a>
+    </div>
+    {{/if}}
 </section>
 <section class="user-info-box">
     <div class="address-box">

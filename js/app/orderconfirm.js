@@ -12,13 +12,16 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     data:JSON.parse(_data),
                     carts : _carts,
                     sum : _this.countSum(_carts),
-                    address : _address
+                    address : _address,
+                    express : express_data.express_fee_list.list
                 });
             $('body').prepend(_htm);
-            _this.logistics = Logistics({
-                data : express_data.express_fee_list.list,
-                sum : _this.countSum(_carts)
-            });
+            if(express_data.express_fee_list.list.length){
+                _this.logistics = Logistics({
+                    data : express_data.express_fee_list.list,
+                    sum : _this.countSum(_carts)
+                });
+            }
             _this.handleFn();
         },
         handleFn : function(){
@@ -46,7 +49,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                 //alert('成功');
                                 localStorage.setItem('OrderTotal',_this.countSum(Cart().getCarts()));
                                 Cart().clearCarts();
-                                location.href = Config.host.hrefUrl+'ordersuccess.html';
+                                location.href = Config.host.hrefUrl+'ordersuccess.php';
                             }else{
 
                             }
@@ -59,11 +62,11 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                 }
             });
             $('body').on('tap','.j_go_back',function(){
-                location.href = Config.host.hrefUrl+'cart.html';
+                location.href = Config.host.hrefUrl+'cart.php';
             });
             $('body').on('tap','.j_address_wraper',function(){
                 Common.saveFromUrl(function(){
-                    location.href = Config.host.hrefUrl+'address.html';
+                    location.href = Config.host.hrefUrl+'address.php';
                 });
             });
             $('body').on('tap','.j_cart_item',function(){
@@ -99,12 +102,12 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
         getData : function(){
             var _this = this,
                 _logistics_info = $('.j_logistics_info'),
-                _company = _logistics_info.attr('data-company'),
-                _fee_id = _logistics_info.attr('data-id'),
+                _company = _logistics_info.length?_logistics_info.attr('data-company'):'',
+                _fee_id = _logistics_info.length?_logistics_info.attr('data-id'):'',
                 _shop_data = JSON.parse(localStorage.getItem('ShopData')),
                 _seller_id = _shop_data.ShopInfo.id,
                 _address = _shop_data.Address;
-            if(!_company){
+            if(!_company && _this.logistics){
                 _this.logistics.createHtm(express_data.express_fee_list.list).toShow();
                 return null;
             }
@@ -118,8 +121,8 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     "seller_id": _seller_id,
                     "buyer_id": "0",
                     "buyer_note": "",
-                    "express_company": _company,
-                    "express_fee_id": _fee_id,
+                    "express_company": (_company?_company:''),
+                    "express_fee_id": (_fee_id?_fee_id:''),
                     "items": _this.getItems(),
                     "buyer_address": _address,
                     "frm": 2

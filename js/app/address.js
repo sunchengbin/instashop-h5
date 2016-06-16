@@ -106,7 +106,10 @@ require(['hbs','text!views/app/address.hbs','city','config'],function(Hbs,Addres
                 _data_json.Address = _address;
                 localStorage.setItem('ShopData',JSON.stringify(_data_json));
                 setTimeout(function(){
-                    location.href = Config.host.hrefUrl+'orderconfirm.html';
+                    var _data = JSON.parse(localStorage.getItem('ShopData')),
+                        _addr = _address.street + ',' + _address.country + ',' + _address.city + ',' + _address.province;
+                    location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+_data.ShopInfo.id+'&addr='+_addr;
+                    //location.href = Config.host.hrefUrl+'orderconfirm.php';
                 },0);
             });
         },

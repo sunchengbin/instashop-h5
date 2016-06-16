@@ -74,7 +74,7 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base']
                         top_txt : '',//可以是html
                         body_txt : '<p class="dialog-body-p">请填写收货地址?</p>',//弹窗内容区字段
                         cf_fn : function(){
-                            location.href = Config.host.hrefUrl+'address.html';
+                            location.href = Config.host.hrefUrl+'address.php';
                         }
                     });
                 }else{
@@ -84,7 +84,9 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base']
                         type : 'POST',
                         success : function(obj){
                             if(obj.code == 200){
-                                location.href = Config.host.hrefUrl+'orderconfirm.html';
+                                var _address= JSON.parse(localStorage.getItem('ShopData')).Address.address,
+                                    _addr = _address.street + ',' + _address.country + ',' + _address.city + ',' + _address.province;
+                                location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+reqData.edata.seller_id+'&addr='+_addr;
                             }else{
 
                             }

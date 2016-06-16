@@ -26,6 +26,19 @@ define(['handlebars','base','config'], function(HBS,Base,Config) {
         return x;
     }
 
+    HBS.registerHelper('replace', function(str, a, b, options) {
+        var r = new RegExp(a, 'gi');
+        return str.replace(r, b);
+    });
+
+    HBS.registerHelper('encode', function(str, options) {
+        return encodeURIComponent(str);
+    });
+
+    HBS.registerHelper('decode', function(str, options) {
+        return decodeURIComponent(str);
+    });
+
     // 相等
     HBS.registerHelper('eq', function(a, b, options) {
         if (a == b) {
@@ -238,18 +251,21 @@ define(['handlebars','base','config'], function(HBS,Base,Config) {
         }
         return _htm;
     });
-
-    HBS.registerHelper('replace', function(str, a, b, options) {
-        var r = new RegExp(a, 'gi');
-        return str.replace(r, b);
+    HBS.registerHelper('logisticsday', function(date) {
+        var _htm = '',
+            _date = new Date(date);
+        _htm += '<p>'+(_date.getFullYear())+'.'+(_date.getMonth()+1)+'.'+_date.getDate()+'</p>';
+        _htm += '<p>'+(_date.getHours())+'.'+(_date.getMinutes())+'</p>';
+        return _htm;
     });
-
-    HBS.registerHelper('encode', function(str, options) {
-        return encodeURIComponent(str);
-    });
-
-    HBS.registerHelper('decode', function(str, options) {
-        return decodeURIComponent(str);
+    HBS.registerHelper('logisticsstate', function(state) {
+        var _htm = '';
+        if(state != 'InTransit'){
+            _htm +=  '<span></span>';
+        }else{
+            _htm +=  '<i class="icon iconfont checked-btn"></i>';
+        }
+        return _htm;
     });
 
     return HBS;

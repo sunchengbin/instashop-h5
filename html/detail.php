@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+include_once( dirname(__FILE__).'/../js/router/common.php');
+?>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,7 +10,7 @@
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-  <link href="../css/dist/app/item.css?v=1" rel="stylesheet"/>
+  <link href="<?=STATIC_HOST?>/css/dist/app/item.css?v=1" rel="stylesheet"/>
   <title>商品详情</title>
   <script>
         <?php
@@ -24,8 +27,8 @@
   </script>
 </head>
 <body>
-  <script src="../js/base/require-zepto.js?v=1"></script>
+  <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1"></script>
   <!--<script src="../js/base/require-config.js?v=1"></script>-->
-  <script src="../js/dist/app/item.js?v=1"></script>
+  <script src="<?=STATIC_HOST?>/js/dist/app/item.js?v=1"></script>
 </body>
 </html>

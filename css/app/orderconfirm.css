@@ -9,8 +9,9 @@ body{
 .address-box,.logistics-box,.list-box{
     padding:0 1rem;
     background-color: #fff;
-    border-top:1px solid #D8D8D8;
-    border-bottom:1px solid #D8D8D8;
+    /*border-top:1px solid #D8D8D8;*/
+    /*border-bottom:1px solid #D8D8D8;*/
+    margin-bottom: 2rem;
 }
 .user-info{
     font-size: 1.2rem;
@@ -45,7 +46,6 @@ body{
     height: 3rem;
     line-height: 3rem;
     padding: .5rem 1rem;
-    margin: 2rem 0;
     color: #999;
 }
 .logistics-box div{

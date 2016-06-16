@@ -1,0 +1,23 @@
+<nav class="header-nav clearfix">
+    <i class="icon iconfont">&#xe62a;</i>
+    物流详情
+</nav>
+<section class="logistics-info">
+    <div class="logistics-id">
+        <p>{{express.title}}</p>
+        <p>{{express.express_no}}</p>
+    </div>
+    <ul class="logistics-state">
+        {{#each checkpoints}}
+        <li class="clearfix">
+            <div class="fl time">
+                {{{logisticsday checkpoint_time}}}
+            </div>
+            <div class="txt">
+                <i class="icon iconfont checked-btn"></i>
+                <p>{{message}}</p>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</section>
