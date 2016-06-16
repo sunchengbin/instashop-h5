@@ -17,7 +17,7 @@ if (C_RUNTIME_ONLINE)
 }
 else
 {
-    $static_host = 'http://static-test.instashop.co.id';
+    $static_host = 'http://m-test.instashop.co.id';
     //$static_host = '..';
 }
 
