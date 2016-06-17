@@ -5,6 +5,7 @@
 require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug','slide','cart'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug,Slide,Cart){
     var ITEM = {
         init : function(){
+            var _this = this;
             Lazyload();
             var ItemHtm = '<div>加载数据中</div>';
             if(init_data){
@@ -12,7 +13,8 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     data : init_data,
                     lang : Lang,
                     hrefUrl : Config.host.hrefUrl,
-                    num : Cart(init_data).getCartNum()
+                    num : Cart(init_data).getCartNum(),
+                    timeLang : _this.discountTime(init_data.item.discount.now_time,init_data.item.discount.end_time)
                 });
             }else{
                 ItemHtm = '<div>数据出错</div>';
@@ -54,7 +56,36 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 });
             }
         },
+        discountTime : function(nowTime,endTime){
+            var _nt = Number((new Date(nowTime)).getTime()),
+                _et = Number((new Date(endTime)).getTime()),
+                _send = (_et - _nt)/1000,
+                _hour = (_send - _send % 3600)/3600,
+                _second = (_send - _hour*3600)%60,
+                _minute = (_send - _hour*3600 - _second)/60;
+            return {
+                time : (_hour+':'+_minute+':'+_second),
+                second : _send
+            };
+        },
+        countTime : function(_send){
+            var _hour = (_send - _send % 3600)/3600,
+                _second = (_send - _hour*3600)%60,
+                _minute = (_send - _hour*3600 - _second)/60;
+            return (_hour+':'+_minute+':'+_second);
+        },
+        changeTime : function(){
+            var _second = $('[data-time]').attr('data-time'),
+                _this = this;
+            setInterval(function(){
+                --_second;
+                $('[data-time]').attr('data-time',_second).html(_this.countTime(_second));
+            },1000);
+        },
         handleFn : function(){
+            if($('[data-time]').length){
+                this.changeTime();
+            }
             $('body').on('click','.j_shop_info',function(){
                 var _this = $(this),
                     _url = _this.attr('data-url');

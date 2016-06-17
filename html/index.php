@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include_once( dirname(__FILE__).'/../js/router/common.php');
+include_once( dirname(__FILE__).'/../html/router/common.php');
 ?>
 <html lang="en">
 <head>
@@ -14,7 +14,7 @@ include_once( dirname(__FILE__).'/../js/router/common.php');
   <title>Instashop</title>
   <script>
     <?php
-        include_once( dirname(__FILE__).'/../js/router/util.php' );
+        include_once( dirname(__FILE__).'/../html/router/util.php' );
         $params = [
             'action' => 'index',
             'page_size' => 10,

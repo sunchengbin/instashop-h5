@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include_once( dirname(__FILE__).'/../js/router/common.php');
+include_once( dirname(__FILE__).'/../html/router/common.php');
 ?>
 <html lang="en">
 <head>

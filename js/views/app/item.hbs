@@ -25,9 +25,21 @@
         <p class="title">
             {{data.item.item_name}}
         </p>
-        <p class="price">
-            BR {{transprice data.item.price}}
-        </p>
+        {{#if data.item.is_discount}}
+            <p class="price discount-price">
+                Rp {{transprice data.item.discount.price}}
+            </p>
+            <p class="price-lang">Rp{{transprice data.item.discount.min_price}}-{{transprice data.item.discount.max_price}}</p>
+            <p class="discount-info">
+                <span>-{{data.item.discount.value}}%</span>
+                Time remaining:
+                <span data-time="{{timeLang.second}}">{{timeLang.time}}</span>
+            </p>
+        {{else}}
+            <p class="price">
+                Rp {{transprice data.item.price}}
+            </p>
+        {{/if}}
         <a href="javascript:;" data-url="{{data.item.shop.url}}" class="go-shop j_shop_info">
             <div class="clearfix shop-info">
                 <i class="icon iconfont fr">&#xe63e;</i>

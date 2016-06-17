@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include_once( dirname(__FILE__).'/../js/router/common.php');
+include_once( dirname(__FILE__).'/../html/router/common.php');
 ?>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../js/router/common.php');
     <title>订单详情</title>
     <script>
         <?php
-        include_once( dirname(__FILE__).'/../js/router/util.php' );
+        include_once( dirname(__FILE__).'/../html/router/util.php' );
         $params = [
             'buyer_id' => 0,
             'opt' => 'desc,pay_info,shop_info,logistics_info'

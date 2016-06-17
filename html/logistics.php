@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include_once( dirname(__FILE__).'/../js/router/common.php');
+include_once( dirname(__FILE__).'/../html/router/common.php');
 ?>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../js/router/common.php');
     <title>物流</title>
     <script>
         <?php
-        include_once( dirname(__FILE__).'/../js/router/util.php' );
+        include_once( dirname(__FILE__).'/../html/router/util.php' );
         $logistics_id = $_REQUEST['logistics_id'];
         $order_id = $_REQUEST['order_id'];
         $params = [

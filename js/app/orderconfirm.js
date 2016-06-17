@@ -86,13 +86,15 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                             itemID:_items[item].item.id,
                             itemName:_items[item].item.item_name,
                             itemNum:_items[item].num,
-                            item_sku:_items[item].sku.id
+                            item_sku:_items[item].sku.id,
+                            discount_id:(_items[item].item.is_discount?_items[item].item.discount.id:0)
                         });
                     }else{
                         _arr.push({
                             itemID:_items[item].item.id,
                             itemName:_items[item].item.item_name,
-                            itemNum:_items[item].num
+                            itemNum:_items[item].num,
+                            discount_id:(_items[item].item.is_discount?_items[item].item.discount.id:0)
                         });
                     }
                 }
@@ -133,7 +135,12 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
         countSum : function(carts){
             var _sum = 0;
             for(var cart in carts){
-                _sum += carts[cart].num*carts[cart].price;
+                if(carts[cart].item.is_discount){
+                    _sum += carts[cart].num*carts[cart].item.discount.price;
+                }else{
+                    _sum += carts[cart].num*carts[cart].price;
+                }
+
             }
             return _sum;
         }

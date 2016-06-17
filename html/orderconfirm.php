@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include_once( dirname(__FILE__).'/../js/router/common.php');
+include_once( dirname(__FILE__).'/../html/router/common.php');
 ?>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../js/router/common.php');
     <title>购买清单</title>
     <script>
         <?php
-        include_once( dirname(__FILE__).'/../js/router/util.php' );
+        include_once( dirname(__FILE__).'/../html/router/util.php' );
         error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
         ini_set('display_errors', 0);
 

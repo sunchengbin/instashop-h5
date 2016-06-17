@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include_once( dirname(__FILE__).'/../js/router/common.php');
+include_once( dirname(__FILE__).'/../html/router/common.php');
 ?>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../js/router/common.php');
   <link href="<?=STATIC_HOST?>/css/dist/app/item.css?v=1" rel="stylesheet"/>
   <title>商品详情</title>
     <?php
-        include_once( dirname(__FILE__).'/../js/router/util.php' );
+        include_once( dirname(__FILE__).'/../html/router/util.php' );
         $params = [];
         $item_id = $_REQUEST['item_id'];
         if (!$item_id) {

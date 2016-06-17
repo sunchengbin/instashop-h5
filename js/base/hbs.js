@@ -114,13 +114,30 @@ define(['handlebars','base','config'], function(HBS,Base,Config) {
             i = 0;
         for (i; i < items.length;i++) {
             if(items[i].is_top == 1) {
+                var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time);
                 out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
-                    +'<div class="lazy" data-img="'+items[i].img+'"></div>'
+                    +'<div class="lazy" data-img="'+items[i].img+'">';
+
+                if(items[i].is_discount){
+                    out +='<span>-'+items[i].discount.value+'%</span>';
+                    if(items[i].discounting){
+                        out +='<p><i class="icon iconfont">&#xe68e;</i>Time left:<span data-time="'+_time.second+'">'+_time.time+'</span></p>';
+                    }else{
+                        out +='<p>限时折扣</p>';
+                    }
+                }
+
+                out +='</div>'
                     +'<p class="title">'+items[i].item_comment+'</p>';
-                if(Base.others.priceFormat(items[i].price) < 0){
+                if(!items[i].is_discount){
+                    out +='<p class="discount-price"></p>';
+                }else{
+                    out +='<p class="discount-price">RP '+Base.others.priceFormat(items[i].discount.price)+'</p>';
+                }
+                if(items[i].price < 0){
                     out +='<p class="price"></p>';
                 }else{
-                    out +='<p class="price">RP '+Base.others.priceFormat(items[i].price)+'</p>';
+                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">RP '+Base.others.priceFormat(items[i].price)+'</p>';
                 }
                 out +='</a></li>';
             }
@@ -128,18 +145,47 @@ define(['handlebars','base','config'], function(HBS,Base,Config) {
         return out;
     });
 
+    function discountTime(nowTime,endTime){
+        var _nt = Number((new Date(nowTime)).getTime()),
+            _et = Number((new Date(endTime)).getTime()),
+            _send = (_et - _nt)/1000,
+            _hour = (_send - _send % 3600)/3600,
+            _second = (_send - _hour*3600)%60,
+            _minute = (_send - _hour*3600 - _second)/60;
+        return {
+            time : (_hour+':'+_minute+':'+_second),
+            second : _send
+        };
+    };
+
     HBS.registerHelper('itemList', function(items, options) {
         var out = "",
             i = 0;
         for (i; i < items.length;i++) {
             if(items[i].is_top == 0){
+                var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time);
                 out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
-                    +'<div class="lazy" data-img="'+items[i].img+'"></div>'
+                    +'<div class="lazy" data-img="'+items[i].img+'">';
+
+                if(items[i].is_discount){
+                    out +='<span>-'+items[i].discount.value+'%</span>';
+                    if(items[i].discounting){
+                        out +='<p><i class="icon iconfont">&#xe68e;</i>Time left:<span data-time="'+_time.second+'">'+_time.time+'</span></p>';
+                    }else{
+                        out +='<p>限时折扣</p>';
+                    }
+                }
+                out +='</div>'
                     +'<p class="title">'+items[i].item_comment+'</p>';
-                if(Base.others.priceFormat(items[i].price) < 0){
+                if(!items[i].is_discount){
+                    out +='<p class="discount-price"></p>';
+                }else{
+                    out +='<p class="discount-price">RP '+Base.others.priceFormat(items[i].discount.price)+'</p>';
+                }
+                if(items[i].price < 0){
                     out +='<p class="price"></p>';
                 }else{
-                    out +='<p class="price">RP '+Base.others.priceFormat(items[i].price)+'</p>';
+                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">RP '+Base.others.priceFormat(items[i].price)+'</p>';
                 }
                 out +='</a></li>';
             }
@@ -206,9 +252,13 @@ define(['handlebars','base','config'], function(HBS,Base,Config) {
                     +'<div class="">'
                     +'<p class="name">'+carts[item].item.item_name+'</p>'
                     +(carts[item].sku?'<p class="type">'+carts[item].sku.title+'</p>':'')
-                    +'<p class="num">数量:'+carts[item].num+'</p>'
-                    +'<p class="price">RP '+carts[item].price+'</p>'
-                    +'</div>'
+                    +'<p class="num">数量:'+carts[item].num+'</p>';
+                    if(!carts[item].item.is_discount){
+                        _htm +='<p class="price">RP '+carts[item].price+'</p>';
+                    }else{
+                        _htm +='<p class="price">RP '+(carts[item].item.discount.price)+'</p>'
+                    }
+                _htm +='</div>'
                     +'</li>';
             }
         }else{
@@ -222,15 +272,19 @@ define(['handlebars','base','config'], function(HBS,Base,Config) {
         if(!Base.others.testObject(carts)){
             for(var item in carts){
                 var _id = (carts[item].sku?carts[item].sku.id:carts[item].item.id);
-                _htm += '<li class="clearfix cart-item j_cart_item" data-itemid="'+(carts[item].item.id)+'" data-id="'+_id+'">'
-                    +'<i class="icon iconfont j_del_cart" data-id="'+_id+'">&#xe63e;</i>'
+                _htm += '<li class="clearfix cart-item j_cart_item" data-id="'+_id+'">'
+                    +'<i class="icon iconfont j_del_cart" data-id="'+_id+'">&#xe646;</i>'
                     +'<img src="'+carts[item].item.img+'">'
                     +'<div class="">'
                     +'<p class="name">'+carts[item].item.item_name+'</p>'
                     +(carts[item].sku?'<p class="type">'+carts[item].sku.title+'</p>':'')
-                    +'<p class="num">数量:'+carts[item].num+'</p>'
-                    +'<p class="price">RP '+carts[item].price+'</p>'
-                    +'</div>'
+                    +'<p class="num">数量:'+carts[item].num+'</p>';
+                if(!carts[item].item.is_discount){
+                    _htm +='<p class="price">RP '+carts[item].price+'</p>';
+                }else{
+                    _htm +='<p class="price">RP '+(carts[item].item.discount.price)+'</p>'
+                }
+                _htm +='</div>'
                     +'</li>';
             }
         }else{
