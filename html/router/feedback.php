@@ -29,5 +29,5 @@ $headers = dealHeaders();
 $method = 'POST';
 $res = HttpProxy::getInstance(array('timeout'=>20000, 'conn_timeout'=>20000))->callInterfaceCommon($url, $method, $_POST, $headers);
 #echo $res;
-header("location:/pages/result/success.html");
+header("location:/../html/success.html");
 exit();
