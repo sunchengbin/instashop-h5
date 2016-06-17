@@ -12,19 +12,22 @@ include_once( dirname(__FILE__).'/../js/router/common.php');
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
   <link href="<?=STATIC_HOST?>/css/dist/app/item.css?v=1" rel="stylesheet"/>
   <title>商品详情</title>
-  <script>
-        <?php
-            include_once( dirname(__FILE__).'/../js/router/util.php' );
-            $params = [];
-            $item_id = $_REQUEST['item_id'];
-            if (!$item_id) {
-                $ss = split('\/', $_SERVER['REQUEST_URI']);
-                $item_id = end($ss);
-            }
-            $path = 'v1/items/'.$item_id;
-            ?>
-            var init_data = JSON.parse(<?php echo get_init_data($path, $params); ?>);
-  </script>
+    <?php
+        include_once( dirname(__FILE__).'/../js/router/util.php' );
+        $params = [];
+        $item_id = $_REQUEST['item_id'];
+        if (!$item_id) {
+            $ss = split('\/', $_SERVER['REQUEST_URI']);
+            $item_id = end($ss);
+        }
+        $path = 'v1/items/'.$item_id;
+        $ret = get_init_php_data($path, $params);
+        $json = json_decode($ret, true);
+        $url = $json['item']['imgs'][0];
+        $url = str_replace("960", "600", $url);
+        echo '<meta property="og:image" content="'.$url.'">';
+        echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
+        ?>
 </head>
 <body>
   <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1"></script>
