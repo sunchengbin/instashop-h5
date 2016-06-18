@@ -1,0 +1,34 @@
+<section class="buy-plug j_buy_plug">
+    <div class="item-info-title clearfix">
+        <img src="{{item.shop.logo}}">
+        <div class="j_buy_info">
+            <p class="price j_buy_info_price">Rp {{itemprice item}}</p>
+            <p class="title j_buy_info_title">{{item.item_name}}</p>
+        </div>
+        <i class="icon iconfont j_close_btn">&#xe602;</i>
+    </div>
+    {{#if item.sku}}
+    <div class="item-info-cont">
+
+        <p>Type Size</p>
+        <ul class="clearfix j_type">
+            {{{itemtype item}}}
+        </ul>
+
+    </div>
+    {{/if}}
+    <div class="item-info-num">
+        <div class="item-num-box clearfix">
+            <span class="j_reduce_btn">
+                <i class="icon iconfont">&#xe6cf;</i>
+            </span>
+            <input class="fl j_item_num" type="text" value="1" readonly="readonly"/>
+            <span class="j_add_btn">
+                <i class="icon iconfont">&#xe664;</i>
+            </span>
+        </div>
+        <p class="">{{lang.H5_QUANTITY}}</p>
+    </div>
+    <button class="btn j_plug_submit">{{lang.H5_CONFIRM}}</button>
+</section>
+<section class="buy-plug-cover j_buy_plug_cover"></section>

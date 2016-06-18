@@ -10,7 +10,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <link href="<?=STATIC_HOST?>/css/dist/app/cart.css" rel="stylesheet"/>
-    <title>购物车</title>
+    <title>shopcart</title>
 </head>
 <body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1"></script>

@@ -34,5 +34,5 @@ function loadClass($strClassName)
 }
 spl_autoload_register('loadClass');
 
-$static_host = C_RUNTIME_ONLINE ? 'http://static.instashop.co.id' : 'http://m-test.instashop.co.id';
+$static_host = C_RUNTIME_ONLINE ? 'http://static.instashop.co.id/static' : 'http://m-test.instashop.co.id/static';
 define('STATIC_HOST', $static_host);
