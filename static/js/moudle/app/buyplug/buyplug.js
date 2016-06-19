@@ -58,7 +58,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     }else{
                         $('.j_buy_info').prepend('<p class="j_type_title">'+_that.html()+'</p>');
                     }
-                    $('.j_buy_info_price').html('Rp '+_that.attr('data-price'));
+                    $('.j_buy_info_price').html('Rp '+Base.others.priceFormat(_that.attr('data-price')));
                     $('.j_buy_info_title').html(Lang.H5_STOCK+':'+_that.attr('data-stock'));
                 }
             });

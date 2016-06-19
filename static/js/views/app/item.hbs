@@ -32,8 +32,14 @@
             <p class="price-lang">Rp{{transprice data.item.discount.min_price}}-{{transprice data.item.discount.max_price}}</p>
             <p class="discount-info">
                 <span>-{{data.item.discount.value}}%</span>
-                Time remaining:
-                <span data-time="{{timeLang.second}}">{{timeLang.time}}</span>
+
+                {{#if data.item.discounting}}
+                    Time remaining:
+                    <span data-time="{{timeLang.second}}">{{timeLang.time}}</span>
+                {{else}}
+                    Start time
+                    {{data.item.discount.start_time}}
+                {{/if}}
             </p>
         {{else}}
             <p class="price">
