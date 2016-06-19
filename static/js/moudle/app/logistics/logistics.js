@@ -43,8 +43,8 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang'],fu
                     });
                     _this.toHide(document.querySelector('.j_logistics_plug'),_w_h);
                     var _sum = Number(_config.sum)+Number(_check.attr('data-price'));
-                    $('.j_post').html('Rp : '+_check.attr('data-price'));
-                    $('.j_sum').html('Rp : '+_sum);
+                    $('.j_post').html('Rp : '+Base.others.priceFormat(_check.attr('data-price')));
+                    $('.j_sum').html('Rp : '+Base.others.priceFormat(_sum));
                 }
             });
             $(_config.wraper).on('tap',_config.closeBtn,function(){

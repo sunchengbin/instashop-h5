@@ -259,9 +259,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     +(carts[item].sku?'<p class="type">'+carts[item].sku.title+'</p>':'')
                     +'<p class="num">'+Lang.H5_QUANTITY+':'+carts[item].num+'</p>';
                     if(!carts[item].item.is_discount){
-                        _htm +='<p class="price">Rp '+carts[item].price+'</p>';
+                        _htm +='<p class="price">Rp '+Base.others.priceFormat(carts[item].price)+'</p>';
                     }else{
-                        _htm +='<p class="price">Rp '+(carts[item].item.discount.price)+'</p>'
+                        _htm +='<p class="price">Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>'
                     }
                 _htm +='</div>'
                     +'</li>';
@@ -285,9 +285,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     +(carts[item].sku?'<p class="type">'+carts[item].sku.title+'</p>':'')
                     +'<p class="num">'+Lang.H5_QUANTITY+':'+carts[item].num+'</p>';
                 if(!carts[item].item.is_discount){
-                    _htm +='<p class="price">Rp '+carts[item].price+'</p>';
+                    _htm +='<p class="price">Rp '+Base.others.priceFormat(carts[item].price)+'</p>';
                 }else{
-                    _htm +='<p class="price">Rp '+(carts[item].item.discount.price)+'</p>'
+                    _htm +='<p class="price">Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>'
                 }
                 _htm +='</div>'
                     +'</li>';
@@ -304,7 +304,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             for(var i in data[item]){
                 _htm += '<li class="j_logistics_li"  data-level="'+data[item][i].level+'" data-id="'+data[item][i].id+'">'
                     +'<i class="icon iconfont check-btn" data-company="'+item+'" data-price="'+data[item][i].price+'"  data-level="'+data[item][i].level+'" data-id="'+data[item][i].id+'"></i>'
-                    +data[item][i].level+'('+data[item][i].cost_days+')'+':Rp '+data[item][i].price
+                    +data[item][i].level+'('+data[item][i].cost_days+')'+':Rp '+Base.others.priceFormat(data[item][i].price)
                     +'</li>';
             }
         }
