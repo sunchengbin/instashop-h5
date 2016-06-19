@@ -4,7 +4,7 @@
 require(['lang','hbs','text!views/app/orderdetail.hbs','config','base','common'],function(Lang,Hbs,OrderDetail,Config,Base,Common) {
     var OD = {
         init : function(){
-            var ItemHtm = '<div>加载数据中</div>';
+            var ItemHtm = '<div>'+Lang.H5_LOADING+'</div>';
             if(init_data){
                 ItemHtm= Hbs.compile(OrderDetail)({
                     data : init_data,
@@ -13,7 +13,7 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','base','common']
                     host:Config.host.host
                 });
             }else{
-                ItemHtm = '<div>数据出错</div>';
+                ItemHtm = '<div>error</div>';
             }
             $('body').prepend(ItemHtm);
         }

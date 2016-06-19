@@ -10,7 +10,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <link href="<?=STATIC_HOST?>/css/dist/app/orderconfirm.css" rel="stylesheet"/>
-    <title>购买清单</title>
+    <title>Order</title>
     <script>
         <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );

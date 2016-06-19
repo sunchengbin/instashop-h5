@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs','text!views/app/address.hbs','city','config'],function(Hbs,Addresshtm,City,Config){
+require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs,Addresshtm,City,Config,Lang){
     var Address = {
         init : function(){
             var _this = this,
@@ -22,6 +22,7 @@ require(['hbs','text!views/app/address.hbs','city','config'],function(Hbs,Addres
                     }
                 };
             }
+            _address.lang = Lang;
             var _htm= Hbs.compile(Addresshtm)(_address);
             $('body').prepend(_htm);
             _this.handleFn();
@@ -60,8 +61,8 @@ require(['hbs','text!views/app/address.hbs','city','config'],function(Hbs,Addres
                 switch(_type){
                     case 'province' :
                         if($('.j_province').html() != _name){
-                            $('.j_city').html('城市');
-                            $('.j_country').html('街道');
+                            $('.j_city').html(Lang.H5_CITY);
+                            $('.j_country').html(Lang.H5_DISTRICT);
                             $('[data-name="country"]').removeClass('act');
                         }
                         $('.j_province').html(_name);
@@ -70,7 +71,7 @@ require(['hbs','text!views/app/address.hbs','city','config'],function(Hbs,Addres
                     case 'city' :
                         if($('.j_city').html() != _name){
                             $('.j_city').html(_name);
-                            $('.j_country').html('街道');
+                            $('.j_country').html(Lang.H5_DISTRICT);
                         }
                         $('.j_city').html(_name);
                         $('[data-name="country"]').addClass('act');

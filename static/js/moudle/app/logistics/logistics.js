@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 物流插件
  */
-define(['common','base','hbs','text!views/moudle/logistics.hbs','btn'],function(Common,Base,Hbs,Logistics,Btn){
+define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang'],function(Common,Base,Hbs,Logistics,Btn,Lang){
     var LogisticsPlug = function(opts){
         var _this = this;
         _this.config = $.extend({
@@ -57,6 +57,7 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn'],function(
         },
         createHtm : function(info){
             if($('.j_logistics_plug').length)return this;
+            info.lang = Lang;
             var PlugHtm= Hbs.compile(Logistics)(info);
             $('body').prepend(PlugHtm);
             return this;

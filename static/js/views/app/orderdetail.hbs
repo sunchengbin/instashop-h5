@@ -1,11 +1,11 @@
 <nav class="header-nav clearfix">
-    订单详情
+    {{lang.H5_ORDER}}
 </nav>
 <section class="order-state">
-    <p>订单状态:{{data.order.state_txt}}</p>
+    <p>{{lang.H5_ORDER_STATUS}}:{{data.order.state_txt}}</p>
     <p>
         <a href="{{hrefUrl}}ordersuccess.php" class="">
-            <i class="icon iconfont fr">&#xe63e;</i>查看收款账户:
+            <i class="icon iconfont fr">&#xe63e;</i>{{lang.H5_CHECK_ACCOUNT_RECEIVABLES}}:
         </a>
     </p>
     {{#if data.order.logistics_info.last_checkpoint.message}}
@@ -30,7 +30,7 @@
             <div class="address-info">
                 {{data.order.buyer_address.street}},{{data.order.buyer_address.country}},{{data.order.buyer_address.city}},{{data.order.buyer_address.province}}
             </div>
-            <div>物流类型:{{data.order.logistics_info.express_buyer.title}}</div>
+            <div>{{lang.H5_LOGISTICS_COMPANY}}:{{data.order.logistics_info.express_buyer.title}}</div>
         </div>
     </div>
 </section>
@@ -47,29 +47,29 @@
                 <div class="">
                     <p class="name">{{item_title}}</p>
                     {{#if item_sku_title}}
-                        <p class="type">型号:{{item_sku_title}}</p>
+                        <p class="type">{{../../lang.H5_ITEM_SKU}}:{{item_sku_title}}</p>
                     {{/if}}
-                    <p class="num">数量:{{quantity}}</p>
-                    <p class="price">RP {{price}}</p>
+                    <p class="num">{{../lang.H5_QUANTITY}}:{{quantity}}</p>
+                    <p class="price">Rp {{transprice price}}</p>
                 </div>
             </li>
             {{/each}}
         </ul>
         <div class="order-info">
-            <p class="clearfix"><span class="fr">RP : {{data.order.express_fee}}</span>Shipping cost:</p>
-            <p class="clearfix"><span class="fr">Rp : {{data.order.need_pay_price}}</span>Total:</p>
+            <p class="clearfix"><span class="fr">Rp : {{transprice data.order.express_fee}}</span>{{lang.H5_SHIPPING_COST}}:</p>
+            <p class="clearfix"><span class="fr">Rp : {{transprice data.order.need_pay_price}}</span>{{lang.H5_ORDER_TOTAL_PRICE}}:</p>
         </div>
         <div class="href-box clearfix">
             <a href="{{host}}s/{{data.order.shop_info.id}}" class="go-home">
                 <div class="clearfix">
                     <i class="icon iconfont">&#xe627;</i>
-                    进入店铺
+                    {{lang.H5_ENTER_THE_SHOP}}
                 </div>
             </a>
             <a href="tel:{{data.order.shop_info.telephone}}" class="contact-user fr">
                 <div class="clearfix">
                     <i class="icon iconfont">&#xe60a;</i>
-                    联系卖家
+                    {{lang.H5_CONNACT_SELLER}}
                 </div>
             </a>
         </div>
