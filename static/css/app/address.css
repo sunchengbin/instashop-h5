@@ -43,13 +43,15 @@ body{
     color: #666;
 }
 .address-list{
-    position: absolute;
+    position: fixed;
     left: 100%;
     top:0;
     z-index: 10;
     background: #fff;
     width: 100%;
     bottom:0;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .show{
     transition-duration: .6s;
