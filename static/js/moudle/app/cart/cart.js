@@ -118,7 +118,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
             var _this = this;
             _this.initCart();
             if(!_this.cart){
-                return false;
+                return null;
             }
             delete _this.cart[_this.data.ShopInfo.id][id];
             if(Base.others.testObject(_this.cart[_this.data.ShopInfo.id])){

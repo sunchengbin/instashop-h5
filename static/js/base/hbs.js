@@ -128,7 +128,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     if(items[i].discounting){
                         out +='<p><i class="icon iconfont">&#xe68e;</i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
                     }else{
-                        out +='<p>'+Lang.C_LIMITED_TIME_DISCOUNT+'</p>';
+                        out +='<p>'+Lang.H5_IS_ABOUT_TO_BEGIN+'</p>';
                     }
                 }
 
@@ -151,16 +151,23 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
     });
 
     function discountTime(nowTime,endTime){
-        var _nt = Number((new Date(nowTime)).getTime()),
-            _et = Number((new Date(endTime)).getTime()),
+        var _nt = datetime_to_unix(nowTime),
+            _et = datetime_to_unix(endTime),
             _send = (_et - _nt)/1000,
-            _hour = (_send - _send % 3600)/3600,
-            _second = (_send - _hour*3600)%60,
-            _minute = (_send - _hour*3600 - _second)/60;
+            _hour = ''+(_send - _send % 3600)/3600,
+            _second = ''+(_send - _hour*3600)%60,
+            _minute = ''+(_send - _hour*3600 - _second)/60;
         return {
-            time : (_hour+':'+_minute+':'+_second),
+            time : ((_hour.length<2?'0'+_hour:_hour)+':'+(_minute.length<2?'0'+_minute:_minute)+':'+(_second.length<2?'0'+_second:_second)),
             second : _send
         };
+    };
+    function datetime_to_unix(datetime){
+        var tmp_datetime = datetime.replace(/:/g,'-');
+        tmp_datetime = tmp_datetime.replace(/ /g,'-');
+        var arr = tmp_datetime.split("-");
+        var now = new Date(Date.UTC(arr[0],arr[1]-1,arr[2],arr[3]-8,arr[4],arr[5]));
+        return parseInt(now.getTime());
     };
 
     HBS.registerHelper('itemList', function(items, options) {
@@ -177,7 +184,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     if(items[i].discounting){
                         out +='<p><i class="icon iconfont">&#xe68e;</i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
                     }else{
-                        out +='<p>'+Lang.C_LIMITED_TIME_DISCOUNT+'</p>';
+                        out +='<p>'+Lang.H5_IS_ABOUT_TO_BEGIN+'</p>';
                     }
                 }
                 out +='</div>'
@@ -333,6 +340,15 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
     }
     HBS.registerHelper('transtxt', function(txt) {
         return transTxt(txt);
+    });
+    function transDate(datetime){
+        var tmp_datetime = datetime.replace(/:/g,'-');
+        tmp_datetime = tmp_datetime.replace(/ /g,'-');
+        var arr = tmp_datetime.split("-");
+        return arr[1]+'/'+arr[0]+' '+arr[3]+'.'+arr[4];
+    };
+    HBS.registerHelper('transdate', function(time) {
+        return transDate(time);
     });
     return HBS;
 });

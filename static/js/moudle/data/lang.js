@@ -98,7 +98,7 @@ define([],function(){
             'H5_MAKE_ORDER': '去结算',
             'H5_BROWSE_SHOP': '去逛逛',
             'H5_NO_ADDR_TIP': '你还没有收货地址，请先填写地址',
-            'C_LIMITED_TIME_DISCOUNT':'限时折扣'
+            'H5_IS_ABOUT_TO_BEGIN':'即将开始'
         },
 
         id : {
@@ -291,7 +291,7 @@ define([],function(){
             'H5_BROWSE_SHOP': 'Beli Lagi',
             'H5_NO_ADDR_TIP': 'Kamu belum mengisi alamat pengiriman, silakan isi alamat pengiriman dulu',
             'H5_CONFIRM':'Ya',
-            'C_LIMITED_TIME_DISCOUNT':'Program Diskon'
+            'H5_IS_ABOUT_TO_BEGIN':'Program Diskon'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

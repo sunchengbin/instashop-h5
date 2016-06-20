@@ -33,6 +33,10 @@ section{
     margin-left: 9rem;
     font-size: 1.8rem;
     color:#fff;
+    height: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .shop-explain{
     color: #aaa;

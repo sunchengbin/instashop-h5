@@ -100,11 +100,11 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             var _nt = this.datetime_to_unix(nowTime),
                 _et = this.datetime_to_unix(endTime),
                 _send = (_et - _nt)/1000,
-                _hour = (_send - _send % 3600)/3600,
-                _second = (_send - _hour*3600)%60,
-                _minute = (_send - _hour*3600 - _second)/60;
+                _hour = ''+(_send - _send % 3600)/3600,
+                _second = ''+(_send - _hour*3600)%60,
+                _minute = ''+(_send - _hour*3600 - _second)/60;
             return {
-                time : (_hour+':'+_minute+':'+_second),
+                time : ((_hour.length<2?'0'+_hour:_hour)+':'+(_minute.length<2?'0'+_minute:_minute)+':'+(_second.length<2?'0'+_second:_second)),
                 second : _send
             };
         },
@@ -116,10 +116,10 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             return parseInt(now.getTime());
         },
         countTime : function(_send){
-            var _hour = (_send - _send % 3600)/3600,
-                _second = (_send - _hour*3600)%60,
-                _minute = (_send - _hour*3600 - _second)/60;
-            return (_hour+':'+_minute+':'+_second);
+            var _hour = ''+(_send - _send % 3600)/3600,
+                _second = ''+(_send - _hour*3600)%60,
+                _minute = ''+(_send - _hour*3600 - _second)/60;
+            return ((_hour.length<2?'0'+_hour:_hour)+':'+(_minute.length<2?'0'+_minute:_minute)+':'+(_second.length<2?'0'+_second:_second));
         },
         changeTime : function(){
             var _second = $('[data-time]').attr('data-time'),
@@ -144,7 +144,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                         if(items[i].discounting){
                             out +='<p><i class="icon iconfont">&#xe68e;</i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
                         }else{
-                            out +='<p>'+Lang.C_LIMITED_TIME_DISCOUNT+'</p>';
+                            out +='<p>'+Lang.H5_IS_ABOUT_TO_BEGIN+'</p>';
                         }
                     }
                     out +='</div>'

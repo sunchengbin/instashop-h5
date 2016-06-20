@@ -60,11 +60,11 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             var _nt = this.datetime_to_unix(nowTime),
                 _et = this.datetime_to_unix(endTime),
                 _send = (_et - _nt)/1000,
-                _hour = (_send - _send % 3600)/3600,
-                _second = (_send - _hour*3600)%60,
-                _minute = (_send - _hour*3600 - _second)/60;
+                _hour = ''+(_send - _send % 3600)/3600,
+                _second = ''+(_send - _hour*3600)%60,
+                _minute = ''+(_send - _hour*3600 - _second)/60;
             return {
-                time : (_hour+':'+_minute+':'+_second),
+                time : ((_hour.length<2?'0'+_hour:_hour)+':'+(_minute.length<2?'0'+_minute:_minute)+':'+(_second.length<2?'0'+_second:_second)),
                 second : _send
             };
         },
@@ -77,10 +77,10 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
         },
 
         countTime : function(_send){
-            var _hour = (_send - _send % 3600)/3600,
-                _second = (_send - _hour*3600)%60,
-                _minute = (_send - _hour*3600 - _second)/60;
-            return (_hour+':'+_minute+':'+_second);
+            var _hour = ''+(_send - _send % 3600)/3600,
+                _second = ''+(_send - _hour*3600)%60,
+                _minute = ''+(_send - _hour*3600 - _second)/60;
+            return ((_hour.length<2?'0'+_hour:_hour)+':'+(_minute.length<2?'0'+_minute:_minute)+':'+(_second.length<2?'0'+_second:_second));
         },
         changeTime : function(){
             var _second = $('[data-time]').attr('data-time'),

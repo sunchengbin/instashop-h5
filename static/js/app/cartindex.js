@@ -9,6 +9,7 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                     cart : _carts,
                     lang : Lang
                 });
+            console.log(_carts)
             $('body').prepend(_htm);
             this.handleFn();
         },
