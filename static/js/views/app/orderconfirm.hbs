@@ -1,6 +1,6 @@
 <nav class="header-nav clearfix j_go_back">
     <i class="icon iconfont">&#xe62a;</i>
-    order
+    {{lang.H5_BUY_LIST}}
 </nav>
 <section class="">
     <div class="address-box j_address_wraper">
@@ -38,6 +38,7 @@
             <p class="clearfix"><span class="fr j_post">Rp : 0</span>{{lang.H5_SHIPPING_COST}}:</p>
             <p class="clearfix"><span class="fr j_sum">Rp : {{transprice sum}}</span>{{lang.H5_ORDER_TOTAL_PRICE}}:</p>
         </div>
-        <button class="btn confirm-btn j_submit_buy">{{lang.H5_ORDER_CONFIRM}}</button>
+        <textarea class="j_buyer_note" placeholder="{{lang.H5_BUYER_NOTE}}"></textarea>
+        <button class="btn confirm-btn j_submit_buy">{{lang.H5_OK_ICON}}</button>
     </div>
 </section>

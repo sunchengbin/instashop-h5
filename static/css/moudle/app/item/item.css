@@ -19,6 +19,12 @@
 }
 .cart-item p.name{
     color: #666;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 3.2rem;
 }
 .cart-item i{
     float: right;

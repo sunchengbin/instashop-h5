@@ -36,7 +36,8 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
             var _this = this,
                 _shop_id = opts.item.shop.id,//商铺id
                 _item_id = opts.item.id;//商品id
-            if(opts.price < 0 || (opts.sku && (opts.sku.stock >= 9999999)) || (!opts.sku && (opts.item.stock >= 9999999))){
+            //if(opts.price < 0 || (opts.sku && (opts.sku.stock >= 9999999)) || (!opts.sku && (opts.item.stock >= 9999999))){
+            if(opts.price < 0){
                 //alert('请联系商家,进行购买');
                 Dialog.tip({
                     top_txt : '',//可以是html

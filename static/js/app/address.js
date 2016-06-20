@@ -21,6 +21,10 @@ require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs
                         "street": ""//详细地址
                     }
                 };
+            }else{
+                _this['province'] = _address.address.province;
+                _this['city'] = _address.address.city;
+                _this['country'] = _address.address.country;
             }
             _address.lang = Lang;
             var _htm= Hbs.compile(Addresshtm)(_address);
@@ -110,9 +114,8 @@ require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs
                 localStorage.setItem('ShopData',JSON.stringify(_data_json));
                 setTimeout(function(){
                     var _data = JSON.parse(localStorage.getItem('ShopData')),
-                        _addr = _address.street + ',' + _address.country + ',' + _address.city + ',' + _address.province;
-                    location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+_data.ShopInfo.id+'&addr='+_addr;
-                    //location.href = Config.host.hrefUrl+'orderconfirm.php';
+                        _addr = _street + ',' + _country + ',' + _city + ',' + _province;
+                        location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+_data.ShopInfo.id+'&addr='+_addr;
                 },0);
             });
         },

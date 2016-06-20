@@ -66,8 +66,11 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                         $('.j_buy_info').prepend('<p class="j_type_title">'+_that.html()+'</p>');
                     }
                     $('.j_buy_info_price').html('Rp '+Base.others.priceFormat(_that.attr('data-price')));
-                    $('.j_buy_info_title').html(Lang.H5_STOCK+':'+_that.attr('data-stock'));
+                    if(_that.attr('data-stock') < 9999999){
+                        $('.j_buy_info_title').html(Lang.H5_STOCK+':'+_that.attr('data-stock'));
+                    }
                 }
+                $('.j_plug_submit').removeClass('cancel-btn');
             });
             $(_config.wraper).on('tap','.j_add_btn',function(){
                 var _item_num = $('.j_item_num'),
@@ -89,6 +92,9 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     _sku_id = _type.length?_type.attr('data-id'):null,
                     _sku_title = _type.length?_type.html():null,
                     _is_buy_now = $(this).attr('data-buynow');
+                if($(this).is('.cancel-btn')){
+                    return;
+                }
                 if(!_has_sku){
                     Cart(init_data).addItem({
                         item : init_data.item,

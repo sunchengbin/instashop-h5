@@ -42,9 +42,7 @@
                 {{/if}}
             </p>
         {{else}}
-            <p class="price">
-                Rp {{transprice data.item.price}}
-            </p>
+            {{{noprice data.item.price}}}
         {{/if}}
         <a href="javascript:;" data-url="{{data.item.shop.url}}" class="go-shop j_shop_info">
             <div class="clearfix shop-info">

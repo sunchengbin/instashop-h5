@@ -27,7 +27,8 @@ define(['base','lang'],function(base,Lang){
             coverdom : null,//只需要cover浮层时
             animation_css:null,//动画
             cover_css : null,//遮罩层自定义样式
-            auto_fn : null//自动执行
+            auto_fn : null,//自动执行
+            cover_event:null//是否点击cover隐藏dialog
         },opts);
         _this.init();
         return _this;
@@ -55,8 +56,10 @@ define(['base','lang'],function(base,Lang){
                 _this.opts.c_fn && _this.opts.c_fn.call(_this,$(this));
                 _this.remove();
             });
-            $('.j_dialog_cover').click(function(){
-                _this.remove();
+            $('.j_dialog_cover').on(_e_type,function(){
+                if(!_this.opts.cover_event){
+                    _this.remove();
+                }
             });
             return _this;
         },

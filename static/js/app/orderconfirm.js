@@ -65,13 +65,13 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                 location.href = Config.host.hrefUrl+'cart.php';
             });
             $('body').on('tap','.j_address_wraper',function(){
-                Common.saveFromUrl(function(){
+                //Common.saveFromUrl(function(){
                     location.href = Config.host.hrefUrl+'address.php';
-                });
+                //});
             });
-            $('body').on('tap','.j_cart_item',function(){
-                location.href = Config.host.host+'detail/'+$(this).attr('data-itemid');
-            });
+            //$('body').on('tap','.j_cart_item',function(){
+            //    location.href = Config.host.host+'detail/'+$(this).attr('data-itemid');
+            //});
         },
         getItems : function(){
             var _carts = Cart().getCarts(),
@@ -112,7 +112,8 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                 _fee_id = _logistics_info.length?_logistics_info.attr('data-id'):'',
                 _shop_data = JSON.parse(localStorage.getItem('ShopData')),
                 _seller_id = _shop_data.ShopInfo.id,
-                _address = _shop_data.Address;
+                _address = _shop_data.Address,
+                _note = $.trim($('.j_buyer_note').val());
             if(!_company && _this.logistics){
                 _this.logistics.createHtm(express_data.express_fee_list.list).toShow();
                 return null;
@@ -126,7 +127,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     "pay_type": 1,
                     "seller_id": _seller_id,
                     "buyer_id": "0",
-                    "buyer_note": "",
+                    "buyer_note": _note,
                     "express_company": (_company?_company:''),
                     "express_fee_id": (_fee_id?_fee_id:''),
                     "items": _this.getItems(),

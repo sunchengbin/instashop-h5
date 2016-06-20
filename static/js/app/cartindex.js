@@ -50,6 +50,7 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
             $('body').on('tap','.j_del_cart',function(){
                 var _this = $(this);
                 Dialog.confirm({
+                    cover_event : true,
                     cf_fn : function(){
                         Cart().removeItem(_this.attr('data-id'),function(){
                             var _htm = '<ul class=""><li class="empty-cart">'+Lang.H5_SHOPING_NO_GOODS+'</li></ul><button class="btn j_go_shop confirm-btn">'+Lang.H5_BROWSE_SHOP+'</button>';

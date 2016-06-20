@@ -29,6 +29,11 @@
         </div>
         <p class="">{{lang.H5_QUANTITY}}</p>
     </div>
-    <button class="btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
+    {{#if item.sku}}
+        <button class="btn cancel-btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
+    {{else}}
+        <button class="btn  j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
+    {{/if}}
+
 </section>
 <section class="buy-plug-cover j_buy_plug_cover"></section>
