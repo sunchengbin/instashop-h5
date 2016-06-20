@@ -126,7 +126,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                 if(items[i].is_discount){
                     out +='<span>-'+items[i].discount.value+'%</span>';
                     if(items[i].discounting){
-                        out +='<p><i class="icon iconfont">&#xe68e;</i>Time left:<span data-time="'+_time.second+'">'+_time.time+'</span></p>';
+                        out +='<p><i class="icon iconfont">&#xe68e;</i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
                     }else{
                         out +='<p>限时折扣</p>';
                     }
@@ -175,7 +175,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                 if(items[i].is_discount){
                     out +='<span>-'+items[i].discount.value+'%</span>';
                     if(items[i].discounting){
-                        out +='<p><i class="icon iconfont">&#xe68e;</i>Time left:<span data-time="'+_time.second+'">'+_time.time+'</span></p>';
+                        out +='<p><i class="icon iconfont">&#xe68e;</i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
                     }else{
                         out +='<p>限时折扣</p>';
                     }
@@ -326,6 +326,13 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         }
         return _htm;
     });
-
+    function transTxt(str){
+        var reg=new RegExp("\n","g");
+        str= str.replace(reg,"<br>");
+        return str;
+    }
+    HBS.registerHelper('transtxt', function(txt) {
+        return transTxt(txt);
+    });
     return HBS;
 });

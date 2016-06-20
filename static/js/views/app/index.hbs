@@ -20,33 +20,35 @@
     <div>
         <span class="top-angle"></span>
         <div class="txt">
-            {{data.shop.note}}
+            {{{transtxt data.shop.note}}}
         </div>
         <div class="txt-hide">
-            {{data.shop.note}}
+            {{{transtxt data.shop.note}}}
         </div>
         <p><i class="icon iconfont j_down_btn down-btn"></i></p>
     </div>
 </section>
 <section class="items-box">
-    <p class="item-title"><span></span>{{lang.H5_GOODS_HOT}}</p>
-    <ul class="items-list clearfix">
-        {{#hotItemList data.item_list.list}}{{/hotItemList}}
-        <!--<li>-->
+    {{#if data.item_list.list}}
+        <p class="item-title"><span></span>{{lang.H5_GOODS_HOT}}</p>
+        <ul class="items-list clearfix">
+            {{#hotItemList data.item_list.list}}{{/hotItemList}}
+            <!--<li>-->
             <!--<a class="item-info" href="">-->
-                <!--<div class="lazy" data-img="http://imghk0.geilicdn.com/test_instashop40730-1460555321750-1.png?w=210&h=210"></div>-->
-                <!--<p class="title">asdfasdflkajsdlkfjalkdjflkajdlfkajkldsf</p>-->
-                <!--<p class="price">RP 110.000</p>-->
+            <!--<div class="lazy" data-img="http://imghk0.geilicdn.com/test_instashop40730-1460555321750-1.png?w=210&h=210"></div>-->
+            <!--<p class="title">asdfasdflkajsdlkfjalkdjflkajdlfkajkldsf</p>-->
+            <!--<p class="price">RP 110.000</p>-->
             <!--</a>-->
-        <!--</li>-->
-        <!--<li>-->
+            <!--</li>-->
+            <!--<li>-->
             <!--<a class="item-info" href="">-->
-                <!--<div class="lazy" data-img="http://imghk0.geilicdn.com/test_instashop40730-1460555321750-1.png?w=210&h=210"></div>-->
-                <!--<p class="title">asdfasdflkajsdlkfjalkdjflkajdlfkajkldsf</p>-->
-                <!--<p class="price">RP 110.000</p>-->
+            <!--<div class="lazy" data-img="http://imghk0.geilicdn.com/test_instashop40730-1460555321750-1.png?w=210&h=210"></div>-->
+            <!--<p class="title">asdfasdflkajsdlkfjalkdjflkajdlfkajkldsf</p>-->
+            <!--<p class="price">RP 110.000</p>-->
             <!--</a>-->
-        <!--</li>-->
-    </ul>
+            <!--</li>-->
+        </ul>
+    {{/if}}
 </section>
 <section class="items-box">
     <p class="item-title"><span></span>{{lang.H5_GOODS_ORTHER}}</p>

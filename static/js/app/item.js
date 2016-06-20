@@ -57,8 +57,8 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             }
         },
         discountTime : function(nowTime,endTime){
-            var _nt = Number((new Date(nowTime)).getTime()),
-                _et = Number((new Date(endTime)).getTime()),
+            var _nt = this.datetime_to_unix(nowTime),
+                _et = this.datetime_to_unix(endTime),
                 _send = (_et - _nt)/1000,
                 _hour = (_send - _send % 3600)/3600,
                 _second = (_send - _hour*3600)%60,
@@ -68,6 +68,14 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 second : _send
             };
         },
+        datetime_to_unix :function(datetime){
+            var tmp_datetime = datetime.replace(/:/g,'-');
+            tmp_datetime = tmp_datetime.replace(/ /g,'-');
+            var arr = tmp_datetime.split("-");
+            var now = new Date(Date.UTC(arr[0],arr[1]-1,arr[2],arr[3]-8,arr[4],arr[5]));
+            return parseInt(now.getTime());
+        },
+
         countTime : function(_send){
             var _hour = (_send - _send % 3600)/3600,
                 _second = (_send - _hour*3600)%60,

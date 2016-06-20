@@ -9,7 +9,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
-    <link href="<?=STATIC_HOST?>/css/dist/app/logistics.css" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/logistics.css?v=2" rel="stylesheet"/>
     <title>Detail pengiriman</title>
     <script>
         <?php
@@ -33,8 +33,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
       </script>
 </head>
 <body>
-    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1"></script>
+    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466411337016"></script>
     <!--<script src="../js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/logistics.js"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/logistics.js?v=2"></script>
 </body>
 </html>

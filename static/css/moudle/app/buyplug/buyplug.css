@@ -2,6 +2,7 @@
     width: 100%;
     position: fixed;
     background-color: #fff;
+    bottom:0;
 }
 .buy-plug-cover{
     display: none;
@@ -44,6 +45,9 @@
 }
 .item-info-title > div .title{
     color: #aaa;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .item-info-title > div .price{
     color:#F5A623;

@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 添加到购物车插件
  */
-define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','cart','lang'],function(Common,Base,Hbs,Buyplughtm,Btn,Dialog,Cart,Lang){
+define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','cart','lang','config'],function(Common,Base,Hbs,Buyplughtm,Btn,Dialog,Cart,Lang,Config){
     var BuyPlug = function(opts){
         var _this = this;
         _this.config = $.extend({
@@ -30,6 +30,10 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
             });
             $(_config.wraper).on('tap',_config.buyNow,function(){
                 if(_config.data.item.sku.length){
+                    if($('.j_plug_submit').length){
+                        $('.j_plug_submit').attr('data-buynow','true');
+                    }
+                    _config.data.buyNow = true;
                     _this.createHtm(_config.data).toShow();
                 }else{
                     Cart(_config.data).addItem({
@@ -38,6 +42,9 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                         price:_config.data.item.price,
                         callback : function(){
                             _this.resetNum.apply(this);
+                            setTimeout(function(){
+                                location.href = Config.host.hrefUrl+'cart.php';
+                            },0);
                         }
                     });
                 }
@@ -80,7 +87,8 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     _stock = _type.length?_type.attr('data-stock'):null,
                     _sku_price = _type.length?_type.attr('data-price'):init_data.item.price,
                     _sku_id = _type.length?_type.attr('data-id'):null,
-                    _sku_title = _type.length?_type.html():null;
+                    _sku_title = _type.length?_type.html():null,
+                    _is_buy_now = $(this).attr('data-buynow');
                 if(!_has_sku){
                     Cart(init_data).addItem({
                         item : init_data.item,
@@ -89,6 +97,11 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                         callback : function(){
                             _this.resetNum.apply(this);
                             _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
+                            if(_is_buy_now){
+                               setTimeout(function(){
+                                   location.href = Config.host.hrefUrl+'cart.php';
+                               },0);
+                            }
                         }
                     });
                 }else{
@@ -121,6 +134,11 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                                 callback : function(){
                                     _this.resetNum.apply(this);
                                     _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
+                                    if(_is_buy_now){
+                                        setTimeout(function(){
+                                            location.href = Config.host.hrefUrl+'cart.php';
+                                        },0);
+                                    }
                                 }
                             });
                         }
@@ -161,14 +179,15 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 _cover = null;
             },1);
         },
-        animate : function(plug_buy,height){
+        animate : function(plug_buy,height,bottom){
             var _this = this;
             plug_buy.style.webkitTransitionDuration = _this.config.transformSpeed;
             plug_buy.style.webkitTransform = "translate3d(0, " + height + "px,0)";
+            plug_buy.style.bottom = (bottom?0:height)+'px';
         },
         toHide : function(plug_buy,height){
             var _this = this;
-            _this.animate(plug_buy,height);
+            _this.animate(plug_buy,height,'true');
             _this.cover.hide();
         },
         resetInfo : function(){

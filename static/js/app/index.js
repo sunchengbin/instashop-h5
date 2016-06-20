@@ -18,7 +18,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 IndexHtm = '<div>数据出错</div>';
             }
             $('body').prepend(IndexHtm);
-            if($('.txt-hide').height() > 20){
+            if($('.txt-hide').height() > 33){
                 $('.down-btn').show();
             }
             this.getImNum();
@@ -97,8 +97,8 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
 
         },
         discountTime : function(nowTime,endTime){
-            var _nt = Number((new Date(nowTime)).getTime()),
-                _et = Number((new Date(endTime)).getTime()),
+            var _nt = this.datetime_to_unix(nowTime),
+                _et = this.datetime_to_unix(endTime),
                 _send = (_et - _nt)/1000,
                 _hour = (_send - _send % 3600)/3600,
                 _second = (_send - _hour*3600)%60,
@@ -107,6 +107,13 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 time : (_hour+':'+_minute+':'+_second),
                 second : _send
             };
+        },
+        datetime_to_unix :function(datetime){
+            var tmp_datetime = datetime.replace(/:/g,'-');
+            tmp_datetime = tmp_datetime.replace(/ /g,'-');
+            var arr = tmp_datetime.split("-");
+            var now = new Date(Date.UTC(arr[0],arr[1]-1,arr[2],arr[3]-8,arr[4],arr[5]));
+            return parseInt(now.getTime());
         },
         countTime : function(_send){
             var _hour = (_send - _send % 3600)/3600,
@@ -135,7 +142,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                     if(items[i].is_discount){
                         out +='<span>-'+items[i].discount.value+'%</span>';
                         if(items[i].discounting){
-                            out +='<p><i class="icon iconfont">&#xe68e;</i>Time left:<span data-time="'+_time.second+'">'+_time.time+'</span></p>';
+                            out +='<p><i class="icon iconfont">&#xe68e;</i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
                         }else{
                             out +='<p>限时折扣</p>';
                         }

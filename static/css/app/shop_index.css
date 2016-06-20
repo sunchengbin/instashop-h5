@@ -48,9 +48,11 @@ section{
     text-align: center;
 }
 .shop-explain > div .txt{
-    max-height: 3rem;
+    font-size: 14px;
+    max-height: 3.3rem;
     overflow: hidden;
 }
+
 .txt-hide{
     position: absolute;
     margin:1rem;
@@ -85,6 +87,8 @@ section{
 }
 /*产品展示列表*/
 .items-box{
+    position: relative;
+    z-index: 100;
     margin-top: 1rem;
     padding-left:2rem;
 }
@@ -149,7 +153,7 @@ section{
     padding: 0 1rem;
     font-size: 1.4rem;
     color: #52CDF0;
-    z-index: 3;
+    z-index: 103;
     border-radius: 4rem 0 0 4rem;
 }
 .im-num{
