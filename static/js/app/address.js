@@ -39,6 +39,8 @@ require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs
             });
             $('body').on('tap','.j_user_address .act',function(){
                 var _name = $(this).attr('data-name');
+                $('j_tel').blur();
+                $('j_name').blur();
                 switch(_name){
                     case 'province' :
                         $('.j_address_list').html(_this.CreateList(City,'province')).addClass('show').removeClass('hide');
