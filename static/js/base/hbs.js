@@ -210,7 +210,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
     });
 
     HBS.registerHelper('itemprice', function(data) {
-
+        if(data.is_discount){
+            return Base.others.priceFormat(data.discount.price);
+        }
         if(data.sku && data.sku.length < 2){
             return Base.others.priceFormat(data.price);
         }
@@ -235,7 +237,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var _htm = '';
         if(data.sku && data.sku.length){
             Base.others.each(data.sku,function(item,i){
-                _htm += '<li class="j_type_li" data-price="'+item.price+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
+                _htm += '<li class="j_type_li" data-price="'+(data.is_discount?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
             });
         }
         return _htm;

@@ -133,6 +133,9 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
             if(!_this.cart){
                 return null;
             }
+            if(Base.others.testObject(_this.cart[_this.data.ShopInfo.id])){
+                return [];
+            }
             return _this.cart[_this.data.ShopInfo.id];
         },
         getCartNum : function(){

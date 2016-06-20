@@ -89,6 +89,10 @@ body{
     height: 3rem;
     line-height: 3rem;
     font-size: 1.4rem;
+    color: #666;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .empty-cart{
     text-align: center;

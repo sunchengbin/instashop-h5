@@ -34,7 +34,7 @@ require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs
                 if(!_fromurl){
                     location.href = Config.host.host+'s/'+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
                 }else{
-                    location.href = _fromurl;
+                    location.href = Config.host.hrefUrl+'cart.php';
                 }
             });
             $('body').on('tap','.j_user_address .act',function(){
