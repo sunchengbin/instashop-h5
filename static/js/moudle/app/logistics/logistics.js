@@ -24,7 +24,10 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang'],fu
                 _w_h = $(window).height(),
                 _b_h = _wraper.height();
             $(_config.wraper).on('tap',_config.btn,function(){
-                _this.createHtm(_config.data).toShow();
+                _this.createHtm({
+                    data : _config.data,
+                    lang : Lang
+                }).toShow();
             });
             $(_config.wraper).on('tap','.j_logistics_li',function(){
                 if($(this).find('.check-btn').length){

@@ -17,10 +17,11 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     express : express_data.express_fee_list.list
                 });
             $('body').prepend(_htm);
-            if(express_data.express_fee_list.list.length){
+            if(!Base.others.testObject(express_data.express_fee_list.list)){
                 _this.logistics = Logistics({
                     data : express_data.express_fee_list.list,
-                    sum : _this.countSum(_carts)
+                    sum : _this.countSum(_carts),
+                    lang:Lang
                 });
             }
             _this.handleFn();
@@ -115,7 +116,10 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                 _address = _shop_data.Address,
                 _note = $.trim($('.j_buyer_note').val());
             if(!_company && _this.logistics){
-                _this.logistics.createHtm(express_data.express_fee_list.list).toShow();
+                _this.logistics.createHtm({
+                    data : express_data.express_fee_list.list,
+                    lang : Lang
+                }).toShow();
                 return null;
             }
             var _data = {
