@@ -97,7 +97,8 @@ define([],function(){
             'H5_ORDER_DETAIL_QUICK_PAY_ITEM_TIP' : '总价为#的商品',
             'H5_MAKE_ORDER': '去结算',
             'H5_BROWSE_SHOP': '去逛逛',
-            'H5_NO_ADDR_TIP': '你还没有收货地址，请先填写地址'
+            'H5_NO_ADDR_TIP': '你还没有收货地址，请先填写地址',
+            'C_LIMITED_TIME_DISCOUNT':'限时折扣'
         },
 
         id : {
@@ -289,7 +290,8 @@ define([],function(){
             'H5_MAKE_ORDER': 'Checkout',
             'H5_BROWSE_SHOP': 'Beli Lagi',
             'H5_NO_ADDR_TIP': 'Kamu belum mengisi alamat pengiriman, silakan isi alamat pengiriman dulu',
-            'H5_CONFIRM':'Ya'
+            'H5_CONFIRM':'Ya',
+            'C_LIMITED_TIME_DISCOUNT':'Program Diskon'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

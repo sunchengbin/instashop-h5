@@ -86,7 +86,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                         return;
                     }
                 }
-                _his.cart[_shop_id][_item_id] = opts;
+                _this.cart[_shop_id][_item_id] = opts;
             }
             _this.data.Cart = _this.cart;
             _this.data.ShopInfo = opts.item.shop;
@@ -102,7 +102,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
             if(!$('.j_cart_animate').length){
                 $('body').append('<div class="j_cart_animate" style="position:fixed;left:1rem;bottom:'+_b_h+'px;width:10px;height:10px;z-index:'+Base.others.zIndex+';background-color:red;"></div>');
             }
-            //$('body').add()
+            //$('body')
             //var _ca = document.querySelector('.j_cart_animate');
             //_ca.style.webkitTransitionDuration = '1s';
             //_ca.style.webkitTransform = 'translate3d('+(_w_w-50)+'px,'+(-_w_h+_b_h+30)+'px,0)';

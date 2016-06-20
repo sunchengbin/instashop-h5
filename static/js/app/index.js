@@ -144,7 +144,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                         if(items[i].discounting){
                             out +='<p><i class="icon iconfont">&#xe68e;</i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
                         }else{
-                            out +='<p>限时折扣</p>';
+                            out +='<p>'+Lang.C_LIMITED_TIME_DISCOUNT+'</p>';
                         }
                     }
                     out +='</div>'
