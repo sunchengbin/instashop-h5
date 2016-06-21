@@ -2,7 +2,7 @@
  * Created by sunchengbin on 15/7/1.
  * 按钮防重复提交编写
  */
-define(function(){
+define(['lang'],function(Lang){
     var btn = function(opts){
         var _this = this;
         _this.opts = $.extend({
@@ -11,7 +11,7 @@ define(function(){
             disable : false,//是否允许点击
             event_type : 'click',//默认点击如果移动端改成tap
             callback : null,//触发之后的操作代码
-            loading_txt : '提交中...'
+            loading_txt : Lang.H5_SUBMITTING_ORDER
         },opts);
         _this.init();
     };
