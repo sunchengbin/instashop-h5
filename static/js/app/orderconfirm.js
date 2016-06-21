@@ -32,6 +32,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                 wraper : 'body',
                 target : '.j_submit_buy',
                 event_type : 'tap',
+                loading_txt:Lang.H5_SUBMITTING_ORDER,
                 callback : function(dom){
                     var _that = this;
                     var _data = _this.getData();
