@@ -9,7 +9,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
-    <link href="<?=STATIC_HOST?>/css/dist/app/orderdetail.css?v=1466474872644" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/orderdetail.css?v=1466475629618" rel="stylesheet"/>
     <title>订单详情</title>
     <script>
         <?php
@@ -29,8 +29,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     </script>
 </head>
 <body>
-    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466474872644"></script>
+    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466475629618"></script>
     <!--<script src="../js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/orderdetail.js?v=1466474872644"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/orderdetail.js?v=1466475629618"></script>
 </body>
 </html>
