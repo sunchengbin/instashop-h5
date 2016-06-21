@@ -10,7 +10,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-  <link href="<?=STATIC_HOST?>/css/dist/app/shop_index.css?v=1466497203556" rel="stylesheet"/>
+  <link href="<?=STATIC_HOST?>/css/dist/app/shop_index.css?v=1466506380963" rel="stylesheet"/>
   <title>Instashop</title>
   <script>
     <?php
@@ -32,8 +32,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   </script>
 </head>
 <body>
-  <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466497203556"></script>
-  <!--<script src="../js/base/require-config.js?v=1466497203556"></script>-->
-  <script src="<?=STATIC_HOST?>/js/dist/app/index.js?v=1466497203556"></script>
+  <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466506380963"></script>
+  <!--<script src="../js/base/require-config.js?v=1466506380963"></script>-->
+  <script src="<?=STATIC_HOST?>/js/dist/app/index.js?v=1466506380963"></script>
 </body>
 </html>
