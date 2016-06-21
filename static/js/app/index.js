@@ -167,8 +167,10 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
         },
         getImNum : function(){
             var im_id = Base.others.getCookie('insta-im-id');
+            alert(im_id+'&1')
             if (!im_id) {
                 im_id = Base.others.getCookie('test-insta-im-id');
+                alert(im_id+'&2')
             }
             var toImId = init_data.shop['im_id'];
             if (im_id && toImId) {
@@ -180,6 +182,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                     }
                 };
                 Ajax.getJsonp(Config.host.actionUrl+Config.actions.imNum + '?param=' + JSON.stringify(reqData), function(data){
+                    alert(data.count);
                     if (data && data.count > 0) {
                         $('.j_im_num').show();
                     } else {
