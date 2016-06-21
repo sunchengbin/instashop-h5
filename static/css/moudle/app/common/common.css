@@ -1,6 +1,6 @@
 /*按钮类*/
     .btn{
-        display: -webkit-box;
+        display: block;
         width: 100%;
         height: 3.4rem;
         line-height: 3.4rem;
