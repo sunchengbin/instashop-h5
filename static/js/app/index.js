@@ -167,6 +167,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
         },
         getImNum : function(){
             var im_id = Base.others.getCookie('insta-im-id');
+            alert(document.cookie);
             alert(Base.others.getCookie('client_uuid'));
             alert(im_id+'&1')
             if (!im_id) {

@@ -67,8 +67,8 @@ function get_init_php_data($path, $params){
     $json = json_decode($ret, true);
     $browser_id = $json["client_uuid"];
     setcookie($cookie_name, $browser_id, time() + 3650*24*3600, '/', $domain);
-    //error_log("\nset cookie=".$cookie_name." domain=".$domain, 3, "/data/logs/php/error.log");
-    //error_log("\nbrowser_id=".$browser_id, 3, "/data/logs/php/error.log");
+    error_log("\nset cookie=".$cookie_name." domain=".$domain, 3, "/data/logs/php/error.log");
+    error_log("\nbrowser_id=".$browser_id, 3, "/data/logs/php/error.log");
 
     return $ret;
 }
