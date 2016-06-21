@@ -84,14 +84,15 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang'],fu
                 _cover = null;
             },1);
         },
-        animate : function(plug_buy,height){
+        animate : function(plug_buy,height,bottom){
             var _this = this;
             plug_buy.style.webkitTransitionDuration = _this.config.transformSpeed;
             plug_buy.style.webkitTransform = "translate3d(0, " + height + "px,0)";
+            plug_buy.style.bottom = (bottom?0:height)+'px';
         },
         toHide : function(plug_buy,height){
             var _this = this;
-            _this.animate(plug_buy,height);
+            _this.animate(plug_buy,height,true);
             _this.cover.hide();
         }
     };

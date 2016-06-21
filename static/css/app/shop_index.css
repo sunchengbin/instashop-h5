@@ -92,7 +92,7 @@ section{
 /*产品展示列表*/
 .items-box{
     position: relative;
-    z-index: 100;
+    z-index: 2;
     margin-top: 1rem;
     padding-left:2rem;
 }

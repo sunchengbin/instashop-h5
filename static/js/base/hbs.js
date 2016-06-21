@@ -130,7 +130,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             if(items[i].is_top == 1) {
                 var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time);
                 out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
-                    +'<div class="lazy" data-img="'+items[i].img+'">';
+                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
 
                 if(items[i].is_discount){
                     out +='<span>-'+items[i].discount.value+'%</span>';
@@ -186,7 +186,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             if(items[i].is_top == 0){
                 var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time);
                 out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
-                    +'<div class="lazy" data-img="'+items[i].img+'">';
+                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
 
                 if(items[i].is_discount){
                     out +='<span>-'+items[i].discount.value+'%</span>';
@@ -259,10 +259,10 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var _htm = '';
         if(imgs && imgs.length){
             Base.others.each(imgs,function(item,i){
-                _htm += '<li class=""><img src="'+item+'"/></li>';
+                _htm += '<li class=""><img src="'+Base.others.cutImg(item)+'"/></li>';
             });
         }else{
-            _htm += '<li class=""><img src="'+item+'"/></li>';
+            _htm += '<li class=""><img src="'+Base.others.cutImg(item)+'"/></li>';
         }
         return _htm;
     });
@@ -363,6 +363,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
     };
     HBS.registerHelper('transdate', function(time) {
         return transDate(time);
+    });
+    HBS.registerHelper('transimgurl', function(url) {
+        return Base.others.cutImg(url);
     });
     return HBS;
 });

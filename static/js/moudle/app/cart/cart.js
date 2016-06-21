@@ -92,21 +92,28 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
             _this.data.Cart = _this.cart;
             _this.data.ShopInfo = opts.item.shop;
             localStorage.setItem('ShopData',JSON.stringify(_this.data));
-            _this.addCartAnimate();
-            opts.callback && opts.callback.apply(_this);
+            _this.addCartAnimate(function(){
+                opts.callback && opts.callback.apply(_this);
+            });
+            //opts.callback && opts.callback.apply(_this);
         },
-        addCartAnimate:function(){
+        addCartAnimate:function(callback){
             var _w_w = $(window).width(),
                 _w_h = $(window).height(),
                 _wraper = $('.j_buy_plug'),
-                _b_h = _wraper.height();
+                _b_h = _wraper.height()-20;
             if(!$('.j_cart_animate').length){
-                $('body').append('<div class="j_cart_animate" style="position:fixed;left:1rem;bottom:'+_b_h+'px;width:10px;height:10px;z-index:'+Base.others.zIndex+';background-color:red;"></div>');
+                $('body').append('<div class="j_cart_animate" style="border-radius:50%;position:fixed;left:1rem;bottom:'+_b_h+'px;width:10px;height:10px;z-index:'+Base.others.zIndex+';background-color:#FD623C;"></div>');
             }
-            //$('body')
-            //var _ca = document.querySelector('.j_cart_animate');
-            //_ca.style.webkitTransitionDuration = '1s';
-            //_ca.style.webkitTransform = 'translate3d('+(_w_w-50)+'px,'+(-_w_h+_b_h+30)+'px,0)';
+            setTimeout(function(){
+                var _ca = document.querySelector('.j_cart_animate');
+                _ca.style.webkitTransitionDuration = '.6s';
+                _ca.style.webkitTransform = 'translate3d('+(_w_w-50)+'px,'+(-_w_h+_b_h+30)+'px,0)';
+                setTimeout(function(){
+                    $('.j_cart_animate').remove();
+                    callback && callback();
+                },700);
+            },300);
         },
         clearCarts : function(){//创建订单后清空购物车
             var _json_shop_data = localStorage.getItem('ShopData')?JSON.parse(localStorage.getItem('ShopData')):null;
