@@ -46,3 +46,18 @@ img{
 .clearfix {
     *zoom: 1;
 }
+@media only screen and (min-width: 641px) {
+    body {
+        max-width: 640px;
+        margin: 0 auto;
+        background-color: #F5F5F5;
+    }
+    body .buy-box,body .logistics-plug,body .buy-plug,body .shop-header-nav{
+        max-width: 640px;
+        left: 50%;
+        margin-left: -320px;
+    }
+    body .address-list{
+        max-width: 640px;
+    }
+}

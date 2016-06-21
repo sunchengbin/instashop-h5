@@ -14,10 +14,10 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     sum : _this.countSum(_carts),
                     address : _address,
                     lang:Lang,
-                    express : express_data.express_fee_list.list
+                    express : (JSON.parse(_data).ShopInfo.express_free == 0 && express_data.express_fee_list.list.JNE.length)
                 });
             $('body').prepend(_htm);
-            if(!Base.others.testObject(express_data.express_fee_list.list)){
+            if(JSON.parse(_data).ShopInfo.express_free == 0 && express_data.express_fee_list.list.JNE.length){
                 _this.logistics = Logistics({
                     data : express_data.express_fee_list.list,
                     sum : _this.countSum(_carts),

@@ -6,7 +6,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
     var ITEM = {
         init : function(){
             var _this = this;
-            Lazyload();
+
             var ItemHtm = '<div>loading..</div>';
             if(init_data){
                 ItemHtm= Hbs.compile(Item)({
@@ -20,6 +20,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 ItemHtm = '<div>loading error</div>';
             }
             $('body').prepend(ItemHtm);
+            Lazyload();
             if(init_data) {
                 Slide.createNew({
                     dom: document.querySelector('.j_banner'),

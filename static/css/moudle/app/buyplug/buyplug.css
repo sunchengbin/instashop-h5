@@ -3,6 +3,9 @@
     position: fixed;
     background-color: #fff;
     bottom:0;
+    max-width: 640px;
+    left: 50%;
+    margin-left: -320px;
 }
 .buy-plug-cover{
     display: none;
