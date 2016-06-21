@@ -4,7 +4,7 @@
 <section class="order-state">
     <p>{{lang.H5_ORDER_STATUS}}:{{data.order.state_txt}}</p>
     <p>
-        <a href="{{hrefUrl}}ordersuccess.php" class="">
+        <a href="{{hrefUrl}}ordersuccess.php?price={{data.order.need_pay_price}}" class="">
             <i class="icon iconfont fr">&#xe63e;</i>{{lang.H5_CHECK_ACCOUNT_RECEIVABLES}}:
         </a>
     </p>

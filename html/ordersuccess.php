@@ -9,7 +9,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
-    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1466497203556" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1466506380964" rel="stylesheet"/>
     <title>订单成功</title>
 </head>
 <body>
@@ -50,7 +50,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <script>
         var price = localStorage.getItem('OrderTotal'),
             data = JSON.parse(localStorage.getItem('ShopData')),
-            totalPrice = priceFormat(price);
+            totalPrice = priceFormat(price),
+            linkPrice = getUrlPrem('price',location.href);
+            if(linkPrice){totalPrice = priceFormat(linkPrice);}
         document.querySelector('.j_total').innerHTML = 'Rp '+totalPrice;
         document.querySelector('.j_go_back').addEventListener('click',function(){
             location.href = '/s/'+data.ShopInfo.id;
@@ -71,6 +73,24 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             }
             result = result.reverse().join( '' );
             return result;
+        };
+        function getUrlPrem(key,url){
+            var _search = url || document.location.search,
+                _pattern = new RegExp("[?&]" + key + "\=([^&]+)", "g"),
+                _matcher = _pattern.exec(_search),
+                _items = null;
+            if (null != _matcher) {
+                try {
+                    _items = decodeURIComponent(decodeURIComponent(_matcher[1]));
+                } catch (e) {
+                    try {
+                        _items = decodeURIComponent(_matcher[1]);
+                    } catch (e) {
+                        _items = _matcher[1];
+                    }
+                }
+            }
+            return _items;
         }
     </script>
 </body>

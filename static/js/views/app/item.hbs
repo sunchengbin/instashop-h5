@@ -26,12 +26,23 @@
             {{data.item.item_name}}
         </p>
         {{#if data.item.is_discount}}
-            <p class="price discount-price">
-                Rp {{transprice data.item.discount.price}}
-            </p>
-            <p class="price-lang">Rp{{transprice data.item.discount.min_price}}-{{transprice data.item.discount.max_price}}</p>
+            {{#if data.item.discounting}}
+                <p class="price discount-price">
+                    Rp {{transprice data.item.discount.price}}
+                </p>
+            {{else}}
+                <p class="price discount-price">
+                    Rp {{transprice data.item.price}}
+                </p>
+            {{/if}}
+            {{#eq data.item.discount.min_price data.item.discount.max_price}}
+                <p class="price-lang">Rp {{transprice data.item.discount.min_price}}</p>
+            {{else}}
+                <p class="price-lang">Rp {{transprice data.item.discount.min_price}}-{{transprice data.item.discount.max_price}}</p>
+            {{/eq}}
+
             <p class="discount-info">
-                <span>-{{data.item.discount.value}}%</span>
+                <span>-{{transpricevalue data.item.discount.value}}%</span>
 
                 {{#if data.item.discounting}}
                     Time remaining:

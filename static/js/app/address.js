@@ -47,17 +47,23 @@ require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs
                 $('j_name').blur();
                 switch(_name){
                     case 'province' :
-                        $('.j_address_list').html(_this.CreateList(City,'province')).addClass('show').removeClass('hide');
+                        $('.j_list_box').html(_this.CreateList(City,'province'));
+                        $('.j_address_list').addClass('show').removeClass('hide');
                         break;
                     case 'city' :
-                        $('.j_address_list').html(_this.CreateList(City[_this['province']],'city')).addClass('show').removeClass('hide');
+                        $('.j_list_box').html(_this.CreateList(City[_this['province']],'city'));
+                        $('.j_address_list').addClass('show').removeClass('hide');
                         break;
                     case 'country' :
-                        $('.j_address_list').html(_this.CreateList(City[_this['province']][_this['city']],'country')).addClass('show').removeClass('hide');
+                        $('.j_list_box').html(_this.CreateList(City[_this['province']][_this['city']],'country'));
+                        $('.j_address_list').addClass('show').removeClass('hide');
                         break;
                     default :
                         break;
                 }
+            });
+            $('body').on('tap','.j_go_address',function(){
+                $('.j_address_list').addClass('hide').removeClass('show');
             });
             $('body').on('tap','.j_list_item',function(){
                 var _name = $(this).attr('data-val'),

@@ -146,7 +146,12 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                 if(!items[i].is_discount){
                     out +='<p class="discount-price"></p>';
                 }else{
-                    out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
+                    if(items[i].discounting){
+                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
+                    }else{
+                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                    }
+
                 }
                 if(items[i].price < 0){
                     out +='<p class="price"></p>';
@@ -201,7 +206,11 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                 if(!items[i].is_discount){
                     out +='<p class="discount-price"></p>';
                 }else{
-                    out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
+                    if(items[i].discounting){
+                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
+                    }else{
+                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                    }
                 }
                 if(items[i].price < 0){
                     out +='<p class="price"></p>';
@@ -223,15 +232,27 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
 
     HBS.registerHelper('itemprice', function(data) {
         if(data.is_discount){
-            return Base.others.priceFormat(data.discount.price);
+            if(data.discount.price > 0){
+                if(data.discounting){
+                    return Base.others.priceFormat(data.discount.price);
+                }else{
+                    return Base.others.priceFormat(data.price);
+                }
+            }
+            return '';
         }
         if(data.sku && data.sku.length < 2){
-            return Base.others.priceFormat(data.price);
+            if(data.price > 0){
+                return Base.others.priceFormat(data.price);
+            }
+            return '';
         }
         else{
             var sku_price = [];
             Base.others.each(data.sku,function(item,i){
-                sku_price.push(Number(item.price));
+                if(Number(item.price) > 0){
+                    sku_price.push(Number(item.price));
+                }
             });
             sku_price.sort(function(a,b){
                 return a - b;
@@ -299,7 +320,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             for(var item in carts){
                 var _id = (carts[item].sku?carts[item].sku.id:carts[item].item.id);
                 _htm += '<li class="clearfix cart-item j_cart_item" data-itemid="'+carts[item].item.id+'" data-id="'+_id+'">'
-                    +'<i class="icon iconfont" data-id="'+_id+'">&#xe63e;</i>'
+                    //+'<i class="icon iconfont" data-id="'+_id+'">&#xe63e;</i>'
                     +'<img src="'+carts[item].item.img+'">'
                     +'<div class="">'
                     +'<p class="name">'+carts[item].item.item_name+'</p>'
@@ -366,6 +387,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
     });
     HBS.registerHelper('transimgurl', function(url) {
         return Base.others.cutImg(url);
+    });
+    HBS.registerHelper('transpricevalue', function(price) {
+        return Number(price)<0?-Number(price):price;
     });
     return HBS;
 });

@@ -29,25 +29,25 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 _this.createHtm(_config.data).toShow();
             });
             $(_config.wraper).on('tap',_config.buyNow,function(){
-                if(_config.data.item.sku.length){
+                //if(_config.data.item.sku.length){
                     if($('.j_plug_submit').length){
                         $('.j_plug_submit').attr('data-buynow','true');
                     }
                     _config.data.buyNow = true;
                     _this.createHtm(_config.data).toShow();
-                }else{
-                    Cart(_config.data).addItem({
-                        item : _config.data.item,
-                        num : 1,
-                        price:_config.data.item.price,
-                        callback : function(){
-                            _this.resetNum.apply(this);
-                            setTimeout(function(){
-                                location.href = Config.host.hrefUrl+'cart.php';
-                            },0);
-                        }
-                    });
-                }
+                //}else{
+                //    Cart(_config.data).addItem({
+                //        item : _config.data.item,
+                //        num : 1,
+                //        price:_config.data.item.price,
+                //        callback : function(){
+                //            _this.resetNum.apply(this);
+                //            setTimeout(function(){
+                //                location.href = Config.host.hrefUrl+'cart.php';
+                //            },0);
+                //        }
+                //    });
+                //}
             });
             $(_config.wraper).on('tap',_config.closeBtn,function(){
                 _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
@@ -65,7 +65,11 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     }else{
                         $('.j_buy_info').prepend('<p class="j_type_title">'+_that.html()+'</p>');
                     }
-                    $('.j_buy_info_price').html('Rp '+Base.others.priceFormat(_that.attr('data-price')));
+                    if(Base.others.priceFormat(_that.attr('data-price')) > 0){
+                        $('.j_buy_info_price').html('Rp '+Base.others.priceFormat(_that.attr('data-price')));
+                    }else{
+                        $('.j_buy_info_price').html('');
+                    }
                     if(_that.attr('data-stock') < 9999999){
                         $('.j_buy_info_title').html(Lang.H5_STOCK+':'+_that.attr('data-stock'));
                     }
@@ -95,6 +99,16 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 if($(this).is('.cancel-btn')){
                     return;
                 }
+                if(init_data.item.is_discount){
+                    if(init_data.item.discount.limit_count > 0){
+                        if(_num > init_data.item.discount.limit_count){
+                            Dialog.tip({
+                                body_txt : Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT
+                            });
+                            return false;
+                        }
+                    }
+                }
                 if(!_has_sku){
                     Cart(init_data).addItem({
                         item : init_data.item,
@@ -104,9 +118,9 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                             _this.resetNum.apply(this);
                             _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
                             if(_is_buy_now){
-                               setTimeout(function(){
-                                   location.href = Config.host.hrefUrl+'cart.php';
-                               },0);
+                                setTimeout(function(){
+                                    location.href = Config.host.hrefUrl+'cart.php';
+                                },0);
                             }
                         }
                     });
@@ -150,6 +164,9 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                         }
                     }
                 }
+
+
+
             });
         },
         resetNum : function(){
