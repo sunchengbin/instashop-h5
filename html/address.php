@@ -9,12 +9,12 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
-    <link href="<?=STATIC_HOST?>/css/dist/app/address.css?v=1466480127501" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/address.css?v=1466480802931" rel="stylesheet"/>
     <title>Address</title>
 </head>
 <body>
-    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466480127501"></script>
+    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466480802931"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/address.js?v=1466480127501"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/address.js?v=1466480802931"></script>
 </body>
 </html>
