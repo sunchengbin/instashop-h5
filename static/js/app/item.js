@@ -59,7 +59,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
         discountTime : function(nowTime,endTime){
             var _nt = this.datetime_to_unix(nowTime),
                 _et = this.datetime_to_unix(endTime),
-                _send = (_et - _nt)/1000,
+                _send = (_et - _nt + 3600000)/1000,
                 _hour = ''+(_send - _send % 3600)/3600,
                 _second = ''+(_send - _hour*3600)%60,
                 _minute = ''+(_send - _hour*3600 - _second)/60;

@@ -99,7 +99,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
         discountTime : function(nowTime,endTime){
             var _nt = this.datetime_to_unix(nowTime),
                 _et = this.datetime_to_unix(endTime),
-                _send = (_et - _nt)/1000,
+                _send = (_et - _nt + 3600000)/1000,
                 _hour = ''+(_send - _send % 3600)/3600,
                 _second = ''+(_send - _hour*3600)%60,
                 _minute = ''+(_send - _hour*3600 - _second)/60;
@@ -122,14 +122,15 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             return ((_hour.length<2?'0'+_hour:_hour)+':'+(_minute.length<2?'0'+_minute:_minute)+':'+(_second.length<2?'0'+_second:_second));
         },
         changeTime : function(){
-            var _second = $('[data-time]').attr('data-time'),
-                _this = this;
-            setInterval(function(){
-                --_second;
-                $('[data-time]').attr('data-time',_second).html(_this.countTime(_second));
-            },1000);
+            var _this = this;
+            $('[data-time]').each(function(i,item){
+                var _second = $(item).attr('data-time');
+                setInterval(function(){
+                    --_second;
+                    $(item).attr('data-time',_second).html(_this.countTime(_second));
+                },1000);
+            });
         },
-
         addItem : function(items){
             var out = "",
                 _this = this,

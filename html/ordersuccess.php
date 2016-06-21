@@ -9,7 +9,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
-    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1466506380964" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1466516733169" rel="stylesheet"/>
     <title>订单成功</title>
 </head>
 <body>

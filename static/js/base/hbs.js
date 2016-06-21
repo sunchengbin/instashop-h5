@@ -167,7 +167,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
     function discountTime(nowTime,endTime){
         var _nt = datetime_to_unix(nowTime),
             _et = datetime_to_unix(endTime),
-            _send = (_et - _nt)/1000,
+            _send = (_et - _nt + 3600000)/1000,
             _hour = ''+(_send - _send % 3600)/3600,
             _second = ''+(_send - _hour*3600)%60,
             _minute = ''+(_send - _hour*3600 - _second)/60;
