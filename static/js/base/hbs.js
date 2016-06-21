@@ -359,7 +359,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var tmp_datetime = datetime.replace(/:/g,'-');
         tmp_datetime = tmp_datetime.replace(/ /g,'-');
         var arr = tmp_datetime.split("-");
-        return arr[1]+'/'+arr[0]+' '+arr[3]+'.'+arr[4];
+        return arr[2]+'/'+arr[1]+' '+arr[3]+'.'+arr[4];
     };
     HBS.registerHelper('transdate', function(time) {
         return transDate(time);
