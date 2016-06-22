@@ -24,7 +24,9 @@
     overflow: hidden;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    max-height: 3.3rem;
+    font-size: 14px;
+    /*height: 40px;*/
+    max-height: 40px;
     margin-bottom:.5rem;
 
 }
