@@ -74,14 +74,6 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                 location.href = Config.host.host+'s/'+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
             });
             $('body').on('tap','.j_submit_btn',function(){
-                var reqData = {
-                    edata : {
-                        action : 'check',
-                        items : _that.getItems(),
-                        seller_id :JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
-                        wduss : ''
-                    }
-                };
                 if(!JSON.parse(localStorage.getItem('ShopData')).Address){
                     Dialog.confirm({
                         top_txt : '',//可以是html
@@ -91,6 +83,15 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                         }
                     });
                 }else{
+                    var reqData = {
+                        edata : {
+                            action : 'check',
+                            items : _that.getItems(),
+                            telephone:JSON.parse(localStorage.getItem('ShopData')).Address.telephone,
+                            seller_id :JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
+                            wduss : ''
+                        }
+                    };
                     Ajax.postJsonp({
                         url :Config.actions.testCart,
                         data : {param:JSON.stringify(reqData)},

@@ -28,8 +28,11 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
         },
         handleFn : function(){
             var _this = this;
-            $('body').on('click',function(){
-                $('textarea').blur();
+            $('body').on('click',function(e){
+                console.log($(e.target))
+                if(!$(e.target).is('textarea')){
+                    $('textarea').blur();
+                }
             });
             Btn({
                 wraper : 'body',
@@ -56,12 +59,13 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                     _total = (_post_price&&_post_price>0)?(Number(_post_price)+Number(_this.countSum(Cart().getCarts()))):_this.countSum(Cart().getCarts());
                                 localStorage.setItem('OrderTotal',_total);
                                 Cart().clearCarts();
-                                location.href = Config.host.hrefUrl+'ordersuccess.php';
+                                location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price;
                             }else{
                                 var reqData = {
                                     edata : {
                                         action : 'check',
                                         items : _this.getItems(),
+                                        telephone:JSON.parse(localStorage.getItem('ShopData')).Address.telephone,
                                         seller_id :JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
                                         wduss : ''
                                     }
@@ -74,11 +78,11 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                         if(obj.code == 200){
                                             if(obj.carts){
                                                 if(_this.testCarts(obj.carts)) {
-                                                    //var _post_price = $('.j_logistics_info').attr('data-price'),
-                                                    //    _total = (_post_price && _post_price > 0) ? (Number(_post_price) + Number(_this.countSum(Cart().getCarts()))) : _this.countSum(Cart().getCarts());
-                                                    //localStorage.setItem('OrderTotal', _total);
-                                                    //Cart().clearCarts();
-                                                    //location.href = Config.host.hrefUrl + 'ordersuccess.php';
+                                                    var _post_price = $('.j_logistics_info').attr('data-price'),
+                                                        _total = (_post_price && _post_price > 0) ? (Number(_post_price) + Number(_this.countSum(Cart().getCarts()))) : _this.countSum(Cart().getCarts());
+                                                    localStorage.setItem('OrderTotal', _total);
+                                                    Cart().clearCarts();
+                                                    location.href = Config.host.hrefUrl + 'ordersuccess.php';
                                                 }
                                             }
                                         }else{
@@ -169,7 +173,11 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         _msg = Lang.H5_NO_STOCK;
                     }else{
                         if(_stock < _num){//超出库存
-                            _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
+                            if(item.is_discount_err){
+                                _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
+                            }else{
+                                _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
+                            }
                         }
                     }
                 }

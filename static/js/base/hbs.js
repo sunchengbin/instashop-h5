@@ -234,9 +234,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         if(data.is_discount){
             if(data.discount.price > 0){
                 if(data.discounting){
-                    return Base.others.priceFormat(data.discount.price);
+                    return 'Rp '+Base.others.priceFormat(data.discount.price);
                 }else{
-                    return Base.others.priceFormat(data.price);
+                    return 'Rp '+Base.others.priceFormat(data.price);
                 }
             }
             return '';

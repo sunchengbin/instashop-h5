@@ -2,11 +2,13 @@
     <div class="item-info-title clearfix">
         <img src="{{item.shop.logo}}">
         <div class="j_buy_info">
-            <p class="price j_buy_info_price">Rp {{itemprice item}}</p>
+            <p class="price j_buy_info_price">{{itemprice item}}</p>
             <p class="title j_buy_info_title">{{item.item_name}}</p>
             {{#if item.sku}}
             {{else}}
+                {{#lt item.stock 99999999}}
                 <p class="title ">{{lang.H5_STOCK}}:{{item.stock}}</p>
+                {{/lt}}
             {{/if}}
 
         </div>

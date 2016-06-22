@@ -37,7 +37,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
       </script>
 </head>
 <body>
-    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466576558304"></script>
+    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466582497987"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/orderconfirm.js"></script>
 </body>
