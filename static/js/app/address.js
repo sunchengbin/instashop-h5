@@ -49,14 +49,17 @@ require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs
                     case 'province' :
                         $('.j_list_box').html(_this.CreateList(City,'province'));
                         $('.j_address_list').addClass('show').removeClass('hide');
+                        $('.j_address_header').addClass('show').removeClass('hide');
                         break;
                     case 'city' :
                         $('.j_list_box').html(_this.CreateList(City[_this['province']],'city'));
                         $('.j_address_list').addClass('show').removeClass('hide');
+                        $('.j_address_header').addClass('show').removeClass('hide');
                         break;
                     case 'country' :
                         $('.j_list_box').html(_this.CreateList(City[_this['province']][_this['city']],'country'));
                         $('.j_address_list').addClass('show').removeClass('hide');
+                        $('.j_address_header').addClass('show').removeClass('hide');
                         break;
                     default :
                         break;
@@ -64,12 +67,14 @@ require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs
             });
             $('body').on('tap','.j_go_address',function(){
                 $('.j_address_list').addClass('hide').removeClass('show');
+                $('.j_address_header').addClass('hide').removeClass('show');
             });
             $('body').on('tap','.j_list_item',function(){
                 var _name = $(this).attr('data-val'),
                     _type = $(this).attr('data-type');
                 _this[_type] = _name;
                 $('.j_address_list').addClass('hide').removeClass('show');
+                $('.j_address_header').addClass('hide').removeClass('show');
                 switch(_type){
                     case 'province' :
                         if($('.j_province').html() != _name){

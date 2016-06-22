@@ -28,7 +28,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
         },
         handleFn : function(){
             var _this = this;
-            $('body').on('tap',function(){
+            $('body').on('click',function(){
                 $('textarea').blur();
             });
             Btn({

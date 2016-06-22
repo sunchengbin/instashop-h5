@@ -9,12 +9,12 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
-    <link href="<?=STATIC_HOST?>/css/dist/app/cart.css?v=1466575000221" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/cart.css?v=1466576558304" rel="stylesheet"/>
     <title>shopcart</title>
 </head>
 <body>
-    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466575000221"></script>
+    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466576558304"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/cartindex.js?v=1466575000221"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/cartindex.js?v=1466576558304"></script>
 </body>
 </html>
