@@ -60,7 +60,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                                 }
                             }
                             if(opts.sku){//有规格的商品以规格id为key
-                                var _discout_num = _this.getItemSkus()[_item_id]?(_this.getItemSkus()[_item_id]+opts.num):null,
+                                var _discout_num = _this.getItemSkus(_shop_id)[_item_id]?(_this.getItemSkus(_shop_id)[_item_id]+opts.num):null,
                                     _stock = (opts.item.is_discount && opts.item.discounting)?opts.item.discount.limit_count:opts.sku.stock;;
                                 if(!_this.cart[_shop_id][opts.sku.id]){//某个商品的某个规格
                                     if(_discout_num && !_this.verifyItem(_discout_num,_stock)){
@@ -97,7 +97,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                                 }
                                 _this.cart[_shop_id][opts.sku.id] = opts;
                             }else{//没有规格的商品以商品id为key
-                                var _discout_num = _this.getItemSkus()[_item_id]?(_this.getItemSkus()[_item_id]+opts.num):null,
+                                var _discout_num = _this.getItemSkus(_shop_id)[_item_id]?(_this.getItemSkus(_shop_id)[_item_id]+opts.num):null,
                                     _stock = (opts.item.is_discount && opts.item.discounting)?opts.item.discount.limit_count:opts.item.stock;
                                 if(!_this.cart[_shop_id][_item_id]){
                                     if(_discout_num && !_this.verifyItem(_discout_num,_stock)){
@@ -153,7 +153,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                         }
                     }
                     if(opts.sku){//有规格的商品以规格id为key
-                        var _discout_num = _this.getItemSkus()[_item_id]?(_this.getItemSkus()[_item_id]+opts.num):null,
+                        var _discout_num = _this.getItemSkus(_shop_id)[_item_id]?(_this.getItemSkus(_shop_id)[_item_id]+opts.num):null,
                             _stock = (opts.item.is_discount && opts.item.discounting)?opts.item.discount.limit_count:opts.sku.stock;;
                         if(!_this.cart[_shop_id][opts.sku.id]){//某个商品的某个规格
                             if(_discout_num && !_this.verifyItem(_discout_num,_stock)){
@@ -190,7 +190,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                         }
                         _this.cart[_shop_id][opts.sku.id] = opts;
                     }else{//没有规格的商品以商品id为key
-                        var _discout_num = _this.getItemSkus()[_item_id]?(_this.getItemSkus()[_item_id]+opts.num):null,
+                        var _discout_num = _this.getItemSkus(_shop_id)[_item_id]?(_this.getItemSkus(_shop_id)[_item_id]+opts.num):null,
                             _stock = (opts.item.is_discount && opts.item.discounting)?opts.item.discount.limit_count:opts.item.stock;
                         if(!_this.cart[_shop_id][_item_id]){
                             if(_discout_num && !_this.verifyItem(_discout_num,_stock)){
@@ -206,7 +206,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                             if(_discout_num){
                                 _test_num = _discout_num;
                             }
-                            if(!_this.verifyItem(_test_num,_stock)){
+                            if(_this.verifyItem(_test_num,_stock)){
                                 opts.num += _this.cart[_shop_id][_item_id].num;
                             }else{
                                 if(_discout_num){
@@ -306,9 +306,9 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
             }
             return true;
         },
-        getItemSkus : function(){
+        getItemSkus : function(shopid){
             var _this = this,
-                _carts = _this.carts,
+                _carts = _this.cart[shopid],
                 _item = {};
             if(!_carts)return {};
             for(var item in _carts){

@@ -168,7 +168,12 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     _stock = item.stock,
                     _msg = null;
                 if(_stock == 0){//库存为0
-                    _msg = Lang.H5_SOLD_OUT;
+                    if(item.is_discount_err){
+                        _msg = Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT;
+                    }else{
+                        _msg = Lang.H5_SOLD_OUT;
+                    }
+
                 }else{
                     if(_stock >= 9999999){//没设置库存,需要联系商家
                         //_msg = Lang.H5_NO_STOCK;

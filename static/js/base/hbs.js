@@ -68,9 +68,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
     // 小于
     HBS.registerHelper('lt', function(a, b, options) {
         if (a > b) {
-            return options.fn(this);
-        } else {
             return options.inverse(this);
+        } else {
+            return options.fn(this);
         }
     });
 

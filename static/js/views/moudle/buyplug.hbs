@@ -2,14 +2,17 @@
     <div class="item-info-title clearfix">
         <img src="{{item.shop.logo}}">
         <div class="j_buy_info">
-            <p class="price j_buy_info_price">{{itemprice item}}</p>
+            <p class="price j_buy_info_price">Rp {{itemprice item}}</p>
             <p class="title j_buy_info_title">{{item.item_name}}</p>
-            {{#if item.sku}}
+            {{#empty item.sku}}
+                {{#lt item.stock 99999999}}
+                    <p class="title ">{{lang.H5_STOCK}}:{{item.stock}}</p>
+                {{/lt}}
             {{else}}
                 {{#lt item.stock 99999999}}
                 <p class="title ">{{lang.H5_STOCK}}:{{item.stock}}</p>
                 {{/lt}}
-            {{/if}}
+            {{/empty}}
 
         </div>
         <i class="icon iconfont j_close_btn">&#xe602;</i>
@@ -36,11 +39,11 @@
         </div>
         <p class="">{{lang.H5_QUANTITY}}</p>
     </div>
-    {{#if item.sku}}
+    {{#empty item.stock}}
         <button class="btn cancel-btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
     {{else}}
-        <button class="btn  j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
-    {{/if}}
+        <button class="btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
+    {{/empty}}
 
 </section>
 <section class="buy-plug-cover j_buy_plug_cover"></section>
