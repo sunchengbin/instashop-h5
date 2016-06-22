@@ -10,7 +10,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-  <link href="<?=STATIC_HOST?>/css/dist/app/item.css?v=1466606423898" rel="stylesheet"/>
+  <link href="<?=STATIC_HOST?>/css/dist/app/item.css?v=1466607021393" rel="stylesheet"/>
   <title>Item detail</title>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );
@@ -30,8 +30,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         ?>
 </head>
 <body>
-  <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466606423898"></script>
-  <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js?v=1466606423898"></script>-->
-  <script src="<?=STATIC_HOST?>/js/dist/app/item.js?v=1466606423898"></script>
+  <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466607021393"></script>
+  <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js?v=1466607021393"></script>-->
+  <script src="<?=STATIC_HOST?>/js/dist/app/item.js?v=1466607021393"></script>
 </body>
 </html>
