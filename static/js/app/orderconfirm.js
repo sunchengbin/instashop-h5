@@ -49,7 +49,9 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                             _that.cancelDisable();
                             _that.setBtnTxt(dom,Lang.H5_CONTINUE_ORDER);
                             if(obj.code == 200){
-                                localStorage.setItem('OrderTotal',_this.countSum(Cart().getCarts()));
+                                var _post_price = $('.j_logistics_info').attr('data-price'),
+                                    _total = (_post_price&&_post_price>0)?(Number(_post_price)+Number(_this.countSum(Cart().getCarts()))):_this.countSum(Cart().getCarts());
+                                localStorage.setItem('OrderTotal',_total);
                                 Cart().clearCarts();
                                 location.href = Config.host.hrefUrl+'ordersuccess.php';
                             }else{

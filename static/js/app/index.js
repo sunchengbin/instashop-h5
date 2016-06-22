@@ -38,12 +38,12 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             if($('[data-time]').length){
                 _this.changeTime();
             }
-            $('body').on('tap','.j_down_btn',function(){
-                if($(this).is('.down-btn')){
-                    $(this).removeClass('down-btn').addClass('up-btn');
+            $('body').on('tap','.j_down_box',function(){
+                if($('.j_down_btn').is('.down-btn')){
+                    $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
                     $('.txt').css({'maxHeight':'none'});
                 }else{
-                    $(this).removeClass('up-btn').addClass('down-btn');
+                    $('.j_down_btn').removeClass('up-btn').addClass('down-btn');
                     $('.txt').css({'maxHeight':'45px'});
                 }
             });

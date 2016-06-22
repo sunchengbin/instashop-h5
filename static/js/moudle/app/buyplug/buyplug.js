@@ -65,7 +65,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     }else{
                         $('.j_buy_info').prepend('<p class="j_type_title">'+_that.html()+'</p>');
                     }
-                    if(Base.others.priceFormat(_that.attr('data-price')) > 0){
+                    if(_that.attr('data-price') > 0){
                         $('.j_buy_info_price').html('Rp '+Base.others.priceFormat(_that.attr('data-price')));
                     }else{
                         $('.j_buy_info_price').html('');

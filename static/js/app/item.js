@@ -95,6 +95,18 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             if($('[data-time]').length){
                 this.changeTime();
             }
+            if($('.txt-hide').height() > 33){
+                $('.down-btn').show();
+            }
+            $('body').on('tap','.j_down_box',function(){
+                if($('.j_down_btn').is('.down-btn')){
+                    $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
+                    $('.txt').css({'maxHeight':'none'});
+                }else{
+                    $('.j_down_btn').removeClass('up-btn').addClass('down-btn');
+                    $('.txt').css({'maxHeight':'45px'});
+                }
+            });
             $('body').on('click','.j_shop_info',function(){
                 var _this = $(this),
                     _url = _this.attr('data-url');

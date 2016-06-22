@@ -42,7 +42,8 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang'],fu
                 if(_len){
                     $('.j_logistics_info').html(_level).attr({
                         'data-id' : _check.attr('data-id'),
-                        'data-company' : _check.attr('data-company')
+                        'data-company' : _check.attr('data-company'),
+                        'data-price' : Number(_check.attr('data-price'))
                     });
                     _this.toHide(document.querySelector('.j_logistics_plug'),_w_h);
                     var _sum = Number(_config.sum)+Number(_check.attr('data-price'));
