@@ -106,6 +106,12 @@ body{
     text-align: center;
     color: #fff;
 }
+.buy-btns a.disable-addnow{
+    background-color: #d8d8d8;
+}
+.buy-btns a.disable-buynow{
+    background-color: #ccc;
+}
 .add-cart{
     background-color: #F5A623;
 }
@@ -208,3 +214,4 @@ body{
 .down-btn{
     display: none;
 }
+

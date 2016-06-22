@@ -94,9 +94,10 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                         type : 'POST',
                         success : function(obj){
                             if(obj.code == 200){
-                                var _address= JSON.parse(localStorage.getItem('ShopData')).Address.address,
-                                    _addr = _address.street + ',' + _address.country + ',' + _address.city + ',' + _address.province;
-                                location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+reqData.edata.seller_id+'&addr='+_addr;
+
+                                //var _address= JSON.parse(localStorage.getItem('ShopData')).Address.address,
+                                //    _addr = _address.street + ',' + _address.country + ',' + _address.city + ',' + _address.province;
+                                //location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+reqData.edata.seller_id+'&addr='+_addr;
                             }else{
 
                             }

@@ -172,7 +172,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             _second = ''+(_send - _hour*3600)%60,
             _minute = ''+(_send - _hour*3600 - _second)/60;
         return {
-            time : ((_hour.length<2?'0'+_hour:_hour)+':'+(_minute.length<2?'0'+_minute:_minute)+':'+(_second.length<2?'0'+_second:_second)),
+            time : ((_hour.length<2?'0'+_hour:_hour)+'.'+(_minute.length<2?'0'+_minute:_minute)+'.'+(_second.length<2?'0'+_second:_second)),
             second : _send
         };
     };
@@ -270,7 +270,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var _htm = '';
         if(data.sku && data.sku.length){
             Base.others.each(data.sku,function(item,i){
-                _htm += '<li class="j_type_li" data-price="'+(data.is_discount&&data.discounting?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
+                _htm += '<li class="j_type_li '+(item.stock==0?'disable':'')+'" data-price="'+(data.is_discount&&data.discounting?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
             });
         }
         return _htm;

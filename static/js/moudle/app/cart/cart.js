@@ -215,6 +215,9 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
             for(var cart in carts){
                 _num += Number(carts[cart].num);
             }
+            if(_num > 9){
+                _num = '9+';
+            }
             return _num;
         },
         verifyItem : function(num,stock){

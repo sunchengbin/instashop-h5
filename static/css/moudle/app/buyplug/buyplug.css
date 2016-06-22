@@ -117,6 +117,9 @@
 .buy-plug .btn{
     border-radius: 0;
 }
+.item-info-cont li.disable{
+    background-color: #d8d8d8;
+}
 
 
 

@@ -26,15 +26,21 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 _b_h = _wraper.height();
             _config.data.lang = Lang;
             $(_config.wraper).on('tap',_config.btn,function(){
+                if($(this).is('.disable-btn')){
+                    return false;
+                }
                 _this.createHtm(_config.data).toShow();
             });
             $(_config.wraper).on('tap',_config.buyNow,function(){
+                if($(this).is('.disable-btn')){
+                    return false;
+                }
                 //if(_config.data.item.sku.length){
-                    if($('.j_plug_submit').length){
-                        $('.j_plug_submit').attr('data-buynow','true');
-                    }
-                    _config.data.buyNow = true;
-                    _this.createHtm(_config.data).toShow();
+                if($('.j_plug_submit').length){
+                    $('.j_plug_submit').attr('data-buynow','true');
+                }
+                _config.data.buyNow = true;
+                _this.createHtm(_config.data).toShow();
                 //}else{
                 //    Cart(_config.data).addItem({
                 //        item : _config.data.item,
@@ -57,6 +63,9 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
             });
             $(_config.wraper).on('tap','.j_type_li',function(){
                 var _that = $(this);
+                if(_that.is('.disable')){
+                    return false;
+                }
                 if(!_that.is('.act')){
                     $(_config.wraper).find('.act').removeClass('act');
                     _that.addClass('act');
