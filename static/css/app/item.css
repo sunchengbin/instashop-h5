@@ -169,6 +169,7 @@ body{
     margin: 0 2rem;
     padding-bottom: 2rem;
     position: relative;
+    overflow: hidden;
 }
 .shop-explain > div{
     padding:1rem 1rem;
