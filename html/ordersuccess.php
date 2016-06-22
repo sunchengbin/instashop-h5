@@ -9,7 +9,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
-    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1466587864189" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1466597387662" rel="stylesheet"/>
     <title>订单成功</title>
 </head>
 <body>
@@ -56,7 +56,11 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             if(linkPrice){totalPrice = priceFormat(linkPrice);}
         document.querySelector('.j_total').innerHTML = 'Rp '+totalPrice;
         document.querySelector('.j_go_back').addEventListener('click',function(){
-            history.back();
+            if(!from){
+                location.href = '/s/'+data.ShopInfo.id;
+            }else{
+                history.back();
+            }
         });
         function priceFormat( price ) {
             // e.g. 100.00 => 100

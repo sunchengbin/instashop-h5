@@ -183,7 +183,10 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     }
                 }
                 if(!item.valid){_beal = false;}
-                _msg && $('.j_cart_item[data-id="'+_id+'"]').append('<p class="error-p">'+_msg+'</p>');
+                if(_msg){
+                    $('.j_cart_item[data-id="'+_id+'"] .error-p').remove();
+                    $('.j_cart_item[data-id="'+_id+'"]').append('<p class="error-p">'+_msg+'</p>');
+                }
             });
             return _beal;
         },
