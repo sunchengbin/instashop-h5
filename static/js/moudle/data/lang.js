@@ -290,7 +290,7 @@ define([],function(){
             'H5_ORDER_DETAIL_QUICK_PAY_ITEM_TIP' : 'Produk senilai #',
             'H5_MAKE_ORDER': 'Checkout',
             'H5_BROWSE_SHOP': 'Beli Lagi',
-            'H5_NO_ADDR_TIP': 'Kamu belum mengisi alamat pengiriman, silakan isi alamat pengiriman dulu',
+            'H5_NO_ADDR_TIP': 'Kamu belum mengisi alamat pengiriman,silakan isi alamat pengiriman terlebih dahulu',
             'H5_CONFIRM':'Ya',
             'H5_IS_ABOUT_TO_BEGIN':'Program Diskon',
             'H5_DISCOUTN_CAN_NOT_ABOVE_COUNT':'Tidak bisa melebihi batas maksimum pembelian'

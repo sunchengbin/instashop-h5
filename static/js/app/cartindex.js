@@ -10,7 +10,6 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                     lang : Lang
                 });
             this.carts = _carts;
-            console.log(_carts);
             $('body').prepend(_htm);
             this.handleFn();
         },
@@ -143,7 +142,7 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                     _msg = Lang.H5_SOLD_OUT;
                 }else{
                     if(_stock >= 9999999){//没设置库存,需要联系商家
-                        _msg = Lang.H5_NO_STOCK;
+                        //_msg = Lang.H5_NO_STOCK;
                     }else{
                         if(_stock < _num){//超出库存
                             _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;

@@ -30,16 +30,21 @@
             <div class="address-info">
                 {{data.order.buyer_address.street}},{{data.order.buyer_address.country}},{{data.order.buyer_address.city}},{{data.order.buyer_address.province}}
             </div>
-            <div>{{lang.H5_LOGISTICS_COMPANY}}:{{data.order.logistics_info.express_buyer.title}}</div>
+            {{#nempty data.order.logistics_info.express_buyer.title}}
+                <div>{{lang.H5_LOGISTICS_COMPANY}}:{{data.order.logistics_info.express_buyer.title}}</div>
+            {{/nempty}}
         </div>
     </div>
 </section>
+{{#if data.order.buyer_note}}
+    <section class="buyer-note">
+        {{lang.H5_BUYER_NOTE}} : {{data.order.buyer_note}}
+    </section>
+{{/if}}
+
 <section class="">
     <div class="list-box">
-        <div class="shop-info clearfix">
-            <img src="{{data.order.shop_info.logo}}">
-            <p>{{data.order.shop_info.name}}</p>
-        </div>
+
         <ul class="order-items">
             {{#each data.order.items}}
             <li class="clearfix cart-item">
@@ -56,8 +61,12 @@
             {{/each}}
         </ul>
         <div class="order-info">
-            <p class="clearfix"><span class="fr">Rp : {{transprice data.order.express_fee}}</span>{{lang.H5_SHIPPING_COST}}:</p>
-            <p class="clearfix"><span class="fr">Rp : {{transprice data.order.need_pay_price}}</span>{{lang.H5_ORDER_TOTAL_PRICE}}:</p>
+            <p class="clearfix"><span class="fr">Rp {{transprice data.order.express_fee}}</span>{{lang.H5_SHIPPING_COST}}:</p>
+            <p class="clearfix"><span class="fr">Rp {{transprice data.order.need_pay_price}}</span>{{lang.H5_ORDER_TOTAL_PRICE}}:</p>
+        </div>
+        <div class="shop-info clearfix">
+            <img src="{{data.order.shop_info.logo}}">
+            <p>{{data.order.shop_info.name}}</p>
         </div>
         <div class="href-box clearfix">
             <a href="{{host}}s/{{data.order.shop_info.id}}" class="go-home">

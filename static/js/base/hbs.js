@@ -3,7 +3,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var x = false;
         switch (typeof val) {
             case 'string':
-                x = val == '';
+                x = $.trim(val) == '';
                 break;
 
             case 'object':
@@ -346,9 +346,10 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var _htm = '';
         for(var item in data){
             for(var i in data[item]){
+                var _cost_day = data[item][i].cost_days?'('+data[item][i].cost_days+')':'';
                 _htm += '<li class="j_logistics_li"  data-level="'+data[item][i].level+'" data-id="'+data[item][i].id+'">'
                     +'<i class="icon iconfont check-btn" data-company="'+item+'" data-price="'+data[item][i].price+'"  data-level="'+data[item][i].level+'" data-id="'+data[item][i].id+'"></i>'
-                    +data[item][i].level+'('+data[item][i].cost_days+')'+':Rp '+Base.others.priceFormat(data[item][i].price)
+                    +data[item][i].level+_cost_day+':Rp '+Base.others.priceFormat(data[item][i].price)
                     +'</li>';
             }
         }

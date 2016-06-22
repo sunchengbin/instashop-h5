@@ -31,6 +31,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
             $('body').on('click',function(e){
                 console.log($(e.target))
                 if(!$(e.target).is('textarea')){
+                    //alert('s')
                     $('textarea').blur();
                 }
             });
@@ -170,7 +171,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     _msg = Lang.H5_SOLD_OUT;
                 }else{
                     if(_stock >= 9999999){//没设置库存,需要联系商家
-                        _msg = Lang.H5_NO_STOCK;
+                        //_msg = Lang.H5_NO_STOCK;
                     }else{
                         if(_stock < _num){//超出库存
                             if(item.is_discount_err){

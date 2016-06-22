@@ -74,7 +74,7 @@ body{
     padding-bottom: 2rem;
 }
 .shop-info{
-    border-bottom: 1px solid #d8d8d8;
+    /*border-bottom: 1px solid #d8d8d8;*/
     padding: 1rem 0;
 }
 .shop-info img{
@@ -163,4 +163,11 @@ body{
 }
 .cart-item > div{
     margin-right:0;
+}
+.buyer-note{
+    padding: 1rem;
+    background-color: #fff;
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+    color: #999;
 }

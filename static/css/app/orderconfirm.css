@@ -14,14 +14,15 @@ body{
     margin-bottom: 2rem;
 }
 .user-info{
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: #999;
     padding-right: 1rem;
     line-height: 1.6rem;
+    padding-bottom:1rem;
 }
 .user-info i{
     color: #43CB9C;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin-right: .2rem;
 }
 .address-box{
@@ -29,6 +30,7 @@ body{
 }
 .address-info{
     margin-right:3rem;
+    font-size: 1.4rem;
 }
 .user-address-info{
     color: #999;
