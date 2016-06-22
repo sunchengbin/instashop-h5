@@ -4,6 +4,11 @@
         <div class="j_buy_info">
             <p class="price j_buy_info_price">Rp {{itemprice item}}</p>
             <p class="title j_buy_info_title">{{item.item_name}}</p>
+            {{#if item.sku}}
+            {{else}}
+                <p class="title ">{{lang.H5_STOCK}}:{{item.stock}}</p>
+            {{/if}}
+
         </div>
         <i class="icon iconfont j_close_btn">&#xe602;</i>
     </div>

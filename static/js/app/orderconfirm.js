@@ -58,7 +58,49 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                 Cart().clearCarts();
                                 location.href = Config.host.hrefUrl+'ordersuccess.php';
                             }else{
-
+                                var reqData = {
+                                    edata : {
+                                        action : 'check',
+                                        items : _this.getItems(),
+                                        seller_id :JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
+                                        wduss : ''
+                                    }
+                                };
+                                Ajax.postJsonp({
+                                    url :Config.actions.testCart,
+                                    data : {param:JSON.stringify(reqData)},
+                                    type : 'POST',
+                                    success : function(obj){
+                                        if(obj.code == 200){
+                                            if(obj.carts){
+                                                if(_this.testCarts(obj.carts)) {
+                                                    //var _post_price = $('.j_logistics_info').attr('data-price'),
+                                                    //    _total = (_post_price && _post_price > 0) ? (Number(_post_price) + Number(_this.countSum(Cart().getCarts()))) : _this.countSum(Cart().getCarts());
+                                                    //localStorage.setItem('OrderTotal', _total);
+                                                    //Cart().clearCarts();
+                                                    //location.href = Config.host.hrefUrl + 'ordersuccess.php';
+                                                }
+                                            }
+                                        }else{
+                                            Dialog.confirm({
+                                                top_txt : '',//可以是html
+                                                body_txt : '<p class="dialog-body-p">error</p>',
+                                                cf_fn : function(){
+                                                    location.reload();
+                                                }
+                                            });
+                                        }
+                                    },
+                                    error : function(error){
+                                        Dialog.confirm({
+                                            top_txt : '',//可以是html
+                                            body_txt : '<p class="dialog-body-p">error</p>',
+                                            cf_fn : function(){
+                                                location.reload();
+                                            }
+                                        });
+                                    }
+                                });
                             }
                         },
                         error : function(error){
@@ -111,6 +153,30 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                 }
             }
             return _arr;
+        },
+        testCarts : function(carts){
+            var _this = this,
+                _beal = true;
+            Base.others.each(carts,function(item,i){
+                var _id = item.item_sku?item.item_sku:item.itemID,
+                    _num = Number(item.itemNum),
+                    _stock = item.stock,
+                    _msg = null;
+                if(_stock == 0){//库存为0
+                    _msg = Lang.H5_SOLD_OUT;
+                }else{
+                    if(_stock >= 9999999){//没设置库存,需要联系商家
+                        _msg = Lang.H5_NO_STOCK;
+                    }else{
+                        if(_stock < _num){//超出库存
+                            _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
+                        }
+                    }
+                }
+                if(!item.valid){_beal = false;}
+                _msg && $('.j_cart_item[data-id="'+_id+'"]').append('<p class="error-p">'+_msg+'</p>');
+            });
+            return _beal;
         },
         getData : function(){
             var _this = this,
