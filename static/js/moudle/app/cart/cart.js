@@ -308,8 +308,9 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
         },
         getItemSkus : function(){
             var _this = this,
-                _carts = _this.getCarts(),
+                _carts = _this.carts,
                 _item = {};
+            if(!_carts)return {};
             for(var item in _carts){
                 if(_carts[item].item.is_discount && _carts[item].item.discounting){
                     if(_item[_carts[item].item.id]){
