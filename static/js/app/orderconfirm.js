@@ -28,6 +28,9 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
         },
         handleFn : function(){
             var _this = this;
+            $('body').on('tap',function(){
+                $('textarea').blur();
+            });
             Btn({
                 wraper : 'body',
                 target : '.j_submit_buy',
@@ -147,7 +150,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
         countSum : function(carts){
             var _sum = 0;
             for(var cart in carts){
-                if(carts[cart].item.is_discount){
+                if(carts[cart].item.is_discount && carts[cart].item.discounting){
                     _sum += carts[cart].num*carts[cart].item.discount.price;
                 }else{
                     _sum += carts[cart].num*carts[cart].price;

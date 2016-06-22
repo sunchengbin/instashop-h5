@@ -34,6 +34,9 @@ body{
     color: #999;
     line-height: 1.8rem;
 }
+.cart-item:last-child{
+    border-bottom: none;
+}
 .user-address-info i,.logistics-box i,.cart-item i{
     font-size: 1.8rem;
     color: #999;

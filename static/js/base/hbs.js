@@ -270,7 +270,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var _htm = '';
         if(data.sku && data.sku.length){
             Base.others.each(data.sku,function(item,i){
-                _htm += '<li class="j_type_li" data-price="'+(data.is_discount?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
+                _htm += '<li class="j_type_li" data-price="'+(data.is_discount&&data.discounting?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
             });
         }
         return _htm;
@@ -300,10 +300,11 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     +'<p class="name">'+carts[item].item.item_name+'</p>'
                     +(carts[item].sku?'<p class="type">'+Lang.H5_SKU+':'+carts[item].sku.title+'</p>':'')
                     +'<p class="num">'+Lang.H5_QUANTITY+':'+carts[item].num+'</p>';
-                    if(!carts[item].item.is_discount){
-                        _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].price)+'</p>';
+                    if(carts[item].item.is_discount && carts[item].item.discounting){
+                        _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
                     }else{
-                        _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>'
+                        _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].price)+'</p>';
+
                     }
                 _htm +='</div>'
                     +'</li>';
@@ -326,10 +327,11 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     +'<p class="name">'+carts[item].item.item_name+'</p>'
                     +(carts[item].sku?'<p class="type">'+Lang.H5_SKU+':'+carts[item].sku.title+'</p>':'')
                     +'<p class="num">'+Lang.H5_QUANTITY+':'+carts[item].num+'</p>';
-                if(!carts[item].item.is_discount){
-                    _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].price)+'</p>';
+                if(carts[item].item.is_discount && carts[item].item.discounting){
+                    _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
                 }else{
-                    _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>'
+                    _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].price)+'</p>';
+
                 }
                 _htm +='</div>'
                     +'</li>';
