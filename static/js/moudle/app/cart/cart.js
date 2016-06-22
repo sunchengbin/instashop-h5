@@ -41,14 +41,14 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                 //alert('请联系商家,进行购买');
                 Dialog.tip({
                     top_txt : '',//可以是html
-                    body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_PRICE+'?</p>'
+                    body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_PRICE+'</p>'
                 });
                 return;
             }else{
                 if((opts.sku && (opts.sku.stock >= 9999999)) || (!opts.sku && (opts.item.stock >= 9999999))){
                     Dialog.confirm({
                         top_txt : '',//可以是html
-                        body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_STOCK+'?</p>',
+                        body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_STOCK+'</p>',
                         cf_fn : function(){
                             _this.initCart();
                             if(!_this.cart){//cart不存在
@@ -66,7 +66,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                                     if(_discout_num && !_this.verifyItem(_discout_num,_stock)){
                                         Dialog.tip({
                                             top_txt : '',//可以是html
-                                            body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'?</p>'
+                                            body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
                                         });
                                         return;
                                     }
@@ -83,13 +83,13 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                                             //限购数
                                             Dialog.tip({
                                                 top_txt : '',//可以是html
-                                                body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'?</p>'
+                                                body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
                                             });
                                         }else{
                                             //alert('超出库存');
                                             Dialog.tip({
                                                 top_txt : '',//可以是html
-                                                body_txt : '<p class="dialog-body-p">'+Lang.H5_OVER_INVENTORY+'?</p>'
+                                                body_txt : '<p class="dialog-body-p">'+Lang.H5_OVER_INVENTORY+'</p>'
                                             });
                                         }
                                         return;
@@ -103,7 +103,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                                     if(_discout_num && !_this.verifyItem(_discout_num,_stock)){
                                         Dialog.tip({
                                             top_txt : '',//可以是html
-                                            body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'?</p>'
+                                            body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
                                         });
                                         return;
                                     }
@@ -120,13 +120,13 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                                             //限购数
                                             Dialog.tip({
                                                 top_txt : '',//可以是html
-                                                body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'?</p>'
+                                                body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
                                             });
                                         }else{
                                             //alert('超出库存');
                                             Dialog.tip({
                                                 top_txt : '',//可以是html
-                                                body_txt : '<p class="dialog-body-p">'+Lang.H5_OVER_INVENTORY+'?</p>'
+                                                body_txt : '<p class="dialog-body-p">'+Lang.H5_OVER_INVENTORY+'</p>'
                                             });
                                         }
                                         return;
@@ -159,7 +159,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                             if(_discout_num && !_this.verifyItem(_discout_num,_stock)){
                                 Dialog.tip({
                                     top_txt : '',//可以是html
-                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'?</p>'
+                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
                                 });
                                 return;
                             }
@@ -176,13 +176,13 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                                     //限购数
                                     Dialog.tip({
                                         top_txt : '',//可以是html
-                                        body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'?</p>'
+                                        body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
                                     });
                                 }else{
                                     //alert('超出库存');
                                     Dialog.tip({
                                         top_txt : '',//可以是html
-                                        body_txt : '<p class="dialog-body-p">'+Lang.H5_OVER_INVENTORY+'?</p>'
+                                        body_txt : '<p class="dialog-body-p">'+Lang.H5_OVER_INVENTORY+'</p>'
                                     });
                                 }
                                 return;
@@ -196,7 +196,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                             if(_discout_num && !_this.verifyItem(_discout_num,_stock)){
                                 Dialog.tip({
                                     top_txt : '',//可以是html
-                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'?</p>'
+                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
                                 });
                                 return;
                             }
@@ -213,13 +213,13 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                                     //限购数
                                     Dialog.tip({
                                         top_txt : '',//可以是html
-                                        body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'?</p>'
+                                        body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
                                     });
                                 }else{
                                     //alert('超出库存');
                                     Dialog.tip({
                                         top_txt : '',//可以是html
-                                        body_txt : '<p class="dialog-body-p">'+Lang.H5_OVER_INVENTORY+'?</p>'
+                                        body_txt : '<p class="dialog-body-p">'+Lang.H5_OVER_INVENTORY+'</p>'
                                     });
                                 }
                                 return;

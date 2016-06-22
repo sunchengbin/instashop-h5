@@ -66,6 +66,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 if(_that.is('.disable')){
                     return false;
                 }
+                $('.j_all_stock').remove();
                 if(!_that.is('.act')){
                     $(_config.wraper).find('.act').removeClass('act');
                     _that.addClass('act');
