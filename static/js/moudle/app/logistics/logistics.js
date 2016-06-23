@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 物流插件
  */
-define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang'],function(Common,Base,Hbs,Logistics,Btn,Lang){
+define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang','fastclick'],function(Common,Base,Hbs,Logistics,Btn,Lang,Fastclick){
     var LogisticsPlug = function(opts){
         var _this = this;
         _this.config = $.extend({
@@ -15,6 +15,7 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang'],fu
     };
     LogisticsPlug.prototype = {
         init : function(){
+            Fastclick.attach(document.body);
             this.handelFn();
         },
         handelFn : function(){
@@ -23,19 +24,19 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang'],fu
                 _wraper = $('.j_logistics_plug'),
                 _w_h = $(window).height(),
                 _b_h = _wraper.height();
-            $(_config.wraper).on('tap',_config.btn,function(){
+            $(_config.wraper).on('click',_config.btn,function(){
                 _this.createHtm({
                     data : _config.data,
                     lang : Lang
                 }).toShow();
             });
-            $(_config.wraper).on('tap','.j_logistics_li',function(){
+            $(_config.wraper).on('click','.j_logistics_li',function(){
                 if($(this).find('.check-btn').length){
                     $('.checked-btn').addClass('check-btn').removeClass('checked-btn');
                     $(this).find('.check-btn').addClass('checked-btn');
                 }
             });
-            $(_config.wraper).on('tap','.j_plug_submit',function(){
+            $(_config.wraper).on('click','.j_plug_submit',function(){
                 var _check = $('.checked-btn'),
                     _len = $('.checked-btn').length,
                     _level = _check.attr('data-level');
@@ -51,10 +52,10 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang'],fu
                     $('.j_sum').html('Rp '+Base.others.priceFormat(_sum));
                 }
             });
-            $(_config.wraper).on('tap',_config.closeBtn,function(){
+            $(_config.wraper).on('click',_config.closeBtn,function(){
                 _this.toHide(document.querySelector('.j_logistics_plug'),_w_h);
             });
-            $(_config.wraper).on('tap','.j_logistics_plug_cover',function(){
+            $(_config.wraper).on('click','.j_logistics_plug_cover',function(){
                 _this.toHide(document.querySelector('.j_logistics_plug'),_w_h);
             });
 

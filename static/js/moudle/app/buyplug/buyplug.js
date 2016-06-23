@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 添加到购物车插件
  */
-define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','cart','lang','config'],function(Common,Base,Hbs,Buyplughtm,Btn,Dialog,Cart,Lang,Config){
+define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','cart','lang','config','fastclick'],function(Common,Base,Hbs,Buyplughtm,Btn,Dialog,Cart,Lang,Config,Fastclick){
     var BuyPlug = function(opts){
         var _this = this;
         _this.config = $.extend({
@@ -16,6 +16,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
     };
     BuyPlug.prototype = {
         init : function(){
+            Fastclick.attach(document.body);
             this.handelFn();
         },
         handelFn : function(){
@@ -25,13 +26,16 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 _w_h = $(window).height(),
                 _b_h = _wraper.height();
             _config.data.lang = Lang;
-            $(_config.wraper).on('tap',_config.btn,function(){
+            $(_config.wraper).on('click',_config.btn,function(){
                 if($(this).is('.disable-btn')){
                     return false;
                 }
+                if($('.j_plug_submit').length){//用于立即购买自动跳转判断
+                    $('.j_plug_submit').attr('data-buynow','false');
+                }
                 _this.createHtm(_config.data).toShow();
             });
-            $(_config.wraper).on('tap',_config.buyNow,function(){
+            $(_config.wraper).on('click',_config.buyNow,function(){
                 if($(this).is('.disable-btn')){
                     return false;
                 }
@@ -55,13 +59,13 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 //    });
                 //}
             });
-            $(_config.wraper).on('tap',_config.closeBtn,function(){
+            $(_config.wraper).on('click',_config.closeBtn,function(){
                 _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
             });
-            $(_config.wraper).on('tap','.j_buy_plug_cover',function(){
+            $(_config.wraper).on('click','.j_buy_plug_cover',function(){
                 _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
             });
-            $(_config.wraper).on('tap','.j_type_li',function(){
+            $(_config.wraper).on('click','.j_type_li',function(){
                 var _that = $(this);
                 if(_that.is('.disable')){
                     return false;
@@ -91,7 +95,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 }
                 $('.j_plug_submit').removeClass('cancel-btn');
             });
-            $(_config.wraper).on('tap','.j_add_btn',function(){
+            $(_config.wraper).on('click','.j_add_btn',function(){
                 var _item_num = $('.j_item_num'),
                     _num = Number(_item_num.val()),
                     _stock = $(this).attr('data-stock');
@@ -100,12 +104,12 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 }
                 _item_num.val(++_num);
             });
-            $(_config.wraper).on('tap','.j_reduce_btn',function(){
+            $(_config.wraper).on('click','.j_reduce_btn',function(){
                 var _item_num = $('.j_item_num'),
                     _num = Number(_item_num.val());
                 _item_num.val((--_num > 0)?_num:1);
             });
-            $(_config.wraper).on('tap','.j_plug_submit',function(){
+            $(_config.wraper).on('click','.j_plug_submit',function(){
                 var _item_num = $('.j_item_num'),
                     _num = Number(_item_num.val()),
                     _has_sku = $('.j_type li').length,
@@ -117,6 +121,12 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     _is_buy_now = $(this).attr('data-buynow');
                 if($(this).is('.cancel-btn')){
                     return;
+                }
+                if($('.j_type_li').length && !$('.j_type .act').length){
+                    Dialog.tip({
+                        body_txt : Lang.H5_PLEASE_CHOOSE_SKU
+                    });
+                    return false;
                 }
                 if(init_data.item.is_discount){
                     if(init_data.item.discount.limit_count > 0){
@@ -136,10 +146,10 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                         callback : function(){
                             _this.resetNum.apply(this);
                             _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
-                            if(_is_buy_now){
-                                setTimeout(function(){
+                            if(_is_buy_now == 'true'){
+                                Common.saveFromUrl(function(){
                                     location.href = Config.host.hrefUrl+'cart.php';
-                                },0);
+                                });
                             }
                         }
                     });
@@ -173,10 +183,10 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                                 callback : function(){
                                     _this.resetNum.apply(this);
                                     _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
-                                    if(_is_buy_now){
-                                        setTimeout(function(){
+                                    if(_is_buy_now == 'true'){
+                                        Common.saveFromUrl(function(){
                                             location.href = Config.host.hrefUrl+'cart.php';
-                                        },0);
+                                        });
                                     }
                                 }
                             });

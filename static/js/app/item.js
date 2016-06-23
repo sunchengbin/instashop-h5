@@ -113,7 +113,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     $('.txt').css({'maxHeight':'none'});
                 }else{
                     $('.j_down_btn').removeClass('up-btn').addClass('down-btn');
-                    $('.txt').css({'maxHeight':'45px'});
+                    $('.txt').css({'maxHeight':'44px'});
                 }
             });
             $('body').on('click','.j_shop_info',function(){

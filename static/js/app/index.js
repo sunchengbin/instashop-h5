@@ -44,7 +44,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                     $('.txt').css({'maxHeight':'none'});
                 }else{
                     $('.j_down_btn').removeClass('up-btn').addClass('down-btn');
-                    $('.txt').css({'maxHeight':'45px'});
+                    $('.txt').css({'maxHeight':'44px'});
                 }
             });
             $(document).on('scroll', function(e) {

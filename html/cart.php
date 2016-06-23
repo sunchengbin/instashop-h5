@@ -9,13 +9,13 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
-    <link href="<?=STATIC_HOST?>/css/dist/app/cart.css?v=1466667216097" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/cart.css?v=1466670043365" rel="stylesheet"/>
     <title>shopcart</title>
 </head>
 <body>
-    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466667216097"></script>
+    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466670043365"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/cartindex.js?v=1466667216097"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/cartindex.js?v=1466670043365"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

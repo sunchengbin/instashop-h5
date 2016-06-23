@@ -75,7 +75,7 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
                 setTimeout(function(){
                     _this.opts.wraper.remove();
                     $('.j_dialog_cover').remove();
-                },3000);
+                },1000);
             }else{
                 this.opts.wraper.remove();
                 $('.j_dialog_cover').remove();
