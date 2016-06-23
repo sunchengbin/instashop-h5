@@ -100,7 +100,8 @@ define([],function(){
             'H5_NO_ADDR_TIP': '你还没有收货地址，请先填写地址',
             'H5_IS_ABOUT_TO_BEGIN':'即将开始',
             'H5_DISCOUTN_CAN_NOT_ABOVE_COUNT':'不能超过限购数量',
-            'H5_DCCORDING_TO_THE_ORIGINAL_PRICE_TO_BUY':'活动尚未开始,需要按照原价购买'
+            'H5_DCCORDING_TO_THE_ORIGINAL_PRICE_TO_BUY':'活动尚未开始,需要按照原价购买',
+            'H5_LOGISTICS_DETAIL':'物流详情'
         },
 
         id : {
@@ -293,8 +294,10 @@ define([],function(){
             'H5_BROWSE_SHOP': 'Beli Lagi',
             'H5_NO_ADDR_TIP': 'Kamu belum mengisi alamat pengiriman,silakan isi alamat pengiriman terlebih dahulu',
             'H5_CONFIRM':'Ya',
-            'H5_IS_ABOUT_TO_BEGIN':'Program Diskon',
-            'H5_DISCOUTN_CAN_NOT_ABOVE_COUNT':'Tidak bisa melebihi batas maksimum pembelian'
+            'H5_IS_ABOUT_TO_BEGIN':' Coming Soon',
+            'H5_DISCOUTN_CAN_NOT_ABOVE_COUNT':'Tidak bisa melebihi batas maksimum pembelian',
+            'H5_DCCORDING_TO_THE_ORIGINAL_PRICE_TO_BUY':'Program diskon belum dimulai. Kamu akan membeli dengan harga normal',
+            'H5_LOGISTICS_DETAIL':'Detail pengiriman'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );
