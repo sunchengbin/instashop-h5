@@ -24,10 +24,16 @@ section{
 .shop-info img{
     width: 5.6rem;
     height: 5.6rem;
-    border:.2rem solid #fff;
     border-radius: 50%;
-    margin:0 1rem 0 2rem;
+}
+.shop-img{
+    border: .2rem solid #fff;
+    border-radius: 50%;
+    margin: 0 1rem 0 2rem;
     float: left;
+    width: 5.6rem;
+    height: 5.6rem;
+    overflow: hidden;
 }
 .shop-info p{
     margin-left: 9rem;

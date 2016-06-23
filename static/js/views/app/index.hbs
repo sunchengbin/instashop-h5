@@ -10,9 +10,11 @@
     </div>
 </nav>
 <section class="shop-header">
-    <img class="shop-header-bg" src="{{transimgurl data.shop.front_cover}}&cp=1">
+    <img class="shop-header-bg" data-img="{{transimgurl data.shop.front_cover}}&cp=1" src="">
     <div class="clearfix shop-info">
-        <img src="{{transimgurl data.shop.logo}}"/>
+        <div class="shop-img">
+            <img data-img="{{transimgurl data.shop.logo}}" src=""/>
+        </div>
         <p>{{data.shop.name}}</p>
     </div>
 </section>
