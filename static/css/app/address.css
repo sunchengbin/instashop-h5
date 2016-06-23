@@ -45,7 +45,7 @@ body{
 .address-list{
     position: absolute;
     left: 100%;
-    padding-top:4rem;
+    padding-top:4.6rem;
     top:0;
     z-index: 10;
     background: #fff;
@@ -60,7 +60,7 @@ body{
     top:0;
     left:100%;
     z-index: 11;
-    padding: .5rem 0;
+    padding: 0;
 }
 .address-header-nav i{
     margin-left:1rem;
@@ -96,4 +96,8 @@ body{
 }
 .address-list div:last-child::after{
     display:none ;
+}
+.list-box{
+    width: 100%;
+    overflow-x:hidden;
 }
