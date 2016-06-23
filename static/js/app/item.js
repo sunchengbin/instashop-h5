@@ -64,6 +64,12 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 _hour = ''+(_send - _send % 3600)/3600,
                 _second = ''+(_send - _hour*3600)%60,
                 _minute = ''+(_send - _hour*3600 - _second)/60;
+            if(_send < 0){
+                return {
+                    time : '00.00.00',
+                    second : _send
+                };
+            }
             return {
                 time : ((_hour.length<2?'0'+_hour:_hour)+'.'+(_minute.length<2?'0'+_minute:_minute)+'.'+(_second.length<2?'0'+_second:_second)),
                 second : _send
