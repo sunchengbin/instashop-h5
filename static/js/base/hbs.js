@@ -163,7 +163,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     if(items[i].discounting){
                         out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
                     }else{
-                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
                     }
 
                 }
@@ -229,7 +229,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     if(items[i].discounting){
                         out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
                     }else{
-                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
                     }
                 }
                 if(items[i].price < 0){
@@ -256,7 +256,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                 if(data.discounting){
                     return 'Rp '+Base.others.priceFormat(data.discount.price);
                 }else{
-                    return 'Rp '+Base.others.priceFormat(data.price);
+                    return 'Rp '+Base.others.priceFormat(data.discount.price);
                 }
             }
             return '';
@@ -290,7 +290,8 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var _htm = '';
         if(data.sku && data.sku.length){
             Base.others.each(data.sku,function(item,i){
-                _htm += '<li class="j_type_li '+(item.stock==0?'disable':'')+'" data-price="'+(data.is_discount&&data.discounting?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
+                //_htm += '<li class="j_type_li '+(item.stock==0?'disable':'')+'" data-price="'+(data.is_discount&&data.discounting?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
+                _htm += '<li class="j_type_li '+(item.stock==0?'disable':'')+'" data-price="'+(data.is_discount?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
             });
         }
         return _htm;
@@ -326,7 +327,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     if(carts[item].item.is_discount && carts[item].item.discounting){
                         _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
                     }else{
-                        _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].price)+'</p>';
+                        _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.price)+'</p>';
 
                     }
                 _htm +='</div>'
@@ -353,7 +354,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                 if(carts[item].item.is_discount && carts[item].item.discounting){
                     _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
                 }else{
-                    _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].price)+'</p>';
+                    _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.price)+'</p>';
 
                 }
                 _htm +='</div>'

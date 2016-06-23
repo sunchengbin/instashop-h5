@@ -32,7 +32,7 @@
                 </p>
             {{else}}
                 <p class="price discount-price">
-                    Rp {{transprice data.item.price}}
+                    Rp {{transprice data.item.discount.price}}
                 </p>
             {{/if}}
             {{#eq data.item.discount.min_price data.item.discount.max_price}}

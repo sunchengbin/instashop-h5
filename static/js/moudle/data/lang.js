@@ -99,7 +99,8 @@ define([],function(){
             'H5_BROWSE_SHOP': '去逛逛',
             'H5_NO_ADDR_TIP': '你还没有收货地址，请先填写地址',
             'H5_IS_ABOUT_TO_BEGIN':'即将开始',
-            'H5_DISCOUTN_CAN_NOT_ABOVE_COUNT':'不能超过限购数量'
+            'H5_DISCOUTN_CAN_NOT_ABOVE_COUNT':'不能超过限购数量',
+            'H5_DCCORDING_TO_THE_ORIGINAL_PRICE_TO_BUY':'活动尚未开始,需要按照原价购买'
         },
 
         id : {
