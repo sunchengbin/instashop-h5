@@ -310,6 +310,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
 
     HBS.registerHelper('carts', function(carts) {
         var _htm = '';
+        if(!carts){
+            return '<li class="empty-cart">'+Lang.H5_SHOPING_NO_GOODS+'</li>';
+        }
         if(!Base.others.testObject(carts)){
             for(var item in carts){
                 var _id = (carts[item].sku?carts[item].sku.id:carts[item].item.id);
