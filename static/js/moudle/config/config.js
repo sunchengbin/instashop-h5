@@ -7,24 +7,18 @@
 define([],function(){
     var CONFIG = {
         host : {
-            //本地测试
-            //hostUrl : 'http://mnew-test.instashop.co.id/js/',//内部router的路径
-            //actionUrl : 'https://apip-test.instashop.co.id/instashop/',
-            //host : 'http://mnew-test.instashop.co.id/',
-            //imgUrl : 'http://mnew-test.instashop.co.id/images',
-            //hrefUrl : 'http://mnew-test.instashop.co.id/html/'
             //测试环境
-            //hostUrl : 'http://m-test.instashop.co.id/html/',//内部router的路径
-            //actionUrl : 'https://apip-test.instashop.co.id/instashop/',
-            //host : 'http://m-test.instashop.co.id/',
-            //imgUrl : 'http://m-test.instashop.co.id/images',
-            //hrefUrl : 'http://m-test.instashop.co.id/html/'
+            hostUrl : 'http://m-test.instashop.co.id/html/',//内部router的路径
+            actionUrl : 'https://apip-test.instashop.co.id/instashop/',
+            host : 'http://m-test.instashop.co.id/',
+            imgUrl : 'http://m-test.instashop.co.id/images',
+            hrefUrl : 'http://m-test.instashop.co.id/html/'
             //线上
-            hostUrl : 'http://m.instashop.co.id/html/',//内部router的路径
-            actionUrl : 'https://apip.instashop.co.id/instashop/',
-            host : 'http://m.instashop.co.id/',
-            imgUrl : 'http://m.instashop.co.id/images',
-            hrefUrl : 'http://m.instashop.co.id/html/'
+            //hostUrl : 'http://m.instashop.co.id/html/',//内部router的路径
+            //actionUrl : 'https://apip.instashop.co.id/instashop/',
+            //host : 'http://m.instashop.co.id/',
+            //imgUrl : 'http://m.instashop.co.id/images',
+            //hrefUrl : 'http://m.instashop.co.id/html/'
         },
         linkUrl : {
             index : 's/',

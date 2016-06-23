@@ -2,7 +2,7 @@
  * Created by sunchengbin1 on 2015/6/18.
  * 弹窗模块
  */
-define(['base','lang'],function(base,Lang){
+define(['base','lang','fastclick'],function(base,Lang,Fastclick){
     var dialog = function(opts){
         var _this = this;
         _this.opts = $.extend({
@@ -21,7 +21,7 @@ define(['base','lang'],function(base,Lang){
             can_exist : false,//是否可一同时存在两个dialog,默认不能你存在
             is_confirm : false,//是否是confirm
             is_cover : true,//是否有遮罩层
-            event_type : 'tap',//所有弹窗按钮的事件type
+            event_type : 'click',//所有弹窗按钮的事件type
             //隐藏项在创建了wraper后就会创建,弹窗层的dom对象
             wraper_css : null,
             coverdom : null,//只需要cover浮层时
@@ -35,6 +35,7 @@ define(['base','lang'],function(base,Lang){
     };
     dialog.prototype = {
         init : function(){
+            Fastclick.attach(document.body);
             var _this = this;
             _this.createDialog();
             _this.handleFn().show();

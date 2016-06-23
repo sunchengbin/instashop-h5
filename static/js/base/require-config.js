@@ -22,6 +22,7 @@ require.config({
         buyplug:"moudle/app/buyplug/buyplug",
         cart:"moudle/app/cart/cart",
         logistics:"moudle/app/logistics/logistics",
+        fastclick:"moudle/ui/fastclick/fastclick",
         //配置
         config:'moudle/config/config',
         //数据存储js
