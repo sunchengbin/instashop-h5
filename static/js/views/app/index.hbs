@@ -29,7 +29,7 @@
     </div>
 </section>
 <section class="items-box">
-    {{#if data.item_list.list}}
+    {{#havehot data.item_list.list}}
         <p class="item-title"><span></span>{{lang.H5_GOODS_HOT}}</p>
         <ul class="items-list clearfix">
             {{#hotItemList data.item_list.list}}{{/hotItemList}}
@@ -48,7 +48,7 @@
             <!--</a>-->
             <!--</li>-->
         </ul>
-    {{/if}}
+    {{/havehot}}
 </section>
 <section class="items-box">
     <p class="item-title"><span></span>{{lang.H5_GOODS_ORTHER}}</p>

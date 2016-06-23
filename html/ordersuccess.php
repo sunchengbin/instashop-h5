@@ -9,8 +9,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
-    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1466645729097" rel="stylesheet"/>
-    <title>订单成功</title>
+    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1466646522872" rel="stylesheet"/>
+    <title>Status Pesanan</title>
 </head>
 <body>
     <nav class="header-nav clearfix j_go_back">
@@ -34,7 +34,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         <p class="pay-content">
             Nama Penerima  : PT Insta Shop Indonesia<br>
             Kantor Cabang  : Thamrin Nine<br>
-            Nomor Rekening : 122-00-0737567-1<br>
+            Nomor Rekening : 122.000.737.5671<br>
             Kode Bank      : 008<br>
         </p>
         <p class="pay-content-explain">
