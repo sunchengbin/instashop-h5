@@ -263,7 +263,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         }
         if(data.sku && data.sku.length < 2){
             if(data.price > 0){
-                return Base.others.priceFormat(data.price);
+                return 'Rp '+Base.others.priceFormat(data.price);
             }
             return '';
         }
@@ -278,9 +278,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                 return a - b;
             });
             if(sku_price[0] != sku_price[(sku_price.length-1)]){
-                return Base.others.priceFormat(sku_price[0])+'-'+Base.others.priceFormat(sku_price[(sku_price.length-1)]);
+                return 'Rp '+Base.others.priceFormat(sku_price[0])+'-'+Base.others.priceFormat(sku_price[(sku_price.length-1)]);
             }else{
-                return Base.others.priceFormat(sku_price[0]);
+                return 'Rp '+Base.others.priceFormat(sku_price[0]);
             }
 
         }

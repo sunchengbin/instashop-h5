@@ -34,12 +34,13 @@ require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs
         handleFn : function(){
             var _this = this;
             $('body').on('tap','.j_go_back',function(){
-                var _fromurl = localStorage.getItem('FromUrl');
-                if(!_fromurl){
-                    location.href = Config.host.host+'s/'+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
-                }else{
-                    location.href = Config.host.hrefUrl+'cart.php';
-                }
+                history.back();
+                //var _fromurl = localStorage.getItem('FromUrl');
+                //if(!_fromurl){
+                //    location.href = Config.host.host+'s/'+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
+                //}else{
+                //    location.href = Config.host.hrefUrl+'cart.php';
+                //}
             });
             $('body').on('tap','.j_user_address .act',function(){
                 var _name = $(this).attr('data-name');

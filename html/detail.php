@@ -10,7 +10,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-  <link href="<?=STATIC_HOST?>/css/dist/app/item.css?v=1466678282951" rel="stylesheet"/>
+  <link href="<?=STATIC_HOST?>/css/dist/app/item.css?v=1466734111996" rel="stylesheet"/>
   <title>Item detail</title>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );
@@ -26,13 +26,13 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $url = $json['item']['imgs'][0];
         $url = str_replace("960", "600", $url);
         echo '<meta property="og:image" content="'.$url.'">';
-        echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
+        echo '<script>var init_data = JSON.parse('.json_encode($ret).');document.title=init_data.item.item_name;</script>';
         ?>
 </head>
 <body>
-    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466678282951"></script>
-    <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js?v=1466678282951"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/item.js?v=1466678282951"></script>
+    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466734111996"></script>
+    <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js?v=1466734111996"></script>-->
+    <script src="<?=STATIC_HOST?>/js/dist/app/item.js?v=1466734111996"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

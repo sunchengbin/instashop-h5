@@ -19,12 +19,10 @@
     </div>
     {{#if item.sku}}
     <div class="item-info-cont">
-
         <p>Type Size</p>
         <ul class="clearfix j_type">
             {{{itemtype item}}}
         </ul>
-
     </div>
     {{/if}}
     <div class="item-info-num">
@@ -33,9 +31,15 @@
                 <i class="icon iconfont">&#xe6cf;</i>
             </span>
             <input class="fl j_item_num" type="text" value="1" readonly="readonly"/>
-            <span class="j_add_btn">
-                <i class="icon iconfont">&#xe664;</i>
-            </span>
+            {{#empty item.sku}}
+                <span class="j_add_btn" data-stock="{{item.stock}}">
+                    <i class="icon iconfont">&#xe664;</i>
+                </span>
+            {{else}}
+                <span class="j_add_btn">
+                    <i class="icon iconfont">&#xe664;</i>
+                </span>
+            {{/empty}}
         </div>
         <p class="">{{lang.H5_QUANTITY}}</p>
     </div>
