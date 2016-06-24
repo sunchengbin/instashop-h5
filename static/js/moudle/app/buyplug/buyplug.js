@@ -86,12 +86,12 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     }
                     if(_that.attr('data-stock') < 9999999){
                         $('.j_buy_info_title').html(Lang.H5_STOCK+':'+_that.attr('data-stock'));
-                        $('.j_add_btn').attr('data-stock',_that.attr('data-stock'));
                         $('.j_item_num').val(1);
 
                     }else{
                         $('.j_buy_info_title').html('');
                     }
+                    $('.j_add_btn').attr('data-stock',_that.attr('data-stock'));
                 }
                 $('.j_plug_submit').removeClass('cancel-btn');
             });
