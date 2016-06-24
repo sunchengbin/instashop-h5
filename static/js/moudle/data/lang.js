@@ -119,7 +119,7 @@ define([],function(){
             'H5_SHIPPING_COST' : 'Biaya Pengiriman',
 
             // 价格
-            'H5_PRICE' : 'Harga Produk',
+            'H5_PRICE' : 'Harga',
 
             // 型号
             'H5_ITEM_SKU' : 'Model',
