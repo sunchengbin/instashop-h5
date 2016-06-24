@@ -165,9 +165,10 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                 _w_h = $(window).height(),
                 _wraper = $('.j_buy_plug'),
                 _b_h = _wraper.height()-20;
-            if(buynow){
+            if(buynow == 'true'){
                 callback && callback();
             }else{
+                $('.j_cart_animate').remove();
                 if(!$('.j_cart_animate').length){
                     $('body').append('<div class="j_cart_animate" style="border-radius:50%;position:fixed;left:1rem;bottom:'+_b_h+'px;width:10px;height:10px;z-index:'+Base.others.zIndex+';background-color:#FD623C;"></div>');
                 }
