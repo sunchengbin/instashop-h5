@@ -53,12 +53,12 @@ body{
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    bottom:0;
     transform: translate3d(100%,0,0);
     -webkit-transform: translate3d(100%,0,0);
-    /*bottom: 0;*/
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
+    -webkit-overflow-scrolling : touch;
+    overflow: scroll;
 }
 .address-list{
     width: 100%;
