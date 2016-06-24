@@ -42,6 +42,11 @@ body{
 .act{
     color: #666;
 }
+.address-form-box{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
 .address-list-box{
     position: absolute;
     background-color: #fff;
