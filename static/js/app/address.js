@@ -69,7 +69,7 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick'],
             });
             $('body').on('click','.j_go_address',function(){
                 $('.j_address_list_box').addClass('hide').removeClass('show');
-                $('.j_address_header').addClass('hide').removeClass('show');
+                //$('.j_address_header').addClass('hide').removeClass('show');
             });
             $('body').on('click','.j_list_item',function(){
                 var _name = $(this).attr('data-val'),
