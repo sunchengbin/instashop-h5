@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs,Addresshtm,City,Config,Lang){
+require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick'],function(Hbs,Addresshtm,City,Config,Lang,Fastclick){
     var Address = {
         init : function(){
             var _this = this,
@@ -33,7 +33,8 @@ require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs
         },
         handleFn : function(){
             var _this = this;
-            $('body').on('tap','.j_go_back',function(){
+            Fastclick.attach(document.body);
+            $('body').on('click','.j_go_back',function(){
                 history.back();
                 //var _fromurl = localStorage.getItem('FromUrl');
                 //if(!_fromurl){
@@ -42,7 +43,7 @@ require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs
                 //    location.href = Config.host.hrefUrl+'cart.php';
                 //}
             });
-            $('body').on('tap','.j_user_address .act',function(){
+            $('body').on('click','.j_user_address .act',function(){
                 var _name = $(this).attr('data-name');
                 $('.j_tel').blur();
                 $('.j_name').blur();
@@ -66,11 +67,11 @@ require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs
                         break;
                 }
             });
-            $('body').on('tap','.j_go_address',function(){
+            $('body').on('click','.j_go_address',function(){
                 $('.j_address_list_box').addClass('hide').removeClass('show');
                 $('.j_address_header').addClass('hide').removeClass('show');
             });
-            $('body').on('tap','.j_list_item',function(){
+            $('body').on('click','.j_list_item',function(){
                 var _name = $(this).attr('data-val'),
                     _type = $(this).attr('data-type');
                 _this[_type] = _name;
@@ -99,7 +100,7 @@ require(['hbs','text!views/app/address.hbs','city','config','lang'],function(Hbs
                         break;
                 }
             });
-            $('body').on('tap','.j_save_address',function(){
+            $('body').on('click','.j_save_address',function(){
                 var _data = localStorage.getItem('ShopData'),
                     _data_json = _data?JSON.parse(_data):{},
                     _name = $.trim($('.j_name').val()),
