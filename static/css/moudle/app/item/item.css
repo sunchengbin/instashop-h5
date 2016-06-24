@@ -17,6 +17,14 @@
     word-break: break-all;
     color: #999;
 }
+.cart-item p.price span{
+    display: inline-block;
+    padding: .2rem 1rem;
+    background-color: #F5A623;
+    color: #fff;
+    border-radius: 2rem;
+    font-size: 1.2rem;
+}
 .cart-item p.name{
     color: #666;
     display: -webkit-box;

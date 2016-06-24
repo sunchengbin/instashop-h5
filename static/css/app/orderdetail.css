@@ -171,3 +171,6 @@ body{
     font-size: 1.4rem;
     color: #999;
 }
+.cart-item p{
+    line-height: 1.5;
+}
