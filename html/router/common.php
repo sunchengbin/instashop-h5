@@ -32,7 +32,12 @@ function loadClass($strClassName)
         }
     }
 }
+function getFontCss($url){
+    return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/static/css/base/fonts/iconfont.ttf") format("truetype"),url("'.$url.'/static/css/base/fonts/iconfont.svg#iconfont") format("svg");}</style>';
+}
 spl_autoload_register('loadClass');
 
 $static_host = C_RUNTIME_ONLINE ? 'http://static.instashop.co.id' : 'http://static-test.instashop.co.id';
+$static_font_css =C_RUNTIME_ONLINE?getFontCss('http://m.instashop.co.id'):getFontCss('http://m-test.instashop.co.id');
+define('STATIC_FONT_CSS', $static_font_css);
 define('STATIC_HOST', $static_host);

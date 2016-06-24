@@ -9,6 +9,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
+    <?=STATIC_FONT_CSS?>
     <link href="<?=STATIC_HOST?>/css/dist/app/address.css?v=1466761828823" rel="stylesheet"/>
     <title>Address</title>
 </head>

@@ -9,6 +9,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
+    <?=STATIC_FONT_CSS?>
     <link href="<?=STATIC_HOST?>/css/dist/app/orderdetail.css?v=1466761828824" rel="stylesheet"/>
     <title>订单详情</title>
     <script>

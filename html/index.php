@@ -10,9 +10,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <?=STATIC_FONT_CSS?>
   <link href="<?=STATIC_HOST?>/css/dist/app/shop_index.css?v=1466761828824" rel="stylesheet"/>
-  <title>Instashop</title>
-  <script>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );
         $params = [
@@ -27,10 +26,11 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             $seller_id = end($ss);
         }
         $path = 'v1/shops/'.$seller_id;
+        $ret = get_init_php_data($path, $params);
+        $json = json_decode($ret, true);
+        echo '<title>'.$json["shop"]["name"].'</title>';
+        echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
         ?>
-        var init_data = JSON.parse(<?php echo get_init_data($path, $params); ?>);
-        document.title = init_data.shop.name;
-  </script>
 </head>
 <body>
   <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466761828824"></script>

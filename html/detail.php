@@ -10,8 +10,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <?=STATIC_FONT_CSS?>
   <link href="<?=STATIC_HOST?>/css/dist/app/item.css?v=1466761828824" rel="stylesheet"/>
-  <title>Item detail</title>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );
         $params = [];
@@ -26,7 +26,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $url = $json['item']['imgs'][0];
         $url = str_replace("960", "600", $url);
         echo '<meta property="og:image" content="'.$url.'">';
-        echo '<script>var init_data = JSON.parse('.json_encode($ret).');document.title=init_data.item.item_name;</script>';
+        echo '<title>'.$json["item"]["item_name"].'</title>';
+        echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
         ?>
 </head>
 <body>
