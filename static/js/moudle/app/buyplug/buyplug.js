@@ -143,14 +143,9 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                         item : init_data.item,
                         num : _num,
                         price:_sku_price,
+                        isbuynow:_is_buy_now,
                         callback : function(){
-                            _this.resetNum.apply(this);
-                            _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
-                            if(_is_buy_now == 'true'){
-                                Common.saveFromUrl(function(){
-                                    location.href = Config.host.hrefUrl+'cart.php';
-                                });
-                            }
+                            _this.addSuccessFn(_is_buy_now,_w_h);
                         }
                     });
                 }else{
@@ -179,15 +174,25 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                                     stock : _stock
                                 },
                                 price:_sku_price,
+                                isbuynow:_is_buy_now,
                                 num : _num,
                                 callback : function(){
-                                    _this.resetNum.apply(this);
-                                    _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
-                                    if(_is_buy_now == 'true'){
-                                        Common.saveFromUrl(function(){
-                                            location.href = Config.host.hrefUrl+'cart.php';
-                                        });
-                                    }
+                                    _this.addSuccessFn(_is_buy_now,_w_h);
+                                    //if(_is_buy_now == 'true'){
+                                    //    Common.saveFromUrl(function(){
+                                    //        location.href = Config.host.hrefUrl+'cart.php';
+                                    //    });
+                                    //}else{
+                                    //    _this.resetNum.apply(this);
+                                    //    _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
+                                    //}
+                                    //_this.resetNum.apply(this);
+                                    //_this.toHide(document.querySelector('.j_buy_plug'),_w_h);
+                                    //if(_is_buy_now == 'true'){
+                                    //    Common.saveFromUrl(function(){
+                                    //        location.href = Config.host.hrefUrl+'cart.php';
+                                    //    });
+                                    //}
                                 }
                             });
                         }
@@ -198,12 +203,23 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
 
             });
         },
+        addSuccessFn:function(is_buy_now,wh){
+            var _this = this;
+            if(is_buy_now == 'true'){
+                Common.saveFromUrl(function(){
+                    location.href = Config.host.hrefUrl+'cart.php';
+                });
+            }else{
+                _this.resetNum.apply(this);
+                _this.toHide(document.querySelector('.j_buy_plug'),wh);
+            }
+        },
         resetNum : function(){
             var _this = this;
             if($('.j_cart_wraper span').length){
-                $('.j_cart_wraper span').html(_this.getCartNum());
+                $('.j_cart_wraper span').html(Cart().getCartNum());
             }else{
-                $('.j_cart_wraper').prepend('<span class="cart-num">'+_this.getCartNum()+'</span>');
+                $('.j_cart_wraper').prepend('<span class="cart-num">'+Cart().getCartNum()+'</span>');
             }
         },
         createHtm : function(info){

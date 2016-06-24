@@ -158,25 +158,29 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
             localStorage.setItem('ShopData',JSON.stringify(_this.data));
             _this.addCartAnimate(function(){
                 opts.callback && opts.callback.apply(_this);
-            });
+            },opts.isbuynow);
         },
-        addCartAnimate:function(callback){
+        addCartAnimate:function(callback,buynow){
             var _w_w = $(window).width(),
                 _w_h = $(window).height(),
                 _wraper = $('.j_buy_plug'),
                 _b_h = _wraper.height()-20;
-            if(!$('.j_cart_animate').length){
-                $('body').append('<div class="j_cart_animate" style="border-radius:50%;position:fixed;left:1rem;bottom:'+_b_h+'px;width:10px;height:10px;z-index:'+Base.others.zIndex+';background-color:#FD623C;"></div>');
-            }
-            setTimeout(function(){
-                var _ca = document.querySelector('.j_cart_animate');
-                _ca.style.webkitTransitionDuration = '.6s';
-                _ca.style.webkitTransform = 'translate3d('+(_w_w-50)+'px,'+(-_w_h+_b_h+30)+'px,0)';
+            if(buynow){
+                callback && callback();
+            }else{
+                if(!$('.j_cart_animate').length){
+                    $('body').append('<div class="j_cart_animate" style="border-radius:50%;position:fixed;left:1rem;bottom:'+_b_h+'px;width:10px;height:10px;z-index:'+Base.others.zIndex+';background-color:#FD623C;"></div>');
+                }
                 setTimeout(function(){
-                    $('.j_cart_animate').remove();
-                    callback && callback();
-                },700);
-            },300);
+                    var _ca = document.querySelector('.j_cart_animate');
+                    _ca.style.webkitTransitionDuration = '.6s';
+                    _ca.style.webkitTransform = 'translate3d('+(_w_w-50)+'px,'+(-_w_h+_b_h+30)+'px,0)';
+                    setTimeout(function(){
+                        $('.j_cart_animate').remove();
+                        callback && callback();
+                    },700);
+                },300);
+            }
         },
         clearCarts : function(){//创建订单后清空购物车
             var _json_shop_data = localStorage.getItem('ShopData')?JSON.parse(localStorage.getItem('ShopData')):null;
