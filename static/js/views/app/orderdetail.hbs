@@ -8,7 +8,7 @@
             <i class="icon iconfont fr">&#xe63e;</i>{{lang.H5_CHECK_ACCOUNT_RECEIVABLES}}:
         </a>
     </p>
-    {{#if data.order.logistics_info.last_checkpoint.message}}
+    {{#eq data.order.ship_status 1}}
     <div class="logistics-info">
         <a href="{{hrefUrl}}logistics.php?order_id={{data.order.id_hash}}&logistics_id={{data.order.express_info_id}}" class="clearfix">
             <i class="icon iconfont fr">&#xe63e;</i>
@@ -16,7 +16,7 @@
             <p>{{data.order.logistics_info.express.title}} {{data.order.logistics_info.express.express_no}}</p>
         </a>
     </div>
-    {{/if}}
+    {{/eq}}
 </section>
 <section class="user-info-box">
     <div class="address-box">
