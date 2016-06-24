@@ -128,7 +128,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     });
                     return false;
                 }
-                if(init_data.item.is_discount){
+                if(init_data.item.is_discount && init_data.item.discounting){
                     if(init_data.item.discount.limit_count > 0){
                         if(_num > init_data.item.discount.limit_count){
                             Dialog.tip({
