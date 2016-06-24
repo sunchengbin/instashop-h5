@@ -11,7 +11,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
   <?=STATIC_FONT_CSS?>
-  <link href="<?=STATIC_HOST?>/css/dist/app/shop_index.css?v=1466761828824" rel="stylesheet"/>
+  <link href="<?=STATIC_HOST?>/css/dist/app/shop_index.css?v=1466767532208" rel="stylesheet"/>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );
         $params = [
@@ -33,9 +33,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         ?>
 </head>
 <body>
-  <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466761828824"></script>
-  <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js?v=1466761828824"></script>-->
-  <script src="<?=STATIC_HOST?>/js/dist/app/index.js?v=1466761828824"></script>
+  <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1466767532208"></script>
+  <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js?v=1466767532208"></script>-->
+  <script src="<?=STATIC_HOST?>/js/dist/app/index.js?v=1466767532208"></script>
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
