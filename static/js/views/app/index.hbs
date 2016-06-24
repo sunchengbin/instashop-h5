@@ -53,7 +53,7 @@
     {{/havehot}}
 </section>
 <section class="items-box j_item_box">
-    {{#nohot data.item_list.list}}
+    {{#haveitem data.item_list.list}}
     <p class="item-title"><span></span>{{lang.H5_GOODS_ORTHER}}</p>
     <ul class="items-list j_item_list clearfix">
         {{#itemList data.item_list.list}}{{/itemList}}
@@ -72,7 +72,7 @@
             <!--</a>-->
         <!--</li>-->
     </ul>
-    {{/nohot}}
+    {{/haveitem}}
 </section>
 <a class="contact-services" href="{{data.shop.im_url}}">
     <span class="im-num j_im_num"></span>

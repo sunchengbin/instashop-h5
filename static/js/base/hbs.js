@@ -138,12 +138,12 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         }
     });
     //是否有热卖
-    HBS.registerHelper('nohot', function(items,options) {
-        var out = true,
+    HBS.registerHelper('haveitem', function(items,options) {
+        var out = false,
             i = 0;
         for (i; i < items.length;i++) {
-            if(items[i].is_top == 1) {
-                out = false;
+            if(items[i].is_top == 0) {
+                out = true;
             }
         }
         if(out){
