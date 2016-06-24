@@ -30,10 +30,10 @@
         <p><i class="icon iconfont j_down_btn down-btn"></i></p>
     </div>
 </section>
-<section class="items-box">
+<section class="items-box j_hot_box">
     {{#havehot data.item_list.list}}
         <p class="item-title"><span></span>{{lang.H5_GOODS_HOT}}</p>
-        <ul class="items-list clearfix">
+        <ul class="items-list clearfix j_hot_list">
             {{#hotItemList data.item_list.list}}{{/hotItemList}}
             <!--<li>-->
             <!--<a class="item-info" href="">-->
@@ -52,7 +52,8 @@
         </ul>
     {{/havehot}}
 </section>
-<section class="items-box">
+<section class="items-box j_item_box">
+    {{#nohot data.item_list.list}}
     <p class="item-title"><span></span>{{lang.H5_GOODS_ORTHER}}</p>
     <ul class="items-list j_item_list clearfix">
         {{#itemList data.item_list.list}}{{/itemList}}
@@ -71,6 +72,7 @@
             <!--</a>-->
         <!--</li>-->
     </ul>
+    {{/nohot}}
 </section>
 <a class="contact-services" href="{{data.shop.im_url}}">
     <span class="im-num j_im_num"></span>

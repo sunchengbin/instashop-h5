@@ -122,13 +122,28 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
     HBS.registerHelper('lang', function(prem) {
         return Lang[prem];
     });
-    //是否有hotlist
+    //是否有推荐
     HBS.registerHelper('havehot', function(items,options) {
         var out = false,
             i = 0;
         for (i; i < items.length;i++) {
             if(items[i].is_top == 1) {
                 out = true;
+            }
+        }
+        if(out){
+            return options.fn(this);
+        }else{
+            return options.inverse(this);
+        }
+    });
+    //是否有热卖
+    HBS.registerHelper('nohot', function(items,options) {
+        var out = true,
+            i = 0;
+        for (i; i < items.length;i++) {
+            if(items[i].is_top == 1) {
+                out = false;
             }
         }
         if(out){

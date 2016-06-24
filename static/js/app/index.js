@@ -59,11 +59,26 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                 edata : {
                                     action: 'index',
                                     page_size: 10,
-                                    page_num: page_num++
+                                    page_num: ++page_num
                                 }
                             };
                             if(obj.item_list.list.length > 0){
-                                $('.j_item_list').append(_this.addItem(obj.item_list.list));
+                                var _list_data = _this.transItems(obj.item_list.list);
+                                console.log(_list_data)
+                                if(_list_data.item.length){
+                                    if(!$('.j_item_list').length){
+                                        var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="items-list j_item_list clearfix"></ul>';
+                                        $('.j_item_box').html(_htm);
+                                    }
+                                    $('.j_item_list').append(_this.addItem(_list_data.item));
+                                }
+                                if(_list_data.hot.length){
+                                    if(!$('.j_hot_list').length){
+                                        var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_HOT+'</p><ul class="items-list j_hot_list clearfix"></ul>';
+                                        $('.j_hot_list').html(_htm);
+                                    }
+                                    $('.j_hot_list').append(_this.addItem(_list_data.hot));
+                                }
                                 if($('[data-time]').length){
                                     _this.changeTime();
                                 }
@@ -94,7 +109,22 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                     location.href = _url;
                 });
             });
-
+        },
+        transItems : function(items){
+            var i = 0,
+                _hot = [],
+                _item = [];
+            for (i; i < items.length;i++) {
+                if(items[i].is_top == 1) {
+                    _hot.push(items[i]);
+                }else{
+                    _item.push(items[i]);
+                }
+            }
+            return {
+                hot : _hot,
+                item : _item
+            };
         },
         discountTime : function(nowTime,endTime){
             var _nt = this.datetime_to_unix(nowTime),
@@ -145,38 +175,36 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 _this = this,
                 i = 0;
             for (i; i < items.length;i++) {
-                if(items[i].is_top == 0){
-                    var _time = _this.discountTime(items[i].discount.now_time,items[i].discount.end_time);
-                    out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
-                        +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
-                    if(items[i].is_discount){
-                        out +='<span>-'+items[i].discount.value+'%</span>';
-                        if(items[i].discounting){
-                            out +='<p><i class="icon iconfont">&#xe68e;</i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
-                        }else{
-                            out +='<p>'+Lang.H5_IS_ABOUT_TO_BEGIN+'</p>';
-                        }
-                    }
-                    out +='</div>'
-                        +'<p class="title">'+items[i].item_comment+'</p>';
-                    if(!items[i].is_discount){
-                        out +='<p class="discount-price"></p>';
+                var _time = _this.discountTime(items[i].discount.now_time,items[i].discount.end_time);
+                out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
+                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
+                if(items[i].is_discount){
+                    out +='<span>-'+items[i].discount.value+'%</span>';
+                    if(items[i].discounting){
+                        out +='<p><i class="icon iconfont">&#xe68e;</i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
                     }else{
-                        if(items[i].discounting){
-                            out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
-                        }else{
-                            out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
-                        }
-                        //out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
+                        out +='<p>'+Lang.H5_IS_ABOUT_TO_BEGIN+'</p>';
                     }
-                    if(items[i].price < 0){
-                        out +='<p class="price"></p>';
-                    }else{
-                        out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
-                    }
-
-                    out +='</a></li>';
                 }
+                out +='</div>'
+                    +'<p class="title">'+items[i].item_comment+'</p>';
+                if(!items[i].is_discount){
+                    out +='<p class="discount-price"></p>';
+                }else{
+                    if(items[i].discounting){
+                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
+                    }else{
+                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                    }
+                    //out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
+                }
+                if(items[i].price < 0){
+                    out +='<p class="price"></p>';
+                }else{
+                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                }
+
+                out +='</a></li>';
             }
             return out;
         },
