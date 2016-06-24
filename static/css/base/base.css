@@ -3,8 +3,8 @@
 /*图标字体*/
 @font-face {
     font-family: "iconfont";
-    src: url('http://m-test.instashop.co.id/static/css/base/fonts/iconfont.ttf') format('truetype'),
-    url('http://m-test.instashop.co.id/static/css/base/fonts/iconfont.svg#iconfont') format('svg');
+    src: url('http://m.instashop.co.id/static/css/base/fonts/iconfont.ttf') format('truetype'),
+    url('http://m.instashop.co.id/static/css/base/fonts/iconfont.svg#iconfont') format('svg');
 }
 .iconfont {
     font-family:"iconfont" !important;
