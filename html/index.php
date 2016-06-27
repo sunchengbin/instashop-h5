@@ -28,6 +28,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $path = 'v1/shops/'.$seller_id;
         $ret = get_init_php_data($path, $params);
         $json = json_decode($ret, true);
+        $url = $json['shop']['logo'];
+        $url = str_replace("140", "140", $url);
+        echo '<meta property="og:image" content="'.$url.'">';
         echo '<title>'.$json["shop"]["name"].'</title>';
         echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
         ?>
