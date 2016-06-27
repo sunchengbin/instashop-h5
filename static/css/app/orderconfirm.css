@@ -146,8 +146,8 @@ textarea{
 .buyer-note-p input{
     display: -webkit-box;
     width: 100%;
-    padding: .5rem 0 .5rem 7rem;
+    padding: .5rem 0 .5rem 9rem;
     height: 3rem;
     line-height: 3rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
