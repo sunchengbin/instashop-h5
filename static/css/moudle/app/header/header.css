@@ -8,6 +8,9 @@
 }
 .header-nav .iconfont{
     font-size: 2rem;
+    display: inline-block;
+    height: 4.6rem;
+    line-height: 4.6rem;
 }
 .cart-num{
     position: absolute;

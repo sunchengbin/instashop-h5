@@ -11,8 +11,9 @@ body{
     background-color: #fff;
     /*border-top:1px solid #D8D8D8;*/
     /*border-bottom:1px solid #D8D8D8;*/
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
 }
+
 .user-info{
     font-size: 1.4rem;
     color: #999;
@@ -26,7 +27,17 @@ body{
     margin-right: .2rem;
 }
 .address-box{
-    padding:1rem;
+    padding:1rem 1rem 1.2rem;
+    position: relative;
+}
+.address-box:after{
+    position: absolute;
+    bottom: 0;
+    display: block;
+    content:' ';
+    height: 2px;
+    width: 100%;
+    background: url(../../images/app/divider.png) repeat center center;
 }
 .address-info{
     margin-right:3rem;
@@ -104,6 +115,8 @@ body{
     padding: 1rem;
     font-size: 1.4rem;
     color: #999;
+    height: 3rem;
+    line-height: 3rem;
 }
 textarea{
     width: 100%;
@@ -111,4 +124,27 @@ textarea{
     border:1px solid #D8D8D8;
     padding: .5rem 1rem;
     resize: none;
+}
+.buyer-note-p{
+    position: relative;
+    padding: 1rem 0;
+    font-size: 1.4rem;
+    border-top: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d8d8d8;
+}
+.buyer-note-p span{
+    position: absolute;
+    display: inline-block;
+    height: 3rem;
+    line-height: 3rem;
+    left: 0;
+    top: 1rem;
+    color: #999;
+}
+.buyer-note-p input{
+    display: block;
+    width: 100%;
+    padding: .5rem 0 .5rem 7rem;
+    height: 3rem;
+    line-height: 3rem;
 }

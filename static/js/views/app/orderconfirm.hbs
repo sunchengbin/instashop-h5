@@ -34,7 +34,11 @@
         <ul class="order-items">
             {{{cartsconfirm carts}}}
         </ul>
-        <textarea maxlength="500" class="j_buyer_note" placeholder="{{lang.H5_BUYER_NOTE}}"></textarea>
+        <p class="clearfix buyer-note-p">
+            <span>{{lang.H5_BUYER_NOTE}}:</span>
+            <input maxlength="500" type="text" placeholder="{{lang.H5_BUYER_NOTE}}" class="j_buyer_note"/>
+        </p>
+        <!--<textarea maxlength="500" class="j_buyer_note" placeholder=""></textarea>-->
         <div class="order-info">
             <p class="clearfix"><span class="fr j_post">Rp 0</span>{{lang.H5_SHIPPING_COST}}:</p>
             <p class="clearfix"><span class="fr j_sum">Rp {{transprice sum}}</span>{{lang.H5_ORDER_TOTAL_PRICE}}:</p>

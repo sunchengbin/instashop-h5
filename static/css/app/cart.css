@@ -4,7 +4,7 @@
 @import "../moudle/ui/dialog/dialog.css";
 @import "../moudle/app/item/item.css";
 .cart-list{
-    padding:0 1rem;
+    padding:0 1rem 2rem;
 }
 .confirm-btn{
     margin-top:2rem;
