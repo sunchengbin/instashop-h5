@@ -13,6 +13,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     data : init_data,
                     lang : Lang,
                     hrefUrl : Config.host.hrefUrl,
+                    host:Config.host.host,
                     num : Cart(init_data).getCartNum(),
                     timeLang : _this.discountTime(init_data.item.discount.now_time,init_data.item.discount.end_time)
                 });
