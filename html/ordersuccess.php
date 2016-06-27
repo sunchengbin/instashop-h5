@@ -10,7 +10,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1466768873087" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1467006752308" rel="stylesheet"/>
     <title>Status Pesanan</title>
 </head>
 <body>
@@ -20,9 +20,10 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     </nav>
     <section class="order-box">
         <p class="order-info clearfix">
-            <span class="fr j_total"></span>
+            <!--<span class="fr j_total"></span>-->
             Jumlah Total
         </p>
+        <p class="total-price j_total"></p>
         <p class="order-content">
             Mohon transfer sesuai jumlah yang tertera (termasuk 3 digit terakhir)
         </p>

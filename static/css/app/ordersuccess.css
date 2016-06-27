@@ -13,6 +13,7 @@ p{
 }
 .order-box{
     margin-bottom: 2rem;
+    text-align: center;
 }
 .order-info span{
     color: #f9b42d;
@@ -21,7 +22,7 @@ p{
 .order-content{
     font-size: 1.3rem;
     font-weight: bold;
-    color: #666;
+    color: #aaa;
 }
 .bank-info{
     border-bottom:1px solid #D8D8D8;
@@ -38,10 +39,14 @@ p{
     padding-top:1rem;
 }
 .last-explain{
-    color: #d6d6d6;
+    color: #999;
 }
 .pay-content-explain{
     margin:1rem 0;
     font-size: 1.3rem;
-    color: #999;
+    color: #aaa;
+}
+.total-price{
+    font-size: 1.8rem;
+    color: #F5A623;
 }
