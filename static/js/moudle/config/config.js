@@ -8,11 +8,11 @@ define([],function(){
     var CONFIG = {
         host : {
             //测试环境
-            hostUrl : 'http://m-test.instashop.co.id/html/',//内部router的路径
+            hostUrl : 'http://www-test.instashop.co.id/html/',//内部router的路径
             actionUrl : 'https://apip-test.instashop.co.id/instashop/',
-            host : 'http://m-test.instashop.co.id/',
-            imgUrl : 'http://m-test.instashop.co.id/images',
-            hrefUrl : 'http://m-test.instashop.co.id/html/'
+            host : 'http://www-test.instashop.co.id/',
+            imgUrl : 'http://www-test.instashop.co.id/images',
+            hrefUrl : 'http://www-test.instashop.co.id/html/'
             //线上
             //hostUrl : 'http://m.instashop.co.id/html/',//内部router的路径
             //actionUrl : 'https://apip.instashop.co.id/instashop/',
