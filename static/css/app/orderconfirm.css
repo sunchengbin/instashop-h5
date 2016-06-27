@@ -142,7 +142,7 @@ textarea{
     color: #999;
 }
 .buyer-note-p input{
-    display: block;
+    display: -webkit-box;
     width: 100%;
     padding: .5rem 0 .5rem 7rem;
     height: 3rem;
