@@ -156,10 +156,14 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                     if(_stock >= 9999999){//没设置库存,需要联系商家
                         //_msg = Lang.H5_NO_STOCK;
                     }else{
-                        if(_stock < _num){//超出库存
-                            _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
-                            $('.j_cart_item[data-id="'+_id+'"] .num').html(Lang.H5_QUANTITY+':'+_stock);
-                            _this.carts[_id].num = _stock;
+                        if(_stock == -1){
+                            _msg = Lang.H5_COMMODIFY_SHELF;
+                        }else{
+                            if(_stock < _num){//超出库存
+                                _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
+                                $('.j_cart_item[data-id="'+_id+'"] .num').html(Lang.H5_QUANTITY+':'+_stock);
+                                _this.carts[_id].num = _stock;
+                            }
                         }
                     }
                 }

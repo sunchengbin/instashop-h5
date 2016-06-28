@@ -10,7 +10,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1467093856165" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1467094992225" rel="stylesheet"/>
     <title>Status Pesanan</title>
 </head>
 <body>
