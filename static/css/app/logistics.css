@@ -41,6 +41,9 @@ body{
     left: 0;
     top: -.5rem;
 }
+.txt i.checked-btn:before{
+    font-size: 1.6rem;
+}
 .logistics-state :not(:first-child) .txt i{
     display: inline-block;
     width: 1rem;
