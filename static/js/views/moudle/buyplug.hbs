@@ -3,17 +3,17 @@
         <img src="{{item.img}}">
         <div class="j_buy_info">
             <p class="price j_buy_info_price">{{itemprice item}}</p>
-            <p class="title j_buy_info_title">{{item.item_name}}</p>
             {{#empty item.sku}}
                 {{#elt item.stock 99999999}}
                     <p class="title j_all_stock">{{lang.H5_STOCK}}:{{item.stock}}</p>
                 {{/elt}}
             {{else}}
                 {{#elt item.stock 99999999}}
-                <p class="title j_all_stock">{{lang.H5_STOCK}}:{{item.stock}}</p>
+                    <p class="title j_all_stock">{{lang.H5_STOCK}}:{{item.stock}}</p>
                 {{/elt}}
             {{/empty}}
 
+            <p class="title j_buy_info_title"></p>
         </div>
         <i class="icon iconfont j_close_btn icon-cancel-font"></i>
     </div>
