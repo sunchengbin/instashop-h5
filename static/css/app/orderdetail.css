@@ -21,6 +21,9 @@ body{
     font-size: 1.6rem;
     margin-right: .2rem;
 }
+.user-info i.icon-phone-font{
+    font-size: 1.4rem;
+}
 .address-box{
     padding:1rem;
     font-size: 1.4rem;

@@ -26,6 +26,9 @@ body{
     font-size: 1.8rem;
     margin-right: .2rem;
 }
+.user-info i.icon-phone-font{
+    font-size: 1.6rem;
+}
 .address-box{
     padding:1rem 1rem 1.2rem;
     position: relative;
@@ -52,7 +55,7 @@ body{
     border-bottom: none;
 }
 .user-address-info i,.logistics-box i,.cart-item i{
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: #999;
 }
 .cart-item i{

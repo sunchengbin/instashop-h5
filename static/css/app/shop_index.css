@@ -215,6 +215,8 @@ section{
 .lazy p i{
     vertical-align: middle;
     margin-right: 5px;
+    font-size: 1.2rem;
+    color: #fff;
 }
 .list-box{
     width: 100%;
