@@ -181,7 +181,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 if(items[i].is_discount){
                     out +='<span>-'+items[i].discount.value+'%</span>';
                     if(items[i].discounting){
-                        out +='<p><i class="icon iconfont">&#xe68e;</i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
+                        out +='<p><i class="icon iconfont icon-time-font"></i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
                     }else{
                         out +='<p>'+Lang.H5_IS_ABOUT_TO_BEGIN+'</p>';
                     }

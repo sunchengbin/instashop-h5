@@ -91,10 +91,10 @@ section{
     color: #999;
 }
 .down-btn:before{
-    content: "\e615";
+    content: "\e60f";
 }
 .up-btn:before {
-    content: "\e667";
+    content: "\e610";
 }
 .down-btn{
     display: none;
@@ -211,6 +211,10 @@ section{
     color: #fff;
     text-align: center;
     width: 100%;
+}
+.lazy p i{
+    vertical-align: middle;
+    margin-right: 5px;
 }
 .list-box{
     width: 100%;

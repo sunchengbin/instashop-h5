@@ -59,19 +59,26 @@
     font-size: 3rem;
 }
 .check-btn:before {
-    content: "\e661";
-    color: #ddd;
+    content: " ";
+    display: inline-block;
+    width: 1.6rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    border:2px solid #ddd;
+    border-radius: 50%;
 }
 .checked-btn:before{
-    content: "\e60b";
+    font-size: 2.4rem;
+    content: "\e609";
     color: #43CB9B;
+    border:none;
 }
 /*联系客服*/
 .ser-icon{
     font-size: 2rem;
 }
 .ser-icon:before{
-    content: "\e6b3";
+    content: "\e607";
     color: #52CDF0;
 }
 /*延迟健在图片*/

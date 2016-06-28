@@ -213,10 +213,10 @@ body{
     color: #999;
 }
 .down-btn:before{
-    content: "\e615";
+    content: "\e60f";
 }
 .up-btn:before {
-    content: "\e667";
+    content: "\e610";
 }
 .down-btn{
     display: none;

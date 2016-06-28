@@ -5,13 +5,13 @@
     <p>{{lang.H5_ORDER_STATUS}}:{{data.order.state_txt}}</p>
     <p>
         <a href="{{hrefUrl}}ordersuccess.php?price={{data.order.total_price}}&detail=1" class="">
-            <i class="icon iconfont fr">&#xe63e;</i>{{lang.H5_CHECK_ACCOUNT_RECEIVABLES}}:
+            <i class="icon iconfont fr icon-go-font"></i>{{lang.H5_CHECK_ACCOUNT_RECEIVABLES}}:
         </a>
     </p>
     {{#eq data.order.ship_status 1}}
     <div class="logistics-info">
         <a href="{{hrefUrl}}logistics.php?order_id={{data.order.id_hash}}&logistics_id={{data.order.express_info_id}}" class="clearfix">
-            <i class="icon iconfont fr">&#xe63e;</i>
+            <i class="icon iconfont fr icon-go-font"></i>
             <p>{{data.order.logistics_info.last_checkpoint.message}}{{#empty data.order.logistics_info.last_checkpoint.message}}{{lang.H5_NO_LOGISTICS_UPDATE}}{{/empty}}</p>
             <p>{{data.order.logistics_info.express.title}} {{data.order.logistics_info.express.express_no}}</p>
         </a>
@@ -22,8 +22,8 @@
     <div class="address-box">
         <div class="clearfix user-info">
             <span class="fr">{{data.order.buyer_telephone}}</span>
-            <i class="icon iconfont fr">&#xe60a;</i>
-            <i class="icon iconfont fl">&#xe630;</i>
+            <i class="icon iconfont fr icon-phone-font"></i>
+            <i class="icon iconfont fl icon-address-font"></i>
             <span class="fl">{{data.order.buyer_name}}</span>
         </div>
         <div class="user-address-info">
@@ -70,13 +70,13 @@
         <div class="href-box clearfix">
             <a href="{{host}}s/{{data.order.shop_info.id}}" class="go-home">
                 <div class="clearfix">
-                    <i class="icon iconfont">&#xe627;</i>
+                    <i class="icon iconfont icon-shop-font"></i>
                     {{lang.H5_ENTER_THE_SHOP}}
                 </div>
             </a>
             <a href="tel:{{data.order.shop_info.telephone}}" class="contact-user fr">
                 <div class="clearfix">
-                    <i class="icon iconfont">&#xe60a;</i>
+                    <i class="icon iconfont icon-phone-font"></i>
                     {{lang.H5_CONNACT_SELLER}}
                 </div>
             </a>

@@ -10,12 +10,12 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1467015508265" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1467079432133" rel="stylesheet"/>
     <title>Status Pesanan</title>
 </head>
 <body>
     <nav class="header-nav clearfix j_go_back">
-        <i class="icon iconfont fr">&#xe601;</i>
+        <i class="icon iconfont fr icon-allright-font"></i>
         Informasi Pembayaran
     </nav>
     <section class="order-box">

@@ -8,8 +8,9 @@
 }
 .logistics-list li{
     padding: .5rem 0;
-    line-height: 2rem;
     color: #666;
+    font-size: 1.4rem;
+    line-height: 2rem;
 }
 .logistics-list{
     padding-bottom: .5rem;
@@ -18,6 +19,9 @@
     font-size: 2rem;
     vertical-align: middle;
     margin-right: .5rem;
+    display: inline-block;
+    height: 2rem;
+    line-height: 2rem;
 }
 .logistics-plug-top i{
     font-size: 2.4rem;
