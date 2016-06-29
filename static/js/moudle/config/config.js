@@ -14,11 +14,11 @@ define([],function(){
             //imgUrl : 'http://www-test.instashop.co.id/images',
             //hrefUrl : 'http://www-test.instashop.co.id/html/'
             //线上
-            hostUrl : 'http://www.instashop.co.id/html/',//内部router的路径
+            hostUrl : 'http://instashop.co.id/html/',//内部router的路径
             actionUrl : 'https://apip.instashop.co.id/instashop/',
-            host : 'http://www.instashop.co.id/',
-            imgUrl : 'http://www.instashop.co.id/images',
-            hrefUrl : 'http://www.instashop.co.id/html/'
+            host : 'http://instashop.co.id/',
+            imgUrl : 'http://instashop.co.id/images',
+            hrefUrl : 'http://instashop.co.id/html/'
         },
         linkUrl : {
             index : 's/',
