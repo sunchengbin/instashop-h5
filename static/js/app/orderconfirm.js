@@ -48,6 +48,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         _that.setBtnTxt(dom,Lang.H5_CONTINUE_ORDER);
                         return;
                     }
+                    alert(JSON.stringify(_data));
                     Ajax.postJsonp({
                         url :Config.actions.orderConfirm,
                         data : {param:JSON.stringify(_data)},
