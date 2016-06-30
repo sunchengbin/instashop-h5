@@ -10,7 +10,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/orderdetail.css?v=1467193522830" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/orderdetail.css?v=1467285197123" rel="stylesheet"/>
     <title>订单详情</title>
     <script>
         <?php
@@ -30,9 +30,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     </script>
 </head>
 <body>
-    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1467193522830"></script>
+    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js?v=1467285197123"></script>
     <!--<script src="../js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/orderdetail.js?v=1467193522830"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/orderdetail.js?v=1467285197123"></script>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -63,5 +63,6 @@ $url = $host.$api.'?'.http_build_query($_GET);
 $headers = dealHeaders();
 // var_dump( $headers );
 $method = 'POST';
+error_log(print_r($_POST, true), 3,'/tmp/instashoph5.log');
 $res = HttpProxy::getInstance(array('timeout'=>20000, 'conn_timeout'=>20000))->callInterfaceCommon($url, $method, $_POST, $headers);
 echo $res;
