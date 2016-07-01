@@ -24,7 +24,7 @@ function loadClass($strClassName)
         COM_LIB_PATH
     );
     foreach ($pathArray as $path) {
-        $strClassName = str_replace('\\', '/', $strClassName);
+        $strClassName = str_replace('\\', '/', $strClassName
         $classPath = $path . '/' . str_replace('_', '/', $strClassName) . '.php';
         if (file_exists($classPath)) {
             require_once $classPath;
@@ -37,7 +37,7 @@ function getFontCss($url){
 }
 spl_autoload_register('loadClass');
 
-$static_host = C_RUNTIME_ONLINE ? 'http://static.instashop.co.id' : 'http://static-test.instashop.co.id/static';
+$static_host = C_RUNTIME_ONLINE ? 'http://static.instashop.co.id' : 'http://static-test.instashop.co.id';
 $static_font_css =C_RUNTIME_ONLINE?getFontCss('http://m.instashop.co.id/static'):getFontCss('http://m-test.instashop.co.id/static');
 define('STATIC_FONT_CSS', $static_font_css);
 define('STATIC_HOST', $static_host);
