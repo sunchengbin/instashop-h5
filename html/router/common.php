@@ -24,7 +24,7 @@ function loadClass($strClassName)
         COM_LIB_PATH
     );
     foreach ($pathArray as $path) {
-        $strClassName = str_replace('\\', '/', $strClassName
+        $strClassName = str_replace('\\', '/', $strClassName);
         $classPath = $path . '/' . str_replace('_', '/', $strClassName) . '.php';
         if (file_exists($classPath)) {
             require_once $classPath;
