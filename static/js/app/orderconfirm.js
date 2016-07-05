@@ -192,11 +192,22 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         }
                     }
                 }
-                if(!item.valid){_beal = false;}
                 if(_msg){
                     $('.j_cart_item[data-id="'+_id+'"] .error-p').remove();
                     $('.j_cart_item[data-id="'+_id+'"]').append('<p class="error-p">'+_msg+'</p>');
                 }
+                if(!item.valid){
+                    _beal = false;
+                    Dialog.tip({
+                        top_txt : '',//可以是html
+                        body_txt : '<p class="dialog-body-p">'+_msg+'</p>',
+                        auto_fn : function(){
+                            location.href = Config.host.hrefUrl+'cart.php?error=confirm';
+                        }
+                    });
+                    return _beal;
+                }
+
             });
             return _beal;
         },

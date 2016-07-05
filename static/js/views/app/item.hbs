@@ -53,7 +53,9 @@
                 {{/if}}
             </p>
         {{else}}
-            {{{noprice data.item.price}}}
+            <p class="price discount-price">
+            {{itemprice data.item}}
+            </p>
         {{/if}}
 
         <a href="javascript:;" data-url="{{host}}s/{{data.item.shop.id}}" class="go-shop j_shop_info">

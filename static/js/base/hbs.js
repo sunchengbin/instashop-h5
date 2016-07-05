@@ -430,6 +430,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
     HBS.registerHelper('transimgurl', function(url) {
         return Base.others.cutImg(url);
     });
+    HBS.registerHelper('transshopbgimgurl', function(url) {
+        return Base.others.cutImg(url,null,'bg');
+    });
     HBS.registerHelper('transpricevalue', function(price) {
         return Number(price)<0?-Number(price):price;
     });

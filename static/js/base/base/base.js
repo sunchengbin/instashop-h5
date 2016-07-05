@@ -280,22 +280,27 @@ define(function(){
             return enable && isWebpSupported() ? url.replace('.jpg', '.jpg.webp') : url;
         },
         //替换图片url进行裁图
-        cutImg : function(url,width){
+        cutImg : function(url,width,bg){
             var _ww = width?width:window.outerWidth,
                 _this = this;
-            if(/w\=\d+/g.test(url)){
-                url = url.replace(/w\=\d+/g,'w='+_ww);
-                url = url.replace(/h\=\d+/g,'h='+_ww);
-            }else{
-                if(/\?/g.test(url)){
-                    url = url + '&w='+_ww+'&h'+_ww;
+            if(!bg){
+                if(/w\=\d+/g.test(url)){
+                    url = url.replace(/w\=\d+/g,'w='+_ww);
+                    url = url.replace(/h\=\d+/g,'h='+_ww);
                 }else{
-                    url = url + '?w='+_ww+'&h'+_ww;
+                    if(/\?/g.test(url)){
+                        url = url + '&w='+_ww+'&h='+_ww;
+                    }else{
+                        url = url + '?w='+_ww+'&h='+_ww;
+                    }
                 }
+                if(!/cp\=/g.test(url)){
+                    url = url + '&cp=1';
+                }
+            }else{
+                url = url + '?w='+_ww;
             }
-            if(!/cp\=/g.test(url)){
-                url = url + '&cp=1';
-            }
+
             return _this.getImageUrl(url,true);
         },
         /*
