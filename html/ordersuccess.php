@@ -12,7 +12,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1467692192568" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1467799721645" rel="stylesheet"/>
     <title>Status Pesanan</title>
 </head>
 <body>
