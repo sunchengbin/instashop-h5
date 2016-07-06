@@ -67,6 +67,7 @@ body{
     display: -webkit-flex; /* Safari */
     display: flex;
     flex-direction:column;
+    overflow: hidden;
 
 }
 .address-list{
@@ -74,8 +75,11 @@ body{
     overflow: hidden;
     -webkit-overflow-scrolling : touch;
     overflow: scroll;
+    order:1;
 }
 .address-header-nav{
+    width: 100%;
+    order:2;
 }
 .address-header-nav i{
 }
