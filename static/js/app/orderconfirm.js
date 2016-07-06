@@ -14,6 +14,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     sum : _this.countSum(_carts),
                     address : _address,
                     lang:Lang,
+                    host:Config.host,
                     express : (JSON.parse(_data).ShopInfo.express_free == 0 && express_data.express_fee_list.list.JNE.length)
                 });
             $('body').prepend(_htm);
@@ -35,17 +36,40 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     $('textarea').blur();
                 }
             });
+
+            $('body').on('click','.j_check_box',function(e){
+                if($(this).is('.icon-checked-font')){
+                    $(this).addClass('icon-checkbox-font').removeClass('icon-checked-font');
+                }else{
+                    $(this).addClass('icon-checked-font').removeClass('icon-checkbox-font');
+                }
+            });
             Btn({
                 wraper : 'body',
                 target : '.j_submit_buy',
                 event_type : 'tap',
                 loading_txt:Lang.H5_SUBMITTING_ORDER,
                 callback : function(dom){
-                    var _that = this;
+                    var _that = this,
+                        _items = _this.getItems();
+                    if(!_items.length){
+                        _that.cancelDisable();
+                        _that.setBtnTxt(dom,Lang.H5_CONTINUE_ORDER);
+                        return;
+                    }
                     var _data = _this.getData();
                     if(!_data){
                         _that.cancelDisable();
                         _that.setBtnTxt(dom,Lang.H5_CONTINUE_ORDER);
+                        return;
+                    }
+                    if($('.j_check_box').is('.icon-checkbox-font')){
+                        _that.cancelDisable();
+                        _that.setBtnTxt(dom,Lang.H5_CONTINUE_ORDER);
+                        Dialog.tip({
+                            top_txt : '',//可以是html
+                            body_txt : '<p class="dialog-body-p">aggree is must checked</p>'
+                        });
                         return;
                     }
                     //alert(JSON.stringify(_data));

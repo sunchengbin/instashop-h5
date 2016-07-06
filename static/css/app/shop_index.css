@@ -225,4 +225,14 @@ section{
     width: 100%;
     overflow-x: hidden;
 }
+/*店铺被禁*/
+.shop-delete{
+    padding: 4rem 0 30rem;
+    text-align: center;
+    font-size: 1.4rem;
+}
+.shop-delete i{
+    font-size: 5rem;
+    color: #eee;
+}
 

@@ -1,81 +1,101 @@
-<nav class="shop-header-nav clearfix">
-    <div class="fr">
-        <button class="j_cart_wraper" data-url="{{hrefUrl}}cart.php">
-            {{#if num}}
-            <span class="cart-num">{{num}}</span>
-            {{/if}}
-            <i class="icon iconfont icon-cart-font"></i>
-        </button>
-        <div class="btn-cover"></div>
-    </div>
-</nav>
-<section class="shop-header">
-    <img class="shop-header-bg" data-img="{{transshopbgimgurl data.shop.front_cover}}" src="">
-    <div class="clearfix shop-info">
-        <div class="shop-img">
-            <img data-img="{{transimgurl data.shop.logo}}" src=""/>
+{{#eq data.shop.status '2'}}
+    <section class="shop-header">
+        <img class="shop-header-bg" data-img="{{transshopbgimgurl data.shop.front_cover}}" src="">
+        <div class="clearfix shop-info">
+            <div class="shop-img">
+                <img data-img="{{transimgurl data.shop.logo}}" src=""/>
+            </div>
+            <p>{{data.shop.name}}</p>
         </div>
-        <p>{{data.shop.name}}</p>
-    </div>
-</section>
-<section class="shop-explain j_down_box">
-    <div>
-        <span class="top-angle"></span>
-        <div class="txt">
-            {{{transtxt data.shop.note}}}
+    </section>
+    <section class="shop-delete">
+        <i class="icon iconfont icon-error-font"></i>
+        <p>{{{lang.H5_SHOP_DELETE}}}</p>
+    </section>
+{{else}}
+    <nav class="shop-header-nav clearfix">
+        <div class="fr">
+            <button class="j_cart_wraper" data-url="{{hrefUrl}}cart.php">
+                {{#if num}}
+                    <span class="cart-num">{{num}}</span>
+                {{/if}}
+                <i class="icon iconfont icon-cart-font"></i>
+            </button>
+            <div class="btn-cover"></div>
         </div>
-        <div class="txt-hide">
-            {{{transtxt data.shop.note}}}
+    </nav>
+    <section class="shop-header">
+        <img class="shop-header-bg" data-img="{{transshopbgimgurl data.shop.front_cover}}" src="">
+        <div class="clearfix shop-info">
+            <div class="shop-img">
+                <img data-img="{{transimgurl data.shop.logo}}" src=""/>
+            </div>
+            <p>{{data.shop.name}}</p>
         </div>
-        <p><i class="icon iconfont j_down_btn down-btn"></i></p>
-    </div>
-</section>
-<section class="items-box j_hot_box">
-    {{#havehot data.item_list.list}}
-        <p class="item-title"><span></span>{{lang.H5_GOODS_HOT}}</p>
-        <ul class="items-list clearfix j_hot_list">
-            {{#hotItemList data.item_list.list}}{{/hotItemList}}
-            <!--<li>-->
-            <!--<a class="item-info" href="">-->
-            <!--<div class="lazy" data-img="http://imghk0.geilicdn.com/test_instashop40730-1460555321750-1.png?w=210&h=210"></div>-->
-            <!--<p class="title">asdfasdflkajsdlkfjalkdjflkajdlfkajkldsf</p>-->
-            <!--<p class="price">RP 110.000</p>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<a class="item-info" href="">-->
-            <!--<div class="lazy" data-img="http://imghk0.geilicdn.com/test_instashop40730-1460555321750-1.png?w=210&h=210"></div>-->
-            <!--<p class="title">asdfasdflkajsdlkfjalkdjflkajdlfkajkldsf</p>-->
-            <!--<p class="price">RP 110.000</p>-->
-            <!--</a>-->
-            <!--</li>-->
-        </ul>
-    {{/havehot}}
-</section>
-<section class="items-box j_item_box">
-    {{#haveitem data.item_list.list}}
-    <p class="item-title"><span></span>{{lang.H5_GOODS_ORTHER}}</p>
-    <ul class="items-list j_item_list clearfix">
-        {{#itemList data.item_list.list}}{{/itemList}}
-        <!--<li>-->
-            <!--<a class="item-info" href="">-->
+    </section>
+    <section class="shop-explain j_down_box">
+        <div>
+            <span class="top-angle"></span>
+            <div class="txt">
+                {{{transtxt data.shop.note}}}
+            </div>
+            <div class="txt-hide">
+                {{{transtxt data.shop.note}}}
+            </div>
+            <p><i class="icon iconfont j_down_btn down-btn"></i></p>
+        </div>
+    </section>
+    <section class="items-box j_hot_box">
+        {{#havehot data.item_list.list}}
+            <p class="item-title"><span></span>{{lang.H5_GOODS_HOT}}</p>
+            <ul class="items-list clearfix j_hot_list">
+                {{#hotItemList data.item_list.list}}{{/hotItemList}}
+                <!--<li>-->
+                <!--<a class="item-info" href="">-->
                 <!--<div class="lazy" data-img="http://imghk0.geilicdn.com/test_instashop40730-1460555321750-1.png?w=210&h=210"></div>-->
                 <!--<p class="title">asdfasdflkajsdlkfjalkdjflkajdlfkajkldsf</p>-->
                 <!--<p class="price">RP 110.000</p>-->
-            <!--</a>-->
-        <!--</li>-->
-        <!--<li>-->
-            <!--<a class="item-info" href="">-->
+                <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<a class="item-info" href="">-->
                 <!--<div class="lazy" data-img="http://imghk0.geilicdn.com/test_instashop40730-1460555321750-1.png?w=210&h=210"></div>-->
                 <!--<p class="title">asdfasdflkajsdlkfjalkdjflkajdlfkajkldsf</p>-->
                 <!--<p class="price">RP 110.000</p>-->
-            <!--</a>-->
-        <!--</li>-->
-    </ul>
-    {{/haveitem}}
-</section>
-<a class="contact-services" href="{{data.shop.im_url}}">
-    <span class="im-num j_im_num"></span>
-    <i class="icon iconfont ser-icon"></i>
-    {{lang.H5_CONNACT_SELLER}}
-</a>
+                <!--</a>-->
+                <!--</li>-->
+            </ul>
+        {{/havehot}}
+    </section>
+    <section class="items-box j_item_box">
+        {{#haveitem data.item_list.list}}
+            <p class="item-title"><span></span>{{lang.H5_GOODS_ORTHER}}</p>
+            <ul class="items-list j_item_list clearfix">
+                {{#itemList data.item_list.list}}{{/itemList}}
+                <!--<li>-->
+                <!--<a class="item-info" href="">-->
+                <!--<div class="lazy" data-img="http://imghk0.geilicdn.com/test_instashop40730-1460555321750-1.png?w=210&h=210"></div>-->
+                <!--<p class="title">asdfasdflkajsdlkfjalkdjflkajdlfkajkldsf</p>-->
+                <!--<p class="price">RP 110.000</p>-->
+                <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<a class="item-info" href="">-->
+                <!--<div class="lazy" data-img="http://imghk0.geilicdn.com/test_instashop40730-1460555321750-1.png?w=210&h=210"></div>-->
+                <!--<p class="title">asdfasdflkajsdlkfjalkdjflkajdlfkajkldsf</p>-->
+                <!--<p class="price">RP 110.000</p>-->
+                <!--</a>-->
+                <!--</li>-->
+            </ul>
+        {{/haveitem}}
+    </section>
+    <a class="contact-services" href="{{data.shop.im_url}}">
+        <span class="im-num j_im_num"></span>
+        <i class="icon iconfont ser-icon"></i>
+        {{lang.H5_CONNACT_SELLER}}
+    </a>
+{{/eq}}
+
+
+
+

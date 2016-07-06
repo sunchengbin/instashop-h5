@@ -21,7 +21,6 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                     top_txt : '',//可以是html
                     body_txt : '<p class="dialog-body-p">'+Lang.H5_SHOPING_NO_GOODS+'?</p>'
                 });
-                //alert('购物车里没有商品')
             }else{
                 var _items = _carts;
                 for(var item in _items){
@@ -81,11 +80,15 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
         },
         subData : function(){
             var _that = this;
-            var data = localStorage.getItem('ShopData');
+            var data = localStorage.getItem('ShopData'),
+                _items = _that.getItems();
+            if(!_items.length){
+                return;
+            }
             var reqData = {
                 edata : {
                     action : 'check',
-                    items : _that.getItems(),
+                    items : _items,
                     telephone:(data&&JSON.parse(data).Address?JSON.parse(data).Address.telephone:0),
                     seller_id :JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
                     wduss : ''
@@ -119,7 +122,8 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                                     var _address= JSON.parse(localStorage.getItem('ShopData')).Address.address,
                                         _addr = _address.street + ',' + _address.country + ',' + _address.city + ',' + _address.province;
                                     setTimeout(function(){
-                                        location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+reqData.edata.seller_id+'&addr='+_addr;
+                                        var _item_str = JSON.stringify(_that.getItems());
+                                        location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+reqData.edata.seller_id+'&addr='+_addr+'&items='+_item_str;
                                     },1);
                                 }
                             }

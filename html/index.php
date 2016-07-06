@@ -10,6 +10,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <?=STATIC_DNS?>
+  <?=STATIC_ICO_CSS?>
   <?=STATIC_FONT_CSS?>
   <link href="<?=STATIC_HOST?>/css/dist/app/shop_index.css?v=1467692192568" rel="stylesheet"/>
     <?php

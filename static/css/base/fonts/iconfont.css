@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1467080658'); /* IE9*/
-  src: url('iconfont.eot?t=1467080658#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1467080658') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1467080658') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1467080658#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1467797353'); /* IE9*/
+  src: url('iconfont.eot?t=1467797353#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1467797353') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1467797353') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1467797353#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -15,19 +15,22 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-cancel-font:before { content: "\e60e"; }
-.icon-address-font:before { content: "\e60d"; }
-.icon-shop-font:before { content: "\e60a"; }
-.icon-right-font:before { content: "\e609"; }
-.icon-phone-font:before { content: "\e608"; }
-.icon-go-font:before { content: "\e606"; }
-.icon-cart-font:before { content: "\e604"; }
-.icon-allright-font:before { content: "\e603"; }
-.icon-add-font:before { content: "\e602"; }
-.icon-minus-font:before { content: "\e601"; }
-.icon-down-font:before { content: "\e60f"; }
-.icon-up-font:before { content: "\e610"; }
-.icon-back-font:before { content: "\e60c"; }
-.icon-time-font:before { content: "\e611"; }
-.icon-news-font:before { content: "\e612"; }
-.icon-delete-font:before { content: "\e613"; }
+.icon-minus-font:before { content: "\e600"; }
+.icon-add-font:before { content: "\e601"; }
+.icon-allright-font:before { content: "\e602"; }
+.icon-cart-font:before { content: "\e603"; }
+.icon-go-font:before { content: "\e604"; }
+.icon-phone-font:before { content: "\e605"; }
+.icon-right-font:before { content: "\e606"; }
+.icon-shop-font:before { content: "\e607"; }
+.icon-back-font:before { content: "\e608"; }
+.icon-address-font:before { content: "\e609"; }
+.icon-cancel-font:before { content: "\e60a"; }
+.icon-down-font:before { content: "\e60b"; }
+.icon-up-font:before { content: "\e60c"; }
+.icon-time-font:before { content: "\e60d"; }
+.icon-news-font:before { content: "\e60e"; }
+.icon-delete-font:before { content: "\e60f"; }
+.icon-error-font:before { content: "\e610"; }
+.icon-checkbox-font:before { content: "\e611"; }
+.icon-checked-font:before { content: "\e612"; }

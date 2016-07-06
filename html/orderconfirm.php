@@ -9,6 +9,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
+    <?=STATIC_DNS?>
+    <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
     <link href="<?=STATIC_HOST?>/css/dist/app/orderconfirm.css?v=1467692192568" rel="stylesheet"/>
     <title>Order</title>
@@ -20,6 +22,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
         $seller_id = $_REQUEST['seller_id'];
         $addr = $_REQUEST['addr'];
+        $items = json_decode($_REQUEST['items'],true);
         $new_addr = $_REQUEST['new_addr'];
         if ($new_addr) {
             $addr = $new_addr;
@@ -27,6 +30,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $params = [
             'action' => 'express_fee',
             'shop_id' => $seller_id,
+            'items' => $items,
             'receive_addr' => urlencode($addr)
         ];
         $path = 'v1/expresses';

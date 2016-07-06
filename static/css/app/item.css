@@ -220,4 +220,19 @@ body{
 .down-btn{
     display: none;
 }
+/*商品下架*/
+.item-out-stock{
+    padding: 10rem 0 30rem;
+    text-align: center;
+    font-size: 1.4rem;
+    background: #fff;
+}
+.item-out-stock i{
+    font-size: 5rem;
+    color: #eee;
+}
+.item-out-stock p .btn{
+    margin: 2rem auto 0;
+}
+
 

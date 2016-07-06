@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick'],function(Hbs,Addresshtm,City,Config,Lang,Fastclick){
+require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','dialog','cart'],function(Hbs,Addresshtm,City,Config,Lang,Fastclick,Dialog,Cart){
     var Address = {
         init : function(){
             var _this = this,
@@ -128,9 +128,41 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick'],
                 setTimeout(function(){
                     var _data = JSON.parse(localStorage.getItem('ShopData')),
                         _addr = _street + ',' + _country + ',' + _city + ',' + _province;
-                        location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+_data.ShopInfo.id+'&addr='+_addr;
+                    var _item_str = JSON.stringify(_this.getItems());
+                        location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+_data.ShopInfo.id+'&addr='+_addr+'&items='+_item_str;
                 },0);
             });
+        },
+        getItems : function(){
+            var _carts = Cart().getCarts(),
+                _arr = [];
+            if(!_carts){
+                Dialog.tip({
+                    top_txt : '',//可以是html
+                    body_txt : '<p class="dialog-body-p">'+Lang.H5_SHOPING_NO_GOODS+'?</p>'
+                });
+            }else{
+                var _items = _carts;
+                for(var item in _items){
+                    if(_items[item].sku){
+                        _arr.push({
+                            itemID:_items[item].item.id,
+                            itemName:_items[item].item.item_name,
+                            itemNum:_items[item].num,
+                            item_sku:_items[item].sku.id,
+                            discount_id:(_items[item].item.is_discount?_items[item].item.discount.id:0)
+                        });
+                    }else{
+                        _arr.push({
+                            itemID:_items[item].item.id,
+                            itemName:_items[item].item.item_name,
+                            itemNum:_items[item].num,
+                            discount_id:(_items[item].item.is_discount?_items[item].item.discount.id:0)
+                        });
+                    }
+                }
+            }
+            return _arr;
         },
         CreateList : function(data,type){
             var _htm = '';

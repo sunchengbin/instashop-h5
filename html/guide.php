@@ -1,9 +1,7 @@
-<!--
-  收款信息页
-  入口：“确认订单页”的”SETTLEMENT“按钮
--->
 <!DOCTYPE html>
-<html lang="en">
+<?php
+include_once( dirname(__FILE__).'/../html/router/common.php');
+?>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
@@ -12,7 +10,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
   <title>Payment status</title>
-
+    <?=STATIC_DNS?>
+    <?=STATIC_ICO_CSS?>
   <!-- 页头 -->
   <script id="tpl-header" type="text/html">
     <div class="prev"></div>
