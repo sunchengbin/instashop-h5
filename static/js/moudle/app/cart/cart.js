@@ -176,7 +176,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                 setTimeout(function(){
                     var _ca = document.querySelector('.j_cart_animate');
                     _ca.style.webkitTransitionDuration = '1s';
-                    _ca.style.webkitTransform = 'translate3d('+(_w_w-80)+'px,'+(-_w_h+_b_h+60)+'px,0) rotate(3600deg) scale(.1)';
+                    _ca.style.webkitTransform = 'translate3d('+(_w_w-80)+'px,'+(-_w_h+_b_h+60)+'px,0) rotate(3600deg) scale(0)';
                     setTimeout(function(){
                         $('.j_cart_animate').remove();
                         callback && callback();
