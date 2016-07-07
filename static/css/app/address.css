@@ -5,11 +5,13 @@ html{
     height: 100%;
 }
 body{
-    position: relative;
+    position: absolute;
     background-color: #F5F5F5;
     overflow: hidden;
-    height: 100%;
-    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
     max-width: none;
 }
 body .address-list{
