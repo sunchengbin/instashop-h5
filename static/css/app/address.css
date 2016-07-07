@@ -5,14 +5,9 @@ html{
     height: 100%;
 }
 body{
-    position: absolute;
     background-color: #F5F5F5;
-    width: 100%;
     overflow: hidden;
-    margin:0;
-    padding:0;
     height: 100%;
-    overflow-y: scroll;
 }
 .user-info,.user-address{
     background-color: #fff;
@@ -69,7 +64,7 @@ body{
     flex-direction:column;
     overflow: hidden;
     align-items:flex-start;
-
+    z-index: 10;
 }
 .address-list{
     width: 100%;
