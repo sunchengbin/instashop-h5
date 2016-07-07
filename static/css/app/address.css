@@ -5,13 +5,10 @@ html{
     height: 100%;
 }
 body{
-    position: absolute;
     background-color: #F5F5F5;
     overflow: hidden;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
+    height: 100%;
+    width: 100%;
     max-width: none;
 }
 body .address-list{
@@ -129,4 +126,10 @@ body .address-list{
 .list-box{
     width: 100%;
     overflow-x:hidden;
+}
+.address-wraper{
+    height: 100%;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
