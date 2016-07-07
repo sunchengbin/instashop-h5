@@ -158,28 +158,29 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
             localStorage.setItem('ShopData',JSON.stringify(_this.data));
             _this.addCartAnimate(function(){
                 opts.callback && opts.callback.apply(_this);
-            },opts.isbuynow);
+            },opts.isbuynow,opts.item.img);
         },
-        addCartAnimate:function(callback,buynow){
+        addCartAnimate:function(callback,buynow,itemimg){
             var _w_w = $(window).width(),
                 _w_h = $(window).height(),
                 _wraper = $('.j_buy_plug'),
-                _b_h = _wraper.height()-20;
+                _b_h = _wraper.height()-90;
             if(buynow == 'true'){
                 callback && callback();
             }else{
                 $('.j_cart_animate').remove();
                 if(!$('.j_cart_animate').length){
-                    $('body').append('<div class="j_cart_animate" style="border-radius:50%;position:fixed;left:1rem;bottom:'+_b_h+'px;width:10px;height:10px;z-index:'+Base.others.zIndex+';background-color:#FD623C;"></div>');
+                    //$('body').append('<div class="j_cart_animate" style="border-radius:50%;position:fixed;left:1rem;bottom:'+_b_h+'px;width:10px;height:10px;z-index:'+Base.others.zIndex+';background-color:#FD623C;"></div>');
+                    $('body').append('<img class="j_cart_animate" style="width:6rem;height:6rem;position:fixed;left:1rem;bottom:'+_b_h+'px;z-index:'+Base.others.zIndex+';" src="'+itemimg+'"/>');
                 }
                 setTimeout(function(){
                     var _ca = document.querySelector('.j_cart_animate');
-                    _ca.style.webkitTransitionDuration = '.6s';
-                    _ca.style.webkitTransform = 'translate3d('+(_w_w-50)+'px,'+(-_w_h+_b_h+30)+'px,0)';
+                    _ca.style.webkitTransitionDuration = '1s';
+                    _ca.style.webkitTransform = 'translate3d('+(_w_w-80)+'px,'+(-_w_h+_b_h+60)+'px,0) rotate(3600deg) scale(.1)';
                     setTimeout(function(){
                         $('.j_cart_animate').remove();
                         callback && callback();
-                    },700);
+                    },1000);
                 },300);
             }
         },
