@@ -46,6 +46,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             color: #333;
             margin:1rem 0;
         }
+        body{
+        padding-top:4.6rem;
+        }
         .iconfont {
             font-family:"iconfont" !important;
             font-size:1.4rem;
@@ -57,6 +60,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         .icon-back-font:before { content: "\e608"; }
         .header-nav{
             position:fixed;
+            top:0;
+            left:0;
             width:100%;
             box-sizing:border-box;
             padding: 0 1rem;
@@ -77,7 +82,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 <body>
     <nav class="header-nav clearfix">
         <i class="icon iconfont j_go_back icon-back-font" onclick="history.back();"></i>
-        返回
+           Transaction Agreement
     </nav>
     <section>
         Welcome to InstaShop Application for mobile, this Purchase Agreement (the “Agreement”) is a contract between you and P.T. InstaShop Indonesia (“we” or “InstaShop”) applies to your use of the InstaShop Services (the service or our service, collectively “services”). The service provides an online marketplace services and respective payment processing services, that allows you to buy just about anything in a variety of pricing formats and locations. The actual contract for sale is directly between the seller and buyer. We are just a third party e-commerce transaction platform.
