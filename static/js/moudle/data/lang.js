@@ -103,7 +103,8 @@ define([],function(){
             'H5_DCCORDING_TO_THE_ORIGINAL_PRICE_TO_BUY':'活动尚未开始,需要按照原价购买',
             'H5_LOGISTICS_DETAIL':'物流详情',
             'H5_SHOP_DELETE':'因违反Instashop使用协议，<br>该店铺已被删除',
-            'H5_USE_AGREE':'已阅读并同意Instashop使用协议'
+            'H5_USE_AGREE':'已阅读并同意Instashop使用协议',
+            'H5_TERMS_KEYWORD':'使用协议'
         },
 
         id : {
@@ -301,7 +302,8 @@ define([],function(){
             'H5_DCCORDING_TO_THE_ORIGINAL_PRICE_TO_BUY':'Program diskon belum dimulai. Kamu akan membeli dengan harga normal',
             'H5_LOGISTICS_DETAIL':'Detail pengiriman',
             'H5_SHOP_DELETE':'For violation Instashop use agreement,<br>the shop has been deleted',
-            'H5_USE_AGREE':'已阅读并同意Instashop使用协议'
+            'H5_USE_AGREE':'已阅读并同意Instashop使用协议',
+            'H5_TERMS_KEYWORD':'Syarat dan ketentuan pengguna'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );
