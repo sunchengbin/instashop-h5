@@ -58,21 +58,21 @@
 .check-btn,.checked-btn{
     font-size: 3rem;
 }
-.check-btn:before {
-    content: " ";
-    display: inline-block;
-    width: 1.6rem;
-    height: 1.6rem;
-    line-height: 1.6rem;
-    border:2px solid #ddd;
-    border-radius: 50%;
-}
-.checked-btn:before{
-    font-size: 2.4rem;
-    content: "\e609";
-    color: #43CB9B;
-    border:none;
-}
+/*.check-btn:before {*/
+    /*content: " ";*/
+    /*display: inline-block;*/
+    /*width: 1.6rem;*/
+    /*height: 1.6rem;*/
+    /*line-height: 1.6rem;*/
+    /*border:2px solid #ddd;*/
+    /*border-radius: 50%;*/
+/*}*/
+/*.checked-btn:before{*/
+    /*font-size: 2.4rem;*/
+    /*content: "\e609";*/
+    /*color: #43CB9B;*/
+    /*border:none;*/
+/*}*/
 /*联系客服*/
 .ser-icon{
     font-size: 2rem;

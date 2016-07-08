@@ -40,19 +40,26 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
             $('body').on('click','.j_check_box',function(e){
                 if($(this).is('.icon-checked-font')){
                     $(this).addClass('icon-checkbox-font').removeClass('icon-checked-font');
+                    $('.j_submit_buy').addClass('disable-btn');
                 }else{
                     $(this).addClass('icon-checked-font').removeClass('icon-checkbox-font');
+                    $('.j_submit_buy').removeClass('disable-btn');
                 }
             });
             Btn({
                 wraper : 'body',
                 target : '.j_submit_buy',
-                event_type : 'tap',
+                event_type : 'click',
                 loading_txt:Lang.H5_SUBMITTING_ORDER,
                 callback : function(dom){
                     var _that = this,
                         _items = _this.getItems();
-                    if(!_items.length){
+                    if(dom.is('.disable-btn')){
+                        _that.cancelDisable();
+                        _that.setBtnTxt(dom,Lang.H5_OK_ICON);
+                        return;
+                    }
+                    if(!_items.length || dom.is('.disable-btn')){
                         _that.cancelDisable();
                         _that.setBtnTxt(dom,Lang.H5_CONTINUE_ORDER);
                         return;

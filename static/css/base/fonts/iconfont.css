@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1467797353'); /* IE9*/
-  src: url('iconfont.eot?t=1467797353#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1467797353') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1467797353') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1467797353#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1467945851'); /* IE9*/
+  src: url('iconfont.eot?t=1467945851#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1467945851') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1467945851') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1467945851#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -34,3 +34,8 @@
 .icon-error-font:before { content: "\e610"; }
 .icon-checkbox-font:before { content: "\e611"; }
 .icon-checked-font:before { content: "\e612"; }
+.icon-radio-font:before { content: "\e613"; }
+.icon-radioed-font:before { content: "\e614"; }
+.icon-upimg-font:before { content: "\e615"; }
+.icon-photograph-font:before { content: "\e616"; }
+.icon-edit-font:before { content: "\e617"; }

@@ -387,7 +387,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             for(var i in data[item]){
                 var _cost_day = data[item][i].cost_days?'('+data[item][i].cost_days+')':'';
                 _htm += '<li class="j_logistics_li"  data-level="'+data[item][i].level+'" data-id="'+data[item][i].id+'">'
-                    +'<i class="icon iconfont check-btn" data-company="'+item+'" data-price="'+data[item][i].price+'"  data-level="'+data[item][i].level+'" data-id="'+data[item][i].id+'"></i>'
+                    +'<i class="icon iconfont check-btn icon-radio-font" data-company="'+item+'" data-price="'+data[item][i].price+'"  data-level="'+data[item][i].level+'" data-id="'+data[item][i].id+'"></i>'
                     +data[item][i].level+_cost_day+':Rp '+Base.others.priceFormat(data[item][i].price)
                     +'</li>';
             }

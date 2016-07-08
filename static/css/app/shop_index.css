@@ -91,10 +91,10 @@ section{
     color: #999;
 }
 .down-btn:before{
-    content: "\e60f";
+    content: "\e60b";
 }
 .up-btn:before {
-    content: "\e610";
+    content: "\e60c";
 }
 .down-btn{
     display: none;

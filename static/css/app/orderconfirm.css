@@ -161,10 +161,17 @@ textarea{
     line-height: 2rem;
 }
 .agree-info i{
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     color: #43CB9B;
+    padding: 0 1rem;
 }
 .agree-info a{
-    margin-left: 1rem;
+    /*margin-left: 1rem;*/
     color: #748bcf;
+}
+.disable-btn{
+    width: 100%;
+}
+.logistics-list li i{
+    color: #43CB9C;
 }

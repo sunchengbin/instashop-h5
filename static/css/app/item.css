@@ -63,8 +63,15 @@ body{
     margin-right:1rem;
 }
 .shop-info p{
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     margin:0 3rem 0 6rem;
     font-size: 1.6rem;
+    height: 45px;
+    word-break: break-word;
 }
 .shop-info i{
     font-size: 1.4rem;
@@ -212,10 +219,10 @@ body{
     color: #999;
 }
 .down-btn:before{
-    content: "\e60f";
+    content: "\e60b";
 }
 .up-btn:before {
-    content: "\e610";
+    content: "\e60c";
 }
 .down-btn{
     display: none;

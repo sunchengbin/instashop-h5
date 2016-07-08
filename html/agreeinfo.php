@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+include_once( dirname(__FILE__).'/../html/router/common.php');
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,10 +10,31 @@
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <title>Transaction Agreement</title>
+    <?=STATIC_ICO_CSS?>
+    <?=STATIC_FONT_CSS?>
     <style>
+        html { font-size: 62.5%; }
+        @media only screen and (min-width: 374px) {
+            html { font-size: 72%!important }
+        }
+        @media only screen and (min-width: 413px) {
+            html { font-size: 80%!important }
+        }
+        @media only screen and (min-width: 481px) {
+            html { font-size: 94%!important }
+        }
+        @media only screen and (min-width: 561px) {
+            html { font-size: 109%!important }
+        }
+        @media only screen and (min-width: 641px) {
+            html { font-size: 125%!important }
+        }
+        @media(orientation: landscape) and (min-width: 481px) {
+            html { font-size: 62.5% !important; }
+        }
         *{padding:0;margin:0;}
         body, button, input, select,option,td, textarea /* for ie */ {
-            font: 1.2rem/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font: 1.4rem/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         section{
             padding:1rem;
@@ -22,9 +46,36 @@
             color: #333;
             margin:1rem 0;
         }
+        .iconfont {
+            font-family:"iconfont" !important;
+            font-size:1.4rem;
+            font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .icon-back-font:before { content: "\e608"; }
+        .header-nav{
+            padding: 0 1rem;
+            height: 4.6rem;
+            line-height: 4.6rem;
+            background-color: #43CB9C;
+            font-size: 1.6rem;
+            color: #fff;
+        }
+        .header-nav .iconfont{
+            font-size: 1.6rem;
+            display: inline-block;
+            height: 4.6rem;
+            line-height: 4.6rem;
+        }
     </style>
 </head>
 <body>
+    <nav class="header-nav clearfix">
+        <i class="icon iconfont j_go_back icon-back-font" onclick="history.back();"></i>
+        返回
+    </nav>
     <section>
         Welcome to InstaShop Application for mobile, this Purchase Agreement (the “Agreement”) is a contract between you and P.T. InstaShop Indonesia (“we” or “InstaShop”) applies to your use of the InstaShop Services (the service or our service, collectively “services”). The service provides an online marketplace services and respective payment processing services, that allows you to buy just about anything in a variety of pricing formats and locations. The actual contract for sale is directly between the seller and buyer. We are just a third party e-commerce transaction platform.
 
@@ -86,6 +137,5 @@
         <br /> NOTICE: ALL RIGHTS NOT EXPRESSLY AND CLEARLY GRANTED IN THE AGREEMENT SHALL BE RESERVED BY INSTASHOP. IF YOU HAVE ANY QUESTION ABOUT US, PLEASE DO NOT HESITATE TO CONTACT US AT SUPPORT@INSTASHOP.CO.ID.
         <br />
     </section>
-    <script src="../static/js/base/require-zepto.js?v=1466419017427"></script>
 </body>
 </html>

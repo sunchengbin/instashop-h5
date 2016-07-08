@@ -34,6 +34,8 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang','fa
                 if($(this).find('.check-btn').length){
                     $('.checked-btn').addClass('check-btn').removeClass('checked-btn');
                     $(this).find('.check-btn').addClass('checked-btn');
+                    $('.icon-radioed-font').addClass('icon-radio-font').removeClass('icon-radioed-font');
+                    $(this).find('.check-btn').addClass('icon-radioed-font').removeClass('icon-radio-font');
                 }
             });
             $(_config.wraper).on('click','.j_plug_submit',function(){

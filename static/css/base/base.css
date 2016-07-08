@@ -34,3 +34,8 @@
 .icon-error-font:before { content: "\e610"; }
 .icon-checkbox-font:before { content: "\e611"; }
 .icon-checked-font:before { content: "\e612"; }
+.icon-radio-font:before { content: "\e613"; }
+.icon-radioed-font:before { content: "\e614"; }
+.icon-upimg-font:before { content: "\e615"; }
+.icon-photograph-font:before { content: "\e616"; }
+.icon-edit-font:before { content: "\e617"; }
