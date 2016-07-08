@@ -56,6 +56,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         }
         .icon-back-font:before { content: "\e608"; }
         .header-nav{
+            position:fixed;
+            width:100%;
+            box-sizing:border-box;
             padding: 0 1rem;
             height: 4.6rem;
             line-height: 4.6rem;
