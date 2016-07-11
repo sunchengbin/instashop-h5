@@ -81,6 +81,7 @@ define(['base'],function(Base){
                     _oh = Base.others.getUrlPrem('h',msg),
                     _ow = Base.others.getUrlPrem('w',msg),
                     _nh = Math.ceil(_oh * _w / _ow);
+                if(_w > 120){_w = 120}
                 msg = '<img style="width:'+_w+'px;height:'+_nh+'px;" src="'+this.getLogoUrl(msg)+'"/>';
             }
             if(/http\:\S+\/detail\/\d+/g.test(msg)){//详情链接
