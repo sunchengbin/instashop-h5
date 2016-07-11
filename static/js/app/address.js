@@ -128,7 +128,7 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','
                 setTimeout(function(){
                     var _data = JSON.parse(localStorage.getItem('ShopData')),
                         _addr = _street + ',' + _country + ',' + _city + ',' + _province;
-                    var _item_str = encodeURIComponent(JSON.stringify(_this.getAddressItems()));
+                    var _item_str = JSON.stringify(_this.getAddressItems());
                         location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+_data.ShopInfo.id+'&addr='+_addr+'&items='+_item_str;
                 },0);
             });
