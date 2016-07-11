@@ -65,7 +65,7 @@ body{
     -webkit-flex: inherit;
     -ms-flex: inherit;
     flex: inherit;
-    height: auto;
+    /*height: auto;*/
     border-top: 1px solid #c5c5c7;
     background-color: #f4f4f6;
     -webkit-transform: translateZ(0);
