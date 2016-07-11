@@ -209,15 +209,12 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             return out;
         },
         getImNum : function(){
-            var im_id = Base.others.getCookie('insta-im-id');
-            //alert(document.cookie);
-            //alert(Base.others.getCookie('client_uuid'));
-            //alert(im_id+'&1')
-            if (!im_id) {
-                im_id = Base.others.getCookie('test-insta-im-id');
-                //alert(im_id+'&2')
-            }
-            var toImId = init_data.shop['im_id'];
+            //var im_id = Base.others.getCookie('insta-im-id');
+            //if (!im_id) {
+            //    im_id = Base.others.getCookie('test-insta-im-id');
+            //}
+            var im_id = localStorage.getItem('UID'),//im页面种如cookie
+                toImId = init_data.shop['im_id'];
             if (im_id && toImId) {
                 var reqData = {
                     edata: {

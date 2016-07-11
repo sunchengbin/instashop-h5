@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>handle upload result</title>
+</head>
+<body>
+<script>
+    var urlArgs = function(){
+        var result = {}, // 将被返回的结果
+                pairs = [],
+                pos = -1,
+                querys = window.location.search.substring(1); // 获取 url 中的 search 部分并去掉前面的问号
+        pairs = querys.split( '&' );
+        pairs.forEach( function( pair ){
+            pos = pair.indexOf( '=' );
+            var name = pair.substring( 0, pos ),
+            // 客户端全局函数 decodeURIComponent 提供了解析浏览器地址栏内容的方法
+                    value = decodeURIComponent( pair.substring( pos + 1 ) );
+            result[ name ] = value;
+        } );
+        return result;
+    };
+
+    var args = urlArgs(),
+            r    = JSON.parse( args.result),
+            f    = window.parent[ 'handleIframeCall' ];
+    f( r );
+
+</script>
+</body>
+</html>

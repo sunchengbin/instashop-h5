@@ -23,14 +23,27 @@ require.config({
         cart:"moudle/app/cart/cart",
         logistics:"moudle/app/logistics/logistics",
         fastclick:"moudle/ui/fastclick/fastclick",
-        //配置
+        //h5配置
         config:'moudle/config/config',
         //数据存储js
         city:"moudle/data/city",
-        lang:"moudle/data/lang"
-    },
-    shim: {    /*用来引入外部插件*/
-        //'base/hbs': ['hbs']
+        lang:"moudle/data/lang",
+        //im配置
+        imconfig:'moudle/config/imconfig',
+        //im通信接口参数加密
+        jsbn:"moudle/decode/jsbn",
+        xxtea:"moudle/decode/xxtea",
+        rsa:"moudle/decode/rsa",
+        base64:"moudle/decode/base64",
+        md5:"moudle/decode/md5",
+        //请求相关
+        server:'moudle/app/im/server',
+        //公用方法
+        imcommon:'moudle/app/im/common',
+        //功能模块
+        user:'moudle/app/im/user',
+        history:'moudle/app/im/history',
+        message:'moudle/app/im/message'
     },
     packages: []
 });

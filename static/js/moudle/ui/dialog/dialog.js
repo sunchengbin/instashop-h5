@@ -222,7 +222,7 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
             return new dialog(opts);
         },
         loading : function(opts){
-            opts = $.extend({show_footer:false,show_top:false},opts);
+            opts = $.extend({show_footer:false,show_top:false,width:0,cover_event:true},opts);
             return new dialog(opts);
         },
         cover : function(opts){
