@@ -95,6 +95,7 @@ define(['base'],function(Base){
                 msg = other_arr[0]+'<a class="" href="'+_url+'">'+_url+'</a>'+other_arr[1];
                 msg = msg.replace(/\n/g, "<br>");
             }
+            alert(msg)
             return msg;
         },
         _JSONP: 0,
