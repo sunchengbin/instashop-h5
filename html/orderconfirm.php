@@ -30,7 +30,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $params = [
             'action' => 'express_fee',
             'shop_id' => $seller_id,
-            'items' => $items,
+            'items' => urlencode($items),
             'receive_addr' => urlencode($addr)
         ];
         $path = 'v1/expresses';
