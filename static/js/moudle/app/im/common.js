@@ -239,7 +239,7 @@ define(['base'],function(Base){
             var _ww = width?width:Math.ceil(window.outerWidth/3),
                 _this = this,
                 _url = url.split('?')[0];
-            alert(_ww)
+            if(_ww > 120){_ww = 120}
             url = _url + '?w='+_ww;
             return _this.getImageUrl(url,true);
         },
