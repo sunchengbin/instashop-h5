@@ -77,7 +77,7 @@ define(['base'],function(Base){
             }
             if(/http\:\/\/imghk0\.geilicdn\.com/g.test(msg)){//图片
                 //msg = '<div class="lazy-img" style="width:'+Math.ceil(window.outerWidth/3)+'px;background-image:url('+this.cutImg(msg)+')"></div>';
-                var _w = Math.ceil(window.outerWidth/3);
+                var _w = Math.ceil($(window).width()/3);
                 alert(_w)
                 if(_w > 120 || _w == 0){_w = 120}
                 var _oh = Base.others.getUrlPrem('h',msg),
@@ -244,7 +244,7 @@ define(['base'],function(Base){
         },
         //替换图片url进行裁图
         cutImg : function(url,width){
-            var _ww = width?width:Math.ceil(window.outerWidth/3),
+            var _ww = width?width:Math.ceil($(window).width()/3),
                 _this = this,
                 _url = url.split('?')[0];
             if(_ww > 120){_ww = 120}
