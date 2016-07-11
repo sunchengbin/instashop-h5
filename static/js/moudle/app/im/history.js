@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/30.
  * 历史消息获取
  */
-define(['server','imconfig','lazyload','imcommon','base'],function(Server,Config,Lazyload,Common,Base){
+define(['server','imconfig','lazyload','imcommon','base','message'],function(Server,Config,Lazyload,Common,Base,Message){
     var startMsgTime = '18446744073709551615';
     var startMsgId = '18446744073709551615';
     var LIMIT = 10;
@@ -29,14 +29,14 @@ define(['server','imconfig','lazyload','imcommon','base'],function(Server,Config
                         if(!result.body.msgs.length){//没有历史聊天记录
                             if(sid && !type){
                                 var data = JSON.parse(localStorage.getItem('SELLERINFO'));
-                                var _htm = Common.insertSellerMsg(data[sid].note,(new Date()).getTime());
+                                var _htm = Common.insertSellerMsg(Common.HTMLEnCode(data[sid].note),(new Date()).getTime());
                                 $('.j_message_wraper').prepend(_htm);
                             }
                         }else{
                             var _user_id = localStorage.getItem('UID'),
                                 _htm = '';
                             Base.others.each(result.body.msgs,function(msg,i){
-                                var _msg = Common.transAddressMsg(Common.HTMLDeCode(decodeURIComponent(msg.msg_data)));
+                                var _msg = Common.transAddressMsg(Common.HTMLEnCode(decodeURIComponent(msg.msg_data)));
                                 if(_user_id != msg.from_uid){
                                     _htm+=Common.insertSellerMsg(_msg,msg.time);
                                 }else{

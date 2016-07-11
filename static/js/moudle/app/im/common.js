@@ -56,6 +56,18 @@ define(['base'],function(Base){
             s = s.replace(/\n/g, "<br>");
             return s;
         },
+        enCode: function(str){
+            if (!str) return '';
+            var s = "";
+            if (str.length == 0) return "";
+            s = str.replace(/</g, "&lt;");
+            s = s.replace(/>/g, "&gt;");
+            s = s.replace(/\r/g, "&nbsp;");
+            s = s.replace(/\'/g, "'");
+            s = s.replace(/\"/g, "&quot;");
+            //s = s.replace(/\n/g, "<br>");
+            return s;
+        },
         transAddressMsg : function(msg){
             if(/INSTASHOP\_H5\_IM\_MESSAGE\_TYPE\:ADDRESS/g.test(msg)){
                 //msg = this.HTMLDeCode(msg);

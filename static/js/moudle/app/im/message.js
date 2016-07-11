@@ -55,7 +55,7 @@ define(['server','imconfig','base','imcommon','lazyload'],function(Server,Config
         },
         sendMessage : function(fromUid, toUid, msgContent, mediaType,callback,address){//发送消息
             var time = Date.now(),
-                _msgContent = address?encodeURIComponent(msgContent):encodeURIComponent( Common.HTMLEnCode(msgContent));
+                _msgContent = address?encodeURIComponent(msgContent):encodeURIComponent( Common.enCode(msgContent));
             var reqBody = {
                 fromUid : fromUid,
                 fromSourceType : '1001',
