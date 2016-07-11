@@ -24,7 +24,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         <ul class="message-ul j_message_wraper">
         </ul>
     </section>
-    <footer class="chat-wraper">
+    <footer class="chat-wraper j_footer">
         <div class="send-txt-box">
             <div class="msg-count-box" contenteditable="true"></div>
             <textarea class="send-txt j_message_txt" contenteditable="true"></textarea>

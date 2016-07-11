@@ -56,6 +56,7 @@ require(['user','imconfig','history','message','imcommon','lazyload','base','dia
                 var _txt = $.trim($('.j_message_txt').val());
                 if(!_txt){return;}
                 $('.j_message_txt').val('').css('height','30px');
+                document.querySelector('.j_footer').style.height = '45px';
                 _this.loadingShow();
                 Message.sendMessage(localStorage.getItem('UID'),JSON.parse(localStorage.getItem('SELLERINFO'))[_this.getSid()].uid, _txt,1,function(){
 
@@ -74,6 +75,7 @@ require(['user','imconfig','history','message','imcommon','lazyload','base','dia
             });
             function autoGrow (oField) {
                 if (oField.scrollHeight > oField.clientHeight) {
+                    document.querySelector('.j_footer').style.height = (Number(oField.scrollHeight)+15)+'px';
                     oField.style.height = oField.scrollHeight + "px";
                 }
             }
