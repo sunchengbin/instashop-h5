@@ -116,6 +116,7 @@ textarea{
     box-sizing: border-box;
     height: 30px;
     line-height: 20px;
+    overflow: hidden;
 }
 .btn-box{
     display: -webkit-box;

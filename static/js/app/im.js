@@ -68,9 +68,15 @@ require(['user','imconfig','history','message','imcommon','lazyload','base','dia
             });
             $('body').on('keyup','.j_message_txt',function(){
                 var _dom = $(this);
-                $('.msg-count-box').html(_dom.val());
-                _dom.height($('.msg-count-box').height());
+                autoGrow(document.querySelector('.j_message_txt'));
+                //$('.msg-count-box').html(Common.HTMLEnCode(_dom.val()));
+                //_dom.height($('.msg-count-box').height());
             });
+            function autoGrow (oField) {
+                if (oField.scrollHeight > oField.clientHeight) {
+                    oField.style.height = oField.scrollHeight + "px";
+                }
+            }
             $('body').on('click','.j_address',function(){//发送消息
                 var _htm = _this.getAddressDialog();
                 Dialog.alert({
