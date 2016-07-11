@@ -78,7 +78,8 @@ define(['base'],function(Base){
             if(/http\:\/\/imghk0\.geilicdn\.com/g.test(msg)){//图片
                 //msg = '<div class="lazy-img" style="width:'+Math.ceil(window.outerWidth/3)+'px;background-image:url('+this.cutImg(msg)+')"></div>';
                 var _w = Math.ceil(window.outerWidth/3);
-                if(_w > 120){_w = 120}
+                alert(_w)
+                if(_w > 120 || _w == 0){_w = 120}
                 var _oh = Base.others.getUrlPrem('h',msg),
                     _ow = Base.others.getUrlPrem('w',msg),
                     _nh = Math.ceil(_oh * _w / _ow);
@@ -95,7 +96,6 @@ define(['base'],function(Base){
                 msg = other_arr[0]+'<a class="" href="'+_url+'">'+_url+'</a>'+other_arr[1];
                 msg = msg.replace(/\n/g, "<br>");
             }
-            alert(msg)
             return msg;
         },
         _JSONP: 0,
