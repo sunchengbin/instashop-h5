@@ -89,7 +89,7 @@ textarea{
 }
 .send-txt-box{
     align-self: flex-end;
-    width: 65%;
+    width: 70%;
     min-height: 45px;
     box-sizing: border-box;
     padding: 8px 15px 7px;
