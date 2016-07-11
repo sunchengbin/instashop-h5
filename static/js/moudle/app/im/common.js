@@ -220,7 +220,7 @@ define(['base'],function(Base){
                 }
                 return false;
             };
-            return enable && !isWebpSupported() ? url.replace('.jpg', '.jpg.webp') : url;
+            return enable && isWebpSupported() ? url.replace('.jpg', '.jpg.webp') : url;
         },
         //替换图片url进行裁图
         cutImg : function(url,width){
