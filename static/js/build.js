@@ -23,7 +23,6 @@
         "cart":"moudle/app/cart/cart",
         "logistics":"moudle/app/logistics/logistics",
         "fastclick":"moudle/ui/fastclick/fastclick",
-        "imconfig":"moudle/config/imconfig",
         "jsbn":"moudle/decode/jsbn",
         "xxtea":"moudle/decode/xxtea",
         "rsa":"moudle/decode/rsa",

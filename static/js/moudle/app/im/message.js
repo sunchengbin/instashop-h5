@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/7/1.
  * 消息监听
  */
-define(['server','imconfig','base','imcommon','lazyload'],function(Server,Config,Base,Common,Lazyload){
+define(['server','config','base','imcommon','lazyload'],function(Server,Config,Base,Common,Lazyload){
     var Message = {
         msgListen : function(){
             var _this = this;

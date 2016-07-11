@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/30.
  * 历史消息获取
  */
-define(['server','imconfig','lazyload','imcommon','base','message'],function(Server,Config,Lazyload,Common,Base,Message){
+define(['server','config','lazyload','imcommon','base','message'],function(Server,Config,Lazyload,Common,Base,Message){
     var startMsgTime = '18446744073709551615';
     var startMsgId = '18446744073709551615';
     var LIMIT = 10;

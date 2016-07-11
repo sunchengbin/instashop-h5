@@ -29,7 +29,7 @@ require.config({
         city:"moudle/data/city",
         lang:"moudle/data/lang",
         //im配置
-        imconfig:'moudle/config/imconfig',
+        //imconfig:'moudle/config/imconfig',
         //im通信接口参数加密
         jsbn:"moudle/decode/jsbn",
         xxtea:"moudle/decode/xxtea",

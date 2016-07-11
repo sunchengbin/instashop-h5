@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/30.
  * 用户登录
  */
-define(['imcommon','server','imconfig'],function(Common,Server,Config){
+define(['imcommon','server','config'],function(Common,Server,Config){
     var User = {
         init : function(opts){
             var _this = this;

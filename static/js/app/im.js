@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/30.
  * 主程序js
  */
-require(['user','imconfig','history','message','imcommon','lazyload','base','dialog','city','md5','fastclick'],function(User,Config,History,Message,Common,Lazyload,Base,Dialog,City,SparkMD5,Fastclick){
+require(['user','config','history','message','imcommon','lazyload','base','dialog','city','md5','fastclick'],function(User,Config,History,Message,Common,Lazyload,Base,Dialog,City,SparkMD5,Fastclick){
     var Loading = null;
     var Index = {
         init : function(){

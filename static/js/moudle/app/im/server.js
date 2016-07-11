@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/29.
  */
-define(['base64','xxtea','rsa','imconfig'],function(Base64,Xxtea,RSA,Config){
+define(['base64','xxtea','rsa','config'],function(Base64,Xxtea,RSA,Config){
     var getSeq = (function() {
         var seq = 0;
         return function() {
