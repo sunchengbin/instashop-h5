@@ -61,18 +61,18 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     }
                     if(!_items.length || dom.is('.disable-btn')){
                         _that.cancelDisable();
-                        _that.setBtnTxt(dom,Lang.H5_CONTINUE_ORDER);
+                        _that.setBtnTxt(dom,Lang.H5_OK_ICON);
                         return;
                     }
                     var _data = _this.getData();
                     if(!_data){
                         _that.cancelDisable();
-                        _that.setBtnTxt(dom,Lang.H5_CONTINUE_ORDER);
+                        _that.setBtnTxt(dom,Lang.H5_OK_ICON);
                         return;
                     }
                     if($('.j_check_box').is('.icon-checkbox-font')){
                         _that.cancelDisable();
-                        _that.setBtnTxt(dom,Lang.H5_CONTINUE_ORDER);
+                        _that.setBtnTxt(dom,Lang.H5_OK_ICON);
                         Dialog.tip({
                             top_txt : '',//可以是html
                             body_txt : '<p class="dialog-body-p">aggree is must checked</p>'
@@ -86,7 +86,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         type : 'POST',
                         success : function(obj){
                             _that.cancelDisable();
-                            _that.setBtnTxt(dom,Lang.H5_CONTINUE_ORDER);
+                            _that.setBtnTxt(dom,Lang.H5_OK_ICON);
                             if(obj.code == 200){
                                 var _post_price = $('.j_logistics_info').attr('data-price'),
                                     _total = (_post_price&&_post_price>0)?(Number(_post_price)+Number(_this.countSum(Cart().getCarts()))):_this.countSum(Cart().getCarts());
@@ -142,7 +142,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         },
                         error : function(error){
                             _that.cancelDisable();
-                            _that.setBtnTxt(dom,Lang.H5_CONTINUE_ORDER);
+                            _that.setBtnTxt(dom,Lang.H5_OK_ICON);
                         }
                     });
                 }
