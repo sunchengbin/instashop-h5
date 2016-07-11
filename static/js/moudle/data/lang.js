@@ -301,8 +301,8 @@ define([],function(){
             'H5_DISCOUTN_CAN_NOT_ABOVE_COUNT':'Tidak bisa melebihi batas maksimum pembelian',
             'H5_DCCORDING_TO_THE_ORIGINAL_PRICE_TO_BUY':'Program diskon belum dimulai. Kamu akan membeli dengan harga normal',
             'H5_LOGISTICS_DETAIL':'Detail pengiriman',
-            'H5_SHOP_DELETE':'For violation Instashop use agreement,<br>the shop has been deleted',
-            'H5_USE_AGREE':'已阅读并同意Instashop使用协议',
+            'H5_SHOP_DELETE':'Akun ini telah dihapus karena melanggar syarat dan ketentuan penggunaan Instashop',
+            'H5_USE_AGREE':'Saya telah membaca dan memahami syarat dan ketentuan penggunaan Instashop',
             'H5_TERMS_KEYWORD':'Syarat dan ketentuan pengguna'
         }
     };
