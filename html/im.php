@@ -43,6 +43,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     </footer>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/im.js?v=1"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/im.js?v=1468203501682"></script>
 </body>
 </html>
