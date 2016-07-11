@@ -351,7 +351,7 @@ iframe{
     margin:-20px 0 0 -20px;
     width: 40px;
     height: 40px;
-    background-color: #fff;
+    background-color: #43CB9C;
     -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
     animation: sk-rotateplane 1.2s infinite ease-in-out;
 }

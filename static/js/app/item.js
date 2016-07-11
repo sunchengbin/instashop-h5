@@ -36,11 +36,12 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             this.handleFn();
         },
         getImNum : function(){
-            var im_id = Base.others.getCookie('insta-im-id');
-            if (!im_id) {
-                im_id = Base.others.getCookie('test-insta-im-id');
-            }
-            var toImId = init_data.item.shop['im_id'];
+            //var im_id = Base.others.getCookie('insta-im-id');
+            //if (!im_id) {
+            //    im_id = Base.others.getCookie('test-insta-im-id');
+            //}
+            var im_id = localStorage.getItem('UID'),//im页面种如cookie
+                toImId = init_data.item.shop['im_id'];
             if (im_id && toImId) {
                 var reqData = {
                     edata: {
@@ -50,6 +51,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     }
                 };
                 Ajax.getJsonp(Config.host.actionUrl+Config.actions.imNum + '?param=' + JSON.stringify(reqData), function(data){
+                    //alert(data.count);
                     if (data && data.count > 0) {
                         $('.j_im_num').show();
                     } else {
@@ -58,6 +60,29 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 });
             }
         },
+        //getImNum : function(){
+        //    var im_id = Base.others.getCookie('insta-im-id');
+        //    if (!im_id) {
+        //        im_id = Base.others.getCookie('test-insta-im-id');
+        //    }
+        //    var toImId = init_data.item.shop['im_id'];
+        //    if (im_id && toImId) {
+        //        var reqData = {
+        //            edata: {
+        //                action: 'unreadnum',
+        //                uid: toImId,
+        //                uid2: im_id
+        //            }
+        //        };
+        //        Ajax.getJsonp(Config.host.actionUrl+Config.actions.imNum + '?param=' + JSON.stringify(reqData), function(data){
+        //            if (data && data.count > 0) {
+        //                $('.j_im_num').show();
+        //            } else {
+        //                $('.j_im_num').hide();
+        //            }
+        //        });
+        //    }
+        //},
         discountTime : function(nowTime,endTime){
             var _nt = this.datetime_to_unix(nowTime),
                 _et = this.datetime_to_unix(endTime),

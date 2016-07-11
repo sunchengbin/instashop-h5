@@ -89,6 +89,12 @@ define(['base'],function(Base){
                     _url = msg.match(/http\:\S+\/detail\/\d+/g);
                 msg = other_arr[0]+'<a class="" href="'+_url+'">'+_url+'</a>'+other_arr[1];
             }
+            if(/http\:\S+\/o\/\S{5}/g.test(msg)){
+                var other_arr = msg.split(/http\:\S+\/o\/\S{5}/g),
+                    _url = msg.match(/http\:\S+\/o\/\S{5}/g);
+                msg = other_arr[0]+'<a class="" href="'+_url+'">'+_url+'</a>'+other_arr[1];
+                msg = msg.replace(/\n/g, "<br>");
+            }
             return msg;
         },
         _JSONP: 0,

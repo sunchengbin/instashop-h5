@@ -41,11 +41,11 @@ define(['imcommon','server','imconfig'],function(Common,Server,Config){
             localStorage.setItem('UID',result.data[ 0 ].body.uid);
             localStorage.setItem('IMTOKEN',result.data[ 0 ].body.im_token);
             localStorage.setItem('IMSESSION',result.data[ 1 ].IMSession);
-            var uid = localStorage.getItem( 'UID');
-            var host = /api\.instashop\.co\.id/g.test(Config.host.phpHost) ? 'http://instashop.co.id' : 'http://www-test.instashop.co.id';
-            if (uid) {//存储imsession到主域名下面,为了解决h5和im之间的消息提示出现的跨域问题.
-                Common.getJSONP(host + '/html/router/im.php?im_id=' + uid + '&callback=callbak', function (data) {})
-            }
+            //var uid = localStorage.getItem( 'UID');
+            //var host = /api\.instashop\.co\.id/g.test(Config.host.phpHost) ? 'http://instashop.co.id' : 'http://www-test.instashop.co.id';
+            //if (uid) {//存储imsession到主域名下面,为了解决h5和im之间的消息提示出现的跨域问题.
+            //    Common.getJSONP(host + '/html/router/im.php?im_id=' + uid + '&callback=callbak', function (data) {})
+            //}
         }
     };
     return User;
