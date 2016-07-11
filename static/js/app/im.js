@@ -59,19 +59,18 @@ require(['user','imconfig','history','message','imcommon','lazyload','base','dia
                 document.querySelector('.j_footer').style.height = '45px';
                 _this.loadingShow();
                 Message.sendMessage(localStorage.getItem('UID'),JSON.parse(localStorage.getItem('SELLERINFO'))[_this.getSid()].uid, _txt,1,function(){
-
                     _this.loadingHide();
                 });
+            });
+            $('body').on('click','.j_go_shop',function(){//发送消息
+                location.href = '/s/'+Common.getSid()
             });
             $('[name="img"]').on('change',function(e){//上传图片
                 _this.loadingShow();
                 _this.upImgFn(e);
             });
             $('body').on('keyup','.j_message_txt',function(){
-                var _dom = $(this);
                 autoGrow(document.querySelector('.j_message_txt'));
-                //$('.msg-count-box').html(Common.HTMLEnCode(_dom.val()));
-                //_dom.height($('.msg-count-box').height());
             });
             function autoGrow (oField) {
                 if (oField.scrollHeight > oField.clientHeight) {

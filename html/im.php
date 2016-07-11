@@ -18,7 +18,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 <body>
     <nav class="header ks-clear">
         <p class="shop-name j_shop_name"></p>
-        <a href="javascript:history.back();" class="">Toko</a>
+        <a href="javascript:;" class="j_go_shop">Toko</a>
     </nav>
     <section class="message-wraper j_message_box">
         <ul class="message-ul j_message_wraper">
