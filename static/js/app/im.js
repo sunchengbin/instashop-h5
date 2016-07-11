@@ -240,7 +240,8 @@ require(['user','imconfig','history','message','imcommon','lazyload','base','dia
             var _url = location.href,
                 _arr = _url.split('/'),
             //_sid = _arr[(_arr.length-1)].split('?')[0];
-                _sid = Base.others.getUrlPrem('seller_id');
+            //    _sid = Base.others.getUrlPrem('seller_id');
+                _sid = _arr[(_arr.length-1)];
             if(!_sid){
                 _sid = 40732;
             }

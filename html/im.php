@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
     <title>instashop-im</title>
-    <link href="<?=STATIC_HOST?>/css/dist/app/im_index.css?v=1" rel="stylesheet">
+    <link href="<?=STATIC_HOST?>/css/dist/app/im_index.css?v=1468204248334" rel="stylesheet">
 </head>
 <body>
     <nav class="header ks-clear">
@@ -43,6 +43,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     </footer>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/im.js?v=1468203501682"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/im.js?v=1468204248334"></script>
 </body>
 </html>
