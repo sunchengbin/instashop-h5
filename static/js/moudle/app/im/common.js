@@ -239,6 +239,7 @@ define(['base'],function(Base){
             var _ww = width?width:Math.ceil(window.outerWidth/3),
                 _this = this,
                 _url = url.split('?')[0];
+            alert(_ww)
             url = _url + '?w='+_ww;
             return _this.getImageUrl(url,true);
         },
