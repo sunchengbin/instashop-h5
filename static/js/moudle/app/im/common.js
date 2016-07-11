@@ -78,7 +78,6 @@ define(['base'],function(Base){
             if(/http\:\/\/imghk0\.geilicdn\.com/g.test(msg)){//图片
                 //msg = '<div class="lazy-img" style="width:'+Math.ceil(window.outerWidth/3)+'px;background-image:url('+this.cutImg(msg)+')"></div>';
                 var _w = Math.ceil($(window).width()/3);
-                alert(_w)
                 if(_w > 120 || _w == 0){_w = 120}
                 var _oh = Base.others.getUrlPrem('h',msg),
                     _ow = Base.others.getUrlPrem('w',msg),
