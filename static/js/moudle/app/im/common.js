@@ -3,40 +3,13 @@
  */
 define(['base'],function(Base){
     var common = {
-
-        /**
-         * 将 plain object 的 key 全部转换成 camel 形式
-         * @param  {object} obj 要转换的原始 object
-         * @return {object}     转换后的新 object
-         */
-        _toCamelForObjectKey: function (obj) {
-            var newObj = {}
-            for (var k in obj) {
-                newObj[common._toCamel(k)] = obj[k]
-            }
-            return newObj
-        },
-
-        /**
-         * 将一个 _ 形式字符串的转换成 camel 形式
-         */
-        _toCamel: function (str) {
-            var arr = str.split('_')
-            for (var i = 1; i < arr.length; i++) {
-                arr[i] = arr[i][0].toUpperCase() + arr[i].slice(1)
-            }
-            return arr.join('')
-        },
-
-
-        HTMLDeCode: function (str) {
+        HTMLDeCode: function (str) {//解码html展示格式
             if (!str) return '';
-            var s = "";
             if (str.length == 0) return "";
             if(/\&lt\;script/g.test(str)){
                 return str;
             }
-            s = str.replace(/&lt;/g, "<");
+            var s = str.replace(/&lt;/g, "<");
             s = s.replace(/&gt;/g, ">");
             s = s.replace(/&nbsp;/g, "\r");
             s = s.replace(/'/g, "\'");
@@ -44,39 +17,32 @@ define(['base'],function(Base){
             //s = s.replace(/<br>/g, "\n");
             return s;
         },
-        HTMLEnCode: function (str) {
-            if (!str) return '';
-            var s = "";
-            if (str.length == 0) return "";
-            s = str.replace(/</g, "&lt;");
-            s = s.replace(/>/g, "&gt;");
-            s = s.replace(/\r/g, "&nbsp;");
-            s = s.replace(/\'/g, "'");
-            s = s.replace(/\"/g, "&quot;");
-            s = s.replace(/\n/g, "<br>");
+        HTMLEnCode: function (str) {//转换成展示格式
+            if (!str || str.length == 0) return '';
+            var s = str.replace(/</g, "&lt;");
+                s = s.replace(/>/g, "&gt;");
+                s = s.replace(/\r/g, "&nbsp;");
+                s = s.replace(/\'/g, "'");
+                s = s.replace(/\"/g, "&quot;");
+                s = s.replace(/\n/g, "<br>");
             return s;
         },
-        enCode: function(str){
-            if (!str) return '';
-            var s = "";
-            if (str.length == 0) return "";
-            s = str.replace(/</g, "&lt;");
-            s = s.replace(/>/g, "&gt;");
-            s = s.replace(/\r/g, "&nbsp;");
-            s = s.replace(/\'/g, "'");
-            s = s.replace(/\"/g, "&quot;");
-            //s = s.replace(/\n/g, "<br>");
+        enCode: function(str){//发送字段的转译模式
+            if (!str || str.length == 0) return '';
+            var s = str.replace(/</g, "&lt;");
+                s = s.replace(/>/g, "&gt;");
+                s = s.replace(/\r/g, "&nbsp;");
+                s = s.replace(/\'/g, "'");
+                s = s.replace(/\"/g, "&quot;");
             return s;
         },
         transAddressMsg : function(msg){
             if(/INSTASHOP\_H5\_IM\_MESSAGE\_TYPE\:ADDRESS/g.test(msg)){
-                //msg = this.HTMLDeCode(msg);
                 msg = msg.replace(/INSTASHOP\_H5\_IM\_MESSAGE\_TYPE\:ADDRESS/g,'');
                 msg = msg.replace(/\[/g,'[<a class="j_address" href="javascript:;">');
                 msg = msg.replace(/\]/g,'</a>]');
             }
             if(/http\:\/\/imghk0\.geilicdn\.com/g.test(msg)){//图片
-                //msg = '<div class="lazy-img" style="width:'+Math.ceil(window.outerWidth/3)+'px;background-image:url('+this.cutImg(msg)+')"></div>';
                 var _w = Math.ceil($(window).width()/3);
                 if(_w > 120 || _w == 0){_w = 120}
                 var _oh = Base.others.getUrlPrem('h',msg),
@@ -97,26 +63,7 @@ define(['base'],function(Base){
             }
             return msg;
         },
-        _JSONP: 0,
-        getJSONP: function (url, callback) {
-            var jsonpId = 'jsonp' + common._JSONP++;
-            var script = document.createElement('script');
-            script.src = url.indexOf('?') === -1 ?
-            url + '?' + 'callback' + '=' + jsonpId :
-            url + '&' + 'callback' + '=' + jsonpId;
-            window[jsonpId] = function (response) {
-                try {
-                    //console.log('getJSONP', response)
-                    callback(response);
-                }
-                finally {
-                    delete window[jsonpId];
-                    script.parentNode.removeChild(script);
-                }
-            };
-            document.body.appendChild(script);
-        },
-        handleTime: function (str) {
+        handleTime: function (str) {//历史消息时间点转换
             var that = this;
             if (!str) {
                 return "";
@@ -152,18 +99,12 @@ define(['base'],function(Base){
                 return ("" + str).length > 1 ? str : "0" + str;
             }
         },
-        testTime : function(time){
+        testTime : function(time){//验证消息时间是否超过当前浏览器时间3分钟,超过就显示对话时间
             var _now_time = (new Date()).getTime();
             if((_now_time-time) > 180000){
                 return true;
             }
             return false;
-        },
-        getRequestParam: function (param, uri) {
-            var value;
-            uri = uri || window.location.href;
-            value = uri.match(new RegExp('[\?\&]' + param + '=([^\&\#]*)([\&\#]?)', 'i'));
-            return value ? decodeURIComponent(value[1]) : value;
         },
         getSid : function(){//当前用户sellerid
             var _url = location.href,
@@ -176,12 +117,12 @@ define(['base'],function(Base){
             }
             return _sid;
         },
-        ScorllToBottom : function(){
+        ScorllToBottom : function(){//滚动到底部
             setTimeout(function(){
                 $('.j_message_box').scrollTop(9999);
             },100);
         },
-        getLogoUrl : function(url){
+        getLogoUrl : function(url){//获取对话者头像
             if(url){
                 return this.cutImg(url);
             }
@@ -250,7 +191,7 @@ define(['base'],function(Base){
             url = _url + '?w='+_ww;
             return _this.getImageUrl(url,true);
         },
-        insertSellerMsg : function(msg,time){
+        insertSellerMsg : function(msg,time){//创建商家回话消息框
             var _msg = msg,
                 _this = this,
                 _sid = _this.getSid();
@@ -269,7 +210,7 @@ define(['base'],function(Base){
             return _htm;
 
         },
-        insertUserMsg : function(msg,time){
+        insertUserMsg : function(msg,time){//创建用户会话框
             var _msg = msg,
                 _this = this,
                 _htm = '<li>'

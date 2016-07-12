@@ -238,26 +238,18 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
             var _this = this;
             return {
                 sid : '',
-                //sid : _this.getSid(),
                 uss : localStorage.getItem('UID'),
                 callback: callback
             }
         },
         getSid : function(){//当前用户sellerid
-            var _url = location.href,
-                _arr = _url.split('/'),
-            //_sid = _arr[(_arr.length-1)].split('?')[0];
-            //    _sid = Base.others.getUrlPrem('seller_id');
-                _sid = _arr[(_arr.length-1)];
-            if(!_sid){
-                _sid = 40732;
-            }
-            return _sid;
+            return Common.getSid();
         },
         getSellerInfo : function(opts){//获取用户id
             var _this = this,
                 _info = localStorage.getItem('SELLERINFO');
             if(_info && JSON.parse(_info)[_this.getSid()]){
+                document.title = JSON.parse(_info)[_this.getSid()].shop_name;
                 opts && opts.callback && opts.callback(JSON.parse(_info));
                 return;
             }
@@ -267,9 +259,9 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
                 dataType:'jsonp',
                 data : {user_id:_this.getSid()},
                 success : function(result){
-                    //console.log(result);
                     if(result.status.status_code == 0){
                         _this.saveSellerInfo(result.result);
+                        document.title = result.result.shop_name;
                         opts && opts.callback && opts.callback(JSON.parse(localStorage.getItem('SELLERINFO')));
                     }else{
 

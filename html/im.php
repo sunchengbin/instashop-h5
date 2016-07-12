@@ -12,8 +12,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <title>instashop-im</title>
-    <link href="<?=STATIC_HOST?>/css/dist/app/im_index.css?v=1468236003384" rel="stylesheet">
+    <title></title>
+    <link href="<?=STATIC_HOST?>/css/dist/app/im_index.css?v=1468309054554" rel="stylesheet">
 </head>
 <body>
     <nav class="header ks-clear">
@@ -43,6 +43,15 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     </footer>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/im.js?v=1468236003384"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/im.js?v=1468309054554"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-78448705-7', 'auto');
+        ga('send', 'pageview');
+    </script>
 </body>
 </html>
