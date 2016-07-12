@@ -14,6 +14,7 @@ define([],function(){
             imgUrl : 'http://m-test.instashop.co.id/images',
             hrefUrl : 'http://m-test.instashop.co.id/html/',
             imHost : 'http://10.5.15.10:2000',
+            //imUserNameHost : 'http://10.5.15.10:2040/',//存储im用户名字
             phpHost : 'http://10.5.15.10:8888/instashop/instashop/im/',
             hrefHost : 'http://m-test.instashop.co.id/html'
             //线上
@@ -34,6 +35,7 @@ define([],function(){
             address : 'html/address.html'
         },
         actions : {
+            setUserName : 'set_user_memo',//设置app中用户的name
             getUserInfo : 'getUserInfo',//获取用户信息
             shopList : 'v1/shops/',//商家首页商品数据获取接口
             testCart : 'v1/carts/',//验证购物车商品是否可以下单

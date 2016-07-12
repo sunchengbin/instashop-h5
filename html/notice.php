@@ -53,6 +53,12 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
       font-size: 1.6rem;
       color: #fff;
   }
+  img{
+    width:100%;
+  }
+  p{
+      word-break: break-all;
+  }
   </style>
   <title>notice</title>
 </head>

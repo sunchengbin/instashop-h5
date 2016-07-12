@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/30.
  * 主程序js
  */
-require(['user','config','history','message','imcommon','lazyload','base','dialog','city','md5','fastclick'],function(User,Config,History,Message,Common,Lazyload,Base,Dialog,City,SparkMD5,Fastclick){
+require(['user','config','history','message','imcommon','lazyload','base','dialog','city','md5','fastclick','ajax'],function(User,Config,History,Message,Common,Lazyload,Base,Dialog,City,SparkMD5,Fastclick,Ajax){
     var Loading = null;
     var Index = {
         init : function(){
@@ -15,6 +15,7 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
                     $('.j_shop_name').html(data.shop_name);
                     User.init(_this.getOpts(function(result){
                         _this.handleFn();
+                        //_this.sendUserNameToApp();
                         History.init(data.uid,function(){
                             Message.msgListen();
                             Common.ScorllToBottom();
@@ -283,6 +284,35 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
                 _data[info.id] = info;
             }
             _data && localStorage.setItem('SELLERINFO',JSON.stringify(_data));
+        },
+        sendUserNameToApp : function(){
+            var _this = this,
+                _shop_data = localStorage.getItem('ShopData'),
+                _address = _shop_data?JSON.parse(_shop_data).Address:null;
+                if(!_address){return;}
+            var _uid = localStorage.getItem('UID'),
+                _uid2 = JSON.parse(localStorage.getItem('SELLERINFO'))[_this.getSid()].uid;
+            Ajax.postJsonp({
+                url :Config.actions.setUserName,
+                data : {
+                    uid:_uid,//用户imid
+                    uid2:_uid2,//商家imid
+                    memo:_address.name
+                },
+                type : 'GET',
+                success : function(obj){
+
+                },
+                error : function(error){
+                    Dialog.confirm({
+                        top_txt : '',//可以是html
+                        body_txt : '<p class="dialog-body-p">error</p>',
+                        cf_fn : function(){
+                            location.reload();
+                        }
+                    });
+                }
+            });
         }
     };
     Index.init();

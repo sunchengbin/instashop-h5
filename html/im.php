@@ -52,6 +52,18 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
         ga('create', 'UA-78448705-7', 'auto');
         ga('send', 'pageview');
+        function canUseWebP() {
+            var elem = document.createElement('canvas');
+
+            if (!!(elem.getContext && elem.getContext('2d'))) {
+                // was able or not to get WebP representation
+                return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+            }
+            else {
+                // very old browser like IE 8, canvas not supported
+                return false;
+            }
+        }
     </script>
 </body>
 </html>
