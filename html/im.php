@@ -45,25 +45,14 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/im.js?v=1468309054554"></script>
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-78448705-7', 'auto');
-        ga('send', 'pageview');
-        function canUseWebP() {
-            var elem = document.createElement('canvas');
+      ga('create', 'UA-78448705-7', 'auto');
+      ga('send', 'pageview');
 
-            if (!!(elem.getContext && elem.getContext('2d'))) {
-                // was able or not to get WebP representation
-                return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
-            }
-            else {
-                // very old browser like IE 8, canvas not supported
-                return false;
-            }
-        }
     </script>
 </body>
 </html>
