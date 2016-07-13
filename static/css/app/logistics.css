@@ -12,6 +12,18 @@ body{
     color: #43CB9C;
     padding: 2rem 0;
     margin: 0 1rem;
+    position: relative;
+    /*border-bottom: 1px solid #d8d8d8;*/
+}
+.logistics-id::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
     border-bottom: 1px solid #d8d8d8;
 }
 .logistics-state{

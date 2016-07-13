@@ -23,9 +23,22 @@ body .address-list{
     padding:1rem;
     height: 2.4rem;
     line-height: 2.4rem;
-    border-bottom: 1px solid #ececec;
+    /*border-bottom: 1px solid #ececec;*/
+    position: relative;
 }
-.user-tel{
+.info-box::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
+}
+.user-tel::after{
+    height: 0;
     border-bottom: none;
 }
 .info-box input{
@@ -112,13 +125,15 @@ body .address-list{
     position: relative;
 }
 .address-list div:after{
-    content: ' ';
     position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:0;
     height: 1px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #ececec;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
 }
 .address-list div:last-child::after{
     display:none ;

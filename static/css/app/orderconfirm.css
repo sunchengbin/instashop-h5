@@ -52,7 +52,7 @@ body{
     color: #999;
     line-height: 1.8rem;
 }
-.cart-item:last-child{
+.cart-item:last-child::after{
     border-bottom: none;
 }
 .user-address-info i,.logistics-box i,.cart-item i{
@@ -96,7 +96,7 @@ body{
     padding-bottom: 2rem;
 }
 .shop-info{
-    border-bottom: 1px solid #d8d8d8;
+    border-bottom: 1px solid #eee;
     padding: 1rem 0;
 }
 .shop-info img{
@@ -134,9 +134,29 @@ textarea{
     position: relative;
     padding: 1rem 0;
     font-size: 1.4rem;
-    border-top: 1px solid #d8d8d8;
-    border-bottom: 1px solid #d8d8d8;
     overflow: hidden;
+}
+.buyer-note-p::before{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    top:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
+}
+.buyer-note-p::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
 }
 .buyer-note-p span{
     position: absolute;
@@ -157,13 +177,13 @@ textarea{
 }
 .agree-info{
     font-size: 1.4rem;
-    padding: 1rem 0;
+    padding: 2rem 0;
     line-height: 2rem;
 }
 .agree-info i{
     font-size: 2.2rem;
     color: #43CB9B;
-    padding: 0 1rem;
+    padding-right:1rem;
 }
 .agree-info a{
     /*margin-left: 1rem;*/
