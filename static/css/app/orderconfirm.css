@@ -96,8 +96,20 @@ body{
     padding-bottom: 2rem;
 }
 .shop-info{
-    border-bottom: 1px solid #eee;
+    /*border-bottom: 1px solid #eee;*/
     padding: 1rem 0;
+    position: relative;
+}
+.shop-info::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
 }
 .shop-info img{
     width: 3rem;
