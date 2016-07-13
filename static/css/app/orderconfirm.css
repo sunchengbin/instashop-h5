@@ -192,10 +192,14 @@ textarea{
     padding: 2rem 0;
     line-height: 2rem;
 }
+.agree-info p{
+    margin-left: 35px;
+}
 .agree-info i{
     font-size: 2.2rem;
     color: #43CB9B;
     padding-right:1rem;
+    margin-top: 1rem;
 }
 .agree-info a{
     /*margin-left: 1rem;*/
