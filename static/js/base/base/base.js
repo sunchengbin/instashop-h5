@@ -239,6 +239,13 @@ define(function(){
                 webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
             };
         },
+        //根据
+        webpLog : function(){
+            if(this.getUrlPrem('webpLog')){
+                return true;
+            }
+            return false;
+        },
         /*
         *   通过判断浏览器是否支持webp的图片优化,修改图片地址.进行图片优化.
          */
@@ -277,7 +284,8 @@ define(function(){
                 }
                 return false;
             };
-            return enable && isWebpSupported() ? url.replace('.jpg', '.jpg.webp') : url;
+            var _this = this;
+            return enable && isWebpSupported() && _this.webpLog()? url.replace('.jpg', '.jpg.webp') : url;
         },
         //替换图片url进行裁图
         cutImg : function(url,width,bg){

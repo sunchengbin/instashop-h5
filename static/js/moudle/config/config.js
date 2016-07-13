@@ -14,7 +14,7 @@ define([],function(){
             imgUrl : 'http://m-test.instashop.co.id/images',
             hrefUrl : 'http://m-test.instashop.co.id/html/',
             imHost : 'http://10.5.15.10:2000',
-            //imUserNameHost : 'http://10.5.15.10:2040/',//存储im用户名字
+            imUserNameHost : 'http://10.5.15.10:2040/',//存储im用户名字
             phpHost : 'http://10.5.15.10:8888/instashop/instashop/im/',
             hrefHost : 'http://m-test.instashop.co.id/html'
             //线上
@@ -24,6 +24,7 @@ define([],function(){
             //imgUrl : 'http://m.instashop.co.id/images',
             //hrefUrl : 'http://m.instashop.co.id/html/',
             //imHost : 'http://218.213.86.206',
+            //imUserNameHost : '',//存储im用户名字
             //phpHost : 'http://api.instashop.co.id/instashop/instashop/im/',
             //hrefHost : 'http://m.instashop.co.id/html'
         },

@@ -15,7 +15,7 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
                     $('.j_shop_name').html(data.shop_name);
                     User.init(_this.getOpts(function(result){
                         _this.handleFn();
-                        //_this.sendUserNameToApp();
+                        _this.sendUserNameToApp();
                         History.init(data.uid,function(){
                             Message.msgListen();
                             Common.ScorllToBottom();
@@ -292,25 +292,19 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
                 if(!_address){return;}
             var _uid = localStorage.getItem('UID'),
                 _uid2 = JSON.parse(localStorage.getItem('SELLERINFO'))[_this.getSid()].uid;
-            Ajax.postJsonp({
-                url :Config.actions.setUserName,
+            $.ajax({
+                url : Config.host.imUserNameHost+Config.actions.setUserName,
+                type : 'get',
                 data : {
-                    uid:_uid,//用户imid
-                    uid2:_uid2,//商家imid
+                    uid:_uid2,//商家imid
+                    uid2:_uid,//用户imid
                     memo:_address.name
                 },
-                type : 'GET',
-                success : function(obj){
+                success : function(result){
 
                 },
-                error : function(error){
-                    Dialog.confirm({
-                        top_txt : '',//可以是html
-                        body_txt : '<p class="dialog-body-p">error</p>',
-                        cf_fn : function(){
-                            location.reload();
-                        }
-                    });
+                error : function(){
+
                 }
             });
         }
