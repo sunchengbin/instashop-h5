@@ -61,8 +61,12 @@ body .address-list{
     margin-bottom:2rem;
 }
 .act{
+    color: #333;
+}
+.act i{
     color: #999;
 }
+
 .address-form-box{
     position: relative;
     width: 100%;
