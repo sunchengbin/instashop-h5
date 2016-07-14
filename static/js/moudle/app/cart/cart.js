@@ -82,36 +82,51 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                 var _discout_num = _this.getItemSkus(_shop_id)[_item_id]?(_this.getItemSkus(_shop_id)[_item_id]+opts.num):null,
                     _stock = (opts.item.is_discount && opts.item.discounting)?opts.item.discount.limit_count:opts.sku.stock;;
                 if(!_this.cart[_shop_id][opts.sku.id]){//某个商品的某个规格
-                    if(_discout_num && !_this.verifyItem(_discout_num,_stock)){
-                        Dialog.tip({
-                            top_txt : '',//可以是html
-                            body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
-                        });
-                        return;
+                    if(_stock > 0){
+                        if(_discout_num){//购物车中该商品的数量
+                            if(!_this.verifyItem(_discout_num,_stock)){
+                                Dialog.tip({
+                                    top_txt : '',//可以是html
+                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
+                                });
+                                return;
+                            }
+                        }else{//不存在该商品
+                            if(!_this.verifyItem(opts.num,_stock)){
+                                Dialog.tip({
+                                    top_txt : '',//可以是html
+                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
+                                });
+                                return;
+                            }
+                        }
                     }
+
                     _this.cart[_shop_id][opts.sku.id] = {};
                 }else{
                     var _test_num = opts.num + _this.cart[_shop_id][opts.sku.id].num;
                     if(_discout_num){
                         _test_num = _discout_num;
                     }
-                    if(_this.verifyItem(_test_num,_stock)){
-                        opts.num += _this.cart[_shop_id][opts.sku.id].num;
-                    }else{
-                        if(_discout_num){
-                            //限购数
-                            Dialog.tip({
-                                top_txt : '',//可以是html
-                                body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
-                            });
-                        }else{
-                            //alert('超出库存');
-                            Dialog.tip({
-                                top_txt : '',//可以是html
-                                body_txt : '<p class="dialog-body-p">'+Lang.H5_OVER_INVENTORY+'</p>'
-                            });
+                    if(_stock != 0) {
+                        if (_this.verifyItem(_test_num, _stock)) {
+                            opts.num += _this.cart[_shop_id][opts.sku.id].num;
+                        } else {
+                            if (_discout_num) {
+                                //限购数
+                                Dialog.tip({
+                                    top_txt: '',//可以是html
+                                    body_txt: '<p class="dialog-body-p">' + Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT + '</p>'
+                                });
+                            } else {
+                                //alert('超出库存');
+                                Dialog.tip({
+                                    top_txt: '',//可以是html
+                                    body_txt: '<p class="dialog-body-p">' + Lang.H5_OVER_INVENTORY + '</p>'
+                                });
+                            }
+                            return;
                         }
-                        return;
                     }
                 }
                 _this.cart[_shop_id][opts.sku.id] = opts;
@@ -119,12 +134,24 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                 var _discout_num = _this.getItemSkus(_shop_id)[_item_id]?(_this.getItemSkus(_shop_id)[_item_id]+opts.num):null,
                     _stock = (opts.item.is_discount && opts.item.discounting)?opts.item.discount.limit_count:opts.item.stock;
                 if(!_this.cart[_shop_id][_item_id]){
-                    if(_discout_num && !_this.verifyItem(_discout_num,_stock)){
-                        Dialog.tip({
-                            top_txt : '',//可以是html
-                            body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
-                        });
-                        return;
+                    if(_stock > 0) {
+                        if (_discout_num) {//购物车中该商品的数量
+                            if (!_this.verifyItem(_discout_num, _stock)) {
+                                Dialog.tip({
+                                    top_txt: '',//可以是html
+                                    body_txt: '<p class="dialog-body-p">' + Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT + '</p>'
+                                });
+                                return;
+                            }
+                        } else {//不存在该商品
+                            if (!_this.verifyItem(opts.num, _stock)) {
+                                Dialog.tip({
+                                    top_txt: '',//可以是html
+                                    body_txt: '<p class="dialog-body-p">' + Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT + '</p>'
+                                });
+                                return;
+                            }
+                        }
                     }
                     _this.cart[_shop_id][_item_id] = {};
                 }else{
@@ -132,23 +159,25 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                     if(_discout_num){
                         _test_num = _discout_num;
                     }
-                    if(_this.verifyItem(_test_num,_stock)){
-                        opts.num += _this.cart[_shop_id][_item_id].num;
-                    }else{
-                        if(_discout_num){
-                            //限购数
-                            Dialog.tip({
-                                top_txt : '',//可以是html
-                                body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
-                            });
+                    if(_stock != 0){
+                        if(_this.verifyItem(_test_num,_stock)){
+                            opts.num += _this.cart[_shop_id][_item_id].num;
                         }else{
-                            //alert('超出库存');
-                            Dialog.tip({
-                                top_txt : '',//可以是html
-                                body_txt : '<p class="dialog-body-p">'+Lang.H5_OVER_INVENTORY+'</p>'
-                            });
+                            if(_discout_num){
+                                //限购数
+                                Dialog.tip({
+                                    top_txt : '',//可以是html
+                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT+'</p>'
+                                });
+                            }else{
+                                //alert('超出库存');
+                                Dialog.tip({
+                                    top_txt : '',//可以是html
+                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_OVER_INVENTORY+'</p>'
+                                });
+                            }
+                            return;
                         }
-                        return;
                     }
                 }
                 _this.cart[_shop_id][_item_id] = opts;
