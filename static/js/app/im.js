@@ -15,7 +15,7 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
                     $('.j_shop_name').html(data.shop_name);
                     User.init(_this.getOpts(function(result){
                         _this.handleFn();
-                        _this.sendUserNameToApp();
+                        //_this.sendUserNameToApp();
                         History.init(data.uid,function(){
                             Message.msgListen();
                             Common.ScorllToBottom();
