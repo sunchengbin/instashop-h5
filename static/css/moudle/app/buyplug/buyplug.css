@@ -125,6 +125,7 @@
 }
 .item-num-box::after{
     position: absolute;
+    z-index: -1;
     left:-50%;
     right: -50%;
     bottom:-50%;
