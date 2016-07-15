@@ -210,7 +210,7 @@ define(['base'],function(Base){
             return _htm;
 
         },
-        insertUserMsg : function(msg,time){//创建用户会话框
+        insertUserMsg : function(msg,time,type){//创建用户会话框
             var _msg = msg,
                 _this = this,
                 _htm = '<li>'
@@ -219,6 +219,7 @@ define(['base'],function(Base){
                 +'<div class="lazy" style="background-image:url('+_this.getLogoUrl()+')"></div>'
                 +'<div class="message-box">'
                 +'<div>'
+                +(type?'<section class="j_msg_loading spinner-load"><div class="spinner-container container1"><div class="circle1"></div><div class="circle2"></div><div class="circle3"></div><div class="circle4"></div></div><div class="spinner-container container2"><div class="circle1"></div><div class="circle2"></div><div class="circle3"></div><div class="circle4"></div></div><div class="spinner-container container3"><div class="circle1"></div><div class="circle2"></div><div class="circle3"></div><div class="circle4"></div></div></section>':'')
                 +_msg
                 +'</div>'
                 +'</div>'

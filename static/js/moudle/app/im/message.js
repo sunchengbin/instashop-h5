@@ -74,7 +74,7 @@ define(['server','config','base','imcommon','lazyload'],function(Server,Config,B
             if(!mediaType){//文本消息
                 _htm = Common.insertSellerMsg(_msg,_time);
             }else{//图片消息
-                _htm = Common.insertUserMsg(Common.transAddressMsg(_msg),_time);
+                _htm = Common.insertUserMsg(Common.transAddressMsg(_msg),_time,'1');
             }
             $('.j_message_wraper').append(_htm);
             Common.ScorllToBottom();

@@ -15,7 +15,7 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
                     $('.j_shop_name').html(data.shop_name);
                     User.init(_this.getOpts(function(result){
                         _this.handleFn();
-                        //_this.sendUserNameToApp();
+                        _this.sendUserNameToApp();
                         History.init(data.uid,function(){
                             Message.msgListen();
                             Common.ScorllToBottom();
@@ -25,16 +25,14 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
                 }
             });
             window.handleIframeCall = function(result){//上传图片跨域解决办法
-                //console.log(result);
                 if(result.status.status_code == 0){
-                    //alert( Common.HTMLEnCode(result.result.big))
                     Message.sendMessage(
                         localStorage.getItem('UID'),
                         JSON.parse(localStorage.getItem('SELLERINFO'))[_this.getSid()].uid,
                         Common.HTMLEnCode(result.result.big),
                         2,
                         function(){
-                            _this.loadingHide();
+                            $('.j_msg_loading').remove();
                         });
                 }
             }
@@ -58,16 +56,17 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
                 if(!_txt){return;}
                 $('.j_message_txt').val('').css('height','30px');
                 document.querySelector('.j_footer').style.height = '45px';
-                _this.loadingShow();
+                //_this.loadingShow();
                 Message.sendMessage(localStorage.getItem('UID'),JSON.parse(localStorage.getItem('SELLERINFO'))[_this.getSid()].uid, _txt,1,function(){
-                    _this.loadingHide();
+                    //_this.loadingHide();
+                    $('.j_msg_loading').remove();
                 });
             });
             $('body').on('click','.j_go_shop',function(){//发送消息
-                location.href = '/s/'+Common.getSid()
+                location.href = '/s/'+Common.getSid();
             });
             $('[name="img"]').on('change',function(e){//上传图片
-                _this.loadingShow();
+                //_this.loadingShow();
                 _this.upImgFn(e);
             });
             $('body').on('keyup','.j_message_txt',function(){
@@ -87,8 +86,7 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
                     cf_fn : function(){
                         if(_this.sendAddressData()){
                             Message.sendMessage(localStorage.getItem('UID'),JSON.parse(localStorage.getItem('SELLERINFO'))[_this.getSid()].uid, _this.sendAddressData(),1,function(){
-                                //_this.loadingShow();
-                                //_this.loadingHide();
+                                $('.j_msg_loading').remove();
                             },'address');
                         }
                     }
