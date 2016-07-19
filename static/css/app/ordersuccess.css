@@ -23,10 +23,15 @@ section{
     display: -webkit-flex;
     flex-direction: row;
     -webkit-flex-direction: row;
+    box-orient: horizontal;
+    box-direction:normal;
 }
 .pay-info li{
     padding:0 0 1rem 0;
     position: relative;
+    flex-grow:1;
+    -webkit-flex-grow: 1;
+    box-flex:1;
 }
 .pay-info li:nth-child(2){
     padding: 0 .5rem 1rem;
@@ -162,7 +167,7 @@ footer{
 
 }
 footer .btn{
-    width: 12rem;
+    width: 48%;
 }
 .hide{
     display: none;
