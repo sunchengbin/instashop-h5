@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
     <link href="<?=STATIC_HOST?>/css/dist/app/orderdetail.css?v=1468569818807" rel="stylesheet"/>
-    <title>order detail</title>
+    <title>Detail Pesanan</title>
     <script>
         <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );

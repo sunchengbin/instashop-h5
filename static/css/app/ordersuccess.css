@@ -19,11 +19,13 @@ section{
     display: flex;
     display: -webkit-flex;
     flex-direction: row;
+    -webkit-flex-direction: row;
 }
 .pay-info li{
     padding:0 0 1rem 0;
     position: relative;
     flex-grow:1;
+    -webkit-flex-grow: 1;
 }
 .pay-info li:nth-child(2){
     padding: 0 .5rem 1rem;
@@ -155,6 +157,8 @@ footer{
     padding: 1rem;
     box-sizing: border-box;
     justify-content: space-between;
+    -webkit-justify-content: space-between;
+
 }
 footer .btn{
     width: 12rem;

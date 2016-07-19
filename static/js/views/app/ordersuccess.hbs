@@ -1,5 +1,11 @@
-<nav class="header-nav clearfix j_go_back">
-    <i class="icon iconfont fr icon-allright-font"></i>
+<nav class="header-nav clearfix ">
+    {{#if detail}}
+        <i class="icon iconfont j_go_back icon-back-font"></i>
+    {{else}}
+
+        <i class="icon iconfont fr icon-allright-font j_go_back"></i>
+    {{/if}}
+
     Informasi Pembayaran
 </nav>
 <section class="order-box">
@@ -81,6 +87,6 @@
     </div>
 </section>
 <footer>
-    <a href="{{orderUrl}}" class="btn j_plug_submit">{{lang.H5_ORDER}}</a>
-    <a href="{{shopUrl}}" class="btn confirm-btn">{{lang.H5_BROWSE_SHOP}}</a>
+    <a href="{{orderUrl}}" class="btn j_plug_submit">{{lang.H5_LOOK_ORDER}}</a>
+    <a href="{{shopUrl}}" class="btn confirm-btn">{{lang.H5_AGAIN_SHOP}}</a>
 </footer>

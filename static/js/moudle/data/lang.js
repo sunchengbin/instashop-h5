@@ -105,7 +105,9 @@ define([],function(){
             'H5_SHOP_DELETE':'因违反Instashop使用协议，<br>该店铺已被删除',
             'H5_USE_AGREE_title':'已阅读并同意',
             'H5_USE_AGREE':'Instashop使用协议',
-            'H5_TERMS_KEYWORD':'使用协议'
+            'H5_TERMS_KEYWORD':'使用协议',
+            'H5_LOOK_ORDER':'查看订单',
+            'H5_AGAIN_SHOP':'再逛逛'
         },
 
         id : {
@@ -196,7 +198,7 @@ define([],function(){
             'H5_ORDER_CONFIRM' : 'Konfirmasi',
 
             // 订单详情
-            'H5_ORDER' : 'Orderan',
+            'H5_ORDER' : 'Detail Pesanan',
 
             // 正在提交订单
             'H5_SUBMITTING_ORDER' : 'Mengajukan pesanan...',
@@ -305,7 +307,9 @@ define([],function(){
             'H5_SHOP_DELETE':'Akun ini telah dihapus karena melanggar syarat dan ketentuan penggunaan Instashop',
             'H5_USE_AGREE_title':'Saya telah membaca dan memahami ',
             'H5_USE_AGREE':'syarat dan ketentuan penggunaan Instashop',
-            'H5_TERMS_KEYWORD':'Syarat dan ketentuan pengguna'
+            'H5_TERMS_KEYWORD':'Syarat dan ketentuan pengguna',
+            'H5_LOOK_ORDER':'Lihat Pesanan',
+            'H5_AGAIN_SHOP':'Belanja Lagi'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

@@ -23,6 +23,7 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],fu
                 num : _this.countBankNum(banksInfo),
                 orderUrl : OrderInfo.url,
                 shopUrl : Config.host.host+'/s/'+OrderInfo.shop_info.id,
+                detail:getUrlPrem('detail',location.href)
             });
             $('body').prepend(IndexHtm);
             this.handleFn();
