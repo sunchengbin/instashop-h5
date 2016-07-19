@@ -82,7 +82,10 @@ section{
     padding-left:0;
     padding-right:0;
 }
-.three_info li:nth-child(3){
+.three_info_last li:nth-child(1){
+    padding-right:0;
+}
+.three_info_center li:nth-child(3){
     padding-left:.5rem;
 }
 .pay-info .two_act_info li:nth-child(2){

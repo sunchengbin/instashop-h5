@@ -51,12 +51,29 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],fu
             });
             $('body').on('click','.j_tag_li',function(){
                 var _dom = $(this),
-                    _tag_name = _dom.attr('data-tag');
+                    _tag_name = _dom.attr('data-tag'),
+                    _banksInfo = JSON.parse(localStorage.getItem('BankInfo')),
+                    _num = _this.countBankNum(_banksInfo);
+                if(_num == 3){
+                    if(_tag_name == 'mandiri'){
+                        $('.pay-info ul').addClass('three_info_center');
+                        $('.pay-info ul').removeClass('three_info_last');
+                    }else{
+                        if(_tag_name == 'bri'){
+                            $('.pay-info ul').addClass('three_info_last');
+                        }else{
+                            $('.pay-info ul').removeClass('three_info_center');
+                        }
+
+                    }
+                }
                 if(!_dom.is('.act')){
                     $('.j_tag_li').removeClass('act');
                     _dom.addClass('act');
                     $('.j_tag').addClass('hide');
                     $('.j_tag_'+_tag_name).removeClass('hide');
+                    $('.j_name').addClass('hide');
+                    $('.j_name_'+_tag_name).removeClass('hide');
                 }
 
             });
