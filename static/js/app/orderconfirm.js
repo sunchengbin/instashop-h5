@@ -94,6 +94,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                 localStorage.setItem('OrderTotal',_total);
                                 localStorage.setItem('BankInfo',_bank_info);
                                 localStorage.setItem('OrderInfo',JSON.stringify(obj.order));
+                                console.log(obj)
                                 Cart().clearCarts();
                                 location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price;
                             }else{

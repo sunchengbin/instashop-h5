@@ -7,7 +7,8 @@
 require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],function(Lang,Hbs,OrderSuccess,Config,Fastclick){
     var I = {
         init : function(){
-            var price = localStorage.getItem('OrderTotal'),
+            var _this = this,
+                price = localStorage.getItem('OrderTotal'),
                 totalPrice = priceFormat(price),
                 linkPrice = getUrlPrem('price',location.href),
                 OrderInfo = JSON.parse(localStorage.getItem('OrderInfo')),
@@ -19,7 +20,7 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],fu
                 banksInfo : banksInfo,
                 lang : Lang,
                 host : Config.host,
-                num : banksInfo,
+                num : _this.countBankNum(banksInfo),
                 orderUrl : OrderInfo.url,
                 shopUrl : Config.host.host+'/s/'+OrderInfo.shop_info.id,
             });
@@ -30,7 +31,7 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],fu
             var _num = 0;
             for(var bank in banks){
                 if(banks[bank] == 1){
-                    _num++;
+                    ++_num;
                 }
             }
             return _num;
