@@ -86,8 +86,10 @@
         </div>
     </div>
 </section>
-<footer class="clearfix">
-    <a href="{{shopUrl}}" class="btn fr confirm-btn">{{lang.H5_AGAIN_SHOP}}</a>
-    <a href="{{orderUrl}}" class="btn fl j_plug_submit">{{lang.H5_LOOK_ORDER}}</a>
-
-</footer>
+{{#if detail}}
+{{else}}
+    <footer class="clearfix">
+        <a href="{{shopUrl}}" class="btn fr confirm-btn">{{lang.H5_AGAIN_SHOP}}</a>
+        <a href="{{orderUrl}}" class="btn fl j_plug_submit">{{lang.H5_LOOK_ORDER}}</a>
+    </footer>
+{{/if}}
