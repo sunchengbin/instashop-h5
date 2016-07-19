@@ -1,12 +1,92 @@
 @import "../base/base.css";
 @import "../moudle/app/header/header.css";
+@import "../moudle/app/common/common.css";
 body{
     background-color: #F5F5F5;
+    padding-bottom: 6rem;
 }
 section{
     padding:1rem;
     font-size: 1.4rem;
     background-color: #fff;
+}
+.pay-info{
+    padding:1rem 1rem 1rem 1rem;
+    font-size: 1.4rem;
+    background-color: transparent;
+}
+.pay-info ul{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+}
+.pay-info li{
+    padding:0 0 1rem 0;
+    position: relative;
+    flex-grow:1;
+}
+.pay-info li:nth-child(2){
+    padding: 0 .5rem 1rem;
+}
+.pay-info li.act{
+    background-color: #EDEDED;
+}
+.pay-info li p{
+    background-color: #fff;
+    position: relative;
+    padding:2rem;
+}
+.pay-info li.act p{
+    background-color: #EDEDED;
+    padding-left:1.5rem;
+}
+.pay-info li::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #999;
+}
+.pay-info li.act::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    top:-50%;
+    bottom:-50%;
+    height: auto;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border: 1px solid #999;
+    border-bottom: none;
+
+}
+.three_info li:nth-child(1){
+    padding-right:.5rem;
+}
+.three_info li.act{
+    padding-left:0;
+    padding-right:0;
+}
+.three_info li:nth-child(3){
+    padding-left:.5rem;
+}
+.pay-info .two_act_info li:nth-child(2){
+    padding: 0 0 1rem .5rem;
+}
+.pay-info .two_act_info li:nth-child(1){
+    padding-right:.5rem;
+}
+.mandiri{
+    padding: 1.8rem 2rem 2.2rem;
+}
+.bank-info img{
+    min-width: 48px;
+    vertical-align: middle;
 }
 p{
     line-height: 2.4rem;
@@ -25,28 +105,28 @@ p{
     color: #aaa;
     line-height: 1.3;
 }
-.bank-info{
-    /*border-bottom:1px solid #D8D8D8;*/
-    padding-bottom: 1rem;
+.txt-box{
     position: relative;
+    padding-bottom:1rem;
+    background-color: #EDEDED;
 }
-.bank-info::after{
+.txt-box::after{
     position: absolute;
     left:-50%;
     right: -50%;
-    bottom:0;
-    height: 1px;
+    top:-50%;
+    bottom:-50%;
+    /*height: 14.5rem;*/
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
-    border-bottom: 1px solid #d8d8d8;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
 }
-.bank-info img{
-    width: 4rem;
-    margin-top:.4rem;
-    float: left;
-    vertical-align: middle;
-    margin-right:1rem;
+.pay-content,.pay-content-explain,.last-explain{
+    padding-left:.5rem;
+
 }
 .pay-content{
     padding-top:1rem;
@@ -55,7 +135,7 @@ p{
     color: #999;
 }
 .pay-content-explain{
-    margin:1rem 0;
+    padding:1rem 1rem 1rem .5rem;
     font-size: 1.3rem;
     color: #aaa;
 }
@@ -63,4 +143,22 @@ p{
     font-size: 1.8rem;
     color: #F5A623;
     font-weight: bold;
+}
+footer{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    display: -webkit-flex;
+    background-color: #fff;
+    padding: 1rem;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+footer .btn{
+    width: 12rem;
+}
+.hide{
+    display: none;
 }

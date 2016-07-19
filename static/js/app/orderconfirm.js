@@ -89,8 +89,11 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                             _that.setBtnTxt(dom,Lang.H5_OK_ICON);
                             if(obj.code == 200){
                                 var _post_price = $('.j_logistics_info').attr('data-price'),
+                                    _bank_info = JSON.stringify(obj.order.pay_info.banks),
                                     _total = (_post_price&&_post_price>0)?(Number(_post_price)+Number(_this.countSum(Cart().getCarts()))):_this.countSum(Cart().getCarts());
                                 localStorage.setItem('OrderTotal',_total);
+                                localStorage.setItem('BankInfo',_bank_info);
+                                localStorage.setItem('OrderInfo',JSON.stringify(obj.order));
                                 Cart().clearCarts();
                                 location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price;
                             }else{
@@ -111,11 +114,12 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                         if(obj.code == 200){
                                             if(obj.carts){
                                                 if(_this.testCarts(obj.carts)) {
-                                                    var _post_price = $('.j_logistics_info').attr('data-price'),
-                                                        _total = (_post_price && _post_price > 0) ? (Number(_post_price) + Number(_this.countSum(Cart().getCarts()))) : _this.countSum(Cart().getCarts());
-                                                    localStorage.setItem('OrderTotal', _total);
-                                                    Cart().clearCarts();
-                                                    location.href = Config.host.hrefUrl + 'ordersuccess.php';
+                                                    //var _post_price = $('.j_logistics_info').attr('data-price'),
+                                                    //    _total = (_post_price && _post_price > 0) ? (Number(_post_price) + Number(_this.countSum(Cart().getCarts()))) : _this.countSum(Cart().getCarts());
+                                                    //localStorage.setItem('OrderTotal', _total);
+                                                    //Cart().clearCarts();
+                                                    //location.href = Config.host.hrefUrl + 'ordersuccess.php';
+                                                    location.href = Config.host.hrefUrl+'cart.php';
                                                 }
                                             }
                                         }else{
@@ -123,7 +127,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                                 top_txt : '',//可以是html
                                                 body_txt : '<p class="dialog-body-p">error</p>',
                                                 cf_fn : function(){
-                                                    location.reload();
+                                                    location.href = Config.host.hrefUrl+'cart.php';
                                                 }
                                             });
                                         }
@@ -133,7 +137,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                             top_txt : '',//可以是html
                                             body_txt : '<p class="dialog-body-p">error</p>',
                                             cf_fn : function(){
-                                                location.reload();
+                                                location.href = Config.host.hrefUrl+'cart.php';
                                             }
                                         });
                                     }

@@ -1,7 +1,9 @@
 @import "../static/css/base/base.css";
 @import "../static/css/moudle/app/header/header.css";
+@import "../static/css/moudle/app/common/common.css";
 body{
     background-color: #F5F5F5;
+    padding-bottom: 6rem;
 }
 section{
     padding:1rem;
@@ -19,11 +21,20 @@ section{
     flex-direction: row;
 }
 .pay-info li{
-    padding:0 0 1rem .5rem;
+    padding:0 0 1rem 0;
     position: relative;
+    flex-grow:1;
+}
+.pay-info li:nth-child(2){
+    padding: 0 .5rem 1rem;
 }
 .pay-info li.act{
     background-color: #EDEDED;
+}
+.pay-info li p{
+    background-color: #fff;
+    position: relative;
+    padding:2rem;
 }
 .pay-info li.act p{
     background-color: #EDEDED;
@@ -54,16 +65,21 @@ section{
     border-bottom: none;
 
 }
-.bank-info{
-    background-color: #fff;
-    position: relative;
-    padding:2rem;
+.center_act li:nth-child(1){
+    padding-right:.5rem;
+}
+.center_act li.act{
+    padding-left:0;
+    padding-right:0;
+}
+.center_act li:nth-child(3){
+    padding-left:.5rem;
 }
 .mandiri{
     padding: 1.8rem 2rem 2.2rem;
 }
 .bank-info img{
-    width: 100%;
+    width: 48px;
     vertical-align: middle;
 }
 p{
@@ -121,4 +137,19 @@ p{
     font-size: 1.8rem;
     color: #F5A623;
     font-weight: bold;
+}
+footer{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    display: -webkit-flex;
+    background-color: #fff;
+    padding: 1rem;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+footer .btn{
+    width: 12rem;
 }

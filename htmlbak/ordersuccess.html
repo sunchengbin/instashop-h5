@@ -24,19 +24,19 @@
         </p>
     </section>
     <section class="pay-info">
-        <ul class="clearfix">
-            <li class="act">
-                <p class="bank-info">
+        <ul class="clearfix center_act">
+            <li class="tag">
+                <p class="bank-info bca">
                     <img src="../static/images/app/bca.png"/>
                 </p>
             </li>
-            <li>
+            <li class="act tag" data-li="center">
                 <p class="bank-info mandiri">
                     <img class="" src="../static/images/app/mandiri.png"/>
                 </p>
             </li>
-            <li>
-                <p class="bank-info">
+            <li class="tag">
+                <p class="bank-info bri">
                     <img src="../static/images/app/bri.png"/>
                 </p>
             </li>
@@ -59,6 +59,10 @@
             </div>
         </div>
     </section>
+    <footer>
+        <button class="btn j_plug_submit">查看订单</button>
+        <button class="btn confirm-btn">再逛逛</button>
+    </footer>
     <script>
         var price = localStorage.getItem('OrderTotal'),
             data = JSON.parse(localStorage.getItem('ShopData')),
@@ -85,5 +89,6 @@
             return result;
         }
     </script>
+    <script src="../static/js/base/require-zepto.js"></script>
 </body>
 </html>

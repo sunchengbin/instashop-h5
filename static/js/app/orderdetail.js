@@ -4,6 +4,8 @@
 require(['lang','hbs','text!views/app/orderdetail.hbs','config','base','common'],function(Lang,Hbs,OrderDetail,Config,Base,Common) {
     var OD = {
         init : function(){
+            localStorage.setItem('BankInfo',JSON.stringify(init_data.order.pay_info.banks));
+            localStorage.setItem('OrderInfo',JSON.stringify(init_data.order));
             var ItemHtm = '<div>'+Lang.H5_LOADING+'</div>';
             if(init_data){
                 ItemHtm= Hbs.compile(OrderDetail)({

@@ -154,7 +154,7 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                                         _addr = _address.street + ',' + _address.country + ',' + _address.city + ',' + _address.province;
                                     setTimeout(function(){
                                         var _item_str = JSON.stringify(_that.getAddressItems());
-                                        location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+reqData.edata.seller_id+'&addr='+_addr+'&items='+_item_str;
+                                        location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+reqData.edata.seller_id+'&addr='+encodeURIComponent(_addr)+'&items='+encodeURIComponent(_item_str);
                                     },1);
                                 }
                             }
