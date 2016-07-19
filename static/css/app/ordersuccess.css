@@ -21,16 +21,12 @@ section{
     display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
-
     flex-direction: row;
     -webkit-flex-direction: row;
 }
 .pay-info li{
     padding:0 0 1rem 0;
     position: relative;
-    flex-grow:1;
-    box-flex:1;
-    -webkit-flex-grow: 1;
 }
 .pay-info li:nth-child(2){
     padding: 0 .5rem 1rem;
