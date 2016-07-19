@@ -267,7 +267,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     "wduss": "",
                     "address_id": "0",
                     "note": "",
-                    "pay_way": "11",
+                    "pay_way": "13",
                     "pay_type": 1,
                     "seller_id": _seller_id,
                     "buyer_id": "0",
