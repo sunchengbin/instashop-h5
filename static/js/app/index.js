@@ -194,7 +194,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                     if(items[i].discounting){
                         out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
                     }else{
-                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
                     }
                     //out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
                 }
