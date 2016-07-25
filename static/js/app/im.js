@@ -8,6 +8,7 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
         init : function(){
             var _this = this;
             _this.loadingShow();
+            _this.handleFn();
             _this.getSellerInfo({
                 callback : function(info){
                     //渲染页面

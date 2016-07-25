@@ -71,12 +71,12 @@ define(['server','config','base','imcommon','lazyload'],function(Server,Config,B
             var _msg = Common.HTMLEnCode(msgContent),
                 _htm = '',
                 _time = (new Date()).getTime();
-            if(!mediaType){//文本消息
-                _htm = Common.insertSellerMsg(_msg,_time);
-                $('.j_message_wraper').append(_htm);
-            }else{//图片消息
+            if(mediaType && mediaType == 2){//图片消息
                 //本地上传了不需要
                 _htm = Common.insertUserMsg(Common.transAddressMsg(_msg),_time,'1');
+            }else{//文本消息
+                _htm = Common.insertSellerMsg(_msg,_time);
+                $('.j_message_wraper').append(_htm);
             }
 
             Common.ScorllToBottom();
