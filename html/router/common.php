@@ -40,9 +40,9 @@ function getIco($url){
 }
 spl_autoload_register('loadClass');
 
-$static_host = C_RUNTIME_ONLINE ? 'http://static.instashop.co.id' : 'http://static-test.instashop.co.id';
-$static_font_css =C_RUNTIME_ONLINE?getFontCss('http://m.instashop.co.id/static'):getFontCss('http://m-test.instashop.co.id/static');
-$static_ico_css =C_RUNTIME_ONLINE?getIco('http://m.instashop.co.id'):getIco('http://m-test.instashop.co.id');
+$static_host = C_RUNTIME_ONLINE ? 'http://static.instashop.co.id' : 'https://static-test.instashop.co.id';
+$static_font_css =C_RUNTIME_ONLINE?getFontCss('http://m.instashop.co.id/static'):getFontCss('https://m-test.instashop.co.id/static');
+$static_ico_css =C_RUNTIME_ONLINE?getIco('http://m.instashop.co.id'):getIco('https://m-test.instashop.co.id');
 $static_dns = '<link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';
 define('STATIC_DNS', $static_dns);
 define('STATIC_FONT_CSS', $static_font_css);

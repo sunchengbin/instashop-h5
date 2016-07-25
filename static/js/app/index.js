@@ -31,7 +31,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 reqData = {
                     edata : {
                         action: 'index',
-                        page_size: 4,
+                        page_size: 10,
                         page_num: page_num
                     }
                 };
@@ -58,7 +58,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                             reqData = {
                                 edata : {
                                     action: 'index',
-                                    page_size: 4,
+                                    page_size: 10,
                                     page_num: ++page_num
                                 }
                             };

@@ -65,10 +65,32 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
             $('body').on('click','.j_go_shop',function(){//发送消息
                 location.href = '/s/'+Common.getSid();
             });
-            $('[name="img"]').on('change',function(e){//上传图片
-                //_this.loadingShow();
-                _this.upImgFn(e);
-            });
+            var reader = new FileReader();
+            reader.onload = function(e){
+                var _w = Math.ceil($(window).width()/3);
+                if(_w > 120 || _w == 0){_w = 120}
+                var _html = '<img style="width:'+_w+'px;" src="'+e.target.result+'"/>';
+                _html = Common.insertUserMsg(_html,(new Date()).getTime(),'1');
+                $('.j_message_wraper').append(_html);
+                Common.ScorllToBottom();
+            };
+            document.querySelector('[name="img"]').onchange = function(e){
+                var input = this;
+                if (input.files && input.files[0]) {
+                    reader.readAsDataURL(input.files[0]);
+                    _this.upImgFn(e);
+                }
+            };
+            //$('[name="img"]').on('change',function(e){//上传图片
+            //    //_this.loadingShow();
+            //    //通过本地file
+            //    var val = $(this).val();
+            //    //reader.readAsText(val);
+            //    if (input.files && input.files[0]) {
+            //        reader.readAsDataURL(input.files[0]);
+            //    }
+            //    _this.upImgFn(e);
+            //});
             $('body').on('keyup','.j_message_txt',function(){
                 autoGrow(document.querySelector('.j_message_txt'));
             });
@@ -111,6 +133,9 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
                     },_this.getSid(),true,_h);
                 }
             });
+        },
+        plupLoad : function(){
+
         },
         upImgFn : function(e){//上传图片处理方法
             function getParam( md5 ) {
@@ -296,7 +321,7 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
                 data : {
                     uid:_uid2,//商家imid
                     uid2:_uid,//用户imid
-                    memo:_address.name
+                    memo:encodeURIComponent(_address.name)
                 },
                 success : function(result){
 

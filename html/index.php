@@ -18,7 +18,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         include_once( dirname(__FILE__).'/../html/router/util.php' );
         $params = [
             'action' => 'index',
-            'page_size' => 4,
+            'page_size' => 10,
             'last_id' => '',
             'json' => '0'
         ];
