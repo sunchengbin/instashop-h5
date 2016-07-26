@@ -8,7 +8,10 @@ require(['user','config','history','message','imcommon','lazyload','base','dialo
         init : function(){
             var _this = this;
             _this.loadingShow();
-            _this.handleFn();
+            //Message.sendMessage(3079419392228589665,7682066903378624518, 'helloa',1,function(){
+            //    //_this.loadingHide();
+            //    $('.j_msg_loading').remove();
+            //});
             _this.getSellerInfo({
                 callback : function(info){
                     //渲染页面

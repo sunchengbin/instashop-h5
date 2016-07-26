@@ -354,6 +354,45 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         return _htm;
     });
 
+    HBS.registerHelper('quickcarts', function(carts) {
+        var _htm = '';
+        if(!carts){
+            return '<li class="empty-cart">'+Lang.H5_SHOPING_NO_GOODS+'</li>';
+        }
+        if(!Base.others.testObject(carts)){
+            for(var item in carts){
+                var _id = ((carts[item].sku&&carts[item].sku.id)?carts[item].sku.id:carts[item].item.id);
+                _htm += '<li class="clearfix cart-item j_cart_item" data-id="'+_id+'">'
+                    //+'<i class="icon iconfont j_del_cart icon-delete-font" data-id="'+_id+'"></i>'
+                    +'<img src="'+carts[item].item.img+'">'
+                    +'<div class="">'
+                    +'<p class="name">'+carts[item].item.item_name+'</p>'
+                    +(carts[item].sku&&carts[item].sku.id?'<p class="type">'+Lang.H5_SKU+':'+carts[item].sku.title+'</p>':'')
+                    +'<p class="num">'+Lang.H5_QUANTITY+':'+carts[item].num+'</p>';
+                if(carts[item].item.is_discount && carts[item].item.discounting){
+                    _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
+                }else{
+                    _htm +='<div class="price clearfix">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.price)
+                        +'<div class="item-num-box clearfix">'
+                        +'<span class="j_reduce_btn">'
+                        +'<i class="icon iconfont icon-minus-font"></i>'
+                        +'</span>'
+                        +'<input class="fl j_item_num" type="text" value="1" readonly="readonly"/>'
+                        +'<span class="j_add_btn" data-stock="'+(((carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock))+'">'
+                        +'<i class="icon iconfont icon-add-font"></i>'
+                        +'</span>'
+                        +'</div>'
+                        +'</div>';
+                }
+                _htm +='</div>'
+                    +'</li>';
+            }
+        }else{
+            _htm = '<li class="empty-cart">'+Lang.H5_SHOPING_NO_GOODS+'</li>'
+        }
+        return _htm;
+    });
+
     HBS.registerHelper('cartsconfirm', function(carts) {
         var _htm = '';
         if(!Base.others.testObject(carts)){

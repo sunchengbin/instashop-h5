@@ -174,3 +174,48 @@ footer .btn{
 .hide{
     display: none;
 }
+.top-status{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+    background: url(../../images/app/status_two.gif) no-repeat;
+    background-size: cover;
+    padding: 0;
+    font-size: 1.2rem;
+}
+.top-status::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
+}
+.top-status div{
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    align-self:center;
+    -webkit-align-self: center;
+    padding:.6rem .5rem .6rem 1.5rem;
+}
+@media only screen and (max-width: 321px) {
+    .top-status div{
+        padding:.4rem .5rem .4rem 1.5rem;
+    }
+}
+.top-status div.act{
+    color: #43cb9c;
+}
+.top-status div:last-child{
+    /*background-color: #fff;*/
+    position: relative;
+}

@@ -1,14 +1,32 @@
 <nav class="header-nav clearfix ">
     {{#if detail}}
-        <i class="icon iconfont j_go_back icon-back-font"></i>
+        {{#eq detail 1}}
+            <i class="icon iconfont j_go_back icon-back-font"></i>
+        {{/eq}}
     {{else}}
-
         <i class="icon iconfont fr icon-allright-font j_go_back"></i>
     {{/if}}
-
     Informasi Pembayaran
 </nav>
+{{#if detail}}
+    {{#eq detail 2}}
+        <section class="top-status">
+            <div >
+                1.Fill in shipping address
+            </div>
+            <div class="act">
+                2.Check your bank accsount
+                and transfer
+            </div>
+        </section>
+    {{/eq}}
+{{/if}}
 <section class="order-box">
+    {{#if detail}}
+        {{#eq detail 2}}
+            <p class="quick-order-txt">订单已生成</p>
+        {{/eq}}
+    {{/if}}
     <p class="order-info clearfix">
         <!--<span class="fr j_total"></span>-->
         Jumlah Total
@@ -87,6 +105,12 @@
     </div>
 </section>
 {{#if detail}}
+    {{#eq detail 2}}
+        <footer class="clearfix">
+            <a href="{{shopUrl}}" class="btn fr confirm-btn">{{lang.H5_AGAIN_SHOP}}</a>
+            <a href="{{orderUrl}}" class="btn fl j_plug_submit">{{lang.H5_LOOK_ORDER}}</a>
+        </footer>
+    {{/eq}}
 {{else}}
     <footer class="clearfix">
         <a href="{{shopUrl}}" class="btn fr confirm-btn">{{lang.H5_AGAIN_SHOP}}</a>

@@ -58,6 +58,8 @@ if(!$api){
 }
 unset($_GET['_path_']);
 $url = $host.$api.'?'.http_build_query($_GET);
+error_log(print_r($_GET,true),3,'/tmp/api.log');
+error_log($url,3,'/tmp/api.log');
 // echo $url;
 // var_dump( $_POST );
 $headers = dealHeaders();

@@ -12,7 +12,10 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],fu
                 totalPrice = priceFormat(price),
                 linkPrice = getUrlPrem('price',location.href),
                 OrderInfo = JSON.parse(localStorage.getItem('OrderInfo')),
-                banksInfo = JSON.parse(localStorage.getItem('BankInfo'));
+                banksInfo = JSON.parse(localStorage.getItem('BankInfo')),
+                _detail = getUrlPrem('detail',location.href);
+            var _order_url = (_detail&&_detail==1)?OrderInfo.url:Config.host.host+'o/'+getUrlPrem('order_id'),
+                shopUrl = (_detail&&_detail==1)?Config.host.host+'s/'+OrderInfo.shop_info.id:Config.host.host+'s/'+getUrlPrem('shop_id');
             if(linkPrice){totalPrice = priceFormat(linkPrice);}
             var IndexHtm = '<div>加载数据中</div>';
             IndexHtm= Hbs.compile(OrderSuccess)({
@@ -21,9 +24,9 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],fu
                 lang : Lang,
                 host : Config.host,
                 num : _this.countBankNum(banksInfo),
-                orderUrl : OrderInfo.url,
-                shopUrl : Config.host.host+'/s/'+OrderInfo.shop_info.id,
-                detail:getUrlPrem('detail',location.href)
+                orderUrl : _order_url,
+                shopUrl : shopUrl,
+                detail:_detail
             });
             $('body').prepend(IndexHtm);
             this.handleFn();
@@ -42,13 +45,15 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],fu
             var data = JSON.parse(localStorage.getItem('ShopData')),
                 from = getUrlPrem('detail',location.href),
                 _this =this;
-            document.querySelector('.j_go_back').addEventListener('click',function(){
-                if(!from){
-                    location.href = '/s/'+data.ShopInfo.id;
-                }else{
-                    history.back();
-                }
-            });
+            if(document.querySelector('.j_go_back')){
+                document.querySelector('.j_go_back').addEventListener('click',function(){
+                    if(!from){
+                        location.href = '/s/'+data.ShopInfo.id;
+                    }else{
+                        history.back();
+                    }
+                });
+            }
             $('body').on('click','.j_tag_li',function(){
                 var _dom = $(this),
                     _tag_name = _dom.attr('data-tag'),
