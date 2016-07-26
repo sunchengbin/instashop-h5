@@ -261,11 +261,11 @@ body .address-list{
     flex: 1;
     align-self:center;
     -webkit-align-self: center;
-    padding:.6rem .5rem .6rem 1.5rem;
+    padding: 1.5rem .5rem 1.5rem 2.5rem;
 }
 @media only screen and (max-width: 321px) {
     .top-status div{
-        padding:.4rem .5rem .4rem 1.5rem;
+        padding:1rem .5rem 1rem 1.5rem;
     }
 }
 .top-status div.act{
@@ -340,4 +340,10 @@ body .address-list{
 }
 .cart-item > div{
     margin-right:.5rem;
+}
+.logistics-list li{
+    padding:1rem 0 ;
+}
+.logistics-list{
+    padding: 1rem 2rem;
 }

@@ -107,7 +107,9 @@ define([],function(){
             'H5_USE_AGREE':'Instashop使用协议',
             'H5_TERMS_KEYWORD':'使用协议',
             'H5_LOOK_ORDER':'查看订单',
-            'H5_AGAIN_SHOP':'再逛逛'
+            'H5_AGAIN_SHOP':'再逛逛',
+            'H5_IN_SHOP':'进入店铺',
+            'H5_CREATE_ORDER':'生成订单'
         },
 
         id : {
@@ -309,7 +311,9 @@ define([],function(){
             'H5_USE_AGREE':'syarat dan ketentuan penggunaan Instashop',
             'H5_TERMS_KEYWORD':'Syarat dan ketentuan pengguna',
             'H5_LOOK_ORDER':'Lihat Pesanan',
-            'H5_AGAIN_SHOP':'Belanja Lagi'
+            'H5_AGAIN_SHOP':'Belanja Lagi',
+            'H5_IN_SHOP':'Masuk Toko',
+            'H5_CREATE_ORDER':'Ajukan Pesanan'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

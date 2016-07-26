@@ -13,14 +13,24 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],fu
                 linkPrice = getUrlPrem('price',location.href),
                 OrderInfo = JSON.parse(localStorage.getItem('OrderInfo')),
                 banksInfo = JSON.parse(localStorage.getItem('BankInfo')),
-                _detail = getUrlPrem('detail',location.href);
+                _detail = getUrlPrem('detail',location.href),
+                _prompt = '';
             var _order_url = (_detail&&_detail==1)?OrderInfo.url:Config.host.host+'o/'+getUrlPrem('order_id'),
                 shopUrl = (_detail&&_detail==1)?Config.host.host+'s/'+OrderInfo.shop_info.id:Config.host.host+'s/'+getUrlPrem('shop_id');
             if(linkPrice){totalPrice = priceFormat(linkPrice);}
+            if(_detail && _detail==2){
+                _prompt = {
+                    buyerName : getUrlPrem('bname',location.href),
+                    buyerPhone : getUrlPrem('bphone',location.href),
+                    sellerName : getUrlPrem('sname',location.href),
+                    cancelTime : getUrlPrem('time',location.href)
+                }
+            }
             var IndexHtm = '<div>加载数据中</div>';
             IndexHtm= Hbs.compile(OrderSuccess)({
                 totalPrice : totalPrice,
                 banksInfo : banksInfo,
+                prompt : _prompt,
                 lang : Lang,
                 host : Config.host,
                 num : _this.countBankNum(banksInfo),

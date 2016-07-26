@@ -1,22 +1,25 @@
-<nav class="header-nav clearfix ">
-    {{#if detail}}
-        {{#eq detail 1}}
+{{#if detail}}
+    {{#eq detail 1}}
+        <nav class="header-nav clearfix ">
             <i class="icon iconfont j_go_back icon-back-font"></i>
-        {{/eq}}
-    {{else}}
+            Informasi Pembayaran
+        </nav>
+    {{/eq}}
+{{else}}
+    <nav class="header-nav clearfix ">
         <i class="icon iconfont fr icon-allright-font j_go_back"></i>
-    {{/if}}
-    Informasi Pembayaran
-</nav>
+        Informasi Pembayaran
+    </nav>
+{{/if}}
+
 {{#if detail}}
     {{#eq detail 2}}
         <section class="top-status">
             <div >
-                1.Fill in shipping address
+                1.Alamat Pengiriman
             </div>
             <div class="act">
-                2.Check your bank accsount
-                and transfer
+                2.Informasi Pembayaran
             </div>
         </section>
     {{/eq}}
@@ -24,7 +27,9 @@
 <section class="order-box">
     {{#if detail}}
         {{#eq detail 2}}
-            <p class="quick-order-txt">订单已生成</p>
+            <p class="quick-order-txt">
+                Pesanan telah diproses, informasi pembayaran telah dikirim ke kamu melalui SMS  ke <span>{{prompt.buyerName}}</span> nomor HP  <span>{{prompt.buyerPhone}}</span> . Jika kamu tidak menerima SMS,jangan tutup halaman ini atau silakan screenshot untuk menyimpan informasi pembayaran ini. Mohon untuk membayar lunas pesanan ini dalam <span>{{prompt.sellerName}}</span> jam <span>{{prompt.cancelTime}}</span> atau pesanan akan dibatalkan.
+            </p>
         {{/eq}}
     {{/if}}
     <p class="order-info clearfix">
@@ -107,7 +112,7 @@
 {{#if detail}}
     {{#eq detail 2}}
         <footer class="clearfix">
-            <a href="{{shopUrl}}" class="btn fr confirm-btn">{{lang.H5_AGAIN_SHOP}}</a>
+            <a href="{{shopUrl}}" class="btn fr confirm-btn">{{lang.H5_IN_SHOP}}</a>
             <a href="{{orderUrl}}" class="btn fl j_plug_submit">{{lang.H5_LOOK_ORDER}}</a>
         </footer>
     {{/eq}}

@@ -368,16 +368,27 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     +'<div class="">'
                     +'<p class="name">'+carts[item].item.item_name+'</p>'
                     +(carts[item].sku&&carts[item].sku.id?'<p class="type">'+Lang.H5_SKU+':'+carts[item].sku.title+'</p>':'')
-                    +'<p class="num">'+Lang.H5_QUANTITY+':'+carts[item].num+'</p>';
+                    +'<p class="num">'+Lang.H5_STOCK+':'+(((carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock))+'</p>';
                 if(carts[item].item.is_discount && carts[item].item.discounting){
-                    _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
+                    //_htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
+                    _htm +='<div class="price clearfix">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)
+                        +'<div class="item-num-box clearfix">'
+                        +'<span class="j_reduce_btn">'
+                        +'<i class="icon iconfont icon-minus-font"></i>'
+                        +'</span>'
+                        +'<input class="fl j_item_num" type="text" value="'+carts[item].num+'" readonly="readonly"/>'
+                        +'<span class="j_add_btn" data-stock="'+(((carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock))+'">'
+                        +'<i class="icon iconfont icon-add-font"></i>'
+                        +'</span>'
+                        +'</div>'
+                        +'</div>';
                 }else{
                     _htm +='<div class="price clearfix">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.price)
                         +'<div class="item-num-box clearfix">'
                         +'<span class="j_reduce_btn">'
                         +'<i class="icon iconfont icon-minus-font"></i>'
                         +'</span>'
-                        +'<input class="fl j_item_num" type="text" value="1" readonly="readonly"/>'
+                        +'<input class="fl j_item_num" type="text" value="'+carts[item].num+'" readonly="readonly"/>'
                         +'<span class="j_add_btn" data-stock="'+(((carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock))+'">'
                         +'<i class="icon iconfont icon-add-font"></i>'
                         +'</span>'

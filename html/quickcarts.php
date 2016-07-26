@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   <?=STATIC_DNS?>
   <?=STATIC_ICO_CSS?>
   <?=STATIC_FONT_CSS?>
-  <title></title>
+  <title>Alamat Pengiriman</title>
   <link href="<?=STATIC_HOST?>/css/dist/app/quickcarts.css?v=1468985433680" rel="stylesheet"/>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );

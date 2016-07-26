@@ -5,18 +5,42 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
     var QuickCartsHtm = {
         init : function(){
             var _this = this,
-                _htm= Hbs.compile(QuickCarts)({
-                    carts:init_data.carts,
-                    shop:init_data.shop,
-                    address : '',
-                    name:'',
-                    telephone:'',
-                    lang:Lang
-                });
+                _data = localStorage.getItem('ShopData'),
+                _address = _data?JSON.parse(_data).Address:null;
+            if(!_address){
+                _address = {
+                    "name": "",
+                    "telephone": "",
+                    "post": "",
+                    "country_code": "62",
+                    "email": "",
+                    "address": {
+                        "province": "",//省
+                        "city": "",//市
+                        "country": "",//街道
+                        "street": ""//详细地址
+                    }
+                };
+            }else{
+                _this['province'] = _address.address.province;
+                _this['city'] = _address.address.city;
+                _this['country'] = _address.address.country;
+            }
+            var _htm= Hbs.compile(QuickCarts)({
+                carts:init_data.carts,
+                shop:init_data.shop,
+                address : _address,
+                name:'',
+                telephone:'',
+                lang:Lang
+            });
             _this.carts = init_data.carts;
             console.log(_this.getItems());
             console.log(init_data)
             $('body').prepend(_htm);
+            if(_this['province']){
+                _this.getLogistics();
+            }
             _this.handleFn();
         },
         handleFn : function(){
@@ -120,13 +144,13 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         _items = _this.getItems();
                     if(!_items.length){
                         _that.cancelDisable();
-                        _that.setBtnTxt(dom,Lang.H5_OK_ICON);
+                        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                         return;
                     }
                     var _data = _this.getData();
                     if(!_data){
                         _that.cancelDisable();
-                        _that.setBtnTxt(dom,Lang.H5_OK_ICON);
+                        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                         return;
                     }
                     Ajax.postJsonp({
@@ -135,13 +159,15 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         type : 'POST',
                         success : function(obj){
                             _that.cancelDisable();
-                            _that.setBtnTxt(dom,Lang.H5_OK_ICON);
+                            _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                             if(obj.code == 200){
-                                var _bank_info = JSON.stringify(obj.order.pay_info.banks);
+                                var _bank_info = JSON.stringify(obj.order.pay_info.banks),
+                                    _name = $.trim($('.j_name').val()),
+                                    _telephone = $.trim($('.j_tel').val());
                                 localStorage.setItem('OrderTotal',obj.order.total_price);
                                 localStorage.setItem('BankInfo',_bank_info);
                                 localStorage.setItem('OrderInfo',JSON.stringify(obj.order));
-                                location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price+'&detail=2&shop_id='+init_data.shop.id+'&order_id='+obj.order.id_hash;
+                                location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price+'&detail=2&shop_id='+init_data.shop.id+'&order_id='+obj.order.id_hash+'&bname='+_name+'&bphone='+_telephone+'&sname='+init_data.shop.name+'&time='+(init_data.shop.cancel_coutdown/3600);
                             }else{
                                 var _telephone = $.trim($('.j_tel').val());
                                 var reqData = {
@@ -165,15 +191,9 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                                         top_txt : '',//可以是html
                                                         body_txt : '<p class="dialog-body-p">error</p>',
                                                         cf_fn : function(){
-                                                            location.href = Config.host.hrefUrl+'cart.php';
+                                                            location.href = Config.host.host+'s/'+init_data.shop.id;
                                                         }
                                                     });
-                                                    //var _post_price = $('.j_logistics_info').attr('data-price'),
-                                                    //    _total = (_post_price && _post_price > 0) ? (Number(_post_price) + Number(_this.countSum(Cart().getCarts()))) : _this.countSum(Cart().getCarts());
-                                                    //localStorage.setItem('OrderTotal', _total);
-                                                    //Cart().clearCarts();
-                                                    //location.href = Config.host.hrefUrl + 'ordersuccess.php';
-                                                    //location.href = Config.host.hrefUrl+'cart.php';
                                                 }
                                             }
                                         }else{
@@ -181,7 +201,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                                 top_txt : '',//可以是html
                                                 body_txt : '<p class="dialog-body-p">error</p>',
                                                 cf_fn : function(){
-                                                    location.href = Config.host.hrefUrl+'cart.php';
+                                                    location.href = Config.host.host+'s/'+init_data.shop.id;
                                                 }
                                             });
                                         }
@@ -191,7 +211,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                             top_txt : '',//可以是html
                                             body_txt : '<p class="dialog-body-p">error</p>',
                                             cf_fn : function(){
-                                                location.href = Config.host.hrefUrl+'cart.php';
+                                                location.href = Config.host.host+'s/'+init_data.shop.id;
                                             }
                                         });
                                     }
@@ -208,7 +228,9 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
         },
         getData : function(){
             var _this = this;
-            var _name = $.trim($('.j_name').val()),
+            var _data = localStorage.getItem('ShopData'),
+                _data_json = _data?JSON.parse(_data):{},
+                _name = $.trim($('.j_name').val()),
                 _telephone = $.trim($('.j_tel').val()),
                 _province = $.trim($('.j_province').html()),
                 _city = $.trim($('.j_city').html()),
@@ -228,6 +250,8 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     "street": _street//详细地址
                 }
             };
+            _data_json.Address = _address;
+            localStorage.setItem('ShopData',JSON.stringify(_data_json));
             var _logistics_info = $('.j_logistics_info'),
                 _company = _logistics_info.length?_logistics_info.attr('data-company'):'',
                 _fee_id = _logistics_info.length?_logistics_info.attr('data-id'):'',
@@ -416,7 +440,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         top_txt : '',//可以是html
                         body_txt : '<p class="dialog-body-p">'+_msg+'</p>',
                         auto_fn : function(){
-                            location.href = Config.host.hrefUrl+'cart.php?error=confirm';
+                            location.href = Config.host.host+'s/'+init_data.shop.id;
                         }
                     });
                     return _beal;

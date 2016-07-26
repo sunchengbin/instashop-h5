@@ -4,11 +4,10 @@
             <div class="">
                 <section class="top-status">
                     <div class="act">
-                        1.Fill in shipping address
+                        1.Alamat Pengiriman
                     </div>
                     <div >
-                        2.Check your bank accsount
-                        and transfer
+                        2.Informasi Pembayaran
                     </div>
                 </section>
             </div>
@@ -17,40 +16,40 @@
                     {{{quickcarts carts}}}
                 </ul>
             </section>
-            <p class="address-title">Fill in your shipping address</p>
+            <p class="address-title">Silakan isi alamat pengirimanmu</p>
             <div class="user-info">
                 <div class="user-name info-box">
-                    <input class="j_name" type="text" value="{{name}}" placeholder="{{lang.H5_USER_NAME_PH}}"/>
+                    <input class="j_name" type="text" value="{{address.name}}" placeholder="{{lang.H5_USER_NAME_PH}}"/>
                 </div>
                 <div class="user-tel info-box">
-                    <input class="j_tel" type="tel" value="{{telephone}}" placeholder="{{lang.H5_USER_TELE_PH}}"/>
+                    <input class="j_tel" type="tel" value="{{address.telephone}}" placeholder="{{lang.H5_USER_TELE_PH}}"/>
                 </div>
             </div>
             <div class="user-address j_user_address">
                 <div class="info-box act clearfix" data-name="province">
                     <i class="icon iconfont fr icon-go-font"></i>
-                    <p class="j_province">{{#if address.province}}{{address.province}}{{else}}{{lang.H5_PROVINCE}}{{/if}}</p>
+                    <p class="j_province">{{#if address.address.province}}{{address.address.province}}{{else}}{{lang.H5_PROVINCE}}{{/if}}</p>
                 </div>
-                <div class="info-box {{#if address.city}}act{{/if}} clearfix" data-name="city">
+                <div class="info-box {{#if address.address.city}}act{{/if}} clearfix" data-name="city">
                     <i class="icon iconfont fr icon-go-font"></i>
-                    <p class="j_city">{{#if address.city}}{{address.city}}{{else}}{{lang.H5_CITY}}{{/if}}</p>
+                    <p class="j_city">{{#if address.address.city}}{{address.address.city}}{{else}}{{lang.H5_CITY}}{{/if}}</p>
                 </div>
-                <div class="info-box {{#if address.country}}act{{/if}} clearfix" data-name="country">
+                <div class="info-box {{#if address.address.country}}act{{/if}} clearfix" data-name="country">
                     <i class="icon iconfont fr icon-go-font"></i>
-                    <p class="j_country">{{#if address.country}}{{address.country}}{{else}}{{lang.H5_DISTRICT}}{{/if}}</p>
+                    <p class="j_country">{{#if address.address.country}}{{address.address.country}}{{else}}{{lang.H5_DISTRICT}}{{/if}}</p>
                 </div>
                 <div class="info-box-address">
-                    <textarea class="j_street" placeholder="{{lang.H5_DETAIL_ADDRESS}}">{{#if address.street}}{{address.street}}{{/if}}</textarea>
+                    <textarea class="j_street" placeholder="{{lang.H5_DETAIL_ADDRESS}}">{{#if address.address.street}}{{address.address.street}}{{/if}}</textarea>
                 </div>
             </div>
             {{#eq shop.express_free 0}}
             <div class="hiden j_logistics">
-                <p class="address-title">Please choose express</p>
+                <p class="address-title">{{lang.H5_SELECT_LOGISTICS_COMPANY}}</p>
                 <ul class="logistics-list j_logistics_info">
                 </ul>
             </div>
             {{/eq}}
-            <button class="btn confirm-btn j_submit_buy">{{lang.H5_OK_ICON}}</button>
+            <button class="btn confirm-btn j_submit_buy">{{lang.H5_CREATE_ORDER}}</button>
         </section>
     </section>
     <section class="address-list-box j_address_list_box">
