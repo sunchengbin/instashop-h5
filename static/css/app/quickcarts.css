@@ -347,3 +347,10 @@ body .address-list{
 .logistics-list{
     padding: 1rem 2rem;
 }
+.error-item{
+    opacity: .5;
+}
+.error-item .j_add_btn{
+    border-color: #d8d8d8;
+    background-color: #d8d8d8;
+}

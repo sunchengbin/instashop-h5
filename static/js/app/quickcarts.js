@@ -46,6 +46,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
         handleFn : function(){
             var _this = this;
             Fastclick.attach(document.body);
+            _this.subData();
             $('body').on('click','.j_add_btn',function(){
                 var _item_num = $(this).parent().find('.j_item_num'),
                     _num = Number(_item_num.val()),
@@ -145,6 +146,15 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     if(!_items.length){
                         _that.cancelDisable();
                         _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                        if( $('.error-item').length == $('.j_cart_item').length){
+                            Dialog.tip({
+                                top_txt : '',//可以是html
+                                body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
+                                auto_fn : function(){
+                                    location.href = Config.host.host + 's/' + init_data.shop.id;
+                                }
+                            });
+                        }
                         return;
                     }
                     var _data = _this.getData();
@@ -302,22 +312,26 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 var _items = _carts;
                 for(var item in _items){
                     if(_items[item].sku && _items[item].sku.id){
-                        var _num = $('.j_cart_item[data-id="'+_items[item].sku.id+'"] .j_item_num').val();
-                        _arr.push({
-                            itemID:_items[item].item.id,
-                            itemName:_items[item].item.item_name,
-                            itemNum:(_num?_num:_items[item].num),
-                            item_sku:_items[item].sku.id,
-                            discount_id:(_items[item].item.is_discount?_items[item].item.discount.id:0)
-                        });
+                        if(!$('.error-item[data-id="'+_items[item].sku.id+'"]').length){
+                            var _num = $('.j_cart_item[data-id="'+_items[item].sku.id+'"] .j_item_num').val();
+                            _arr.push({
+                                itemID:_items[item].item.id,
+                                itemName:_items[item].item.item_name,
+                                itemNum:(_num?_num:_items[item].num),
+                                item_sku:_items[item].sku.id,
+                                discount_id:(_items[item].item.is_discount?_items[item].item.discount.id:0)
+                            });
+                        }
                     }else{
-                        var _num = $('.j_cart_item[data-id="'+_items[item].item.id+'"] .j_item_num').val();
-                        _arr.push({
-                            itemID:_items[item].item.id,
-                            itemName:_items[item].item.item_name,
-                            itemNum:(_num?_num:_items[item].num),
-                            discount_id:(_items[item].item.is_discount?_items[item].item.discount.id:0)
-                        });
+                        if(!$('.error-item[data-id="'+_items[item].item.id+'"]').length) {
+                            var _num = $('.j_cart_item[data-id="' + _items[item].item.id + '"] .j_item_num').val();
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: (_num ? _num : _items[item].num),
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        }
                     }
                 }
             }
@@ -398,7 +412,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             }
             return _htm;
         },
-        testCarts : function(carts){
+        testCarts : function(carts,type){
             var _this = this,
                 _beal = true;
             Base.others.each(carts,function(item,i){
@@ -431,23 +445,81 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     }
                 }
                 if(_msg){
-                    $('.j_cart_item[data-id="'+_id+'"] .error-p').remove();
-                    $('.j_cart_item[data-id="'+_id+'"]').append('<p class="error-p">'+_msg+'</p>');
+                    //$('.j_cart_item[data-id="'+_id+'"] .error-p').remove();
+                    $('.j_cart_item[data-id="'+_id+'"]').addClass('error-item');
                 }
                 if(!item.valid){
                     _beal = false;
-                    Dialog.tip({
-                        top_txt : '',//可以是html
-                        body_txt : '<p class="dialog-body-p">'+_msg+'</p>',
-                        auto_fn : function(){
-                            location.href = Config.host.host+'s/'+init_data.shop.id;
-                        }
-                    });
+                    if(!type && $('.error-item').length == $('.j_cart_item').length){
+                        Dialog.tip({
+                            top_txt : '',//可以是html
+                            body_txt : '<p class="dialog-body-p">'+_msg+'</p>',
+                            auto_fn : function(){
+                                location.href = Config.host.host + 's/' + init_data.shop.id;
+                            }
+                        });
+
+                    }
+                    if(type && $('.error-item').length == $('.j_cart_item').length){
+                        _this.msg = _msg;
+                        console.log(_this.msg)
+
+                    }
                     return _beal;
                 }
 
             });
             return _beal;
+        },
+        subData : function(){
+            var _that = this;
+            var _items = _that.getItems(),
+                _telephone = $.trim($('.j_tel').val());
+            if(!_items.length){
+                return;
+            }
+            var reqData = {
+                edata : {
+                    action : 'check',
+                    items : _items,
+                    telephone : _telephone,
+                    seller_id : init_data.shop.id,
+                    wduss : ''
+                }
+            };
+            Ajax.postJsonp({
+                url :Config.actions.testCart,
+                data : {param:JSON.stringify(reqData)},
+                type : 'POST',
+                success : function(obj){
+                    if(obj.code == 200){
+                        if(obj.carts){
+                            if(_that.testCarts(obj.carts,1)){
+                                if($('.error-item').length == $('.j_cart_item').length){
+                                    _that.msg = obj.msg;
+                                }
+                            }
+                        }
+                    }else{
+                        Dialog.confirm({
+                            top_txt : '',//可以是html
+                            body_txt : '<p class="dialog-body-p">'+obj.msg+'</p>',
+                            cf_fn : function(){
+                                location.reload();
+                            }
+                        });
+                    }
+                },
+                error : function(error){
+                    Dialog.confirm({
+                        top_txt : '',//可以是html
+                        body_txt : '<p class="dialog-body-p">error</p>',
+                        cf_fn : function(){
+                            location.reload();
+                        }
+                    });
+                }
+            });
         }
     };
     QuickCartsHtm.init();
