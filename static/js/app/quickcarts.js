@@ -118,7 +118,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         break;
                     default :
                         $('.j_country').html(_name);
-                        _this.getLogistics();
+                        _this.getLogistics(1);
                         break;
                 }
             });
@@ -151,7 +151,9 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                 top_txt : '',//可以是html
                                 body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
                                 auto_fn : function(){
-                                    location.href = Config.host.host + 's/' + init_data.shop.id;
+                                    setTimeout(function(){
+                                        location.href = Config.host.host+'s/'+init_data.shop.id;
+                                    },2000);
                                 }
                             });
                         }
@@ -199,9 +201,11 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                                 if(_this.testCarts(obj.carts)) {
                                                     Dialog.confirm({
                                                         top_txt : '',//可以是html
-                                                        body_txt : '<p class="dialog-body-p">error</p>',
+                                                        body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
                                                         cf_fn : function(){
-                                                            location.href = Config.host.host+'s/'+init_data.shop.id;
+                                                            setTimeout(function(){
+                                                                location.href = Config.host.host+'s/'+init_data.shop.id;
+                                                            },2000);
                                                         }
                                                     });
                                                 }
@@ -209,9 +213,11 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                         }else{
                                             Dialog.confirm({
                                                 top_txt : '',//可以是html
-                                                body_txt : '<p class="dialog-body-p">error</p>',
+                                                body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
                                                 cf_fn : function(){
-                                                    location.href = Config.host.host+'s/'+init_data.shop.id;
+                                                    setTimeout(function(){
+                                                        location.href = Config.host.host+'s/'+init_data.shop.id;
+                                                    },2000);
                                                 }
                                             });
                                         }
@@ -219,9 +225,11 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                     error : function(error){
                                         Dialog.confirm({
                                             top_txt : '',//可以是html
-                                            body_txt : '<p class="dialog-body-p">error</p>',
+                                            body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
                                             cf_fn : function(){
-                                                location.href = Config.host.host+'s/'+init_data.shop.id;
+                                                setTimeout(function(){
+                                                    location.href = Config.host.host+'s/'+init_data.shop.id;
+                                                },2000);
                                             }
                                         });
                                     }
@@ -369,7 +377,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             }
             return _arr;
         },
-        getLogistics : function(){
+        getLogistics : function(type){
             var _this = this;
             var _province = $.trim($('.j_province').html()),
                 _city = $.trim($('.j_city').html()),
@@ -390,7 +398,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         if(init_data.shop.express_free == 0 && obj.express_fee_list.list.JNE.length){
                             $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
                             $('.j_logistics').show();
-                            $('body').scrollTop(9999);
+                            type && $('body').scrollTop(9999);
                         }
                     }else{
 
