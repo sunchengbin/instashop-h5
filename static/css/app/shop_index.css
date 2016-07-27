@@ -307,6 +307,16 @@ footer .btn i{
     transform: scale(0.5);
     border-top: 1px solid #d8d8d8;
 }
+.sort-list-wraper li span{
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    background-color: #d8d8d8;
+    margin-right: .5rem;
+    vertical-align: top;
+    margin-top: 2.2rem;
+}
 .sort-list-cover{
     position: fixed;
     top: 0;
