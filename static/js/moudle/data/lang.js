@@ -312,7 +312,7 @@ define([],function(){
             'H5_TERMS_KEYWORD':'Syarat dan ketentuan pengguna',
             'H5_LOOK_ORDER':'Lihat Pesanan',
             'H5_AGAIN_SHOP':'Belanja Lagi',
-            'H5_IN_SHOP':'Masuk Toko',
+            'H5_IN_SHOP':'Masuk ke Toko',
             'H5_CREATE_ORDER':'Ajukan Pesanan'
         }
     };

@@ -461,7 +461,9 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                 top_txt : '',//可以是html
                                 body_txt : '<p class="dialog-body-p">'+_msg+'</p>',
                                 auto_fn : function(){
-                                    location.href = Config.host.host + 's/' + init_data.shop.id;
+                                    setTimeout(function(){
+                                        location.href = Config.host.host+'s/'+init_data.shop.id;
+                                    },2000);
                                 }
                             });
 
@@ -515,7 +517,10 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                             top_txt : '',//可以是html
                             body_txt : '<p class="dialog-body-p">'+obj.msg+'</p>',
                             cf_fn : function(){
-                                location.reload();
+                                setTimeout(function(){
+                                    location.reload();
+                                },2000);
+
                             }
                         });
                     }
@@ -525,7 +530,9 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         top_txt : '',//可以是html
                         body_txt : '<p class="dialog-body-p">error</p>',
                         cf_fn : function(){
-                            location.reload();
+                            setTimeout(function(){
+                                location.reload();
+                            },2000);
                         }
                     });
                 }
