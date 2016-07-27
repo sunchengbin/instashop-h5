@@ -1,4 +1,5 @@
 <?php
+
 function check_api($path, $params){
     if (strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
         $host = 'https://apip-test.instashop.co.id/instashop/';   // 测试
@@ -30,7 +31,6 @@ function deal_headers() {
         $headers['X-HTTP-METHOD-OVERRIDE'] = $_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'];
     }
     $headers['Accept-Encoding'] = ''; // 内网访问ushop接口不用压缩
-    $headers['x-forwarded-ip']= $_SERVER['REMOTE_ADDR'];
     return $headers;
 }
 
@@ -57,13 +57,19 @@ function get_init_php_data($path, $params){
 
     $api = $host.$path.'?param='.json_encode([ 'edata' => $params  ]);
 
-	Log::debug(['url'=>$api, 'headers'=>deal_headers()]);
+    //error_log("\nall_headers=".json_encode(get_all_headers(), true), 3, "/data/logs/php/error.log");
+    //error_log("\ndeal_headers=".json_encode(deal_headers(), true), 3, "/data/logs/php/error.log");
+    //error_log("\napi=".$api, 3, "/data/logs/php/error.log");
+
     $ret = HttpProxy::getInstance(array('timeout'=>20000, 'conn_timeout'=>20000))->callInterfaceCommon($api, 'POST', [], deal_headers());
     //$ret = file_get_contents($api);
 
     $json = json_decode($ret, true);
     $browser_id = $json["client_uuid"];
     setcookie($cookie_name, $browser_id, time() + 3650*24*3600, '/', $domain);
+    error_log("\nset cookie=".$cookie_name." domain=".$domain, 3, "/data/logs/php/error.log");
+    error_log("\nbrowser_id=".$browser_id, 3, "/data/logs/php/error.log");
+
     return $ret;
 }
 

@@ -5,7 +5,6 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
-define('MODE_NAME', 'instashoph5');
 define('BASE_PATH', '/data/server/weidian');
 
 define('C_RUNTIME_FILE_PATH', BASE_PATH.'/runtime');
