@@ -28,8 +28,10 @@
     {{#if detail}}
         {{#eq detail 2}}
             <p class="quick-order-txt">
-                Pesanan telah diproses, informasi pembayaran telah dikirim ke kamu melalui SMS  ke <span>{{prompt.buyerPhone}}</span>. Jika kamu tidak menerima SMS,jangan tutup halaman ini atau silakan screenshot untuk menyimpan informasi pembayaran ini. Mohon untuk membayar lunas pesanan ini dalam <span>{{prompt.cancelTime}}</span> jam atau pesanan akan dibatalkan.
-
+                - Pesanan Anda telah di proses, informasi pembayaran telah dikirim melaui <span>SMS</span> Ke no. <span>{{prompt.buyerPhone}}</span></br>
+                - Silakan <span>screenshot</span> untuk menyimpan informasi pembayaran ini</br>
+                - Mohon melakukan pembayaran dalam <span>{{prompt.cancelTime}} Jam</span>, atau pesanan akan dibatalkan
+            </p>
         {{/eq}}
     {{/if}}
     <p class="order-info clearfix">
