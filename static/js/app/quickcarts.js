@@ -472,6 +472,9 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     if(_msg){
                         $('.j_cart_item[data-id="'+_id+'"]').addClass('error-item');
                     }
+                    if($('.error-item').length == $('.j_cart_item').length){
+                        _this.msg = _msg;
+                    }
                     return _beal;
                 }
 
