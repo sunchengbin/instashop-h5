@@ -353,7 +353,10 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         }
         return _htm;
     });
-
+    function testStock(item){
+        var stock = ((item.sku&&item.sku.stock)?item.sku.stock:item.item.stock);
+        return stock >= 99999999;
+    }
     HBS.registerHelper('quickcarts', function(carts) {
         var _htm = '';
         if(!carts){
@@ -367,8 +370,10 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     +'<img src="'+carts[item].item.img+'">'
                     +'<div class="">'
                     +'<p class="name">'+carts[item].item.item_name+'</p>'
-                    +(carts[item].sku&&carts[item].sku.id?'<p class="type">'+Lang.H5_SKU+':'+carts[item].sku.title+'</p>':'')
-                    +'<p class="num">'+Lang.H5_STOCK+':'+(((carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock))+'</p>';
+                    +(carts[item].sku&&carts[item].sku.id?'<p class="type">'+Lang.H5_SKU+':'+carts[item].sku.title+'</p>':'');
+                if(!testStock(carts[item])){
+                    _htm +='<p class="num">'+Lang.H5_STOCK+':'+(((carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock))+'</p>';
+                }
                 if(carts[item].item.is_discount && carts[item].item.discounting){
                     //_htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
                     _htm +='<div class="price clearfix">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)
