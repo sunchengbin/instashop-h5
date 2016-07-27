@@ -4,6 +4,7 @@
 body{
     color: #666;
     background-color: #f5f5f5;
+    padding-bottom:4.6rem;
 }
 section{
     background-color: #fff;
@@ -157,20 +158,20 @@ section{
     height: 1.8rem;
 }
 /*联系客服*/
-.contact-services{
-    display: inline-block;
-    background-color: #f5f5f5;
-    position: fixed;
-    right: 0;
-    bottom: 6rem;
-    height: 4rem;
-    line-height: 4rem;
-    padding: 0 1rem 0 1.5rem;
-    font-size: 1.4rem;
-    color: #52CDF0;
-    z-index: 103;
-    border-radius: 4rem 0 0 4rem;
-}
+/*.contact-services{*/
+    /*display: inline-block;*/
+    /*background-color: #f5f5f5;*/
+    /*position: fixed;*/
+    /*right: 0;*/
+    /*bottom: 6rem;*/
+    /*height: 4rem;*/
+    /*line-height: 4rem;*/
+    /*padding: 0 1rem 0 1.5rem;*/
+    /*font-size: 1.4rem;*/
+    /*color: #52CDF0;*/
+    /*z-index: 103;*/
+    /*border-radius: 4rem 0 0 4rem;*/
+/*}*/
 .im-num{
     position: absolute;
     display: none;
@@ -180,7 +181,7 @@ section{
     border-radius: 50%;
     color: #fff;
     text-align: center;
-    left: 3rem;
+    left: 4rem;
     top: 1rem;
 }
 .ser-icon{
@@ -241,19 +242,78 @@ footer{
     width: 100%;
     left: 0;
     bottom: 0;
-    background-color: #fff;
-    padding: 1rem;
+    background-color: #f5f5f5;
+    padding: .5rem;
     z-index: 100;
     box-sizing: border-box;
 }
+footer::before{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    top:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-top: 1px solid #d8d8d8;
+}
 footer .btn{
-    width: 48%;
+    width: 49%;
+    font-size: 1.4rem;
+    height: 3.6rem;
+    line-height: 3.6rem;
 }
 footer .btn i{
-    font-size: 2.2rem;
-    height: 4rem;
-    line-height: 4rem;
+    font-size: 2rem;
     vertical-align: middle;
     margin-right: .5rem;
+}
+.contact-services{
+    position: relative;
+}
+/*分类侧栏弹窗*/
+.sort-list-wraper{
+    position: fixed;
+    z-index: 104;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 30%;
+    padding: 2rem 0 2rem 1rem;
+}
+.sort-list-wraper > p{
+    font-size: 1.8rem;
+    color: #333;
+}
+.sort-list-wraper > ul{
+    padding-left:1rem;
+}
+.sort-list-wraper > ul li{
+    font-size: 1.4rem;
+    color: #999;
+    height: 5rem;
+    line-height: 5rem;
+    position: relative;
+}
+.sort-list-wraper > ul li::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-top: 1px solid #d8d8d8;
+}
+.sort-list-cover{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 102;
+    background: rgba(0,0,0,.5);
 }
 
