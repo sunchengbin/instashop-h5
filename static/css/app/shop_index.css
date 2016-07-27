@@ -235,4 +235,25 @@ section{
     font-size: 5rem;
     color: #eee;
 }
+/*底部分类和客服导航*/
+footer{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
+    padding: 1rem;
+    z-index: 100;
+    box-sizing: border-box;
+}
+footer .btn{
+    width: 48%;
+}
+footer .btn i{
+    font-size: 2.2rem;
+    height: 4rem;
+    line-height: 4rem;
+    vertical-align: middle;
+    margin-right: .5rem;
+}
 
