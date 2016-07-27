@@ -452,26 +452,25 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         }
                     }
                 }
-                if(_msg){
-                    //$('.j_cart_item[data-id="'+_id+'"] .error-p').remove();
-                    $('.j_cart_item[data-id="'+_id+'"]').addClass('error-item');
-                }
+
                 if(!item.valid){
                     _beal = false;
-                    if(!type && $('.error-item').length == $('.j_cart_item').length){
-                        Dialog.tip({
-                            top_txt : '',//可以是html
-                            body_txt : '<p class="dialog-body-p">'+_msg+'</p>',
-                            auto_fn : function(){
-                                location.href = Config.host.host + 's/' + init_data.shop.id;
-                            }
-                        });
+                    if($('.error-item').length == $('.j_cart_item').length){//当前购物车全部商品不能购买
+                        if(!type){
+                            Dialog.tip({
+                                top_txt : '',//可以是html
+                                body_txt : '<p class="dialog-body-p">'+_msg+'</p>',
+                                auto_fn : function(){
+                                    location.href = Config.host.host + 's/' + init_data.shop.id;
+                                }
+                            });
 
+                        }else{
+                            _this.msg = _msg;
+                        }
                     }
-                    if(type && $('.error-item').length == $('.j_cart_item').length){
-                        _this.msg = _msg;
-                        console.log(_this.msg)
-
+                    if(_msg){
+                        $('.j_cart_item[data-id="'+_id+'"]').addClass('error-item');
                     }
                     return _beal;
                 }
