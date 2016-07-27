@@ -208,6 +208,11 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                                             },2000);
                                                         }
                                                     });
+                                                }else{
+                                                    Dialog.tip({
+                                                        top_txt : '',//可以是html
+                                                        body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>'
+                                                    });
                                                 }
                                             }
                                         }else{
@@ -456,7 +461,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 if(!item.valid){
                     _beal = false;
                     if($('.error-item').length == $('.j_cart_item').length){//当前购物车全部商品不能购买
-                        if(!type){
+                        if(!type){//提交时验证购物车商品
                             Dialog.tip({
                                 top_txt : '',//可以是html
                                 body_txt : '<p class="dialog-body-p">'+_msg+'</p>',
@@ -466,9 +471,12 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                     },2000);
                                 }
                             });
-
-                        }else{
+                        }else{//进入页面立即验证
                             _this.msg = _msg;
+                            Dialog.tip({
+                                top_txt : '',//可以是html
+                                body_txt : '<p class="dialog-body-p">'+_msg+'</p>'
+                            });
                         }
                     }
                     if(_msg){
@@ -520,7 +528,6 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                 setTimeout(function(){
                                     location.reload();
                                 },2000);
-
                             }
                         });
                     }
