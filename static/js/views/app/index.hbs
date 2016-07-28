@@ -98,7 +98,7 @@
         {{/haveitem}}
     </section>
     <section class="sort-list-wraper j_sort_box">
-        <p>Kategori</p>
+        <p>{{lang.H5_GOOD_SORT}}</p>
         <ul>
             {{#each data.tag_list}}
                 <li class=""><a href="{{../../host}}html/sort.php?sort_id={{id}}&name={{name}}&seller_id={{../../data.shop.id}}" class=""><span></span>{{name}}</a></li>
@@ -110,7 +110,7 @@
     </div>
     <footer class="clearfix">
         <a href="{{data.shop.im_url}}" class="btn fr contact-services confirm-btn"><span class="im-num j_im_num" style="display: none;"></span><i class="icon iconfont icon-news-font"></i>{{lang.H5_CONNACT_SELLER}}</a>
-        <a href="javascript:;" class="btn fl j_category"><i class="icon iconfont icon-sort-font"></i>商品分类</a>
+        <a href="javascript:;" class="btn fl j_category"><i class="icon iconfont icon-sort-font"></i>{{lang.H5_GOOD_SORT}}</a>
     </footer>
 
 {{/eq}}

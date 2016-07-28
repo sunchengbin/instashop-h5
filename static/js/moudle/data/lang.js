@@ -109,7 +109,11 @@ define([],function(){
             'H5_LOOK_ORDER':'查看订单',
             'H5_AGAIN_SHOP':'再逛逛',
             'H5_IN_SHOP':'进入店铺',
-            'H5_CREATE_ORDER':'生成订单'
+            'H5_CREATE_ORDER':'生成订单',
+            'H5_SORT_DELED':'分类已被删除',
+            H5_GOOD_SORT:'商品分类',
+            H5_MSG_NO_GOOD:'有商品已经卖完了哦',
+            H5_SORT_EMPTY:'分类商品为空'
         },
 
         id : {
@@ -313,7 +317,11 @@ define([],function(){
             'H5_LOOK_ORDER':'Lihat Pesanan',
             'H5_AGAIN_SHOP':'Belanja Lagi',
             'H5_IN_SHOP':'Masuk ke Toko',
-            'H5_CREATE_ORDER':'Ajukan Pesanan'
+            'H5_CREATE_ORDER':'Ajukan Pesanan',
+            'H5_SORT_DELED':'Kategori ini telah dihapus',
+            H5_GOOD_SORT:'Kategori produk',
+            H5_MSG_NO_GOOD:'Ada produk yang sudah habis terjual loh',
+            H5_SORT_EMPTY:'Kategori kosong'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );
