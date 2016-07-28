@@ -299,7 +299,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         return out;
     });
 
-    HBS.registerHelper('sortItemList', function(items, options) {
+    HBS.registerHelper('tagItemList', function(items, options) {
         var out = "",
             i = 0;
         for (i; i < items.length;i++) {
