@@ -142,7 +142,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var out = false,
             i = 0;
         for (i; i < items.length;i++) {
-            if(items[i].index_type == 'notag') {
+            if(items[i].index_type == 'no_tag') {
                 out = true;
             }
         }
@@ -223,7 +223,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var out = "",
             i = 0;
         for (i; i < items.length;i++) {
-            if(items[i].index_type == 'notag'){
+            if(items[i].index_type == 'no_tag'){
                 var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time);
                 out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
                     +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
@@ -299,7 +299,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         return out;
     });
 
-    HBS.registerHelper('tagItemList', function(items, options) {
+    HBS.registerHelper('sortItemList', function(items, options) {
         var out = "",
             i = 0;
         for (i; i < items.length;i++) {

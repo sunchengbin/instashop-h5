@@ -95,12 +95,13 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                             };
                             if(obj.item_list.list.length > 0){
                                 var _list_data = _this.transItems(obj.item_list.list);
+                                console.log(_list_data);
                                 if(_list_data.item.length){
-                                    if(!$('.j_item_list').length){
+                                    if(!$('.j_item_box .j_item_list').length){
                                         var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="items-list j_item_list clearfix"></ul>';
                                         $('.j_item_box').html(_htm);
                                     }
-                                    $('.j_item_list').append(_this.addItem(_list_data.item));
+                                    $('.j_item_box ul').append(_this.addItem(_list_data.item));
                                 }
                                 if(_list_data.hot.length){
                                     if(!$('.j_hot_list').length){
@@ -112,7 +113,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                 if(!Base.others.testObject(_list_data.tags)){
                                     for(var tagid in _list_data.tags){
                                         if($('[data-tagid="'+tagid+'"]').length){
-                                            $('[data-tagid="'+tagid+'"]').append(_this.addItem(_list_data.tags[tagid].item));
+                                            $('[data-tagid="'+tagid+'"] ul').append(_this.addItem(_list_data.tags[tagid].item));
                                         }else{
                                             var _htm = '<section class="items-box" data-tagid="'+tagid+'">'
                                                 +'<p class="item-title clearfix"><a class="fr" href="'+Config.host.hrefUrl+'sort.php?sort_id='+tagid+'&name='+_list_data.tags[tagid].name+'&seller_id='+init_data.shop.id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span>'+_list_data.tags[tagid].name+'</p>'
@@ -181,7 +182,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 if(items[i].index_type == 'top') {
                     _hot.push(items[i]);
                 }
-                if(items[i].index_type == 'notag'){
+                if(items[i].index_type == 'no_tag'){
                     _item.push(items[i]);
                 }
             }
