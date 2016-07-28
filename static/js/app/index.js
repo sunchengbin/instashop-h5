@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/6.
  */
-require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base','common','cart'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base,Common,Cart){
+require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base','common','cart','fastclick'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base,Common,Cart,Fastclick){
     var I = {
         init : function(init_data){
             Lazyload();
@@ -39,7 +39,8 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             if($('[data-time]').length){
                 _this.changeTime();
             }
-            $('body').on('tap','.j_down_box',function(){
+            Fastclick.attach(document.body);
+            $('body').on('click','.j_down_box',function(){
                 if($('.j_down_btn').is('.down-btn')){
                     $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
                     $('.txt').css({'maxHeight':'none'});
@@ -110,6 +111,23 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                     location.href = _url;
                 });
             });
+            $('body').on('click','.j_category',function(){
+                var _sort_box = document.querySelector('.j_sort_box');
+                var _sort_cover = document.querySelector('.j_sort_cover');
+                _sort_box.style.webkitTransitionDuration = '.6s';
+                _sort_box.style.webkitTransform = "translate3d(0,0,0)";
+                _sort_cover.style.webkitTransitionDuration = '.3s';
+                _sort_cover.style.webkitTransform = "translate3d(0,0,0)";
+            });
+            $('body').on('click','.j_sort_cover',function(){
+                var _sort_box = document.querySelector('.j_sort_box');
+                var _sort_cover = document.querySelector('.j_sort_cover');
+                _sort_box.style.webkitTransitionDuration = '.3s';
+                _sort_box.style.webkitTransform = "translate3d(-100%,0,0)";
+                _sort_cover.style.webkitTransitionDuration = '.6s';
+                _sort_cover.style.webkitTransform = "translate3d(-100%,0,0)";
+            });
+
         },
         transItems : function(items){
             var i = 0,
