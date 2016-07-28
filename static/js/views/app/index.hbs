@@ -45,7 +45,7 @@
             <p><i class="icon iconfont j_down_btn down-btn"></i></p>
         </div>
     </section>
-    <section class="items-box j_hot_box">
+    <section class="items-box j_hot_box j_box">
         {{#havehot data.item_list.list}}
             <p class="item-title"><span></span>{{lang.H5_GOODS_HOT}}</p>
             <ul class="items-list clearfix j_hot_list">
@@ -67,7 +67,15 @@
             </ul>
         {{/havehot}}
     </section>
-    <section class="items-box j_item_box">
+    {{#each tags_item}}
+        <section class="items-box j_box" data-tagid="{{id}}">
+                <p class="item-title clearfix"><a class="fr" href="{{../hrefUrl}}sort.php?sort_id={{id}}&name={{name}}&seller_id={{../data.shop.id}}">more<i class="icon iconfont icon-go-font"></i></a><span></span>{{name}}</p>
+                <ul class="items-list j_item_list clearfix">
+                    {{#tagItemList this.item}}{{/tagItemList}}
+                </ul>
+        </section>
+    {{/each}}
+    <section class="items-box j_item_box j_box">
         {{#haveitem data.item_list.list}}
             <p class="item-title"><span></span>{{lang.H5_GOODS_ORTHER}}</p>
             <ul class="items-list j_item_list clearfix">
@@ -98,7 +106,7 @@
         </ul>
     </section>
     <div class="sort-list-cover j_sort_cover">
-        <i class="icon iconfont icon-go-font"></i>
+        <i class="icon iconfont icon-fold-font"></i>
     </div>
     <footer class="clearfix">
         <a href="{{data.shop.im_url}}" class="btn fr contact-services confirm-btn"><span class="im-num j_im_num" style="display: none;"></span><i class="icon iconfont icon-news-font"></i>{{lang.H5_CONNACT_SELLER}}</a>

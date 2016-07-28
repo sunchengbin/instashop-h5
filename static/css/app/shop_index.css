@@ -118,6 +118,13 @@ section{
     background-color:#F5A623;
     margin-right:.5rem;
 }
+.item-title a{
+    margin-right: 2rem;
+    color: #F5A623;
+}
+.item-title a i{
+    font-size: 1.2rem;
+}
 .items-list li{
     float: left;
     width: 50%;

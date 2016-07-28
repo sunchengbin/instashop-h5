@@ -36,10 +36,10 @@ body{
 }
 .shop-header-nav button i{
     color:#666;
-    font-size: 3rem;
+    font-size: 2.6rem;
 }
 .shop-header-nav button i.icon-back-font{
-    font-size: 2.8rem;
+    font-size: 2.4rem;
 }
 /*产品展示列表*/
 .items-box{

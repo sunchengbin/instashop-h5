@@ -142,7 +142,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var out = false,
             i = 0;
         for (i; i < items.length;i++) {
-            if(items[i].is_top == 0) {
+            if(items[i].index_type == 'notag') {
                 out = true;
             }
         }
@@ -156,7 +156,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var out = "",
             i = 0;
         for (i; i < items.length;i++) {
-            if(items[i].is_top == 1) {
+            if(items[i].index_type == 'top') {
                 var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time);
                 out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
                     +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
@@ -223,7 +223,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var out = "",
             i = 0;
         for (i; i < items.length;i++) {
-            if(items[i].is_top == 0){
+            if(items[i].index_type == 'notag'){
                 var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time);
                 out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
                     +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
@@ -258,7 +258,48 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         return out;
     });
 
-    HBS.registerHelper('sortItemList', function(items, options) {
+    HBS.registerHelper('indexSortItemList', function(items, options) {
+        var out = "",
+            i = 0;
+        for (i; i < items.length;i++) {
+            if(items[i].index_type == 'tags') {
+                var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time);
+                out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
+                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
+
+                if(items[i].is_discount){
+                    out +='<span>-'+items[i].discount.value+'%</span>';
+                    if(items[i].discounting){
+                        out +='<p><i class="icon iconfont icon-time-font"></i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
+                    }else{
+                        out +='<p>'+Lang.H5_IS_ABOUT_TO_BEGIN+'</p>';
+                    }
+                }
+
+                out +='</div>'
+                    +'<p class="title">'+items[i].item_comment+'</p>';
+                if(!items[i].is_discount){
+                    out +='<p class="discount-price"></p>';
+                }else{
+                    if(items[i].discounting){
+                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
+                    }else{
+                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
+                    }
+
+                }
+                if(items[i].price < 0){
+                    out +='<p class="price"></p>';
+                }else{
+                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                }
+                out +='</a></li>';
+            }
+        }
+        return out;
+    });
+
+    HBS.registerHelper('tagItemList', function(items, options) {
         var out = "",
             i = 0;
         for (i; i < items.length;i++) {

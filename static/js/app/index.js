@@ -6,10 +6,12 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
         init : function(init_data){
             Lazyload();
             Common.initShopInfo(init_data);
-            var IndexHtm = '<div>加载数据中</div>';
+            var IndexHtm = '<div>加载数据中</div>',
+                _this = this;
             if(init_data){
                 IndexHtm= Hbs.compile(Index)({
                     data : init_data,
+                    tags_item : _this.getTags(init_data.item_list.list),
                     lang : Lang,
                     host:Config.host.host,
                     hrefUrl : Config.host.hrefUrl,
@@ -24,6 +26,33 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             }
             this.getImNum();
             this.handleFn();
+        },
+        getTags : function(list){
+            if(!list.length)return null;
+            var _data = {},
+                _list = [],
+                i = 0;
+            for(i;i < list.length;i++){
+                if(list[i].index_type == 'tags'){
+                    if(_data[list[i].tag_id]){
+                        //_data[list[i].tag_id].item[list[i].id] = list[i];
+                        _data[list[i].tag_id].item.push(list[i]);
+                    }else{
+                        _data[list[i].tag_id]= {
+                            id : list[i].tag_id,
+                            name : list[i].tag_name
+                        };
+                        _data[list[i].tag_id].item = [];
+                        //_data[list[i].tag_id].item[list[i].id] = list[i];
+                        _data[list[i].tag_id].item.push(list[i]);
+                    }
+
+                }
+            }
+            //for(var d in _data){
+            //    _list.push(_data[d]);
+            //}
+            return _data;
         },
         handleFn : function(){
             var page_num = 2,
@@ -66,7 +95,6 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                             };
                             if(obj.item_list.list.length > 0){
                                 var _list_data = _this.transItems(obj.item_list.list);
-                                console.log(_list_data)
                                 if(_list_data.item.length){
                                     if(!$('.j_item_list').length){
                                         var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="items-list j_item_list clearfix"></ul>';
@@ -80,6 +108,21 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                         $('.j_hot_list').html(_htm);
                                     }
                                     $('.j_hot_list').append(_this.addItem(_list_data.hot));
+                                }
+                                if(!Base.others.testObject(_list_data.tags)){
+                                    for(var tagid in _list_data.tags){
+                                        if($('[data-tagid="'+tagid+'"]').length){
+                                            $('[data-tagid="'+tagid+'"]').append(_this.addItem(_list_data.tags[tagid].item));
+                                        }else{
+                                            var _htm = '<section class="items-box" data-tagid="'+tagid+'">'
+                                                +'<p class="item-title clearfix"><a class="fr" href="'+Config.host.hrefUrl+'sort.php?sort_id='+tagid+'&name='+_list_data.tags[tagid].name+'&seller_id='+init_data.shop.id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span>'+_list_data.tags[tagid].name+'</p>'
+                                                +'<ul class="items-list j_item_list clearfix">'
+                                                +_this.addItem(_list_data.tags[tagid].item)
+                                                +'</ul>'
+                                                +'</section>';
+                                            $('.j_box').eq(($('.j_box').length-1)).before(_htm);
+                                        }
+                                    }
                                 }
                                 if($('[data-time]').length){
                                     _this.changeTime();
@@ -132,17 +175,20 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
         transItems : function(items){
             var i = 0,
                 _hot = [],
-                _item = [];
+                _item = [],
+                _this = this;
             for (i; i < items.length;i++) {
-                if(items[i].is_top == 1) {
+                if(items[i].index_type == 'top') {
                     _hot.push(items[i]);
-                }else{
+                }
+                if(items[i].index_type == 'notag'){
                     _item.push(items[i]);
                 }
             }
             return {
                 hot : _hot,
-                item : _item
+                item : _item,
+                tags : _this.getTags(items)
             };
         },
         discountTime : function(nowTime,endTime){
