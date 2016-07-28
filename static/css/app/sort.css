@@ -31,6 +31,9 @@ body{
     transform: scale(0.5);
     border-top: 1px solid #d8d8d8;
 }
+.shop-header-nav button{
+    border-radius:0;
+}
 .shop-header-nav button i{
     color:#666;
     font-size: 3rem;
