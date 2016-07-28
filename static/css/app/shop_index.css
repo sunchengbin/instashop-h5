@@ -283,6 +283,7 @@ footer .btn i{
     padding: 2rem 0 0 1rem;
     overflow-x:hidden;
     overflow-y: scroll;
+    -webkit-overflow-scrolling : touch;
 }
 .sort-list-wraper > p{
     font-size: 1.8rem;

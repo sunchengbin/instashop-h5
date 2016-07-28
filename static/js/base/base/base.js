@@ -241,10 +241,11 @@ define(function(){
         },
         //根据
         webpLog : function(){
-            if(this.getUrlPrem('webpLog')){
-                return true;
-            }
-            return false;
+            //if(this.getUrlPrem('webpLog')){
+            //    return true;
+            //}
+            //return false;
+            return true;
         },
         /*
         *   通过判断浏览器是否支持webp的图片优化,修改图片地址.进行图片优化.
