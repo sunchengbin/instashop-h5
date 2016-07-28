@@ -280,7 +280,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 _fee_id = _logistics_info.length?_logistics_info.attr('data-id'):'',
                 _seller_id = init_data.shop.id,
                 _note = $.trim($('.j_buyer_note').val());
-            if(!_company){//没选择物流信息
+            if(_logistics_info.length && !_company){//没选择物流信息
                 return null;
             }
             if(!_this.getItems().length){//购物车为空
