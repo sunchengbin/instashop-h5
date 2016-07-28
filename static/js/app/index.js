@@ -11,6 +11,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 IndexHtm= Hbs.compile(Index)({
                     data : init_data,
                     lang : Lang,
+                    host:Config.host.host,
                     hrefUrl : Config.host.hrefUrl,
                     num : Cart().getCartNum()
                 });

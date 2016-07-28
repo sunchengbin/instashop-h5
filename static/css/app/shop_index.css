@@ -280,7 +280,9 @@ footer .btn i{
     top: 0;
     bottom: 0;
     right: 30%;
-    padding: 2rem 0 2rem 1rem;
+    padding: 2rem 0 0 1rem;
+    overflow-x:hidden;
+    overflow-y: scroll;
 }
 .sort-list-wraper > p{
     font-size: 1.8rem;
@@ -296,6 +298,9 @@ footer .btn i{
     line-height: 5rem;
     position: relative;
 }
+.sort-list-wraper a{
+    color: #999;
+}
 .sort-list-wraper > ul li::after{
     position: absolute;
     left:-50%;
@@ -306,7 +311,9 @@ footer .btn i{
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
     border-top: 1px solid #d8d8d8;
-}
+}.sort-list-wraper > ul li:last-child::after{
+    border:none;
+ }
 .sort-list-wraper li span{
     display: inline-block;
     width: .5rem;

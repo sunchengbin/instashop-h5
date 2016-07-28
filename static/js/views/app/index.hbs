@@ -92,11 +92,9 @@
     <section class="sort-list-wraper">
         <p>Kategori</p>
         <ul>
-            <li class=""><span></span>coat</li>
-            <li class=""><span></span>coat</li>
-            <li class=""><span></span>coat</li>
-            <li class=""><span></span>coat</li>
-            <li class=""><span></span>coat</li>
+            {{#each data.tag_list}}
+                <li class=""><a href="{{../../host}}html/sort.php?sort_id={{id}}&name={{name}}&seller_id={{../../data.shop.id}}" class=""><span></span>{{name}}</a></li>
+            {{/each}}
         </ul>
     </section>
     <div class="sort-list-cover"></div>
