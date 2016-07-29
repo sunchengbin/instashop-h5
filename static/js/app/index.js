@@ -46,7 +46,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                         _sort.push(list[i].tag_id);
                         _data[list[i].tag_id]= {
                             id : list[i].tag_id,
-                            name : list[i].tag_name
+                            name : encodeURIComponent(list[i].tag_name)
                         };
                         _data[list[i].tag_id].item = [];
                         //_data[list[i].tag_id].item[list[i].id] = list[i];
@@ -126,7 +126,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                             $('[data-tagid="'+_tags[tagid].id+'"] ul').append(_this.addItem(_list_data.tags[tagid].item));
                                         }else{
                                             var _htm = '<section class="items-box" data-tagid="'+_tags[tagid].id+'">'
-                                                +'<p class="item-title clearfix"><a class="fr" href="'+Config.host.hrefUrl+'sort.php?sort_id='+_tags[tagid].id+'&name='+_list_data.tags[tagid].name+'&seller_id='+init_data.shop.id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span>'+_list_data.tags[tagid].name+'</p>'
+                                                +'<p class="item-title clearfix"><a class="fr" href="'+Config.host.hrefUrl+'sort.php?sort_id='+_tags[tagid].id+'&name='+_list_data.tags[tagid].name+'&seller_id='+init_data.shop.id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+_list_data.tags[tagid].name+'</em></p>'
                                                 +'<ul class="items-list j_item_list clearfix">'
                                                 +_this.addItem(_list_data.tags[tagid].item)
                                                 +'</ul>'

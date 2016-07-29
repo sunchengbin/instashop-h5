@@ -69,7 +69,7 @@
     </section>
     {{#each tags_item}}
         <section class="items-box j_box" data-tagid="{{this.id}}">
-            <p class="item-title clearfix"><a class="fr" href="{{../hrefUrl}}sort.php?sort_id={{this.id}}&name={{this.name}}&seller_id={{../data.shop.id}}">more<i class="icon iconfont icon-go-font"></i></a><span></span>{{this.name}}</p>
+            <p class="item-title clearfix"><a class="fr" href="{{../hrefUrl}}sort.php?sort_id={{this.id}}&name={{this.name}}&seller_id={{../data.shop.id}}">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>{{this.name}}</em></p>
             <ul class="items-list j_item_list clearfix">
                 {{#tagItemList this.item}}{{/tagItemList}}
             </ul>
@@ -101,7 +101,7 @@
         <p>{{lang.H5_GOOD_SORT}}</p>
         <ul>
             {{#each data.tag_list}}
-                <li class=""><a href="{{../../host}}html/sort.php?sort_id={{id}}&name={{name}}&seller_id={{../../data.shop.id}}" class=""><span></span>{{name}}</a></li>
+                <li class=""><a href="{{../../host}}html/sort.php?sort_id={{id}}&name={{encode name}}&seller_id={{../../data.shop.id}}" class=""><span></span>{{name}}</a></li>
             {{/each}}
         </ul>
     </section>
