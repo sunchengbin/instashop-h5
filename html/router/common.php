@@ -5,6 +5,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
+define('MODE_NAME', 'instashoph5');
 define('BASE_PATH', '/data/server/weidian');
 
 define('C_RUNTIME_FILE_PATH', BASE_PATH.'/runtime');
@@ -33,7 +34,7 @@ function loadClass($strClassName)
     }
 }
 function getFontCss($url){
-    return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1469703020441") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1469703020441#iconfont") format("svg");}</style>';
+    return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1468232040031") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1468232040031#iconfont") format("svg");}</style>';
 }
 function getIco($url){
     return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';

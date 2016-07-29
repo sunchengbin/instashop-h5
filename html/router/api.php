@@ -9,6 +9,7 @@
 // header('Access-Control-Allow-Origin:http://localhost:3000');
 include_once('function.php');
 include_once('HttpProxy.php');
+include_once( dirname(__FILE__).'/../../html/router/common.php');
 
 
 function dealHeaders()
@@ -22,6 +23,7 @@ function dealHeaders()
 		$headers['X-HTTP-METHOD-OVERRIDE'] = $_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'];
 	}
 	$headers['Accept-Encoding'] = ''; // 内网访问ushop接口不用压缩
+	$headers['x-forwarded-ip']= $_SERVER['REMOTE_ADDR'];
 	return $headers;
 }
 
@@ -58,13 +60,8 @@ if(!$api){
 }
 unset($_GET['_path_']);
 $url = $host.$api.'?'.http_build_query($_GET);
-error_log(print_r($_GET,true),3,'/tmp/api.log');
-error_log($url,3,'/tmp/api.log');
-// echo $url;
-// var_dump( $_POST );
 $headers = dealHeaders();
-// var_dump( $headers );
 $method = 'POST';
-error_log(print_r($_POST, true), 3,'/tmp/instashoph5.log');
+Log::debug(['url'=>$url, 'headers'=>$headers, 'request'=>$_REQUEST]);
 $res = HttpProxy::getInstance(array('timeout'=>20000, 'conn_timeout'=>20000))->callInterfaceCommon($url, $method, $_POST, $headers);
 echo $res;
