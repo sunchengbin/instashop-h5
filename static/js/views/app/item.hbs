@@ -45,14 +45,14 @@
                 {{#eq data.item.discount.min_price data.item.discount.max_price}}
                     <p class="price-lang">Rp {{transprice data.item.discount.min_price}}</p>
                 {{else}}
-                    <p class="price-lang">Rp {{transprice data.item.discount.min_price}}-{{transprice data.item.discount.max_price}}</p>
+                    <p class="price-lang">Rp {{transprice data.item.discount.min_price}} - {{transprice data.item.discount.max_price}}</p>
                 {{/eq}}
 
                 <p class="discount-info">
                     <span>-{{transpricevalue data.item.discount.value}}%</span>
 
                     {{#if data.item.discounting}}
-                        Time remaining:
+                        Time remaining :
                         <span data-time="{{timeLang.second}}">{{timeLang.time}}</span>
                     {{else}}
                         Start time

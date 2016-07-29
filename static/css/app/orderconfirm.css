@@ -194,6 +194,9 @@ textarea{
 }
 .agree-info p{
     margin-left: 35px;
+    font-size: 1.2rem;
+    word-break: break-all;
+    overflow: hidden;
 }
 .agree-info i{
     font-size: 2.2rem;
