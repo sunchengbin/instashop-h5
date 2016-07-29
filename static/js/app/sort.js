@@ -21,6 +21,7 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
             this.handleFn();
         },
         handleFn : function(){
+            var _this = this;
             if($('[data-time]').length){
                 _this.changeTime();
             }
