@@ -195,7 +195,6 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             if(!_l_top){
                 _l_top = 0;
             }
-            //console.log(1);
             $(window).scrollTop(_l_top);
             _this.goScroll();
             //_this.t = setTimeout(function(){

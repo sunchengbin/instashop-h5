@@ -90,6 +90,9 @@ body .address-list{
     /*border-bottom: 1px solid #ececec;*/
     position: relative;
 }
+.info-box p{
+    font-size: 14px;
+}
 .info-box::after{
     position: absolute;
     left:-50%;
@@ -295,6 +298,15 @@ body .address-list{
 }
 .logistics-list i{
     color: #43cb9c;
+    font-size: 2rem;
+    vertical-align: middle;
+    margin-right: .5rem;
+    display: inline-block;
+    height: 2rem;
+    line-height: 2rem;
+    position: absolute;
+    left: 0;
+    top: .9rem;
 }
 .cart-item div.price{
     line-height: 2.4rem;
@@ -343,8 +355,9 @@ body .address-list{
     margin-right:.5rem;
 }
 .logistics-list li{
-    padding:1rem 0 ;
+    padding: 1rem 0 0 2.5rem;
     font-size: 14px;
+    position: relative;
 }
 .logistics-list{
     padding: 1rem 2rem;
