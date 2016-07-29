@@ -185,9 +185,25 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 _sort_cover.style.webkitTransform = "translate3d(-100%,0,0)";
             });
             if(localStorage.getItem('ScrollTop')){//存在scrollTop时页面下滚到记忆中的top值
-                console.log(1);
-                $(window).scrollTop(localStorage.getItem('ScrollTop'));
+
+                _this.goScroll();
             }
+        },
+        goScroll : function(){
+            var _this = this,
+                _l_top = Number(localStorage.getItem('ScrollTop'));
+            if(!_l_top){
+                _l_top = 0;
+            }
+            //console.log(1);
+            var t = setTimeout(function(){
+                $(window).scrollTop(_l_top);
+                if($(document).height() < _l_top){
+                    _this.goScroll();
+                } else{
+                    clearTimeout(t);
+                }
+            },1);
         },
         transItems : function(items){
             var i = 0,
