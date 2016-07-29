@@ -116,7 +116,7 @@ section{
 }
 .item-title em{
     display: inline-block;
-    width: 20rem;
+    width: 15rem;
     overflow: hidden;
     vertical-align: middle;
     text-overflow: ellipsis;
@@ -124,7 +124,7 @@ section{
 }
 .item-title span{
     display: inline-block;
-    height: 13px;
+    height: 1.3rem;
     width: .5rem;
     background-color: #F5A623;
     margin-right: .5rem;
