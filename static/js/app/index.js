@@ -23,7 +23,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 IndexHtm = '<div>数据出错</div>';
             }
             $('body').prepend(IndexHtm);
-            if($('.txt-hide').height() > 33){
+            if($('.txt-hide').height() > 45){
                 $('.down-btn').show();
             }
             this.getImNum();
