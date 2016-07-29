@@ -188,9 +188,8 @@ section{
     border-radius: 50%;
     color: #fff;
     text-align: center;
-    left: 50%;
-    top: .5rem;
-    margin-left: -15%;
+    left: 1.5rem;
+    top: 0rem;
 }
 .ser-icon{
     font-size: 2.2rem;
@@ -276,6 +275,7 @@ footer .btn i{
     font-size: 2rem;
     vertical-align: middle;
     margin-right: .5rem;
+    position: relative;
 }
 .contact-services{
     position: relative;
