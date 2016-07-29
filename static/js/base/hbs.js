@@ -461,7 +461,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                         +'<i class="icon iconfont icon-minus-font"></i>'
                         +'</span>'
                         +'<input class="fl j_item_num" type="text" value="'+carts[item].num+'" readonly="readonly"/>'
-                        +'<span class="j_add_btn" data-stock="'+(((carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock))+'">'
+                        +'<span class="j_add_btn" data-stock="'+carts[item].item.discount.limit_count+'">'
                         +'<i class="icon iconfont icon-add-font"></i>'
                         +'</span>'
                         +'</div>'

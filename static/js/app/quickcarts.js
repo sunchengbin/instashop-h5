@@ -452,8 +452,8 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     _msg = null;
                 if(_stock == 0){//库存为0
                     if(item.is_discount_err){
-                        //_msg = Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT;
-                        _msg = Lang.H5_MSG_NO_GOOD;
+                        _msg = Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT;
+                        //_msg = Lang.H5_MSG_NO_GOOD;
                     }else{
                         //_msg = Lang.H5_SOLD_OUT;
                         _msg = Lang.H5_MSG_NO_GOOD;
