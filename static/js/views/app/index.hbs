@@ -68,11 +68,11 @@
         {{/havehot}}
     </section>
     {{#each tags_item}}
-        <section class="items-box j_box" data-tagid="{{id}}">
-                <p class="item-title clearfix"><a class="fr" href="{{../hrefUrl}}sort.php?sort_id={{id}}&name={{name}}&seller_id={{../data.shop.id}}">more<i class="icon iconfont icon-go-font"></i></a><span></span>{{name}}</p>
-                <ul class="items-list j_item_list clearfix">
-                    {{#tagItemList this.item}}{{/tagItemList}}
-                </ul>
+        <section class="items-box j_box" data-tagid="{{this.id}}">
+            <p class="item-title clearfix"><a class="fr" href="{{../hrefUrl}}sort.php?sort_id={{this.id}}&name={{this.name}}&seller_id={{../data.shop.id}}">more<i class="icon iconfont icon-go-font"></i></a><span></span>{{this.name}}</p>
+            <ul class="items-list j_item_list clearfix">
+                {{#tagItemList this.item}}{{/tagItemList}}
+            </ul>
         </section>
     {{/each}}
     <section class="items-box j_item_box j_box">

@@ -9,9 +9,11 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             var IndexHtm = '<div>加载数据中</div>',
                 _this = this;
             if(init_data){
+                var _tag_list = _this.getTags(init_data.item_list.list);
                 IndexHtm= Hbs.compile(Index)({
                     data : init_data,
-                    tags_item : _this.getTags(init_data.item_list.list),
+                    tags_item : _tag_list.tags,
+                    tags_sort : _tag_list.sort,
                     lang : Lang,
                     host:Config.host.host,
                     hrefUrl : Config.host.hrefUrl,
@@ -31,13 +33,17 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             if(!list.length)return null;
             var _data = {},
                 _list = [],
-                i = 0;
+                _sort = [],
+                _result = [],
+                i = 0,
+                j = 0;
             for(i;i < list.length;i++){
                 if(list[i].index_type == 'tags'){
                     if(_data[list[i].tag_id]){
                         //_data[list[i].tag_id].item[list[i].id] = list[i];
                         _data[list[i].tag_id].item.push(list[i]);
                     }else{
+                        _sort.push(list[i].tag_id);
                         _data[list[i].tag_id]= {
                             id : list[i].tag_id,
                             name : list[i].tag_name
@@ -49,10 +55,13 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
 
                 }
             }
-            //for(var d in _data){
-            //    _list.push(_data[d]);
-            //}
-            return _data;
+            for(j;j < _sort.length;j++){
+                _result.push(_data[_sort[j]]);
+            }
+            return {
+                tags : _result,
+                sort : _sort
+            };
         },
         handleFn : function(){
             var page_num = 2,
@@ -110,13 +119,14 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                     }
                                     $('.j_hot_list').append(_this.addItem(_list_data.hot));
                                 }
-                                if(!Base.others.testObject(_list_data.tags)){
-                                    for(var tagid in _list_data.tags){
-                                        if($('[data-tagid="'+tagid+'"]').length){
-                                            $('[data-tagid="'+tagid+'"] ul').append(_this.addItem(_list_data.tags[tagid].item));
+                                if(_list_data.tags.length){
+                                    var _tags = _list_data.tags;
+                                    for(var tagid in _tags){
+                                        if($('[data-tagid="'+_tags[tagid].id+'"]').length){
+                                            $('[data-tagid="'+_tags[tagid].id+'"] ul').append(_this.addItem(_list_data.tags[tagid].item));
                                         }else{
-                                            var _htm = '<section class="items-box" data-tagid="'+tagid+'">'
-                                                +'<p class="item-title clearfix"><a class="fr" href="'+Config.host.hrefUrl+'sort.php?sort_id='+tagid+'&name='+_list_data.tags[tagid].name+'&seller_id='+init_data.shop.id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span>'+_list_data.tags[tagid].name+'</p>'
+                                            var _htm = '<section class="items-box" data-tagid="'+_tags[tagid].id+'">'
+                                                +'<p class="item-title clearfix"><a class="fr" href="'+Config.host.hrefUrl+'sort.php?sort_id='+_tags[tagid].id+'&name='+_list_data.tags[tagid].name+'&seller_id='+init_data.shop.id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span>'+_list_data.tags[tagid].name+'</p>'
                                                 +'<ul class="items-list j_item_list clearfix">'
                                                 +_this.addItem(_list_data.tags[tagid].item)
                                                 +'</ul>'
@@ -189,7 +199,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             return {
                 hot : _hot,
                 item : _item,
-                tags : _this.getTags(items)
+                tags : _this.getTags(items).tags
             };
         },
         discountTime : function(nowTime,endTime){
