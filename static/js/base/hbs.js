@@ -450,7 +450,8 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     +'<p class="name">'+carts[item].item.item_name+'</p>'
                     +(carts[item].sku&&carts[item].sku.id?'<p class="type">'+Lang.H5_SKU+':'+carts[item].sku.title+'</p>':'');
                 if(!testStock(carts[item])){
-                    _htm +='<p class="num">'+Lang.H5_STOCK+':'+(((carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock))+'</p>';
+                    var _t_stock = (carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock;
+                    _htm +='<p class="num">'+Lang.H5_STOCK+':'+(_t_stock<0?0:_t_stock)+'</p>';
                 }
                 if(carts[item].item.is_discount && carts[item].item.discounting){
                     //_htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';

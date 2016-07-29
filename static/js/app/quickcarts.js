@@ -35,8 +35,6 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 lang:Lang
             });
             _this.carts = init_data.carts;
-            console.log(_this.getItems());
-            console.log(init_data)
             $('body').prepend(_htm);
             if(_this['province']){
                 _this.getLogistics();
@@ -153,7 +151,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                 auto_fn : function(){
                                     setTimeout(function(){
                                         location.href = Config.host.host+'s/'+init_data.shop.id;
-                                    },2000);
+                                    },1000);
                                 }
                             });
                         }
@@ -211,7 +209,12 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                                 }else{
                                                     Dialog.tip({
                                                         top_txt : '',//可以是html
-                                                        body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>'
+                                                        body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
+                                                        auto_fn : function(){
+                                                            setTimeout(function(){
+                                                                location.reload();
+                                                            },2000);
+                                                        }
                                                     });
                                                 }
                                             }
@@ -259,7 +262,13 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 _city = $.trim($('.j_city').html()),
                 _country = $.trim($('.j_country').html()),
                 _street = $.trim($('.j_street').val());
-            if(!_name||!_telephone||!_province||!_city||!_country||!_street){return null;}//信息不完整
+            if(!_name||!_telephone||!_province||!_city||!_country||!_street){
+                Dialog.tip({
+                    top_txt : '',//可以是html
+                    body_txt : '<p class="dialog-body-p">'+Lang.H5_MSG_ADDRESS+'</p>'
+                });
+                return null;
+            }//信息不完整
             var _address = {
                 "name": _name,
                 "telephone": _telephone,
@@ -281,9 +290,17 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 _seller_id = init_data.shop.id,
                 _note = $.trim($('.j_buyer_note').val());
             if(_logistics_info.length && !_company){//没选择物流信息
+                Dialog.tip({
+                    top_txt : '',//可以是html
+                    body_txt : '<p class="dialog-body-p">'+Lang.H5_SELECT_ONE_LOGISTICS_COMPANY+'</p>'
+                });
                 return null;
             }
             if(!_this.getItems().length){//购物车为空
+                Dialog.tip({
+                    top_txt : '',//可以是html
+                    body_txt : '<p class="dialog-body-p">'+Lang.H5_SHOPING_NO_GOODS+'</p>'
+                });
                 return null;
             }
             var _data = {
@@ -480,16 +497,15 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                 body_txt : '<p class="dialog-body-p">'+_msg+'</p>'
                             });
                         }
+
                     }
                     if(_msg){
                         $('.j_cart_item[data-id="'+_id+'"]').addClass('error-item');
                     }
-                    if($('.error-item').length == $('.j_cart_item').length){
-                        _this.msg = _msg;
-                    }
+                    $('.j_cart_item[data-id="'+_id+'"] .num').html(Lang.H5_STOCK+': '+(_stock < 0?0:_stock));
+                    _this.msg = _msg;
                     return _beal;
                 }
-
             });
             return _beal;
         },

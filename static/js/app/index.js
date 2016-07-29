@@ -196,14 +196,16 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 _l_top = 0;
             }
             //console.log(1);
-            var t = setTimeout(function(){
-                $(window).scrollTop(_l_top);
-                if($(document).height() < _l_top){
-                    _this.goScroll();
-                } else{
-                    clearTimeout(t);
-                }
-            },1);
+            $(window).scrollTop(_l_top);
+            _this.goScroll();
+            //_this.t = setTimeout(function(){
+            //    $(window).scrollTop(_l_top);
+            //    if($(document).height() < _l_top){
+            //        _this.goScroll();
+            //    } else{
+            //        clearTimeout(_this.t);
+            //    }
+            //},1);
         },
         transItems : function(items){
             var i = 0,
