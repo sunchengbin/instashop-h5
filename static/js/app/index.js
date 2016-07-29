@@ -103,8 +103,9 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                 }
                             };
                             if(obj.item_list.list.length > 0){
+                                //console.log(obj.item_list.list);
                                 var _list_data = _this.transItems(obj.item_list.list);
-                                console.log(_list_data);
+                                //console.log(_list_data);
                                 if(_list_data.item.length){
                                     if(!$('.j_item_box .j_item_list').length){
                                         var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="items-list j_item_list clearfix"></ul>';
@@ -153,7 +154,9 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             });
             $('body').on('click','.j_item_info',function(){
                 var _this = $(this),
-                    _url = _this.attr('data-url');
+                    _url = _this.attr('data-url'),
+                    _scroll_top = $(window).scrollTop();
+                    localStorage.setItem('ScrollTop',_scroll_top);
                 Common.saveFromUrl(function(){
                     location.href = _url;
                 });
@@ -181,7 +184,10 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 _sort_cover.style.webkitTransitionDuration = '.6s';
                 _sort_cover.style.webkitTransform = "translate3d(-100%,0,0)";
             });
-
+            if(localStorage.getItem('ScrollTop')){//存在scrollTop时页面下滚到记忆中的top值
+                console.log(1);
+                $(window).scrollTop(localStorage.getItem('ScrollTop'));
+            }
         },
         transItems : function(items){
             var i = 0,
