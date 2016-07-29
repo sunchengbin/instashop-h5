@@ -75,7 +75,7 @@ define(['server','config','base','imcommon','lazyload'],function(Server,Config,B
                 //本地上传了不需要
                 _htm = Common.insertUserMsg(Common.transAddressMsg(_msg),_time,'1');
             }else{//文本消息
-                _htm = Common.insertSellerMsg(_msg,_time);
+                _htm = Common.insertUserMsg(_msg,_time);
                 $('.j_message_wraper').append(_htm);
             }
 
