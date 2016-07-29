@@ -33,7 +33,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $path = 'v1/shops/'.$seller_id.'/items';
         $ret = get_init_php_data($path, $params);
         $json = json_decode($ret, true);
-        echo '<title>'.$sort_name.'</title>';
+        echo '<title>'.json_decode($sort_name).'</title>';
         echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
     ?>
 </head>
