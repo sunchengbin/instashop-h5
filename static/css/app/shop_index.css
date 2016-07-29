@@ -366,6 +366,8 @@ footer .btn i{
     color: #999;
     font-size: 3rem;
     margin-top: -1.5rem;
+    transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
 }
 .sort-list-wraper,.sort-list-cover{
     transform: translate3d(-100%,0,0);
