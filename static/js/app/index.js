@@ -189,14 +189,18 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 _this.goScroll();
             }
         },
-        goScroll : function(){
+        goScroll : function() {
             var _this = this,
                 _l_top = Number(localStorage.getItem('ScrollTop'));
-            if(!_l_top){
+            if (!_l_top) {
                 _l_top = 0;
             }
             $(window).scrollTop(_l_top);
-            _this.goScroll();
+            if ($(document).height() < _l_top) {
+                _this.goScroll();
+            } else {
+                clearTimeout(_this.t);
+            }
             //_this.t = setTimeout(function(){
             //    $(window).scrollTop(_l_top);
             //    if($(document).height() < _l_top){
