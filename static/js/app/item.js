@@ -150,9 +150,14 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 });
             });
             $('body').on('tap','.j_go_back',function(){
-                Common.saveFromUrl(function(){
-                    location.href = Config.host.host+'s/'+init_data.item.shop.id;
-                });
+                if(localStorage.getItem('FromUrl')){
+                    location.href = localStorage.getItem('FromUrl');
+                }else{
+                    Common.saveFromUrl(function(){
+                        location.href = Config.host.host+'s/'+init_data.item.shop.id;
+                    });
+                }
+
             });
             $('body').on('click','.j_cart_wraper',function(){
                 var _this = $(this),
