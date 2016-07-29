@@ -188,8 +188,9 @@ section{
     border-radius: 50%;
     color: #fff;
     text-align: center;
-    left: 4rem;
-    top: 1rem;
+    left: 50%;
+    top: .5rem;
+    margin-left: -15%;
 }
 .ser-icon{
     font-size: 2.2rem;
