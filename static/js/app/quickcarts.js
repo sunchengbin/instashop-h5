@@ -435,9 +435,11 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     _msg = null;
                 if(_stock == 0){//库存为0
                     if(item.is_discount_err){
-                        _msg = Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT;
+                        //_msg = Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT;
+                        _msg = Lang.H5_MSG_NO_GOOD;
                     }else{
-                        _msg = Lang.H5_SOLD_OUT;
+                        //_msg = Lang.H5_SOLD_OUT;
+                        _msg = Lang.H5_MSG_NO_GOOD;
                     }
 
                 }else{
@@ -521,10 +523,10 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                             }
                         }
                     }else{
-                        Dialog.confirm({
+                        Dialog.tip({
                             top_txt : '',//可以是html
                             body_txt : '<p class="dialog-body-p">'+obj.msg+'</p>',
-                            cf_fn : function(){
+                            auto_fn : function(){
                                 setTimeout(function(){
                                     location.reload();
                                 },2000);
@@ -533,10 +535,10 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     }
                 },
                 error : function(error){
-                    Dialog.confirm({
+                    Dialog.tip({
                         top_txt : '',//可以是html
                         body_txt : '<p class="dialog-body-p">error</p>',
-                        cf_fn : function(){
+                        auto_fn : function(){
                             setTimeout(function(){
                                 location.reload();
                             },2000);
