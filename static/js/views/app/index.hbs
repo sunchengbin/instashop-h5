@@ -101,7 +101,7 @@
         <p>{{lang.H5_GOOD_SORT}}</p>
         <ul>
             {{#each data.tag_list}}
-                <li class=""><a href="{{../../host}}html/sort.php?sort_id={{id}}&name={{name}}&seller_id={{../../data.shop.id}}" class=""><span></span>{{name}}</a></li>
+                <li class=""><a class="j_item_info" href="javascript:;" data-url="{{../../host}}html/sort.php?sort_id={{id}}&name={{encode name}}&seller_id={{../../data.shop.id}}" class=""><span></span>{{name}}</a></li>
             {{/each}}
         </ul>
     </section>
