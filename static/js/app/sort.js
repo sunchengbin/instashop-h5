@@ -27,16 +27,9 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
             }
             Fastclick.attach(document.body);
             $('body').on('click','.j_go_back',function(){
-                    if(localStorage.getItem('FromUrl')){
-                        var _local_url = localStorage.getItem('FromUrl');
-                        if(/\?/g.test(_local_url)){
-                            location.href = _local_url+'&item=back';
-                        }else{
-                            location.href = _local_url+'?item=back';
-                        }
-                    }else{
-                        location.href = Config.host.host+'s/'+Base.others.getUrlPrem('seller_id');
-                    }
+
+                location.href = Config.host.host+'s/'+Base.others.getUrlPrem('seller_id')+'?item=back';
+
             });
             $('body').on('click','.j_cart_wraper',function(){
                 var _this = $(this),
