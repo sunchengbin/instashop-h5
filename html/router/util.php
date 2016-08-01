@@ -30,7 +30,7 @@ function deal_headers() {
         $headers['X-HTTP-METHOD-OVERRIDE'] = $_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'];
     }
     $headers['Accept-Encoding'] = ''; // 内网访问ushop接口不用压缩
-	if ($headers['X-Forwarded-For'])
+	if (isset($headers['X-Forwarded-For']) && $headers['X-Forwarded-For'])
 	{
 		$headers['X-Forwarded-Ip']= $headers['X-Forwarded-For'];
 	}
