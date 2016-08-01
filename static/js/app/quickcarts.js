@@ -105,6 +105,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         }
                         $('.j_province').html(_name);
                         $('[data-name="city"]').addClass('act');
+                        _this.clearAddress();
                         break;
                     case 'city' :
                         if($('.j_city').html() != _name){
@@ -113,6 +114,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         }
                         $('.j_city').html(_name);
                         $('[data-name="country"]').addClass('act');
+                        _this.clearAddress();
                         break;
                     default :
                         $('.j_country').html(_name);
@@ -197,10 +199,10 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                         if(obj.code == 200){
                                             if(obj.carts){
                                                 if(_this.testCarts(obj.carts)) {
-                                                    Dialog.confirm({
+                                                    Dialog.tip({
                                                         top_txt : '',//可以是html
                                                         body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
-                                                        cf_fn : function(){
+                                                        auto_fn : function(){
                                                             setTimeout(function(){
                                                                 location.href = Config.host.host+'s/'+init_data.shop.id;
                                                             },2000);
@@ -219,10 +221,10 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                                 }
                                             }
                                         }else{
-                                            Dialog.confirm({
+                                            Dialog.tip({
                                                 top_txt : '',//可以是html
                                                 body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
-                                                cf_fn : function(){
+                                                auto_fn : function(){
                                                     setTimeout(function(){
                                                         location.href = Config.host.host+'s/'+init_data.shop.id;
                                                     },2000);
@@ -231,10 +233,10 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                         }
                                     },
                                     error : function(error){
-                                        Dialog.confirm({
+                                        Dialog.tip({
                                             top_txt : '',//可以是html
                                             body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
-                                            cf_fn : function(){
+                                            auto_fn : function(){
                                                 setTimeout(function(){
                                                     location.href = Config.host.host+'s/'+init_data.shop.id;
                                                 },2000);
@@ -252,6 +254,12 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 }
             });
         },
+        clearAddress : function(){
+            $('.j_logistics_info').removeAttr('data-id');
+            $('.j_logistics_info').removeAttr('data-company');
+            $('.j_logistics_info').removeAttr('data-price');
+            $('.j_logistics').hide();
+        },
         getData : function(){
             var _this = this;
             var _data = localStorage.getItem('ShopData'),
@@ -262,7 +270,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 _city = $.trim($('.j_city').html()),
                 _country = $.trim($('.j_country').html()),
                 _street = $.trim($('.j_street').val());
-            if(!_name||!_telephone||!_province||!_city||!_country||!_street){
+            if(!_name||!_telephone||!_province||!_city||!_country||!_street||(_province==Lang.H5_PROVINCE)||(_city==Lang.H5_CITY)||(_country==Lang.H5_DISTRICT)){
                 Dialog.tip({
                     top_txt : '',//可以是html
                     body_txt : '<p class="dialog-body-p">'+Lang.H5_MSG_ADDRESS+'</p>'
