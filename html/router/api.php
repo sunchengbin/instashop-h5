@@ -23,7 +23,14 @@ function dealHeaders()
 		$headers['X-HTTP-METHOD-OVERRIDE'] = $_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'];
 	}
 	$headers['Accept-Encoding'] = ''; // 内网访问ushop接口不用压缩
-	$headers['x-forwarded-ip']= $_SERVER['REMOTE_ADDR'];
+	if ($headers['X-Forwarded-For'])
+	{
+		$headers['X-Forwarded-Ip']= $headers['X-Forwarded-For'];
+	}
+	else
+	{
+		$headers['X-Forwarded-Ip']= $_SERVER['REMOTE_ADDR'];
+	}
 	return $headers;
 }
 
