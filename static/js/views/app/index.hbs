@@ -69,7 +69,7 @@
     </section>
     {{#each tags_item}}
         <section class="items-box j_box" data-tagid="{{this.id}}">
-            <p class="item-title clearfix"><a class="fr" href="{{../hrefUrl}}sort.php?sort_id={{this.id}}&name={{this.name}}&seller_id={{../data.shop.id}}">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>{{decode this.name}}</em></p>
+            <p class="item-title clearfix"><a class="fr j_item_info" href="javascript:;" data-url="{{../hrefUrl}}sort.php?sort_id={{this.id}}&name={{this.name}}&seller_id={{../data.shop.id}}">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>{{decode this.name}}</em></p>
             <ul class="items-list j_item_list clearfix">
                 {{#tagItemList this.item}}{{/tagItemList}}
             </ul>

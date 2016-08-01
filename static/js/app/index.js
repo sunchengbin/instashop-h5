@@ -8,6 +8,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             Common.initShopInfo(init_data);
             var IndexHtm = '<div>加载数据中</div>',
                 _this = this;
+            _this.sortTimes = 0;
             if(init_data){
                 var _tag_list = _this.getTags(init_data.item_list.list);
                 IndexHtm= Hbs.compile(Index)({
@@ -127,7 +128,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                             $('[data-tagid="'+_tags[tagid].id+'"] ul').append(_this.addItem(_list_data.tags[tagid].item));
                                         }else{
                                             var _htm = '<section class="items-box" data-tagid="'+_tags[tagid].id+'">'
-                                                +'<p class="item-title clearfix"><a class="fr" href="'+Config.host.hrefUrl+'sort.php?sort_id='+_tags[tagid].id+'&name='+_list_data.tags[tagid].name+'&seller_id='+init_data.shop.id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>'
+                                                +'<p class="item-title clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.hrefUrl+'sort.php?sort_id='+_tags[tagid].id+'&name='+_list_data.tags[tagid].name+'&seller_id='+init_data.shop.id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>'
                                                 +'<ul class="items-list j_item_list clearfix">'
                                                 +_this.addItem(_list_data.tags[tagid].item)
                                                 +'</ul>'
@@ -184,7 +185,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 _sort_cover.style.webkitTransitionDuration = '.6s';
                 _sort_cover.style.webkitTransform = "translate3d(-100%,0,0)";
             });
-
+            localStorage.removeItem('FromUrl');
             if(localStorage.getItem('ScrollTop') && Base.others.getUrlPrem('item')){//存在scrollTop时页面下滚到记忆中的top值
                 _this.goScroll();
             }
@@ -200,14 +201,20 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 clearTimeout(_this.t);
             }
             _this.t = setTimeout(function(){
-                console.log(_this.t)
-                $(window).scrollTop(_l_top);
-                if ($(document).height() < _l_top) {
-                    _this.goScroll();
-                }else{
+                _this.sortTimes++;
+                if(_this.sortTimes > 7){
                     clearTimeout(_this.t);
-                    console.log('end')
+                }else{
+                    console.log(_this.t)
+                    $(window).scrollTop(_l_top);
+                    if ($(document).height() < _l_top) {
+                        _this.goScroll();
+                    }else{
+                        clearTimeout(_this.t);
+                        console.log('end')
+                    }
                 }
+
             },100);
 
         },
