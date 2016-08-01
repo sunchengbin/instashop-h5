@@ -467,8 +467,9 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                             _msg = Lang.H5_COMMODIFY_SHELF;
                         }else{
                             if(_stock < _num){//超出库存
-                                if(item.is_discount_err){
-                                    _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
+                                if(item.is_discount_err){//超出限购数
+                                    //_msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
+                                    _msg = Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT;
                                 }else{
                                     _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
                                 }
