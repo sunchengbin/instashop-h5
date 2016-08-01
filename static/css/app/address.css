@@ -1,5 +1,6 @@
 @import "../base/base.css";
 @import "../moudle/app/header/header.css";
+@import "../moudle/ui/dialog/dialog.css";
 @import "../moudle/app/common/common.css";
 html{
     height: 100%;
