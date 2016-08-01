@@ -67,6 +67,9 @@ define(['base'],function(Base){
         },
         saveFromUrl : function(callback){//存储导航中返回上一页的url地址
             var _form_url =  location.href;
+            if(Base.others.getUrlPrem('item',_form_url) == 'back' && !Base.others.getUrlPrem('sort_id')){
+                _form_url = _form_url.split('?')[0];
+            }
             localStorage.setItem('FromUrl',_form_url);
             setTimeout(function(){
                 callback && callback();

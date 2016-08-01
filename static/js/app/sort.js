@@ -28,9 +28,6 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
             Fastclick.attach(document.body);
             $('body').on('click','.j_go_back',function(){
                 location.href = Config.host.host+'s/'+Base.others.getUrlPrem('seller_id');
-                //Common.saveFromUrl(function(){
-                //
-                //});
             });
             $('body').on('click','.j_cart_wraper',function(){
                 var _this = $(this),
@@ -42,10 +39,14 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
             $('body').on('click','.j_item_info',function(){
                 var _this = $(this),
                     _url = _this.attr('data-url');
+                localStorage.setItem('SortTop',$(window).scrollTop());
                 Common.saveFromUrl(function(){
                     location.href = _url;
                 });
             });
+            if(localStorage.getItem('SortTop') && Base.others.getUrlPrem('item')){//存在scrollTop时页面下滚到记忆中的top值
+                _this.goScroll();
+            }
             if(init_data.code == 200){
                 var _list = init_data.item_list.list,
                     _last_id = _list.length?_list[(_list.length-1)].id:null,
@@ -103,6 +104,27 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                     }
                 });
             }
+        },
+        goScroll : function(){
+            var _this = this,
+                _l_top = Number(localStorage.getItem('SortTop'));
+            if (!_l_top) {
+                _l_top = 0;
+            }
+            if(_this.t){
+                console.log(1)
+                clearTimeout(_this.t);
+            }
+            _this.t = setTimeout(function(){
+                console.log(_this.t)
+                $(window).scrollTop(_l_top);
+                if ($(document).height() < _l_top) {
+                    _this.goScroll();
+                }else{
+                    clearTimeout(_this.t);
+                    console.log('end')
+                }
+            },100);
         },
         transItems : function(items){
             var i = 0,

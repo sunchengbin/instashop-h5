@@ -127,7 +127,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                             $('[data-tagid="'+_tags[tagid].id+'"] ul').append(_this.addItem(_list_data.tags[tagid].item));
                                         }else{
                                             var _htm = '<section class="items-box" data-tagid="'+_tags[tagid].id+'">'
-                                                +'<p class="item-title clearfix"><a class="fr" href="'+Config.host.hrefUrl+'sort.php?sort_id='+_tags[tagid].id+'&name='+_list_data.tags[tagid].name+'&seller_id='+init_data.shop.id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+_list_data.tags[tagid].name+'</em></p>'
+                                                +'<p class="item-title clearfix"><a class="fr" href="'+Config.host.hrefUrl+'sort.php?sort_id='+_tags[tagid].id+'&name='+_list_data.tags[tagid].name+'&seller_id='+init_data.shop.id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>'
                                                 +'<ul class="items-list j_item_list clearfix">'
                                                 +_this.addItem(_list_data.tags[tagid].item)
                                                 +'</ul>'
@@ -184,8 +184,8 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 _sort_cover.style.webkitTransitionDuration = '.6s';
                 _sort_cover.style.webkitTransform = "translate3d(-100%,0,0)";
             });
-            if(localStorage.getItem('ScrollTop')){//存在scrollTop时页面下滚到记忆中的top值
 
+            if(localStorage.getItem('ScrollTop') && Base.others.getUrlPrem('item')){//存在scrollTop时页面下滚到记忆中的top值
                 _this.goScroll();
             }
         },
@@ -195,20 +195,21 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             if (!_l_top) {
                 _l_top = 0;
             }
-            $(window).scrollTop(_l_top);
-            if ($(document).height() < _l_top) {
-                _this.goScroll();
-            } else {
+            if(_this.t){
+                console.log(1)
                 clearTimeout(_this.t);
             }
-            //_this.t = setTimeout(function(){
-            //    $(window).scrollTop(_l_top);
-            //    if($(document).height() < _l_top){
-            //        _this.goScroll();
-            //    } else{
-            //        clearTimeout(_this.t);
-            //    }
-            //},1);
+            _this.t = setTimeout(function(){
+                console.log(_this.t)
+                $(window).scrollTop(_l_top);
+                if ($(document).height() < _l_top) {
+                    _this.goScroll();
+                }else{
+                    clearTimeout(_this.t);
+                    console.log('end')
+                }
+            },100);
+
         },
         transItems : function(items){
             var i = 0,
@@ -276,7 +277,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
         addItem : function(items){
             var out = "",
                 _this = this,
-                _webplog = Base.others.webpLog(),
+                _webplog = !Base.others.webpLog(),
                 i = 0;
             for (i; i < items.length;i++) {
                 var _time = _this.discountTime(items[i].discount.now_time,items[i].discount.end_time);

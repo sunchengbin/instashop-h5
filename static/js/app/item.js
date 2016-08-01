@@ -149,15 +149,20 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     location.href = _url;
                 });
             });
+            //item=back是为了让返回首页的时候滚动到指定的scrolltop高度
             $('body').on('tap','.j_go_back',function(){
                 if(localStorage.getItem('FromUrl')){
-                    location.href = localStorage.getItem('FromUrl');
+                    var _local_url = localStorage.getItem('FromUrl');
+                    if(/\?/g.test(_local_url)){
+                        location.href = localStorage.getItem('FromUrl')+'&item=back';
+                    }else{
+                        location.href = localStorage.getItem('FromUrl')+'?item=back';
+                    }
                 }else{
                     Common.saveFromUrl(function(){
-                        location.href = Config.host.host+'s/'+init_data.item.shop.id;
+                        location.href = Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
                     });
                 }
-
             });
             $('body').on('click','.j_cart_wraper',function(){
                 var _this = $(this),
