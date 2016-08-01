@@ -317,7 +317,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     "address_id": "0",
                     "note": "",
                     "pay_way": "13",
-                    "pay_type": 1,
+                    "pay_type": 0,
                     "seller_id": _seller_id,
                     "buyer_id": "0",
                     "buyer_note": _note,
@@ -477,7 +477,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                             if(_stock < _num){//超出库存
                                 if(item.is_discount_err){//超出限购数
                                     //_msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
-                                    _msg = Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT;
+                                    _msg = Lang.H5_MAX_BUY+_stock+Lang.H5_PCS;
                                 }else{
                                     _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
                                 }

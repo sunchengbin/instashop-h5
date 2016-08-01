@@ -114,7 +114,8 @@ define([],function(){
             H5_GOOD_SORT:'商品分类',
             H5_MSG_NO_GOOD:'有商品已经卖完了哦',
             H5_SORT_EMPTY:'该分类暂无商品',
-            H5_MSG_ADDRESS : '请填写收货地址'
+            H5_MSG_ADDRESS : '请填写收货地址',
+            H5_MAX_BUY:'最多只能购买'
         },
 
         id : {
@@ -323,7 +324,8 @@ define([],function(){
             H5_GOOD_SORT:'Kategori produk',
             H5_MSG_NO_GOOD:'Ada produk yang sudah habis terjual loh',
             H5_SORT_EMPTY:'Tidak ada produk untuk kategori ini',
-            H5_MSG_ADDRESS : 'Alamat Pengiriman'
+            H5_MSG_ADDRESS : 'Alamat Pengiriman',
+            H5_MAX_BUY:'Kamu maksimal hanya dapat membeli'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

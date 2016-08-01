@@ -269,7 +269,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     "address_id": "0",
                     "note": "",
                     "pay_way": "13",
-                    "pay_type": 1,
+                    "pay_type": 0,
                     "seller_id": _seller_id,
                     "buyer_id": "0",
                     "buyer_note": _note,
