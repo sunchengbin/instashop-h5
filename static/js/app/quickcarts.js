@@ -199,10 +199,10 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                         if(obj.code == 200){
                                             if(obj.carts){
                                                 if(_this.testCarts(obj.carts)) {
-                                                    Dialog.confirm({
+                                                    Dialog.tip({
                                                         top_txt : '',//可以是html
                                                         body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
-                                                        cf_fn : function(){
+                                                        auto_fn : function(){
                                                             setTimeout(function(){
                                                                 location.href = Config.host.host+'s/'+init_data.shop.id;
                                                             },2000);
@@ -221,10 +221,10 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                                 }
                                             }
                                         }else{
-                                            Dialog.confirm({
+                                            Dialog.tip({
                                                 top_txt : '',//可以是html
                                                 body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
-                                                cf_fn : function(){
+                                                auto_fn : function(){
                                                     setTimeout(function(){
                                                         location.href = Config.host.host+'s/'+init_data.shop.id;
                                                     },2000);
@@ -233,10 +233,10 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                         }
                                     },
                                     error : function(error){
-                                        Dialog.confirm({
+                                        Dialog.tip({
                                             top_txt : '',//可以是html
                                             body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
-                                            cf_fn : function(){
+                                            auto_fn : function(){
                                                 setTimeout(function(){
                                                     location.href = Config.host.host+'s/'+init_data.shop.id;
                                                 },2000);
