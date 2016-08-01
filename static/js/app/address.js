@@ -110,6 +110,10 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','
                     _country = $.trim($('.j_country').html()),
                     _street = $.trim($('.j_street').val());
                     if(!_name||!_telephone||!_province||!_city||!_country||!_street||(_province==Lang.H5_PROVINCE)||(_city==Lang.H5_CITY)||(_country==Lang.H5_DISTRICT)){
+                        Dialog.tip({
+                            top_txt : '',//可以是html
+                            body_txt : '<p class="dialog-body-p">'+Lang.H5_MSG_ADDRESS+'</p>'
+                        });
                         return;
                     }
                 var _address = {
