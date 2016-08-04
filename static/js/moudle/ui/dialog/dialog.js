@@ -11,7 +11,7 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
             show_top : true,//是否显示头部
             width : 300,//弹窗宽度
             height : null,//弹窗特定高度
-            body_txt : '<p class="dialog-body-p">delete?</p>',//弹窗内容区字段
+            body_txt : '<p class="dialog-body-p">'+Lang.H5_DELETE_CONFIRM+'</p>',//弹窗内容区字段
             body_fn : null,//插入的body的fn
             c_fn : null,//close按钮点击关闭的回调函数
             cf_fn : null,//点击确定的回调函数

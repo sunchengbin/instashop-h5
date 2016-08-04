@@ -125,7 +125,8 @@ define([],function(){
             H5_PAY_EXPIRY_DATE:'付款有效期',
             H5_ERROR:'网络状况不好，请刷新页面',
             H5_FRESHEN:'刷新',
-            H5_CONFIRM_ORDER_ERROR:'下单失败'
+            H5_CONFIRM_ORDER_ERROR:'下单失败',
+            H5_DELETE_CONFIRM:'确认删除?'
 
         },
 
@@ -346,7 +347,8 @@ define([],function(){
             H5_PAY_EXPIRY_DATE:'付款有效期',
             H5_ERROR:'网络状况不好，请刷新页面',
             H5_FRESHEN:'刷新',
-            H5_CONFIRM_ORDER_ERROR:'下单失败'
+            H5_CONFIRM_ORDER_ERROR:'下单失败',
+            H5_DELETE_CONFIRM:'Yakin ingin menghapus?'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );
