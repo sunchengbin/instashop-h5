@@ -84,7 +84,7 @@ body .address-list{
 .info-box{
     color: #aaa;
     font-size: 1.4rem;
-    padding:1rem;
+    padding:1rem 0;
     height: 2.4rem;
     line-height: 2.4rem;
     /*border-bottom: 1px solid #ececec;*/
@@ -104,6 +104,23 @@ body .address-list{
     transform: scale(0.5);
     border-bottom: 1px solid #d8d8d8;
 }
+.tel-msg-txt{
+    padding: 1rem .5rem;
+    color: #999;
+    background-color: #fff;
+    position: relative;
+}
+.user-address .info-box:first-child::before{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    top:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
+}
 .user-tel::after{
     /*height: 0;*/
     /*border-bottom: none;*/
@@ -116,7 +133,7 @@ body .address-list{
     width: 100%;
 }
 .info-box-address{
-    padding:1rem;
+    padding:1rem 0;
 }
 .info-box-address textarea{
     width: 100%;
@@ -226,6 +243,7 @@ body .address-list{
 .confirm-btn{
     width: 80%;
     margin: 1rem auto;
+    border-radius: 3px;
 }
 .empty-cart{
     text-align: center;
@@ -285,7 +303,7 @@ body .address-list{
     border-top: 7px solid transparent;
 }
 .address-title{
-    padding:1rem 2rem;
+    padding:1rem;
     font-size: 15px;
     color: #666;
 }
@@ -294,7 +312,7 @@ body .address-list{
 }
 .logistics-list{
     background-color: #fff;
-    padding:0 2rem .5rem;
+    padding: 1rem;
 }
 .logistics-list i{
     color: #43cb9c;
@@ -307,6 +325,11 @@ body .address-list{
     position: absolute;
     left: 0;
     top: .9rem;
+}
+.logistics-list li{
+    padding: 1rem 0 0 2.5rem;
+    font-size: 14px;
+    position: relative;
 }
 .cart-item div.price{
     line-height: 2.4rem;
@@ -354,18 +377,21 @@ body .address-list{
 .cart-item > div{
     margin-right:.5rem;
 }
-.logistics-list li{
-    padding: 1rem 0 0 2.5rem;
-    font-size: 14px;
-    position: relative;
-}
-.logistics-list{
-    padding: 1rem 2rem;
-}
+
 .error-item{
     opacity: .5;
 }
 .error-item .j_add_btn{
     border-color: #d8d8d8;
     background-color: #d8d8d8;
+}
+.logistics-plug-top, .logistics-list{
+    margin:0;
+    padding:0 1rem 1rem;
+}
+.logistics-list li i{
+    color: #ccc;
+}
+.logistics-list li i.checked-btn{
+    color: #43CB9C;
 }

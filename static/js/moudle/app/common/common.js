@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/7.
  */
-define(['base'],function(Base){
+define(['base','dialog','lang'],function(Base,Dialog,Lang){
     var AppCommon = function(){
         return this;
     };
@@ -77,6 +77,41 @@ define(['base'],function(Base){
         },
         getFromUrl : function(){//获取返回上一页的url地址
             return localStorage.getItem('FromUrl');
+        },
+        telVerify : function(tel,callback,ccallback){//手机号验证
+            tel = Number(tel);
+            if(/^\d{9,12}$/g.test(tel)){
+                return true;
+            }else{
+                if(/^\d{21,}$/g.test(tel)){//手机号码不能超过20位
+                    Dialog.tip({
+                        top_txt : '',//可以是html
+                        body_txt : '<p class="dialog-body-p">'+Lang.H5_TEL_PASS_20+'</p>'
+                    });
+                    return false;
+                }else{
+                    if(!isNaN(tel)){//纯数字其他错误情况的时候需要确认
+                        Dialog.confirm({
+                            top_txt : '',//可以是html
+                            body_txt : '<p class="dialog-body-p">'+Lang.H5_TEL_GO_CONFIRM+'</p>',
+                            cfb_txt : Lang.H5_GO_CONFIRM,//确定按钮文字
+                            c_fn : function(){
+                                callback && callback();
+                            },
+                            cf_fn : function(){
+                                ccallback && ccallback();
+                            }
+                        });
+                        return false;
+                    }
+                }
+                Dialog.tip({
+                    top_txt : '',//可以是html
+                    body_txt : '<p class="dialog-body-p">'+Lang.H5_CONFIRM_TEL_IS_TRUE+'</p>'
+                });
+                return false;
+            }
+            return false;
         }
     };
 

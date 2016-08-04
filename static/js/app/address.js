@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','dialog','cart'],function(Hbs,Addresshtm,City,Config,Lang,Fastclick,Dialog,Cart){
+require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','dialog','cart','common'],function(Hbs,Addresshtm,City,Config,Lang,Fastclick,Dialog,Cart,Common){
     var Address = {
         init : function(){
             var _this = this,
@@ -116,28 +116,61 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','
                         });
                         return;
                     }
-                var _address = {
-                    "name": _name,
-                    "telephone": _telephone,
-                    "post": "",
-                    "country_code": "62",
-                    "email": "",
-                    "address": {
-                        "province": _province,//省
-                        "city": _city,//市
-                        "country": _country,//街道
-                        "street": _street//详细地址
-                    }
-                };
-                _data_json.Address = _address;
-                localStorage.setItem('ShopData',JSON.stringify(_data_json));
-                setTimeout(function(){
-                    var _data = JSON.parse(localStorage.getItem('ShopData')),
-                        _addr = _street + ',' + _country + ',' + _city + ',' + _province;
-                    var _item_str = JSON.stringify(_this.getAddressItems());
+                if(Common.telVerify(_telephone,function(){
+                        var _address = {
+                            "name": _name,
+                            "telephone": _telephone,
+                            "post": "",
+                            "country_code": "62",
+                            "email": "",
+                            "address": {
+                                "province": _province,//省
+                                "city": _city,//市
+                                "country": _country,//街道
+                                "street": _street//详细地址
+                            }
+                        };
+                        _data_json.Address = _address;
+                        localStorage.setItem('ShopData',JSON.stringify(_data_json));
+                        setTimeout(function(){
+                            var _data = JSON.parse(localStorage.getItem('ShopData')),
+                                _addr = _street + ',' + _country + ',' + _city + ',' + _province;
+                            var _item_str = JSON.stringify(_this.getAddressItems());
+                            location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+_data.ShopInfo.id+'&addr='+encodeURIComponent(_addr)+'&items='+encodeURIComponent(_item_str);
+                        },0);
+                    })){
+                    var _address = {
+                        "name": _name,
+                        "telephone": _telephone,
+                        "post": "",
+                        "country_code": "62",
+                        "email": "",
+                        "address": {
+                            "province": _province,//省
+                            "city": _city,//市
+                            "country": _country,//街道
+                            "street": _street//详细地址
+                        }
+                    };
+                    _data_json.Address = _address;
+                    localStorage.setItem('ShopData',JSON.stringify(_data_json));
+                    setTimeout(function(){
+                        var _data = JSON.parse(localStorage.getItem('ShopData')),
+                            _addr = _street + ',' + _country + ',' + _city + ',' + _province;
+                        var _item_str = JSON.stringify(_this.getAddressItems());
                         location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+_data.ShopInfo.id+'&addr='+encodeURIComponent(_addr)+'&items='+encodeURIComponent(_item_str);
-                },0);
+                    },0);
+                }
+
             });
+            $('body').on('blur','.j_tel',function(){
+                var _dom = $(this),
+                    _val = $.trim(_dom.val());
+                if(_val){
+                    Common.telVerify(_dom.val());
+                }
+            });
+
         },
         getAddressItems : function(){
             var _carts = Cart().getCarts(),

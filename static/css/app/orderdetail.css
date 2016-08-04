@@ -108,6 +108,28 @@ body{
     padding: .5rem 0;
     color: #999;
 }
+.order-state > div{
+    font-size: 1.4rem;
+    padding: .5rem 0;
+    color: #999;
+    position: relative;
+    line-height: 3rem;
+}
+.order-state > div p{
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+.order-state > div::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
+}
 .logistics-info{
     border-top: #ececec 1px solid;
     padding: .5rem 0;
@@ -141,17 +163,7 @@ body{
 .order-state p:first-child{
    position: relative;
 }
-.order-state p:first-child::after{
-    position: absolute;
-    left:-50%;
-    right: -50%;
-    bottom:0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border-bottom: 1px solid #d8d8d8;
-}
+
 .user-info-box:before{
     display: block;
     content:' ';

@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base','lang'],function(Hbs,Carthtm,Cart,Dialog,Ajax,Config,Base,Lang){
+require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base','lang','fastclick'],function(Hbs,Carthtm,Cart,Dialog,Ajax,Config,Base,Lang,Fastclick){
     var CartIndex = {
         init : function(){
             var _carts = Cart().getCarts(),
@@ -46,7 +46,8 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
         },
         handleFn : function(){
             var _that = this;
-            $('body').on('tap','.j_del_cart',function(){
+            Fastclick.attach(document.body);
+            $('body').on('click','.j_del_cart',function(){
                 var _this = $(this);
                 Dialog.confirm({
                     cover_event : true,
@@ -60,7 +61,7 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                     }
                 });
             });
-            $('body').on('tap','.j_go_back',function(){
+            $('body').on('click','.j_go_back',function(){
                 var _fromurl = localStorage.getItem('FromUrl');
                 if(!_fromurl){
                     location.href = Config.host.host+'s/'+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
@@ -68,10 +69,10 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                     location.href = _fromurl;
                 }
             });
-            $('body').on('tap','.j_go_shop',function(){
+            $('body').on('click','.j_go_shop',function(){
                 location.href = Config.host.host+'s/'+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
             });
-            $('body').on('tap','.j_submit_btn',function(){
+            $('body').on('click','.j_submit_btn',function(){
                 _that.subData();
             });
             if(Base.others.getUrlPrem('error')){
@@ -160,9 +161,10 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                             }
                         }
                     }else{
-                        Dialog.confirm({
+                        Dialog.alert({
                             top_txt : '',//可以是html
-                            body_txt : '<p class="dialog-body-p">error</p>',
+                            cfb_txt:Lang.H5_FRESHEN,
+                            body_txt : '<p class="dialog-body-p">'+Lang.H5_ERROR+'</p>',
                             cf_fn : function(){
                                 location.reload();
                             }
@@ -170,9 +172,10 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                     }
                 },
                 error : function(error){
-                    Dialog.confirm({
+                    Dialog.alert({
                         top_txt : '',//可以是html
-                        body_txt : '<p class="dialog-body-p">error</p>',
+                        cfb_txt:Lang.H5_FRESHEN,
+                        body_txt : '<p class="dialog-body-p">'+Lang.H5_ERROR+'</p>',
                         cf_fn : function(){
                             location.reload();
                         }

@@ -115,7 +115,18 @@ define([],function(){
             H5_MSG_NO_GOOD:'有商品已经卖完了哦',
             H5_SORT_EMPTY:'该分类暂无商品',
             H5_MSG_ADDRESS : '请填写收货地址',
-            H5_MAX_BUY:'最多只能购买'
+            H5_MAX_BUY:'最多只能购买',
+            H5_TEL_GO_CONFIRM:'手机号位数可能不正确，建议去确认',
+            H5_GO_CONFIRM:'去确认',
+            H5_TEL_PASS_20:'手机号码不能超过20位',
+            H5_IS_ONLY_NUM:'手机号只能输入数字',
+            H5_CONFIRM_TEL_IS_TRUE:'请确保号码无误，收款信息、付款结果等信息也会通过这个手机号发送给你',
+            H5_SUCCESS_MSG:'已将付款信息通过短信发送给你，若没有收到，请截图保存。',
+            H5_PAY_EXPIRY_DATE:'付款有效期',
+            H5_ERROR:'网络状况不好，请刷新页面',
+            H5_FRESHEN:'刷新',
+            H5_CONFIRM_ORDER_ERROR:'下单失败'
+
         },
 
         id : {
@@ -325,7 +336,17 @@ define([],function(){
             H5_MSG_NO_GOOD:'Ada produk yang sudah habis terjual loh',
             H5_SORT_EMPTY:'Tidak ada produk untuk kategori ini',
             H5_MSG_ADDRESS : 'Alamat Pengiriman',
-            H5_MAX_BUY:'Kamu maksimal hanya dapat membeli'
+            H5_MAX_BUY:'Kamu maksimal hanya dapat membeli',
+            H5_TEL_GO_CONFIRM:'手机号位数可能不正确，建议去确认',
+            H5_GO_CONFIRM:'去确认',
+            H5_TEL_PASS_20:'手机号码不能超过20位',
+            H5_IS_ONLY_NUM:'手机号只能输入数字',
+            H5_CONFIRM_TEL_IS_TRUE:'请确保号码无误，收款信息、付款结果等信息也会通过这个手机号发送给你',
+            H5_SUCCESS_MSG:'已将付款信息通过短信发送给你，若没有收到，请截图保存。',
+            H5_PAY_EXPIRY_DATE:'付款有效期',
+            H5_ERROR:'网络状况不好，请刷新页面',
+            H5_FRESHEN:'刷新',
+            H5_CONFIRM_ORDER_ERROR:'下单失败'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

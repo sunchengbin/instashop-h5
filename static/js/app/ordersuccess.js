@@ -31,6 +31,10 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],fu
                     sellerName : getUrlPrem('sname',location.href),
                     cancelTime : getUrlPrem('time',location.href)
                 }
+            }else{
+                _prompt = {
+                    cancelTime : getUrlPrem('time',location.href)
+                }
             }
             var IndexHtm = '<div>加载数据中</div>';
             IndexHtm= Hbs.compile(OrderSuccess)({

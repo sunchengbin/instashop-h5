@@ -4,7 +4,7 @@
 body{
     color: #666;
     background-color: #f5f5f5;
-    padding-bottom:4.6rem;
+    padding-bottom:4rem;
 }
 section{
     background-color: #fff;
@@ -262,26 +262,27 @@ footer{
     left: 0;
     bottom: 0;
     background-color: #f5f5f5;
-    padding: .5rem;
+    /*padding: .5rem;*/
     z-index: 100;
     box-sizing: border-box;
 }
-footer::before{
-    position: absolute;
-    left:-50%;
-    right: -50%;
-    top:0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border-top: 1px solid #d8d8d8;
-}
+/*footer::before{*/
+    /*position: absolute;*/
+    /*left:-50%;*/
+    /*right: -50%;*/
+    /*top:0;*/
+    /*height: 1px;*/
+    /*content: '';*/
+    /*-webkit-transform: scale(0.5);*/
+    /*transform: scale(0.5);*/
+    /*border-top: 1px solid #d8d8d8;*/
+/*}*/
 footer .btn{
-    width: 49%;
+    /*width: 49%;*/
     font-size: 1.4rem;
-    height: 3.6rem;
-    line-height: 3.6rem;
+    height: 4rem;
+    line-height: 4rem;
+    border-radius: 0;
 }
 footer .btn i{
     font-size: 2rem;
@@ -337,7 +338,8 @@ footer .btn i{
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
     border-top: 1px solid #d8d8d8;
-}.sort-list-wraper > ul li:last-child::after{
+}
+.sort-list-wraper > ul li:last-child::after{
     border:none;
  }
 .sort-list-wraper li span{

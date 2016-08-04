@@ -21,7 +21,7 @@ body .address-list{
 .info-box{
     color: #aaa;
     font-size: 1.4rem;
-    padding:1rem;
+    padding:1rem 2rem;
     height: 2.4rem;
     line-height: 2.4rem;
     /*border-bottom: 1px solid #ececec;*/
@@ -38,10 +38,10 @@ body .address-list{
     transform: scale(0.5);
     border-bottom: 1px solid #d8d8d8;
 }
-.user-tel::after{
-    height: 0;
-    border-bottom: none;
-}
+/*.user-tel::after{*/
+    /*height: 0;*/
+    /*border-bottom: none;*/
+/*}*/
 .info-box input{
     color: #666;
     font-size: 1.4rem;
@@ -50,7 +50,7 @@ body .address-list{
     width: 100%;
 }
 .info-box-address{
-    padding:1rem;
+    padding:1rem 2rem;
 }
 .info-box-address textarea{
     width: 100%;
@@ -59,7 +59,23 @@ body .address-list{
     font-size: 1.4rem;
 }
 .user-info{
-    margin-bottom:2rem;
+    /*margin-bottom:2rem;*/
+}
+.tel-msg-txt{
+    padding: 1rem;
+    color: #999;
+    position: relative;
+}
+.tel-msg-txt:after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
 }
 .act{
     color: #333;
@@ -152,4 +168,14 @@ body .address-list{
     position: relative;
     width: 100%;
     overflow: hidden;
+}
+.user-tel{
+    position: relative;
+}
+.user-tel span{
+    position: absolute;
+    color: #333;
+}
+.user-tel input{
+    padding-left: 2.5rem;
 }

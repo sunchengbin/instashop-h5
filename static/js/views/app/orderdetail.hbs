@@ -2,7 +2,12 @@
     {{lang.H5_ORDER}}
 </nav>
 <section class="order-state">
-    <p>{{lang.H5_ORDER_STATUS}}:{{data.order.state_txt}}</p>
+    <div>
+        {{lang.H5_ORDER_STATUS}}:{{data.order.state_txt}}
+        {{#eq data.order.state 1}}
+            <p>{{data.order.cancel_countdown}}</p>
+        {{/eq}}
+    </div>
     <p>
         <a href="{{hrefUrl}}ordersuccess.php?price={{data.order.total_price}}&detail=1" class="">
             <i class="icon iconfont fr icon-go-font"></i>{{lang.H5_CHECK_ACCOUNT_RECEIVABLES}}

@@ -212,5 +212,8 @@ textarea{
     width: 100%;
 }
 .logistics-list li i{
+    color: #ccc;
+}
+.logistics-list li i.checked-btn{
     color: #43CB9C;
 }

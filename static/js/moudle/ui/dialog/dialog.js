@@ -211,6 +211,7 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
             return new dialog(opts);
         },
         alert : function(opts) {
+            opts = $.extend({show_top:false},opts);
             return new dialog(opts);
         },
         confirm : function(opts) {

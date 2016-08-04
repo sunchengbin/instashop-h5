@@ -2,11 +2,10 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug','slide','cart'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug,Slide,Cart){
+require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug','slide','cart','fastclick'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug,Slide,Cart,Fastclick){
     var ITEM = {
         init : function(){
             var _this = this;
-
             var ItemHtm = '<div>loading..</div>';
             if(init_data){
                 ItemHtm= Hbs.compile(Item)({
@@ -133,7 +132,8 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             if($('.txt-hide').height() > 33){
                 $('.down-btn').show();
             }
-            $('body').on('tap','.j_down_box',function(){
+            Fastclick.attach(document.body);
+            $('body').on('click','.j_down_box',function(){
                 if($('.j_down_btn').is('.down-btn')){
                     $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
                     $('.txt').css({'maxHeight':'none'});
@@ -150,9 +150,9 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 });
             });
             //item=back是为了让返回首页的时候滚动到指定的scrolltop高度
-            $('body').on('tap','.j_go_back',function(){
-                if(localStorage.getItem('FromUrl')){
-                    var _local_url = localStorage.getItem('FromUrl');
+            $('body').on('click','.j_go_back',function(){
+                var _local_url = localStorage.getItem('FromUrl');
+                if(_local_url && !/detail/g.test(_local_url)){
                     if(/\?/g.test(_local_url)){
                         location.href = localStorage.getItem('FromUrl')+'&item=back';
                     }else{

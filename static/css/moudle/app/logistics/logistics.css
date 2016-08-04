@@ -5,7 +5,7 @@
     padding-top:1rem;
 }
 .logistics-plug-top,.logistics-list{
-    padding:0 1rem;
+    margin:0 1rem;
 }
 .logistics-list li{
     padding: .5rem 0;
@@ -15,6 +15,24 @@
 }
 .logistics-list{
     padding-bottom: .5rem;
+    position: relative;
+}
+.logistics-plug-info{
+
+}
+.logistics-list::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
+}
+.logistics-list:last-child::after{
+    border-bottom:none;
 }
 .logistics-list i{
     font-size: 2rem;
@@ -22,7 +40,7 @@
     margin-right: .5rem;
     display: inline-block;
     height: 2rem;
-    line-height: 2rem;
+    line-height: 1.8rem;
 }
 .logistics-plug-top i{
     font-size: 1.8rem;

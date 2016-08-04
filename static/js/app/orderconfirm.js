@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/13.
  */
-require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config','base','logistics','common','btn','lang'],function(Hbs,OrderConfirm,Cart,Dialog,Ajax,Config,Base,Logistics,Common,Btn,Lang){
+require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config','base','logistics','common','btn','lang','fastclick'],function(Hbs,OrderConfirm,Cart,Dialog,Ajax,Config,Base,Logistics,Common,Btn,Lang,Fastclick){
     var OrderConfirmHtm = {
         init : function(){
             var _this = this,
@@ -15,7 +15,8 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     address : _address,
                     lang:Lang,
                     host:Config.host,
-                    express : (JSON.parse(_data).ShopInfo.express_free == 0 && express_data.express_fee_list.list.JNE.length)
+                    nofree:JSON.parse(_data).ShopInfo.express_free == 0,
+                    express : (express_data.express_fee_list.list.JNE.length || express_data.express_fee_list.list.Wahana.length)
                 });
             $('body').prepend(_htm);
             if(JSON.parse(_data).ShopInfo.express_free == 0 && express_data.express_fee_list.list.JNE.length){
@@ -29,6 +30,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
         },
         handleFn : function(){
             var _this = this;
+            Fastclick.attach(document.body);
             $('body').on('click',function(e){
                 console.log($(e.target))
                 if(!$(e.target).is('textarea')){
@@ -94,9 +96,8 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                 localStorage.setItem('OrderTotal',_total);
                                 localStorage.setItem('BankInfo',_bank_info);
                                 localStorage.setItem('OrderInfo',JSON.stringify(obj.order));
-                                console.log(obj)
                                 Cart().clearCarts();
-                                location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price;
+                                location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price+'&time='+(obj.order.shop_info.cancel_coutdown/86400);
                             }else{
                                 var reqData = {
                                     edata : {
@@ -126,7 +127,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                         }else{
                                             Dialog.confirm({
                                                 top_txt : '',//可以是html
-                                                body_txt : '<p class="dialog-body-p">error</p>',
+                                                body_txt : '<p class="dialog-body-p">'+obj.msg+'</p>',
                                                 cf_fn : function(){
                                                     location.href = Config.host.hrefUrl+'cart.php';
                                                 }
@@ -134,11 +135,12 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                         }
                                     },
                                     error : function(error){
-                                        Dialog.confirm({
+                                        Dialog.alert({
                                             top_txt : '',//可以是html
-                                            body_txt : '<p class="dialog-body-p">error</p>',
+                                            cfb_txt:Lang.H5_FRESHEN,
+                                            body_txt : '<p class="dialog-body-p">'+Lang.H5_ERROR+'</p>',
                                             cf_fn : function(){
-                                                location.href = Config.host.hrefUrl+'cart.php';
+                                                location.reload();
                                             }
                                         });
                                     }
@@ -152,10 +154,10 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     });
                 }
             });
-            $('body').on('tap','.j_go_back',function(){
+            $('body').on('click','.j_go_back',function(){
                 location.href = Config.host.hrefUrl+'cart.php';
             });
-            $('body').on('tap','.j_address_wraper',function(){
+            $('body').on('click','.j_address_wraper',function(){
                 //Common.saveFromUrl(function(){
                     location.href = Config.host.hrefUrl+'address.php';
                 //});

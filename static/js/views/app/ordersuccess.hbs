@@ -24,16 +24,25 @@
         </section>
     {{/eq}}
 {{/if}}
-<section class="order-box">
+
     {{#if detail}}
         {{#eq detail 2}}
-            <p class="quick-order-txt">
-                - Pesanan Anda telah di proses, informasi pembayaran telah dikirim melaui <span>SMS</span> Ke no. <span>{{prompt.buyerPhone}}</span></br>
-                - Silakan <span>screenshot</span> untuk menyimpan informasi pembayaran ini</br>
-                - Mohon melakukan pembayaran dalam <span>{{prompt.cancelTime}} Jam</span>, atau pesanan akan dibatalkan
-            </p>
+            <section class="quick-box">
+                <p class="quick-order-txt">
+                    {{lang.H5_SUCCESS_MSG}}
+                </p>
+            </section>
         {{/eq}}
+    {{else}}
+        <section class="quick-box">
+            <p class="quick-order-txt">
+                {{lang.H5_SUCCESS_MSG}}
+            </p>
+        </section>
     {{/if}}
+
+<section class="order-box">
+
     <p class="order-info clearfix">
         <!--<span class="fr j_total"></span>-->
         Jumlah Total
@@ -42,9 +51,24 @@
         Rp {{totalPrice}}
     </p>
     <p class="order-content">
-        Mohon transfer sesuai jumlah yang tertera (termasuk 3 digit terakhir)
+        Mohon transfer sesuai jumlah yang tertera
+        </br>(termasuk 3 digit terakhir)
     </p>
+
 </section>
+{{#if detail}}
+    {{#eq detail 2}}
+        <p class="pay-time-out">
+            {{lang.H5_PAY_EXPIRY_DATE}}: {{prompt.cancelTime}}{{lang.H5_DAYS}}
+        </p>
+    {{/eq}}
+{{else}}
+
+    <p class="pay-time-out">
+        {{lang.H5_PAY_EXPIRY_DATE}}: {{prompt.cancelTime}}{{lang.H5_DAYS}}
+    </p>
+
+{{/if}}
 <section class="pay-info">
         {{#eq num 3}}
         <ul class="clearfix three_info">

@@ -22,8 +22,12 @@
                     <input class="j_name" type="text" value="{{address.name}}" placeholder="{{lang.H5_USER_NAME_PH}}"/>
                 </div>
                 <div class="user-tel info-box">
-                    <input class="j_tel" type="tel" value="{{address.telephone}}" placeholder="{{lang.H5_USER_TELE_PH}}"/>
+                    <input class="j_tel" type="tel" value="{{address.telephone}}" placeholder="{{lang.H5_USER_TELE_PH}}" maxlength="20"/>
                 </div>
+
+            </div>
+            <div class="tel-msg-txt">
+                {{lang.H5_CONFIRM_TEL_IS_TRUE}}
             </div>
             <div class="user-address j_user_address">
                 <div class="info-box act clearfix" data-name="province">

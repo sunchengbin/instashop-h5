@@ -138,6 +138,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             Btn({
                 wraper : 'body',
                 target : '.j_submit_buy',
+                disable : $('.j_submit_buy').attr('data-disable'),
                 event_type : 'click',
                 loading_txt:Lang.H5_SUBMITTING_ORDER,
                 callback : function(dom){
@@ -149,7 +150,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         if( $('.error-item').length == $('.j_cart_item').length){
                             Dialog.tip({
                                 top_txt : '',//可以是html
-                                body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
+                                body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:Lang.H5_ERROR)+'</p>',
                                 auto_fn : function(){
                                     setTimeout(function(){
                                         location.href = Config.host.host+'s/'+init_data.shop.id;
@@ -159,96 +160,133 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         }
                         return;
                     }
-                    var _data = _this.getData();
-                    if(!_data){
-                        _that.cancelDisable();
-                        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
-                        return;
-                    }
-                    Ajax.postJsonp({
-                        url :Config.actions.orderConfirm,
-                        data : {param:JSON.stringify(_data)},
-                        type : 'POST',
-                        success : function(obj){
+                    var _data = _this.getData(),
+                        _tel = $.trim($('.j_tel').val());
+                    if(Common.telVerify(_tel,function(){
+                            _this.subAjax({
+                                data : _data,
+                                that : _that,
+                                dom : dom
+                            });
+                        },function(){
                             _that.cancelDisable();
                             _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
-                            if(obj.code == 200){
-                                var _bank_info = JSON.stringify(obj.order.pay_info.banks),
-                                    _name = $.trim($('.j_name').val()),
-                                    _telephone = $.trim($('.j_tel').val());
-                                localStorage.setItem('OrderTotal',obj.order.total_price);
-                                localStorage.setItem('BankInfo',_bank_info);
-                                localStorage.setItem('OrderInfo',JSON.stringify(obj.order));
-                                location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price+'&detail=2&shop_id='+init_data.shop.id+'&order_id='+obj.order.id_hash+'&bname='+_name+'&bphone='+_telephone+'&sname='+init_data.shop.name+'&time='+(init_data.shop.cancel_coutdown/3600);
-                            }else{
-                                var _telephone = $.trim($('.j_tel').val());
-                                var reqData = {
-                                    edata : {
-                                        action : 'check',
-                                        items : _this.getItems(),
-                                        telephone:_telephone,
-                                        seller_id :init_data.shop.id,
-                                        wduss : ''
-                                    }
-                                };
-                                Ajax.postJsonp({
-                                    url :Config.actions.testCart,
-                                    data : {param:JSON.stringify(reqData)},
-                                    type : 'POST',
-                                    success : function(obj){
-                                        if(obj.code == 200){
-                                            if(obj.carts){
-                                                if(_this.testCarts(obj.carts)) {
-                                                    Dialog.tip({
-                                                        top_txt : '',//可以是html
-                                                        body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
-                                                        auto_fn : function(){
-                                                            setTimeout(function(){
-                                                                location.href = Config.host.host+'s/'+init_data.shop.id;
-                                                            },2000);
-                                                        }
-                                                    });
-                                                }else{
-                                                    Dialog.tip({
-                                                        top_txt : '',//可以是html
-                                                        body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
-                                                        auto_fn : function(){
-                                                            setTimeout(function(){
-                                                                location.reload();
-                                                            },2000);
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        }else{
+                        })){
+                        _this.subAjax({
+                            data : _data,
+                            that : _that,
+                            dom : dom
+                        });
+                    }
+                }
+            });
+            $('body').on('blur','.j_tel',function(){
+                var _dom = $(this),
+                    _val = _dom.val();
+                if(_val){
+                    Common.telVerify(_dom.val());
+                }
+            });
+        },
+        subAjax : function(opts){
+            var _data = opts.data,
+                _that = opts.that,
+                dom = opts.dom,
+                _this = this;
+            if(!_data){
+                _that.cancelDisable();
+                _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                return;
+            }
+            Ajax.postJsonp({
+                url :Config.actions.orderConfirm,
+                data : {param:JSON.stringify(_data)},
+                type : 'POST',
+                success : function(obj){
+                    _that.cancelDisable();
+                    _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                    if(obj.code == 200){
+                        var _bank_info = JSON.stringify(obj.order.pay_info.banks),
+                            _name = $.trim($('.j_name').val()),
+                            _telephone = $.trim($('.j_tel').val());
+                        localStorage.setItem('OrderTotal',obj.order.total_price);
+                        localStorage.setItem('BankInfo',_bank_info);
+                        localStorage.setItem('OrderInfo',JSON.stringify(obj.order));
+                        location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price+'&detail=2&shop_id='+init_data.shop.id+'&order_id='+obj.order.id_hash+'&bname='+_name+'&bphone='+_telephone+'&sname='+init_data.shop.name+'&time='+(init_data.shop.cancel_coutdown/86400);
+                    }else{
+                        var _telephone = $.trim($('.j_tel').val());
+                        var reqData = {
+                            edata : {
+                                action : 'check',
+                                items : _this.getItems(),
+                                telephone:_telephone,
+                                seller_id :init_data.shop.id,
+                                wduss : ''
+                            }
+                        };
+                        Ajax.postJsonp({
+                            url :Config.actions.testCart,
+                            data : {param:JSON.stringify(reqData)},
+                            type : 'POST',
+                            success : function(obj){
+                                if(obj.code == 200){
+                                    if(obj.carts){
+                                        if(_this.testCarts(obj.carts)) {
                                             Dialog.tip({
                                                 top_txt : '',//可以是html
-                                                body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
+                                                body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:Lang.H5_ERROR)+'</p>',
                                                 auto_fn : function(){
                                                     setTimeout(function(){
                                                         location.href = Config.host.host+'s/'+init_data.shop.id;
                                                     },2000);
                                                 }
                                             });
+                                        }else{
+                                            Dialog.tip({
+                                                top_txt : '',//可以是html
+                                                body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:Lang.H5_ERROR)+'</p>',
+                                                auto_fn : function(){
+                                                    setTimeout(function(){
+                                                        location.reload();
+                                                    },2000);
+                                                }
+                                            });
                                         }
-                                    },
-                                    error : function(error){
-                                        Dialog.tip({
-                                            top_txt : '',//可以是html
-                                            body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:'error')+'</p>',
-                                            auto_fn : function(){
-                                                setTimeout(function(){
-                                                    location.href = Config.host.host+'s/'+init_data.shop.id;
-                                                },2000);
-                                            }
-                                        });
+                                    }
+                                }else{
+                                    Dialog.tip({
+                                        top_txt : '',//可以是html
+                                        body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:Lang.H5_ERROR)+'</p>',
+                                        auto_fn : function(){
+                                            setTimeout(function(){
+                                                location.href = Config.host.host+'s/'+init_data.shop.id;
+                                            },2000);
+                                        }
+                                    });
+                                }
+                            },
+                            error : function(error){
+                                Dialog.alert({
+                                    top_txt : '',//可以是html
+                                    cfb_txt:Lang.H5_FRESHEN,
+                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_ERROR+'</p>',
+                                    cf_fn : function(){
+                                        location.reload();
                                     }
                                 });
                             }
-                        },
-                        error : function(error){
-                            _that.cancelDisable();
-                            _that.setBtnTxt(dom,Lang.H5_OK_ICON);
+                        });
+                    }
+                },
+                error : function(error){
+                    _that.cancelDisable();
+                    _that.setBtnTxt(dom,Lang.H5_OK_ICON);
+                    Dialog.alert({
+                        top_txt : '',//可以是html
+                        cfb_txt:Lang.H5_FRESHEN,
+                        body_txt : '<p class="dialog-body-p">'+Lang.H5_ERROR+'</p>',
+                        cf_fn : function(){
+                            location.reload();
                         }
                     });
                 }
@@ -425,10 +463,17 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             Ajax.getJsonp(Config.host.actionUrl+Config.actions.expressesList+'?param='+JSON.stringify(_data),
                 function(obj){
                     if(obj.code == 200){
-                        if(init_data.shop.express_free == 0 && obj.express_fee_list.list.JNE.length){
-                            $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
-                            $('.j_logistics').show();
-                            type && $('body').scrollTop(9999);
+                        if(init_data.shop.express_free == 0){
+                            if(obj.express_fee_list.list.JNE.length || obj.express_fee_list.list.Wahana.length){
+                                $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
+                                $('.j_logistics').show();
+                                type && $('body').scrollTop(9999);
+                            }else{
+                                var _li = '<li>'+Lang.H5_NO_LOGISTICS_COMPANY+'</li>';
+                                $('.j_logistics ul').html(_li);
+                                $('.j_submit_buy').attr('data-disable',true);
+                                //不能提交订单
+                            }
                         }
                     }else{
 
@@ -442,9 +487,9 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             for(var item in data){
                 for(var i in data[item]){
                     var _cost_day = data[item][i].cost_days?'('+data[item][i].cost_days+')':'';
-                    _htm += '<li class="j_logistics_li"  data-level="'+data[item][i].level+'" data-id="'+data[item][i].id+'">'
-                        +'<i class="icon iconfont check-btn icon-radio-font" data-company="'+item+'" data-price="'+data[item][i].price+'"  data-level="'+data[item][i].level+'" data-id="'+data[item][i].id+'"></i>'
-                        +data[item][i].level+_cost_day+':Rp '+Base.others.priceFormat(data[item][i].price)
+                    _htm += '<li class="j_logistics_li"  data-level="'+(data[item][i].level?data[item][i].level:item)+'" data-id="'+data[item][i].id+'">'
+                        +'<i class="icon iconfont check-btn icon-radio-font" data-company="'+item+'" data-price="'+data[item][i].price+'"  data-level="'+(data[item][i].level?data[item][i].level:item)+'" data-id="'+data[item][i].id+'"></i>'
+                        +item+' '+data[item][i].level+_cost_day+':Rp '+Base.others.priceFormat(data[item][i].price)
                         +'</li>';
                 }
             }
@@ -509,7 +554,24 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
 
                     }
                     if(_msg){
-                        $('.j_cart_item[data-id="'+_id+'"]').addClass('error-item');
+                        if(_stock > 0 && _stock < _num){//有库存,但是购物车商品数量超出可购买数量时
+                            $('.j_cart_item[data-id="'+_id+'"] .j_item_num').val(_stock);
+                            $('.j_cart_item[data-id="'+_id+'"] .j_add_btn').attr('data-stock',_stock);
+                            //if(!type){//进入页面就验证
+                            //
+                            //}else{//提交按钮提交时验证
+                            //
+                            //}
+                            Dialog.tip({
+                                top_txt : '',//可以是html
+                                body_txt : '<p class="dialog-body-p">'+_msg+'</p>'
+                            });
+                        }else{
+                            $('.j_cart_item[data-id="'+_id+'"]').addClass('error-item');
+                            $('.j_cart_item[data-id="'+_id+'"] .j_item_num').val(0);
+                            $('.j_cart_item[data-id="'+_id+'"] .j_add_btn').attr('data-stock',0);
+                        }
+
                     }
                     $('.j_cart_item[data-id="'+_id+'"] .num').html(Lang.H5_STOCK+': '+(_stock < 0?0:_stock));
                     _this.msg = _msg;
@@ -518,7 +580,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             });
             return _beal;
         },
-        subData : function(){
+        subData : function(){//进入页面对购物车商品进行检查
             var _that = this;
             var _items = _that.getItems(),
                 _telephone = $.trim($('.j_tel').val());
@@ -560,13 +622,12 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     }
                 },
                 error : function(error){
-                    Dialog.tip({
+                    Dialog.alert({
                         top_txt : '',//可以是html
-                        body_txt : '<p class="dialog-body-p">error</p>',
-                        auto_fn : function(){
-                            setTimeout(function(){
-                                location.reload();
-                            },2000);
+                        cfb_txt:Lang.H5_FRESHEN,
+                        body_txt : '<p class="dialog-body-p">'+Lang.H5_ERROR+'</p>',
+                        cf_fn : function(){
+                            location.reload();
                         }
                     });
                 }
