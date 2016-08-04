@@ -40,13 +40,13 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
         handleFn : function(){
             var _this = this;
             Fastclick.attach(document.body);
-            $('body').on('click',function(e){
-                console.log($(e.target))
-                if(!$(e.target).is('textarea')){
-                    //alert('s')
-                    $('textarea').blur();
-                }
-            });
+            //$('body').on('click',function(e){
+            //    console.log($(e.target))
+            //    if(!$(e.target).is('textarea')){
+            //        //alert('s')
+            //        $('textarea').blur();
+            //    }
+            //});
 
             $('body').on('click','.j_check_box',function(e){
                 if($(this).is('.icon-checked-font')){

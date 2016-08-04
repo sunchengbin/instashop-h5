@@ -19,8 +19,12 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $sort_id = $_REQUEST['sort_id'];
         if (!$sort_id) {
             $ss = split('\/', $_SERVER['REQUEST_URI']);
-            $si = split('\?', end($ss));
-            $sort_id = $si[0];
+            if(split('\?', $_SERVER['REQUEST_URI']).length > 0){
+                $si = split('\?',end($ss))[0];
+                $sort_id = $si;
+            }else{
+                $sort_id = end($ss);
+            }
         }
         $sort_name = $_REQUEST['name'];
         $params = [
