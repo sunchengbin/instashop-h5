@@ -464,7 +464,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 function(obj){
                     if(obj.code == 200){
                         if(init_data.shop.express_free == 0){
-                            if(obj.express_fee_list.list.JNE.length || obj.express_fee_list.list.Wahana.length){
+                            if(_this.testExpress(obj.express_fee_list.list)){
                                 $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
                                 $('.j_logistics').show();
                                 type && $('body').scrollTop(9999);
@@ -481,6 +481,15 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 },
                 function(error){
                 });
+        },
+        testExpress : function(list){
+            var _bool = false;
+            for(var express in list){
+                if(list[express].length){
+                    _bool = true;
+                }
+            }
+            return _bool;
         },
         createLogistics : function(data){
             var _htm = '';
