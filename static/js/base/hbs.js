@@ -420,7 +420,8 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     if(carts[item].item.is_discount && carts[item].item.discounting){
                         _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
                     }else{
-                        _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.price)+'</p>';
+                        var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].item.price;
+                        _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(_price)+'</p>';
 
                     }
                 _htm +='</div>'
@@ -467,7 +468,8 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                         +'</div>'
                         +'</div>';
                 }else{
-                    _htm +='<div class="price clearfix">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.price)
+                    var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].item.price;
+                    _htm +='<div class="price clearfix">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(_price)
                         +'<div class="item-num-box clearfix">'
                         +'<span class="j_reduce_btn">'
                         +'<i class="icon iconfont icon-minus-font"></i>'
