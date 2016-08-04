@@ -1,7 +1,7 @@
 .header-nav{
     padding: 0 1rem;
-    height: 4.6rem;
-    line-height: 4.6rem;
+    height: 4rem;
+    line-height: 4rem;
     background-color: #43CB9C;
     font-size: 1.6rem;
     color: #fff;
@@ -9,8 +9,8 @@
 .header-nav .iconfont{
     font-size: 1.6rem;
     display: inline-block;
-    height: 4.6rem;
-    line-height: 4.6rem;
+    height: 4rem;
+    line-height: 4rem;
 }
 .cart-num{
     position: absolute;
@@ -28,8 +28,8 @@
 }
 .header-nav button{
     float: right;
-    height: 4.6rem;
-    line-height: 4.6rem;
+    height: 4rem;
+    line-height: 4rem;
     font-size: 1.6rem;
     padding-left: 2rem;
     color: #fff;
