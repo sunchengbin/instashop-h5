@@ -16,7 +16,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     lang:Lang,
                     host:Config.host,
                     nofree:JSON.parse(_data).ShopInfo.express_free == 0,
-                    express : _this.testExpress(express_data.express_fee_list.list)
+                    express : (JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list))
                 });
             $('body').prepend(_htm);
             if(JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list)){
