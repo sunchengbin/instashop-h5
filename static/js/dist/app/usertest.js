@@ -1,0 +1,1 @@
+cdnjsTime=(new Date).getTime(),console.log("usertest"+(new Date).getTime()),define("app/usertest",function(){});

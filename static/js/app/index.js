@@ -13,8 +13,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 var _tag_list = _this.getTags(init_data.item_list.list);
                 IndexHtm= Hbs.compile(Index)({
                     data : init_data,
-                    tags_item : _tag_list.tags,
-                    tags_sort : _tag_list.sort,
+                    tags_item : (_tag_list ? _tag_list.tags : []),
                     lang : Lang,
                     host:Config.host.host,
                     hrefUrl : Config.host.hrefUrl,
