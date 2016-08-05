@@ -36,7 +36,7 @@
                 {{data.order.buyer_address.street}},{{data.order.buyer_address.country}},{{data.order.buyer_address.city}},{{data.order.buyer_address.province}}
             </div>
             {{#nempty data.order.logistics_info.express_buyer.title}}
-                <div>{{lang.H5_LOGISTICS_COMPANY}}:{{data.order.logistics_info.express_buyer.title}}</div>
+                <div>{{lang.H5_LOGISTICS}}:{{data.order.logistics_info.express_buyer.title}}({{data.order.logistics_info.express_buyer.express_expect_day}})</div>
             {{/nempty}}
         </div>
     </div>

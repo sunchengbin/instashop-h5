@@ -15,6 +15,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   *{
     padding:0;
     margin:0;
+    word-break: break-word;
   }
   html { font-size: 62.5%; }
   @media only screen and (min-width: 374px) {
@@ -57,7 +58,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     width:100%;
   }
   p{
-      word-break: break-all;
+
   }
   </style>
   <title>notice</title>

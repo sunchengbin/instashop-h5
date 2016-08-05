@@ -126,7 +126,8 @@ define([],function(){
             H5_ERROR:'网络状况不好，请刷新页面',
             H5_FRESHEN:'刷新',
             H5_CONFIRM_ORDER_ERROR:'下单失败',
-            H5_DELETE_CONFIRM:'确认删除?'
+            H5_DELETE_CONFIRM:'确认删除?',
+            H5_LOGISTICS:'物流'
 
         },
 
@@ -338,17 +339,18 @@ define([],function(){
             H5_SORT_EMPTY:'Tidak ada produk untuk kategori ini',
             H5_MSG_ADDRESS : 'Alamat Pengiriman',
             H5_MAX_BUY:'Kamu maksimal hanya dapat membeli',
-            H5_TEL_GO_CONFIRM:'手机号位数可能不正确，建议去确认',
-            H5_GO_CONFIRM:'去确认',
+            H5_TEL_GO_CONFIRM:'Format nomor ponsel yang kamu masukkan tidak tepat, silakan cek kembali',
+            H5_GO_CONFIRM:'Cek kembali',
             H5_TEL_PASS_20:'手机号码不能超过20位',
-            H5_IS_ONLY_NUM:'手机号只能输入数字',
-            H5_CONFIRM_TEL_IS_TRUE:'请确保号码无误，收款信息、付款结果等信息也会通过这个手机号发送给你',
-            H5_SUCCESS_MSG:'已将付款信息通过短信发送给你，若没有收到，请截图保存。',
-            H5_PAY_EXPIRY_DATE:'付款有效期',
-            H5_ERROR:'网络状况不好，请刷新页面',
-            H5_FRESHEN:'刷新',
-            H5_CONFIRM_ORDER_ERROR:'下单失败',
-            H5_DELETE_CONFIRM:'Yakin ingin menghapus?'
+            H5_IS_ONLY_NUM:'Kamu hanya dapat memasukkan angka!',
+            H5_CONFIRM_TEL_IS_TRUE:'Pastikan nomor ponselmu sudah benar. Informasi nomor rekening dan pembayaran akan kami kirimkan ke nomor ponsel ini',
+            H5_SUCCESS_MSG:'Informasi pembayaran sudah dikirimkan melalui SMS ke ponselmu. Jika SMS tidak diterima, silakan screenshot untuk menyimpan informasi pembayaran ini',
+            H5_PAY_EXPIRY_DATE:'Batas waktu pembayaran',
+            H5_ERROR:'Koneksi internet kurang stabil, silakan refresh halaman',
+            H5_FRESHEN:'Refresh',
+            H5_CONFIRM_ORDER_ERROR:'Gagal Mengajukan Pesanan',
+            H5_DELETE_CONFIRM:'Yakin ingin menghapus?',
+            H5_LOGISTICS:'Jasa Logistik'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );
