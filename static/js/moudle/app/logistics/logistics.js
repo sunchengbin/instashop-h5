@@ -41,9 +41,10 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang','fa
             $(_config.wraper).on('click','.j_plug_submit',function(){
                 var _check = $('.checked-btn'),
                     _len = $('.checked-btn').length,
-                    _level = _check.attr('data-level');
+                    _level = _check.attr('data-level'),
+                    _company = _check.attr('data-company');
                 if(_len){
-                    $('.j_logistics_info').html(_level).attr({
+                    $('.j_logistics_info').html(_company+' '+_level).attr({
                         'data-id' : _check.attr('data-id'),
                         'data-company' : _check.attr('data-company'),
                         'data-price' : Number(_check.attr('data-price'))
