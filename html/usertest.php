@@ -100,6 +100,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <section class="j_show_info">
         <p>loading...</p>
     </section>
-    <script src="<?=STATIC_HOST?>/js/app/usertest.js?v=1470274437452"></script>
+    <script src="<?=STATIC_HOST?>/js/app/usertest.js?v=1470370796285"></script>
 </body>
 </html>
