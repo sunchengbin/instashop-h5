@@ -59,7 +59,7 @@ section{
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid #d8d8d8;
 }
 .pay-info li.act::after{
     position: absolute;
@@ -71,7 +71,7 @@ section{
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
-    border: 1px solid #999;
+    border: 1px solid #d8d8d8;
     border-bottom: none;
 
 }
@@ -133,9 +133,9 @@ p{
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
-    border-left: 1px solid #999;
-    border-right: 1px solid #999;
-    border-bottom: 1px solid #999;
+    border-left: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d8d8d8;
 }
 .pay-content,.pay-content-explain,.last-explain{
     padding-left:.5rem;
@@ -163,7 +163,7 @@ p{
     text-align: left;
     background-color: #fff;
     position: relative;
-    margin-bottom: 2rem;
+    /*margin-bottom: 2rem;*/
     font-size: 1.3rem;
 }
 .pay-time-out::after{
@@ -175,7 +175,7 @@ p{
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid #d8d8d8;
 }
 .pay-time-out::before{
     position: absolute;
@@ -186,7 +186,7 @@ p{
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid #d8d8d8;
 }
 footer{
     position: fixed;

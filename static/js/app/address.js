@@ -163,12 +163,18 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','
                 }
 
             });
-            $('body').on('blur','.j_tel',function(){
+            $('body').on('keyup','.j_tel',function(){
                 var _dom = $(this),
                     _val = $.trim(_dom.val());
-                if(_val){
-                    Common.telVerify(_dom.val());
+                if(_val.length == 20){
+                    Dialog.tip({
+                        top_txt : '',//可以是html
+                        body_txt : '<p class="dialog-body-p">'+Lang.H5_TEL_PASS_20+'</p>'
+                    });
                 }
+                //if(_val){
+                //    Common.telVerify(_dom.val());
+                //}
             });
 
         },
