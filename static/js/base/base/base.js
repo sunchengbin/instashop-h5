@@ -286,7 +286,8 @@ define(function(){
                 return false;
             };
             var _this = this;
-            return enable && isWebpSupported() && _this.webpLog()? url.replace('.jpg', '.jpg.webp') : url;
+            //return enable && isWebpSupported() && _this.webpLog()? url.replace('.jpg', '.jpg.webp') : url;
+            return url;
         },
         //替换图片url进行裁图
         cutImg : function(url,width,bg){
