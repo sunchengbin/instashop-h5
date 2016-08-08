@@ -95,7 +95,7 @@ section{
     padding: 1.8rem 2rem 2.2rem;
 }
 .bank-info img{
-    min-width: 45px;
+    /*min-width: 45px;*/
     vertical-align: middle;
 }
 p{
