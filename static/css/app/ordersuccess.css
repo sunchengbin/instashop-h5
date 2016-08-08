@@ -11,7 +11,7 @@ section{
     background-color: #fff;
 }
 .pay-info{
-    padding:1rem 1rem 1rem 1rem;
+    padding:.5rem 1rem;
     font-size: 1.4rem;
     background-color: transparent;
 }
@@ -27,7 +27,7 @@ section{
     box-direction:normal;
 }
 .pay-info li{
-    padding:0 0 1rem 0;
+    padding:0 0 .5rem 0;
     position: relative;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
@@ -95,7 +95,7 @@ section{
     padding: 1.8rem 2rem 2.2rem;
 }
 .bank-info img{
-    min-width: 48px;
+    min-width: 45px;
     vertical-align: middle;
 }
 p{
@@ -107,6 +107,7 @@ p{
     text-align: center;
     position: relative;
     padding-top:.5rem;
+    padding-bottom:.5rem;
 }
 
 .order-info span{
