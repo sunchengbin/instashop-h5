@@ -81,22 +81,37 @@
                     <img src="{{host.imgUrl}}/app/bca.png"/>
                 </p>
             </li>
-        {{/if}}
-        {{#if banksInfo.Mandiri}}
-        <li class="tag j_tag_li" data-tag="mandiri">
-            <p class="bank-info mandiri">
-                <img class="" src="{{host.imgUrl}}/app/mandiri.png"/>
-            </p>
-        </li>
+            {{#if banksInfo.Mandiri}}
+                <li class="tag j_tag_li" data-tag="mandiri">
+                    <p class="bank-info mandiri">
+                        <img class="" src="{{host.imgUrl}}/app/mandiri.png"/>
+                    </p>
+                </li>
+            {{/if}}
+            {{#if banksInfo.BRI}}
+                <li class="tag j_tag_li" data-tag="bri">
+                    <p class="bank-info bri">
+                        <img src="{{host.imgUrl}}/app/bri.png"/>
+                    </p>
+                </li>
+            {{/if}}
+        {{else}}
+            {{#if banksInfo.Mandiri}}
+                <li class="tag act j_tag_li" data-tag="mandiri">
+                    <p class="bank-info mandiri">
+                        <img class="" src="{{host.imgUrl}}/app/mandiri.png"/>
+                    </p>
+                </li>
+            {{/if}}
+            {{#if banksInfo.BRI}}
+                <li class="tag j_tag_li" data-tag="bri">
+                    <p class="bank-info bri">
+                        <img src="{{host.imgUrl}}/app/bri.png"/>
+                    </p>
+                </li>
+            {{/if}}
         {{/if}}
 
-        {{#if banksInfo.BRI}}
-        <li class="tag j_tag_li" data-tag="bri">
-            <p class="bank-info bri">
-                <img src="{{host.imgUrl}}/app/bri.png"/>
-            </p>
-        </li>
-        {{/if}}
     </ul>
     <div class="txt-box">
         <p class="pay-content j_tag j_tag_bca ">
