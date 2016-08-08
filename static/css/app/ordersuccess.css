@@ -44,7 +44,7 @@ section{
 .pay-info li p{
     background-color: #fff;
     position: relative;
-    padding:2rem;
+    padding:1rem;
 }
 .pay-info li.act p{
     background-color: #EDEDED;
@@ -122,6 +122,7 @@ p{
     position: relative;
     padding-bottom:1rem;
     background-color: #EDEDED;
+    color: #666;
 }
 .txt-box::after{
     position: absolute;
@@ -137,7 +138,13 @@ p{
     border-right: 1px solid #d8d8d8;
     border-bottom: 1px solid #d8d8d8;
 }
-.pay-content,.pay-content-explain,.last-explain{
+.txt-box p{
+    line-height: 1.5;
+}
+.f-w{
+    font-weight: bold;
+}
+.pay-content,.pay-content-explain,.last-explain,.f-w{
     padding-left:.5rem;
 
 }
@@ -148,7 +155,7 @@ p{
     color: #999;
 }
 .pay-content-explain{
-    padding:1rem 1rem 1rem .5rem;
+    padding:0rem 1rem 0rem .5rem;
     font-size: 1.3rem;
     color: #aaa;
 }
