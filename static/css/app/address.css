@@ -112,8 +112,9 @@ body .address-list{
 .address-list{
     width: 100%;
     -webkit-overflow-scrolling : touch;
-    overflow-y: auto;
-    overflow-x: hidden;
+    /*overflow-y: auto;*/
+    /*overflow-x: hidden;*/
+    overflow: auto;
     -webkit-order: 2;
     order:2;
 }
