@@ -30,6 +30,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     window.onload = function(){//所有图片外链都加载完之后去执行
         onloadTime = (new Date).getTime();
         showTimes();
+        instaImgLoadTime();
         console.log('load'+(new Date).getTime());
     }
     function showTimes(){
@@ -49,6 +50,19 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
         };
     }
+    function instaImgLoadTime(){
+            var img = new Image();
+            document.querySelector('.j_insta_img_info p').innerHTML = 'instagramImgStart: '+(new Date()).getTime();
+            console.log('imgStart'+(new Date()).getTime())
+            img.src = 'https://scontent-nrt1-1.cdninstagram.com/t51.2885-15/e35/1208365_1725776744330480_728632033_n.jpg';
+            img.onload = function(){
+                console.log('imgLoad'+(new Date()).getTime())
+                document.querySelector('.j_insta_img_info p').innerHTML += '</br>instagramImgLoad: '+(new Date()).getTime();
+            };
+            img.onerror= function(){
+
+            };
+        }
 </script>
 <style>
     *{
@@ -92,14 +106,17 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $path = 'v1/shops/'.$seller_id;
         $ret = get_init_php_data($path, $params);
         $json = json_decode($ret, true);
-        echo '<header>'.$json["shop"]["name"].'</header>';
+        echo '<header>'.$json["code"].'</header>';
     ?>
     <section class="j_img_info">
         <p></p>
     </section>
+    <section class="j_insta_img_info">
+            <p></p>
+        </section>
     <section class="j_show_info">
         <p>loading...</p>
     </section>
-    <script src="<?=STATIC_HOST?>/js/app/usertest.js?v=1470370796285"></script>
+    <script src="<?=STATIC_HOST?>/js/app/usertest.js?v=1470390468484"></script>
 </body>
 </html>

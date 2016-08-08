@@ -67,23 +67,23 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         _items = _this.getItems();
                     if(dom.is('.disable-btn')){
                         _that.cancelDisable();
-                        _that.setBtnTxt(dom,Lang.H5_OK_ICON);
+                        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                         return;
                     }
                     if(!_items.length || dom.is('.disable-btn')){
                         _that.cancelDisable();
-                        _that.setBtnTxt(dom,Lang.H5_OK_ICON);
+                        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                         return;
                     }
                     var _data = _this.getData();
                     if(!_data){
                         _that.cancelDisable();
-                        _that.setBtnTxt(dom,Lang.H5_OK_ICON);
+                        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                         return;
                     }
                     if($('.j_check_box').is('.icon-checkbox-font')){
                         _that.cancelDisable();
-                        _that.setBtnTxt(dom,Lang.H5_OK_ICON);
+                        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                         Dialog.tip({
                             top_txt : '',//可以是html
                             body_txt : '<p class="dialog-body-p">aggree is must checked</p>'
@@ -97,7 +97,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         type : 'POST',
                         success : function(obj){
                             _that.cancelDisable();
-                            _that.setBtnTxt(dom,Lang.H5_OK_ICON);
+                            _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                             if(obj.code == 200){
                                 var _post_price = $('.j_logistics_info').attr('data-price'),
                                     _bank_info = JSON.stringify(obj.order.pay_info.banks),
@@ -158,7 +158,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         },
                         error : function(error){
                             _that.cancelDisable();
-                            _that.setBtnTxt(dom,Lang.H5_OK_ICON);
+                            _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                         }
                     });
                 }
