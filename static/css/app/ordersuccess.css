@@ -113,7 +113,7 @@ p{
     font-weight: bolder;
 }
 .order-content{
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     /*font-weight: bold;*/
     color: #333;
     line-height: 1.4;
@@ -143,6 +143,7 @@ p{
 }
 .f-w{
     font-weight: bold;
+    font-size: 1.2rem;
 }
 .pay-content,.pay-content-explain,.last-explain,.f-w{
     padding-left:.5rem;
