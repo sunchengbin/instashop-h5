@@ -506,7 +506,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
                 }else{
                     var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].item.price;
-                    _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.price)+'</p>';
+                    _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(_price)+'</p>';
 
                 }
                 _htm +='</div>'

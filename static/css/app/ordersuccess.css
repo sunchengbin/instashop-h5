@@ -99,13 +99,14 @@ section{
     vertical-align: middle;
 }
 p{
-    line-height: 2.4rem;
+    line-height: 2rem;
 }
 .order-box{
     /*margin-bottom: 2rem;*/
     /*padding-bottom: 0;*/
     text-align: center;
     position: relative;
+    padding-top:.5rem;
 }
 
 .order-info span{
@@ -167,12 +168,12 @@ p{
     /*font-weight: bold;*/
 }
 .pay-time-out{
-    padding: 1rem;
+    padding: .5rem 1rem;
     text-align: left;
     background-color: #fff;
     position: relative;
     /*margin-bottom: 2rem;*/
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 .pay-time-out::after{
     position: absolute;
@@ -275,13 +276,13 @@ footer .btn{
 .quick-box{
     background-color: #F5A620;
     color: #fff;
-    padding: .8rem 1rem;
+    padding: .5rem 1rem;
 }
 p.quick-order-txt{
     text-align: left;
     /* color: #666; */
-    line-height: 1.5;
-    font-size: 1.3rem;
+    line-height: 1.3;
+    font-size: 1.2rem;
 }
 p.quick-order-txt span{
    color: #f9b42d;
