@@ -101,7 +101,10 @@ body .address-list{
     overflow: hidden;
     /*transform: translate3d(100%,0,0);*/
     /*-webkit-transform: translate3d(100%,0,0);*/
-    display: -webkit-flex; /* Safari */
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     -webkit-flex-direction:column;
     flex-direction:column;
@@ -115,12 +118,14 @@ body .address-list{
     overflow-y: scroll;
     overflow-x: hidden;
     -webkit-order: 2;
+    -webkit-box-ordinal-group:2;
     order:2;
 }
 .address-header-nav{
     width: 100%;
     min-height: 4rem;
     -webkit-order:1;
+    -webkit-box-ordinal-group:1;
     order:1;
 }
 .address-header-nav i{
