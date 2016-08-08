@@ -125,6 +125,16 @@ body .address-list{
     /*height: 0;*/
     /*border-bottom: none;*/
 }
+.user-tel{
+    position: relative;
+}
+.user-tel span{
+    position: absolute;
+    color: #333;
+}
+.user-tel input{
+    padding-left: 3rem;
+}
 .info-box input{
     color: #666;
     font-size: 14px;
