@@ -162,7 +162,7 @@ body .address-list{
 }
 .list-box{
     width: 100%;
-    overflow-x:hidden;
+    overflow: auto;
 }
 .address-wraper{
     height: 100%;
