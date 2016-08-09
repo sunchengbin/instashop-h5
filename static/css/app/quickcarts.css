@@ -178,27 +178,39 @@ body .address-list{
     overflow: hidden;
     /*transform: translate3d(100%,0,0);*/
     /*-webkit-transform: translate3d(100%,0,0);*/
-    display: -webkit-flex; /* Safari */
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction:column;
-    flex-direction:column;
-    -webkit-align-items: flex-start;
-    align-items:flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     z-index: 10;
 }
 .address-list{
     width: 100%;
     -webkit-overflow-scrolling : touch;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    -webkit-order: 2;
-    order:2;
+    overflow: auto;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
 }
 .address-header-nav{
     width: 100%;
-    min-height: 4.6rem;
-    -webkit-order:1;
-    order:1;
+    min-height: 4rem;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
 }
 .address-header-nav i{
 }
