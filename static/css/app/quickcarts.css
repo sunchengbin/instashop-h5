@@ -3,6 +3,7 @@
 @import "../moudle/app/common/common.css";
 @import "../moudle/ui/dialog/dialog.css";
 @import "../moudle/app/logistics/logistics.css";
+@import "../moudle/app/address/address.css";
 html{
     height: 100%;
 }
@@ -166,92 +167,7 @@ body .address-list{
     width: 100%;
     overflow: hidden;
 }
-.address-list-box{
-    position: absolute;
-    background-color: #fff;
-    top: 0;
-    bottom:0;
-    left:100%;
-    width: 100%;
-    margin:0 auto;
-    /*max-width: 640px;*/
-    overflow: hidden;
-    /*transform: translate3d(100%,0,0);*/
-    /*-webkit-transform: translate3d(100%,0,0);*/
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    z-index: 10;
-}
-.address-list{
-    width: 100%;
-    -webkit-overflow-scrolling : touch;
-    overflow: auto;
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    -webkit-flex-shrink: 1;
-    -ms-flex-negative: 1;
-    flex-shrink: 1;
-}
-.address-header-nav{
-    width: 100%;
-    min-height: 4rem;
-    -webkit-box-flex: 0;
-    -webkit-flex-grow: 0;
-    -ms-flex-positive: 0;
-    flex-grow: 0;
-    -webkit-flex-shrink: 0;
-    -ms-flex-negative: 0;
-    flex-shrink: 0;
-}
-.address-header-nav i{
-}
-.show{
-    transition-duration: .6s;
-    transform:translate3d(-100%,0,0);
-    -webkit-transition-duration: .6s;
-    -webkit-transform:translate3d(-100%,0,0);
-}
-.hide{
-    transition-duration: .6s;
-    transform:translate3d(0,0,0);
-    -webkit-transition-duration: .6s;
-    -webkit-transform:translate3d(0,0,0);
-}
-.address-list >div div{
-    color: #333;
-    font-size: 1.4rem;
-    padding:1rem;
-    height: 2.4rem;
-    line-height: 2.4rem;
-    position: relative;
-}
-.address-list div:after{
-    position: absolute;
-    left:-50%;
-    right: -50%;
-    bottom:0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border-bottom: 1px solid #d8d8d8;
-}
-.address-list div:last-child::after{
-    display:none ;
-}
-.list-box{
-    width: 100%;
-    overflow-x:hidden;
-}
+
 .address-wraper{
     /*height: 100%;*/
     position: relative;
