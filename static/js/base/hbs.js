@@ -444,7 +444,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         if(!Base.others.testObject(carts)){
             for(var item in carts){
                 var _id = ((carts[item].sku&&carts[item].sku.id)?carts[item].sku.id:carts[item].item.id);
-                _htm += '<li class="clearfix cart-item j_cart_item" data-id="'+_id+'">'
+                _htm += '<li class="clearfix cart-item b-bottom j_cart_item" data-id="'+_id+'">'
                     //+'<i class="icon iconfont j_del_cart icon-delete-font" data-id="'+_id+'"></i>'
                     +'<img src="'+carts[item].item.img+'">'
                     +'<div class="">'

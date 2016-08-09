@@ -2,7 +2,7 @@
     <section class="address-form-box">
         <section class="address-wraper">
             <div class="">
-                <section class="top-status">
+                <section class="top-status b-bottom">
                     <div class="act">
                         1.Alamat Pengiriman
                     </div>
@@ -18,10 +18,10 @@
             </section>
             <p class="address-title">Silakan isi alamat pengirimanmu</p>
             <div class="user-info">
-                <div class="user-name info-box">
+                <div class="user-name info-box b-bottom">
                     <input class="j_name" type="text" value="{{address.name}}" placeholder="{{lang.H5_USER_NAME_PH}}"/>
                 </div>
-                <div class="user-tel info-box">
+                <div class="user-tel info-box b-bottom">
                     <span>+62</span>
                     <input class="j_tel" type="tel" value="{{address.telephone}}" placeholder="{{lang.H5_USER_TELE_PH}}" maxlength="20"/>
                 </div>
@@ -31,15 +31,15 @@
                 {{lang.H5_CONFIRM_TEL_IS_TRUE}}
             </div>
             <div class="user-address j_user_address">
-                <div class="info-box act clearfix" data-name="province">
+                <div class="info-box b-bottom b-top act clearfix" data-name="province">
                     <i class="icon iconfont fr icon-go-font"></i>
                     <p class="j_province">{{#if address.address.province}}{{address.address.province}}{{else}}{{lang.H5_PROVINCE}}{{/if}}</p>
                 </div>
-                <div class="info-box {{#if address.address.city}}act{{/if}} clearfix" data-name="city">
+                <div class="info-box b-bottom {{#if address.address.city}}act{{/if}} clearfix" data-name="city">
                     <i class="icon iconfont fr icon-go-font"></i>
                     <p class="j_city">{{#if address.address.city}}{{address.address.city}}{{else}}{{lang.H5_CITY}}{{/if}}</p>
                 </div>
-                <div class="info-box {{#if address.address.country}}act{{/if}} clearfix" data-name="country">
+                <div class="info-box b-bottom {{#if address.address.country}}act{{/if}} clearfix" data-name="country">
                     <i class="icon iconfont fr icon-go-font"></i>
                     <p class="j_country">{{#if address.address.country}}{{address.address.country}}{{else}}{{lang.H5_DISTRICT}}{{/if}}</p>
                 </div>

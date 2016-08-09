@@ -7,27 +7,27 @@
         </nav>
         <section class="address-wraper">
             <div class="user-info">
-                <div class="user-name info-box">
+                <div class="user-name info-box b-bottom">
                     <input class="j_name" type="text" value="{{name}}" placeholder="{{lang.H5_USER_NAME_PH}}"/>
                 </div>
-                <div class="user-tel info-box">
+                <div class="user-tel info-box b-bottom">
                     <span>+62</span>
                     <input class="j_tel" type="tel" value="{{telephone}}" placeholder="{{lang.H5_USER_TELE_PH}}" maxlength="20"/>
                 </div>
             </div>
-            <div class="tel-msg-txt">
+            <div class="tel-msg-txt b-bottom">
                 {{lang.H5_CONFIRM_TEL_IS_TRUE}}
             </div>
             <div class="user-address j_user_address">
-                <div class="info-box act clearfix" data-name="province">
+                <div class="info-box act clearfix b-bottom" data-name="province">
                     <i class="icon iconfont fr icon-go-font"></i>
                     <p class="j_province">{{#if address.province}}{{address.province}}{{else}}{{lang.H5_PROVINCE}}{{/if}}</p>
                 </div>
-                <div class="info-box {{#if address.city}}act{{/if}} clearfix" data-name="city">
+                <div class="info-box {{#if address.city}}act{{/if}} b-bottom clearfix" data-name="city">
                     <i class="icon iconfont fr icon-go-font"></i>
                     <p class="j_city">{{#if address.city}}{{address.city}}{{else}}{{lang.H5_CITY}}{{/if}}</p>
                 </div>
-                <div class="info-box {{#if address.country}}act{{/if}} clearfix" data-name="country">
+                <div class="info-box {{#if address.country}}act{{/if}} b-bottom clearfix" data-name="country">
                     <i class="icon iconfont fr icon-go-font"></i>
                     <p class="j_country">{{#if address.country}}{{address.country}}{{else}}{{lang.H5_DISTRICT}}{{/if}}</p>
                 </div>

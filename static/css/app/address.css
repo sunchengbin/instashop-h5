@@ -28,17 +28,17 @@ body .address-list{
     /*border-bottom: 1px solid #ececec;*/
     position: relative;
 }
-.info-box::after{
-    position: absolute;
-    left:-50%;
-    right: -50%;
-    bottom:0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border-bottom: 1px solid #d8d8d8;
-}
+/*.info-box::after{*/
+    /*position: absolute;*/
+    /*left:-50%;*/
+    /*right: -50%;*/
+    /*bottom:0;*/
+    /*height: 1px;*/
+    /*content: '';*/
+    /*-webkit-transform: scale(0.5);*/
+    /*transform: scale(0.5);*/
+    /*border-bottom: 1px solid #d8d8d8;*/
+/*}*/
 /*.user-tel::after{*/
     /*height: 0;*/
     /*border-bottom: none;*/
@@ -67,17 +67,17 @@ body .address-list{
     color: #999;
     position: relative;
 }
-.tel-msg-txt:after{
-    position: absolute;
-    left:-50%;
-    right: -50%;
-    bottom:0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border-bottom: 1px solid #d8d8d8;
-}
+/*.tel-msg-txt:after{*/
+    /*position: absolute;*/
+    /*left:-50%;*/
+    /*right: -50%;*/
+    /*bottom:0;*/
+    /*height: 1px;*/
+    /*content: '';*/
+    /*-webkit-transform: scale(0.5);*/
+    /*transform: scale(0.5);*/
+    /*border-bottom: 1px solid #d8d8d8;*/
+/*}*/
 .act{
     color: #333;
 }

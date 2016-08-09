@@ -54,42 +54,47 @@
     .buy-btn{
 
     }
-/*check-box*/
-.check-btn,.checked-btn{
-    font-size: 3rem;
-}
-/*.check-btn:before {*/
-    /*content: " ";*/
-    /*display: inline-block;*/
-    /*width: 1.6rem;*/
-    /*height: 1.6rem;*/
-    /*line-height: 1.6rem;*/
-    /*border:2px solid #ddd;*/
-    /*border-radius: 50%;*/
-/*}*/
-/*.checked-btn:before{*/
-    /*font-size: 2.4rem;*/
-    /*content: "\e609";*/
-    /*color: #43CB9B;*/
-    /*border:none;*/
-/*}*/
-/*联系客服*/
-.ser-icon{
-    font-size: 2rem;
-}
-.ser-icon:before{
-    content: "\e60e";
-    color: #52CDF0;
-}
-/*延迟健在图片*/
-.lazy{
-    height: 0;
-    padding-top:100%;
-    background-repeat: no-repeat;
-    background-color: #f5f5f5;
-    background-size: contain;
+    /*check-box*/
+    .check-btn,.checked-btn{
+        font-size: 3rem;
+    }
+    /*延迟加载图片*/
+    .lazy{
+        height: 0;
+        padding-top:100%;
+        background-repeat: no-repeat;
+        background-color: #f5f5f5;
+        background-size: contain;
 
-}
+    }
+    /*.5的border线*/
+    .b-top,.b-bottom{
+        position: relative;
+    }
+    .b-top::before{
+        position: absolute;
+        left:-50%;
+        right: -50%;
+        top:-1px;
+        height: 1px;
+        content: '';
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        border-bottom: 1px solid #d8d8d8;
+        z-index: 1;
+    }
+    .b-bottom::after{
+        position: absolute;
+        left:-50%;
+        right: -50%;
+        bottom:-1px;
+        height: 1px;
+        content: '';
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        border-bottom: 1px solid #d8d8d8;
+        z-index: 1;
+    }
 
 
 

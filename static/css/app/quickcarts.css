@@ -23,17 +23,17 @@ body .address-list{
     min-height: 6rem;
     position: relative;
 }
-.cart-item::after{
-    position: absolute;
-    left:-50%;
-    right: -50%;
-    bottom:0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border-bottom: 1px solid #d8d8d8;
-}
+/*.cart-item::after{*/
+    /*position: absolute;*/
+    /*left:-50%;*/
+    /*right: -50%;*/
+    /*bottom:0;*/
+    /*height: 1px;*/
+    /*content: '';*/
+    /*-webkit-transform: scale(0.5);*/
+    /*transform: scale(0.5);*/
+    /*border-bottom: 1px solid #d8d8d8;*/
+/*}*/
 .cart-item img{
     float: left;
     width: 6rem;
@@ -94,37 +94,33 @@ body .address-list{
 .info-box p{
     font-size: 14px;
 }
-.info-box::after{
-    position: absolute;
-    left:-50%;
-    right: -50%;
-    bottom:0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border-bottom: 1px solid #d8d8d8;
-}
+/*.info-box::after{*/
+    /*position: absolute;*/
+    /*left:-50%;*/
+    /*right: -50%;*/
+    /*bottom:0;*/
+    /*height: 1px;*/
+    /*content: '';*/
+    /*-webkit-transform: scale(0.5);*/
+    /*transform: scale(0.5);*/
+    /*border-bottom: 1px solid #d8d8d8;*/
+/*}*/
 .tel-msg-txt{
     padding: 1rem .5rem;
     color: #999;
     background-color: #fff;
-    position: relative;
+    /*position: relative;*/
 }
 .user-address .info-box:first-child::before{
-    position: absolute;
-    left:-50%;
-    right: -50%;
-    top:0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border-bottom: 1px solid #d8d8d8;
-}
-.user-tel::after{
-    /*height: 0;*/
-    /*border-bottom: none;*/
+    /*position: absolute;*/
+    /*left:-50%;*/
+    /*right: -50%;*/
+    /*top:0;*/
+    /*height: 1px;*/
+    /*content: '';*/
+    /*-webkit-transform: scale(0.5);*/
+    /*transform: scale(0.5);*/
+    /*border-bottom: 1px solid #d8d8d8;*/
 }
 .user-tel{
     position: relative;
@@ -200,17 +196,17 @@ body .address-list{
     background: url(../../images/app/status_one.gif) no-repeat;
     background-size: cover;
 }
-.top-status::after{
-    position: absolute;
-    left:-50%;
-    right: -50%;
-    bottom:0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border-bottom: 1px solid #d8d8d8;
-}
+/*.top-status::after{*/
+    /*position: absolute;*/
+    /*left:-50%;*/
+    /*right: -50%;*/
+    /*bottom:0;*/
+    /*height: 1px;*/
+    /*content: '';*/
+    /*-webkit-transform: scale(0.5);*/
+    /*transform: scale(0.5);*/
+    /*border-bottom: 1px solid #d8d8d8;*/
+/*}*/
 
 .top-status div{
     -webkit-box-flex: 1;
