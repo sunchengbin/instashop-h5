@@ -14,6 +14,13 @@
     </section>
 {{else}}
     <nav class="shop-header-nav clearfix">
+        <div class="fl sort-prompt-box">
+            <button class="j_category">
+                <i class="icon iconfont icon-sort-font"></i>
+            </button>
+            <div class="btn-cover"></div>
+            <div class="sort-prompt">{{lang.H5_GOOD_SORT}}</div>
+        </div>
         <div class="fr">
             <button class="j_cart_wraper" data-url="{{hrefUrl}}cart.php">
                 {{#if num}}
@@ -108,9 +115,9 @@
     <div class="sort-list-cover j_sort_cover">
         <i class="icon iconfont icon-fold-font"></i>
     </div>
-    <footer class="clearfix">
-        <a href="javascript:;" class="btn fl j_category"><i class="icon iconfont icon-sort-font"></i>{{lang.H5_GOOD_SORT}}</a>
-    </footer>
+    <!--<footer class="clearfix">-->
+        <!--<a href="javascript:;" class="btn fl j_category"><i class="icon iconfont icon-sort-font"></i>{{lang.H5_GOOD_SORT}}</a>-->
+    <!--</footer>-->
 
 {{/eq}}
 
