@@ -227,7 +227,11 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         //_msg = Lang.H5_NO_STOCK;
                     }else{
                         if(_stock == -1){
-                            _msg = Lang.H5_COMMODIFY_SHELF;
+                            if(item.need_sku){
+                                _msg = Lang.H5_GOOD_DETAIL_CHANGE;
+                            }else {
+                                _msg = Lang.H5_COMMODIFY_SHELF;
+                            }
                         }else{
                             if(_stock < _num){//超出库存
                                 if(item.is_discount_err){

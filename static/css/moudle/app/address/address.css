@@ -28,9 +28,9 @@
 .address-list{
     width: 100%;
     -webkit-overflow-scrolling : touch;
-    /*overflow-y: auto;*/
-    /*overflow-x: hidden;*/
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /*overflow: auto;*/
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;

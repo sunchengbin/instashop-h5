@@ -193,16 +193,20 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                     _msg = null;
                 if(_stock == 0){//库存为0
                     if(item.is_discount_err){
-                        _msg = Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT;
+                        _msg = Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT;//超出限购
                     }else{
-                        _msg = Lang.H5_SOLD_OUT;
+                       _msg = Lang.H5_SOLD_OUT;
                     }
                 }else{
                     if(_stock >= 9999999){//没设置库存,需要联系商家
                         //_msg = Lang.H5_NO_STOCK;
                     }else{
                         if(_stock == -1){
-                            _msg = Lang.H5_COMMODIFY_SHELF;
+                            if(item.need_sku){
+                                _msg = Lang.H5_GOOD_DETAIL_CHANGE;
+                            }else {
+                                _msg = Lang.H5_COMMODIFY_SHELF;
+                            }
                         }else{
                             if(_stock < _num){//超出库存
                                 _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
