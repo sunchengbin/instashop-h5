@@ -138,7 +138,9 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                                 top_txt : '',//可以是html
                                                 body_txt : '<p class="dialog-body-p">'+obj.msg+'</p>',
                                                 cf_fn : function(){
-                                                    location.href = Config.host.hrefUrl+'cart.php';
+                                                    setTimeout(function(){
+                                                        location.href = Config.host.hrefUrl+'cart.php';
+                                                    },3000);
                                                 }
                                             });
                                         }
