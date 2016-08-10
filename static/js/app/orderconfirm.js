@@ -130,7 +130,10 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                                     //localStorage.setItem('OrderTotal', _total);
                                                     //Cart().clearCarts();
                                                     //location.href = Config.host.hrefUrl + 'ordersuccess.php';
-                                                    location.href = Config.host.hrefUrl+'cart.php';
+                                                    setTimeout(function(){
+                                                        location.href = Config.host.hrefUrl+'cart.php';
+                                                    },3000);
+                                                    //location.href = Config.host.hrefUrl+'cart.php';
                                                 }
                                             }
                                         }else{
