@@ -63,6 +63,29 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
             };
         }
+        if(getUrlPrem('clear')){
+            console.log(localStorage);
+            localStorage.clear();
+            console.log(localStorage);
+        }
+        function getUrlPrem(key,url){
+            var _search = url || document.location.search,
+                _pattern = new RegExp("[?&]" + key + "\=([^&]+)", "g"),
+                _matcher = _pattern.exec(_search),
+                _items = null;
+            if (null != _matcher) {
+                try {
+                    _items = decodeURIComponent(decodeURIComponent(_matcher[1]));
+                } catch (e) {
+                    try {
+                        _items = decodeURIComponent(_matcher[1]);
+                    } catch (e) {
+                        _items = _matcher[1];
+                    }
+                }
+            }
+            return _items;
+        }
 </script>
 <style>
     *{
@@ -117,6 +140,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <section class="j_show_info">
         <p>loading...</p>
     </section>
-    <script src="<?=STATIC_HOST?>/js/app/usertest.js?v=1470907159667"></script>
+    <script src="<?=STATIC_HOST?>/js/app/usertest.js?v=1470910145312"></script>
 </body>
 </html>
