@@ -39,11 +39,16 @@ function getFontCss($url){
 function getIco($url){
     return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';
 }
+function getPrompt(){
+    $prompt = $_SERVER[ 'SERVER_PROTOCOL' ];
+    $pr = split('\/',$prompt)[0];
+    return strtolower($pr);
+}
 spl_autoload_register('loadClass');
-
-$static_host = C_RUNTIME_ONLINE ? 'http://static.instashop.co.id' : 'http://static-test.instashop.co.id';
-$static_font_css =C_RUNTIME_ONLINE?getFontCss('http://m.instashop.co.id/static'):getFontCss('http://m-test.instashop.co.id/static');
-$static_ico_css =C_RUNTIME_ONLINE?getIco('http://m.instashop.co.id'):getIco('http://m-test.instashop.co.id');
+$prompt = getPrompt().':';
+$static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
+$static_font_css =C_RUNTIME_ONLINE?getFontCss($prompt.'//m.instashop.co.id/static'):getFontCss($prompt.'//m-test.instashop.co.id/static');
+$static_ico_css =C_RUNTIME_ONLINE?getIco($prompt.'//m.instashop.co.id'):getIco($prompt.'//m-test.instashop.co.id');
 $static_dns = '<link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';
 define('STATIC_DNS', $static_dns);
 define('STATIC_FONT_CSS', $static_font_css);

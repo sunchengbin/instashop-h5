@@ -4,15 +4,41 @@
 body{
     color: #666;
     background-color: #f5f5f5;
-    padding-bottom:4rem;
+    padding-bottom:1rem;
 }
-.sort-prompt-box{
-
+.shop-header-nav > div.sort-prompt-box{
+    width: auto;
+    min-width: 3.6rem;
+}
+.btn-cover{
+    padding: 0;
+}
+.sort-prompt-box .btn-cover{
+    width: auto;
+    min-width: 3.6rem;
+    font-size: 1.4rem;
+    white-space: nowrap;
+    line-height: 3.8rem;
+    border-radius: 1.8rem;
+    color: #fff;
+    transition:padding-left .3s ease-in,padding-right .3s ease-in;
+    padding-left: 3rem;
+    padding-right: 1rem;
 }
 .sort-prompt{
     position: absolute;
     top: 0;
     left: 0;
+    /* min-width: 3.6rem; */
+    height: 3.6rem;
+    font-size: 1.6rem;
+    white-space: nowrap;
+    line-height: 3.6rem;
+    padding-left: 2.6rem;
+    padding-right: 1rem;
+    border-radius: 1.8rem;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
 }
 section{
     background-color: #fff;
@@ -117,10 +143,17 @@ section{
 }
 .item-title{
     font-size: 1.6rem;
-    padding: 1rem 0;
+    padding: 1rem 0 .5rem 1rem;
+    margin-right: 2rem;
+    margin-bottom:1rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    position: relative;
+    line-height: 2rem;
+}
+.b-bottom::after{
+    bottom: 0;
 }
 .item-title em{
     display: inline-block;
@@ -132,14 +165,16 @@ section{
 }
 .item-title span{
     display: inline-block;
-    height: 1.3rem;
+    height: .5rem;
     width: .5rem;
     background-color: #F5A623;
     margin-right: .5rem;
-    vertical-align: middle;
+    position: absolute;
+    left: 0;
+    top: 2rem;
 }
 .item-title a{
-    margin-right: 2rem;
+    /*margin-right: 2rem;*/
     color: #F5A623;
 }
 .item-title a i{
@@ -185,33 +220,21 @@ section{
     height: 1.8rem;
 }
 /*联系客服*/
-/*.contact-services{*/
-    /*display: inline-block;*/
-    /*background-color: #f5f5f5;*/
-    /*position: fixed;*/
-    /*right: 0;*/
-    /*bottom: 6rem;*/
-    /*height: 4rem;*/
-    /*line-height: 4rem;*/
-    /*padding: 0 1rem 0 1.5rem;*/
-    /*font-size: 1.4rem;*/
-    /*color: #52CDF0;*/
-    /*z-index: 103;*/
-    /*border-radius: 4rem 0 0 4rem;*/
-/*}*/
-.im-num{
-    position: absolute;
-    display: none;
-    width: 8px;
-    height: 8px;
-    background: #FF584C;
-    border-radius: 50%;
-    color: #fff;
-    text-align: center;
-    left: 1.5rem;
-    top: 0rem;
+.contact-services{
+    display: inline-block;
+    background-color: #f5f5f5;
+    position: fixed;
+    right: 0;
+    bottom: 6rem;
+    height: 4rem;
+    line-height: 4rem;
+    padding: 0 1rem 0 1.5rem;
+    font-size: 1.4rem;
+    color: #52CDF0;
+    z-index: 103;
+    border-radius: 4rem 0 0 4rem;
 }
-.ser-icon{
+.contact-services i{
     font-size: 2.2rem;
     vertical-align: middle;
 }
@@ -298,9 +321,9 @@ footer .btn i{
     margin-right: .5rem;
     position: relative;
 }
-.contact-services{
-    position: relative;
-}
+/*.contact-services{*/
+    /*position: relative;*/
+/*}*/
 /*分类侧栏弹窗*/
 .sort-list-wraper{
     position: fixed;

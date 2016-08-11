@@ -6,27 +6,29 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
         init : function(init_data){
             Lazyload();
             Common.initShopInfo(init_data);
-            var IndexHtm = '<div>加载数据中</div>',
+            var IndexHtm = '<div>'+Lang.H5_LOADING+'</div>',
                 _this = this;
             _this.sortTimes = 0;
             if(init_data){
-                var _tag_list = _this.getTags(init_data.item_list.list);
-                IndexHtm= Hbs.compile(Index)({
-                    data : init_data,
-                    tags_item : (_tag_list ? _tag_list.tags : []),
-                    lang : Lang,
-                    host:Config.host.host,
-                    hrefUrl : Config.host.hrefUrl,
-                    num : Cart().getCartNum()
-                });
+                var _tag_list = _this.getTags(init_data.item_list.list),
+                    _init_data = {
+                        data : init_data,
+                        tags_item : (_tag_list ? _tag_list.tags : []),
+                        lang : Lang,
+                        host:Config.host.host,
+                        hrefUrl : Config.host.hrefUrl,
+                        num : Cart().getCartNum()
+                    };
+                IndexHtm= Hbs.compile(Index)(_init_data);
             }else{
-                IndexHtm = '<div>数据出错</div>';
+                IndexHtm = '<div>'+Lang.H5_ERROR+'</div>';
             }
             $('body').prepend(IndexHtm);
             if($('.txt-hide').height() > 45){
                 $('.down-btn').show();
             }
-            this.getImNum();
+
+            //this.getImNum();
             this.handleFn();
         },
         getTags : function(list){
@@ -91,6 +93,9 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 var _st = $('body').scrollTop(),
                     _wh = $(window).height(),
                     _bh = $(document).height();
+                if((_st > 40) && !localStorage.getItem('IndexSortPrompt')){
+                    _this.showSortPrompt();
+                }
                 if ((_st + _wh > _bh - 200) && getData) {
                     getData = false;
                     Ajax.getJsonp(Config.host.actionUrl+Config.actions.shopList+init_data.shop.id+'?param='+JSON.stringify(reqData),function(obj){
@@ -175,6 +180,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 _sort_box.style.webkitTransform = "translate3d(0,0,0)";
                 _sort_cover.style.webkitTransitionDuration = '.3s';
                 _sort_cover.style.webkitTransform = "translate3d(0,0,0)";
+                _this.hideSortPrompt();
             });
             $('body').on('click','.j_sort_cover',function(){
                 var _sort_box = document.querySelector('.j_sort_box');
@@ -189,6 +195,15 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 _this.goScroll();
             }
         },
+        showSortPrompt : function(){
+            $('.j_sort_prompt_box .btn-cover').html(Lang.H5_GOOD_SORT);
+            $('.j_sort_prompt_box').addClass('sort-prompt-box');
+        },
+        hideSortPrompt : function(){
+            $('.j_sort_prompt_box .btn-cover').html('');
+            $('.j_sort_prompt_box').removeClass('sort-prompt-box');
+            localStorage.setItem('IndexSortPrompt',1);
+        },
         goScroll : function() {
             var _this = this,
                 _l_top = Number(localStorage.getItem('ScrollTop'));
@@ -196,7 +211,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 _l_top = 0;
             }
             if(_this.t){
-                console.log(1)
+                //console.log(1)
                 clearTimeout(_this.t);
             }
             _this.t = setTimeout(function(){
@@ -204,13 +219,13 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 if(_this.sortTimes > 7){
                     clearTimeout(_this.t);
                 }else{
-                    console.log(_this.t)
+                    //console.log(_this.t)
                     $(window).scrollTop(_l_top);
                     if ($(document).height() < _l_top) {
                         _this.goScroll();
                     }else{
                         clearTimeout(_this.t);
-                        console.log('end')
+                        //console.log('end')
                     }
                 }
 

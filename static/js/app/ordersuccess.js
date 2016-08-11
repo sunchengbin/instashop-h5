@@ -36,7 +36,7 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],fu
                     cancelTime : getUrlPrem('time',location.href)
                 }
             }
-            var IndexHtm = '<div>加载数据中</div>';
+            var IndexHtm = '<div>'+Lang.H5_LOADING+'</div>';
             IndexHtm= Hbs.compile(OrderSuccess)({
                 totalPrice : totalPrice,
                 banksInfo : banksInfo,

@@ -6,7 +6,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
     var ITEM = {
         init : function(){
             var _this = this;
-            var ItemHtm = '<div>loading..</div>';
+            var ItemHtm = '<div>'+Lang.H5_LOADING+'</div>';
             if(init_data){
                 ItemHtm= Hbs.compile(Item)({
                     data : init_data,
@@ -17,7 +17,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     timeLang : _this.discountTime(init_data.item.discount.now_time,init_data.item.discount.end_time)
                 });
             }else{
-                ItemHtm = '<div>loading error</div>';
+                ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
             }
             $('body').prepend(ItemHtm);
             Lazyload();

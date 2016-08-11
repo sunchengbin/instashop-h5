@@ -15,7 +15,7 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','base','common']
                     host:Config.host.host
                 });
             }else{
-                ItemHtm = '<div>error</div>';
+                ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
             }
             $('body').prepend(ItemHtm);
         }
