@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   <?=STATIC_DNS?>
   <?=STATIC_ICO_CSS?>
   <?=STATIC_FONT_CSS?>
-  <link href="<?=STATIC_HOST?>/css/dist/app/sort.css?v=1470984842556" rel="stylesheet"/>
+  <link href="<?=STATIC_HOST?>/css/dist/app/sort.css?v=1470987130493" rel="stylesheet"/>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );
         $sort_id = $_REQUEST['sort_id'];
@@ -26,25 +26,21 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
                 $sort_id = end($ss);
             }
         }
-        $sort_name = $_REQUEST['name'];
         $params = [
-            'action' => 'tag',
             'page_size' => 10,
-            'tag_id' => $sort_id,
             'havestock' => 1
         ];
-        $seller_id = $_REQUEST['seller_id'];
-        $path = 'v1/shops/'.$seller_id.'/items';
+        $path = 'v1/tag/'.$sort_id.'/items';
         $ret = get_init_php_data($path, $params);
         $json = json_decode($ret, true);
-        echo '<title>'.json_decode($sort_name).'</title>';
+        echo '<title>'.$json['tag']['name'].'</title>';
         echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
     ?>
 </head>
 <body>
   <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
   <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-  <script src="<?=STATIC_HOST?>/js/dist/app/sort.js?v=1470984842556"></script>
+  <script src="<?=STATIC_HOST?>/js/dist/app/sort.js?v=1470987130493"></script>
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

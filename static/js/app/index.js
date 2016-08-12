@@ -5,11 +5,11 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
     var I = {
         init : function(init_data){
             Lazyload();
-            Common.initShopInfo(init_data);
             var IndexHtm = '<div>'+Lang.H5_LOADING+'</div>',
                 _this = this;
             _this.sortTimes = 0;
             if(init_data){
+                Common.initShopInfo(init_data);
                 var _tag_list = _this.getTags(init_data.item_list.list),
                     _init_data = {
                         data : init_data,
@@ -132,7 +132,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                             $('[data-tagid="'+_tags[tagid].id+'"] ul').append(_this.addItem(_list_data.tags[tagid].item));
                                         }else{
                                             var _htm = '<section class="items-box" data-tagid="'+_tags[tagid].id+'">'
-                                                +'<p class="item-title clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.hrefUrl+'sort.php?sort_id='+_tags[tagid].id+'&name='+_list_data.tags[tagid].name+'&seller_id='+init_data.shop.id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>'
+                                                +'<p class="item-title clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.host+'k/'+_tags[tagid].id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>'
                                                 +'<ul class="items-list j_item_list clearfix">'
                                                 +_this.addItem(_list_data.tags[tagid].item)
                                                 +'</ul>'

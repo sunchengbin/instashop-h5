@@ -5,17 +5,17 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
     var SORT = {
         init : function(){
             Lazyload();
-            var SortHtm = '<div>加载数据中</div>';
+            var SortHtm = '<div>'+Lang.H5_LOADING+'</div>';
             if(init_data){
                 SortHtm= Hbs.compile(Sort)({
                     data : init_data,
-                    name : Base.others.getUrlPrem('name'),
+                    name : init_data.tag.name,
                     lang : Lang,
                     hrefUrl : Config.host.hrefUrl,
                     num : Cart().getCartNum()
                 });
             }else{
-                SortHtm = '<div>数据出错</div>';
+                SortHtm = '<div>'+Lang.H5_ERROR+'</div>';
             }
             $('body').prepend(SortHtm);
             this.handleFn();
@@ -28,7 +28,7 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
             Fastclick.attach(document.body);
             $('body').on('click','.j_go_back',function(){
 
-                location.href = Config.host.host+'s/'+Base.others.getUrlPrem('seller_id')+'?item=back';
+                location.href = Config.host.host+'s/'+init_data.tag.seller_id+'?item=back';
 
             });
             $('body').on('click','.j_cart_wraper',function(){
