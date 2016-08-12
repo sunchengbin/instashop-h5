@@ -132,7 +132,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                             $('[data-tagid="'+_tags[tagid].id+'"] ul').append(_this.addItem(_list_data.tags[tagid].item));
                                         }else{
                                             var _htm = '<section class="items-box" data-tagid="'+_tags[tagid].id+'">'
-                                                +'<p class="item-title clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.host+'k/'+_tags[tagid].id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>'
+                                                +'<p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.host+'k/'+_tags[tagid].id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>'
                                                 +'<ul class="items-list j_item_list clearfix">'
                                                 +_this.addItem(_list_data.tags[tagid].item)
                                                 +'</ul>'
