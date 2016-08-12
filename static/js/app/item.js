@@ -151,12 +151,25 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             });
             //item=back是为了让返回首页的时候滚动到指定的scrolltop高度
             $('body').on('click','.j_go_back',function(){
-                var _local_url = localStorage.getItem('FromUrl');
+                var _local_url = localStorage.getItem('FromUrl'),
+                    _ios = Base.others.verifyBower().ios;
                 if(_local_url && !/detail/g.test(_local_url)){
-                    if(/\?/g.test(_local_url)){
-                        location.href = localStorage.getItem('FromUrl')+'&item=back';
+                    if(_ios){//ios手机回退
+                        if(/\?/g.test(_local_url)){
+                            location.href = localStorage.getItem('FromUrl')+'&item=back';
+                        }else{
+                            location.href = localStorage.getItem('FromUrl')+'?item=back';
+                        }
                     }else{
-                        location.href = localStorage.getItem('FromUrl')+'?item=back';
+                        if(/\/s\//g.test(_local_url)){
+                            history.back();
+                        }else{
+                            if(/\?/g.test(_local_url)){
+                                location.href = localStorage.getItem('FromUrl')+'&item=back';
+                            }else{
+                                location.href = localStorage.getItem('FromUrl')+'?item=back';
+                            }
+                        }
                     }
                 }else{
                     Common.saveFromUrl(function(){
