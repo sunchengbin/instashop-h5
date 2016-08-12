@@ -16,19 +16,20 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     var startTime = (new Date).getTime(),
         domLoadTime = 0,
         onloadTime = 0,
-        cdnjsTime = 0;
+        cdnjsTime = 0,
+        orderStart = 0;
         console.log('startTime'+(new Date).getTime());
 
     if ( document.addEventListener ) {//dom数加载完之后执行
         document.addEventListener( "DOMContentLoaded", function(){
 
-            domLoadTime = (new Date).getTime();
+            domLoadTime = (new Date).getTime() - startTime;
             imgLoadTime();
-            console.log('domLoad'+(new Date).getTime());
+            console.log('domLoad'+domLoadTime);
         }, false );
     }
     window.onload = function(){//所有图片外链都加载完之后去执行
-        onloadTime = (new Date).getTime();
+        onloadTime = (new Date).getTime() - startTime;
         showTimes();
         instaImgLoadTime();
         console.log('load'+(new Date).getTime());
@@ -38,26 +39,28 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         document.querySelector('.j_show_info p').innerHTML = _htm;
     }
     function imgLoadTime(){
-        var img = new Image();
-        document.querySelector('.j_img_info p').innerHTML = 'imgStart: '+(new Date()).getTime();
+        var img = new Image(),
+        imgStartTime = (new Date()).getTime();
+        document.querySelector('.j_img_info p').innerHTML = 'imgStart: '+imgStartTime;
         console.log('imgStart'+(new Date()).getTime())
         img.src = 'http://imghk0.geilicdn.com/test_instashop40780-1470220982299-1.jpg?w=110&h=110&cp=1';
         img.onload = function(){
             console.log('imgLoad'+(new Date()).getTime())
-            document.querySelector('.j_img_info p').innerHTML += '</br>imgLoad: '+(new Date()).getTime();
+            document.querySelector('.j_img_info p').innerHTML += '</br>imgLoad: '+((new Date()).getTime()-imgStartTime);
         };
         img.onerror= function(){
 
         };
     }
     function instaImgLoadTime(){
-            var img = new Image();
-            document.querySelector('.j_insta_img_info p').innerHTML = 'instagramImgStart: '+(new Date()).getTime();
+            var img = new Image(),
+            _start_time = (new Date()).getTime();
+            document.querySelector('.j_insta_img_info p').innerHTML = 'instagramImgStart: '+_start_time;
             console.log('imgStart'+(new Date()).getTime())
             img.src = 'https://scontent-nrt1-1.cdninstagram.com/t51.2885-15/e35/1208365_1725776744330480_728632033_n.jpg';
             img.onload = function(){
                 console.log('imgLoad'+(new Date()).getTime())
-                document.querySelector('.j_insta_img_info p').innerHTML += '</br>instagramImgLoad: '+(new Date()).getTime();
+                document.querySelector('.j_insta_img_info p').innerHTML += '</br>instagramImgLoad: '+((new Date()).getTime()-_start_time);
             };
             img.onerror= function(){
 
@@ -129,7 +132,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $path = 'v1/shops/'.$seller_id;
         $ret = get_init_php_data($path, $params);
         $json = json_decode($ret, true);
-        echo '<header>'.$json["code"].'</header>';
+        echo '<header>'.$json["shop"]["name"].'</header>';
     ?>
     <section class="j_img_info">
         <p></p>
@@ -140,6 +143,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <section class="j_show_info">
         <p>loading...</p>
     </section>
-    <script src="<?=STATIC_HOST?>/js/app/usertest.js?v=1470910145312"></script>
+    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
+    <script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
+    <script src="<?=STATIC_HOST?>/js/app/usertest.js?v=1470984842556"></script>
 </body>
 </html>
