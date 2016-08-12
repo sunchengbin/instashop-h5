@@ -192,7 +192,9 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             });
             localStorage.removeItem('FromUrl');
             if(localStorage.getItem('ScrollTop') && Base.others.getUrlPrem('item')){//存在scrollTop时页面下滚到记忆中的top值
-                _this.goScroll();
+                if(Base.others.verifyBower().ios){
+                    _this.goScroll();
+                }
             }
         },
         showSortPrompt : function(){
