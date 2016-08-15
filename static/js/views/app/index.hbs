@@ -14,12 +14,14 @@
     </section>
 {{else}}
     <nav class="shop-header-nav clearfix">
-        <div class="fl j_sort_prompt_box">
-            <button class="j_category">
-                <i class="icon iconfont icon-sort-font"></i>
-            </button>
-            <div class="btn-cover"></div>
-        </div>
+        {{#if data.tag_list}}
+            <div class="fl j_sort_prompt_box">
+                <button class="j_category">
+                    <i class="icon iconfont icon-sort-font"></i>
+                </button>
+                <div class="btn-cover"></div>
+            </div>
+        {{/if}}
         <div class="fr">
             <button class="j_cart_wraper" data-url="{{hrefUrl}}cart.php">
                 {{#if num}}
@@ -117,11 +119,13 @@
     <!--<footer class="clearfix">-->
         <!--<a href="javascript:;" class="btn fl j_category"><i class="icon iconfont icon-sort-font"></i>{{lang.H5_GOOD_SORT}}</a>-->
     <!--</footer>-->
-    <a class="contact-services" href="{{data.shop.im_url}}">
-        <!--<span class="im-num j_im_num"></span>-->
-        <i class="icon iconfont icon-news-font"></i>
-        {{lang.H5_CONNACT_SELLER}}
-    </a>
+    {{#if data.shop.line_url}}
+        <a class="contact-services" href="{{data.shop.line_url}}">
+            <!--<span class="im-num j_im_num"></span>-->
+            <i class="icon iconfont icon-news-font"></i>
+            {{lang.H5_CONNACT_SELLER}}
+        </a>
+    {{/if}}
 {{/eq}}
 
 

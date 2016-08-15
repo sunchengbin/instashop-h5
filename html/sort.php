@@ -26,18 +26,15 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
                 $sort_id = end($ss);
             }
         }
-        $sort_name = $_REQUEST['name'];
         $params = [
-            'action' => 'tag',
             'page_size' => 10,
-            'tag_id' => $sort_id,
             'havestock' => 1
         ];
         $seller_id = $_REQUEST['seller_id'];
-        $path = 'v1/shops/'.$seller_id.'/items';
+        $path = 'v1/tag/'.$sort_id.'/items';
         $ret = get_init_php_data($path, $params);
         $json = json_decode($ret, true);
-        echo '<title>'.json_decode($sort_name).'</title>';
+        echo '<title>'.$json.tag.name.'</title>';
         echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
     ?>
 </head>
