@@ -118,6 +118,11 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         break;
                     default :
                         $('.j_country').html(_name);
+                        $('.j_logistics_info').attr({
+                            'data-id' : '',
+                            'data-company' : '',
+                            'data-price' : ''
+                        });
                         _this.getLogistics(1);
                         break;
                 }
