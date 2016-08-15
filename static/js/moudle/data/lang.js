@@ -128,7 +128,8 @@ define([],function(){
             H5_CONFIRM_ORDER_ERROR:'下单失败',
             H5_DELETE_CONFIRM:'确认删除?',
             H5_LOGISTICS:'物流',
-            H5_GOOD_DETAIL_CHANGE:'卖家已修改该商品，请重新加入购物车。'
+            H5_GOOD_DETAIL_CHANGE:'卖家已修改该商品，请重新加入购物车。',
+            H5_ORDER_TIMEOUT_ERROR : '网络状况不好'
 
         },
 
@@ -352,7 +353,8 @@ define([],function(){
             H5_CONFIRM_ORDER_ERROR:'Gagal Mengajukan Pesanan',
             H5_DELETE_CONFIRM:'Yakin ingin menghapus?',
             H5_LOGISTICS:'Jasa Logistik',
-            H5_GOOD_DETAIL_CHANGE:'卖家已修改该商品，请重新加入购物车。'
+            H5_GOOD_DETAIL_CHANGE:'卖家已修改该商品，请重新加入购物车。',
+            H5_ORDER_TIMEOUT_ERROR:'Koneksi internet kurang stabil'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

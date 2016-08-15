@@ -95,6 +95,7 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         url :Config.actions.orderConfirm,
                         data : {param:JSON.stringify(_data)},
                         type : 'POST',
+                        timeout : 15000,
                         success : function(obj){
                             //_that.cancelDisable();
                             //_that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
@@ -178,8 +179,16 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                             }
                         },
                         error : function(error){
-                            _that.cancelDisable();
-                            _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                            Dialog.tip({
+                                top_txt : '',//可以是html
+                                body_txt : '<p class="dialog-body-p">'+Lang.H5_ORDER_TIMEOUT_ERROR+'</p>',
+                                auto_fn : function(){
+                                    this.remove();
+                                    _that.cancelDisable();
+                                    _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                                }
+                            });
+
                         }
                     });
                 }

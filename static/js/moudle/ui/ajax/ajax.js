@@ -16,7 +16,7 @@ define(['config'],function(Config){
             } )
         },
         postJsonp : function (opts) {//{url:, data:, type:, success:, error:}
-            $.ajax({
+            var _data = {
                 url: Config.host.hostUrl+'router/api.php?_path_=' + opts.url,
                 dataType: "JSON",
                 data: opts.data,
@@ -30,7 +30,11 @@ define(['config'],function(Config){
                 error: function (err) {
                     opts.error && opts.error(err);
                 }
-            })
+            };
+            if(opts.timeout){
+                _data.timeout = opts.timeout;
+            }
+            $.ajax(_data)
         },
         transData : function(data){
             var _data = {};

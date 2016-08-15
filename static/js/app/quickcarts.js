@@ -96,6 +96,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 $('.j_address_list_box').addClass('hide').removeClass('show');
                 $('body').scrollTop(9999);
                 //$('.j_address_header').addClass('hide').removeClass('show');
+                _this.clearAddress();
                 switch(_type){
                     case 'province' :
                         if($('.j_province').html() != _name){
@@ -105,7 +106,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         }
                         $('.j_province').html(_name);
                         $('[data-name="city"]').addClass('act');
-                        _this.clearAddress();
+                        //_this.clearAddress();
                         break;
                     case 'city' :
                         if($('.j_city').html() != _name){
@@ -114,15 +115,11 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         }
                         $('.j_city').html(_name);
                         $('[data-name="country"]').addClass('act');
-                        _this.clearAddress();
+                        //_this.clearAddress();
                         break;
                     default :
                         $('.j_country').html(_name);
-                        $('.j_logistics_info').attr({
-                            'data-id' : '',
-                            'data-company' : '',
-                            'data-price' : ''
-                        });
+                        //_this.clearAddress();
                         _this.getLogistics(1);
                         break;
                 }
@@ -218,6 +215,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 url :Config.actions.orderConfirm,
                 data : {param:JSON.stringify(_data)},
                 type : 'POST',
+                timeout : 15000,
                 success : function(obj){
                     //_that.cancelDisable();
                     //_that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
@@ -297,14 +295,13 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     }
                 },
                 error : function(error){
-                    _that.cancelDisable();
-                    _that.setBtnTxt(dom,Lang.H5_OK_ICON);
-                    Dialog.alert({
+                    Dialog.tip({
                         top_txt : '',//可以是html
-                        cfb_txt:Lang.H5_FRESHEN,
-                        body_txt : '<p class="dialog-body-p">'+Lang.H5_ERROR+'</p>',
-                        cf_fn : function(){
-                            location.reload();
+                        body_txt : '<p class="dialog-body-p">'+Lang.H5_ORDER_TIMEOUT_ERROR+'</p>',
+                        auto_fn : function(){
+                            this.remove();
+                            _that.cancelDisable();
+                            _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                         }
                     });
                 }
