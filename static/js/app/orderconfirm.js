@@ -96,8 +96,8 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         data : {param:JSON.stringify(_data)},
                         type : 'POST',
                         success : function(obj){
-                            _that.cancelDisable();
-                            _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                            //_that.cancelDisable();
+                            //_that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                             if(obj.code == 200){
                                 var _post_price = $('.j_logistics_info').attr('data-price'),
                                     _bank_info = JSON.stringify(obj.order.pay_info.banks),
@@ -108,6 +108,8 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                 Cart().clearCarts();
                                 location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price+'&time='+(obj.order.shop_info.cancel_coutdown/86400);
                             }else{
+                                _that.cancelDisable();
+                                _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                                 var reqData = {
                                     edata : {
                                         action : 'check',

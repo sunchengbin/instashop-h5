@@ -214,8 +214,8 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 data : {param:JSON.stringify(_data)},
                 type : 'POST',
                 success : function(obj){
-                    _that.cancelDisable();
-                    _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                    //_that.cancelDisable();
+                    //_that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                     if(obj.code == 200){
                         var _bank_info = JSON.stringify(obj.order.pay_info.banks),
                             _name = $.trim($('.j_name').val()),
@@ -225,6 +225,8 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         localStorage.setItem('OrderInfo',JSON.stringify(obj.order));
                         location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price+'&detail=2&shop_id='+init_data.shop.id+'&order_id='+obj.order.id_hash+'&bname='+_name+'&bphone='+_telephone+'&sname='+init_data.shop.name+'&time='+(init_data.shop.cancel_coutdown/86400);
                     }else{
+                        _that.cancelDisable();
+                        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                         var _telephone = $.trim($('.j_tel').val());
                         var reqData = {
                             edata : {
