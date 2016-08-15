@@ -26,20 +26,15 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 _this['city'] = _address.address.city;
                 _this['country'] = _address.address.country;
             }
-            var _htm = '<div>'+Lang.H5_LOADING+'</div>';
-            if(init_data){
-                _htm= Hbs.compile(QuickCarts)({
-                    carts:init_data.carts,
-                    shop:init_data.shop,
-                    address : _address,
-                    name:'',
-                    telephone:'',
-                    lang:Lang
-                });
-                _this.carts = init_data.carts;
-            }else{
-                _htm = '<div>'+Lang.H5_ERROR+'</div>';
-            }
+            var _htm= Hbs.compile(QuickCarts)({
+                carts:init_data.carts,
+                shop:init_data.shop,
+                address : _address,
+                name:'',
+                telephone:'',
+                lang:Lang
+            });
+            _this.carts = init_data.carts;
             $('body').prepend(_htm);
             if(_this['province']){
                 _this.getLogistics();
@@ -123,6 +118,11 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         break;
                     default :
                         $('.j_country').html(_name);
+                        $('.j_logistics_info').attr({
+                            'data-id' : '',
+                            'data-company' : '',
+                            'data-price' : ''
+                        });
                         _this.getLogistics(1);
                         break;
                 }
@@ -219,6 +219,8 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 data : {param:JSON.stringify(_data)},
                 type : 'POST',
                 success : function(obj){
+                    //_that.cancelDisable();
+                    //_that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                     if(obj.code == 200){
                         var _bank_info = JSON.stringify(obj.order.pay_info.banks),
                             _name = $.trim($('.j_name').val()),

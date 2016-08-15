@@ -96,6 +96,8 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                         data : {param:JSON.stringify(_data)},
                         type : 'POST',
                         success : function(obj){
+                            //_that.cancelDisable();
+                            //_that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                             if(obj.code == 200){
                                 var _post_price = $('.j_logistics_info').attr('data-price'),
                                     _bank_info = JSON.stringify(obj.order.pay_info.banks),
