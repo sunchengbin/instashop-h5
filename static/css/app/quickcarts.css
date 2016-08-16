@@ -4,6 +4,7 @@
 @import "../moudle/ui/dialog/dialog.css";
 @import "../moudle/app/logistics/logistics.css";
 @import "../moudle/app/address/address.css";
+@import "../moudle/app/buyplug/buyplug.css";
 html{
     height: 100%;
 }
@@ -270,12 +271,12 @@ body .address-list{
     font-size: 14px;
     color:#f5a623;
 }
-.item-num-box{
+.cart-item .item-num-box{
     float: right;
     position: relative;
     /*border:1px solid #D8D8D8;*/
 }
-.item-num-box span{
+.cart-item .item-num-box span{
     display: block;
     width: 2.4rem;
     height: 2.4rem;
@@ -284,11 +285,11 @@ body .address-list{
     float:left;
     position: relative;
 }
-.item-num-box span i{
+.cart-item .item-num-box span i{
     font-size: 1.4rem;
     color: #999;
 }
-.item-num-box input{
+.cart-item .item-num-box input{
     text-align: center;
     font-size: 1.4rem;
     height: 2.4rem;
@@ -296,17 +297,20 @@ body .address-list{
     width: 3rem;
     position: relative;
 }
-.j_reduce_btn{
+.cart-item .j_reduce_btn{
     border: 1px solid #d8d8d8;
     border-radius: 50%;
 }
-.j_add_btn{
+.cart-item .j_add_btn{
     border: 1px solid #43cb9c;
     border-radius: 50%;
     background-color: #43cb9c;
 }
-.item-num-box span.j_add_btn i{
+.cart-item .item-num-box span.j_add_btn i{
     color: #fff;
+}
+.cart-item .item-num-box::before,.cart-item .item-num-box::after{
+    height: 0;
 }
 .cart-item > div{
     margin-right:.5rem;

@@ -449,15 +449,15 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     +'<img src="'+carts[item].item.img+'">'
                     +'<div class="">'
                     +'<p class="name">'+carts[item].item.item_name+'</p>'
-                    +(carts[item].sku&&carts[item].sku.id?'<p class="type">'+Lang.H5_SKU+':'+carts[item].sku.title+'</p>':'');
-                if(!testStock(carts[item])){
+                    +'<p class="type">'+(carts[item].sku&&carts[item].sku.id?Lang.H5_SKU+':'+carts[item].sku.title:'')+'</p>';
+                //if(!testStock(carts[item])){
                     var _t_stock = (carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock;
-                    _htm +='<p class="num">'+Lang.H5_STOCK+':'+(_t_stock<0?0:_t_stock)+'</p>';
-                }
+                    _htm +='<p class="num">'+(!testStock(carts[item])?Lang.H5_STOCK+':'+(_t_stock<0?0:_t_stock):'')+'</p>';
+                //}
                 if(carts[item].item.is_discount && carts[item].item.discounting){
                     //_htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
-                    _htm +='<div class="price clearfix">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)
-                        +'<div class="item-num-box clearfix">'
+                    _htm +='<div class="price clearfix"><span>'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)
+                        +'</span><div class="item-num-box clearfix">'
                         +'<span class="j_reduce_btn">'
                         +'<i class="icon iconfont icon-minus-font"></i>'
                         +'</span>'
@@ -469,8 +469,8 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                         +'</div>';
                 }else{
                     var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].item.price;
-                    _htm +='<div class="price clearfix">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(_price)
-                        +'<div class="item-num-box clearfix">'
+                    _htm +='<div class="price clearfix"><span>'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(_price)
+                        +'</span><div class="item-num-box clearfix">'
                         +'<span class="j_reduce_btn">'
                         +'<i class="icon iconfont icon-minus-font"></i>'
                         +'</span>'

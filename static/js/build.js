@@ -20,6 +20,7 @@
         "lang":"moudle/data/lang",
         "common":"moudle/app/common/common",
         "buyplug":"moudle/app/buyplug/buyplug",
+        "quickbuyplug":"moudle/app/quickbuyplug/quickbuyplug",
         "cart":"moudle/app/cart/cart",
         "logistics":"moudle/app/logistics/logistics",
         "fastclick":"moudle/ui/fastclick/fastclick",
