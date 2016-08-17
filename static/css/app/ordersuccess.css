@@ -29,11 +29,18 @@ section{
 .pay-info li{
     padding:0 0 .5rem 0;
     position: relative;
+    /*-webkit-box-flex: 1;*/
+    /*-moz-box-flex: 1;*/
+    /*-webkit-flex: 1;*/
+    /*-ms-flex: 1;*/
+    /*flex: 1;*/
     -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
     max-width: 35%;
 }
 .pay-info li:nth-child(2){
