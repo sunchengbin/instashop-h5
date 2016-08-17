@@ -39,13 +39,19 @@ function getFontCss($url){
 function getIco($url){
     return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';
 }
-function getPrompt(){
-    $prompt = $_SERVER[ 'SERVER_PROTOCOL' ];
-    $pr = split('\/',$prompt)[0];
-    return strtolower($pr);
+function is_https()
+{
+	if (!isset($_SERVER['HTTP_X_FORWARDED_PROTO']))
+	{
+		return false;
+	}
+
+	$proto = $_SERVER['HTTP_X_FORWARDED_PROTO'];
+	$p_arr = explode(':', $proto);
+	return trim($p_arr[0]) === 'https';
 }
 spl_autoload_register('loadClass');
-$prompt = getPrompt().':';
+$prompt = is_https() ? 'https:' : 'http:';
 $static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
 $static_font_css =C_RUNTIME_ONLINE?getFontCss($prompt.'//m.instashop.co.id/static'):getFontCss($prompt.'//m-test.instashop.co.id/static');
 $static_ico_css =C_RUNTIME_ONLINE?getIco($prompt.'//m.instashop.co.id'):getIco($prompt.'//m-test.instashop.co.id');
