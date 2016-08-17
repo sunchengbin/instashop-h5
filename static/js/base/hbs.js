@@ -455,6 +455,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     _htm +='<p class="num">'+(!testStock(carts[item])?Lang.H5_STOCK+':'+(_t_stock<0?0:_t_stock):'')+'</p>';
                 //}
                 if(carts[item].item.is_discount && carts[item].item.discounting){
+                    var _item_stock = carts[item].item.discount.limit_count==0?carts[item].item.stock:carts[item].item.discount.limit_count;
                     //_htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
                     _htm +='<div class="price clearfix"><span>'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)
                         +'</span><div class="item-num-box clearfix">'
@@ -462,7 +463,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                         +'<i class="icon iconfont icon-minus-font"></i>'
                         +'</span>'
                         +'<input class="fl j_item_num" type="text" value="'+carts[item].num+'" readonly="readonly"/>'
-                        +'<span class="j_add_btn" data-stock="'+carts[item].item.discount.limit_count+'">'
+                        +'<span class="j_add_btn" data-stock="'+_item_stock+'">'
                         +'<i class="icon iconfont icon-add-font"></i>'
                         +'</span>'
                         +'</div>'
