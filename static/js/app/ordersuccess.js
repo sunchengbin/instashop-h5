@@ -19,7 +19,7 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','co
                 var _order_url = _detail==1?Common.replaceUrlPrompt(OrderInfo.url):Config.host.host+'o/'+getUrlPrem('order_id'),
                     shopUrl = _detail==1?Config.host.host+'s/'+OrderInfo.shop_info.id:Config.host.host+'s/'+getUrlPrem('shop_id');
             }else{
-                var _order_url = OrderInfo.url,
+                var _order_url = Common.replaceUrlPrompt(OrderInfo.url),
                     shopUrl = Config.host.host+'s/'+OrderInfo.shop_info.id;
             }
 
