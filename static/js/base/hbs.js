@@ -365,6 +365,8 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             Base.others.each(data.sku,function(item,i){
                 if(Number(item.price) > 0){
                     sku_price.push(Number(item.price));
+                }else{
+                    sku_price.push(0);
                 }
             });
             sku_price.sort(function(a,b){
@@ -373,7 +375,12 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             if(sku_price[0] != sku_price[(sku_price.length-1)]){
                 return 'Rp '+Base.others.priceFormat(sku_price[0])+'-'+Base.others.priceFormat(sku_price[(sku_price.length-1)]);
             }else{
-                return 'Rp '+Base.others.priceFormat(sku_price[0]);
+                if(sku_price[0] == 0){
+                    return '';
+                }else{
+                    return 'Rp '+Base.others.priceFormat(sku_price[0]);
+                }
+
             }
 
         }
@@ -448,11 +455,11 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     //+'<i class="icon iconfont j_del_cart icon-delete-font" data-id="'+_id+'"></i>'
                     +'<img src="'+carts[item].item.img+'">'
                     +'<div class="">'
-                    +'<p class="name">'+carts[item].item.item_name+'</p>'
-                    +'<p class="type">'+(carts[item].sku&&carts[item].sku.id?Lang.H5_SKU+':'+carts[item].sku.title:'')+'</p>';
+                    +'<p class="name">'+carts[item].item.item_name+'</p>';
                 //if(!testStock(carts[item])){
                     var _t_stock = (carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock;
                     _htm +='<p class="num">'+(!testStock(carts[item])?Lang.H5_STOCK+':'+(_t_stock<0?0:_t_stock):'')+'</p>';
+                    _htm +='<p class="type">'+(carts[item].sku&&carts[item].sku.id?Lang.H5_SKU+':'+carts[item].sku.title:'')+'</p>';
                 //}
                 if(carts[item].item.is_discount && carts[item].item.discounting){
                     var _item_stock = carts[item].item.discount.limit_count==0?carts[item].item.stock:carts[item].item.discount.limit_count;
@@ -525,8 +532,8 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             _htm += '<ul class="logistics-list">';
             for(var i in data[item]){
                 var _cost_day = data[item][i].cost_days?'('+data[item][i].cost_days+Lang.H5_DAYS+')':'';
-                _htm += '<li class="j_logistics_li" data-company="'+item+'"  data-level="'+(data[item][i].level?data[item][i].level:item)+'" data-id="'+data[item][i].id+'">'
-                    +'<i class="icon iconfont check-btn icon-radio-font" data-company="'+item+'" data-price="'+data[item][i].price+'"  data-level="'+(data[item][i].level?data[item][i].level:item)+'" data-id="'+data[item][i].id+'"></i>'
+                _htm += '<li class="j_logistics_li" data-company="'+item+'"  data-level="'+(data[item][i].level?data[item][i].level:'')+'" data-id="'+data[item][i].id+'">'
+                    +'<i class="icon iconfont check-btn icon-radio-font" data-company="'+item+'" data-price="'+data[item][i].price+'"  data-level="'+(data[item][i].level?data[item][i].level:'')+'" data-id="'+data[item][i].id+'"></i>'
                     +item+' '+data[item][i].level+_cost_day+': Rp '+Base.others.priceFormat(data[item][i].price)
                     +'</li>';
             }

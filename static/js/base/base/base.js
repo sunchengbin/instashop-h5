@@ -341,6 +341,7 @@ define(function(){
          *将人民币格式化印尼货币格式
          */
         priceFormat : function( price ) {
+            if(price<0){return 0;}
             // e.g. 100.00 => 100
             // e.g 1000.00 => 1.000
             // 去掉 "." 后面的所有数字，然后每隔 3 个数加一个点

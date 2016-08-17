@@ -56,7 +56,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','la
                     }
                     if(_that.attr('data-stock') < 9999999){
                         $('.j_buy_info_title').html(Lang.H5_STOCK+':'+_that.attr('data-stock'));
-                        $('.j_item_num').val(1);
+                        $('.j_buy_plug .j_item_num').val(1);
 
                     }else{
                         $('.j_buy_info_title').html('');
@@ -186,7 +186,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','la
             _this.resetInfo();
         },
         resetInfo : function(){
-            $('.j_buy_plug .j_item_num').val(1);
+            //$('.j_buy_plug .j_item_num').val(1);
         }
     };
     return function(opts){

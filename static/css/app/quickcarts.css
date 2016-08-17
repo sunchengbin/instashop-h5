@@ -71,6 +71,11 @@ body .address-list{
     margin-bottom:.5rem;
 
 }
+.cart-item p.num,.cart-item p.type{
+    font-size: 12px;
+    /*height: 16px;*/
+    line-height: 16px;
+}
 .cart-item p.error-p{
     padding: .5rem 0 0 7rem;
     font-size: 1.4rem;
