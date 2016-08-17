@@ -4,7 +4,7 @@
 /**
  * Created by sunchengbin on 16/6/6.
  */
-require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],function(Lang,Hbs,OrderSuccess,Config,Fastclick){
+require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','common'],function(Lang,Hbs,OrderSuccess,Config,Fastclick,Common){
     var I = {
         init : function(){
             var _this = this,
@@ -16,7 +16,7 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],fu
                 _detail = getUrlPrem('detail',location.href),
                 _prompt = '';
             if(_detail){
-                var _order_url = _detail==1?OrderInfo.url:Config.host.host+'o/'+getUrlPrem('order_id'),
+                var _order_url = _detail==1?Common.replaceUrlPrompt(OrderInfo.url):Config.host.host+'o/'+getUrlPrem('order_id'),
                     shopUrl = _detail==1?Config.host.host+'s/'+OrderInfo.shop_info.id:Config.host.host+'s/'+getUrlPrem('shop_id');
             }else{
                 var _order_url = OrderInfo.url,

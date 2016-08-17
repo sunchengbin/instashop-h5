@@ -112,6 +112,13 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                 return false;
             }
             return false;
+        },
+        replaceUrlPrompt : function(url){
+            var URL_HTTP_TYPE = location.protocol;
+            if(/https/g.test(URL_HTTP_TYPE) && !/https/g.test(url)){
+                return url.replace(/http/g,'https');
+            }
+            return url;
         }
     };
 
