@@ -89,7 +89,7 @@
     <section class="buy-box">
 
         <div class="clearfix buy-btns">
-            {{#eq data.item.stock 0}}
+            {{#elt data.item.stock 0}}
                 <a class="add-cart j_add_cart disable-addnow disable-btn" data-id="{{data.item.id}}" href="javascript:;">
                     {{lang.H5_ADD_CART}}
                 </a>
@@ -103,7 +103,7 @@
                 <a href="javascript:;" class="buy-now j_buy_btn">
                     {{lang.H5_BUY_NOW}}
                 </a>
-            {{/eq}}
+            {{/elt}}
 
         </div>
     </section>
