@@ -353,7 +353,7 @@ define([],function(){
             H5_CONFIRM_ORDER_ERROR:'Gagal Mengajukan Pesanan',
             H5_DELETE_CONFIRM:'Yakin ingin menghapus?',
             H5_LOGISTICS:'Jasa Logistik',
-            H5_GOOD_DETAIL_CHANGE:'卖家已修改该商品，请重新加入购物车。',
+            H5_GOOD_DETAIL_CHANGE:'Penjual kamu sudah mengubah detail produk ini, silakan masukkan ulang produk ini ke keranjang. ',
             H5_ORDER_TIMEOUT_ERROR:'Koneksi internet kurang stabil'
         }
     };
