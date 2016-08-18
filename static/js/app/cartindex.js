@@ -208,11 +208,16 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                                 _msg = Lang.H5_COMMODIFY_SHELF;
                             }
                         }else{
-                            if(_stock < _num){//超出库存
-                                _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
-                                $('.j_cart_item[data-id="'+_id+'"] .num').html(Lang.H5_QUANTITY+':'+_stock);
-                                _this.carts[_id].num = _stock;
+                            if(_stock > 0){
+                                if(_stock < _num){//超出库存
+                                    _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
+                                    $('.j_cart_item[data-id="'+_id+'"] .num').html(Lang.H5_QUANTITY+':'+_stock);
+                                    _this.carts[_id].num = _stock;
+                                }
+                            }else{//库存小于0的时候提示已下架
+                                _msg = Lang.H5_COMMODIFY_SHELF;
                             }
+                            
                         }
                     }
                 }
