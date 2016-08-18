@@ -263,12 +263,16 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                 _msg = Lang.H5_COMMODIFY_SHELF;
                             }
                         }else{
-                            if(_stock < _num){//超出库存
-                                if(item.is_discount_err){
-                                    _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
-                                }else{
-                                    _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
+                            if(_stock > 0){
+                                if(_stock < _num){//超出库存
+                                    if(item.is_discount_err){
+                                        _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
+                                    }else{
+                                        _msg = Lang.H5_X_PCS_LEFT+_stock+Lang.H5_PCS;
+                                    }
                                 }
+                            }else{
+                                _msg = Lang.H5_COMMODIFY_SHELF;
                             }
                         }
                     }
