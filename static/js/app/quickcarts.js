@@ -228,7 +228,10 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         localStorage.setItem('OrderTotal',obj.order.total_price);
                         localStorage.setItem('BankInfo',_bank_info);
                         localStorage.setItem('OrderInfo',JSON.stringify(obj.order));
-                        location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price+'&detail=2&shop_id='+init_data.shop.id+'&order_id='+obj.order.id_hash+'&bname='+_name+'&bphone='+_telephone+'&sname='+init_data.shop.name+'&time='+(init_data.shop.cancel_coutdown/86400);
+                        setTimeout(function(){
+                            location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price+'&detail=2&shop_id='+init_data.shop.id+'&order_id='+obj.order.id_hash+'&bname='+_name+'&bphone='+_telephone+'&sname='+init_data.shop.name+'&time='+(init_data.shop.cancel_coutdown/86400);
+                        },100);
+
                     }else{
                         _that.cancelDisable();
                         _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);

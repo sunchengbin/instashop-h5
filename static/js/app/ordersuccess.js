@@ -7,47 +7,57 @@
 require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick'],function(Lang,Hbs,OrderSuccess,Config,Fastclick){
     var I = {
         init : function(){
-            var _this = this,
-                price = localStorage.getItem('OrderTotal'),
-                totalPrice = priceFormat(price),
-                linkPrice = getUrlPrem('price',location.href),
-                OrderInfo = JSON.parse(localStorage.getItem('OrderInfo')),
-                banksInfo = JSON.parse(localStorage.getItem('BankInfo')),
-                _detail = getUrlPrem('detail',location.href),
-                _prompt = '';
-            if(_detail){
-                var _order_url = _detail==1?OrderInfo.url:Config.host.host+'o/'+getUrlPrem('order_id'),
-                    shopUrl = _detail==1?Config.host.host+'s/'+OrderInfo.shop_info.id:Config.host.host+'s/'+getUrlPrem('shop_id');
-            }else{
-                var _order_url = OrderInfo.url,
-                    shopUrl = Config.host.host+'s/'+OrderInfo.shop_info.id;
-            }
+            var IndexHtm = '<div>'+Lang.H5_LOADING+'</div>';
+            try{
+                var _this = this,
+                    price = localStorage.getItem('OrderTotal'),
+                    totalPrice = priceFormat(price),
+                    linkPrice = getUrlPrem('price',location.href),
+                    OrderInfo = JSON.parse(localStorage.getItem('OrderInfo')),
+                    banksInfo = JSON.parse(localStorage.getItem('BankInfo')),
+                    _detail = getUrlPrem('detail',location.href),
+                    _prompt = '';
+                if(_detail){
+                    var _order_url = _detail==1?OrderInfo.url:Config.host.host+'o/'+getUrlPrem('order_id'),
+                        shopUrl = _detail==1?Config.host.host+'s/'+OrderInfo.shop_info.id:Config.host.host+'s/'+getUrlPrem('shop_id');
+                }else{
+                    var _order_url = OrderInfo.url,
+                        shopUrl = Config.host.host+'s/'+OrderInfo.shop_info.id;
+                }
 
-            if(linkPrice){totalPrice = priceFormat(linkPrice);}
-            if(_detail && _detail==2){
-                _prompt = {
-                    buyerName : getUrlPrem('bname',location.href),
-                    buyerPhone : getUrlPrem('bphone',location.href),
-                    sellerName : getUrlPrem('sname',location.href),
-                    cancelTime : getUrlPrem('time',location.href)
+                if(linkPrice){totalPrice = priceFormat(linkPrice);}
+                if(_detail && _detail==2){
+                    _prompt = {
+                        buyerName : getUrlPrem('bname',location.href),
+                        buyerPhone : getUrlPrem('bphone',location.href),
+                        sellerName : getUrlPrem('sname',location.href),
+                        cancelTime : getUrlPrem('time',location.href)
+                    }
+                }else{
+                    _prompt = {
+                        cancelTime : getUrlPrem('time',location.href)
+                    }
                 }
-            }else{
-                _prompt = {
-                    cancelTime : getUrlPrem('time',location.href)
-                }
+                //var IndexHtm = '<div>'+Lang.H5_LOADING+'</div>';
+                IndexHtm= Hbs.compile(OrderSuccess)({
+                    totalPrice : totalPrice,
+                    banksInfo : banksInfo,
+                    prompt : _prompt,
+                    lang : Lang,
+                    host : Config.host,
+                    num : _this.countBankNum(banksInfo),
+                    orderUrl : _order_url,
+                    shopUrl : shopUrl,
+                    detail:_detail
+                });
             }
-            var IndexHtm = '<div>加载数据中</div>';
-            IndexHtm= Hbs.compile(OrderSuccess)({
-                totalPrice : totalPrice,
-                banksInfo : banksInfo,
-                prompt : _prompt,
-                lang : Lang,
-                host : Config.host,
-                num : _this.countBankNum(banksInfo),
-                orderUrl : _order_url,
-                shopUrl : shopUrl,
-                detail:_detail
-            });
+            catch(error){
+                IndexHtm = '<section class="item-out-stock">'
+                    +'<i class="icon iconfont icon-error-font"></i>'
+                    +'<p>'+Lang.H5_ERROR+'</p>'
+                    +'<p><a href="javascript:location.reload();" class="btn confirm-btn b-btn">'+Lang.H5_FRESHEN+'</a></p>'
+                    +'</section>';
+            }
             $('body').prepend(IndexHtm);
             this.handleFn();
         },

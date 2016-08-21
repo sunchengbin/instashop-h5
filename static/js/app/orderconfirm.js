@@ -106,7 +106,10 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                                 localStorage.setItem('BankInfo',_bank_info);
                                 localStorage.setItem('OrderInfo',JSON.stringify(obj.order));
                                 Cart().clearCarts();
-                                location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price+'&time='+(obj.order.shop_info.cancel_coutdown/86400);
+                                setTimeout(function(){
+                                    location.href = Config.host.hrefUrl+'ordersuccess.php?price='+obj.order.total_price+'&time='+(obj.order.shop_info.cancel_coutdown/86400);
+                                },100);
+
                             }else{
                                 _that.cancelDisable();
                                 _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
