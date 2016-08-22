@@ -294,5 +294,19 @@ p.quick-order-txt{
     font-size: 1.2rem;
 }
 p.quick-order-txt span{
-   color: #f9b42d;
+    color: #f9b42d;
+}
+/*js出错*/
+.item-out-stock{
+    padding: 10rem 0 30rem;
+    text-align: center;
+    font-size: 1.4rem;
+    background: #fff;
+}
+.item-out-stock i{
+    font-size: 5rem;
+    color: #eee;
+}
+.item-out-stock p .btn{
+    margin: 2rem auto 0;
 }
