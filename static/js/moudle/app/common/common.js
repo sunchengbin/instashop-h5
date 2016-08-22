@@ -12,7 +12,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                 _shop_data = localStorage.getItem('ShopData'),
                 _json_shop_data = _shop_data?JSON.parse(_shop_data):null;
             if(_shop_data){
-                if(_json_shop_data.ShopInfo.id == _id){
+                if(_json_shop_data.ShopInfo && _json_shop_data.ShopInfo.id && _json_shop_data.ShopInfo.id == _id){
                     if(!_json_shop_data.Items){
                         _json_shop_data['Items']  =  _this.transItems(data.item_list.list);
                     }else{
