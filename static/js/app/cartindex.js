@@ -152,7 +152,7 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
                                     _shop_data.Cart[_shop_data.ShopInfo.id] = _that.carts;
                                     localStorage.setItem('ShopData',JSON.stringify(_shop_data));
                                     var _address= JSON.parse(localStorage.getItem('ShopData')).Address.address,
-                                        _addr = _address.street + ',' + _address.country + ',' + _address.city + ',' + _address.province;
+                                        _addr = _address.country + ',' + _address.city + ',' + _address.province;
                                     setTimeout(function(){
                                         var _item_str = JSON.stringify(_that.getAddressItems());
                                         location.href = Config.host.hrefUrl+'orderconfirm.php?seller_id='+reqData.edata.seller_id+'&addr='+encodeURIComponent(_addr)+'&items='+encodeURIComponent(_item_str);
