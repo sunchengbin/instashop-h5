@@ -27,8 +27,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $json = json_decode($ret, true);
         $arr = array_values($json['carts']);
         $url = $arr[0]['item']['img'];
-        $url = str_replace("w=110", "w=256", $url);
-        $url = str_replace("h=110", "h=256", $url);
+        $url = str_replace("w=110", "w=140", $url);
+        $url = str_replace("h=110", "h=140", $url);
         echo '<meta property="og:image" content="'.$url.'">';
         echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
     ?>
