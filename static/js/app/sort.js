@@ -60,13 +60,14 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
             if(init_data.code == 200){
                 var _list = init_data.item_list.list,
                     _last_id = _list.length?_list[(_list.length-1)].id:null,
+                    _tag_id = init_data.tag.id,
                     _this = this,
                     getData = _last_id?true:false,
                     reqData = {
                         edata : {
                             action : 'tag',
                             page_size : 10,
-                            tag_id : Base.others.getUrlPrem('sort_id'),
+                            tag_id : _tag_id,
                             last_id : _last_id
                         }
                     };
@@ -76,7 +77,7 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                         _bh = $(document).height();
                     if ((_st + _wh > _bh - 200) && getData) {
                         getData = false;
-                        Ajax.getJsonp(Config.host.actionUrl+Config.actions.shopList+Base.others.getUrlPrem('seller_id')+'/items?param='+JSON.stringify(reqData),function(obj){
+                        Ajax.getJsonp(Config.host.actionUrl+Config.actions.shopList+init_data.tag.seller_id+'/items?param='+JSON.stringify(reqData),function(obj){
                             if(obj.code == 200){
                                 var _list = obj.item_list.list,
                                     _last_id = _list.length?_list[(_list.length-1)].id:null;
@@ -84,7 +85,7 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                                     edata : {
                                         action : 'tag',
                                         page_size : 10,
-                                        tag_id : Base.others.getUrlPrem('sort_id'),
+                                        tag_id : _tag_id,
                                         last_id : _last_id,
                                         havestock : 1
                                     }
@@ -210,6 +211,11 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                 }
                 out +='</div>'
                     +'<p class="title">'+items[i].item_comment+'</p>';
+                if(items[i].price < 0){
+                    out +='<p class="price"></p>';
+                }else{
+                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                }
                 if(!items[i].is_discount){
                     out +='<p class="discount-price"></p>';
                 }else{
@@ -220,11 +226,7 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                     }
                     //out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
                 }
-                if(items[i].price < 0){
-                    out +='<p class="price"></p>';
-                }else{
-                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
-                }
+
 
                 out +='</a></li>';
             }

@@ -316,6 +316,11 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 }
                 out +='</div>'
                     +'<p class="title">'+items[i].item_comment+'</p>';
+                if(items[i].price < 0){
+                    out +='<p class="price"></p>';
+                }else{
+                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                }
                 if(!items[i].is_discount){
                     out +='<p class="discount-price"></p>';
                 }else{
@@ -326,11 +331,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                     }
                     //out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
                 }
-                if(items[i].price < 0){
-                    out +='<p class="price"></p>';
-                }else{
-                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
-                }
+
 
                 out +='</a></li>';
             }

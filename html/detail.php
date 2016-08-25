@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-  <link href="<?=STATIC_HOST?>/css/dist/app/item.css?v=1471426184249" rel="stylesheet"/>
+  <link href="<?=STATIC_HOST?>/css/dist/app/item.css?v=1472019592068" rel="stylesheet"/>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );
         $params = [];
@@ -25,8 +25,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $path = 'v1/items/'.$item_id;
         $ret = get_init_php_data($path, $params);
         $json = json_decode($ret, true);
-        $url = $json['item']['imgs'][0];
-        $url = str_replace("960", "600", $url);
+        $url = $json['item']['img'];
+        $url = str_replace("w=110", "w=140", $url);
+        $url = str_replace("h=110", "h=140", $url);
         echo '<meta property="og:image" content="'.$url.'">';
         echo '<title>'.$json["item"]["item_name"].'</title>';
         echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
@@ -34,8 +35,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js?v=1471426184249"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/item.js?v=1471426184249"></script>
+    <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js?v=1472019592068"></script>-->
+    <script src="<?=STATIC_HOST?>/js/dist/app/item.js?v=1472019592068"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

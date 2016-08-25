@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   <?=STATIC_DNS?>
   <?=STATIC_ICO_CSS?>
   <?=STATIC_FONT_CSS?>
-  <link href="<?=STATIC_HOST?>/css/dist/app/shop_index.css?v=1471426184250" rel="stylesheet"/>
+  <link href="<?=STATIC_HOST?>/css/dist/app/shop_index.css?v=1472019592068" rel="stylesheet"/>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );
         $params = [
@@ -36,7 +36,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $ret = get_init_php_data($path, $params);
         $json = json_decode($ret, true);
         $url = $json['shop']['logo'];
-        $url = str_replace("140", "140", $url);
+        $url = str_replace("w=110", "w=140", $url);
+        $url = str_replace("h=110", "h=140", $url);
         echo '<meta property="og:image" content="'.$url.'">';
         echo '<title>'.$json["shop"]["name"].'</title>';
         echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
@@ -45,7 +46,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 <body>
   <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
   <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-  <script src="<?=STATIC_HOST?>/js/dist/app/index.js?v=1471426184250"></script>
+  <script src="<?=STATIC_HOST?>/js/dist/app/index.js?v=1472019592068"></script>
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

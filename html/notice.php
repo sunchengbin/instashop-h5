@@ -61,28 +61,29 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
   }
   </style>
-  <title>notice</title>
-</head>
-<body>
-    <?php
-        include_once( dirname(__FILE__).'/../html/router/util.php' );
-        $params = [
-            'action' => 'index',
-            'page_size' => 10,
-            'last_id' => '',
-            'json' => '0'
-        ];
-        $notice_id = $_REQUEST['notice_id'];
-        if (!$notice_id) {
-            $ss = split('\/', $_SERVER['REQUEST_URI']);
-            $notice_id = end($ss);
-        }
-        $path = 'v1/notice/'.$notice_id;
-        $ret = get_init_php_data($path, '');
-        $json = json_decode($ret, true);
-        echo '<p class="header-nav">'.$json['notice']['title'].'</p>';
-        echo '<section>'.$json['notice']['content'].'</section>';
-    ?>
+  <?php
+          include_once( dirname(__FILE__).'/../html/router/util.php' );
+          $params = [
+              'action' => 'index',
+              'page_size' => 10,
+              'last_id' => '',
+              'json' => '0'
+          ];
+          $notice_id = $_REQUEST['notice_id'];
+          if (!$notice_id) {
+              $ss = split('\/', $_SERVER['REQUEST_URI']);
+              $notice_id = end($ss);
+          }
+          $path = 'v1/notice/'.$notice_id;
+          $ret = get_init_php_data($path, '');
+          $json = json_decode($ret, true);
+          echo '<title>'.$json['notice']['title'].'</title>'
+          echo '</head>'
+          echo '<body>'
+          echo '<section>'.$json['notice']['content'].'</section>';
+      ?>
+
+
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

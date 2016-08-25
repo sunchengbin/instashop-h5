@@ -172,6 +172,11 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
 
                 out +='</div>'
                     +'<p class="title">'+items[i].item_comment+'</p>';
+                if(items[i].price < 0){
+                    out +='<p class="price"></p>';
+                }else{
+                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                }
                 if(!items[i].is_discount){
                     out +='<p class="discount-price"></p>';
                 }else{
@@ -180,12 +185,6 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     }else{
                         out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
                     }
-
-                }
-                if(items[i].price < 0){
-                    out +='<p class="price"></p>';
-                }else{
-                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
                 }
                 out +='</a></li>';
             }
@@ -238,6 +237,11 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                 }
                 out +='</div>'
                     +'<p class="title">'+items[i].item_comment+'</p>';
+                if(items[i].price < 0){
+                    out +='<p class="price"></p>';
+                }else{
+                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                }
                 if(!items[i].is_discount){
                     out +='<p class="discount-price"></p>';
                 }else{
@@ -247,11 +251,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                         out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
                     }
                 }
-                if(items[i].price < 0){
-                    out +='<p class="price"></p>';
-                }else{
-                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
-                }
+
                 out +='</a></li>';
             }
         }
@@ -278,6 +278,11 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
 
                 out +='</div>'
                     +'<p class="title">'+items[i].item_comment+'</p>';
+                if(items[i].price < 0){
+                    out +='<p class="price"></p>';
+                }else{
+                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                }
                 if(!items[i].is_discount){
                     out +='<p class="discount-price"></p>';
                 }else{
@@ -288,11 +293,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     }
 
                 }
-                if(items[i].price < 0){
-                    out +='<p class="price"></p>';
-                }else{
-                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
-                }
+
                 out +='</a></li>';
             }
         }
@@ -317,6 +318,11 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             }
             out +='</div>'
                 +'<p class="title">'+items[i].item_comment+'</p>';
+            if(items[i].price < 0){
+                out +='<p class="price"></p>';
+            }else{
+                out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+            }
             if(!items[i].is_discount){
                 out +='<p class="discount-price"></p>';
             }else{
@@ -326,11 +332,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
                 }
             }
-            if(items[i].price < 0){
-                out +='<p class="price"></p>';
-            }else{
-                out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
-            }
+
             out +='</a></li>';
         }
         return out;
