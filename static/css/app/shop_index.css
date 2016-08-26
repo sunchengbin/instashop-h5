@@ -208,7 +208,7 @@ section{
 }
 .price{
     color: #F5A623;
-    margin-bottom: 1rem;
+    /*margin-bottom: 1rem;*/
     height: 1.8rem;
 }
 .cost-price{
@@ -218,6 +218,7 @@ section{
 .discount-price{
     color: #F5A623;
     height: 1.8rem;
+    margin-bottom: 1rem;
 }
 /*联系客服*/
 .contact-services{
