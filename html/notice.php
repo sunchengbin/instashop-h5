@@ -77,9 +77,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
           $path = 'v1/notice/'.$notice_id;
           $ret = get_init_php_data($path, '');
           $json = json_decode($ret, true);
-          echo '<title>'.$json['notice']['title'].'</title>'
-          echo '</head>'
-          echo '<body>'
+          echo '<title>'.$json['notice']['title'].'</title>';
+          echo '</head>';
+          echo '<body>';
           echo '<section>'.$json['notice']['content'].'</section>';
       ?>
 
