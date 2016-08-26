@@ -25,13 +25,13 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
             domLoadTime = (new Date).getTime() - startTime;
             imgLoadTime();
+            instaImgLoadTime();
             console.log('domLoad'+domLoadTime);
         }, false );
     }
     window.onload = function(){//所有图片外链都加载完之后去执行
         onloadTime = (new Date).getTime() - startTime;
         showTimes();
-        instaImgLoadTime();
         console.log('load'+(new Date).getTime());
     }
     function showTimes(){
@@ -49,7 +49,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             document.querySelector('.j_img_info p').innerHTML += '</br>imgLoad: '+((new Date()).getTime()-imgStartTime);
         };
         img.onerror= function(){
-
+            document.querySelector('.j_img_info p').innerHTML += '</br>imgLoad: error';
         };
     }
     function instaImgLoadTime(){
@@ -63,7 +63,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
                 document.querySelector('.j_insta_img_info p').innerHTML += '</br>instagramImgLoad: '+((new Date()).getTime()-_start_time);
             };
             img.onerror= function(){
-
+                document.querySelector('.j_insta_img_info p').innerHTML += '</br>instagramImgLoad: error';
             };
         }
         if(getUrlPrem('clear')){
@@ -132,7 +132,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $path = 'v1/shops/'.$seller_id;
         $ret = get_init_php_data($path, $params);
         $json = json_decode($ret, true);
-        echo '<header>'.$json["shop"]["name"].'</header>';
+        echo '<header>'.$json["code"].'</header>';
     ?>
     <section class="j_img_info">
         <p></p>
