@@ -23,6 +23,7 @@ require.config({
         quickbuyplug:"moudle/app/quickbuyplug/quickbuyplug",
         cart:"moudle/app/cart/cart",
         logistics:"moudle/app/logistics/logistics",
+        contact:"moudle/app/contact/contact",
         fastclick:"moudle/ui/fastclick/fastclick",
         //h5配置
         config:'moudle/config/config',
