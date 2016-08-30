@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/6.
  */
-require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base','common','cart','fastclick'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base,Common,Cart,Fastclick){
+require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base','common','cart','fastclick','contact'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base,Common,Cart,Fastclick,Contact){
     var I = {
         init : function(init_data){
             Lazyload();
@@ -196,6 +196,25 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                     _this.goScroll();
                 }
             }
+            if($('.j_show_contact').length){
+                _this.contact = Contact({
+                    data : {
+                        tel : init_data.shop.telephone,
+                        line : init_data.shop.line_url
+                    },
+                    lang:Lang
+                });
+                $('body').on('click','.j_show_contact',function(){
+                    _this.contact.createHtm({
+                        data : {
+                            tel : init_data.shop.telephone,
+                            line : init_data.shop.line_url
+                        },
+                        lang:Lang
+                    }).toShow();
+                });
+            }
+
         },
         showSortPrompt : function(){
             $('.j_sort_prompt_box .btn-cover').html(Lang.H5_GOOD_SORT);

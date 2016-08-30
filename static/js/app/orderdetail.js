@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/15.
  */
-require(['lang','hbs','text!views/app/orderdetail.hbs','config','base','common'],function(Lang,Hbs,OrderDetail,Config,Base,Common) {
+require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact'],function(Lang,Hbs,OrderDetail,Config,Contact) {
     var OD = {
         init : function(){
             localStorage.setItem('BankInfo',JSON.stringify(init_data.order.pay_info.banks));
@@ -18,6 +18,25 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','base','common']
                 ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
             }
             $('body').prepend(ItemHtm);
+            var _this = this;
+            if($('.j_show_contact').length){
+                _this.contact = Contact({
+                    data : {
+                        tel : init_data.order.shop_info.telephone,
+                        line : init_data.order.shop_info.line_url
+                    },
+                    lang:Lang
+                });
+                $('body').on('click','.j_show_contact',function(){
+                    _this.contact.createHtm({
+                        data : {
+                            tel : init_data.order.shop_info.telephone,
+                            line : init_data.order.shop_info.line_url
+                        },
+                        lang:Lang
+                    }).toShow();
+                });
+            }
         }
 
     };

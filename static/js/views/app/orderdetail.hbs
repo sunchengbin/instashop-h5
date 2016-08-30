@@ -84,12 +84,32 @@
                     {{lang.H5_ENTER_THE_SHOP}}
                 </div>
             </a>
-            <a href="tel:{{data.order.shop_info.telephone}}" class="contact-user fr">
-                <div class="clearfix">
-                    <i class="icon iconfont icon-phone-font"></i>
-                    {{lang.H5_CONNACT_SELLER}}
-                </div>
-            </a>
+            {{#if data.order.shop_info.line_url}}
+                {{#if data.order.shop_info.telephone}}
+                    <a data-type="all" href="javascript:;" class="contact-user j_show_contact fr">
+                        <div class="clearfix">
+                            <i class="icon iconfont icon-phone-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </div>
+                    </a>
+                {{else}}
+                    <a href="{{data.order.shop_info.line_url}}" class="contact-user fr">
+                        <div class="clearfix">
+                            <i class="icon iconfont icon-phone-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </div>
+                    </a>
+                {{/if}}
+            {{else}}
+                {{#if data.order.shop_info.telephone}}
+                    <a href="javascript:;" data-type="tel" class="contact-user j_show_contact fr">
+                        <div class="clearfix">
+                            <i class="icon iconfont icon-phone-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </div>
+                    </a>
+                {{/if}}
+            {{/if}}
         </div>
     </div>
 </section>

@@ -120,11 +120,27 @@
         <!--<a href="javascript:;" class="btn fl j_category"><i class="icon iconfont icon-sort-font"></i>{{lang.H5_GOOD_SORT}}</a>-->
     <!--</footer>-->
     {{#if data.shop.line_url}}
-        <a class="contact-services" href="{{data.shop.line_url}}">
-            <!--<span class="im-num j_im_num"></span>-->
-            <i class="icon iconfont icon-news-font"></i>
-            {{lang.H5_CONNACT_SELLER}}
-        </a>
+        {{#if data.shop.telephone}}
+            <a class="contact-services j_show_contact" data-type="all" href="javascript:;">
+                <!--<span class="im-num j_im_num"></span>-->
+                <i class="icon iconfont icon-news-font"></i>
+                {{lang.H5_CONNACT_SELLER}}
+            </a>
+        {{else}}
+            <a class="contact-services" href="{{data.shop.line_url}}">
+                <!--<span class="im-num j_im_num"></span>-->
+                <i class="icon iconfont icon-news-font"></i>
+                {{lang.H5_CONNACT_SELLER}}
+            </a>
+        {{/if}}
+    {{else}}
+        {{#if data.shop.telephone}}
+            <a class="contact-services j_show_contact" data-type="tel" href="javascript:;">
+                <!--<span class="im-num j_im_num"></span>-->
+                <i class="icon iconfont icon-news-font"></i>
+                {{lang.H5_CONNACT_SELLER}}
+            </a>
+        {{/if}}
     {{/if}}
 {{/eq}}
 

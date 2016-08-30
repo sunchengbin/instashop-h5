@@ -1,6 +1,7 @@
 @import "../base/base.css";
 @import "../moudle/app/header/header.css";
 @import "../moudle/app/common/common.css";
+@import "../moudle/app/contact/contact.css";
 body{
     color: #666;
     background-color: #f5f5f5;
