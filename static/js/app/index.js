@@ -23,6 +23,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             }else{
                 IndexHtm = '<div>'+Lang.H5_ERROR+'</div>';
             }
+            $('.j_php_loding').remove();
             $('body').prepend(IndexHtm);
             if($('.txt-hide').height() > 45){
                 $('.down-btn').show();

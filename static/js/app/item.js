@@ -19,6 +19,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             }else{
                 ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
             }
+            $('.j_php_loding').remove();
             $('body').prepend(ItemHtm);
             Lazyload();
             if(init_data) {

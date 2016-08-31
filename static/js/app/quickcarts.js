@@ -46,6 +46,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 lang:Lang
             };
             var _htm= Hbs.compile(QuickCarts)(_hb_opts);
+            $('.j_php_loding').remove();
             $('body').prepend(_htm);
             if(_this['province']){
                 _this.getLogistics();
