@@ -129,7 +129,10 @@ define([],function(){
             H5_DELETE_CONFIRM:'确认删除?',
             H5_LOGISTICS:'物流',
             H5_GOOD_DETAIL_CHANGE:'卖家已修改该商品，请重新加入购物车。',
-            H5_ORDER_TIMEOUT_ERROR : '网络状况不好'
+            H5_ORDER_TIMEOUT_ERROR : '网络状况不好',
+            H5_CALL_TELEPHONE:'打电话',
+            H5_SEND_SMS:'发短信',
+            H5_LINE_CONTACT_ME:'line联系我'
 
         },
 
@@ -354,7 +357,10 @@ define([],function(){
             H5_DELETE_CONFIRM:'Yakin ingin menghapus?',
             H5_LOGISTICS:'Jasa Logistik',
             H5_GOOD_DETAIL_CHANGE:'Penjual kamu sudah mengubah detail produk ini, silakan masukkan ulang produk ini ke keranjang. ',
-            H5_ORDER_TIMEOUT_ERROR:'Koneksi internet kurang stabil'
+            H5_ORDER_TIMEOUT_ERROR:'Koneksi internet kurang stabil',
+            H5_CALL_TELEPHONE:'Telepon',
+            H5_SEND_SMS:'Kirim SMS',
+            H5_LINE_CONTACT_ME:'LINE'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );
