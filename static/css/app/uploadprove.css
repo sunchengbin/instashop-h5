@@ -16,6 +16,12 @@ body{
 body .address-list{
     max-width: none;
 }
+.address-wraper{
+    height: 100%;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
 .form-box{
     background-color: #fff;
 }
