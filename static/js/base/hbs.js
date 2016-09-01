@@ -585,5 +585,12 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
     HBS.registerHelper('transpricevalue', function(price) {
         return Number(price)<0?-Number(price):price;
     });
+    //价格转换
+    HBS.registerHelper('transpriceval', function(price) {
+        if(price == undefined || price < 0 || price == '' || price == 0){
+            return '';
+        }
+        return 'Rp '+Base.others.priceFormat(price);
+    });
     return HBS;
 });
