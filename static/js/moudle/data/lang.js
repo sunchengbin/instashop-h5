@@ -129,7 +129,13 @@ define([],function(){
             H5_DELETE_CONFIRM:'确认删除?',
             H5_LOGISTICS:'物流',
             H5_GOOD_DETAIL_CHANGE:'卖家已修改该商品，请重新加入购物车。',
-            H5_ORDER_TIMEOUT_ERROR : '网络状况不好'
+            H5_ORDER_TIMEOUT_ERROR : '网络状况不好',
+            H5_CALL_TELEPHONE:'打电话',
+            H5_SEND_SMS:'发短信',
+            H5_LINE_CONTACT_ME:'line联系我',
+            H5_NOT_EMPTY:'不能为空',
+            H5_PRICE_MUST_NUM:'金额必须为大于0的整数',
+            H5_SUBMIT_SUCCESS:'提交成功'
 
         },
 
@@ -354,7 +360,13 @@ define([],function(){
             H5_DELETE_CONFIRM:'Yakin ingin menghapus?',
             H5_LOGISTICS:'Jasa Logistik',
             H5_GOOD_DETAIL_CHANGE:'Penjual kamu sudah mengubah detail produk ini, silakan masukkan ulang produk ini ke keranjang. ',
-            H5_ORDER_TIMEOUT_ERROR:'Koneksi internet kurang stabil'
+            H5_ORDER_TIMEOUT_ERROR:'Koneksi internet kurang stabil',
+            H5_CALL_TELEPHONE:'Telepon',
+            H5_SEND_SMS:'Kirim SMS',
+            H5_LINE_CONTACT_ME:'LINE',
+            H5_NOT_EMPTY:'tidak boleh dikosongkan',
+            H5_PRICE_MUST_NUM:'Jumlah transfer harus lebih besar dari 0',
+            H5_SUBMIT_SUCCESS:'Pengajuan Berhasil'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

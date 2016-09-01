@@ -200,3 +200,9 @@ body{
 .cart-item p{
     line-height: 1.5;
 }
+.prove-btn{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}

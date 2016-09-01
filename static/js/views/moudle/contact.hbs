@@ -7,15 +7,15 @@
         <ul class="logistics-list">
             {{#if data.line}}
                 <li class="j_logistics_li b-bottom">
-                    <a href="{{data.line}}">{{data.line}}</a>
+                    <a href="{{data.line}}">{{lang.H5_LINE_CONTACT_ME}}</a>
                 </li>
             {{/if}}
             {{#if data.tel}}
                 <li class="j_logistics_li b-bottom">
-                    <a href="tel:{{data.tel}}">打电话</a>
+                    <a href="tel:{{data.tel}}">{{lang.H5_CALL_TELEPHONE}}</a>
                 </li>
                 <li class="j_logistics_li b-bottom">
-                    <a href="sms:{{data.tel}}">发短息</a>
+                    <a href="sms:{{data.tel}}">{{lang.H5_SEND_SMS}}</a>
                 </li>
                 <li class="j_logistics_li b-bottom">
                     <span>{{data.tel}}</span>
