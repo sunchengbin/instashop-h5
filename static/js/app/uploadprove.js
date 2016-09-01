@@ -31,12 +31,14 @@ require(['hbs','text!views/app/uploadprove.hbs','config','lang','fastclick','dia
             $('body').on('focus','.j_from',function(){
                 var _list = _this.createList(init_data.bank_list,'j_from');
                 $('.j_list_box').html(_list);
+                $('.j_address_header span').html('Transfer dari');
                 $('.j_address_list_box').removeClass('hide').addClass('show');
                 $(this).blur();
             });
             $('body').on('focus','.j_to',function(){
                 var _list = _this.createList(init_data.receive_bank,'j_to');
                 $('.j_list_box').html(_list);
+                $('.j_address_header span').html('Transfer ke');
                 $('.j_address_list_box').removeClass('hide').addClass('show');
                 $(this).blur();
             });
