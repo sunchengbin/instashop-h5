@@ -132,7 +132,10 @@ define([],function(){
             H5_ORDER_TIMEOUT_ERROR : '网络状况不好',
             H5_CALL_TELEPHONE:'打电话',
             H5_SEND_SMS:'发短信',
-            H5_LINE_CONTACT_ME:'line联系我'
+            H5_LINE_CONTACT_ME:'line联系我',
+            H5_NOT_EMPTY:'不能为空',
+            H5_PRICE_MUST_NUM:'金额必须为大于0的整数',
+            H5_SUBMIT_SUCCESS:'提交成功'
 
         },
 
@@ -360,7 +363,10 @@ define([],function(){
             H5_ORDER_TIMEOUT_ERROR:'Koneksi internet kurang stabil',
             H5_CALL_TELEPHONE:'Telepon',
             H5_SEND_SMS:'Kirim SMS',
-            H5_LINE_CONTACT_ME:'LINE'
+            H5_LINE_CONTACT_ME:'LINE',
+            H5_NOT_EMPTY:'tidak boleh dikosongkan',
+            H5_PRICE_MUST_NUM:'Jumlah transfer harus lebih besar dari 0',
+            H5_SUBMIT_SUCCESS:'Pengajuan Berhasil'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

@@ -52,7 +52,7 @@ img{
         margin: 0 auto;
         background-color: #F5F5F5;
     }
-    body .buy-box,body .logistics-plug,body .buy-plug,body .shop-header-nav,body footer{
+    body .buy-box,body .logistics-plug,body .buy-plug,body .shop-header-nav,body footer,body .prove-btn{
         max-width: 640px;
         left: 50%;
         margin-left: -320px;

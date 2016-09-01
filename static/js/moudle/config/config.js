@@ -53,7 +53,8 @@ define([],function(){
             testCart : 'v1/carts/',//验证购物车商品是否可以下单
             orderConfirm : 'v1/orders',//下单
             imNum:'v1/im/',//获取im的回复信息数
-            expressesList:'v1/expresses/'//获取物流列表
+            expressesList:'v1/expresses/',//获取物流列表
+            uploadprove:'v1/evidence'//上传付款凭证
         },
         actionType : {
             /**
