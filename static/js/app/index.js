@@ -200,7 +200,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             if($('.j_show_contact').length){
                 _this.contact = Contact({
                     data : {
-                        tel : init_data.shop.telephone,
+                        tel : init_data.shop.phone,
                         line : init_data.shop.line_url
                     },
                     lang:Lang
@@ -208,7 +208,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 $('body').on('click','.j_show_contact',function(){
                     _this.contact.createHtm({
                         data : {
-                            tel : init_data.shop.telephone,
+                            tel : init_data.shop.phone,
                             line : init_data.shop.line_url
                         },
                         lang:Lang
