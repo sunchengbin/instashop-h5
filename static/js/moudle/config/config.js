@@ -19,25 +19,25 @@ define([],function(){
             //phpHost : 'https://api-test.instashop.co.id/instashop/instashop/im/',
             //hrefHost : 'https://m-test.instashop.co.id/html'
             //线上
-            hostUrl : URL_HTTP_TYPE+'//m.instashop.co.id/html/',//内部router的路径
-            host : URL_HTTP_TYPE+'//m.instashop.co.id/',
-            imgUrl : URL_HTTP_TYPE+'//m.instashop.co.id/static/images',
-            hrefUrl : URL_HTTP_TYPE+'//m.instashop.co.id/html/',
-            hrefHost : URL_HTTP_TYPE+'//m.instashop.co.id/html',
-            actionUrl : 'https://apip.instashop.co.id/instashop/',
-            imHost : 'http://218.213.86.206',
-            phpHost : 'http://api.instashop.co.id/instashop/instashop/im/',
-            imUserNameHost : 'http://218.213.86.206:2040/'//存储im用户名字
+            //hostUrl : URL_HTTP_TYPE+'//m.instashop.co.id/html/',//内部router的路径
+            //host : URL_HTTP_TYPE+'//m.instashop.co.id/',
+            //imgUrl : URL_HTTP_TYPE+'//m.instashop.co.id/static/images',
+            //hrefUrl : URL_HTTP_TYPE+'//m.instashop.co.id/html/',
+            //hrefHost : URL_HTTP_TYPE+'//m.instashop.co.id/html',
+            //actionUrl : 'https://apip.instashop.co.id/instashop/',
+            //imHost : 'http://218.213.86.206',
+            //phpHost : 'http://api.instashop.co.id/instashop/instashop/im/',
+            //imUserNameHost : 'http://218.213.86.206:2040/'//存储im用户名字
             //本地开发环境
-            //hostUrl : URL_HTTP_TYPE+'//m-test.instashop.co.id/html/',//内部router的路径
-            //host : URL_HTTP_TYPE+'//m-test.instashop.co.id/',
-            //imgUrl : URL_HTTP_TYPE+'//m-test.instashop.co.id/static/images',
-            //hrefUrl : URL_HTTP_TYPE+'//m-test.instashop.co.id/html/',
-            //hrefHost : URL_HTTP_TYPE+'//m-test.instashop.co.id/html',
-            //actionUrl : 'https://apip-test.instashop.co.id/instashop/',
-            //imHost : 'http://10.5.15.10:2000',
-            //imUserNameHost : 'http://10.5.15.10:2040/',//存储im用户名字
-            //phpHost : 'http://10.5.15.10:8888/instashop/instashop/im/'
+            hostUrl : URL_HTTP_TYPE+'//m-test.instashop.co.id/html/',//内部router的路径
+            host : URL_HTTP_TYPE+'//m-test.instashop.co.id/',
+            imgUrl : URL_HTTP_TYPE+'//m-test.instashop.co.id/static/images',
+            hrefUrl : URL_HTTP_TYPE+'//m-test.instashop.co.id/html/',
+            hrefHost : URL_HTTP_TYPE+'//m-test.instashop.co.id/html',
+            actionUrl : 'https://apip-test.instashop.co.id/instashop/',
+            imHost : 'http://10.5.15.10:2000',
+            imUserNameHost : 'http://10.5.15.10:2040/',//存储im用户名字
+            phpHost : 'http://10.5.15.10:8888/instashop/instashop/im/'
         },
         linkUrl : {
             index : 's/',
