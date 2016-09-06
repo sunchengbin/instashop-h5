@@ -8,7 +8,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             var IndexHtm = '<div>'+Lang.H5_LOADING+'</div>',
                 _this = this;
             _this.sortTimes = 0;
-            if(init_data){
+            if(init_data && init_data == 200){
                 Common.initShopInfo(init_data);
                 var _tag_list = _this.getTags(init_data.item_list.list),
                     _init_data = {

@@ -8,7 +8,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
     AppCommon.prototype = {
         initShopInfo : function(data){//进入店铺首页数据初始化
             var _this = this,
-                _id = _this.getRequireId(),//获取连接头部id值
+                _id = data.shop.id,//获取连接头部id值
                 _shop_data = localStorage.getItem('ShopData'),
                 _json_shop_data = _shop_data?JSON.parse(_shop_data):null;
             if(_shop_data){
