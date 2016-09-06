@@ -185,7 +185,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             if(items[i].index_type == 'top') {
                 var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time),
                     _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
-                console.log(_url)
+                //console.log(_url)
                 out += '<li><a class="item-info j_item_info" data-url="'+_url+'" href="javascript:;">'
                     +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
 

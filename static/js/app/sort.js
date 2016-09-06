@@ -29,13 +29,14 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
             $('body').on('click','.j_go_back',function(){
                 var _local_url = localStorage.getItem('FromUrl'),
                     _ios = Base.others.verifyBower().ios;
+                var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.tag.seller_id;
                 if(_ios){
-                    location.href = Config.host.host+'s/'+init_data.tag.seller_id+'?item=back';
+                    location.href = _url+'?item=back';
                 }else{
                     if(_local_url && /\/s\//g.test(_local_url)){
                         history.back();
                     } else{
-                        location.href = Config.host.host+'s/'+init_data.tag.seller_id+'?item=back';
+                        location.href = _url+'?item=back';
                     }
                 }
             });

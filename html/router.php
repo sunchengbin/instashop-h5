@@ -36,16 +36,51 @@ function handle()
 	$alias = $matches[1];
 	$_REQUEST['seller_id'] = $alias;
 
-	$u_match = preg_match('/^\/(\d+)(\?.*)?$/i', $uri, $item_matches);
-	if ($u_match)
+	if (preg_match('/^\/(\d+)(\?.*)?$/i', $uri, $item_matches))
 	{
 		$item_id = $item_matches[1];
 		$_REQUEST['item_id'] = $item_id;
 		require( dirname(__FILE__).'/../html/detail.php');
 	}
-	else
+	else if (preg_match('/^\/o\/([0-9a-zA-Z]{5})(\?.*)?$/i', $uri, $order_matches))
+	{
+		$order_id = $order_matches[1];
+		$_REQUEST['order_id'] = $order_id;
+		require( dirname(__FILE__).'/../html/orderdetail.php');
+	}
+	else if (preg_match('/^\/notice\/(\d+)(\?.*)?$/i', $uri, $notice_matches))
+	{
+		$notice_id = $notice_matches[1];
+		$_REQUEST['notice_id'] = $notice_id;
+		require( dirname(__FILE__).'/../html/notice.php');
+	}
+	else if (preg_match('/^\/address\/([0-9a-zA-Z_]+)(\?.*)?$/i', $uri, $cart_matches))
+	{
+		$cart_id = $cart_matches[1];
+		$_REQUEST['cart_id'] = $cart_id;
+		require( dirname(__FILE__).'/../html/quickcarts.php');
+	}
+	else if (preg_match('/^\/k\/(\d+)(\?.*)?$/i', $uri, $sort_matches))
+	{
+		$sort_id = $sort_matches[1];
+		$_REQUEST['sort_id'] = $sort_id;
+		require( dirname(__FILE__).'/../html/sort.php');
+	}
+	else if (preg_match('/^\/html\/(.*?)(\?.*)?$/i', $uri, $f_matches))
+	{
+		require( dirname(__FILE__)."/../html/".$f_matches[1]);
+	}
+	else if (preg_match('/^\/(\?.*)?$/i', $uri))
 	{
 		require( dirname(__FILE__).'/../html/index.php');
+	}
+	else
+	{
+		@header("http/1.1 404 not found");
+		@header("status: 404 not found");
+		Log::debug('404');
+		echo '404 not found';//直接输出页面错误信息
+		exit();
 	}
 }
 
