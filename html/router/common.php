@@ -54,7 +54,7 @@ spl_autoload_register('loadClass');
 $prompt = is_https() ? 'https:' : 'http:';
 $static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
 $static_font_css =C_RUNTIME_ONLINE?getFontCss('../static'):getFontCss('../static');
-$static_ico_css =C_RUNTIME_ONLINE?getIco('./'):getIco('./');
+$static_ico_css =C_RUNTIME_ONLINE?getIco('.'):getIco('.');
 $static_dns = '<link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';
 define('STATIC_DNS', $static_dns);
 define('STATIC_FONT_CSS', $static_font_css);
