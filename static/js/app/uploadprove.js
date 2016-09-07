@@ -31,12 +31,16 @@ require(['hbs','text!views/app/uploadprove.hbs','config','lang','fastclick','dia
             $('body').on('focus','.j_from',function(){
                 var _list = _this.createList(init_data.bank_list,'j_from');
                 $('.j_list_box').html(_list);
+                $('.j_address_header span').html('Transfer dari');
                 $('.j_address_list_box').removeClass('hide').addClass('show');
+                $(this).blur();
             });
             $('body').on('focus','.j_to',function(){
                 var _list = _this.createList(init_data.receive_bank,'j_to');
                 $('.j_list_box').html(_list);
+                $('.j_address_header span').html('Transfer ke');
                 $('.j_address_list_box').removeClass('hide').addClass('show');
+                $(this).blur();
             });
             $('body').on('click','.j_list_item',function(){
                 var _dom = $(this),
@@ -48,11 +52,47 @@ require(['hbs','text!views/app/uploadprove.hbs','config','lang','fastclick','dia
             $('body').on('click','.j_go_address',function(){
                 $('.j_address_list_box').addClass('hide').removeClass('show');
             });
-            //$('body').on('change','input',function(){
-            //    if(_this.testData()){
-            //        $('.j_sub_btn').
-            //    }
-            //});
+            $('body').on('focus','.j_price',function(){
+                var _price = $(this).val();
+                if(_price != '' && !/Rp/g.test(_price)){
+                    $(this).val('Rp '+_price);
+                }
+
+            });
+            $('body').on('keyup','.j_price',function(){
+                var _this = $(this);
+                var _price = $.trim(_this.val().replace(/Rp\s/g,''));
+                var _msg = '';
+                if(_price != ''){
+                    if(/\./g.test(_price)){
+                        if(/\.00$/g.test(_price)){
+                            _price = _price.replace(/\./g,'')/100;
+                        }else{
+                            _price = _price.replace(/\./g,'');
+                        }
+                    }
+                    if(isNaN(_price)){
+                        _msg = Lang.H5_PRICE_MUST_NUM;
+                    }else{
+                        if(_price <= 0){
+                            _msg = Lang.H5_PRICE_MUST_NUM;
+                        }else{
+                            if(_price.length > 10){
+                                _price =  _price.substr(0,10);
+                            }
+                        }
+                    }
+
+                    if(_msg){
+                        Dialog.tip({
+                            top_txt : '',//可以是html
+                            body_txt : '<p class="dialog-body-p">'+_msg+'</p>'
+                        });
+                        return;
+                    }
+                    _this.val('Rp '+Base.others.priceFormat(_price));
+                }
+            });
             Btn({
                 wraper : 'body',
                 target : '.j_sub_btn',
@@ -114,21 +154,30 @@ require(['hbs','text!views/app/uploadprove.hbs','config','lang','fastclick','dia
                 });
                 return null;
             }
-            if(!_price){
-                Dialog.tip({
-                    top_txt : '',//可以是html
-                    body_txt : '<p class="dialog-body-p">Jumlah '+Lang.H5_NOT_EMPTY+'?</p>'
-                });
-                return null;
-            }else{
-                if(isNaN(_price)){
+            _price = $.trim(_price.replace(/Rp\s/g,''));
+            if(_price != ''){
+                if(/\./g.test(_price)){
+                    if(/\.00$/g.test(_price)){
+                        _price = _price.replace(/\./g,'')/100;
+                    }else{
+                        _price = _price.replace(/\./g,'');
+                    }
+                }
+                if(isNaN(_price) || _price == 0){
                     Dialog.tip({
                         top_txt : '',//可以是html
                         body_txt : '<p class="dialog-body-p">'+Lang.H5_PRICE_MUST_NUM+'</p>'
                     });
                     return null;
                 }
+            }else{
+                Dialog.tip({
+                    top_txt : '',//可以是html
+                    body_txt : '<p class="dialog-body-p">Jumlah '+Lang.H5_NOT_EMPTY+'?</p>'
+                });
+                return null;
             }
+
             if(!_time){
                 Dialog.tip({
                     top_txt : '',//可以是html

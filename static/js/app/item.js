@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug','slide','cart','fastclick'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug,Slide,Cart,Fastclick){
+require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug','slide','cart','fastclick','contact'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug,Slide,Cart,Fastclick,Contact){
     var ITEM = {
         init : function(){
             var _this = this;
@@ -185,6 +185,25 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     location.href = _url;
                 });
             });
+            var _this = this;
+            if($('.j_show_contact').length){
+                _this.contact = Contact({
+                    data : {
+                        tel : init_data.item.shop.phone,
+                        line : init_data.item.shop.line_url
+                    },
+                    lang:Lang
+                });
+                $('body').on('click','.j_show_contact',function(){
+                    _this.contact.createHtm({
+                        data : {
+                            tel : init_data.item.shop.phone,
+                            line : init_data.item.shop.line_url
+                        },
+                        lang:Lang
+                    }).toShow();
+                });
+            }
         }
     };
     ITEM.init();

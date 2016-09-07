@@ -22,7 +22,7 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact'],funct
             if($('.j_show_contact').length){
                 _this.contact = Contact({
                     data : {
-                        tel : init_data.order.shop_info.telephone,
+                        tel : init_data.order.shop_info.phone,
                         line : init_data.order.shop_info.line_url
                     },
                     lang:Lang
@@ -30,7 +30,7 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact'],funct
                 $('body').on('click','.j_show_contact',function(){
                     _this.contact.createHtm({
                         data : {
-                            tel : init_data.order.shop_info.telephone,
+                            tel : init_data.order.shop_info.phone,
                             line : init_data.order.shop_info.line_url
                         },
                         lang:Lang

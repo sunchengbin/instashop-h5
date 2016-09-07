@@ -274,7 +274,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 url :Config.actions.orderConfirm,
                 data : {param:JSON.stringify(_data)},
                 type : 'POST',
-                timeout : 15000,
+                timeout : 30000,
                 success : function(obj){
                     //_that.cancelDisable();
                     //_that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);

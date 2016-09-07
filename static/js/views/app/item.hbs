@@ -87,8 +87,31 @@
         </div>
     </section>
     <section class="buy-box">
-
-        <div class="clearfix buy-btns">
+        {{#if data.item.shop.line_url}}
+            {{#if data.item.shop.phone}}
+                <a href="javascript:;" data-type="all" class="j_show_contact ser-box fl">
+                    <i class="icon iconfont icon-news-font"></i>
+                    <p>{{lang.H5_CONNACT_SELLER}}</p>
+                </a>
+                <div class="clearfix buy-btns have-contact">
+            {{else}}
+                <a href="{{data.item.shop.line_url}}" class="ser-box fl">
+                    <i class="icon iconfont icon-news-font"></i>
+                    <p>{{lang.H5_CONNACT_SELLER}}</p>
+                </a>
+                <div class="clearfix buy-btns have-contact">
+            {{/if}}
+        {{else}}
+            {{#if data.item.shop.phone}}
+                <a href="javascript:;" data-type="tel" class="j_show_contact ser-box fl">
+                    <i class="icon iconfont icon-news-font"></i>
+                    <p>{{lang.H5_CONNACT_SELLER}}</p>
+                </a>
+                <div class="clearfix buy-btns have-contact">
+            {{else}}
+                <div class="clearfix buy-btns">
+            {{/if}}
+        {{/if}}
             {{#elt data.item.stock 0}}
                 <a class="add-cart j_add_cart disable-addnow disable-btn" data-id="{{data.item.id}}" href="javascript:;">
                     {{lang.H5_ADD_CART}}
