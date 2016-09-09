@@ -20,7 +20,7 @@ register_shutdown_function("shutdown_func");
 
 function handle()
 {
-	$host_preg = C_RUNTIME_ONLINE ? '/^(.*?)\.instashop\.co\.id$/i' : '/^(.*?)\.test\.instashop\.co\.id$/i';
+	$host_preg = C_RUNTIME_ONLINE ? '/^(www\.)?(.*?)\.instashop\.co\.id$/i' : '/^(www\.)?(.*?)\.test\.instashop\.co\.id$/i';
 	$host = $_SERVER['HTTP_HOST'];
 	$uri = $_SERVER['REQUEST_URI'];
 	$h_match = preg_match($host_preg, $host, $matches);
@@ -33,7 +33,7 @@ function handle()
 		exit();
 	}
 
-	$alias = $matches[1];
+	$alias = $matches[2];
 	$_REQUEST['seller_id'] = $alias;
 
 	if (preg_match('/^\/(\d+)(\?.*)?$/i', $uri, $item_matches))
