@@ -12,17 +12,10 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                 _shop_data = localStorage.getItem('ShopData'),
                 _json_shop_data = _shop_data?JSON.parse(_shop_data):null;
             if(_shop_data){
-                if(_json_shop_data.ShopInfo && _json_shop_data.ShopInfo.id && _json_shop_data.ShopInfo.id == _id){
-                    if(!_json_shop_data.Items){
-                        _json_shop_data['Items']  =  _this.transItems(data.item_list.list);
-                    }else{
-                        return;
-                    }
-                }else{
-                    _json_shop_data['ShopInfo']  =  data.shop;
-                    _json_shop_data['ClientUuid']  =  data.client_uuid;
-                    _json_shop_data['Items']  =  _this.transItems(data.item_list.list);
-                }
+                _json_shop_data['ShopInfo']  =  data.shop;
+                _json_shop_data['ClientUuid']  =  data.client_uuid;
+                //_json_shop_data['Items']  =  _this.transItems(data.item_list.list);
+
             }//存在且id不相等跳出
             else{
                 _json_shop_data = {
@@ -32,7 +25,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                     ClientUuid : data.client_uuid || null,//根据店铺而重置
                     Address : null//不需要根据店铺切换而改变的本地数据
                 };
-                _json_shop_data.Items = _this.transItems(data.item_list.list);
+                //_json_shop_data.Items = _this.transItems(data.item_list.list);
             }
             localStorage.setItem('ShopData',JSON.stringify(_json_shop_data));
         },
