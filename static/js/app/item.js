@@ -13,7 +13,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     lang : Lang,
                     hrefUrl : Config.host.hrefUrl,
                     host:Config.host.host,
-                    shopUrl:Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.shop.id,
+                    shopUrl:Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id,
                     num : Cart(init_data).getCartNum(),
                     timeLang : _this.discountTime(init_data.item.discount.now_time,init_data.item.discount.end_time)
                 });
