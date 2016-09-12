@@ -34,7 +34,8 @@ function handle()
 	}
 
 	$alias = $matches[2];
-	$_REQUEST['seller_id'] = $alias;
+
+
 
 	if (preg_match('/^\/(\d+)(\?.*)?$/i', $uri, $item_matches))
 	{
@@ -72,6 +73,7 @@ function handle()
 	}
 	else if (preg_match('/^\/(\?.*)?$/i', $uri))
 	{
+		$_REQUEST['seller_id'] = $alias;
 		require( dirname(__FILE__).'/../html/index.php');
 	}
 	else
