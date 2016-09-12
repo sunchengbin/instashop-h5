@@ -82,7 +82,8 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','co
             if(document.querySelector('.j_go_back')){
                 document.querySelector('.j_go_back').addEventListener('click',function(){
                     if(!from){
-                        location.href = '/s/'+data.ShopInfo.id;
+                        var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+data.ShopInfo.id;
+                        location.href = _url;
                     }else{
                         history.back();
                     }
