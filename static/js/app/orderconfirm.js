@@ -8,7 +8,6 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                 _carts = Cart().getCarts(),
                 _data = localStorage.getItem('ShopData'),
                 _address = JSON.parse(_data).Address,
-                _nofree = JSON.parse(_data).ShopInfo.express_free == 0 && JSON.parse(_data).ShopInfo.express_free!='',
                 _htm= Hbs.compile(OrderConfirm)({
                     data:JSON.parse(_data),
                     carts : _carts,
@@ -16,8 +15,8 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     address : _address,
                     lang:Lang,
                     host:Config.host,
-                    nofree:_nofree,
-                    express : (_nofree && _this.testExpress(express_data.express_fee_list.list))
+                    nofree:JSON.parse(_data).ShopInfo.express_free == 0,
+                    express : (JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list))
                 });
             $('body').prepend(_htm);
             if(JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list)){
