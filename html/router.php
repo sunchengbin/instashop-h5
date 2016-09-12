@@ -35,8 +35,6 @@ function handle()
 
 	$alias = $matches[2];
 
-
-
 	if (preg_match('/^\/(\d+)(\?.*)?$/i', $uri, $item_matches))
 	{
 		$item_id = $item_matches[1];
