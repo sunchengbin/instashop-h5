@@ -52,7 +52,7 @@ function is_https()
 }
 spl_autoload_register('loadClass');
 $prompt = is_https() ? 'https:' : 'http:';
-$host_name = $prompt.'//'. $_SERVER['SERVER_NAME'];
+$host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
 $static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
 $static_font_css =C_RUNTIME_ONLINE?getFontCss($host_name.'/static'):getFontCss($host_name.'/static');
 $static_ico_css =C_RUNTIME_ONLINE?getIco($prompt.'//m.instashop.co.id'):getIco($prompt.'//m-test.instashop.co.id');
