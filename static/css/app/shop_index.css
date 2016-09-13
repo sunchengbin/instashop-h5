@@ -476,6 +476,9 @@ footer .btn i{
     line-height: 4rem;
     text-align: center;
 }
+.index-footer ul li i{
+    vertical-align: middle;
+}
 .index-footer ul li a{
     color: #666;
 }
