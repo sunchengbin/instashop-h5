@@ -383,6 +383,14 @@ define(function(){
             } else {
                 return null;
             }
+        },
+        //判断是自定义域名还是m.instashop.co.id
+        isCustomHost : function(){
+            var _host_name = location.hostname;
+            if(/[^m\.instashop\.co\.id | m\-test\.instashop\.co\.id]/g.test(_host_name)){
+                return true;//是自定义域名
+            }
+            return false;
         }
     };
     return SUN;

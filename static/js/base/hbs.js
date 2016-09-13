@@ -152,13 +152,41 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             return options.inverse(this);
         }
     });
+    function discountTime(nowTime,endTime){
+        var _nt = datetime_to_unix(nowTime),
+            _et = datetime_to_unix(endTime),
+            _send = (_et - _nt + 3600000)/1000,
+            _hour = ''+(_send - _send % 3600)/3600,
+            _second = ''+(_send - _hour*3600)%60,
+            _minute = ''+(_send - _hour*3600 - _second)/60;
+        if(_send < 0){
+            return {
+                time : '00.00.00',
+                second : _send
+            };
+        }
+        return {
+            time : ((_hour.length<2?'0'+_hour:_hour)+'.'+(_minute.length<2?'0'+_minute:_minute)+'.'+(_second.length<2?'0'+_second:_second)),
+            second : _send
+        };
+    };
+    function datetime_to_unix(datetime){
+        var tmp_datetime = datetime.replace(/:/g,'-');
+        tmp_datetime = tmp_datetime.replace(/ /g,'-');
+        var arr = tmp_datetime.split("-");
+        var now = new Date(Date.UTC(arr[0],arr[1]-1,arr[2],arr[3]-8,arr[4],arr[5]));
+        return parseInt(now.getTime());
+    };
+
     HBS.registerHelper('hotItemList', function(items, options) {
         var out = "",
             i = 0;
         for (i; i < items.length;i++) {
             if(items[i].index_type == 'top') {
-                var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time);
-                out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
+                var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time),
+                    _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
+                //console.log(_url)
+                out += '<li><a class="item-info j_item_info" data-url="'+_url+'" href="javascript:;">'
                     +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
 
                 if(items[i].is_discount){
@@ -191,40 +219,15 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         }
         return out;
     });
-
-    function discountTime(nowTime,endTime){
-        var _nt = datetime_to_unix(nowTime),
-            _et = datetime_to_unix(endTime),
-            _send = (_et - _nt + 3600000)/1000,
-            _hour = ''+(_send - _send % 3600)/3600,
-            _second = ''+(_send - _hour*3600)%60,
-            _minute = ''+(_send - _hour*3600 - _second)/60;
-        if(_send < 0){
-            return {
-                time : '00.00.00',
-                second : _send
-            };
-        }
-        return {
-            time : ((_hour.length<2?'0'+_hour:_hour)+'.'+(_minute.length<2?'0'+_minute:_minute)+'.'+(_second.length<2?'0'+_second:_second)),
-            second : _send
-        };
-    };
-    function datetime_to_unix(datetime){
-        var tmp_datetime = datetime.replace(/:/g,'-');
-        tmp_datetime = tmp_datetime.replace(/ /g,'-');
-        var arr = tmp_datetime.split("-");
-        var now = new Date(Date.UTC(arr[0],arr[1]-1,arr[2],arr[3]-8,arr[4],arr[5]));
-        return parseInt(now.getTime());
-    };
-
     HBS.registerHelper('itemList', function(items, options) {
         var out = "",
             i = 0;
         for (i; i < items.length;i++) {
             if(items[i].index_type == 'no_tag'){
-                var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time);
-                out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
+                var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time),
+                    _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
+
+                out += '<li><a class="item-info j_item_info" data-url="'+_url+'" href="javascript:;">'
                     +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
 
                 if(items[i].is_discount){
@@ -263,8 +266,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             i = 0;
         for (i; i < items.length;i++) {
             if(items[i].index_type == 'tags') {
-                var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time);
-                out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
+                var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time),
+                    _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
+                out += '<li><a class="item-info j_item_info" data-url="'+_url+'" href="javascript:;">'
                     +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
 
                 if(items[i].is_discount){
@@ -304,8 +308,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var out = "",
             i = 0;
         for (i; i < items.length;i++) {
-            var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time);
-            out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id)+'" href="javascript:;">'
+            var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time),
+                _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
+            out += '<li><a class="item-info j_item_info" data-url="'+_url+'" href="javascript:;">'
                 +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
 
             if(items[i].is_discount){

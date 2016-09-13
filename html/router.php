@@ -20,7 +20,7 @@ register_shutdown_function("shutdown_func");
 
 function handle()
 {
-	$host_preg = C_RUNTIME_ONLINE ? '/^(.*?)\.instashop\.co\.id$/i' : '/^(.*?)\.test\.instashop\.co\.id$/i';
+	$host_preg = C_RUNTIME_ONLINE ? '/^(www\.)?(.*?)\.instashop\.co\.id$/i' : '/^(www\.)?(.*?)\.test\.instashop\.co\.id$/i';
 	$host = $_SERVER['HTTP_HOST'];
 	$uri = $_SERVER['REQUEST_URI'];
 	$h_match = preg_match($host_preg, $host, $matches);
@@ -33,19 +33,54 @@ function handle()
 		exit();
 	}
 
-	$alias = $matches[1];
-	$_REQUEST['seller_id'] = $alias;
+	$alias = $matches[2];
 
-	$u_match = preg_match('/^\/(\d+)(\?.*)?$/i', $uri, $item_matches);
-	if ($u_match)
+	if (preg_match('/^\/(\d+)(\?.*)?$/i', $uri, $item_matches))
 	{
 		$item_id = $item_matches[1];
 		$_REQUEST['item_id'] = $item_id;
 		require( dirname(__FILE__).'/../html/detail.php');
 	}
+	else if (preg_match('/^\/o\/([0-9a-zA-Z]{5})(\?.*)?$/i', $uri, $order_matches))
+	{
+		$order_id = $order_matches[1];
+		$_REQUEST['order_id'] = $order_id;
+		require( dirname(__FILE__).'/../html/orderdetail.php');
+	}
+	else if (preg_match('/^\/notice\/(\d+)(\?.*)?$/i', $uri, $notice_matches))
+	{
+		$notice_id = $notice_matches[1];
+		$_REQUEST['notice_id'] = $notice_id;
+		require( dirname(__FILE__).'/../html/notice.php');
+	}
+	else if (preg_match('/^\/address\/([0-9a-zA-Z_]+)(\?.*)?$/i', $uri, $cart_matches))
+	{
+		$cart_id = $cart_matches[1];
+		$_REQUEST['cart_id'] = $cart_id;
+		require( dirname(__FILE__).'/../html/quickcarts.php');
+	}
+	else if (preg_match('/^\/k\/(\d+)(\?.*)?$/i', $uri, $sort_matches))
+	{
+		$sort_id = $sort_matches[1];
+		$_REQUEST['sort_id'] = $sort_id;
+		require( dirname(__FILE__).'/../html/sort.php');
+	}
+	else if (preg_match('/^\/html\/(.*?)(\?.*)?$/i', $uri, $f_matches))
+	{
+		require( dirname(__FILE__)."/../html/".$f_matches[1]);
+	}
+	else if (preg_match('/^\/(\?.*)?$/i', $uri))
+	{
+		$_REQUEST['seller_id'] = $alias;
+		require( dirname(__FILE__).'/../html/index.php');
+	}
 	else
 	{
-		require( dirname(__FILE__).'/../html/index.php');
+		@header("http/1.1 404 not found");
+		@header("status: 404 not found");
+		Log::debug('404');
+		echo '404 not found';//直接输出页面错误信息
+		exit();
 	}
 }
 

@@ -64,13 +64,15 @@ require(['hbs','text!views/app/cart.hbs','cart','dialog','ajax','config','base',
             $('body').on('click','.j_go_back',function(){
                 var _fromurl = localStorage.getItem('FromUrl');
                 if(!_fromurl){
-                    location.href = Config.host.host+'s/'+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
+                    var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
+                    location.href = _url;
                 }else{
                     location.href = _fromurl;
                 }
             });
             $('body').on('click','.j_go_shop',function(){
-                location.href = Config.host.host+'s/'+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
+                var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
+                location.href = _url;
             });
             $('body').on('click','.j_submit_btn',function(){
                 _that.subData();
