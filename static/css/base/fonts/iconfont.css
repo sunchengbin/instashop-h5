@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1473646541'); /* IE9*/
-  src: url('iconfont.eot?t=1473646541#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1473646541') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1473646541') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1473646541#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1473737446'); /* IE9*/
+  src: url('iconfont.eot?t=1473737446#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1473737446') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1473737446') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1473737446#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -42,6 +42,6 @@
 .icon-sort-font:before { content: "\e618"; }
 .icon-empty-font:before { content: "\e619"; }
 .icon-fold-font:before { content: "\e61a"; }
-.icon-i-shop-font:before { content: "\e61b"; }
 .icon-i-news-font:before { content: "\e61c"; }
 .icon-tag-font:before { content: "\e61d"; }
+.icon-i-shop-font:before { content: "\e61b"; }
