@@ -58,31 +58,31 @@ section{
     background-color: #EDEDED;
     padding-left:1.5rem;
 }
-.pay-info li::after{
-    position: absolute;
-    left:-50%;
-    right: -50%;
-    bottom:0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border-bottom: 1px solid #d8d8d8;
-}
-.pay-info li.act::after{
-    position: absolute;
-    left:-50%;
-    right: -50%;
-    top:-50%;
-    bottom:-50%;
-    height: auto;
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border: 1px solid #d8d8d8;
-    border-bottom: none;
+/*.pay-info li::after{*/
+    /*position: absolute;*/
+    /*left:-50%;*/
+    /*right: -50%;*/
+    /*bottom:0;*/
+    /*height: 1px;*/
+    /*content: '';*/
+    /*-webkit-transform: scale(0.5);*/
+    /*transform: scale(0.5);*/
+    /*border-bottom: 1px solid #d8d8d8;*/
+/*}*/
+/*.pay-info li.act::after{*/
+    /*position: absolute;*/
+    /*left:-50%;*/
+    /*right: -50%;*/
+    /*top:-50%;*/
+    /*bottom:-50%;*/
+    /*height: auto;*/
+    /*content: '';*/
+    /*-webkit-transform: scale(0.5);*/
+    /*transform: scale(0.5);*/
+    /*border: 1px solid #d8d8d8;*/
+    /*border-bottom: none;*/
 
-}
+/*}*/
 .three_info li:nth-child(1){
     padding-right:.5rem;
 }
@@ -134,20 +134,20 @@ p{
     background-color: #EDEDED;
     color: #666;
 }
-.txt-box::after{
-    position: absolute;
-    left:-50%;
-    right: -50%;
-    top:-50%;
-    bottom:-50%;
-    /*height: 14.5rem;*/
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border-left: 1px solid #d8d8d8;
-    border-right: 1px solid #d8d8d8;
-    border-bottom: 1px solid #d8d8d8;
-}
+/*.txt-box::after{*/
+    /*position: absolute;*/
+    /*left:-50%;*/
+    /*right: -50%;*/
+    /*top:-50%;*/
+    /*bottom:-50%;*/
+    /*/!*height: 14.5rem;*!/*/
+    /*content: '';*/
+    /*-webkit-transform: scale(0.5);*/
+    /*transform: scale(0.5);*/
+    /*border-left: 1px solid #d8d8d8;*/
+    /*border-right: 1px solid #d8d8d8;*/
+    /*border-bottom: 1px solid #d8d8d8;*/
+/*}*/
 .txt-box p{
     line-height: 1.5;
 }
