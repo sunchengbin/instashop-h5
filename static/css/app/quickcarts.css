@@ -268,7 +268,7 @@ body .address-list{
 }
 .logistics-list li{
     padding: 1rem 0 0 2.5rem;
-    font-size: 14px;
+    font-size: 1.4rem;
     position: relative;
 }
 .cart-item div.price{
@@ -337,4 +337,18 @@ body .address-list{
 }
 .logistics-list li i.checked-btn{
     color: #43CB9C;
+}
+.total-box{
+    padding: 0 1rem;
+    background: #fff;
+}
+.total-ps{
+    padding: 1rem 0;
+}
+.total-p{
+    color: #666;
+    font-size: 1.4rem;
+}
+.total-p span{
+    color: #F5A623;
 }

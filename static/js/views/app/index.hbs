@@ -13,25 +13,6 @@
         <p>{{{lang.H5_SHOP_DELETE}}}</p>
     </section>
 {{else}}
-    <nav class="shop-header-nav clearfix">
-        {{#if data.tag_list}}
-            <div class="fl j_sort_prompt_box">
-                <button class="j_category">
-                    <i class="icon iconfont icon-sort-font"></i>
-                </button>
-                <div class="btn-cover"></div>
-            </div>
-        {{/if}}
-        <div class="fr">
-            <button class="j_cart_wraper" data-url="{{hrefUrl}}cart.php">
-                {{#if num}}
-                    <span class="cart-num">{{num}}</span>
-                {{/if}}
-                <i class="icon iconfont icon-cart-font"></i>
-            </button>
-            <div class="btn-cover"></div>
-        </div>
-    </nav>
     <section class="shop-header">
         <img class="shop-header-bg" data-img="{{transshopbgimgurl data.shop.front_cover}}" src="">
         <div class="clearfix shop-info">
@@ -55,7 +36,7 @@
     </section>
     <section class="items-box j_hot_box j_box">
         {{#havehot data.item_list.list}}
-            <p class="item-title b-bottom"><span></span>{{lang.H5_GOODS_HOT}}</p>
+            <p class="item-title"><span></span>{{lang.H5_GOODS_HOT}}</p>
             <ul class="items-list clearfix j_hot_list">
                 {{#hotItemList data.item_list.list}}{{/hotItemList}}
                 <!--<li>-->
@@ -77,7 +58,7 @@
     </section>
     {{#each tags_item}}
         <section class="items-box j_box" data-tagid="{{this.id}}">
-            <p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="{{../host}}k/{{this.id}}">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>{{decode this.name}}</em></p>
+            <p class="item-title clearfix"><a class="fr j_item_info" href="javascript:;" data-url="{{../host}}k/{{this.id}}">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>{{decode this.name}}</em></p>
             <ul class="items-list j_item_list clearfix">
                 {{#tagItemList this.item}}{{/tagItemList}}
             </ul>
@@ -85,7 +66,7 @@
     {{/each}}
     <section class="items-box j_item_box j_box">
         {{#haveitem data.item_list.list}}
-            <p class="item-title b-bottom"><span></span>{{lang.H5_GOODS_ORTHER}}</p>
+            <p class="item-title"><span></span>{{lang.H5_GOODS_ORTHER}}</p>
             <ul class="items-list j_item_list clearfix">
                 {{#itemList data.item_list.list}}{{/itemList}}
                 <!--<li>-->
@@ -119,29 +100,49 @@
     <!--<footer class="clearfix">-->
         <!--<a href="javascript:;" class="btn fl j_category"><i class="icon iconfont icon-sort-font"></i>{{lang.H5_GOOD_SORT}}</a>-->
     <!--</footer>-->
-    {{#if data.shop.line_url}}
-        {{#if data.shop.phone}}
-            <a class="contact-services j_show_contact" data-type="all" href="javascript:;">
-                <!--<span class="im-num j_im_num"></span>-->
-                <i class="icon iconfont icon-news-font"></i>
-                {{lang.H5_CONNACT_SELLER}}
-            </a>
-        {{else}}
-            <a class="contact-services" href="{{data.shop.line_url}}">
-                <!--<span class="im-num j_im_num"></span>-->
-                <i class="icon iconfont icon-news-font"></i>
-                {{lang.H5_CONNACT_SELLER}}
-            </a>
-        {{/if}}
-    {{else}}
-        {{#if data.shop.phone}}
-            <a class="contact-services j_show_contact" data-type="tel" href="javascript:;">
-                <!--<span class="im-num j_im_num"></span>-->
-                <i class="icon iconfont icon-news-font"></i>
-                {{lang.H5_CONNACT_SELLER}}
-            </a>
-        {{/if}}
-    {{/if}}
+    <section class="index-footer">
+        <ul class="b-top">
+            {{#if data.tag_list}}
+                <li class="j_category b-right">
+                    <i class="icon iconfont icon-tag-font"></i>
+                    Kategori
+                </li>
+            {{/if}}
+            <li class="j_cart_wraper b-right" data-url="{{hrefUrl}}cart.php">
+                {{#if num}}
+                    <span class="cart-num">{{num}}</span>
+                {{/if}}
+                <i class="icon iconfont icon-i-shop-font"></i>
+                Keranjangku
+            </li>
+            <li>
+                {{#if data.shop.line_url}}
+                    {{#if data.shop.phone}}
+                        <a class="contact-services j_show_contact" data-type="all" href="javascript:;">
+                            <!--<span class="im-num j_im_num"></span>-->
+                            <i class="icon iconfont icon-i-news-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </a>
+                    {{else}}
+                        <a class="contact-services" href="{{data.shop.line_url}}">
+                            <!--<span class="im-num j_im_num"></span>-->
+                            <i class="icon iconfont icon-i-news-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </a>
+                    {{/if}}
+                {{else}}
+                    {{#if data.shop.phone}}
+                        <a class="contact-services j_show_contact" data-type="tel" href="javascript:;">
+                            <!--<span class="im-num j_im_num"></span>-->
+                            <i class="icon iconfont icon-i-news-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </a>
+                    {{/if}}
+                {{/if}}
+            </li>
+        </ul>
+    </section>
+
 {{/eq}}
 
 
