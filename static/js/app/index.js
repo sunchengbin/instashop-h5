@@ -145,7 +145,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                 if($('[data-time]').length){
                                     _this.changeTime();
                                 }
-                                Common.addItems(obj.item_list.list);
+                                //Common.addItems(obj.item_list.list);
                                 getData = true;
                             }else{
                                 getData = false;
