@@ -4,7 +4,7 @@
 /**
  * Created by sunchengbin on 16/6/6.
  */
-require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','common'],function(Lang,Hbs,OrderSuccess,Config,Fastclick,Common){
+require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','common','base'],function(Lang,Hbs,OrderSuccess,Config,Fastclick,Common,Base){
     var I = {
         init : function(){
             var IndexHtm = '<div>'+Lang.H5_LOADING+'</div>';
@@ -17,13 +17,15 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','co
                     OrderInfo = JSON.parse(localStorage.getItem('OrderInfo')),
                     banksInfo = JSON.parse(localStorage.getItem('BankInfo')),
                     _detail = getUrlPrem('detail',location.href),
+                    _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/',
+                    _o_url = OrderInfo?Config.host.host+'o/'+OrderInfo.id_hash:null,
                     _prompt = '';
                 if(_detail){
-                    var _order_url = _detail==1?Common.replaceUrlPrompt(OrderInfo.url):Config.host.host+'o/'+getUrlPrem('order_id'),
-                        shopUrl = _detail==1?Config.host.host+'s/'+OrderInfo.shop_info.id:Config.host.host+'s/'+getUrlPrem('shop_id');
+                    var _order_url = _detail==1?Common.replaceUrlPrompt(_o_url):Config.host.host+'o/'+getUrlPrem('order_id'),
+                        shopUrl = _detail==1?(Base.others.isCustomHost()?_url:_url+OrderInfo.shop_info.id):(Base.others.isCustomHost()?_url:_url+getUrlPrem('shop_id'));
                 }else{
-                    var _order_url = Common.replaceUrlPrompt(OrderInfo.url),
-                        shopUrl = Config.host.host+'s/'+OrderInfo.shop_info.id;
+                    var _order_url = Common.replaceUrlPrompt(_o_url),
+                        shopUrl = Base.others.isCustomHost()?_url:_url+OrderInfo.shop_info.id;
                 }
 
                 if(linkPrice){totalPrice = priceFormat(linkPrice);}
@@ -80,7 +82,8 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','co
             if(document.querySelector('.j_go_back')){
                 document.querySelector('.j_go_back').addEventListener('click',function(){
                     if(!from){
-                        location.href = '/s/'+data.ShopInfo.id;
+                        var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+data.ShopInfo.id;
+                        location.href = _url;
                     }else{
                         history.back();
                     }

@@ -59,7 +59,23 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     }
                 });
             }
+            _this.getTotal();
             _this.handleFn();
+        },
+        getTotal : function(){//计算总额(出问题的商品价格不算到总额中)
+            var _this = this,
+                _sum = 0,
+                _freight = 0;
+            $('.j_item_num').each(function(i,item){
+                var _num = Number($(item).val()),
+                    _price = Number($(item).attr('data-price'));
+                _sum+=_num*_price;
+            });
+            if($('.icon-radioed-font').length){
+                _freight = Number($('.icon-radioed-font').attr('data-price'));
+            }
+            $('.j_total').html('Rp: '+Base.others.priceFormat((_sum+_freight)));
+            $('.j_freight').html('Rp: '+Base.others.priceFormat(_freight));
         },
         selectQuick : function(opts){
             var _this = this,
@@ -71,9 +87,9 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             _type.html(Lang.H5_SKU+': '+opts.sku);
             _stock.html(Lang.H5_STOCK+': '+opts.stock);
             _price.html(Lang.H5_PRICE+':Rp '+Base.others.priceFormat(opts.price));
-            _num.val(opts.num);
+            _num.val(opts.num).attr('data-price',opts.price);
             _this.resetCarts(opts);
-
+            _this.getTotal();
             console.log(_this.carts)
         },
         resetCarts : function(opts){
@@ -103,12 +119,13 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     }
                     _item_num.val(++_num);
                 }
-
+                _this.getTotal();
             });
             $('.j_cart_list').on('click','.j_reduce_btn',function(){
                 var _item_num =  $(this).parent().find('.j_item_num'),
                     _num = Number(_item_num.val());
                 _item_num.val((--_num > 0)?_num:1);
+                _this.getTotal();
             });
             $('body').on('click','.j_user_address .act',function(){
                 var _name = $(this).attr('data-name');
@@ -186,6 +203,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         'data-company' : $(this).find('.check-btn').attr('data-company'),
                         'data-price' : Number($(this).find('.check-btn').attr('data-price'))
                     });
+                    _this.getTotal();
                 }
             });
             Btn({
