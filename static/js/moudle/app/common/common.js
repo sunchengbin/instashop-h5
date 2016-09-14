@@ -40,7 +40,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
         },
         ScorllToBottom : function(dom){//滚动到底部
             setTimeout(function(){
-                $('body').scrollTop(9999);
+                $(dom).scrollTop(9999);
             },100);
         },
         listenAndroidKeyboardToggle: function (onShow, onHide) {
