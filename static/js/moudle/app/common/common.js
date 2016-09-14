@@ -40,6 +40,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
         },
         ScorllToBottom : function(dom){//滚动到底部
             setTimeout(function(){
+                alert(1)
                 $(dom).scrollTop(9999);
             },100);
         },
