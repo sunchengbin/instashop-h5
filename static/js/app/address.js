@@ -177,7 +177,7 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','
                 //}
             });
             Common.listenAndroidKeyboardToggle(function(){
-                Common.ScorllToBottom('.j_street');
+               $('.j_street').scrollTop(0);
             },function(){
                 Common.ScorllToBottom('.j_street');
             });
