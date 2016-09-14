@@ -52,7 +52,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                 window.addEventListener('resize', function () {
                     // alert( [ window.innerHeight, windowInnerHeight_no_keyboard, windowInnerHeight_has_keyboard ] )
                     if (window.innerHeight < windowInnerHeight_no_keyboard) {
-                        onShow && onShow()
+                        onShow && onShow(windowInnerHeight_no_keyboard)
                     }
                     if (window.innerHeight >= windowInnerHeight_has_keyboard) {
                         onHide && onHide()

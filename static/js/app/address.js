@@ -176,7 +176,8 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','
                 //    Common.telVerify(_dom.val());
                 //}
             });
-            Common.listenAndroidKeyboardToggle(function(){
+            Common.listenAndroidKeyboardToggle(function(height){
+                //$('.address-wraper').height(height);
                 Common.ScorllToBottom('.j_street');
             },function(){
                 Common.ScorllToBottom('.j_street');
