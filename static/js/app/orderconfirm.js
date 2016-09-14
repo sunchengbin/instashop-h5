@@ -204,6 +204,11 @@ require(['hbs','text!views/app/orderconfirm.hbs','cart','dialog','ajax','config'
                     location.href = Config.host.hrefUrl+'address.php';
                 //});
             });
+            Common.listenAndroidKeyboardToggle(function(){
+                Common.ScorllToBottom('.j_buyer_note');
+            },function(){
+                Common.ScorllToBottom('.j_buyer_note');
+            });
             //$('body').on('tap','.j_cart_item',function(){
             //    location.href = Config.host.host+'detail/'+$(this).attr('data-itemid');
             //});
