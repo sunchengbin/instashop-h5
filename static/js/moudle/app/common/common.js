@@ -38,6 +38,28 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                 localStorage.setItem('ShopData',JSON.stringify(_json_shop_data));
             }
         },
+        ScorllToBottom : function(dom){//滚动到底部
+            setTimeout(function(){
+                $(dom).scrollTop(9999);
+            },100);
+        },
+        listenAndroidKeyboardToggle: function (onShow, onHide) {
+            // 针对 android 机型
+            // 通过窗口高度的变化来监听键盘的收起和出现
+            var windowInnerHeight_no_keyboard = window.innerHeight,
+                windowInnerHeight_has_keyboard = windowInnerHeight_no_keyboard;
+            if ((/(Android)\s+([\d.]+)/i).test(window.navigator.userAgent)) {
+                window.addEventListener('resize', function () {
+                    // alert( [ window.innerHeight, windowInnerHeight_no_keyboard, windowInnerHeight_has_keyboard ] )
+                    if (window.innerHeight < windowInnerHeight_no_keyboard) {
+                        onShow && onShow()
+                    }
+                    if (window.innerHeight >= windowInnerHeight_has_keyboard) {
+                        onHide && onHide()
+                    }
+                });
+            }
+        },
         transItems : function(list){//转换商品数据格式为json形式方便添加去重
             if(!list.length){return null;}
             var _items = {};

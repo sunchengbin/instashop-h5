@@ -277,6 +277,11 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 //    Common.telVerify(_dom.val());
                 //}
             });
+            Common.listenAndroidKeyboardToggle(function(){
+                Common.ScorllToBottom('.j_street');
+            },function(){
+                Common.ScorllToBottom('.j_street');
+            });
         },
         subAjax : function(opts){
             var _data = opts.data,
