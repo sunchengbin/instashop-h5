@@ -16,6 +16,7 @@
 }
 .logistics-list li a{
     color: #52CDF0;
+    display: block;
 }
 .logistics-list li span{
     color: #52CDF0;
@@ -56,6 +57,8 @@
 .logistics-plug-top i{
     font-size: 1.8rem;
     color: #999;
+    width: 40px;
+    text-align: right;
 }
 .logistics-plug-top p{
     font-size: 1.4rem;
