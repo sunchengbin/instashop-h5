@@ -237,9 +237,9 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
             _this.wraper = _wraper;
             _this.cover = _cover;
             _cover.css({zIndex:Base.others.zIndex}).show();
-            var _plug_buy = document.querySelector('.j_buy_plug');
-            _plug_buy.style.webkitTransform = "translate3d(0, " + _w_h + "px,0)";
             _wraper.css({zIndex:++Base.others.zIndex});
+            var _plug_buy = document.querySelector('.j_buy_plug');
+            _plug_buy.style.webkitTransform = "translateY(0, " + _w_h + "px,0)";
             setTimeout(function(){
                 _this.animate(_plug_buy,(_w_h-_b_h));
                 _plug_buy = null;
@@ -250,7 +250,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
         animate : function(plug_buy,height,bottom){
             var _this = this;
             plug_buy.style.webkitTransitionDuration = _this.config.transformSpeed;
-            plug_buy.style.webkitTransform = "translate3d(0, " + height + "px,0)";
+            plug_buy.style.webkitTransform = "translateY(0, " + height + "px,0)";
             plug_buy.style.bottom = (bottom?0:height)+'px';
         },
         toHide : function(plug_buy,height){
