@@ -121,6 +121,7 @@
 .item-num-box{
     float: right;
     position: relative;
+    box-sizing: border-box;
     /*border:1px solid #D8D8D8;*/
 }
 .item-num-box::after{
@@ -131,6 +132,7 @@
     bottom:-50%;
     top:-50%;
     height: 6rem;
+    width: 200%;
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
