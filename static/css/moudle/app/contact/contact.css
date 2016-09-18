@@ -54,6 +54,11 @@
     height: 2rem;
     line-height: 1.8rem;
 }
+.logistics-plug-top{
+    position: absolute;
+    right: 0;
+    top: .5rem;
+}
 .logistics-plug-top i{
     font-size: 1.8rem;
     color: #999;
