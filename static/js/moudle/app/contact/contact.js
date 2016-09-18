@@ -8,7 +8,7 @@ define(['common','base','hbs','text!views/moudle/contact.hbs','btn','lang','fast
         _this.config = $.extend({
             wraper : 'body',
             btn : '.j_sel_logistics',
-            closeBtn : '.j_close_btn',
+            closeBtn : '.j_close_logistics_btn',
             transformSpeed:'.6s'
         },opts);
         _this.init();

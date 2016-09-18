@@ -58,6 +58,7 @@
     position: absolute;
     right: 0;
     top: .5rem;
+    z-index: 4000;
 }
 .logistics-plug-top i{
     font-size: 1.8rem;
