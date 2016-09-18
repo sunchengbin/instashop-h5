@@ -131,7 +131,7 @@
     right: -50%;
     bottom:-50%;
     top:-50%;
-    height: 6.2rem;
+    height: 6rem;
     /*width: 200%;*/
     content: '';
     -webkit-transform: scale(0.5);
@@ -157,6 +157,7 @@
     line-height: 3rem;
     padding: .8rem .5rem;
     width: 4rem;
+    box-sizing: border-box;
     position: relative;
 }
 .item-num-box::before{
@@ -165,7 +166,7 @@
     right: -50%;
     bottom:-50%;
     top:-50%;
-    height: 6.2rem;
+    height: 6rem;
     margin:0 6rem;
     content: '';
     -webkit-transform: scale(0.5);
