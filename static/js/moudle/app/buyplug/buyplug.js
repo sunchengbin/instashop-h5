@@ -251,7 +251,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
             var _this = this;
             //plug_buy.style.webkitTransitionDuration = _this.config.transformSpeed;
             //plug_buy.style.webkitTransform = "translateY( " + height + "px)";
-            //plug_buy.style.bottom = (bottom?0:height)+'px';
+            plug_buy.style.bottom = (bottom?-height:0)+'px';
         },
         toHide : function(plug_buy,height){
             var _this = this;
