@@ -64,7 +64,7 @@
                         <p class="type">{{../../lang.H5_ITEM_SKU}}:{{item_sku_title}}</p>
                     {{/if}}
                     <p class="num">{{../lang.H5_QUANTITY}}:{{quantity}}</p>
-                    <p class="price clearfix">{{#if discount.value}}<span class="fr">-{{transpricevalue discount.value}}%</span>{{/if}}Rp {{transprice price}}</p>
+                    <p class="price clearfix">{{../lang.H5_PRICE}}:{{#if discount.value}}<span class="fr">-{{transpricevalue discount.value}}%</span>{{/if}}Rp {{transprice price}}</p>
                 </div>
             </li>
             {{/each}}
@@ -111,9 +111,11 @@
                 {{/if}}
             {{/if}}
         </div>
+        {{#eq data.order.state 1}}
         <div class="prove-btn">
             <a class="submit-btn btn confirm-btn" href="{{hrefUrl}}uploadprove.php?order_id={{data.order.id}}&hash={{data.order.id_hash}}">Bukti Pembayaran</a>
         </div>
+        {{/eq}}
 
     </div>
 </section>

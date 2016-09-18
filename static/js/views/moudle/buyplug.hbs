@@ -5,11 +5,19 @@
             <p class="price j_buy_info_price">{{itemprice item}}</p>
             {{#empty item.sku}}
                 {{#elt item.stock 99999999}}
-                    <p class="title j_all_stock">{{lang.H5_STOCK}}:{{item.stock}}</p>
+                    {{#eq item.stock 0}}
+                        <p class="title j_all_stock"></p>
+                    {{else}}
+                        <p class="title j_all_stock">{{lang.H5_STOCK}}:{{item.stock}}</p>
+                    {{/eq}}
                 {{/elt}}
             {{else}}
                 {{#elt item.stock 99999999}}
-                    <p class="title j_all_stock">{{lang.H5_STOCK}}:{{item.stock}}</p>
+                    {{#eq item.stock 0}}
+                        <p class="title j_all_stock"></p>
+                    {{else}}
+                        <p class="title j_all_stock">{{lang.H5_STOCK}}:{{item.stock}}</p>
+                    {{/eq}}
                 {{/elt}}
             {{/empty}}
 
@@ -43,11 +51,11 @@
         </div>
         <p class="">{{lang.H5_QUANTITY}}</p>
     </div>
-    {{#empty item.stock}}
+    {{#eq item.stock 0}}
         <button class="btn cancel-btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
     {{else}}
         <button class="btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
-    {{/empty}}
+    {{/eq}}
 
 </section>
 <section class="buy-plug-cover j_buy_plug_cover"></section>

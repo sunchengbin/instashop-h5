@@ -43,7 +43,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         imgStartTime = (new Date()).getTime();
         document.querySelector('.j_img_info p').innerHTML = 'imgStart: '+imgStartTime;
         console.log('imgStart'+(new Date()).getTime())
-        img.src = 'http://imghk0.geilicdn.com/test_instashop40780-1470220982299-1.jpg?w=110&h=110&cp=1';
+        img.src = 'http://imghk0.geilicdn.com/test_instashop-1474170115424-8475305.jpg';
         img.onload = function(){
             console.log('imgLoad'+(new Date()).getTime())
             document.querySelector('.j_img_info p').innerHTML += '</br>imgLoad: '+((new Date()).getTime()-imgStartTime);
