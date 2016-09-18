@@ -121,7 +121,6 @@
 .item-num-box{
     float: right;
     position: relative;
-    box-sizing: border-box;
     /*border:1px solid #D8D8D8;*/
 }
 .item-num-box::after{
@@ -132,7 +131,6 @@
     bottom:-50%;
     top:-50%;
     height: 6rem;
-    /*width: 200%;*/
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
@@ -154,10 +152,8 @@
     text-align: center;
     font-size: 1.4rem;
     height: 3rem;
-    line-height: 3rem;
-    padding:.5rem;
+    padding: .5rem;
     width: 4rem;
-    box-sizing: border-box;
     position: relative;
 }
 .item-num-box::before{
@@ -166,7 +162,7 @@
     right: -50%;
     bottom:-50%;
     top:-50%;
-    height: 6rem;
+    height: 6.2rem;
     margin:0 6rem;
     content: '';
     -webkit-transform: scale(0.5);
