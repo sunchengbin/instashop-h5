@@ -26,7 +26,20 @@
             </div>
             <i class="icon iconfont j_close_btn icon-cancel-font"></i>
         </div>
+        {{#if item.sku}}
+        <div class="item-info-cont">
+            <p>Type Size</p>
+            <ul class="clearfix j_type">
+                {{{itemtype item}}}
+            </ul>
+        </div>
+        {{/if}}
 
+        {{#eq item.stock 0}}
+            <button class="btn cancel-btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
+        {{else}}
+            <button class="btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
+        {{/eq}}
     </div>
 </section>
 <section class="buy-plug-cover j_buy_plug_cover"></section>
