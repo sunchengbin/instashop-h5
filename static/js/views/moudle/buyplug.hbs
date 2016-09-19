@@ -1,61 +1,62 @@
 <section class="buy-plug j_buy_plug">
-    <div class="item-info-title clearfix">
-        <img src="{{item.img}}">
-        <div class="j_buy_info">
-            <p class="price j_buy_info_price">{{itemprice item}}</p>
-            {{#empty item.sku}}
-                {{#elt item.stock 99999999}}
-                    {{#eq item.stock 0}}
-                        <p class="title j_all_stock"></p>
-                    {{else}}
-                        <p class="title j_all_stock">{{lang.H5_STOCK}}:{{item.stock}}</p>
-                    {{/eq}}
-                {{/elt}}
-            {{else}}
-                {{#elt item.stock 99999999}}
-                    {{#eq item.stock 0}}
-                        <p class="title j_all_stock"></p>
-                    {{else}}
-                        <p class="title j_all_stock">{{lang.H5_STOCK}}:{{item.stock}}</p>
-                    {{/eq}}
-                {{/elt}}
-            {{/empty}}
+    <div>
+        <div class="item-info-title clearfix">
+            <img src="{{item.img}}">
+            <div class="j_buy_info">
+                <p class="price j_buy_info_price">{{itemprice item}}</p>
+                {{#empty item.sku}}
+                    {{#elt item.stock 99999999}}
+                        {{#eq item.stock 0}}
+                            <p class="title j_all_stock"></p>
+                        {{else}}
+                            <p class="title j_all_stock">{{lang.H5_STOCK}}:{{item.stock}}</p>
+                        {{/eq}}
+                    {{/elt}}
+                {{else}}
+                    {{#elt item.stock 99999999}}
+                        {{#eq item.stock 0}}
+                            <p class="title j_all_stock"></p>
+                        {{else}}
+                            <p class="title j_all_stock">{{lang.H5_STOCK}}:{{item.stock}}</p>
+                        {{/eq}}
+                    {{/elt}}
+                {{/empty}}
 
-            <p class="title j_buy_info_title"></p>
+                <p class="title j_buy_info_title"></p>
+            </div>
+            <i class="icon iconfont j_close_btn icon-cancel-font"></i>
         </div>
-        <i class="icon iconfont j_close_btn icon-cancel-font"></i>
-    </div>
-    {{#if item.sku}}
-    <div class="item-info-cont">
-        <p>Type Size</p>
-        <ul class="clearfix j_type">
-            {{{itemtype item}}}
-        </ul>
-    </div>
-    {{/if}}
-    <div class="item-info-num">
-        <div class="item-num-box clearfix">
-            <span class="j_reduce_btn">
-                <i class="icon iconfont icon-minus-font"></i>
-            </span>
-            <input class="fl j_item_num" type="text" value="1" readonly="readonly"/>
-            {{#empty item.sku}}
-                <span class="j_add_btn" data-stock="{{item.stock}}">
-                    <i class="icon iconfont icon-add-font"></i>
-                </span>
-            {{else}}
-                <span class="j_add_btn">
-                    <i class="icon iconfont icon-add-font"></i>
-                </span>
-            {{/empty}}
+        {{#if item.sku}}
+        <div class="item-info-cont">
+            <p>Type Size</p>
+            <ul class="clearfix j_type">
+                {{{itemtype item}}}
+            </ul>
         </div>
-        <p class="">{{lang.H5_QUANTITY}}</p>
+        {{/if}}
+        <div class="item-info-num">
+            <div class="item-num-box clearfix">
+                <span class="j_reduce_btn">
+                    <i class="icon iconfont icon-minus-font"></i>
+                </span>
+                <input class="fl j_item_num" type="text" value="1" readonly="readonly"/>
+                {{#empty item.sku}}
+                    <span class="j_add_btn" data-stock="{{item.stock}}">
+                        <i class="icon iconfont icon-add-font"></i>
+                    </span>
+                {{else}}
+                    <span class="j_add_btn">
+                        <i class="icon iconfont icon-add-font"></i>
+                    </span>
+                {{/empty}}
+            </div>
+            <p class="">{{lang.H5_QUANTITY}}</p>
+        </div>
+        {{#eq item.stock 0}}
+            <button class="btn cancel-btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
+        {{else}}
+            <button class="btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
+        {{/eq}}
     </div>
-    {{#eq item.stock 0}}
-        <button class="btn cancel-btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
-    {{else}}
-        <button class="btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
-    {{/eq}}
-
 </section>
 <section class="buy-plug-cover j_buy_plug_cover"></section>
