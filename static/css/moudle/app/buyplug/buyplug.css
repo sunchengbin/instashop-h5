@@ -3,7 +3,6 @@
     position: fixed;
     background-color: #fff;
     bottom:0;
-    pointer-events:auto;
 }
 .buy-plug-cover{
     display: none;
