@@ -112,14 +112,16 @@
 .item-info-num{
     height: 3rem;
     line-height: 3rem;
+    position: relative;
 }
 .item-info-num >div.title{
     font-size: 1.4rem;
     margin-right:14rem;
 }
 .item-num-box{
-    float: right;
-    position: relative;
+    position: absolute;
+    right: 1rem;
+    top: 1.5rem;
     width: 10rem;
     height: 3rem;
     /*border:1px solid #D8D8D8;*/
