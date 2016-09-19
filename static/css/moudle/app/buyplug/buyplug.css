@@ -168,12 +168,12 @@
     bottom:-50%;
     top:-50%;
     height: 6.2rem;
-    margin:0 6rem;
+    width: 200%;
+    /*margin:0 6rem;*/
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
-    border-left: 1px solid #d8d8d8;
-    border-right: 1px solid #d8d8d8;
+    border: 1px solid #d8d8d8;
 }
 .buy-plug .btn{
     border-radius: 0;
