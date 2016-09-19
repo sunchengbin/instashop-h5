@@ -148,6 +148,33 @@
     height: 3rem;
     line-height: 3rem;
     text-align: center;
+    position: relative;
+}
+.item-num-box span.reduce-btn::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:-50%;
+    top:-50%;
+    height: 6rem;
+    width: 6rem;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-right: 1px solid #d8d8d8;
+}
+.item-num-box span.add-btn::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:-50%;
+    top:-50%;
+    height: 6rem;
+    width: 6rem;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-left: 1px solid #d8d8d8;
 }
 .item-num-box span i{
     font-size: 1.4rem;
@@ -167,7 +194,7 @@
     right: -50%;
     bottom:-50%;
     top:-50%;
-    height: 6.2rem;
+    height: 6rem;
     width: 200%;
     /*margin:0 6rem;*/
     content: '';
