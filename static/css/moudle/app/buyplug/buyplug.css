@@ -113,7 +113,7 @@
     height: 3rem;
     line-height: 3rem;
 }
-.item-info-num p{
+.item-info-num >div.title{
     font-size: 1.4rem;
     margin-right:14rem;
 }
