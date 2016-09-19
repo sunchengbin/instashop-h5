@@ -43,7 +43,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         imgStartTime = (new Date()).getTime();
         document.querySelector('.j_img_info p').innerHTML = 'imgStart: '+imgStartTime;
         console.log('imgStart'+(new Date()).getTime())
-        img.src = 'http://imghk0.geilicdn.com/test_instashop-1474170115424-8475305.jpg';
+        img.src = 'http://imghk0.geilicdn.com/test_instashop-1474170115424-8475305.jpg?t='+(new Date()).getTime();
         img.onload = function(){
             console.log('imgLoad'+(new Date()).getTime())
             document.querySelector('.j_img_info p').innerHTML += '</br>imgLoad: '+((new Date()).getTime()-imgStartTime);
@@ -57,7 +57,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             _start_time = (new Date()).getTime();
             document.querySelector('.j_insta_img_info p').innerHTML = 'instagramImgStart: '+_start_time;
             console.log('imgStart'+(new Date()).getTime())
-            img.src = 'https://scontent-nrt1-1.cdninstagram.com/t51.2885-15/e35/1208365_1725776744330480_728632033_n.jpg';
+            img.src = 'https://scontent-nrt1-1.cdninstagram.com/t51.2885-15/e35/1208365_1725776744330480_728632033_n.jpg?t='+(new Date()).getTime();
             img.onload = function(){
                 console.log('imgLoad'+(new Date()).getTime())
                 document.querySelector('.j_insta_img_info p').innerHTML += '</br>instagramImgLoad: '+((new Date()).getTime()-_start_time);
