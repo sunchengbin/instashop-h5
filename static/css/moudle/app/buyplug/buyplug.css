@@ -120,6 +120,8 @@
 .item-num-box{
     float: right;
     position: relative;
+    width: 10rem;
+    height: 3rem;
     /*border:1px solid #D8D8D8;*/
 }
 .item-num-box::after{
@@ -139,12 +141,11 @@
     border-bottom: 1px solid #d8d8d8;
 }
 .item-num-box span{
-    display: block;
+    display: inline-block;
     width: 3rem;
     height: 3rem;
     line-height: 3rem;
     text-align: center;
-    float:left;
 }
 .item-num-box span i{
     font-size: 1.4rem;
