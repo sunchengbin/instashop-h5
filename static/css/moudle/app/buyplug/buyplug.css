@@ -13,7 +13,7 @@
     bottom:0;
     background-color: rgba(0,0,0,.5);
 }
-.buy-plug > div{
+.buy-plug > div >div{
     padding:1.5rem 1rem;
 }
 .item-info-title{
@@ -112,39 +112,69 @@
 .item-info-num{
     height: 3rem;
     line-height: 3rem;
+    position: relative;
 }
-.item-info-num p{
+.item-info-num >div.title{
     font-size: 1.4rem;
     margin-right:14rem;
 }
 .item-num-box{
-    float: right;
-    position: relative;
+    position: absolute;
+    right: 1rem;
+    top: 1.5rem;
+    width: 10rem;
+    height: 3rem;
     /*border:1px solid #D8D8D8;*/
 }
-.item-num-box::after{
+/*.item-num-box::after{*/
+    /*position: absolute;*/
+    /*z-index: -1;*/
+    /*left:-50%;*/
+    /*right: -50%;*/
+    /*bottom:-50%;*/
+    /*top:-50%;*/
+    /*height: 6rem;*/
+    /*content: '';*/
+    /*-webkit-transform: scale(0.5);*/
+    /*transform: scale(0.5);*/
+    /*border-left: 1px solid #d8d8d8;*/
+    /*border-right: 1px solid #d8d8d8;*/
+    /*border-top: 1px solid #d8d8d8;*/
+    /*border-bottom: 1px solid #d8d8d8;*/
+/*}*/
+.item-num-box span{
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    position: relative;
+}
+.item-num-box span.reduce-btn::after{
     position: absolute;
-    z-index: -1;
     left:-50%;
     right: -50%;
     bottom:-50%;
     top:-50%;
     height: 6rem;
+    width: 6rem;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-right: 1px solid #d8d8d8;
+}
+.item-num-box span.add-btn::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:-50%;
+    top:-50%;
+    height: 6rem;
+    width: 6rem;
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
     border-left: 1px solid #d8d8d8;
-    border-right: 1px solid #d8d8d8;
-    border-top: 1px solid #d8d8d8;
-    border-bottom: 1px solid #d8d8d8;
-}
-.item-num-box span{
-    display: block;
-    width: 3rem;
-    height: 3rem;
-    line-height: 3rem;
-    text-align: center;
-    float:left;
 }
 .item-num-box span i{
     font-size: 1.4rem;
@@ -164,13 +194,13 @@
     right: -50%;
     bottom:-50%;
     top:-50%;
-    height: 6.2rem;
-    margin:0 6rem;
+    height: 6rem;
+    width: 200%;
+    /*margin:0 6rem;*/
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
-    border-left: 1px solid #d8d8d8;
-    border-right: 1px solid #d8d8d8;
+    border: 1px solid #d8d8d8;
 }
 .buy-plug .btn{
     border-radius: 0;
