@@ -275,11 +275,16 @@ body .address-list{
     line-height: 2.4rem;
     font-size: 14px;
     color:#f5a623;
+    position: relative;
 }
 .cart-item .item-num-box{
-    float: right;
-    position: relative;
-    /*border:1px solid #D8D8D8;*/
+    right: 0;
+    top: 0;
+    width: auto;
+}
+.cart-item .item-num-box::before{
+    border: 0;
+
 }
 .cart-item .item-num-box span{
     display: block;
