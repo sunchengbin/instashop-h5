@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-09-14 15:10:09
+/* Smarty version 3.1.30, created on 2016-09-21 16:01:44
   from "/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_57d8f7d193d4c5_43989759',
+  'unifunc' => 'content_57e23e68be8695_10987675',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c5072935fcfac0bfc4fe01525f7b90380b0a1a54' => 
     array (
       0 => '/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl',
-      1 => 1473837000,
+      1 => 1474444862,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_57d8f7d193d4c5_43989759 (Smarty_Internal_Template $_smarty_tpl) {
+function content_57e23e68be8695_10987675 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"My Page Title"), 0, false);
 ?>
 
@@ -60,11 +60,11 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
         <div>
             <span class="top-angle"></span>
             <div class="txt">
-                <?php echo $_smarty_tpl->tpl_vars['INDEX_DATA']->value['shop']['note'];?>
+                <?php echo nl2br($_smarty_tpl->tpl_vars['INDEX_DATA']->value['shop']['note']);?>
 
             </div>
             <div class="txt-hide">
-                <?php echo $_smarty_tpl->tpl_vars['INDEX_DATA']->value['shop']['note'];?>
+                <?php echo nl2br($_smarty_tpl->tpl_vars['INDEX_DATA']->value['shop']['note']);?>
 
             </div>
             <p><i class="icon iconfont j_down_btn down-btn"></i></p>

@@ -27,10 +27,10 @@
         <div>
             <span class="top-angle"></span>
             <div class="txt">
-                {$INDEX_DATA.shop.note}
+                {$INDEX_DATA.shop.note|nl2br}
             </div>
             <div class="txt-hide">
-                {$INDEX_DATA.shop.note}
+                {$INDEX_DATA.shop.note|nl2br}
             </div>
             <p><i class="icon iconfont j_down_btn down-btn"></i></p>
         </div>
