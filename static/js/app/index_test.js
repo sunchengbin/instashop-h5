@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/6.
  */
-require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base','common','cart','fastclick','contact'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base,Common,Cart,Fastclick,Contact){
+require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base','common','cart','fastclick','contact','slide'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide){
     var I = {
         init : function(init_data){
             Lazyload();
@@ -12,6 +12,13 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 Common.initShopInfo(init_data);
                 if(_cart_num > 0){
                     $('.j_cart_wraper').append('<span class="cart-num">'+_cart_num+'</span>');
+                }
+                if($('.j_banner').length){
+                    Slide.createNew({
+                        dom: document.querySelector('.j_banner'),
+                        needTab: true,
+                        auto : false
+                    });
                 }
             }
             $('.j_php_loding').remove();

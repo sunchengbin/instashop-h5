@@ -23,13 +23,6 @@
             <p>{$INDEX_DATA.shop.name}</p>
         </div>
     </section>
-    {if $INDEX_DATA.shop.banners}
-    <div class="banner-box">
-        <ul class="item-banner j_banner clearfix">
-            {{{itemimgs data.item.imgs}}}
-        </ul>
-    </div>
-    {/if}
     <section class="shop-explain j_down_box">
         <div>
             <span class="top-angle"></span>
@@ -42,6 +35,15 @@
             <p><i class="icon iconfont j_down_btn down-btn"></i></p>
         </div>
     </section>
+    {if $INDEX_DATA.shop.banners}
+        <div class="banner-box">
+            <ul class="item-banner j_banner clearfix">
+                {foreach $INDEX_DATA.shop.banners as $banner}
+                    <li class=""><a class="block" href="{$banner.href}"><img data-img="{$banner.url}" src=""/></a></li>
+                {/foreach}
+            </ul>
+        </div>
+    {/if}
     <section class="items-box j_hot_box j_box">
         {if $RECOMMEND_ITEM|@count}
             <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>
