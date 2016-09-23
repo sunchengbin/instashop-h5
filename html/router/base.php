@@ -68,3 +68,13 @@ function discountSecond($endTime){
 function priceFormat($price) {
     return number_format($price, 0, '.', '.');
 }
+function format_img($imgurl, $w, $h){
+    $w = 420;
+    $h = 315;
+	if (false !== strpos($imgurl, '?')) {
+		$tmp_arr = explode('?', $imgurl);
+		$imgurl = $tmp_arr[0];
+	}
+	$imgurl .= sprintf("?w=%s&h=%s", $w, $h);
+	return $imgurl;
+}
