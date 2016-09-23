@@ -318,8 +318,9 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 _webplog = !Base.others.webpLog(),
                 i = 0;
             for (i; i < items.length;i++) {
-                var _time = _this.discountTime(items[i].discount.now_time,items[i].discount.end_time);
-                out += '<li><a class="item-info j_item_info" data-url="'+(Config.host.host+'detail/'+items[i].id+(_webplog?'?webpLog=1':''))+'" href="javascript:;">'
+                var _time = _this.discountTime(items[i].discount.now_time,items[i].discount.end_time),
+                    _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
+                out += '<li><a class="item-info j_item_info" data-url="'+(_url+(_webplog?'?webpLog=1':''))+'" href="javascript:;">'
                     +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
                 if(items[i].is_discount){
                     out +='<span>-'+items[i].discount.value+'%</span>';
