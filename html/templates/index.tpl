@@ -23,6 +23,13 @@
             <p>{$INDEX_DATA.shop.name}</p>
         </div>
     </section>
+    {if $INDEX_DATA.shop.banners}
+    <div class="banner-box">
+        <ul class="item-banner j_banner clearfix">
+            {{{itemimgs data.item.imgs}}}
+        </ul>
+    </div>
+    {/if}
     <section class="shop-explain j_down_box">
         <div>
             <span class="top-angle"></span>
