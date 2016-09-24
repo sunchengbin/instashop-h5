@@ -311,6 +311,7 @@ define(function(){
             }else{
                 url = url + '?w='+_ww;
             }
+
             return _this.getImageUrl(url,true);
         },
         /*
