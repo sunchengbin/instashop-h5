@@ -294,6 +294,7 @@ define(function(){
             var _ww = width?width:window.outerWidth,
                 _this = this;
             if(!bg){
+                _ww+=100;
                 if(/w\=\d+/g.test(url)){
                     url = url.replace(/w\=\d+/g,'w='+_ww);
                     url = url.replace(/h\=\d+/g,'h='+_ww);
@@ -308,6 +309,7 @@ define(function(){
                     url = url + '&cp=1';
                 }
             }else{
+                _ww+=50;
                 url = url + '?w='+_ww;
             }
 

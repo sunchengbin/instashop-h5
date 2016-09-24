@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-09-21 16:01:44
+/* Smarty version 3.1.30, created on 2016-09-23 15:51:11
   from "/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_57e23e68be8695_10987675',
+  'unifunc' => 'content_57e4deefb69e60_28103314',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c5072935fcfac0bfc4fe01525f7b90380b0a1a54' => 
     array (
       0 => '/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl',
-      1 => 1474444862,
+      1 => 1474617069,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_57e23e68be8695_10987675 (Smarty_Internal_Template $_smarty_tpl) {
+function content_57e4deefb69e60_28103314 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"My Page Title"), 0, false);
 ?>
 
@@ -70,6 +70,26 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
             <p><i class="icon iconfont j_down_btn down-btn"></i></p>
         </div>
     </section>
+    <?php if ($_smarty_tpl->tpl_vars['INDEX_DATA']->value['shop']['banners']) {?>
+        <div class="banner-box">
+            <ul class="item-banner j_banner clearfix">
+                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['INDEX_DATA']->value['shop']['banners'], 'banner');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['banner']->value) {
+?>
+                    <li class=""><a class="block" href="<?php echo $_smarty_tpl->tpl_vars['banner']->value['href'];?>
+"><img data-img="<?php echo format_img($_smarty_tpl->tpl_vars['banner']->value['url']);?>
+" src=""/></a></li>
+                <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
+            </ul>
+        </div>
+    <?php }?>
     <section class="items-box j_hot_box j_box">
         <?php if (count($_smarty_tpl->tpl_vars['RECOMMEND_ITEM']->value)) {?>
             <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>
