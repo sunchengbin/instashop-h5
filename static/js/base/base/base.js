@@ -293,8 +293,8 @@ define(function(){
         cutImg : function(url,width,bg){
             var _ww = Number(width?width:window.outerWidth),
                 _this = this;
+            _ww+=100;
             if(!bg){
-                _ww+=50;
                 if(/w\=\d+/g.test(url)){
                     url = url.replace(/w\=\d+/g,'w='+_ww);
                     url = url.replace(/h\=\d+/g,'h='+_ww);
@@ -309,24 +309,7 @@ define(function(){
                     url = url + '&cp=1';
                 }
             }else{
-                _ww+=100;
-                if(bg=='bg'){
-                    url = url + '?w='+_ww;
-                }else{
-                    if(/w\=\d+/g.test(url)){
-                        url = url.replace(/w\=\d+/g,'w='+_ww);
-                        url = url.replace(/h\=\d+/g,'h='+_ww);
-                    }else{
-                        if(/\?/g.test(url)){
-                            url = url + '&w='+_ww+'&h='+_ww;
-                        }else{
-                            url = url + '?w='+_ww+'&h='+_ww;
-                        }
-                    }
-                    if(!/cp\=/g.test(url)){
-                        url = url + '&cp=1';
-                    }
-                }
+                url = url + '?w='+_ww;
             }
             return _this.getImageUrl(url,true);
         },

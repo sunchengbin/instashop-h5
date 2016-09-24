@@ -408,10 +408,10 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var _htm = '';
         if(imgs && imgs.length){
             Base.others.each(imgs,function(item,i){
-                _htm += '<li class=""><img data-img="'+Base.others.cutImg(item,null,'item')+'" src=""/></li>';
+                _htm += '<li class=""><img data-img="'+Base.others.cutImg(item)+'" src=""/></li>';
             });
         }else{
-            _htm += '<li class=""><img data-img="'+Base.others.cutImg(item,null,'item')+'" src=""/></li>';
+            _htm += '<li class=""><img data-img="'+Base.others.cutImg(item)+'" src=""/></li>';
         }
         return _htm;
     });
