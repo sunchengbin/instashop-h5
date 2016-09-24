@@ -291,7 +291,7 @@ define(function(){
         },
         //替换图片url进行裁图
         cutImg : function(url,width,bg){
-            var _ww = Number(width?width:window.outerWidth),
+            var _ww = width?width:$(window).width(),
                 _this = this;
             _ww+=100;
             if(!bg){
