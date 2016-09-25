@@ -15,7 +15,7 @@
     </section>
 {else}
     <section class="shop-header">
-        <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover}" src="">
+        <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
         <div class="clearfix shop-info">
             <div class="shop-img">
                 <img data-img="{$INDEX_DATA.shop.logo}" src=""/>
@@ -51,7 +51,7 @@
                 {foreach $RECOMMEND_ITEM as $item}
                     <li>
                         <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
-                            <div class="lazy" data-img="{$item.img}">
+                            <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                     <span>-{$item.discount.value}%</span>
                                     {if $item.discounting}
@@ -91,7 +91,7 @@
             <ul class="items-list j_item_list clearfix">
                 <li>
                     <a class="item-info j_item_info" data-url="{$tag_list.tag_data.h5_url}" href="javascript:;">
-                        <div class="lazy" data-img="{$tag_list.tag_data.img}">
+                        <div class="lazy" data-img="{$tag_list.tag_data.img|list_img}">
                             {if $tag_list.tag_data.is_discount}
                                 <span>-{$tag_list.tag_data.discount.value}%</span>
                                 {if $tag_list.tag_data.discounting}
@@ -130,7 +130,7 @@
                 {foreach $HOT_ITEM as $item}
                     <li>
                         <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
-                            <div class="lazy" data-img="{$item.img}">
+                            <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                     <span>-{$item.discount.value}%</span>
                                     {if $item.discounting}

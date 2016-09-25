@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-09-25 09:32:52
+/* Smarty version 3.1.30, created on 2016-09-25 09:49:35
   from "/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_57e7294483baf8_38761250',
+  'unifunc' => 'content_57e72d2fc7c220_57044967',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c5072935fcfac0bfc4fe01525f7b90380b0a1a54' => 
     array (
       0 => '/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl',
-      1 => 1474707102,
+      1 => 1474768173,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_57e7294483baf8_38761250 (Smarty_Internal_Template $_smarty_tpl) {
+function content_57e72d2fc7c220_57044967 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"My Page Title"), 0, false);
 ?>
 
@@ -45,7 +45,7 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
     </section>
 <?php } else { ?>
     <section class="shop-header">
-        <img class="shop-header-bg" data-img="<?php echo $_smarty_tpl->tpl_vars['INDEX_DATA']->value['shop']['front_cover'];?>
+        <img class="shop-header-bg" data-img="<?php echo bg_img($_smarty_tpl->tpl_vars['INDEX_DATA']->value['shop']['front_cover']);?>
 " src="">
         <div class="clearfix shop-info">
             <div class="shop-img">
@@ -102,7 +102,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
                     <li>
                         <a class="item-info j_item_info" data-url="<?php echo $_smarty_tpl->tpl_vars['item']->value['h5_url'];?>
 " href="javascript:;">
-                            <div class="lazy" data-img="<?php echo $_smarty_tpl->tpl_vars['item']->value['img'];?>
+                            <div class="lazy" data-img="<?php echo list_img($_smarty_tpl->tpl_vars['item']->value['img']);?>
 ">
                                 <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
                                     <span>-<?php echo $_smarty_tpl->tpl_vars['item']->value['discount']['value'];?>
@@ -165,7 +165,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['tag_list']->value) {
                 <li>
                     <a class="item-info j_item_info" data-url="<?php echo $_smarty_tpl->tpl_vars['tag_list']->value['tag_data']['h5_url'];?>
 " href="javascript:;">
-                        <div class="lazy" data-img="<?php echo $_smarty_tpl->tpl_vars['tag_list']->value['tag_data']['img'];?>
+                        <div class="lazy" data-img="<?php echo list_img($_smarty_tpl->tpl_vars['tag_list']->value['tag_data']['img']);?>
 ">
                             <?php if ($_smarty_tpl->tpl_vars['tag_list']->value['tag_data']['is_discount']) {?>
                                 <span>-<?php echo $_smarty_tpl->tpl_vars['tag_list']->value['tag_data']['discount']['value'];?>
@@ -223,7 +223,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
                     <li>
                         <a class="item-info j_item_info" data-url="<?php echo $_smarty_tpl->tpl_vars['item']->value['h5_url'];?>
 " href="javascript:;">
-                            <div class="lazy" data-img="<?php echo $_smarty_tpl->tpl_vars['item']->value['img'];?>
+                            <div class="lazy" data-img="<?php echo list_img($_smarty_tpl->tpl_vars['item']->value['img']);?>
 ">
                                 <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
                                     <span>-<?php echo $_smarty_tpl->tpl_vars['item']->value['discount']['value'];?>
