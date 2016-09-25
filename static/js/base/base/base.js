@@ -291,8 +291,9 @@ define(function(){
         },
         //替换图片url进行裁图
         cutImg : function(url,width,bg){
-            var _ww = width?width:window.outerWidth,
+            var _ww = width?width:$(window).width(),
                 _this = this;
+            _ww+=100;
             if(!bg){
                 if(/w\=\d+/g.test(url)){
                     url = url.replace(/w\=\d+/g,'w='+_ww);
