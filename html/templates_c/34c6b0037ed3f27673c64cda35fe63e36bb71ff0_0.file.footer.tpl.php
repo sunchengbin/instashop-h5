@@ -32,7 +32,7 @@ echo '<script'; ?>
 <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['STATIC_HOST']->value;?>
 /js/dist/app/<?php echo $_smarty_tpl->tpl_vars['INDEX_JS_NAME']->value;?>
-.js?v=1473244361855"><?php echo '</script'; ?>
+.js?v=1474789866299"><?php echo '</script'; ?>
 >
 
     <?php echo '<script'; ?>

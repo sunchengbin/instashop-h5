@@ -41,7 +41,7 @@ function content_57e4a32c684933_97249350 (Smarty_Internal_Template $_smarty_tpl)
 
   <link href="<?php echo $_smarty_tpl->tpl_vars['STATIC_HOST']->value;?>
 /css/dist/app/<?php echo $_smarty_tpl->tpl_vars['INDEX_CSS_NAME']->value;?>
-.css?v=1473066842680" rel="stylesheet"/>
+.css?v=1474789866298" rel="stylesheet"/>
 </head>
 <body><?php }
 }
