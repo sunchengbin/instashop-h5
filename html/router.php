@@ -35,9 +35,9 @@ function handle()
 
 	$alias = $matches[2];
 
-	if (preg_match('/^\/(\d+)(\?.*)?$/i', $uri, $item_matches))
+	if (preg_match('/^(\/detail)?\/(\d+)(\?.*)?$/i', $uri, $item_matches))
 	{
-		$item_id = $item_matches[1];
+		$item_id = $item_matches[2];
 		$_REQUEST['item_id'] = $item_id;
 		require( dirname(__FILE__).'/../html/detail.php');
 	}
