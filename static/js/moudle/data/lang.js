@@ -135,7 +135,8 @@ define([],function(){
             H5_LINE_CONTACT_ME:'line联系我',
             H5_NOT_EMPTY:'不能为空',
             H5_PRICE_MUST_NUM:'金额必须为大于0的整数',
-            H5_SUBMIT_SUCCESS:'提交成功'
+            H5_SUBMIT_SUCCESS:'提交成功',
+            H5_INDEX_NO_GOOD:'没有商品'
 
         },
 
@@ -366,7 +367,8 @@ define([],function(){
             H5_LINE_CONTACT_ME:'LINE',
             H5_NOT_EMPTY:'tidak boleh dikosongkan',
             H5_PRICE_MUST_NUM:'Jumlah transfer harus lebih besar dari 0',
-            H5_SUBMIT_SUCCESS:'Pengajuan Berhasil'
+            H5_SUBMIT_SUCCESS:'Pengajuan Berhasil',
+            H5_INDEX_NO_GOOD:'Belum ada produk'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

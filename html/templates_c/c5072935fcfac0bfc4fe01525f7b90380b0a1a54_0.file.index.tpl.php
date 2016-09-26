@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-09-25 09:49:35
+/* Smarty version 3.1.30, created on 2016-09-26 17:57:17
   from "/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_57e72d2fc7c220_57044967',
+  'unifunc' => 'content_57e8f0fd937150_70666216',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c5072935fcfac0bfc4fe01525f7b90380b0a1a54' => 
     array (
       0 => '/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl',
-      1 => 1474768173,
+      1 => 1474883835,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_57e72d2fc7c220_57044967 (Smarty_Internal_Template $_smarty_tpl) {
+function content_57e8f0fd937150_70666216 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"My Page Title"), 0, false);
 ?>
 
@@ -89,6 +89,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 
             </ul>
         </div>
+    <?php }?>
+    <?php if (!count($_smarty_tpl->tpl_vars['INDEX_DATA']->value['item_list']['list'])) {?>
+        <section class="no_item">Belum ada produk</section>
     <?php }?>
     <section class="items-box j_hot_box j_box">
         <?php if (count($_smarty_tpl->tpl_vars['RECOMMEND_ITEM']->value)) {?>

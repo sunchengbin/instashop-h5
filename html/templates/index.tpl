@@ -44,6 +44,9 @@
             </ul>
         </div>
     {/if}
+    {if !$INDEX_DATA.item_list.list|@count}
+        <section class="no_item">Belum ada produk</section>
+    {/if}
     <section class="items-box j_hot_box j_box">
         {if $RECOMMEND_ITEM|@count}
             <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>

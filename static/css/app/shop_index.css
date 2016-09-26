@@ -532,4 +532,9 @@ footer .btn i{
 .slide_tab i.cur{
     background-color: #F5A623;
 }
+.no_item{
+    padding: 5rem 1rem 5rem;
+    text-align: center;
+    font-size: 1.6rem;
+}
 
