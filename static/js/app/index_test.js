@@ -17,7 +17,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                     Slide.createNew({
                         dom: document.querySelector('.j_banner'),
                         needTab: true,
-                        auto : false
+                        auto : true
                     });
                 }
             }
