@@ -511,6 +511,7 @@ footer .btn i{
     position: relative;
     width: 100%;
     overflow: hidden;
+    margin:.5rem 0;
 }
 .slide_tab{
     position: absolute;
