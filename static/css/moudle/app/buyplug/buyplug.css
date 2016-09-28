@@ -204,6 +204,8 @@
 }
 .buy-plug .btn{
     border-radius: 0;
+    height: 4rem;
+    line-height: 4rem;
 }
 .item-info-cont li.disable{
     color: #d8d8d8;
