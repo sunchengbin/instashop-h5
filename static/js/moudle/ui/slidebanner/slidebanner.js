@@ -37,8 +37,8 @@ define(function() {
 			_this.curPage = param.curPage || 1;
 
 			// 容器宽度
-			//this.boxWidth = this.parentDom.clientWidth;
-			_this.boxWidth = window.innerWidth;
+			this.boxWidth = this.parentDom.clientWidth;
+			//_this.boxWidth = window.innerWidth;
 			_this.boxHeight = _this.parentDom.clientHeight;
 
 			// 手指开始位置

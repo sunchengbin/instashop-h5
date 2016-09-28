@@ -294,6 +294,7 @@ define(function(){
             var _ww = width?width:$(window).width(),
                 _this = this;
             _ww+=100;
+            _ww = _ww > 640?640:_ww;
             if(!bg){
                 if(/w\=\d+/g.test(url)){
                     url = url.replace(/w\=\d+/g,'w='+_ww);

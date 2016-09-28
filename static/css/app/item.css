@@ -132,7 +132,6 @@ body{
 .buy-btns{
     /*margin-left:20%;*/
 }
-
 .buy-btns a{
     float:left;
     display: block;
@@ -166,7 +165,7 @@ body{
 .banner-box{
     min-height: 320px;
     position: relative;
-    width: 100%;
+    max-width: 640px;
     overflow: hidden;
 }
 .slide_tab{
