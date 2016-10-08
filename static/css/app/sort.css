@@ -46,7 +46,7 @@ body{
     color: #666;
 }
 .shop-header-nav button i.icon-back-font{
-    font-size: 2rem;
+    /*font-size: 2rem;*/
 }
 .empty-sort{
     padding: 4rem 0;
