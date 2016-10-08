@@ -49,18 +49,18 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/404.js"></script>
     <script>
         var _body = document.querySelector('body');
         var _htm = '<div class=""><img src="<?=STATIC_HOST?>/images/app/404.png"/>';
         _htm +='<p>Halaman ini tidak dapat ditemukan!</p>';
         if(history.length > 2){
-            _htm+='<a class="" href="javascript:;">Kembali ke halaman sebelumnya </a>';
+            _htm+='<a class="" href="javascript:history.back();">Kembali ke halaman sebelumnya </a>';
         }else{
-            _htm+='<a class="" href="javascript:;">Laporkan Masalah</a>';
+            _htm+='<a class="j_error" href="javascript:;">Laporkan Masalah</a>';
         }
         _htm+='</div>';
         _body.innerHTML = _htm;
-
     </script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
