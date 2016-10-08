@@ -14,11 +14,54 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
     <title>404</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            max-width: 640px;
+            margin: 85px auto 0;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        p{
+            margin:10px 0 30px;
+        }
+        img{
+            width:80px;
+            height:80px;
+        }
+        a{
+            display: block;
+            margin: 0 auto;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            color: #fff;
+            background-color: #43CB9C;
+            width: 250px;
+            border-radius: 2px;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <div>
+    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
+    <script>
+        var _body = document.querySelector('body');
+        var _htm = '<div class=""><img src="<?=STATIC_HOST?>/images/app/404.png"/>';
+        _htm +='<p>Halaman ini tidak dapat ditemukan!</p>';
+        if(history.length > 2){
+            _htm+='<a class="" href="javascript:;">Kembali ke halaman sebelumnya </a>';
+        }else{
+            _htm+='<a class="" href="javascript:;">Laporkan Masalah</a>';
+        }
+        _htm+='</div>';
+        _body.innerHTML = _htm;
 
-    </div>
+    </script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
