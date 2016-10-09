@@ -7,7 +7,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
         init : function(){
             var _this = this;
             var ItemHtm = '<div>'+Lang.H5_LOADING+'</div>';
-            if(init_data){
+            if(init_data && init_data.code == 200){
                 ItemHtm= Hbs.compile(Item)({
                     data : init_data,
                     lang : Lang,
@@ -18,7 +18,12 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     timeLang : _this.discountTime(init_data.item.discount.now_time,init_data.item.discount.end_time)
                 });
             }else{
-                ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
+                if(init_data.code == 420402){
+                    ItemHtm ='<div class="no-exists"><img src="'+Config.host.host+'/images/app/404.png"/><p>Produk tidak ditemukan!</p></div>';
+                }else{
+                    ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
+                }
+
             }
             $('.j_php_loding').remove();
             $('body').prepend(ItemHtm);
