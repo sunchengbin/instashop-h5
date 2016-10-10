@@ -79,4 +79,12 @@ function get_init_data($path, $params){
     return json_encode($ret);
 }
 
+/**
+* 根据用户自己的域名获取seller_id
+**/
+function get_seller_id_by_personal_host($host)
+{
+	return 40778;
+}
+
 ?>
