@@ -22,7 +22,7 @@ define([],function(){
             //线上
             //hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
             //host : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/',
-            //imgUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/static/images',
+            //imgUrl : URL_HTTP_TYPE+'//static.instashop.co.id/images',
             //hrefUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',
             //hrefHost : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html',
             //actionUrl : 'https://apip.instashop.co.id/instashop/',
@@ -32,7 +32,7 @@ define([],function(){
             //本地开发环境
             hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
             host : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/',
-            imgUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/static/images',
+            imgUrl : URL_HTTP_TYPE+'//static-test.instashop.co.id/images',
             hrefUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',
             hrefHost : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html',
             actionUrl : 'https://apip-test.instashop.co.id/instashop/',

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-10-09 11:06:16
+/* Smarty version 3.1.30, created on 2016-10-10 11:06:31
   from "/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_57f9b428cd4970_99965574',
+  'unifunc' => 'content_57fb05b7cd38b0_71995457',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c5072935fcfac0bfc4fe01525f7b90380b0a1a54' => 
     array (
       0 => '/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl',
-      1 => 1475982293,
+      1 => 1476068765,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_57f9b428cd4970_99965574 (Smarty_Internal_Template $_smarty_tpl) {
+function content_57fb05b7cd38b0_71995457 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"My Page Title"), 0, false);
 ?>
 

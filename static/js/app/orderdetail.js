@@ -17,7 +17,7 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact','base'
                 });
             }else{
                 if(init_data.code == 430016){
-                    ItemHtm ='<div class="no-exists"><img src="'+Config.host.host+'/images/app/404.png"/><p>Pesanan tidak ditemukan!</p></div>';
+                    ItemHtm ='<div class="no-exists"><img src="'+Config.host.imgUrl+'/app/404.png"/><p>Pesanan tidak ditemukan!</p></div>';
                 }else{
                     ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
                 }

@@ -13,13 +13,14 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     lang : Lang,
                     hrefUrl : Config.host.hrefUrl,
                     host:Config.host.host,
+                    imgUrl:Config.host.imgUrl,
                     shopUrl:Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id,
                     num : Cart(init_data).getCartNum(),
                     timeLang : _this.discountTime(init_data.item.discount.now_time,init_data.item.discount.end_time)
                 });
             }else{
                 if(init_data.code == 420402){
-                    ItemHtm ='<div class="no-exists"><img src="'+Config.host.host+'/images/app/404.png"/><p>Produk tidak ditemukan!</p></div>';
+                    ItemHtm ='<div class="no-exists"><img src="'+Config.host.imgUrl+'/app/404.png"/><p>Produk tidak ditemukan!</p></div>';
                 }else{
                     ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
                 }
