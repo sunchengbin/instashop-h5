@@ -12,13 +12,15 @@ function transItems($items){
     $tags = getTags($items);
     return [
         'hot' => $hot,
-        'item' => $item,
+        'item' => $items,
         'tags' => $tags['tags']
     ];
 };
 function getTags($list){
     if(!count($list))return null;
     $data = [];
+	$sort = [];
+	$result = [];
     for ($i=0; $i < count($list);$i++) {
         if($list[$i]["index_type"] == 'tags'){
             if($data[$list[$i]["tag_id"]]){

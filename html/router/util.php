@@ -59,7 +59,10 @@ function get_init_php_data($path, $params){
         $cookie_name = "browser_id";
     }
 
-    $browser_id = $_COOKIE[$cookie_name];
+	if (isset($_COOKIE[$cookie_name]))
+	{
+		$browser_id = $_COOKIE[$cookie_name];
+	}
     $params['client_uuid'] = $browser_id;
 
     $api = $host.$path.'?param='.json_encode([ 'edata' => $params  ]);
