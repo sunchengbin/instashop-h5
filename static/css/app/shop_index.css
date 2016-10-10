@@ -91,6 +91,7 @@ section{
     background-color: #f5f5f5;
     position: relative;
     z-index: 1;
+    overflow:hidden;
 }
 .shop-explain > div p{
     text-align: center;
