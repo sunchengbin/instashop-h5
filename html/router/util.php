@@ -59,6 +59,7 @@ function get_init_php_data($path, $params){
         $cookie_name = "browser_id";
     }
 
+	$browser_id = null;
 	if (isset($_COOKIE[$cookie_name]))
 	{
 		$browser_id = $_COOKIE[$cookie_name];
