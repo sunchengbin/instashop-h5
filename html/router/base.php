@@ -12,7 +12,7 @@ function transItems($items){
     $tags = getTags($items);
     return [
         'hot' => $hot,
-        'item' => $items,
+        'item' => $item,
         'tags' => $tags['tags']
     ];
 };
