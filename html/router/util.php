@@ -42,9 +42,6 @@ function deal_headers() {
 }
 
 function get_init_php_data($path, $params){
-    error_reporting(E_ALL);
-    ini_set("display_errors", 0);
-
     require_once('HttpProxy.php');
 
     if (strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
