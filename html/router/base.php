@@ -17,27 +17,32 @@ function transItems($items){
     ];
 };
 function getTags($list){
+
     if(!count($list))return null;
     $data = [];
 	$sort = [];
 	$result = [];
     for ($i=0; $i < count($list);$i++) {
+
         if($list[$i]["index_type"] == 'tags'){
+
             if($data[$list[$i]["tag_id"]]){
                 $data[$list[$i]["tag_id"]]["tag_data"][] = $list[$i];
             }else{
                 $sort[] = $list[$i]["tag_id"];
                 $data[$list[$i]["tag_id"]] = [
                     'id' => $list[$i]["tag_id"],
-                    'name' => urlencode($list[$i]["tag_name"]),
-                    'tag_data' => $list[$i]
+                    'name' => $list[$i]["tag_name"],
+                    'tag_data' => [$list[$i]]
                 ];
             }
         }
     }
+    $result = [];
     for($j=0;$j < count($sort);$j++){
         $result[] = $data[$sort[$j]];
     }
+
     return [
         'tags' => $result,
         'sort' => $sort
