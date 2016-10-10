@@ -7,23 +7,29 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
         init : function(){
             var _this = this;
             var ItemHtm = '<div>'+Lang.H5_LOADING+'</div>';
-            if(init_data){
+            if(init_data && init_data.code == 200){
                 ItemHtm= Hbs.compile(Item)({
                     data : init_data,
                     lang : Lang,
                     hrefUrl : Config.host.hrefUrl,
                     host:Config.host.host,
+                    imgUrl:Config.host.imgUrl,
                     shopUrl:Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id,
                     num : Cart(init_data).getCartNum(),
                     timeLang : _this.discountTime(init_data.item.discount.now_time,init_data.item.discount.end_time)
                 });
             }else{
-                ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
+                if(init_data.code == 420402){
+                    ItemHtm ='<div class="no-exists"><img src="'+Config.host.imgUrl+'/app/404.png"/><p>Produk tidak ditemukan!</p></div>';
+                }else{
+                    ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
+                }
+
             }
             $('.j_php_loding').remove();
             $('body').prepend(ItemHtm);
-            Lazyload();
-            if(init_data) {
+            if(init_data && init_data.code == 200) {
+                Lazyload();
                 Slide.createNew({
                     dom: document.querySelector('.j_banner'),
                     needTab: true,
@@ -32,9 +38,10 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 Buyplug({
                     data: init_data
                 });
+                this.getImNum();
+                this.handleFn();
             }
-            this.getImNum();
-            this.handleFn();
+
         },
         getImNum : function(){
             var im_id = localStorage.getItem('UID'),//im页面种如cookie

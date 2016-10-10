@@ -4,10 +4,10 @@
 require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact','base'],function(Lang,Hbs,OrderDetail,Config,Contact,Base) {
     var OD = {
         init : function(){
-            localStorage.setItem('BankInfo',JSON.stringify(init_data.order.pay_info.banks));
-            localStorage.setItem('OrderInfo',JSON.stringify(init_data.order));
             var ItemHtm = '<div>'+Lang.H5_LOADING+'</div>';
-            if(init_data){
+            if(init_data && init_data.code == 200){
+                localStorage.setItem('BankInfo',JSON.stringify(init_data.order.pay_info.banks));
+                localStorage.setItem('OrderInfo',JSON.stringify(init_data.order));
                 ItemHtm= Hbs.compile(OrderDetail)({
                     data : init_data,
                     lang : Lang,
@@ -16,7 +16,11 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact','base'
                     shopUrl: Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.order.shop_info.id,
                 });
             }else{
-                ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
+                if(init_data.code == 430016){
+                    ItemHtm ='<div class="no-exists"><img src="'+Config.host.imgUrl+'/app/404.png"/><p>Pesanan tidak ditemukan!</p></div>';
+                }else{
+                    ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
+                }
             }
             $('body').prepend(ItemHtm);
             var _this = this;

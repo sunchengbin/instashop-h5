@@ -16,6 +16,8 @@
 }
 .dialog-footer{
     text-align: right;
+    padding-top:0;
+    padding-bottom: 8px;
 }
 .dialog-footer a{
     display: inline-block;
