@@ -27,8 +27,8 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             }
             $('.j_php_loding').remove();
             $('body').prepend(ItemHtm);
-            Lazyload();
-            if(init_data) {
+            if(init_data && init_data.code == 200) {
+                Lazyload();
                 Slide.createNew({
                     dom: document.querySelector('.j_banner'),
                     needTab: true,
@@ -37,9 +37,10 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 Buyplug({
                     data: init_data
                 });
+                this.getImNum();
+                this.handleFn();
             }
-            this.getImNum();
-            this.handleFn();
+
         },
         getImNum : function(){
             //var im_id = Base.others.getCookie('insta-im-id');
