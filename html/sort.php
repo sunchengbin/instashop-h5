@@ -34,7 +34,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $path = 'v1/tag/'.$sort_id.'/items';
         $ret = get_init_php_data($path, $params);
         $json = json_decode($ret, true);
-        echo '<title>'.$json.tag.name.'</title>';
+        echo '<title>'.$json['tag']['name'].'</title>';
         echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
     ?>
 </head>
