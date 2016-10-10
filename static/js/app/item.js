@@ -37,10 +37,6 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             this.handleFn();
         },
         getImNum : function(){
-            //var im_id = Base.others.getCookie('insta-im-id');
-            //if (!im_id) {
-            //    im_id = Base.others.getCookie('test-insta-im-id');
-            //}
             var im_id = localStorage.getItem('UID'),//im页面种如cookie
                 toImId = init_data.item.shop['im_id'];
             if (im_id && toImId) {
@@ -61,29 +57,6 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 });
             }
         },
-        //getImNum : function(){
-        //    var im_id = Base.others.getCookie('insta-im-id');
-        //    if (!im_id) {
-        //        im_id = Base.others.getCookie('test-insta-im-id');
-        //    }
-        //    var toImId = init_data.item.shop['im_id'];
-        //    if (im_id && toImId) {
-        //        var reqData = {
-        //            edata: {
-        //                action: 'unreadnum',
-        //                uid: toImId,
-        //                uid2: im_id
-        //            }
-        //        };
-        //        Ajax.getJsonp(Config.host.actionUrl+Config.actions.imNum + '?param=' + JSON.stringify(reqData), function(data){
-        //            if (data && data.count > 0) {
-        //                $('.j_im_num').show();
-        //            } else {
-        //                $('.j_im_num').hide();
-        //            }
-        //        });
-        //    }
-        //},
         discountTime : function(nowTime,endTime){
             var _nt = this.datetime_to_unix(nowTime),
                 _et = this.datetime_to_unix(endTime),
@@ -177,24 +150,24 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                             }
                         }
                     }else{
-                        if(/\/s\//g.test(_local_url)){
-                            console.log(1)
-                            history.back();
-                        }else{
-                            if(/\?/g.test(_local_url)){
-                                console.log(2)
-                                location.href = localStorage.getItem('FromUrl')+'&item=back';
-                            }else{
-                                console.log(/\.instashop\.co\.id\/\d+/g.test(_local_url))
-                                if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){
-                                    var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
-                                    location.href = _url;
-                                }else{
-                                    console.log(3)
-                                    location.href = localStorage.getItem('FromUrl')+'?item=back';
-                                }
-                            }
-                        }
+                        //if(/\/s\//g.test(_local_url)){
+                        //    console.log(1)
+                        //    history.back();
+                        //}else{
+                        //    if(/\?/g.test(_local_url)){
+                        //        console.log(2)
+                        //        location.href = localStorage.getItem('FromUrl')+'&item=back';
+                        //    }else{
+                        //        console.log(/\.instashop\.co\.id\/\d+/g.test(_local_url))
+                        //        if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){
+                        //            var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
+                        //            location.href = _url;
+                        //        }else{
+                        //            console.log(3)
+                        //            location.href = localStorage.getItem('FromUrl')+'?item=back';
+                        //        }
+                        //    }
+                        //}
                     }
                 }else{
                     Common.saveFromUrl(function(){

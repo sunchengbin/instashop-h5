@@ -1,5 +1,6 @@
 <?php
 include_once( dirname(__FILE__).'/../html/router/common.php');
+include_once( dirname(__FILE__).'/../html/router/util.php');
 
 $application_run_flag = false;
 function shutdown_func()
@@ -24,16 +25,14 @@ function handle()
 	$host = $_SERVER['HTTP_HOST'];
 	$uri = $_SERVER['REQUEST_URI'];
 	$h_match = preg_match($host_preg, $host, $matches);
-	if (!$h_match)
+	if ($h_match)
 	{
-		@header("http/1.1 404 not found");
-		@header("status: 404 not found");
-		Log::debug('404');
-		echo '404 not found';//直接输出页面错误信息
-		exit();
+		$alias = $matches[2];
 	}
-
-	$alias = $matches[2];
+	else
+	{
+		$alias = get_seller_id_by_personal_host($host);
+	}
 
 	if (preg_match('/^(\/detail)?\/(\d+)(\?.*)?$/i', $uri, $item_matches))
 	{
