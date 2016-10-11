@@ -5,14 +5,18 @@
 @import "../moudle/app/contact/contact.css";
 body{
     background-color: #f5f5f5;
+    padding-bottom:3.6rem;
 }
-.address-box,.logistics-box,.list-box,.order-state{
+.address-box,.logistics-box,.list-box,.order-state,.shop-info-box{
     padding:0 1rem;
     background-color: #fff;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+}
+.shop-info-box{
+    padding-bottom: 1rem;
 }
 .user-info{
-    color: #999;
+    color: #666;
     padding-right: 1rem;
     line-height: 1.6rem;
 }
@@ -32,12 +36,12 @@ body{
     margin-top:.5rem;
 }
 .user-address-info{
-    color: #999;
+    color: #666;
     line-height: 1.8rem;
 }
 .user-address-info i,.logistics-box i,.cart-item i{
     font-size: 1.8rem;
-    color: #999;
+    color: #666;
 }
 .cart-item i{
     width: auto;
@@ -48,7 +52,7 @@ body{
     line-height: 3rem;
     padding: .5rem 1rem;
     margin: 2rem 0;
-    color: #999;
+    color: #666;
 }
 .logistics-box div{
     font-size: 1.6rem;
@@ -67,17 +71,13 @@ body{
 }
 .order-info p{
     font-size: 1.4rem;
-    color: #999;
+    color: #666;
     padding-top: 1rem;
 }
 .order-info p span{
     color: #F5A623;
 }
-.list-box{
-    padding-bottom: 2rem;
-}
 .shop-info{
-    /*border-bottom: 1px solid #d8d8d8;*/
     padding: 1rem 0;
 }
 .shop-info img{
@@ -100,18 +100,18 @@ body{
     text-align: center;
     padding: 1rem;
     font-size: 1.4rem;
-    color: #999;
+    color: #666;
 }
 .order-state > p{
     line-height: 3rem;
     font-size: 1.4rem;
     padding: .5rem 0;
-    color: #999;
+    color: #666;
 }
 .order-state > div{
     font-size: 1.4rem;
     padding: .5rem 0;
-    color: #999;
+    color: #666;
     position: relative;
     line-height: 3rem;
 }
@@ -137,7 +137,7 @@ body{
     font-size: 1.4rem;
 }
 .logistics-info a{
-    color: #999;
+    color: #666;
     display: block;
     position: relative;
 }
@@ -158,10 +158,13 @@ body{
 }
 .order-state p a{
     display: block;
+    color: #666;
+}
+.order-state i{
     color: #999;
 }
 .order-state p:first-child{
-   position: relative;
+    position: relative;
 }
 
 .user-info-box:before{
@@ -193,9 +196,9 @@ body{
 .buyer-note{
     padding: 1rem;
     background-color: #fff;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     font-size: 1.4rem;
-    color: #999;
+    color: #666;
 }
 .cart-item p{
     line-height: 1.5;
