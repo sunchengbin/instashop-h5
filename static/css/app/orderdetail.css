@@ -25,6 +25,9 @@ body{
     font-size: 1.6rem;
     margin-right: .2rem;
 }
+.user-info span.fr{
+    color: #43CB9C;
+}
 .user-info i.icon-phone-font{
     font-size: 1.4rem;
 }
@@ -165,6 +168,7 @@ body{
 }
 .order-state p:first-child{
     position: relative;
+    color:#aaa;
 }
 
 .user-info-box:before{
@@ -202,6 +206,9 @@ body{
 }
 .cart-item p{
     line-height: 1.5;
+}
+.cart-item p.price{
+    color: #F5A623;
 }
 .prove-btn{
     position: fixed;
