@@ -74,8 +74,8 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             if($('.icon-radioed-font').length){
                 _freight = Number($('.icon-radioed-font').attr('data-price'));
             }
-            $('.j_total').html('Rp: '+Base.others.priceFormat((_sum+_freight)));
-            $('.j_freight').html('Rp: '+Base.others.priceFormat(_freight));
+            $('.j_total').html('Rp '+Base.others.priceFormat((_sum+_freight)));
+            $('.j_freight').html('Rp '+Base.others.priceFormat(_freight));
         },
         selectQuick : function(opts){
             var _this = this,

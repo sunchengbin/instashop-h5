@@ -61,10 +61,10 @@
                     <div class="">
                         <p class="name">{{item_title}}</p>
                         {{#if item_sku_title}}
-                            <p class="type">{{../../lang.H5_ITEM_SKU}}:{{item_sku_title}}</p>
+                            <p class="type">{{../../lang.H5_ITEM_SKU}}: {{item_sku_title}}</p>
                         {{/if}}
-                        <p class="num">{{../lang.H5_QUANTITY}}:{{quantity}}</p>
-                        <p class="price clearfix">{{../lang.H5_PRICE}}:{{#if discount.value}}<span class="fr">-{{transpricevalue discount.value}}%</span>{{/if}}Rp {{transprice price}}</p>
+                        <p class="num">{{../lang.H5_QUANTITY}}: {{quantity}}</p>
+                        <p class="price clearfix">{{../lang.H5_PRICE}}: {{#if discount.value}}<span class="fr">-{{transpricevalue discount.value}}%</span>{{/if}}Rp {{transprice price}}</p>
                     </div>
                 </li>
             {{/each}}

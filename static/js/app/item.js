@@ -44,10 +44,6 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
 
         },
         getImNum : function(){
-            //var im_id = Base.others.getCookie('insta-im-id');
-            //if (!im_id) {
-            //    im_id = Base.others.getCookie('test-insta-im-id');
-            //}
             var im_id = localStorage.getItem('UID'),//im页面种如cookie
                 toImId = init_data.item.shop['im_id'];
             if (im_id && toImId) {
@@ -68,29 +64,6 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 });
             }
         },
-        //getImNum : function(){
-        //    var im_id = Base.others.getCookie('insta-im-id');
-        //    if (!im_id) {
-        //        im_id = Base.others.getCookie('test-insta-im-id');
-        //    }
-        //    var toImId = init_data.item.shop['im_id'];
-        //    if (im_id && toImId) {
-        //        var reqData = {
-        //            edata: {
-        //                action: 'unreadnum',
-        //                uid: toImId,
-        //                uid2: im_id
-        //            }
-        //        };
-        //        Ajax.getJsonp(Config.host.actionUrl+Config.actions.imNum + '?param=' + JSON.stringify(reqData), function(data){
-        //            if (data && data.count > 0) {
-        //                $('.j_im_num').show();
-        //            } else {
-        //                $('.j_im_num').hide();
-        //            }
-        //        });
-        //    }
-        //},
         discountTime : function(nowTime,endTime){
             var _nt = this.datetime_to_unix(nowTime),
                 _et = this.datetime_to_unix(endTime),
@@ -138,19 +111,20 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             if($('[data-time]').length){
                 this.changeTime();
             }
-            if($('.txt-hide').height() > 33){
+            if($('.txt-hide').height() > 44){
                 $('.down-btn').show();
+                $('body').on('click','.j_down_box',function(){
+                    if($('.j_down_btn').is('.down-btn')){
+                        $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
+                        $('.txt').css({'maxHeight':'none'});
+                    }else{
+                        $('.j_down_btn').removeClass('up-btn').addClass('down-btn');
+                        $('.txt').css({'maxHeight':'44px'});
+                    }
+                });
             }
             Fastclick.attach(document.body);
-            $('body').on('click','.j_down_box',function(){
-                if($('.j_down_btn').is('.down-btn')){
-                    $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
-                    $('.txt').css({'maxHeight':'none'});
-                }else{
-                    $('.j_down_btn').removeClass('up-btn').addClass('down-btn');
-                    $('.txt').css({'maxHeight':'44px'});
-                }
-            });
+
             $('body').on('click','.j_shop_info',function(){
                 var _this = $(this),
                     _url = _this.attr('data-url');

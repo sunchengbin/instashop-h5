@@ -50,130 +50,132 @@
                 </ul>
             </div>
         {/if}
-        {if !$INDEX_DATA.item_list.list|@count}
-            <section class="no_item">Belum ada produk</section>
-        {/if}
-        <section class="items-box j_hot_box j_box">
-            {if $RECOMMEND_ITEM|@count}
-                <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>
-                <ul class="items-list clearfix j_hot_list">
-                    {foreach $RECOMMEND_ITEM as $item}
-                        <li>
-                            <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
-                                <div class="lazy" data-img="{$item.img|list_img}">
-                                    {if $item.is_discount}
-                                        <span>-{$item.discount.value}%</span>
-                                        {if $item.discounting}
-                                            <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span></p>
-                                        {else}
-                                            <p>Coming Soon</p>
-                                        {/if}
-                                    {/if}
-                                </div>
-                                <p class="title">{$item.item_comment}</p>
-                                {if $item.price lt 0}
-                                    <p class="price"></p>
-                                    {elseif $item.is_discount}
-                                        <p class="price cost-price">Rp {$item.price|priceFormat}</p>
-                                    {else}
-                                        <p class="price">Rp {$item.price|priceFormat}</p>
-                                {/if}
-                                {if $item.is_discount}
-                                    {if $item.discounting}
-                                        <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
-                                    {else}
-                                        <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
-                                    {/if}
-                                {else}
-                                    <p class="discount-price"></p>
-                                {/if}
-                            </a>
-                        </li>
-                    {/foreach}
-                </ul>
+        <div class="item-list-wraper">
+            {if !$INDEX_DATA.item_list.list|@count}
+                <section class="no_item">Belum ada produk</section>
             {/if}
-        </section>
-
-        {foreach $TAGS_ITEM as $tag_list}
-            <section class="items-box j_box" data-tagid="{$tag_list.id}">
-                <p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="{$HOST_NAME}/k/{$tag_list.id}">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>{$tag_list.name}</em></p>
-                <ul class="items-list j_item_list clearfix">
-                    {foreach $tag_list.tag_data as $item}
-                        <li>
-                            <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
-                                <div class="lazy" data-img="{$item.img|list_img}">
-                                    {if $item.is_discount}
-                                        <span>-{$item.discount.value}%</span>
-                                        {if $item.discounting}
-                                            <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span></p>
-                                        {else}
-                                            <p>Coming Soon</p>
+            <section class="items-box j_hot_box j_box">
+                {if $RECOMMEND_ITEM|@count}
+                    <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>
+                    <ul class="items-list clearfix j_hot_list">
+                        {foreach $RECOMMEND_ITEM as $item}
+                            <li>
+                                <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                                    <div class="lazy" data-img="{$item.img|list_img}">
+                                        {if $item.is_discount}
+                                            <span>-{$item.discount.value}%</span>
+                                            {if $item.discounting}
+                                                <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span></p>
+                                            {else}
+                                                <p>Coming Soon</p>
+                                            {/if}
                                         {/if}
-                                    {/if}
-                                </div>
-                                <p class="title">{$item.item_comment}</p>
-                                {if $item.price lt 0}
+                                    </div>
+                                    <p class="title">{$item.item_comment}</p>
+                                    {if $item.price lt 0}
                                         <p class="price"></p>
-                                    {elseif $item.is_discount}
-                                        <p class="price cost-price">Rp {$item.price|priceFormat}</p>
-                                    {else}
-                                        <p class="price">Rp {$item.price|priceFormat}</p>
-                                {/if}
-                                {if $item.is_discount}
-                                    {if $item.discounting}
-                                        <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
-                                    {else}
-                                        <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
-                                    {/if}
-                                {else}
-                                    <p class="discount-price"></p>
-                                {/if}
-                            </a>
-                        </li>
-                    {/foreach}
-                </ul>
-            </section>
-        {/foreach}
-        <section class="items-box j_item_box j_box">
-            {if $HOT_ITEM|@count}
-                <p class="item-title b-bottom"><span></span>Hot Item</p>
-                <ul class="items-list j_item_list clearfix">
-                    {foreach $HOT_ITEM as $item}
-                        <li>
-                            <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
-                                <div class="lazy" data-img="{$item.img|list_img}">
-                                    {if $item.is_discount}
-                                        <span>-{$item.discount.value}%</span>
-                                        {if $item.discounting}
-                                            <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span></p>
+                                        {elseif $item.is_discount}
+                                            <p class="price cost-price">Rp {$item.price|priceFormat}</p>
                                         {else}
-                                            <p>Coming Soon</p>
+                                            <p class="price">Rp {$item.price|priceFormat}</p>
+                                    {/if}
+                                    {if $item.is_discount}
+                                        {if $item.discounting}
+                                            <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                        {else}
+                                            <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
                                         {/if}
-                                    {/if}
-                                </div>
-                                <p class="title">{$item.item_comment}</p>
-                                {if $item.price lt 0}
-                                    <p class="price"></p>
-                                    {elseif $item.is_discount}
-                                        <p class="price cost-price">Rp {$item.price|priceFormat}</p>
                                     {else}
-                                        <p class="price">Rp {$item.price|priceFormat}</p>
-                                {/if}
-                                {if $item.is_discount}
-                                    {if $item.discounting}
-                                        <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
-                                    {else}
-                                        <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                        <p class="discount-price"></p>
                                     {/if}
-                                {else}
-                                    <p class="discount-price"></p>
-                                {/if}
-                            </a>
-                        </li>
-                    {/foreach}
-                </ul>
-            {/if}
-        </section>
+                                </a>
+                            </li>
+                        {/foreach}
+                    </ul>
+                {/if}
+            </section>
+
+            {foreach $TAGS_ITEM as $tag_list}
+                <section class="items-box j_box" data-tagid="{$tag_list.id}">
+                    <p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="{$HOST_NAME}/k/{$tag_list.id}">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>{$tag_list.name}</em></p>
+                    <ul class="items-list j_item_list clearfix">
+                        {foreach $tag_list.tag_data as $item}
+                            <li>
+                                <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                                    <div class="lazy" data-img="{$item.img|list_img}">
+                                        {if $item.is_discount}
+                                            <span>-{$item.discount.value}%</span>
+                                            {if $item.discounting}
+                                                <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span></p>
+                                            {else}
+                                                <p>Coming Soon</p>
+                                            {/if}
+                                        {/if}
+                                    </div>
+                                    <p class="title">{$item.item_comment}</p>
+                                    {if $item.price lt 0}
+                                            <p class="price"></p>
+                                        {elseif $item.is_discount}
+                                            <p class="price cost-price">Rp {$item.price|priceFormat}</p>
+                                        {else}
+                                            <p class="price">Rp {$item.price|priceFormat}</p>
+                                    {/if}
+                                    {if $item.is_discount}
+                                        {if $item.discounting}
+                                            <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                        {else}
+                                            <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                        {/if}
+                                    {else}
+                                        <p class="discount-price"></p>
+                                    {/if}
+                                </a>
+                            </li>
+                        {/foreach}
+                    </ul>
+                </section>
+            {/foreach}
+            <section class="items-box j_item_box j_box">
+                {if $HOT_ITEM|@count}
+                    <p class="item-title b-bottom"><span></span>Hot Item</p>
+                    <ul class="items-list j_item_list clearfix">
+                        {foreach $HOT_ITEM as $item}
+                            <li>
+                                <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                                    <div class="lazy" data-img="{$item.img|list_img}">
+                                        {if $item.is_discount}
+                                            <span>-{$item.discount.value}%</span>
+                                            {if $item.discounting}
+                                                <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span></p>
+                                            {else}
+                                                <p>Coming Soon</p>
+                                            {/if}
+                                        {/if}
+                                    </div>
+                                    <p class="title">{$item.item_comment}</p>
+                                    {if $item.price lt 0}
+                                        <p class="price"></p>
+                                        {elseif $item.is_discount}
+                                            <p class="price cost-price">Rp {$item.price|priceFormat}</p>
+                                        {else}
+                                            <p class="price">Rp {$item.price|priceFormat}</p>
+                                    {/if}
+                                    {if $item.is_discount}
+                                        {if $item.discounting}
+                                            <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                        {else}
+                                            <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                        {/if}
+                                    {else}
+                                        <p class="discount-price"></p>
+                                    {/if}
+                                </a>
+                            </li>
+                        {/foreach}
+                    </ul>
+                {/if}
+            </section>
+        </div>
         <section class="sort-list-wraper j_sort_box">
             <p>Kategori produk</p>
             <ul>
