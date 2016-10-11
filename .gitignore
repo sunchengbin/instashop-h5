@@ -1,3 +1,6 @@
 .idea
 *.php.swp
 
+.DS_Store
+php_errors.log
+build.sh
