@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-10-10 18:01:50
+/* Smarty version 3.1.30, created on 2016-10-11 17:13:58
   from "/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_57fb670e8315e5_68701037',
+  'unifunc' => 'content_57fcad563db486_34675399',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c5072935fcfac0bfc4fe01525f7b90380b0a1a54' => 
     array (
       0 => '/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl',
-      1 => 1476093708,
+      1 => 1476177234,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_57fb670e8315e5_68701037 (Smarty_Internal_Template $_smarty_tpl) {
+function content_57fcad563db486_34675399 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"My Page Title"), 0, false);
 ?>
 
@@ -97,200 +97,202 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                 </ul>
             </div>
         <?php }?>
-        <?php if (!count($_smarty_tpl->tpl_vars['INDEX_DATA']->value['item_list']['list'])) {?>
-            <section class="no_item">Belum ada produk</section>
-        <?php }?>
-        <section class="items-box j_hot_box j_box">
-            <?php if (count($_smarty_tpl->tpl_vars['RECOMMEND_ITEM']->value)) {?>
-                <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>
-                <ul class="items-list clearfix j_hot_list">
-                    <?php
+        <div class="item-list-wraper">
+            <?php if (!count($_smarty_tpl->tpl_vars['INDEX_DATA']->value['item_list']['list'])) {?>
+                <section class="no_item">Belum ada produk</section>
+            <?php }?>
+            <section class="items-box j_hot_box j_box">
+                <?php if (count($_smarty_tpl->tpl_vars['RECOMMEND_ITEM']->value)) {?>
+                    <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>
+                    <ul class="items-list clearfix j_hot_list">
+                        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['RECOMMEND_ITEM']->value, 'item');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 ?>
-                        <li>
-                            <a class="item-info j_item_info" data-url="<?php echo $_smarty_tpl->tpl_vars['item']->value['h5_url'];?>
+                            <li>
+                                <a class="item-info j_item_info" data-url="<?php echo $_smarty_tpl->tpl_vars['item']->value['h5_url'];?>
 " href="javascript:;">
-                                <div class="lazy" data-img="<?php echo list_img($_smarty_tpl->tpl_vars['item']->value['img']);?>
+                                    <div class="lazy" data-img="<?php echo list_img($_smarty_tpl->tpl_vars['item']->value['img']);?>
 ">
-                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
-                                        <span>-<?php echo $_smarty_tpl->tpl_vars['item']->value['discount']['value'];?>
+                                        <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
+                                            <span>-<?php echo $_smarty_tpl->tpl_vars['item']->value['discount']['value'];?>
 %</span>
-                                        <?php if ($_smarty_tpl->tpl_vars['item']->value['discounting']) {?>
-                                            <p><i class="icon iconfont icon-time-font"></i><span data-time="<?php echo discountSecond($_smarty_tpl->tpl_vars['item']->value['discount']['end_time']);?>
+                                            <?php if ($_smarty_tpl->tpl_vars['item']->value['discounting']) {?>
+                                                <p><i class="icon iconfont icon-time-font"></i><span data-time="<?php echo discountSecond($_smarty_tpl->tpl_vars['item']->value['discount']['end_time']);?>
 "><?php echo discountTime($_smarty_tpl->tpl_vars['item']->value['discount']['end_time']);?>
 </span></p>
-                                        <?php } else { ?>
-                                            <p>Coming Soon</p>
+                                            <?php } else { ?>
+                                                <p>Coming Soon</p>
+                                            <?php }?>
                                         <?php }?>
-                                    <?php }?>
-                                </div>
-                                <p class="title"><?php echo $_smarty_tpl->tpl_vars['item']->value['item_comment'];?>
+                                    </div>
+                                    <p class="title"><?php echo $_smarty_tpl->tpl_vars['item']->value['item_comment'];?>
 </p>
-                                <?php if ($_smarty_tpl->tpl_vars['item']->value['price'] < 0) {?>
-                                    <p class="price"></p>
-                                    <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
-                                        <p class="price cost-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['price']);?>
+                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['price'] < 0) {?>
+                                        <p class="price"></p>
+                                        <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
+                                            <p class="price cost-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['price']);?>
 </p>
-                                    <?php } else { ?>
-                                        <p class="price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['price']);?>
-</p>
-                                <?php }?>
-                                <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
-                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['discounting']) {?>
-                                        <p class="discount-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['discount']['price']);?>
-</p>
-                                    <?php } else { ?>
-                                        <p class="discount-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['discount']['price']);?>
+                                        <?php } else { ?>
+                                            <p class="price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['price']);?>
 </p>
                                     <?php }?>
-                                <?php } else { ?>
-                                    <p class="discount-price"></p>
-                                <?php }?>
-                            </a>
-                        </li>
-                    <?php
+                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
+                                        <?php if ($_smarty_tpl->tpl_vars['item']->value['discounting']) {?>
+                                            <p class="discount-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['discount']['price']);?>
+</p>
+                                        <?php } else { ?>
+                                            <p class="discount-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['discount']['price']);?>
+</p>
+                                        <?php }?>
+                                    <?php } else { ?>
+                                        <p class="discount-price"></p>
+                                    <?php }?>
+                                </a>
+                            </li>
+                        <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 ?>
 
-                </ul>
-            <?php }?>
-        </section>
+                    </ul>
+                <?php }?>
+            </section>
 
-        <?php
+            <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['TAGS_ITEM']->value, 'tag_list');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['tag_list']->value) {
 ?>
-            <section class="items-box j_box" data-tagid="<?php echo $_smarty_tpl->tpl_vars['tag_list']->value['id'];?>
+                <section class="items-box j_box" data-tagid="<?php echo $_smarty_tpl->tpl_vars['tag_list']->value['id'];?>
 ">
-                <p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="<?php echo $_smarty_tpl->tpl_vars['HOST_NAME']->value;?>
+                    <p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="<?php echo $_smarty_tpl->tpl_vars['HOST_NAME']->value;?>
 /k/<?php echo $_smarty_tpl->tpl_vars['tag_list']->value['id'];?>
 ">more<i class="icon iconfont icon-go-font"></i></a><span></span><em><?php echo $_smarty_tpl->tpl_vars['tag_list']->value['name'];?>
 </em></p>
-                <ul class="items-list j_item_list clearfix">
-                    <?php
+                    <ul class="items-list j_item_list clearfix">
+                        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['tag_list']->value['tag_data'], 'item');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 ?>
-                        <li>
-                            <a class="item-info j_item_info" data-url="<?php echo $_smarty_tpl->tpl_vars['item']->value['h5_url'];?>
+                            <li>
+                                <a class="item-info j_item_info" data-url="<?php echo $_smarty_tpl->tpl_vars['item']->value['h5_url'];?>
 " href="javascript:;">
-                                <div class="lazy" data-img="<?php echo list_img($_smarty_tpl->tpl_vars['item']->value['img']);?>
+                                    <div class="lazy" data-img="<?php echo list_img($_smarty_tpl->tpl_vars['item']->value['img']);?>
 ">
-                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
-                                        <span>-<?php echo $_smarty_tpl->tpl_vars['item']->value['discount']['value'];?>
+                                        <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
+                                            <span>-<?php echo $_smarty_tpl->tpl_vars['item']->value['discount']['value'];?>
 %</span>
-                                        <?php if ($_smarty_tpl->tpl_vars['item']->value['discounting']) {?>
-                                            <p><i class="icon iconfont icon-time-font"></i><span data-time="<?php echo discountSecond($_smarty_tpl->tpl_vars['item']->value['discount']['end_time']);?>
+                                            <?php if ($_smarty_tpl->tpl_vars['item']->value['discounting']) {?>
+                                                <p><i class="icon iconfont icon-time-font"></i><span data-time="<?php echo discountSecond($_smarty_tpl->tpl_vars['item']->value['discount']['end_time']);?>
 "><?php echo discountTime($_smarty_tpl->tpl_vars['item']->value['discount']['end_time']);?>
 </span></p>
-                                        <?php } else { ?>
-                                            <p>Coming Soon</p>
+                                            <?php } else { ?>
+                                                <p>Coming Soon</p>
+                                            <?php }?>
                                         <?php }?>
-                                    <?php }?>
-                                </div>
-                                <p class="title"><?php echo $_smarty_tpl->tpl_vars['item']->value['item_comment'];?>
+                                    </div>
+                                    <p class="title"><?php echo $_smarty_tpl->tpl_vars['item']->value['item_comment'];?>
 </p>
-                                <?php if ($_smarty_tpl->tpl_vars['item']->value['price'] < 0) {?>
-                                        <p class="price"></p>
-                                    <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
-                                        <p class="price cost-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['price']);?>
+                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['price'] < 0) {?>
+                                            <p class="price"></p>
+                                        <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
+                                            <p class="price cost-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['price']);?>
 </p>
-                                    <?php } else { ?>
-                                        <p class="price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['price']);?>
-</p>
-                                <?php }?>
-                                <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
-                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['discounting']) {?>
-                                        <p class="discount-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['discount']['price']);?>
-</p>
-                                    <?php } else { ?>
-                                        <p class="discount-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['discount']['price']);?>
+                                        <?php } else { ?>
+                                            <p class="price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['price']);?>
 </p>
                                     <?php }?>
-                                <?php } else { ?>
-                                    <p class="discount-price"></p>
-                                <?php }?>
-                            </a>
-                        </li>
-                    <?php
+                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
+                                        <?php if ($_smarty_tpl->tpl_vars['item']->value['discounting']) {?>
+                                            <p class="discount-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['discount']['price']);?>
+</p>
+                                        <?php } else { ?>
+                                            <p class="discount-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['discount']['price']);?>
+</p>
+                                        <?php }?>
+                                    <?php } else { ?>
+                                        <p class="discount-price"></p>
+                                    <?php }?>
+                                </a>
+                            </li>
+                        <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 ?>
 
-                </ul>
-            </section>
-        <?php
+                    </ul>
+                </section>
+            <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 ?>
 
-        <section class="items-box j_item_box j_box">
-            <?php if (count($_smarty_tpl->tpl_vars['HOT_ITEM']->value)) {?>
-                <p class="item-title b-bottom"><span></span>Hot Item</p>
-                <ul class="items-list j_item_list clearfix">
-                    <?php
+            <section class="items-box j_item_box j_box">
+                <?php if (count($_smarty_tpl->tpl_vars['HOT_ITEM']->value)) {?>
+                    <p class="item-title b-bottom"><span></span>Hot Item</p>
+                    <ul class="items-list j_item_list clearfix">
+                        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['HOT_ITEM']->value, 'item');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 ?>
-                        <li>
-                            <a class="item-info j_item_info" data-url="<?php echo $_smarty_tpl->tpl_vars['item']->value['h5_url'];?>
+                            <li>
+                                <a class="item-info j_item_info" data-url="<?php echo $_smarty_tpl->tpl_vars['item']->value['h5_url'];?>
 " href="javascript:;">
-                                <div class="lazy" data-img="<?php echo list_img($_smarty_tpl->tpl_vars['item']->value['img']);?>
+                                    <div class="lazy" data-img="<?php echo list_img($_smarty_tpl->tpl_vars['item']->value['img']);?>
 ">
-                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
-                                        <span>-<?php echo $_smarty_tpl->tpl_vars['item']->value['discount']['value'];?>
+                                        <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
+                                            <span>-<?php echo $_smarty_tpl->tpl_vars['item']->value['discount']['value'];?>
 %</span>
-                                        <?php if ($_smarty_tpl->tpl_vars['item']->value['discounting']) {?>
-                                            <p><i class="icon iconfont icon-time-font"></i><span data-time="<?php echo discountSecond($_smarty_tpl->tpl_vars['item']->value['discount']['end_time']);?>
+                                            <?php if ($_smarty_tpl->tpl_vars['item']->value['discounting']) {?>
+                                                <p><i class="icon iconfont icon-time-font"></i><span data-time="<?php echo discountSecond($_smarty_tpl->tpl_vars['item']->value['discount']['end_time']);?>
 "><?php echo discountTime($_smarty_tpl->tpl_vars['item']->value['discount']['end_time']);?>
 </span></p>
-                                        <?php } else { ?>
-                                            <p>Coming Soon</p>
+                                            <?php } else { ?>
+                                                <p>Coming Soon</p>
+                                            <?php }?>
                                         <?php }?>
-                                    <?php }?>
-                                </div>
-                                <p class="title"><?php echo $_smarty_tpl->tpl_vars['item']->value['item_comment'];?>
+                                    </div>
+                                    <p class="title"><?php echo $_smarty_tpl->tpl_vars['item']->value['item_comment'];?>
 </p>
-                                <?php if ($_smarty_tpl->tpl_vars['item']->value['price'] < 0) {?>
-                                    <p class="price"></p>
-                                    <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
-                                        <p class="price cost-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['price']);?>
+                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['price'] < 0) {?>
+                                        <p class="price"></p>
+                                        <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
+                                            <p class="price cost-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['price']);?>
 </p>
-                                    <?php } else { ?>
-                                        <p class="price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['price']);?>
-</p>
-                                <?php }?>
-                                <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
-                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['discounting']) {?>
-                                        <p class="discount-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['discount']['price']);?>
-</p>
-                                    <?php } else { ?>
-                                        <p class="discount-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['discount']['price']);?>
+                                        <?php } else { ?>
+                                            <p class="price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['price']);?>
 </p>
                                     <?php }?>
-                                <?php } else { ?>
-                                    <p class="discount-price"></p>
-                                <?php }?>
-                            </a>
-                        </li>
-                    <?php
+                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['is_discount']) {?>
+                                        <?php if ($_smarty_tpl->tpl_vars['item']->value['discounting']) {?>
+                                            <p class="discount-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['discount']['price']);?>
+</p>
+                                        <?php } else { ?>
+                                            <p class="discount-price">Rp <?php echo priceFormat($_smarty_tpl->tpl_vars['item']->value['discount']['price']);?>
+</p>
+                                        <?php }?>
+                                    <?php } else { ?>
+                                        <p class="discount-price"></p>
+                                    <?php }?>
+                                </a>
+                            </li>
+                        <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 ?>
 
-                </ul>
-            <?php }?>
-        </section>
+                    </ul>
+                <?php }?>
+            </section>
+        </div>
         <section class="sort-list-wraper j_sort_box">
             <p>Kategori produk</p>
             <ul>

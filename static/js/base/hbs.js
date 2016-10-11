@@ -429,13 +429,13 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     +'<img src="'+carts[item].item.img+'">'
                     +'<div class="">'
                     +'<p class="name">'+carts[item].item.item_name+'</p>'
-                    +(carts[item].sku?'<p class="type">'+Lang.H5_SKU+':'+carts[item].sku.title+'</p>':'')
-                    +'<p class="num">'+Lang.H5_QUANTITY+':'+carts[item].num+'</p>';
+                    +(carts[item].sku?'<p class="type">'+Lang.H5_SKU+': '+carts[item].sku.title+'</p>':'')
+                    +'<p class="num">'+Lang.H5_QUANTITY+': '+carts[item].num+'</p>';
                     if(carts[item].item.is_discount && carts[item].item.discounting){
-                        _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
+                        _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
                     }else{
                         var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].item.price;
-                        _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(_price)+'</p>';
+                        _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_price)+'</p>';
 
                     }
                 _htm +='</div>'
@@ -465,13 +465,13 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     +'<p class="name">'+carts[item].item.item_name+'</p>';
                 //if(!testStock(carts[item])){
                     var _t_stock = (carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock;
-                    _htm +='<p class="num">'+(!testStock(carts[item])?Lang.H5_STOCK+':'+(_t_stock<0?0:_t_stock):'')+'</p>';
-                    _htm +='<p class="type">'+(carts[item].sku&&carts[item].sku.id?Lang.H5_SKU+':'+carts[item].sku.title:'')+'</p>';
+                    _htm +='<p class="num">'+(!testStock(carts[item])?Lang.H5_STOCK+': '+(_t_stock<0?0:_t_stock):'')+'</p>';
+                    _htm +='<p class="type">'+(carts[item].sku&&carts[item].sku.id?Lang.H5_SKU+': '+carts[item].sku.title:'')+'</p>';
                 //}
                 if(carts[item].item.is_discount && carts[item].item.discounting){
                     var _item_stock = carts[item].item.discount.limit_count==0?carts[item].item.stock:carts[item].item.discount.limit_count;
                     var _item_price = carts[item].item.discount.price;
-                    _htm +='<div class="price clearfix"><span>'+(_item_price < 0?'':Lang.H5_PRICE+':Rp '+Base.others.priceFormat(_item_price))
+                    _htm +='<div class="price clearfix"><span>'+(_item_price < 0?'':Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_item_price))
                         +'</span><div class="item-num-box clearfix">'
                         +'<span class="j_reduce_btn">'
                         +'<i class="icon iconfont icon-minus-font"></i>'
@@ -484,7 +484,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                         +'</div>';
                 }else{
                     var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].item.price;
-                    _htm +='<div class="price clearfix"><span>'+(_price < 0?'':Lang.H5_PRICE+':Rp '+Base.others.priceFormat(_price))
+                    _htm +='<div class="price clearfix"><span>'+(_price < 0?'':Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_price))
                         +'</span><div class="item-num-box clearfix">'
                         +'<span class="j_reduce_btn">'
                         +'<i class="icon iconfont icon-minus-font"></i>'
@@ -515,13 +515,13 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     +'<img src="'+carts[item].item.img+'">'
                     +'<div class="">'
                     +'<p class="name">'+carts[item].item.item_name+'</p>'
-                    +(carts[item].sku?'<p class="type">'+Lang.H5_SKU+':'+carts[item].sku.title+'</p>':'')
-                    +'<p class="num">'+Lang.H5_QUANTITY+':'+carts[item].num+'</p>';
+                    +(carts[item].sku?'<p class="type">'+Lang.H5_SKU+': '+carts[item].sku.title+'</p>':'')
+                    +'<p class="num">'+Lang.H5_QUANTITY+': '+carts[item].num+'</p>';
                 if(carts[item].item.is_discount && carts[item].item.discounting){
-                    _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
+                    _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
                 }else{
                     var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].item.price;
-                    _htm +='<p class="price">'+Lang.H5_PRICE+':Rp '+Base.others.priceFormat(_price)+'</p>';
+                    _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_price)+'</p>';
 
                 }
                 _htm +='</div>'

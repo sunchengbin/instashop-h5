@@ -91,7 +91,7 @@ section{
     background-color: #f5f5f5;
     position: relative;
     z-index: 1;
-    overflow:hidden;
+    /*overflow:hidden;*/
 }
 .shop-explain > div p{
     text-align: center;
@@ -106,19 +106,6 @@ section{
     overflow: hidden;
 }
 
-/*.shop-explain::after{*/
-    /*position: absolute;*/
-    /*left: -50%;*/
-    /*right: -50%;*/
-    /*bottom: 0;*/
-    /*height: 1px;*/
-    /*content: '';*/
-    /*-webkit-transform: scale(0.5);*/
-    /*transform: scale(0.5);*/
-    /*border-bottom: 1px solid #d8d8d8;*/
-    /*z-index: 1;*/
-/*}*/
-
 .txt-hide{
     position: absolute;
     padding: 0 1rem;
@@ -128,6 +115,7 @@ section{
     opacity: 0;
     width: 100%;
     box-sizing: border-box;
+    font-size: 14px;
 }
 
 .top-angle{
@@ -158,6 +146,9 @@ section{
 .list-box{
     width: 100%;
     overflow-x: hidden;
+}
+.items-box:first-child{
+    margin-top:.5rem;
 }
 /*店铺被禁*/
 .shop-delete{
@@ -355,7 +346,7 @@ footer .btn i{
     position: relative;
     width: 100%;
     overflow: hidden;
-    margin:.5rem 0;
+    margin-top:.5rem;
 }
 .slide_tab{
     position: absolute;
@@ -381,4 +372,5 @@ footer .btn i{
     text-align: center;
     font-size: 1.6rem;
 }
+
 

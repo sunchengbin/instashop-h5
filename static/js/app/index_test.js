@@ -22,7 +22,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 }
             }
             $('.j_php_loding').remove();
-            if($('.txt-hide').height() > 45){
+            if($('.txt-hide').height() > 44){
                 $('.down-btn').show();
             }
             this.handleFn();
@@ -76,15 +76,18 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                  _this.changeTime();
              }
             Fastclick.attach(document.body);
-            $('body').on('click','.j_down_box',function(){
-                if($('.j_down_btn').is('.down-btn')){
-                    $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
-                    $('.txt').css({'maxHeight':'none'});
-                }else{
-                    $('.j_down_btn').removeClass('up-btn').addClass('down-btn');
-                    $('.txt').css({'maxHeight':'44px'});
-                }
-            });
+            if($('.txt-hide').height() > 44){
+                console.log(1)
+                $('body').on('click','.j_down_box',function(){
+                    if($('.j_down_btn').is('.down-btn')){
+                        $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
+                        $('.txt').css({'maxHeight':'none'});
+                    }else{
+                        $('.j_down_btn').removeClass('up-btn').addClass('down-btn');
+                        $('.txt').css({'maxHeight':'44px'});
+                    }
+                });
+            }
             $(document).on('scroll', function(e) {
                 var _st = $('body').scrollTop(),
                     _wh = $(window).height(),
