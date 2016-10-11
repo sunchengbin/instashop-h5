@@ -3,7 +3,7 @@
 </nav>
 <section class="order-state">
     <div>
-        {{lang.H5_ORDER_STATUS}}:{{data.order.state_txt}}
+        {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
         {{#eq data.order.state 1}}
             <p>{{data.order.cancel_countdown}}</p>
         {{/eq}}
@@ -14,13 +14,13 @@
         </a>
     </p>
     {{#eq data.order.ship_status 1}}
-    <div class="logistics-info">
-        <a href="{{hrefUrl}}logistics.php?order_id={{data.order.id_hash}}&logistics_id={{data.order.express_info_id}}" class="clearfix">
-            <i class="icon iconfont fr icon-go-font"></i>
-            <p>{{data.order.logistics_info.last_checkpoint.message}}{{#empty data.order.logistics_info.last_checkpoint.message}}{{lang.H5_NO_LOGISTICS_UPDATE}}{{/empty}}</p>
-            <p>{{data.order.logistics_info.express.title}} {{data.order.logistics_info.express.express_no}}</p>
-        </a>
-    </div>
+        <div class="logistics-info">
+            <a href="{{hrefUrl}}logistics.php?order_id={{data.order.id_hash}}&logistics_id={{data.order.express_info_id}}" class="clearfix">
+                <i class="icon iconfont fr icon-go-font"></i>
+                <p>{{data.order.logistics_info.last_checkpoint.message}}{{#empty data.order.logistics_info.last_checkpoint.message}}{{lang.H5_NO_LOGISTICS_UPDATE}}{{/empty}}</p>
+                <p>{{data.order.logistics_info.express.title}} {{data.order.logistics_info.express.express_no}}</p>
+            </a>
+        </div>
     {{/eq}}
 </section>
 <section class="user-info-box">
@@ -33,13 +33,13 @@
         </div>
         <div class="user-address-info">
             <div class="address-info">
-                {{data.order.buyer_address.street}},{{data.order.buyer_address.country}},{{data.order.buyer_address.city}},{{data.order.buyer_address.province}}
+                {{data.order.buyer_address.street}}，{{data.order.buyer_address.country}}，{{data.order.buyer_address.city}}，{{data.order.buyer_address.province}}
             </div>
             {{#nempty data.order.logistics_info.express_buyer.title}}
                 {{#if data.order.logistics_info.express_buyer.express_expect_day}}
-                    <div>{{lang.H5_LOGISTICS}}:{{data.order.logistics_info.express_buyer.title}}({{data.order.logistics_info.express_buyer.express_expect_day}})</div>
+                    <div>{{lang.H5_LOGISTICS}}: {{data.order.logistics_info.express_buyer.title}}({{data.order.logistics_info.express_buyer.express_expect_day}})</div>
                 {{else}}
-                    <div>{{lang.H5_LOGISTICS}}:{{data.order.logistics_info.express_buyer.title}}</div>
+                    <div>{{lang.H5_LOGISTICS}}: {{data.order.logistics_info.express_buyer.title}}</div>
                 {{/if}}
 
             {{/nempty}}
@@ -48,7 +48,7 @@
 </section>
 {{#if data.order.buyer_note}}
     <section class="buyer-note">
-        {{lang.H5_BUYER_NOTE}} : {{data.order.buyer_note}}
+        {{lang.H5_BUYER_NOTE}}: {{data.order.buyer_note}}
     </section>
 {{/if}}
 
@@ -56,69 +56,67 @@
     <div class="list-box">
         <ul class="order-items">
             {{#each data.order.items}}
-            <li class="clearfix cart-item">
-                <img src="{{img_head}}">
-                <div class="">
-                    <p class="name">{{item_title}}</p>
-                    {{#if item_sku_title}}
-                        <p class="type">{{../../lang.H5_ITEM_SKU}}:{{item_sku_title}}</p>
-                    {{/if}}
-                    <p class="num">{{../lang.H5_QUANTITY}}:{{quantity}}</p>
-                    <p class="price clearfix">{{../lang.H5_PRICE}}:{{#if discount.value}}<span class="fr">-{{transpricevalue discount.value}}%</span>{{/if}}Rp {{transprice price}}</p>
-                </div>
-            </li>
+                <li class="clearfix cart-item">
+                    <img src="{{img_head}}">
+                    <div class="">
+                        <p class="name">{{item_title}}</p>
+                        {{#if item_sku_title}}
+                            <p class="type">{{../../lang.H5_ITEM_SKU}}:{{item_sku_title}}</p>
+                        {{/if}}
+                        <p class="num">{{../lang.H5_QUANTITY}}:{{quantity}}</p>
+                        <p class="price clearfix">{{../lang.H5_PRICE}}:{{#if discount.value}}<span class="fr">-{{transpricevalue discount.value}}%</span>{{/if}}Rp {{transprice price}}</p>
+                    </div>
+                </li>
             {{/each}}
         </ul>
         <div class="order-info">
-            <p class="clearfix"><span class="fr">Rp {{transprice data.order.express_fee}}</span>{{lang.H5_SHIPPING_COST}}:</p>
-            <p class="clearfix"><span class="fr">Rp {{transprice data.order.total_price}}</span>{{lang.H5_ORDER_TOTAL_PRICE}}:</p>
+            <p class="clearfix"><span class="fr">Rp {{transprice data.order.express_fee}}</span>{{lang.H5_SHIPPING_COST}}: </p>
+            <p class="clearfix"><span class="fr">Rp {{transprice data.order.total_price}}</span>{{lang.H5_ORDER_TOTAL_PRICE}}: </p>
         </div>
-        <div class="shop-info clearfix">
-            <img src="{{data.order.shop_info.logo}}">
-            <p>{{data.order.shop_info.name}}</p>
-        </div>
-        <div class="href-box clearfix">
-            <a href="{{shopUrl}}" class="go-home">
-                <div class="clearfix">
-                    <i class="icon iconfont icon-shop-font"></i>
-                    {{lang.H5_ENTER_THE_SHOP}}
-                </div>
-            </a>
-            {{#if data.order.shop_info.line_url}}
-                {{#if data.order.shop_info.phone}}
-                    <a data-type="all" href="javascript:;" class="contact-user j_show_contact fr">
-                        <div class="clearfix">
-                            <i class="icon iconfont icon-i-news-font"></i>
-                            {{lang.H5_CONNACT_SELLER}}
-                        </div>
-                    </a>
-                {{else}}
-                    <a href="{{data.order.shop_info.line_url}}" class="contact-user fr">
-                        <div class="clearfix">
-                            <i class="icon iconfont icon-i-news-font"></i>
-                            {{lang.H5_CONNACT_SELLER}}
-                        </div>
-                    </a>
-                {{/if}}
+    </div>
+</section>
+<section class="shop-info-box">
+    <div class="shop-info clearfix">
+        <img src="{{data.order.shop_info.logo}}">
+        <p>{{data.order.shop_info.name}}</p>
+    </div>
+    <div class="href-box clearfix">
+        <a href="{{shopUrl}}" class="go-home">
+            <div class="clearfix">
+                <i class="icon iconfont icon-shop-font"></i>
+                {{lang.H5_ENTER_THE_SHOP}}
+            </div>
+        </a>
+        {{#if data.order.shop_info.line_url}}
+            {{#if data.order.shop_info.phone}}
+                <a data-type="all" href="javascript:;" class="contact-user j_show_contact fr">
+                    <div class="clearfix">
+                        <i class="icon iconfont icon-i-news-font"></i>
+                        {{lang.H5_CONNACT_SELLER}}
+                    </div>
+                </a>
             {{else}}
-                {{#if data.order.shop_info.phone}}
-                    <a href="javascript:;" data-type="tel" class="contact-user j_show_contact fr">
-                        <div class="clearfix">
-                            <i class="icon iconfont icon-i-news-font"></i>
-                            {{lang.H5_CONNACT_SELLER}}
-                        </div>
-                    </a>
-                {{/if}}
+                <a href="{{data.order.shop_info.line_url}}" class="contact-user fr">
+                    <div class="clearfix">
+                        <i class="icon iconfont icon-i-news-font"></i>
+                        {{lang.H5_CONNACT_SELLER}}
+                    </div>
+                </a>
             {{/if}}
-        </div>
-        {{#eq data.order.state 1}}
+        {{else}}
+            {{#if data.order.shop_info.phone}}
+                <a href="javascript:;" data-type="tel" class="contact-user j_show_contact fr">
+                    <div class="clearfix">
+                        <i class="icon iconfont icon-i-news-font"></i>
+                        {{lang.H5_CONNACT_SELLER}}
+                    </div>
+                </a>
+            {{/if}}
+        {{/if}}
+    </div>
+    {{#eq data.order.state 1}}
         <div class="prove-btn">
             <a class="submit-btn btn confirm-btn" href="{{hrefUrl}}uploadprove.php?order_id={{data.order.id}}&hash={{data.order.id_hash}}">Bukti Pembayaran</a>
         </div>
-        {{/eq}}
-
-    </div>
-</section>
-<section>
-
+    {{/eq}}
 </section>
