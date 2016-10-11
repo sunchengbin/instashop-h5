@@ -201,6 +201,7 @@ body{
 }
 .item-info{
     background-color: #fff;
+    overflow: hidden;
 }
 .shop-explain{
     color: #aaa;
