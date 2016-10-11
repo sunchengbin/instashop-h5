@@ -73,49 +73,50 @@
             <p class="clearfix"><span class="fr">Rp {{transprice data.order.express_fee}}</span>{{lang.H5_SHIPPING_COST}}:</p>
             <p class="clearfix"><span class="fr">Rp {{transprice data.order.total_price}}</span>{{lang.H5_ORDER_TOTAL_PRICE}}:</p>
         </div>
-        <div class="shop-info clearfix">
-            <img src="{{data.order.shop_info.logo}}">
-            <p>{{data.order.shop_info.name}}</p>
-        </div>
-        <div class="href-box clearfix">
-            <a href="{{shopUrl}}" class="go-home">
-                <div class="clearfix">
-                    <i class="icon iconfont icon-shop-font"></i>
-                    {{lang.H5_ENTER_THE_SHOP}}
-                </div>
-            </a>
-            {{#if data.order.shop_info.line_url}}
-                {{#if data.order.shop_info.phone}}
-                    <a data-type="all" href="javascript:;" class="contact-user j_show_contact fr">
-                        <div class="clearfix">
-                            <i class="icon iconfont icon-phone-font"></i>
-                            {{lang.H5_CONNACT_SELLER}}
-                        </div>
-                    </a>
-                {{else}}
-                    <a href="{{data.order.shop_info.line_url}}" class="contact-user fr">
-                        <div class="clearfix">
-                            <i class="icon iconfont icon-phone-font"></i>
-                            {{lang.H5_CONNACT_SELLER}}
-                        </div>
-                    </a>
-                {{/if}}
+    </div>
+</section>
+<section class="shop-info-box">
+    <div class="shop-info clearfix">
+        <img src="{{data.order.shop_info.logo}}">
+        <p>{{data.order.shop_info.name}}</p>
+    </div>
+    <div class="href-box clearfix">
+        <a href="{{shopUrl}}" class="go-home">
+            <div class="clearfix">
+                <i class="icon iconfont icon-shop-font"></i>
+                {{lang.H5_ENTER_THE_SHOP}}
+            </div>
+        </a>
+        {{#if data.order.shop_info.line_url}}
+            {{#if data.order.shop_info.phone}}
+                <a data-type="all" href="javascript:;" class="contact-user j_show_contact fr">
+                    <div class="clearfix">
+                        <i class="icon iconfont icon-i-news-font"></i>
+                        {{lang.H5_CONNACT_SELLER}}
+                    </div>
+                </a>
             {{else}}
-                {{#if data.order.shop_info.phone}}
-                    <a href="javascript:;" data-type="tel" class="contact-user j_show_contact fr">
-                        <div class="clearfix">
-                            <i class="icon iconfont icon-phone-font"></i>
-                            {{lang.H5_CONNACT_SELLER}}
-                        </div>
-                    </a>
-                {{/if}}
+                <a href="{{data.order.shop_info.line_url}}" class="contact-user fr">
+                    <div class="clearfix">
+                        <i class="icon iconfont icon-i-news-font"></i>
+                        {{lang.H5_CONNACT_SELLER}}
+                    </div>
+                </a>
             {{/if}}
-        </div>
-        {{#eq data.order.state 1}}
+        {{else}}
+            {{#if data.order.shop_info.phone}}
+                <a href="javascript:;" data-type="tel" class="contact-user j_show_contact fr">
+                    <div class="clearfix">
+                        <i class="icon iconfont icon-i-news-font"></i>
+                        {{lang.H5_CONNACT_SELLER}}
+                    </div>
+                </a>
+            {{/if}}
+        {{/if}}
+    </div>
+    {{#eq data.order.state 1}}
         <div class="prove-btn">
             <a class="submit-btn btn confirm-btn" href="{{hrefUrl}}uploadprove.php?order_id={{data.order.id}}&hash={{data.order.id_hash}}">Bukti Pembayaran</a>
         </div>
-        {{/eq}}
-
-    </div>
+    {{/eq}}
 </section>
