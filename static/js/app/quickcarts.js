@@ -598,7 +598,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     var _cost_day = data[item][i].cost_days?'('+data[item][i].cost_days+Lang.H5_DAYS+')':'';
                     _htm += '<li class="j_logistics_li"  data-level="'+(data[item][i].level?data[item][i].level:item)+'" data-id="'+data[item][i].id+'">'
                         +'<i class="icon iconfont check-btn icon-radio-font" data-company="'+item+'" data-price="'+data[item][i].price+'"  data-level="'+(data[item][i].level?data[item][i].level:item)+'" data-id="'+data[item][i].id+'"></i>'
-                        +item+' '+data[item][i].level+_cost_day+':Rp '+Base.others.priceFormat(data[item][i].price)
+                        +item+' '+data[item][i].level+_cost_day+': Rp '+Base.others.priceFormat(data[item][i].price)
                         +'</li>';
                 }
             }
