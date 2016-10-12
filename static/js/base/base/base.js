@@ -295,6 +295,8 @@ define(function(){
                 _this = this;
             _ww+=100;
             _ww = _ww > 640?640:_ww;
+            var _protocol = location.protocol;
+            url = /https/g.test(_protocol)?url.replace(/http/,'https'):url;
             if(!bg){
                 if(/w\=\d+/g.test(url)){
                     url = url.replace(/w\=\d+/g,'w='+_ww);
@@ -312,7 +314,7 @@ define(function(){
             }else{
                 url = url + '?w='+_ww;
             }
-
+            console.log(url)
             return _this.getImageUrl(url,true);
         },
         /*
