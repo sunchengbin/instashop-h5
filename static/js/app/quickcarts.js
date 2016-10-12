@@ -747,7 +747,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             var _url = location.href,
                 _match = _url.split('/'),
                 _len = _match.length;
-            return _match[_len-1];
+            return _match[_len-1].split('?')[0];
         },
         testDetailCarts : function(){//验证cart是否是有sku
             var _this = this,
