@@ -86,7 +86,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 _num = _wraper.find('.j_item_num');
             _type.html(Lang.H5_SKU+': '+opts.sku);
             _stock.html(Lang.H5_STOCK+': '+opts.stock);
-            _price.html(Lang.H5_PRICE+':Rp '+Base.others.priceFormat(opts.price));
+            _price.html(Lang.H5_PRICE+': Rp '+Base.others.priceFormat(opts.price));
             _num.val(opts.num).attr('data-price',opts.price);
             _this.resetCarts(opts);
             _this.getTotal();
