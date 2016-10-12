@@ -8,7 +8,8 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 _data = localStorage.getItem('ShopData'),
                 _address = _data?JSON.parse(_data).Address:null,
                 _address_id = _this.getAddressId(),
-                _is_detail = /\_/g.test(_address_id);
+                _is_detail = _address_id.length == 5?true:false;
+                //_is_detail = /\_/g.test(_address_id);
             //初始化本地数据
             if(!_address){
                 //地址信息
