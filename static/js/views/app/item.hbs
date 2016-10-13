@@ -84,7 +84,11 @@
                 <div>
                     <span class="top-angle"></span>
                     <div class="txt">
-                        {{{transtxt data.item.shop.note}}}
+                        {{#if data.item.shop.note}}
+                            {{{transtxt data.item.shop.note}}}
+                        {{else}}
+                            Selamat datang di mini websiteku
+                        {{/if}}
                     </div>
                     <div class="txt-hide">
                         {{{transtxt data.item.shop.note}}}
