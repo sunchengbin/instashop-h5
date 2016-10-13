@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-10-13 14:39:54
+/* Smarty version 3.1.30, created on 2016-10-13 15:25:50
   from "/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_57ff2c3a144220_87474049',
+  'unifunc' => 'content_57ff36fe854a65_46745396',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c5072935fcfac0bfc4fe01525f7b90380b0a1a54' => 
     array (
       0 => '/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl',
-      1 => 1476340685,
+      1 => 1476343521,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_57ff2c3a144220_87474049 (Smarty_Internal_Template $_smarty_tpl) {
+function content_57ff36fe854a65_46745396 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"My Page Title"), 0, false);
 ?>
 
@@ -89,9 +89,15 @@ $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->t
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['banner']->value) {
 ?>
-                        <li class=""><a class="block" href="<?php echo $_smarty_tpl->tpl_vars['banner']->value['href'];?>
+                        <?php if ($_smarty_tpl->tpl_vars['banner']->value['href']) {?>
+                            <li class=""><a class="block" href="<?php echo $_smarty_tpl->tpl_vars['banner']->value['href'];?>
 "><img data-img="<?php echo format_img($_smarty_tpl->tpl_vars['banner']->value['url']);?>
 " src=""/></a></li>
+                        <?php } else { ?>
+                            <li class=""><a class="block" href="javascript:;"><img data-img="<?php echo format_img($_smarty_tpl->tpl_vars['banner']->value['url']);?>
+" src=""/></a></li>
+                        <?php }?>
+
                     <?php
 }
 }
