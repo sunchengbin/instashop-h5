@@ -139,11 +139,9 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     _ios = Base.others.verifyBower().ios;
                 if(_local_url && !/detail/g.test(_local_url)){
                     if(/\/s\//g.test(_local_url)){
-                        console.log(1)
                         history.back();
                     }else{
                         if(/\?/g.test(_local_url)){
-                            console.log(2)
                             location.href = localStorage.getItem('FromUrl')+'&item=back';
                         }else{
                             console.log(/\.instashop\.co\.id\/\d+/g.test(_local_url))
@@ -151,8 +149,11 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                                 var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
                                 location.href = _url;
                             }else{
-                                console.log(3)
-                                location.href = localStorage.getItem('FromUrl')+'?item=back';
+                                if(!/\.instashop\.co\.id/g.test(_local_url) && !/\/k\//g.test(_local_url)){
+                                    location.href = location.protocol+'//'+location.hostname+'?item=back';
+                                }else{
+                                    location.href = localStorage.getItem('FromUrl')+'?item=back';
+                                }
                             }
                         }
                     }

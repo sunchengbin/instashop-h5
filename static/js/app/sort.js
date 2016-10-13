@@ -56,9 +56,9 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                 });
             });
             if(localStorage.getItem('SortTop') && Base.others.getUrlPrem('item')){//存在scrollTop时页面下滚到记忆中的top值
-                if(Base.others.verifyBower().ios){
+                //if(Base.others.verifyBower().ios){
                     _this.goScroll();
-                }
+                //}
             }
             if(init_data.code == 200){
                 var _list = init_data.item_list.list,

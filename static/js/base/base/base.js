@@ -314,7 +314,6 @@ define(function(){
             }else{
                 url = url + '?w='+_ww;
             }
-            console.log(url)
             return _this.getImageUrl(url,true);
         },
         /*
