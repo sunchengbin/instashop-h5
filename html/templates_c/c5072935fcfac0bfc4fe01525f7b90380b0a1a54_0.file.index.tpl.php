@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-10-11 17:13:58
+/* Smarty version 3.1.30, created on 2016-10-13 14:39:54
   from "/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_57fcad563db486_34675399',
+  'unifunc' => 'content_57ff2c3a144220_87474049',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c5072935fcfac0bfc4fe01525f7b90380b0a1a54' => 
     array (
       0 => '/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/index.tpl',
-      1 => 1476177234,
+      1 => 1476340685,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_57fcad563db486_34675399 (Smarty_Internal_Template $_smarty_tpl) {
+function content_57ff2c3a144220_87474049 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"My Page Title"), 0, false);
 ?>
 
@@ -67,8 +67,12 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
             <div>
                 <span class="top-angle"></span>
                 <div class="txt">
+                <?php if ($_smarty_tpl->tpl_vars['INDEX_DATA']->value['shop']['note']) {?>
                     <?php echo nl2br($_smarty_tpl->tpl_vars['INDEX_DATA']->value['shop']['note']);?>
 
+                <?php } else { ?>
+                    Selamat datang di mini websiteku
+                <?php }?>
                 </div>
                 <div class="txt-hide">
                     <?php echo nl2br($_smarty_tpl->tpl_vars['INDEX_DATA']->value['shop']['note']);?>
