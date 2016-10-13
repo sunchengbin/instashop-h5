@@ -25,21 +25,21 @@
     {{/eq}}
 {{/if}}
 
-    {{#if detail}}
-        {{#eq detail 2}}
-            <section class="quick-box">
-                <p class="quick-order-txt">
-                    {{lang.H5_SUCCESS_MSG}}
-                </p>
-            </section>
-        {{/eq}}
-    {{else}}
+{{#if detail}}
+    {{#eq detail 2}}
         <section class="quick-box">
             <p class="quick-order-txt">
                 {{lang.H5_SUCCESS_MSG}}
             </p>
         </section>
-    {{/if}}
+    {{/eq}}
+{{else}}
+    <section class="quick-box">
+        <p class="quick-order-txt">
+            {{lang.H5_SUCCESS_MSG}}
+        </p>
+    </section>
+{{/if}}
 
 <section class="order-box">
 
@@ -70,49 +70,49 @@
 
 {{/if}}
 <section class="pay-info">
-        {{#eq num 3}}
-        <ul class="clearfix three_info">
-        {{else}}
-        <ul class="clearfix two_act_info">
-        {{/eq}}
-        {{#if banksInfo.BCA}}
-            <li class="tag act j_tag_li" data-tag="bca">
-                <p class="bank-info bca">
-                    <img src="{{host.imgUrl}}/app/bca.png"/>
+    {{#eq num 3}}
+    <ul class="clearfix three_info">
+    {{else}}
+    <ul class="clearfix two_act_info">
+    {{/eq}}
+    {{#if banksInfo.BCA}}
+        <li class="tag act j_tag_li" data-tag="bca">
+            <p class="bank-info bca">
+                <img src="{{host.imgUrl}}/app/bca.png"/>
+            </p>
+        </li>
+        {{#if banksInfo.Mandiri}}
+            <li class="tag j_tag_li" data-tag="mandiri">
+                <p class="bank-info mandiri">
+                    <img class="" src="{{host.imgUrl}}/app/mandiri.png"/>
                 </p>
             </li>
-            {{#if banksInfo.Mandiri}}
-                <li class="tag j_tag_li" data-tag="mandiri">
-                    <p class="bank-info mandiri">
-                        <img class="" src="{{host.imgUrl}}/app/mandiri.png"/>
-                    </p>
-                </li>
-            {{/if}}
-            {{#if banksInfo.BRI}}
-                <li class="tag j_tag_li" data-tag="bri">
-                    <p class="bank-info bri">
-                        <img src="{{host.imgUrl}}/app/bri.png"/>
-                    </p>
-                </li>
-            {{/if}}
-        {{else}}
-            {{#if banksInfo.Mandiri}}
-                <li class="tag act j_tag_li" data-tag="mandiri">
-                    <p class="bank-info mandiri">
-                        <img class="" src="{{host.imgUrl}}/app/mandiri.png"/>
-                    </p>
-                </li>
-            {{/if}}
-            {{#if banksInfo.BRI}}
-                <li class="tag j_tag_li" data-tag="bri">
-                    <p class="bank-info bri">
-                        <img src="{{host.imgUrl}}/app/bri.png"/>
-                    </p>
-                </li>
-            {{/if}}
         {{/if}}
+        {{#if banksInfo.BRI}}
+            <li class="tag j_tag_li" data-tag="bri">
+                <p class="bank-info bri">
+                    <img src="{{host.imgUrl}}/app/bri.png"/>
+                </p>
+            </li>
+        {{/if}}
+    {{else}}
+        {{#if banksInfo.Mandiri}}
+            <li class="tag act j_tag_li" data-tag="mandiri">
+                <p class="bank-info mandiri">
+                    <img class="" src="{{host.imgUrl}}/app/mandiri.png"/>
+                </p>
+            </li>
+        {{/if}}
+        {{#if banksInfo.BRI}}
+            <li class="tag j_tag_li" data-tag="bri">
+                <p class="bank-info bri">
+                    <img src="{{host.imgUrl}}/app/bri.png"/>
+                </p>
+            </li>
+        {{/if}}
+    {{/if}}
 
-    </ul>
+</ul>
     <div class="txt-box">
         {{#if banksInfo.BCA}}
             <p class="pay-content j_tag j_tag_bca ">
@@ -168,29 +168,29 @@
             </p>
         {{/if}}
         <!--<p class="pay-content j_tag j_tag_bca ">-->
-            <!--Nama Penerima  : PT Insta Shop Indonesia<br>-->
-            <!--Kantor Cabang  : TCT Branch<br>-->
-            <!--Nomor Rekening : 3193197899<br>-->
-            <!--Kode Bank      : 014<br>-->
+        <!--Nama Penerima  : PT Insta Shop Indonesia<br>-->
+        <!--Kantor Cabang  : TCT Branch<br>-->
+        <!--Nomor Rekening : 3193197899<br>-->
+        <!--Kode Bank      : 014<br>-->
         <!--</p>-->
         <!--<p class="pay-content j_tag j_tag_mandiri hide">-->
-            <!--Nama Penerima  : PT Insta Shop Indonesia<br>-->
-            <!--Kantor Cabang  : Thamrin Nine<br>-->
-            <!--Nomor Rekening : 122-00-0737567-1<br>-->
-            <!--Kode Bank      : 008<br>-->
+        <!--Nama Penerima  : PT Insta Shop Indonesia<br>-->
+        <!--Kantor Cabang  : Thamrin Nine<br>-->
+        <!--Nomor Rekening : 122-00-0737567-1<br>-->
+        <!--Kode Bank      : 008<br>-->
         <!--</p>-->
 
         <!--<p class="pay-content j_tag j_tag_bri hide">-->
-            <!--Nama Penerima  : PT Insta Shop Indonesia<br>-->
-            <!--Kantor Cabang  : Sarinah<br>-->
-            <!--Nomor Rekening : 2006-01-000142-301<br>-->
-            <!--Kode Bank      : 002<br>-->
+        <!--Nama Penerima  : PT Insta Shop Indonesia<br>-->
+        <!--Kantor Cabang  : Sarinah<br>-->
+        <!--Nomor Rekening : 2006-01-000142-301<br>-->
+        <!--Kode Bank      : 002<br>-->
         <!--</p>-->
         <!--<p class="pay-content j_tag j_tag_bni hide">-->
-            <!--Nama Penerima  : PT Insta Shop Indonesia<br>-->
-            <!--Kantor Cabang  : Grand Indonesia<br>-->
-            <!--Nomor Rekening : 3013088888<br>-->
-            <!--Kode Bank      : 009<br>-->
+        <!--Nama Penerima  : PT Insta Shop Indonesia<br>-->
+        <!--Kantor Cabang  : Grand Indonesia<br>-->
+        <!--Nomor Rekening : 3013088888<br>-->
+        <!--Kode Bank      : 009<br>-->
         <!--</p>-->
 
         <p class="pay-content-explain">

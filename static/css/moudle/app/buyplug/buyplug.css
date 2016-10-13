@@ -54,6 +54,9 @@
     font-size: 1.4rem;
     height: 2rem;
     margin-right:2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .item-info-title > div .title{
     color: #aaa;

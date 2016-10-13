@@ -9,7 +9,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 _address = _data?JSON.parse(_data).Address:null,
                 _address_id = _this.getAddressId(),
                 _is_detail = _address_id.length == 5?true:false;
-            //_is_detail = /\_/g.test(_address_id);
+                //_is_detail = /\_/g.test(_address_id);
             //初始化本地数据
             if(!_address){
                 //地址信息
@@ -747,7 +747,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             var _url = location.href,
                 _match = _url.split('/'),
                 _len = _match.length;
-            return _match[_len-1];
+            return _match[_len-1].split('?')[0];
         },
         testDetailCarts : function(){//验证cart是否是有sku
             var _this = this,
