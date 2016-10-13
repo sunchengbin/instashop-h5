@@ -33,7 +33,11 @@
             <div>
                 <span class="top-angle"></span>
                 <div class="txt">
+                {if $INDEX_DATA.shop.note}
                     {$INDEX_DATA.shop.note|nl2br}
+                {else}
+                    Selamat datang di mini websiteku
+                {/if}
                 </div>
                 <div class="txt-hide">
                     {$INDEX_DATA.shop.note|nl2br}
