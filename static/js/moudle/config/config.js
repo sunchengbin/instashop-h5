@@ -46,7 +46,8 @@ define([],function(){
             imNum:'v1/im/',//获取im的回复信息数
             expressesList:'v1/expresses/',//获取物流列表
             uploadprove:'v1/evidence',//上传付款凭证
-            errorAction:'v1/h5log'//上传错误log
+            errorAction:'v1/h5log',//上传错误log
+            feedBack:'v1/feedback'//用户反馈页面
         }
     };
     return CONFIG;

@@ -24,7 +24,7 @@
         *{
             -webkit-tap-highlight-color : transparent;
         }
-        body, button, input, select,option,td, textarea /* for ie */ {
+        body, button,a, p,input, select,option,td, textarea /* for ie */ {
             font: 12px/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         .f-pad{
@@ -32,9 +32,9 @@
             background:#fff;
             border-bottom:solid 1px #dedede;
         }
-        .f-input-box{
-            padding:15px 0 20px 0;
-            border-bottom:solid 1px #dedede;
+        .f-input-box {
+            padding: 5px 0 15px;
+            border-bottom: solid 1px #dedede;
         }
         .f-input-box label{
             font-size:14px;
@@ -46,7 +46,7 @@
             background:#f5f5f5;
             border-radius:5px;
             border:0;
-            margin-top:10px;
+            margin-top:5px;
             outline:none;
             padding-left:10px;
 
@@ -60,7 +60,7 @@
             padding-top:10px;
         }
         .f-submit-box{
-            padding-top:20px;
+            padding-top:10px;
             text-align:center;
         }
         .f-submit-box input{
@@ -88,33 +88,73 @@
         }
         .contact-us{
             color: #aaa;
-            padding: 20px 10px;
+            padding: 5px 15px 0;
             font-size: 14px;
             line-height: 1.5;
         }
+        .dialog-wraper{
+            position:absolute;
+            background-color : #fff;
+            border-radius: 5px;
+            font-size: 1.4rem;
+            color:#666;
+        }
+        .dialog-body,.dialog-top,.dialog-footer{
+            padding:10px;
+        }
+        .dialog-body{
+            overflow:auto;
+        }
+        .dialog-footer{
+            text-align: right;
+            padding-top:0;
+            padding-bottom: 8px;
+        }
+        .dialog-footer a{
+            display: inline-block;
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #43CB9C;
+            font-size: 12px;
+        }
+        .ca-btn{
+            margin-right:30px;
+        }
+        .cf-btn{
+
+        }
+        .dialog-cover{
+            position: absolute;
+            left:0;
+            top:0;
+            bottom:0;
+            right:0;
+            background-color: black;
+            opacity: 0.4;
+            filter: Opacity(40);
+        }
+    .dialog-body-p{
+        font-size: 12px;
+    }
     </style>
 
     <title>Feedback</title>
 </head>
 
 <body id="container">
-
-<form action="./router/feedback.php" method="post">
     <div id="feedbackbox" class="f-pad">
         <div class="f-input-box">
-            <label for="phone">Nomor telpon atau Email</label>
+            <label for="contact">Nomor telpon atau Email</label>
             <input id="email" name="contact" type="text" placeholder="" value="">
         </div>
         <div class="f-input-box add-texrea">
-            <label for="">Masalah atau Komentar Anda</label>
+            <label for="content">Masalah atau Komentar Anda</label>
             <textarea name="content" value="" id="content"></textarea>
             <div id="error" class="error hh">Silakan masukkan kritik dan saran kamu</div>
         </div>
-        <input id="seller_id" type="hidden" name="seller_id" value=""/>
-        <input id="wduss" type="hidden" name="wduss" value=""/>
     </div>
     <div class="f-submit-box">
-        <input type="submit" value="submit" id="f-submit" class="insta-btn" onclick="return check()">
+        <input type="submit" value="submit" id="f-submit" class="insta-btn">
     </div>
     <div class="contact-us">
         Contact us </br>
@@ -122,33 +162,9 @@
         PH/WA: 0812 8491 8486</br>
         Instashop Versi Desktop : 'http://dashboard.instashop.co.id'
     </div>
-</form>
-<div class="f-contact">
-</div>
-<script src="../static/js/base/require-zepto.js?v=1466419017427"></script>
-<script>
-    function getRequestParam(param) {
-        var value;
-        var uri = window.location.href;
-        value = uri.match(new RegExp('[\?\&]' + param + '=([^\&\#]*)([\&\#]?)', 'i'));
-        return value ? decodeURIComponent(value[1]) : value;
-    }
-    function check() {
-        if (!$('#content').val()) {
-            $('#error').show();
-            return false;
-        }
-        return true;
-    }
-    var seller_id = getRequestParam('seller_id');
-    var wduss = getRequestParam('wduss');
-    if (seller_id) {
-        $('#seller_id').attr('value', seller_id);
-    }
-    if (wduss) {
-        $('#wduss').attr('value', wduss);
-    }
-</script>
-
+    <div class="f-contact">
+    </div>
+    <script src="http://static.instashop.co.id/js/base/require-zepto.js"></script>
+    <script src="http://static.instashop.co.id/js/dist/app/feedback.js?v=1476268969661"></script>
 </body>
 </html>
