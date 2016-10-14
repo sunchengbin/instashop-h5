@@ -3,6 +3,9 @@
 </nav>
 <section class="order-state">
     <div>
+        {{#eq data.order.state 0}}
+            {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
+        {{/eq}}
         {{#eq data.order.state 1}}
             {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
             <p>{{data.order.cancel_countdown}}</p>
@@ -17,6 +20,9 @@
             {{lang.H5_ORDER_STATUS}}: Sudah Dikirim
         {{/eq}}
         {{#eq data.order.state 4}}
+            {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
+        {{/eq}}
+        {{#eq data.order.state 5}}
             {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
         {{/eq}}
     </div>
