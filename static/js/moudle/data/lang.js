@@ -15,7 +15,7 @@ define([],function(){
             'H5_BENEFICIARY' : '收款人',
             'H5_ACCOUNT_RECEIVABLES' : '收款账号',
             'H5_ORDER_DETAIL' : '订单详情',
-            'H5_ORDER_STATUS' : '订单状态',
+            'H5_ORDER_STATUS' : 'Status',
             'H5_CHECK_ACCOUNT_RECEIVABLES' : '查看收款账号',
             'H5_SHIP_TO' : '邮寄给',
             'H5_ENTER_THE_SHOP' : '进入店铺',
@@ -173,7 +173,7 @@ define([],function(){
             'H5_ORDER_DETAIL' : 'Detail Pesanan',
 
             // 订单状态
-            'H5_ORDER_STATUS' : 'Status Pesanan',
+            'H5_ORDER_STATUS' : 'Status',
 
             // 查看收款账号
             'H5_CHECK_ACCOUNT_RECEIVABLES' : 'Cek Nomor Rekening',
