@@ -198,7 +198,19 @@
         </p>
         <p class="f-w">
             Jika ada masalah pembayaran, hubungi kami di: <br>
-            Line：@Instashop &nbsp;&nbsp;&nbsp;&nbsp;PH/WA: 0812 8491 8486
+            {{#if shopInfo.line_url}}
+                Line：{{shopInfo.line_url}} &nbsp;&nbsp;&nbsp;&nbsp;
+                {{#if shopInfo.phone}}
+                    PH/WA: {{shopInfo.phone}}
+                {{/if}}
+            {{else}}
+                {{#if shopInfo.phone}}
+                    PH/WA: {{shopInfo.phone}}
+                {{else}}
+                    PH/WA: {{shopInfo.telephone}}
+                {{/if}}
+            {{/if}}
+
         </p>
         <div class="last-explain">
             <p>Catatan: </p>

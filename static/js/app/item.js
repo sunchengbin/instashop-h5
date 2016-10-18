@@ -195,7 +195,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             if($('.j_show_contact').length){
                 _this.contact = Contact({
                     data : {
-                        tel : init_data.item.shop.phone,
+                        tel : !init_data.item.shop.line_url&&!init_data.item.shop.phone?'':init_data.item.shop.phone,
                         line : init_data.item.shop.line_url
                     },
                     lang:Lang
@@ -203,7 +203,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 $('body').on('click','.j_show_contact',function(){
                     _this.contact.createHtm({
                         data : {
-                            tel : init_data.item.shop.phone,
+                            tel : !init_data.item.shop.line_url&&!init_data.item.shop.phone?'':init_data.item.shop.phone,
                             line : init_data.item.shop.line_url
                         },
                         lang:Lang

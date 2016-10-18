@@ -27,7 +27,7 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact','base'
             if($('.j_show_contact').length){
                 _this.contact = Contact({
                     data : {
-                        tel : init_data.order.shop_info.phone,
+                        tel : !init_data.order.shop_info.line_url&&!init_data.order.shop_info.phone?'':init_data.order.shop_info.phone,
                         line : init_data.order.shop_info.line_url
                     },
                     lang:Lang
@@ -35,7 +35,7 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact','base'
                 $('body').on('click','.j_show_contact',function(){
                     _this.contact.createHtm({
                         data : {
-                            tel : init_data.order.shop_info.phone,
+                            tel : !init_data.order.shop_info.line_url&&!init_data.order.shop_info.phone?'':init_data.order.shop_info.phone,
                             line : init_data.order.shop_info.line_url
                         },
                         lang:Lang
