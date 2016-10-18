@@ -85,7 +85,19 @@ function get_init_data($path, $params){
 **/
 function get_seller_id_by_personal_host($host)
 {
-	return 40778;
+	$path = 'v1/domain';
+	$params = [
+		'action' => 'by_domain',
+		'domain' => $host,
+	];
+	$ret = get_init_php_data($path, $params);
+	$json = json_decode($ret, true);
+	if ($json['domains']['seller_id'])
+	{
+		return intval($json['domains']['seller_id']);
+	}
+	else
+		return false;
 }
 
 ?>

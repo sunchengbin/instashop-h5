@@ -1,6 +1,9 @@
 .idea
 *.php.swp
-
+*.swp
+*.php.swo
+*.php.sw*
+all.prj
 .DS_Store
 php_errors.log
 build.shall.prj
