@@ -43,7 +43,7 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','co
                 }
                 IndexHtm= Hbs.compile(OrderSuccess)({
                     totalPrice : totalPrice,
-                    shopInfo : JSON.parse(localStorage.getItem('ShopData')).ShopInfo,
+                    shopInfo : OrderInfo.shop_info,
                     banksInfo : banksInfo,
                     prompt : _prompt,
                     lang : Lang,
