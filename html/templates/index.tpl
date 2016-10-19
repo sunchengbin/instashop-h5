@@ -103,7 +103,6 @@
                     </ul>
                 {/if}
             </section>
-
             {foreach $TAGS_ITEM as $tag_list}
                 <section class="items-box j_box" data-tagid="{$tag_list.id}">
                     <p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="{$HOST_NAME}/k/{$tag_list.id}">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>{$tag_list.name}</em></p>
