@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug','slide','cart','fastclick','contact'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug,Slide,Cart,Fastclick,Contact){
+require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug','slide','cart','fastclick','contact','viewer'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug,Slide,Cart,Fastclick,Contact,Viewer){
     var ITEM = {
         init : function(){
             var _this = this;
@@ -38,6 +38,9 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 Buyplug({
                     data: init_data
                 });
+                Viewer({
+                    btn : '.j_banner li'
+                }).init();
                 this.getImNum();
                 this.handleFn();
             }

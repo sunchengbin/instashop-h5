@@ -25,6 +25,7 @@
         "logistics":"moudle/app/logistics/logistics",
         "contact":"moudle/app/contact/contact",
         "fastclick":"moudle/ui/fastclick/fastclick",
+        "viewer":"moudle/ui/viewer/viewer",
         "jsbn":"moudle/decode/jsbn",
         "xxtea":"moudle/decode/xxtea",
         "rsa":"moudle/decode/rsa",

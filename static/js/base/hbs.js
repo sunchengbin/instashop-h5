@@ -408,14 +408,16 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
         var _htm = '';
         if(imgs && imgs.length){
             Base.others.each(imgs,function(item,i){
-                _htm += '<li class=""><img data-img="'+Base.others.cutImg(item)+'" src=""/></li>';
+                _htm += '<li class="" data-src="'+getViewerUrl(item)+'"><img data-img="'+Base.others.cutImg(item)+'" src=""/></li>';
             });
         }else{
-            _htm += '<li class=""><img data-img="'+Base.others.cutImg(item)+'" src=""/></li>';
+            _htm += '<li class="" data-src="'+getViewerUrl(item)+'"><img data-img="'+Base.others.cutImg(item)+'" src=""/></li>';
         }
         return _htm;
     });
-
+    function getViewerUrl(url){
+        return url.split('?')[0];
+    }
     HBS.registerHelper('carts', function(carts) {
         var _htm = '';
         if(!carts){

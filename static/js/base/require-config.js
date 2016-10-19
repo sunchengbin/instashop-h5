@@ -25,6 +25,7 @@ require.config({
         logistics:"moudle/app/logistics/logistics",
         contact:"moudle/app/contact/contact",
         fastclick:"moudle/ui/fastclick/fastclick",
+        viewer:"moudle/ui/viewer/viewer",
         //h5配置
         config:'moudle/config/config',
         //数据存储js
