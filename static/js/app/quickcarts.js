@@ -44,6 +44,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 address : _address,
                 name:'',
                 telephone:'',
+                host:Config.host,
                 lang:Lang
             };
             var _htm= Hbs.compile(QuickCarts)(_hb_opts);
@@ -207,6 +208,15 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     _this.getTotal();
                 }
             });
+            $('body').on('click','.j_check_box',function(e){
+                if($(this).is('.icon-checked-font')){
+                    $(this).addClass('icon-checkbox-font').removeClass('icon-checked-font');
+                    $('.j_submit_buy').addClass('disable-btn');
+                }else{
+                    $(this).addClass('icon-checked-font').removeClass('icon-checkbox-font');
+                    $('.j_submit_buy').removeClass('disable-btn');
+                }
+            });
             Btn({
                 wraper : 'body',
                 target : '.j_submit_buy',
@@ -216,6 +226,15 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 callback : function(dom){
                     var _that = this,
                         _items = _this.getItems();
+                    if($('.j_check_box').is('.icon-checkbox-font')){
+                        _that.cancelDisable();
+                        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                        Dialog.tip({
+                            top_txt : '',//可以是html
+                            body_txt : '<p class="dialog-body-p">aggree is must checked</p>'
+                        });
+                        return;
+                    }
                     if(!_items.length){
                         _that.cancelDisable();
                         _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);

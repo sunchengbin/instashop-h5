@@ -357,3 +357,29 @@ body .address-list{
 .total-p span{
     color: #F5A623;
 }
+.agree-info{
+    font-size: 1.4rem;
+    padding: 1rem 0;
+    line-height: 2rem;
+    width: 80%;
+    margin:0 auto;
+}
+.agree-info p{
+    margin-left: 35px;
+    font-size: 1.2rem;
+    word-break: break-all;
+    overflow: hidden;
+}
+.agree-info i{
+    font-size: 2.2rem;
+    color: #43CB9B;
+    padding-right:1rem;
+    margin-top: 1rem;
+}
+.agree-info a{
+    /*margin-left: 1rem;*/
+    color: #748bcf;
+}
+.disable-btn{
+    width: 80%;
+}
