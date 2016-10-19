@@ -4,5 +4,4 @@
 .DS_Store
 php_errors.log
 build.sh
-html/templates
 html/templates_c
