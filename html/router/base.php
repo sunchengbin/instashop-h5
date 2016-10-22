@@ -93,12 +93,58 @@ function format_img($imgurl, $w, $h){
 	return $imgurl;
 }
 function list_img($imgurl){
-    $w = 300;
-    $h = 300;
+    $w = 500;
+    $h = 500;
 	if (false !== strpos($imgurl, '?')) {
 		$tmp_arr = explode('?', $imgurl);
 		$imgurl = $tmp_arr[0];
 	}
 	$imgurl .= sprintf("?w=%s&h=%s&cp=1", $w, $h);
 	return $imgurl;
+}
+function viewerImg($imgurl){
+    if (false !== strpos($imgurl, '?')) {
+        $tmp_arr = explode('?', $imgurl);
+        $imgurl = $tmp_arr[0];
+    }
+    return $imgurl;
+}
+function transDate($datetime){
+    $tmp_datetime = str_replace(':','-',$datetime);
+    $tmp_datetime = str_replace(' ','-',$tmp_datetime);
+    $arr = explode('-',$tmp_datetime);
+    return $arr[2]+'/'+$arr[1]+' '+$arr[3]+'.'+$arr[4];
+}
+function itemPrice($data){
+    if($data['is_discount']){
+        if($data['is_discount']['price'] > 0){
+            return 'Rp '.priceFormat($data['discount']['price']);
+        }
+        return '';
+    }
+    if($data['sku'] && count($data['sku']) < 2){
+        if($data['price'] > 0){
+            return 'Rp '.priceFormat($data['price']);
+        }
+        return '';
+    }else{
+        $sku_price = [];
+        foreach($data['sku'] as $item){
+            if(intval($item['price']) > 0){
+                $sku_price[] = intval($item['price']);
+            }else{
+                $sku_price[] = 0;
+            }
+        };
+        usort($sku_price,'cmp');
+        if($sku_price[0] != $sku_price[(count($sku_price)-1)]){
+            return 'Rp '.priceFormat($sku_price[0]).'-'.priceFormat($sku_price[(count($sku_price)-1)]);
+        }else{
+            if($sku_price[0] == 0){
+                return '';
+            }else{
+                return 'Rp '.priceFormat($sku_price[0]);
+            }
+        }
+    }
 }

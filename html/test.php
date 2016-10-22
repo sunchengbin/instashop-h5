@@ -19,6 +19,7 @@
 
     /*获取item页面的数据*/
     include_once( dirname(__FILE__).'/../html/router/util.php' );
+    include_once( dirname(__FILE__).'/../html/router/base.php');
     $params = [];
     $item_id = $_REQUEST['item_id'];
     if (!$item_id) {
