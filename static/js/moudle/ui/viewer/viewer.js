@@ -2,14 +2,16 @@
  * Created by sunchengbin on 16/10/19.
  * 查看大图
  */
-define(['base'],function(Base){
+define(['base','slide'],function(Base,Slide){
     var VIEWER = function(opts){
         var _this = this;
         _this.config = $.extend({
             wraper : 'body',
             btn : '.j_viewer_btn',
-            speed : '.5s'
+            speed : '.5s',
+            images : null
         },opts);
+        _this.isSlide = opts.images.length>1;
     };
     VIEWER.prototype = {
         init : function(){
@@ -19,30 +21,64 @@ define(['base'],function(Base){
             var _this = this,
                 _config = _this.config;
             $(_config.wraper).on('click',_config.btn,function(){
-                var _url = $(this).attr('data-src');
-                _this.show(_url);
+                var _url = $(this).attr('data-src'),
+                    _index = Number($(this).attr('data-num'));
+                _this.show(_url,_index);
             });
-            $(_config.wraper).on('click','.j_viewer_box',function(){
+            $(_config.wraper).on('click','.j_viewer_box li',function(e){
+                e.stopPropagation();
                 _this.hide();
             });
         },
-        createViewer : function(url){
+        createViewer : function(url,index){
+            var _this = this,
+                _imgs = _this.config.images;
             if($('.j_viewer_box').length){
-                $('.j_viewer_box img').attr('src',url);
-                $('.j_viewer_box div').css({
+                if(_this.isSlide){
+                    $('.j_viewer_box img').attr('src',url);
+                    $('.j_viewer_box li').css({
+                        width : $(window).width(),
+                        height : $(window).height()
+                    });
+                    $('.j_viewer_box li div').css({
+                        width : $(window).width(),
+                        height : $(window).height()
+                    });
+                }else{
+
+                }
+            }else{
+                var _html = '';
+                if(_this.isSlide){
+                    _html = '<ul class="j_viewer_box viewer-box">';
+                    for(var i = 0;i < _imgs.length;i++){
+                        _html += '<li><div><img class="banner_lazy" data-url="'+_this.getImageUrl(_imgs[i])+'"></div></li>';
+                    }
+                    _html += '</ul>';
+                }else{
+                    _html = '<ul class="j_viewer_box viewer-box"><li><div><img src="'+_this.getImageUrl(url)+'"></div></li></ul>';
+                }
+                $('body').append(_html);
+                Slide.createNew({
+                    dom: document.querySelector('.j_viewer_box'),
+                    needTab: false,
+                    auto : false,
+                    curPage : index+1
+                });
+                $('.j_viewer_box li').css({
                     width : $(window).width(),
                     height : $(window).height()
                 });
-            }else{
-                var _html = '<div class="j_viewer_box viewer-box"><div><img src="'+url+'"></div></div>';
-                $('body').append(_html);
+                $('.j_viewer_box li div').css({
+                    width : $(window).width(),
+                    height : $(window).height()
+                });
             }
             $('.j_viewer_box').css('z-index',Base.others.zIndex);
-            $('.j_viewer_box div').css({
-                width : $(window).width(),
-                height : $(window).height()
-            });
             return this;
+        },
+        getImageUrl : function(url){
+            return url.split('?')[0]+'?w=750';
         },
         loadImg : function(url,callback){
             var _img = new Image();
@@ -54,9 +90,9 @@ define(['base'],function(Base){
 
             }
         },
-        show : function(url){
+        show : function(url,index){
             var _this = this;
-            _this.createViewer(url);
+            _this.createViewer(url,index);
             _this.loadImg(url,function(){
                 $('.j_viewer_box').show();
                 setTimeout(function(){

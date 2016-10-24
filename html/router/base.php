@@ -104,7 +104,6 @@ function list_img($imgurl){
 	$imgurl .= sprintf("?w=%s&h=%s&cp=1", $w, $h);
 	return $imgurl;
 }
-}
 function viewerImg($imgurl){
     if (false !== strpos($imgurl, '?')) {
         $tmp_arr = explode('?', $imgurl);

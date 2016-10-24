@@ -326,7 +326,7 @@ define(function() {
 		lazyLoaded: false,
 		lazyImg: function() {
 			var _this = this,
-				n = _this.curPage,
+				n = Number(_this.curPage),
 				imgs = [];
 			if (_this.lazyLoaded) {
 				return;

@@ -1,34 +1,19 @@
 /**
+ * Created by sunchengbin on 16/10/20.
+ */
+/**
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
 require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug','slide','cart','fastclick','contact','viewer'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug,Slide,Cart,Fastclick,Contact,Viewer){
     var ITEM = {
         init : function(){
-            var _this = this;
-            var ItemHtm = '<div>'+Lang.H5_LOADING+'</div>';
+            var _this = this,
+                _cart_num = Cart().getCartNum();
             if(init_data && init_data.code == 200){
-                ItemHtm= Hbs.compile(Item)({
-                    data : init_data,
-                    lang : Lang,
-                    hrefUrl : Config.host.hrefUrl,
-                    host:Config.host.host,
-                    imgUrl:Config.host.imgUrl,
-                    shopUrl:Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id,
-                    num : Cart(init_data).getCartNum(),
-                    timeLang : _this.discountTime(init_data.item.discount.now_time,init_data.item.discount.end_time)
-                });
-            }else{
-                if(init_data.code == 420402){
-                    ItemHtm ='<div class="no-exists"><img src="'+Config.host.imgUrl+'/app/404.png"/><p>Produk tidak ditemukan!</p></div>';
-                }else{
-                    ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';
+                if(_cart_num > 0){
+                    $('.j_cart_wraper').append('<span class="cart-num">'+_cart_num+'</span>');
                 }
-
-            }
-            $('.j_php_loding').remove();
-            $('body').prepend(ItemHtm);
-            if(init_data && init_data.code == 200) {
                 Lazyload();
                 Slide.createNew({
                     dom: document.querySelector('.j_banner'),
@@ -39,32 +24,10 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     data: init_data
                 });
                 Viewer({
-                    btn : '.j_banner li'
+                    btn : '.j_banner li',
+                    images : init_data.item.imgs
                 }).init();
-                this.getImNum();
-                this.handleFn();
-            }
-
-        },
-        getImNum : function(){
-            var im_id = localStorage.getItem('UID'),//im页面种如cookie
-                toImId = init_data.item.shop['im_id'];
-            if (im_id && toImId) {
-                var reqData = {
-                    edata: {
-                        action: 'unreadnum',
-                        uid: toImId,
-                        uid2: im_id
-                    }
-                };
-                Ajax.getJsonp(Config.host.actionUrl+Config.actions.imNum + '?param=' + JSON.stringify(reqData), function(data){
-                    //alert(data.count);
-                    if (data && data.count > 0) {
-                        $('.j_im_num').show();
-                    } else {
-                        $('.j_im_num').hide();
-                    }
-                });
+                _this.handleFn();
             }
         },
         discountTime : function(nowTime,endTime){
@@ -92,15 +55,14 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             var now = new Date(Date.UTC(arr[0],arr[1]-1,arr[2],arr[3]-8,arr[4],arr[5]));
             return parseInt(now.getTime());
         },
-
         countTime : function(_send){
             var _hour = ''+(_send - _send % 3600)/3600,
                 _second = ''+(_send - _hour*3600)%60,
                 _minute = ''+(_send - _hour*3600 - _second)/60;
             if(_send < 0){
-                return '00:00:00';
+                return '00.00.00';
             }
-            return ((_hour.length<2?'0'+_hour:_hour)+':'+(_minute.length<2?'0'+_minute:_minute)+':'+(_second.length<2?'0'+_second:_second));
+            return ((_hour.length<2?'0'+_hour:_hour)+'.'+(_minute.length<2?'0'+_minute:_minute)+'.'+(_second.length<2?'0'+_second:_second));
         },
         changeTime : function(){
             var _second = $('[data-time]').attr('data-time'),
@@ -127,7 +89,6 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 });
             }
             Fastclick.attach(document.body);
-
             $('body').on('click','.j_shop_info',function(){
                 var _this = $(this),
                     _url = _this.attr('data-url');
@@ -141,20 +102,40 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     _host_name = location.hostname,
                     _ios = Base.others.verifyBower().ios;
                 if(_local_url && !/detail/g.test(_local_url)){
-                    if(/\/s\//g.test(_local_url)){
-                        history.back();
-                    }else{
-                        if(/\?/g.test(_local_url)){
-                            location.href = localStorage.getItem('FromUrl')+'&item=back';
+                    if(_ios){//ios手机回退
+                        if(/\/s\//g.test(_local_url)){
+                            console.log(1)
+                            history.back();
                         }else{
-                            console.log(/\.instashop\.co\.id\/\d+/g.test(_local_url))
-                            if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){
-                                var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
-                                location.href = _url;
+                            if(/\?/g.test(_local_url)){
+                                console.log(2)
+                                location.href = localStorage.getItem('FromUrl')+'&item=back';
                             }else{
-                                if(!/\.instashop\.co\.id/g.test(_local_url) && !/\/k\//g.test(_local_url)){
-                                    location.href = location.protocol+'//'+location.hostname+'?item=back';
+                                console.log(/\.instashop\.co\.id\/\d+/g.test(_local_url))
+                                if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){
+                                    var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
+                                    location.href = _url;
                                 }else{
+                                    console.log(3)
+                                    location.href = localStorage.getItem('FromUrl')+'?item=back';
+                                }
+                            }
+                        }
+                    }else{
+                        if(/\/s\//g.test(_local_url)){
+                            console.log(1)
+                            history.back();
+                        }else{
+                            if(/\?/g.test(_local_url)){
+                                console.log(2)
+                                location.href = localStorage.getItem('FromUrl')+'&item=back';
+                            }else{
+                                console.log(/\.instashop\.co\.id\/\d+/g.test(_local_url))
+                                if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){
+                                    var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
+                                    location.href = _url;
+                                }else{
+                                    console.log(3)
                                     location.href = localStorage.getItem('FromUrl')+'?item=back';
                                 }
                             }
@@ -178,7 +159,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             if($('.j_show_contact').length){
                 _this.contact = Contact({
                     data : {
-                        tel : !init_data.item.shop.line_url&&!init_data.item.shop.phone?'':init_data.item.shop.phone,
+                        tel : init_data.item.shop.phone,
                         line : init_data.item.shop.line_url
                     },
                     lang:Lang
@@ -186,7 +167,7 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 $('body').on('click','.j_show_contact',function(){
                     _this.contact.createHtm({
                         data : {
-                            tel : !init_data.item.shop.line_url&&!init_data.item.shop.phone?'':init_data.item.shop.phone,
+                            tel : init_data.item.shop.phone,
                             line : init_data.item.shop.line_url
                         },
                         lang:Lang
