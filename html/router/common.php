@@ -3,7 +3,7 @@ date_default_timezone_set('Asia/Chongqing');
 header('Content-type: text/html; charset=utf-8');
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 ini_set('display_startup_errors', 0);
 define('MODE_NAME', 'instashoph5');
 define('BASE_PATH', '/data/server/weidian');
