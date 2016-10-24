@@ -191,9 +191,9 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             });
             localStorage.removeItem('FromUrl');
             if(localStorage.getItem('ScrollTop') && Base.others.getUrlPrem('item')){//存在scrollTop时页面下滚到记忆中的top值
-                if(Base.others.verifyBower().ios){
+                //if(Base.others.verifyBower().ios){
                     _this.goScroll();
-                }
+                //}
             }
             if($('.j_show_contact').length){
                 _this.contact = Contact({
