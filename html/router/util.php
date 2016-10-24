@@ -42,9 +42,6 @@ function deal_headers() {
 }
 
 function get_init_php_data($path, $params){
-    error_reporting(E_ALL);
-    ini_set("display_errors", 0);
-
     require_once('HttpProxy.php');
 
     if (strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
@@ -59,8 +56,16 @@ function get_init_php_data($path, $params){
         $cookie_name = "browser_id";
     }
 
-    $browser_id = $_COOKIE[$cookie_name];
+	$browser_id = null;
+	if (isset($_COOKIE[$cookie_name]))
+	{
+		$browser_id = $_COOKIE[$cookie_name];
+	}
     $params['client_uuid'] = $browser_id;
+	if (!C_RUNTIME_ONLINE && $_GET['_debug_env'])
+	{
+		$params['_debug_env'] = $_GET['_debug_env'];
+	}
 
     $api = $host.$path.'?param='.json_encode([ 'edata' => $params  ]);
 
@@ -77,6 +82,26 @@ function get_init_php_data($path, $params){
 function get_init_data($path, $params){
     $ret = get_init_php_data($path, $params);
     return json_encode($ret);
+}
+
+/**
+* 根据用户自己的域名获取seller_id
+**/
+function get_seller_id_by_personal_host($host)
+{
+	$path = 'v1/domain';
+	$params = [
+		'action' => 'by_domain',
+		'domain' => $host,
+	];
+	$ret = get_init_php_data($path, $params);
+	$json = json_decode($ret, true);
+	if ($json['domains']['seller_id'])
+	{
+		return intval($json['domains']['seller_id']);
+	}
+	else
+		return false;
 }
 
 ?>

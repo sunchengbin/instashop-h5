@@ -187,7 +187,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
                 //console.log(_url)
                 out += '<li><a class="item-info j_item_info" data-url="'+_url+'" href="javascript:;">'
-                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
+                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img)+'">';
 
                 if(items[i].is_discount){
                     out +='<span>-'+items[i].discount.value+'%</span>';
@@ -228,7 +228,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                     _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
 
                 out += '<li><a class="item-info j_item_info" data-url="'+_url+'" href="javascript:;">'
-                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
+                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img)+'">';
 
                 if(items[i].is_discount){
                     out +='<span>-'+items[i].discount.value+'%</span>';
@@ -269,7 +269,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
                 var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time),
                     _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
                 out += '<li><a class="item-info j_item_info" data-url="'+_url+'" href="javascript:;">'
-                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
+                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img)+'">';
 
                 if(items[i].is_discount){
                     out +='<span>-'+items[i].discount.value+'%</span>';
@@ -311,7 +311,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
             var _time = discountTime(items[i].discount.now_time,items[i].discount.end_time),
                 _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
             out += '<li><a class="item-info j_item_info" data-url="'+_url+'" href="javascript:;">'
-                +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
+                +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img)+'">';
 
             if(items[i].is_discount){
                 out +='<span>-'+items[i].discount.value+'%</span>';

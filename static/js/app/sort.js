@@ -56,7 +56,9 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                 });
             });
             if(localStorage.getItem('SortTop') && Base.others.getUrlPrem('item')){//存在scrollTop时页面下滚到记忆中的top值
-                _this.goScroll();
+                //if(Base.others.verifyBower().ios){
+                    _this.goScroll();
+                //}
             }
             if(init_data.code == 200){
                 var _list = init_data.item_list.list,
@@ -202,7 +204,7 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                 var _time = _this.discountTime(items[i].discount.now_time,items[i].discount.end_time),
                     _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
                 out += '<li><a class="item-info j_item_info" data-url="'+(_url+(_webplog?'?webpLog=1':''))+'" href="javascript:;">'
-                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
+                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img)+'">';
                 if(items[i].is_discount){
                     out +='<span>-'+items[i].discount.value+'%</span>';
                     if(items[i].discounting){

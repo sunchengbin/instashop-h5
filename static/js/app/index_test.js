@@ -191,9 +191,9 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             });
             localStorage.removeItem('FromUrl');
             if(localStorage.getItem('ScrollTop') && Base.others.getUrlPrem('item')){//存在scrollTop时页面下滚到记忆中的top值
-                if(Base.others.verifyBower().ios){
+                //if(Base.others.verifyBower().ios){
                     _this.goScroll();
-                }
+                //}
             }
             if($('.j_show_contact').length){
                 _this.contact = Contact({
@@ -318,14 +318,14 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
         addItem : function(items){
             var out = "",
                 _this = this,
-                _list_w = $(window).width()/2,
+                _list_w = 300,
                 _webplog = !Base.others.webpLog(),
                 i = 0;
             for (i; i < items.length;i++) {
                 var _time = _this.discountTime(items[i].discount.now_time,items[i].discount.end_time),
                     _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
                 out += '<li><a class="item-info j_item_info" data-url="'+(_url+(_webplog?'?webpLog=1':''))+'" href="javascript:;">'
-                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,_list_w)+'">';
+                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img)+'">';
                 if(items[i].is_discount){
                     out +='<span>-'+items[i].discount.value+'%</span>';
                     if(items[i].discounting){

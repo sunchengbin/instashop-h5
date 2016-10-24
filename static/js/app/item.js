@@ -141,40 +141,20 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     _host_name = location.hostname,
                     _ios = Base.others.verifyBower().ios;
                 if(_local_url && !/detail/g.test(_local_url)){
-                    if(_ios){//ios手机回退
-                        if(/\/s\//g.test(_local_url)){
-                            console.log(1)
-                            history.back();
-                        }else{
-                            if(/\?/g.test(_local_url)){
-                                console.log(2)
-                                location.href = localStorage.getItem('FromUrl')+'&item=back';
-                            }else{
-                                console.log(/\.instashop\.co\.id\/\d+/g.test(_local_url))
-                                if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){
-                                    var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
-                                    location.href = _url;
-                                }else{
-                                    console.log(3)
-                                    location.href = localStorage.getItem('FromUrl')+'?item=back';
-                                }
-                            }
-                        }
+                    if(/\/s\//g.test(_local_url)){
+                        history.back();
                     }else{
-                        if(/\/s\//g.test(_local_url)){
-                            console.log(1)
-                            history.back();
+                        if(/\?/g.test(_local_url)){
+                            location.href = localStorage.getItem('FromUrl')+'&item=back';
                         }else{
-                            if(/\?/g.test(_local_url)){
-                                console.log(2)
-                                location.href = localStorage.getItem('FromUrl')+'&item=back';
+                            console.log(/\.instashop\.co\.id\/\d+/g.test(_local_url))
+                            if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){
+                                var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
+                                location.href = _url;
                             }else{
-                                console.log(/\.instashop\.co\.id\/\d+/g.test(_local_url))
-                                if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){
-                                    var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
-                                    location.href = _url;
+                                if(!/\.instashop\.co\.id/g.test(_local_url) && !/\/k\//g.test(_local_url)){
+                                    location.href = location.protocol+'//'+location.hostname+'?item=back';
                                 }else{
-                                    console.log(3)
                                     location.href = localStorage.getItem('FromUrl')+'?item=back';
                                 }
                             }

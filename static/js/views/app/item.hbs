@@ -9,138 +9,144 @@
             <i class="icon iconfont icon-error-font"></i>
             <p>{{lang.H5_COMMODIFY_SHELF}}</p>
             <p><a href="{{shopUrl}}?item=back" class="btn confirm-btn b-btn">{{lang.H5_BROWSE_SHOP}}</a></p>
-
         </section>
     {{else}}
-        <nav class="shop-header-nav clearfix">
-            <div class="fl">
-                <button class="j_go_back">
-                    <i class="icon iconfont icon-back-font"></i>
-                </button>
-                <div class="btn-cover"></div>
+        {{#eq data.item.status '4'}}
+            <div class="no-exists">
+                <img src="{{imgUrl}}/app/404.png"/>
+                <p>Produk tidak ditemukan!</p>
             </div>
-            <div class="fr">
-                <button class="j_cart_wraper" data-url="{{hrefUrl}}cart.php">
-                    {{#if num}}
-                        <span class="cart-num">{{num}}</span>
-                    {{/if}}
-                    <i class="icon iconfont icon-cart-font"></i>
-                </button>
-                <div class="btn-cover"></div>
-            </div>
-        </nav>
-        <section class="item-info">
-            <div class="banner-box">
-                <ul class="item-banner j_banner clearfix">
-                    {{{itemimgs data.item.imgs}}}
-                </ul>
-            </div>
-            <div class="info-box">
-                <p class="title">
-                    {{{transtxt data.item.item_comment}}}
-                </p>
-                {{#if data.item.is_discount}}
-                    {{#if data.item.discounting}}
-                        <p class="price discount-price">
-                            Rp {{transprice data.item.discount.price}}
-                        </p>
-                    {{else}}
-                        <p class="price discount-price">
-                            Rp {{transprice data.item.discount.price}}
-                        </p>
-                    {{/if}}
-                    {{#eq data.item.discount.min_price data.item.discount.max_price}}
-                        <p class="price-lang">Rp {{transprice data.item.discount.min_price}}</p>
-                    {{else}}
-                        <p class="price-lang">Rp {{transprice data.item.discount.min_price}} - {{transprice data.item.discount.max_price}}</p>
-                    {{/eq}}
-
-                    <p class="discount-info">
-                        <span>-{{transpricevalue data.item.discount.value}}%</span>
-
-                        {{#if data.item.discounting}}
-                            Time remaining :
-                            <span data-time="{{timeLang.second}}">{{timeLang.time}}</span>
-                        {{else}}
-                            Start time
-                            {{transdate data.item.discount.start_time}} WIB
-                        {{/if}}
-                    </p>
-                {{else}}
-                    <p class="price discount-price">
-                        {{itemprice data.item}}
-                    </p>
-                {{/if}}
-
-                <a href="javascript:;" data-url="{{shopUrl}}" class="go-shop j_shop_info">
-                    <div class="clearfix shop-info">
-                        <i class="icon iconfont fr icon-go-font"></i>
-                        <img class="fl" src="{{data.item.shop.logo}}"/>
-                        <p>{{data.item.shop.name}}</p>
-                    </div>
-                </a>
-            </div>
-            <div class="shop-explain j_down_box">
-                <div>
-                    <span class="top-angle"></span>
-                    <div class="txt">
-                        {{#if data.item.shop.note}}
-                            {{{transtxt data.item.shop.note}}}
-                        {{else}}
-                            Selamat datang di mini websiteku
-                        {{/if}}
-                    </div>
-                    <div class="txt-hide">
-                        {{{transtxt data.item.shop.note}}}
-                    </div>
-                    <p><i class="icon iconfont j_down_btn down-btn"></i></p>
+        {{else}}
+            <nav class="shop-header-nav clearfix">
+                <div class="fl">
+                    <button class="j_go_back">
+                        <i class="icon iconfont icon-back-font"></i>
+                    </button>
+                    <div class="btn-cover"></div>
                 </div>
-            </div>
-        </section>
-        <section class="buy-box">
-            {{#if data.item.shop.line_url}}
-                {{#if data.item.shop.phone}}
-                    <a href="javascript:;" data-type="all" class="j_show_contact ser-box fl">
-                        <i class="icon iconfont icon-news-font"></i>
-                        <p>{{lang.H5_CONNACT_SELLER}}</p>
-                    </a>
-                <div class="clearfix buy-btns have-contact">
-                {{else}}
-                    <a href="{{data.item.shop.line_url}}" class="ser-box fl">
-                        <i class="icon iconfont icon-news-font"></i>
-                        <p>{{lang.H5_CONNACT_SELLER}}</p>
-                    </a>
-                <div class="clearfix buy-btns have-contact">
-                {{/if}}
-            {{else}}
-                {{#if data.item.shop.phone}}
-                    <a href="javascript:;" data-type="tel" class="j_show_contact ser-box fl">
-                        <i class="icon iconfont icon-news-font"></i>
-                        <p>{{lang.H5_CONNACT_SELLER}}</p>
-                    </a>
-                <div class="clearfix buy-btns have-contact">
-                {{else}}
-                <div class="clearfix buy-btns">
-                {{/if}}
-            {{/if}}
-            {{#elt data.item.stock 0}}
-                <a class="add-cart j_add_cart disable-addnow disable-btn" data-id="{{data.item.id}}" href="javascript:;">
-                    {{lang.H5_ADD_CART}}
-                </a>
-                <a href="javascript:;" class="buy-now j_buy_btn disable-buynow disable-btn">
-                    {{lang.H5_BUY_NOW}}
-                </a>
-            {{else}}
-                <a class="add-cart j_add_cart" data-id="{{data.item.id}}" href="javascript:;">
-                    {{lang.H5_ADD_CART}}
-                </a>
-                <a href="javascript:;" class="buy-now j_buy_btn">
-                    {{lang.H5_BUY_NOW}}
-                </a>
-            {{/elt}}
+                <div class="fr">
+                    <button class="j_cart_wraper" data-url="{{hrefUrl}}cart.php">
+                        {{#if num}}
+                            <span class="cart-num">{{num}}</span>
+                        {{/if}}
+                        <i class="icon iconfont icon-cart-font"></i>
+                    </button>
+                    <div class="btn-cover"></div>
+                </div>
+            </nav>
+            <section class="item-info">
+                <div class="banner-box">
+                    <ul class="item-banner j_banner clearfix">
+                        {{{itemimgs data.item.imgs}}}
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <p class="title">
+                        {{{transtxt data.item.item_comment}}}
+                    </p>
+                    {{#if data.item.is_discount}}
+                        {{#if data.item.discounting}}
+                            <p class="price discount-price">
+                                Rp {{transprice data.item.discount.price}}
+                            </p>
+                        {{else}}
+                            <p class="price discount-price">
+                                Rp {{transprice data.item.discount.price}}
+                            </p>
+                        {{/if}}
+                        {{#eq data.item.discount.min_price data.item.discount.max_price}}
+                            <p class="price-lang">Rp {{transprice data.item.discount.min_price}}</p>
+                        {{else}}
+                            <p class="price-lang">Rp {{transprice data.item.discount.min_price}} - {{transprice data.item.discount.max_price}}</p>
+                        {{/eq}}
 
-        </div>
-        </section>
+                        <p class="discount-info">
+                            <span>-{{transpricevalue data.item.discount.value}}%</span>
+
+                            {{#if data.item.discounting}}
+                                Time remaining :
+                                <span data-time="{{timeLang.second}}">{{timeLang.time}}</span>
+                            {{else}}
+                                Start time
+                                {{transdate data.item.discount.start_time}} WIB
+                            {{/if}}
+                        </p>
+                    {{else}}
+                        <p class="price discount-price">
+                            {{itemprice data.item}}
+                        </p>
+                    {{/if}}
+
+                    <a href="javascript:;" data-url="{{shopUrl}}" class="go-shop j_shop_info">
+                        <div class="clearfix shop-info">
+                            <i class="icon iconfont fr icon-go-font"></i>
+                            <img class="fl" src="{{data.item.shop.logo}}"/>
+                            <p>{{data.item.shop.name}}</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="shop-explain j_down_box">
+                    <div>
+                        <span class="top-angle"></span>
+                        <div class="txt">
+                            {{#if data.item.shop.note}}
+                                {{{transtxt data.item.shop.note}}}
+                            {{else}}
+                                Selamat datang di mini websiteku
+                            {{/if}}
+                        </div>
+                        <div class="txt-hide">
+                            {{{transtxt data.item.shop.note}}}
+                        </div>
+                        <p><i class="icon iconfont j_down_btn down-btn"></i></p>
+                    </div>
+                </div>
+            </section>
+            <section class="buy-box">
+                {{#if data.item.shop.line_url}}
+                    {{#if data.item.shop.phone}}
+                        <a href="javascript:;" data-type="all" class="j_show_contact ser-box fl">
+                            <i class="icon iconfont icon-news-font"></i>
+                            <p>{{lang.H5_CONNACT_SELLER}}</p>
+                        </a>
+                    <div class="clearfix buy-btns have-contact">
+                    {{else}}
+                        <a href="{{data.item.shop.line_url}}" class="ser-box fl">
+                            <i class="icon iconfont icon-news-font"></i>
+                            <p>{{lang.H5_CONNACT_SELLER}}</p>
+                        </a>
+                    <div class="clearfix buy-btns have-contact">
+                    {{/if}}
+                {{else}}
+                    {{#if data.item.shop.phone}}
+                        <a href="javascript:;" data-type="tel" class="j_show_contact ser-box fl">
+                            <i class="icon iconfont icon-news-font"></i>
+                            <p>{{lang.H5_CONNACT_SELLER}}</p>
+                        </a>
+                    <div class="clearfix buy-btns have-contact">
+                    {{else}}
+                    <div class="clearfix buy-btns">
+                    {{/if}}
+                {{/if}}
+                {{#gt data.item.stock 0}}
+                    <a class="add-cart j_add_cart" data-id="{{data.item.id}}" href="javascript:;">
+                        {{lang.H5_ADD_CART}}
+                    </a>
+                    <a href="javascript:;" class="buy-now j_buy_btn">
+                        {{lang.H5_BUY_NOW}}
+                    </a>
+                {{else}}
+                    <a class="add-cart j_add_cart disable-addnow disable-btn" data-id="{{data.item.id}}" href="javascript:;">
+                        {{lang.H5_ADD_CART}}
+                    </a>
+                    <a href="javascript:;" class="buy-now j_buy_btn disable-buynow disable-btn">
+                        {{lang.H5_BUY_NOW}}
+                    </a>
+                {{/gt}}
+
+            </div>
+            </section>
+        {{/eq}}
     {{/eq}}
 {{/eq}}
 

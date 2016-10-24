@@ -20,6 +20,8 @@ function getTags($list){
 
     if(!count($list))return null;
     $data = [];
+	$sort = [];
+	$result = [];
     for ($i=0; $i < count($list);$i++) {
 
         if($list[$i]["index_type"] == 'tags'){
@@ -73,16 +75,16 @@ function discountSecond($endTime){
 function priceFormat($price) {
     return number_format($price, 0, '.', '.');
 }
-function bg_img($imgurl, $w, $h){
+function bg_img($imgurl, $w=500){
     $w = 500;
 	if (false !== strpos($imgurl, '?')) {
 		$tmp_arr = explode('?', $imgurl);
 		$imgurl = $tmp_arr[0];
 	}
-	$imgurl .= sprintf("?w=%s", $w, $h);
+	$imgurl .= sprintf("?w=%s", $w);
 	return $imgurl;
 }
-function format_img($imgurl, $w, $h){
+function format_img($imgurl, $w=420, $h=315){
     $w = 420;
     $h = 315;
 	if (false !== strpos($imgurl, '?')) {
