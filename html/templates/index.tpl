@@ -205,7 +205,7 @@
                 {/if}
                 <li class="j_cart_wraper b-right" data-url="{$HOST_NAME}/html/cart.php">
                     <i class="icon iconfont icon-i-shop-font"></i>
-                    Keranjangku
+                    Troli
                 </li>
                 <li>
                     {if $INDEX_DATA.shop.line_url}
