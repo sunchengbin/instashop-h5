@@ -303,7 +303,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             if(_send < 0){
                 return '00.00.00';
             }
-            return ((_hour.length<2?'0'+_hour:_hour)+'.'+(_minute.length<2?'0'+_minute:_minute)+'.'+(_second.length<2?'0'+_second:_second));
+            return ((_hour.length<2?'0'+_hour:_hour)+':'+(_minute.length<2?'0'+_minute:_minute)+':'+(_second.length<2?'0'+_second:_second));
         },
         changeTime : function(){
             var _this = this;

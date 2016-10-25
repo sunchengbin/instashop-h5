@@ -58,9 +58,9 @@ function discountTime($endTime){
     $second = ($send - $hour*3600)%60;
     $minute =  ($send - $hour*3600 - $second)/60;
     if($send < 0){
-        return '00.00.00';
+        return '00:00:00';
     }
-    return (strlen($hour)<2?'0'.$hour:$hour).'.'.(strlen($minute)<2?'0'.$minute:$minute).'.'.(strlen($second)<2?'0'.$second:$second);
+    return (strlen($hour)<2?'0'.$hour:$hour).':'.(strlen($minute)<2?'0'.$minute:$minute).':'.(strlen($second)<2?'0'.$second:$second);
 };
 function discountSecond($endTime){
     $nt = time()*1000;
