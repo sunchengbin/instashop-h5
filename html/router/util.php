@@ -417,6 +417,4 @@ function get_top_domain($domain) {
     return $top_domain;  
 }  
 
-?>  
-
 ?>
