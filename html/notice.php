@@ -1,7 +1,22 @@
-<!DOCTYPE html>
+
 <?php
 include_once( dirname(__FILE__).'/../html/router/common.php');
+include_once( dirname(__FILE__).'/../html/router/util.php' );
+$notice_id = $_REQUEST['notice_id'];
+if (!$notice_id) {
+    $ss = split('\/', $_SERVER['REQUEST_URI']);
+    $notice_id = end($ss);
+}
+$path = 'v1/notice/'.$notice_id;
+$ret = get_init_php_data($path, '');
+$json = json_decode($ret, true);
+$content = trim($json['notice']['content']);
+if(preg_match('/^https?\:\/\/[^\s]+$/i',$content)){
+  header('location:'.$content);
+  exit;
+}
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -62,21 +77,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   }
   </style>
   <?php
-          include_once( dirname(__FILE__).'/../html/router/util.php' );
-          $params = [
-              'action' => 'index',
-              'page_size' => 10,
-              'last_id' => '',
-              'json' => '0'
-          ];
-          $notice_id = $_REQUEST['notice_id'];
-          if (!$notice_id) {
-              $ss = split('\/', $_SERVER['REQUEST_URI']);
-              $notice_id = end($ss);
-          }
-          $path = 'v1/notice/'.$notice_id;
-          $ret = get_init_php_data($path, '');
-          $json = json_decode($ret, true);
           echo '<title>'.$json['notice']['title'].'</title>';
           echo '</head>';
           echo '<body>';
