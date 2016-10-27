@@ -18,6 +18,7 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                         obj = JSON.parse(obj);
                     }
                     alert(obj.seller_id);
+                    alert(obj.wduss);
                     _this.user_info = obj;
                     _this.handleFn();
                 }
@@ -42,6 +43,7 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
             $('body').on('click','.j_submit_tel',function(){
                 if(_this.testTel().length == 5){
                     _this.tels = _this.testTel();
+                    alert(_this.tels);
                     _this.actionFn({
                         action : 'check',
                         phones : _this.testTel(),
