@@ -17,8 +17,6 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                     if(typeof obj == 'string'){
                         obj = JSON.parse(obj);
                     }
-
-                    alert(JSON.stringify(obj));
                     alert(obj.seller_id);
                     _this.user_info = obj;
                     _this.handleFn();
@@ -40,10 +38,6 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                     show_footer:false,
                     show_top:false
                 });
-                //setTimeout(function(){
-                //    _this.tel_dialog.remove();
-                //    _this.tel_dialog = null;
-                //},2000);
             });
             $('body').on('click','.j_submit_tel',function(){
                 if(_this.testTel().length == 5){
@@ -54,18 +48,19 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                         seller_id : _this.user_info.seller_id,
                         wduss : _this.user_info.wduss
                     },function(){
-
+                        $('.j_domain_btn').removeClass('disable-btn2');
+                        _this.tel_dialog.remove();
                     });
                 }
             });
             $('body').on('click','.j_domain_btn',function(){
-                //if(!$(this).is('.disable-btn2')){
+                if(!$(this).is('.disable-btn2')){
                     _this.domain_dialog = Dialog.dialog({
                         body_txt : _this.createDomainDialogHtm(),
                         show_footer:false,
                         show_top:false
                     });
-                //}
+                }
             });
             $('body').on('click','.j_domain_submit',function(){
                 var _domain = $.trim($('.j_domain_ipt').val());
@@ -76,13 +71,15 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                             seller_id : _this.user_info.seller_id,
                             wduss : _this.user_info.wduss,
                             phones: _this.tels
+                        },function(obj){
+                            _this.domain_dialog.remove();
+                            alert(obj.msg);
                         });
                     }
                 }else{
                     alert('Masukkan domain dengan tepat');
                 }
             });
-
         },
         createTelDialogHtm : function(){
             var _htm = '';
