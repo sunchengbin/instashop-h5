@@ -11,18 +11,12 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                 needTab: true,
                 auto : false
             });
-            //_this.user_info = {
-            //    seller_id:40683,
-            //    wduss : 'UNOuJya%2B0pVYTS3BQYbdH7qI4VjHp%2BK5zBIZGhM5XlE%3D'
-            //};
             _this.user_info = null;
             window.InsCallBack = function(obj){
                 if(obj){
                     if(typeof obj == 'string'){
                         obj = JSON.parse(obj);
                     }
-                    alert(obj.seller_id);
-                    alert(obj.wduss);
                     _this.user_info = obj;
                     _this.handleFn();
                 }
@@ -32,7 +26,6 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
             }else{
                 alert('Silakan upgrade ke Instashop versi 3.3 sebelum melanjutkan');
             }
-            //_this.handleFn();
         },
         handleFn : function(){
             var _this = this;
@@ -138,7 +131,7 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                         }
                     },
                     function(obj){
-                        alert(obj.message);
+                        alert(obj);
                     }
                 );
             }else{
@@ -155,7 +148,7 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                         console.log(obj)
                     },
                     error : function(error){
-
+                        alert(error);
                     }
                 });
             }
