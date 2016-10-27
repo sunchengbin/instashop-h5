@@ -17,6 +17,7 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                     if(typeof obj == 'string'){
                         obj = JSON.parse(obj);
                     }
+                    alert(typeof obj);
                     alert(obj.length);
                     alert(obj.seller_id);
                     _this.user_info = obj;
