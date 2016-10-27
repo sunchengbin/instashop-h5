@@ -11,6 +11,11 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                 needTab: true,
                 auto : false
             });
+            if(window.InsJs){
+                alert(window.InsJs);
+                alert(window.InsJs.getUserInfo());
+            }
+
             //todo 验证是否有用户登录信息
             _this.handleFn();
         },
@@ -101,7 +106,7 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
             +'</div>';
             return _htm;
         },
-        actionFn : function(opts){
+        actionFn : function(opts,callback){
             var _data = {
                 edata:opts
             };
@@ -110,6 +115,10 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                 data : {param:JSON.stringify(_data)},
                 type : 'POST',
                 success : function(obj){
+                    if(obj.code == 200){
+                        callback && callback(obj);
+                    }
+
                     console.log(obj)
                 },
                 error : function(error){
