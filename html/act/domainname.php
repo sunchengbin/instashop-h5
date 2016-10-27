@@ -115,8 +115,8 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
         filter: Opacity(40);
     }
     h1{
-        margin-top:18px;
-        font-size:20px;
+        margin-top:20px;
+        font-size:18px;
         text-align:center;
     }
     .content{
