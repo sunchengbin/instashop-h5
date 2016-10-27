@@ -11,14 +11,20 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                 needTab: true,
                 auto : false
             });
+            _this.user_info = null;
             window.InsCallBack = function(obj){
-                alert(obj);
+                if(obj){
+                    obj = JSON.parse(obj);
+                    alert(obj.seller_id);
+                    _this.user_info = obj;
+                    _this.handleFn();
+                }
             };
             if(window.InsJs){
                 window.InsJs.getUserInfo();
+            }else{
+                alert('Silakan upgrade ke Instashop versi 3.3 sebelum melanjutkan');
             }
-            //todo 验证是否有用户登录信息
-            _this.handleFn();
         },
         handleFn : function(){
             var _this = this;
@@ -41,8 +47,10 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                     _this.actionFn({
                         action : 'check',
                         phones : _this.testTel(),
-                        seller_id : '',
-                        wduss : ''
+                        seller_id : _this.user_info.seller_id,
+                        wduss : _this.user_info.wduss
+                    },function(){
+
                     });
                 }
             });
@@ -61,8 +69,8 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                     if( _this.tels.length == 5){
                         _this.actionFn({
                             domain : _domain,
-                            seller_id : '',
-                            wduss : '',
+                            seller_id : _this.user_info.seller_id,
+                            wduss : _this.user_info.wduss,
                             phones: _this.tels
                         });
                     }
@@ -119,7 +127,6 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                     if(obj.code == 200){
                         callback && callback(obj);
                     }
-
                     console.log(obj)
                 },
                 error : function(error){
