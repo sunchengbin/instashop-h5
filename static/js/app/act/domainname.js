@@ -129,6 +129,8 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                 success : function(obj){
                     if(obj.code == 200){
                         callback && callback(obj);
+                    }else{
+                        alert(obj.msg);
                     }
                     console.log(obj)
                 },
