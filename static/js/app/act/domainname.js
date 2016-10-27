@@ -14,7 +14,9 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
             _this.user_info = null;
             window.InsCallBack = function(obj){
                 if(obj){
-                    obj = JSON.parse(obj);
+                    if(typeof obj == 'string'){
+                        obj = JSON.parse(obj);
+                    }
                     alert(obj.seller_id);
                     _this.user_info = obj;
                     _this.handleFn();
