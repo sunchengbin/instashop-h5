@@ -75,7 +75,7 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                             phones: _this.tels
                         },function(obj){
                             _this.domain_dialog.remove();
-                            alert(obj.msg);
+                            alert(obj.message);
                         });
                     }
                 }else{
@@ -130,7 +130,7 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                     if(obj.code == 200){
                         callback && callback(obj);
                     }else{
-                        alert(obj.msg);
+                        alert(obj.message);
                     }
                     console.log(obj)
                 },
