@@ -122,22 +122,39 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
             var _data = {
                 edata:opts
             };
-            Ajax.postJsonp({
-                url : Config.actions.domainName,
-                data : {param:JSON.stringify(_data)},
-                type : 'POST',
-                success : function(obj){
-                    if(obj.code == 200){
-                        callback && callback(obj);
-                    }else{
-                        alert(obj.message);
-                    }
-                    console.log(obj)
-                },
-                error : function(error){
+            if(opts.action == 'check'){
+                Ajax.getJsonp(
+                    Config.host.actionUrl+Config.actions.domainName,
+                    function(obj){
+                        if(obj.code == 200){
+                            callback && callback(obj);
+                        }else{
+                            alert(obj.message);
+                        }
+                    },
+                    function(obj){
 
-                }
-            });
+                    }
+                );
+            }else{
+                Ajax.postJsonp({
+                    url : Config.actions.domainName,
+                    data : {param:JSON.stringify(_data)},
+                    type : 'POST',
+                    success : function(obj){
+                        if(obj.code == 200){
+                            callback && callback(obj);
+                        }else{
+                            alert(obj.message);
+                        }
+                        console.log(obj)
+                    },
+                    error : function(error){
+
+                    }
+                });
+            }
+
         },
         testDomain : function(url){
             if(url.length > 4 && url.length < 21 && /^[0-9a-zA-Z]+$/.test(url) && !/instashop/g.test(url)){
