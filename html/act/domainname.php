@@ -115,11 +115,12 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
         filter: Opacity(40);
     }
     h1{
-        font-size:16px;
+        margin-top:20px;
+        font-size:20px;
         text-align:center;
     }
     .content{
-        padding:20px;
+        padding:10px 20px 20px;
     }
     .fwb{
         font-weight:bolder;
@@ -170,7 +171,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
         display:block;
         height: 30px;
         width: 230px;
-        margin-top:10px
+        margin: 10px auto 0;
     }
     .btn1{
         background:url(images/btn1.jpg) no-repeat;
@@ -367,8 +368,8 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
         <section class="banner">
             <img src="images/banner.jpg">
         </section>
+        <h1>Ubah domain web Instashop kamu <br>menjadi namatokokamu.com!</h1>
         <section class="content">
-            <h1>Ubah domain web Instashop kamu <br>menjadi namatokokamu.com!</h1>
             <div class="top-title fwb">
                 Caranya gampang banget: Ajak 5 teman online shopmu
                 untuk bergabung di Instashop dan dapatkan domain web yang kamu inginkan.
@@ -406,7 +407,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
                         <p class="url"><a href="//www.collabsstorejkt.com" class="">collabsstorejkt.com</a></p>
                     </div>
                     <div>
-                        <img src="images/www.babymilestonecard.com.jpg">
+                        <img src="images/www.laplacestore.com.jpg">
                         <p class="name">Laplace store</p>
                         <p class="url"><a href="//www.laplacestore.com" class="">laplacestore.com</a></p>
                     <div>
@@ -523,9 +524,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
             tombol <span>"Daftar Domain Web"</span> akan berubah menjadi dapat diklik. Klik tombol tersebut untuk mendaftarkan domain web
             yang kamu inginkan. </p>
             <p>5. Ajak juga kelima temanmu ini untuk menyebarkan kabar baik ini ke teman-teman online shop lainnya, agar mereka juga bisa menikmati domain gratis!<br>
-            Keputusan tim Instashop adalah mutlak dan tidak dapat diganggu gugat. Untuk pertanyaan lebih lanjut, silakan hubungi CS Instashop ya:)<br>
-            Buruan ya, promo ini hanya berlaku dari xxx hingga xxxx Keputusan tim Instashop adalah mutlak dan tidak dapat diganggu gugat :)<br>
-            Untuk pertanyaan lebih lanjut, silakan hubungi CS Instashop ya:)</p>
+            Keputusan tim Instashop adalah mutlak dan tidak dapat diganggu gugat. Untuk pertanyaan lebih lanjut, silakan hubungi CS Instashop ya:)</p>
         </section>
         <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
         <script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>

@@ -11,11 +11,12 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                 needTab: true,
                 auto : false
             });
+            window.InsCallBack = function(obj){
+                alert(obj);
+            };
             if(window.InsJs){
-                alert(window.InsJs);
-                alert(window.InsJs.getUserInfo());
+                window.InsJs.getUserInfo();
             }
-
             //todo 验证是否有用户登录信息
             _this.handleFn();
         },
