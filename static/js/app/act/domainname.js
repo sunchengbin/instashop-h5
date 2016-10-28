@@ -12,29 +12,29 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
                 auto : false
             });
             //本地测试
-            _this.user_info = {
-                seller_id:'40687',
-                wduss:"1k29nj9vdh6Pz/jqIZtKWdbTLsYA7YzMfdjiJm4UrQI="
-            };
-            _this.handleFn();
-            //实际测试
-            //_this.user_info = null;
-            //window.InsCallBack = function(obj){
-            //    if(obj){
-            //        if(typeof obj == 'string'){
-            //            obj = JSON.parse(obj);
-            //        }
-            //        _this.user_info = obj;
-            //        _this.handleFn();
-            //    }
+            //_this.user_info = {
+            //    seller_id:'40687',
+            //    wduss:"1k29nj9vdh6Pz/jqIZtKWdbTLsYA7YzMfdjiJm4UrQI="
             //};
-            //if(window.InsJs){
-            //    window.InsJs.getUserInfo();
-            //}else{
-            //    Dialog.alert({
-            //        body_txt : 'Silakan upgrade ke Instashop versi 3.3 sebelum melanjutkan'
-            //    });
-            //}
+            //_this.handleFn();
+            //实际测试
+            _this.user_info = null;
+            window.InsCallBack = function(obj){
+                if(obj){
+                    if(typeof obj == 'string'){
+                        obj = JSON.parse(obj);
+                    }
+                    _this.user_info = obj;
+                    _this.handleFn();
+                }
+            };
+            if(window.InsJs){
+                window.InsJs.getUserInfo();
+            }else{
+                Dialog.alert({
+                    body_txt : 'Silakan upgrade ke Instashop versi 3.3 sebelum melanjutkan'
+                });
+            }
         },
         handleFn : function(){
             var _this = this;
