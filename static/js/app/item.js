@@ -73,46 +73,36 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
             });
             //item=back是为了让返回首页的时候滚动到指定的scrolltop高度
             $('body').on('click','.j_go_back',function(){
-                var _local_url = localStorage.getItem('FromUrl'),
-                    _host_name = location.hostname,
-                    _ios = Base.others.verifyBower().ios;
+                var _local_url = localStorage.getItem('FromUrl');
                 if(_local_url && !/detail/g.test(_local_url)){
-                    if(_ios){//ios手机回退
+                    if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){//我们自己的域名下
                         if(/\/s\//g.test(_local_url)){
-                            console.log(1)
                             history.back();
                         }else{
                             if(/\?/g.test(_local_url)){
-                                console.log(2)
                                 location.href = localStorage.getItem('FromUrl')+'&item=back';
                             }else{
-                                console.log(/\.instashop\.co\.id\/\d+/g.test(_local_url))
-                                if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){
-                                    var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
-                                    location.href = _url;
-                                }else{
-                                    console.log(3)
-                                    location.href = localStorage.getItem('FromUrl')+'?item=back';
-                                }
+                                var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
+                                location.href = _url;
                             }
                         }
-                    }else{
-                        if(/\/s\//g.test(_local_url)){
-                            console.log(1)
-                            history.back();
+                    }else{//独立域名
+                        var _host_name = location.hostname;
+                        if(/\/\d+/g.test(_local_url)){//是当前详情页
+                            if(/\/k\/\d+/g.test(_local_url)){
+                                if(/\?/g.test(_local_url)){
+                                    location.href = _local_url+'&item=back';
+                                }else{
+                                    location.href = _local_url+'?item=back';
+                                }
+                            }else{
+                                location.href = location.protocol+'//'+_host_name+'?item=back';
+                            }
                         }else{
                             if(/\?/g.test(_local_url)){
-                                console.log(2)
                                 location.href = localStorage.getItem('FromUrl')+'&item=back';
                             }else{
-                                console.log(/\.instashop\.co\.id\/\d+/g.test(_local_url))
-                                if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){
-                                    var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
-                                    location.href = _url;
-                                }else{
-                                    console.log(3)
-                                    location.href = localStorage.getItem('FromUrl')+'?item=back';
-                                }
+                                location.href = location.protocol+'//'+_host_name+'?item=back';
                             }
                         }
                     }
