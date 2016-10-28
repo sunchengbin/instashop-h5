@@ -116,9 +116,7 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
                                     phones: _this.tels
                                 },function(obj){
                                     _this.domain_dialog.remove();
-                                    Dialog.alert({
-                                        body_txt : 'Pendaftaran domain membutuhkan 72 jam, silakan tunggu sejenak. Selama kurun waktu ini, customermu masih dapat mengunjungi mini webmu di alamat '+_this.user_info.seller_id+'.instashop.co.id '
-                                    });
+                                    alert('Pendaftaran domain membutuhkan 72 jam, silakan tunggu sejenak. Selama kurun waktu ini, customermu masih dapat mengunjungi mini webmu di alamat '+_this.user_info.seller_id+'.instashop.co.id ');
                                 });
                             }else{
                                 _this.domain_btn_disable = true;
