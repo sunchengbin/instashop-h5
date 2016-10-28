@@ -5,7 +5,7 @@
             <div class="j_buy_info">
                 <p class="price j_buy_info_price">{{itemprice item}}</p>
                 {{#empty item.sku}}
-                    {{#elt item.stock 99999999}}
+                    {{#elt item.stock 9999999}}
                         {{#eq item.stock 0}}
                             <p class="title j_all_stock"></p>
                         {{else}}
@@ -13,7 +13,7 @@
                         {{/eq}}
                     {{/elt}}
                 {{else}}
-                    {{#elt item.stock 99999999}}
+                    {{#elt item.stock 9999999}}
                         {{#eq item.stock 0}}
                             <p class="title j_all_stock"></p>
                         {{else}}
