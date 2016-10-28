@@ -103,21 +103,37 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
                     if( _this.tels.length == 5){
                         $('.j_domain_error').html('Ajukan...');
                         _this.actionFn({
-                            domain : _domain+'.com',
+                            action : 'search',
                             seller_id : _this.user_info.seller_id,
                             wduss : _this.user_info.wduss,
-                            phones: _this.tels
-                        },function(obj){
-                            _this.domain_dialog.remove();
-                            Dialog.tip({
-                                body_txt : obj.message
-                            });
-                            //alert(obj.message);
+                            domain : _domain+'.com'
+                        },function(){
+                            if(confirm('Domain ini belum digunakan, yuk segera daftarkan! Setelah pengajuan berhasil,domain ini tidak dapat diubah. Yakin ingin mengajukan?')){
+                                _this.actionFn({
+                                    domain : _domain+'.com',
+                                    seller_id : _this.user_info.seller_id,
+                                    wduss : _this.user_info.wduss,
+                                    phones: _this.tels
+                                },function(obj){
+                                    _this.domain_dialog.remove();
+                                    Dialog.alert({
+                                        body_txt : 'Pendaftaran domain membutuhkan 72 jam, silakan tunggu sejenak. Selama kurun waktu ini, customermu masih dapat mengunjungi mini webmu di alamat '+_this.user_info.seller_id+'.instashop.co.id '
+                                    });
+                                });
+                            }else{
+                                _this.domain_btn_disable = true;
+                                $('.j_domain_error').html('');
+                            }
                         });
                     }
                 }else{
                     _this.domain_btn_disable = true;
-                    $('.j_domain_error').html('Masukkan domain dengan tepat');
+                    if(/instashop/g.test(_domain)){
+                        $('.j_domain_error').html('Link toko ini tidak disetujui');
+                    }else{
+                        $('.j_domain_error').html('Masukkan domain dengan tepat');
+                    }
+
                 }
             });
         },
@@ -144,6 +160,12 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
             +'<div class="domain-error j_domain_error"></div>'
             +'<div class="domain-input">'
             +'<input class="j_domain_ipt" maxlength="20" type="text">'
+            +'</div>'
+            +'<div class="input-explain">'
+            +'1. Link toko terdiri dari 5-20 karakter<br>'
+            +'2. Hanya diperbolehkan berupa angka (0-9) dan abjad (a-z)<br>'
+            +'3. Di dalam nama domain tersebut tidak boleh mengandung Instashop<br>'
+            +'4. Jika ada pertanyaan, silahkan hubungi kami<br>'
             +'</div>'
             +'<button class="btn3 j_domain_submit"></button>'
             +'<div class="domain-cont">'
@@ -180,29 +202,47 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
                         _this.tel_btn_disable = true;
                         $('.j_tel_error').html(obj.message);
                         $('.j_submit_tel').html('Isi Data Teman');
-                        //alert(obj.message);
                     }
                 );
             }else{
-                Ajax.postJsonp({
-                    url : Config.actions.domainName,
-                    data : {param:JSON.stringify(_data)},
-                    type : 'POST',
-                    success : function(obj){
-                        _this.domain_btn_disable = true;
-                        if(obj.code == 200){
-                            callback && callback(obj);
-                        }else{
+                if(opts.action == 'search'){
+                    Ajax.getJsonp(
+                        Config.host.actionUrl+Config.actions.domainName+'?param='+JSON.stringify(_data),
+                        function(obj){
+                            if(obj.code == 200){
+                                callback && callback(obj);
+                            }else{
+                                $('.j_domain_error').html(obj.message);
+                                _this.domain_btn_disable = true;
+                            }
+                        },
+                        function(obj){
+                            _this.domain_btn_disable = true;
                             $('.j_domain_error').html(obj.message);
-                            //alert(obj.message);
                         }
-                    },
-                    error : function(error){
-                        _this.domain_btn_disable = true;
-                        $('.j_domain_error').html(error);
-                        //alert(error);
-                    }
-                });
+                    );
+                }else{
+                    Ajax.postJsonp({
+                        url : Config.actions.domainName,
+                        data : {param:JSON.stringify(_data)},
+                        type : 'POST',
+                        success : function(obj){
+                            _this.domain_btn_disable = true;
+                            if(obj.code == 200){
+                                callback && callback(obj);
+                            }else{
+                                $('.j_domain_error').html(obj.message);
+                                //alert(obj.message);
+                            }
+                        },
+                        error : function(error){
+                            _this.domain_btn_disable = true;
+                            $('.j_domain_error').html(error);
+                            //alert(error);
+                        }
+                    });
+                }
+
             }
 
         },
