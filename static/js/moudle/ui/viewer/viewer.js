@@ -76,7 +76,7 @@ define(['base','slide'],function(Base,Slide){
                 $('.j_viewer_box').show();
                 Slide.createNew({
                     dom: document.querySelector('.j_viewer_ul'),
-                    needTab: false,
+                    needTab: true,
                     auto : false,
                     curPage : index+1
                 });

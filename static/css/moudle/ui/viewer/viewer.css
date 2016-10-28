@@ -22,3 +22,6 @@
 .viewer-box li{
     float:left;
 }
+.viewer-box .slide_tab i{
+    background-color: #fff;
+}
