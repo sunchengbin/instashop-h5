@@ -46,7 +46,12 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
                     show_top:false
                 });
             });
+            _this.tel_btn_disable = true;
             $('body').on('click','.j_submit_tel',function(){
+                if(!_this.tel_btn_disable){
+                    return;
+                }
+                _this.tel_btn_disable = false;
                 if(_this.testTel().length == 5){
                     _this.tels = _this.testTel();
                     _this.actionFn({
@@ -69,14 +74,14 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
                     });
                 }
             });
-            var _domain_btn_disable = true;
+            _this.domain_btn_disable = true;
             $('body').on('click','.j_domain_submit',function(){
                 var _domain = $.trim($('.j_domain_ipt').val());
+                if(!_this.domain_btn_disable){
+                    return;
+                }
+                _this.domain_btn_disable = false;
                 if(_this.testDomain(_domain)){
-                    //if(){
-                    //
-                    //}
-                    //_domain_btn_disable == false;
                     if( _this.tels.length == 5){
                         _this.actionFn({
                             domain : _domain+'.com',
@@ -129,13 +134,15 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
             return _htm;
         },
         actionFn : function(opts,callback){
-            var _data = {
+            var _this = this,
+                _data = {
                 edata:opts
             };
             if(opts.action == 'check'){
                 Ajax.getJsonp(
                     Config.host.actionUrl+Config.actions.domainName+'?param='+JSON.stringify(_data),
                     function(obj){
+                        _this.tel_btn_disable = true;
                         if(obj.code == 200){
                             callback && callback(obj);
                         }else{
@@ -143,6 +150,7 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
                         }
                     },
                     function(obj){
+                        _this.tel_btn_disable = true;
                         alert(obj.message);
                     }
                 );
@@ -152,6 +160,7 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
                     data : {param:JSON.stringify(_data)},
                     type : 'POST',
                     success : function(obj){
+                        _this.domain_btn_disable = true;
                         if(obj.code == 200){
                             callback && callback(obj);
                         }else{
@@ -159,6 +168,7 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
                         }
                     },
                     error : function(error){
+                        _this.domain_btn_disable = true;
                         alert(error);
                     }
                 });
