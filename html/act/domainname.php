@@ -86,6 +86,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     }
     .dialog-body,.dialog-top,.dialog-footer{
         padding:10px;
+        font-size:12px;
     }
     .dialog-body{
         overflow:auto;
@@ -273,7 +274,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     .tel-dialog li::before{
         display:block;
         content:" ";
-        margin-top: 8px;
+        margin-top: 3px;
         width:16px;
         height:24px;
         float:left;
@@ -295,7 +296,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     .tel-dialog li span{
         position: absolute;
         left: 10px;
-        top: 5px;
+        top: 0;
         font-size: 12px;
         line-height:30px;
     }
@@ -309,6 +310,10 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
         font-size: 14px;
         background-color: #43cb9c;
         border-radius: 2px;
+    }
+    .tel-dialog button.disable-btn{
+        background-color: #eee;
+        color: #ff584c;
     }
     .domain-box{
         color:#000;
@@ -327,7 +332,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
         border-radius:4px;
         width:100%;
         height:35px;
-        padding:10px 60px;
+        padding:8px 60px;
         font-size:14px;
     }
     .domain-input::after,.domain-input::before{
@@ -361,6 +366,14 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     }
     .domain-cont > p span{
         font-weight:bolder;
+    }
+    .tel-dialog >p.tel-error,.domain-error{
+        color:#ff584c;
+        font-size:12px;
+        margin-bottom: 10px;
+    }
+    .domain-error{
+        margin:5px 0;
     }
     </style>
 </head>
@@ -528,7 +541,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
         </section>
         <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
         <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-        <script src="<?=STATIC_HOST?>/js/dist/app/act/domainname.js?v=1477634794284"></script>
+        <script src="<?=STATIC_HOST?>/js/dist/app/act/domainname.js?v=1477642339712"></script>
         <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
