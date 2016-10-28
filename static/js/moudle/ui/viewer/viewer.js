@@ -25,11 +25,11 @@ define(['base','slide'],function(Base,Slide){
                     _index = Number($(this).attr('data-num'));
                 _this.show(_url,_index);
             });
-            //$(_config.wraper).on('click','.j_viewer_box li',function(e){
-            //    if(!$(e.target).is('img')){
-            //        _this.hide();
-            //    }
-            //});
+            $(_config.wraper).on('click','.j_viewer_box li',function(e){
+                //if(!$(e.target).is('img')){
+                    _this.hide();
+                //}
+            });
         },
         createViewer : function(url,index){
             var _this = this,
