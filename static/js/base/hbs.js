@@ -605,5 +605,9 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
     HBS.registerHelper('iscustomhost', function() {
         return Base.others.isCustomHost();
     });
+    //截取lineurl
+    HBS.registerHelper('translineurl', function(url) {
+        return url.split('/p/')[1];
+    });
     return HBS;
 });

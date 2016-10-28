@@ -199,9 +199,9 @@
         <p class="f-w">
             Jika ada masalah pembayaran, hubungi kami di: <br>
             {{#if shopInfo.line_url}}
-                Line：{{shopInfo.line_url}} &nbsp;&nbsp;&nbsp;&nbsp;
+                Line：{{translineurl shopInfo.line_url}}
                 {{#if shopInfo.phone}}
-                    PH/WA: {{shopInfo.phone}}
+                    <br>PH/WA: {{shopInfo.phone}}
                 {{/if}}
             {{else}}
                 {{#if shopInfo.phone}}
