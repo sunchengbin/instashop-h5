@@ -108,7 +108,7 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
                             wduss : _this.user_info.wduss,
                             domain : _domain+'.com'
                         },function(){
-                            if(confirm('Domain ini belum digunakan, yuk segera daftarkan! Setelah pengajuan berhasil,domain ini tidak dapat diubah. Yakin ingin mengajukan?')){
+                            if(confirm('Domain ini masih bisa digunakan, segera registrasikan domainmu!')){
                                 _this.actionFn({
                                     domain : _domain+'.com',
                                     seller_id : _this.user_info.seller_id,
