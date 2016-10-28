@@ -3,6 +3,7 @@
  * 独立域名申请活动页面
  */
 require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slide,Dialog,Fastclick){
+    "use strict";
     var DM = {
         init : function(){
             var _this = this;
@@ -142,7 +143,7 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
             +'<p>Tulis domain web yang kamu inginkan :</p>'
             +'<div class="domain-error j_domain_error"></div>'
             +'<div class="domain-input">'
-            +'<input class="j_domain_ipt" type="text">'
+            +'<input class="j_domain_ipt" maxlength="20" type="text">'
             +'</div>'
             +'<button class="btn3 j_domain_submit"></button>'
             +'<div class="domain-cont">'
