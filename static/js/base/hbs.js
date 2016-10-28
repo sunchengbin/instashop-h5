@@ -607,7 +607,7 @@ define(['handlebars','base','config','lang'], function(HBS,Base,Config,Lang) {
     });
     //截取lineurl
     HBS.registerHelper('translineurl', function(url) {
-        return url.split('/p/')[1];
+        return url.split('http://')[1];
     });
     return HBS;
 });

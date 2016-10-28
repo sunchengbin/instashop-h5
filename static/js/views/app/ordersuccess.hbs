@@ -199,7 +199,7 @@
         <p class="f-w">
             Jika ada masalah pembayaran, hubungi kami di: <br>
             {{#if shopInfo.line_url}}
-                Line：{{translineurl shopInfo.line_url}}
+                Line：<a href="{{shopInfo.line_url}}">{{translineurl shopInfo.line_url}}</a>
                 {{#if shopInfo.phone}}
                     <br>PH/WA: {{shopInfo.phone}}
                 {{/if}}

@@ -155,6 +155,9 @@ p{
     font-weight: bold;
     font-size: 1.2rem;
 }
+.f-w a{
+    color:#748bcf;
+}
 .pay-content,.pay-content-explain,.last-explain,.f-w{
     padding-left:.5rem;
 
