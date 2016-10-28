@@ -2,7 +2,7 @@
  * Created by sunchengbin on 2016/10/25.
  * 独立域名申请活动页面
  */
-require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
+require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slide,Dialog,Fastclick){
     var DM = {
         init : function(){
             var _this = this;
@@ -11,6 +11,13 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                 needTab: true,
                 auto : false
             });
+            //本地测试
+            //_this.user_info = {
+            //    seller_id:'40687',
+            //    wduss:"1k29nj9vdh6Pz/jqIZtKWdbTLsYA7YzMfdjiJm4UrQI="
+            //};
+            //_this.handleFn();
+            //实际测试
             _this.user_info = null;
             window.InsCallBack = function(obj){
                 if(obj){
@@ -31,6 +38,7 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
             var _this = this;
             _this.tel_dialog = null;
             _this.domain_dialog = null;
+            Fastclick.attach(document.body);
             $('body').on('click','.j_tel_btn',function(){
                 _this.tel_dialog = Dialog.dialog({
                     body_txt : _this.createTelDialogHtm(),
@@ -61,12 +69,17 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                     });
                 }
             });
+            var _domain_btn_disable = true;
             $('body').on('click','.j_domain_submit',function(){
                 var _domain = $.trim($('.j_domain_ipt').val());
                 if(_this.testDomain(_domain)){
+                    //if(){
+                    //
+                    //}
+                    //_domain_btn_disable == false;
                     if( _this.tels.length == 5){
                         _this.actionFn({
-                            domain : _domain,
+                            domain : _domain+'.com',
                             seller_id : _this.user_info.seller_id,
                             wduss : _this.user_info.wduss,
                             phones: _this.tels
@@ -130,7 +143,7 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                         }
                     },
                     function(obj){
-                        alert(obj);
+                        alert(obj.message);
                     }
                 );
             }else{
@@ -144,7 +157,6 @@ require(['config','ajax','slide','dialog'],function(Config,Ajax,Slide,Dialog){
                         }else{
                             alert(obj.message);
                         }
-                        console.log(obj)
                     },
                     error : function(error){
                         alert(error);
