@@ -4,7 +4,6 @@ require.config({
     paths: {
         //基础框架配置
         base: 'base/base/base',
-        h5_base : 'base/base/h5_base',
         handlebars : 'base/handlebars-v2.0.0',
         hbs : 'base/hbs',
         text : 'base/text',

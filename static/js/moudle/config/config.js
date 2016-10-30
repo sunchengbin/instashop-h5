@@ -30,13 +30,6 @@ define([],function(){
             //imUserNameHost : 'http://10.5.15.10:2040/',//存储im用户名字
             //phpHost : 'http://10.5.15.10:8888/instashop/instashop/im/'
         },
-        linkUrl : {
-            index : 's/',
-            item : 'detail/',
-            cart : 'html/cart.html',
-            orderConfirm : 'html/orderconfirm.html',
-            address : 'html/address.html'
-        },
         actions : {
             setUserName : 'set_user_memo',//设置app中用户的name
             getUserInfo : 'getUserInfo',//获取用户信息

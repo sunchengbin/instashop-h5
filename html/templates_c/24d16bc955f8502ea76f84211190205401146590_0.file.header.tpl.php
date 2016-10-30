@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-10-11 17:15:25
+/* Smarty version 3.1.30, created on 2016-10-30 12:21:55
   from "/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/header.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_57fcadad304441_07048941',
+  'unifunc' => 'content_58157563081083_91467284',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '24d16bc955f8502ea76f84211190205401146590' => 
     array (
       0 => '/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/header.tpl',
-      1 => 1476177305,
+      1 => 1477657786,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_57fcadad304441_07048941 (Smarty_Internal_Template $_smarty_tpl) {
+function content_58157563081083_91467284 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +41,7 @@ function content_57fcadad304441_07048941 (Smarty_Internal_Template $_smarty_tpl)
 
   <link href="<?php echo $_smarty_tpl->tpl_vars['STATIC_HOST']->value;?>
 /css/dist/app/<?php echo $_smarty_tpl->tpl_vars['INDEX_CSS_NAME']->value;?>
-.css?v=1475058454173" rel="stylesheet"/>
+.css?v=1477657786028" rel="stylesheet"/>
 </head>
 <body><?php }
 }
