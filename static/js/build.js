@@ -19,6 +19,7 @@
         "lang":"moudle/data/lang",
         "common":"moudle/app/common/common",
         "buyplug":"moudle/app/buyplug/buyplug",
+        "item":"moudle/app/item/item",
         "quickbuyplug":"moudle/app/quickbuyplug/quickbuyplug",
         "cart":"moudle/app/cart/cart",
         "logistics":"moudle/app/logistics/logistics",

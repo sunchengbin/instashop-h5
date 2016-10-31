@@ -55,7 +55,7 @@
     $smarty->assign('INDEX_TITLE',$index_title);
 
     /*基础的js,css文件名*/
-    $smarty->assign('INDEX_JS_NAME','index_test');
+    $smarty->assign('INDEX_JS_NAME','index');
     $smarty->assign('INDEX_CSS_NAME','shop_index');
     $smarty->display('index.tpl');
 ?>

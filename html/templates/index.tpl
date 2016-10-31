@@ -80,7 +80,7 @@
                                             {/if}
                                         {/if}
                                     </div>
-                                    <p class="title">{$item.item_comment}</p>
+                                    <p class="title">{$item.item_comment|nl2br}</p>
                                     {if $item.price lt 0}
                                         <p class="price"></p>
                                         {elseif $item.is_discount}
@@ -120,7 +120,7 @@
                                             {/if}
                                         {/if}
                                     </div>
-                                    <p class="title">{$item.item_comment}</p>
+                                    <p class="title">{$item.item_comment|nl2br}</p>
                                     {if $item.price lt 0}
                                             <p class="price"></p>
                                         {elseif $item.is_discount}
@@ -160,7 +160,7 @@
                                             {/if}
                                         {/if}
                                     </div>
-                                    <p class="title">{$item.item_comment}</p>
+                                    <p class="title">{$item.item_comment|nl2br}</p>
                                     {if $item.price lt 0}
                                         <p class="price"></p>
                                         {elseif $item.is_discount}

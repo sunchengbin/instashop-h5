@@ -5,7 +5,7 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug','slide','cart','fastclick','contact','viewer'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug,Slide,Cart,Fastclick,Contact,Viewer){
+require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug','slide','cart','fastclick','contact','viewer','item'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug,Slide,Cart,Fastclick,Contact,Viewer,Item){
     var ITEM = {
         init : function(){
             var _this = this,
@@ -30,26 +30,9 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 _this.handleFn();
             }
         },
-        countTime : function(_send){
-            var _hour = ''+(_send - _send % 3600)/3600,
-                _second = ''+(_send - _hour*3600)%60,
-                _minute = ''+(_send - _hour*3600 - _second)/60;
-            if(_send < 0){
-                return '00.00.00';
-            }
-            return ((_hour.length<2?'0'+_hour:_hour)+':'+(_minute.length<2?'0'+_minute:_minute)+':'+(_second.length<2?'0'+_second:_second));
-        },
-        changeTime : function(){
-            var _second = $('[data-time]').attr('data-time'),
-                _this = this;
-            setInterval(function(){
-                --_second;
-                $('[data-time]').attr('data-time',_second).html(_this.countTime(_second));
-            },1000);
-        },
         handleFn : function(){
             if($('[data-time]').length){
-                this.changeTime();
+                Item.changeTime();
             }
             if($('.txt-hide').height() > 44){
                 $('.down-btn').show();
@@ -77,26 +60,26 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                 if(_local_url && !/detail/g.test(_local_url)){
                     if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){//我们自己的域名下
                         if(/\/s\//g.test(_local_url)){
-                            history.back();
+                            location.href = _this.transUrl(_local_url);
                         }else{
                             if(/\?/g.test(_local_url)){
                                 location.href = localStorage.getItem('FromUrl')+'&item=back';
                             }else{
-                                var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
-                                location.href = _url;
+                                var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id;
+                                location.href = _url+'?item=back';
                             }
                         }
                     }else{//独立域名
                         var _host_name = location.hostname;
                         if(/\/\d+/g.test(_local_url)){//是当前详情页
-                            if(/\/k\/\d+/g.test(_local_url)){
-                                if(/\?/g.test(_local_url)){
-                                    location.href = _local_url+'&item=back';
-                                }else{
-                                    location.href = _local_url+'?item=back';
-                                }
+                            if(/\/k\/\d+/g.test(_local_url)){//分类页
+                                location.href = _this.transUrl(_local_url);
                             }else{
-                                location.href = location.protocol+'//'+_host_name+'?item=back';
+                                if(/\/s\//g.test(_local_url)){//m.instashop域名规则首页
+                                    location.href = _this.transUrl(_local_url);
+                                }else{
+                                    location.href = location.protocol+'//'+_host_name+'?item=back';
+                                }
                             }
                         }else{
                             if(/\?/g.test(_local_url)){
@@ -108,8 +91,8 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                     }
                 }else{
                     Common.saveFromUrl(function(){
-                        var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id+'?item=back';
-                        location.href = _url;
+                        var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id;
+                        location.href = _url+'?item=back';
                     });
                 }
             });
@@ -138,6 +121,13 @@ require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base
                         lang:Lang
                     }).toShow();
                 });
+            }
+        },
+        transUrl : function(url){
+            if(/\?/g.test(url)){
+                return url + '&item=back';
+            }else{
+                return url + '?item=back';
             }
         }
     };

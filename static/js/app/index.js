@@ -1,35 +1,31 @@
 /**
  * Created by sunchengbin on 16/6/6.
+ * 首页
  */
-require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base','common','cart','fastclick','contact'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base,Common,Cart,Fastclick,Contact){
+require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base','common','cart','fastclick','contact','slide','item'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item){
     var I = {
         init : function(init_data){
             Lazyload();
-            var IndexHtm = '<div>'+Lang.H5_LOADING+'</div>',
-                _this = this;
+            var _this = this;
             _this.sortTimes = 0;
-            if(init_data && init_data.code == 200){
+            var _cart_num = Cart().getCartNum();
+            if(init_data){
                 Common.initShopInfo(init_data);
-                var _tag_list = _this.getTags(init_data.item_list.list),
-                    _init_data = {
-                        data : init_data,
-                        tags_item : (_tag_list ? _tag_list.tags : []),
-                        lang : Lang,
-                        host:Config.host.host,
-                        hrefUrl : Config.host.hrefUrl,
-                        num : Cart().getCartNum()
-                    };
-                IndexHtm= Hbs.compile(Index)(_init_data);
-            }else{
-                IndexHtm = '<div>'+Lang.H5_ERROR+'</div>';
+                if(_cart_num > 0){
+                    $('.j_cart_wraper').append('<span class="cart-num">'+_cart_num+'</span>');
+                }
+                if($('.j_banner').length){
+                    Slide.createNew({
+                        dom: document.querySelector('.j_banner'),
+                        needTab: true,
+                        auto : true
+                    });
+                }
             }
             $('.j_php_loding').remove();
-            $('body').prepend(IndexHtm);
-            if($('.txt-hide').height() > 45){
+            if($('.txt-hide').height() > 44){
                 $('.down-btn').show();
             }
-
-            //this.getImNum();
             this.handleFn();
         },
         getTags : function(list){
@@ -78,18 +74,21 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                     }
                 };
             if($('[data-time]').length){
-                _this.changeTime();
+                Item.changeTime();
             }
             Fastclick.attach(document.body);
-            $('body').on('click','.j_down_box',function(){
-                if($('.j_down_btn').is('.down-btn')){
-                    $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
-                    $('.txt').css({'maxHeight':'none'});
-                }else{
-                    $('.j_down_btn').removeClass('up-btn').addClass('down-btn');
-                    $('.txt').css({'maxHeight':'44px'});
-                }
-            });
+            if($('.txt-hide').height() > 44){
+                console.log(1)
+                $('body').on('click','.j_down_box',function(){
+                    if($('.j_down_btn').is('.down-btn')){
+                        $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
+                        $('.txt').css({'maxHeight':'none'});
+                    }else{
+                        $('.j_down_btn').removeClass('up-btn').addClass('down-btn');
+                        $('.txt').css({'maxHeight':'44px'});
+                    }
+                });
+            }
             $(document).on('scroll', function(e) {
                 var _st = $('body').scrollTop(),
                     _wh = $(window).height(),
@@ -117,25 +116,25 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                         var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="items-list j_item_list clearfix"></ul>';
                                         $('.j_item_box').html(_htm);
                                     }
-                                    $('.j_item_box ul').append(_this.addItem(_list_data.item));
+                                    $('.j_item_box ul').append(Item.addItem(_list_data.item));
                                 }
                                 if(_list_data.hot.length){
                                     if(!$('.j_hot_list').length){
                                         var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_HOT+'</p><ul class="items-list j_hot_list clearfix"></ul>';
                                         $('.j_hot_list').html(_htm);
                                     }
-                                    $('.j_hot_list').append(_this.addItem(_list_data.hot));
+                                    $('.j_hot_list').append(Item.addItem(_list_data.hot));
                                 }
                                 if(_list_data.tags.length){
                                     var _tags = _list_data.tags;
                                     for(var tagid in _tags){
                                         if($('[data-tagid="'+_tags[tagid].id+'"]').length){
-                                            $('[data-tagid="'+_tags[tagid].id+'"] ul').append(_this.addItem(_list_data.tags[tagid].item));
+                                            $('[data-tagid="'+_tags[tagid].id+'"] ul').append(Item.addItem(_list_data.tags[tagid].item));
                                         }else{
                                             var _htm = '<section class="items-box" data-tagid="'+_tags[tagid].id+'">'
                                                 +'<p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.host+'k/'+_tags[tagid].id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>'
                                                 +'<ul class="items-list j_item_list clearfix">'
-                                                +_this.addItem(_list_data.tags[tagid].item)
+                                                +Item.addItem(_list_data.tags[tagid].item)
                                                 +'</ul>'
                                                 +'</section>';
                                             $('.j_box').eq(($('.j_box').length-1)).before(_htm);
@@ -143,7 +142,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                                     }
                                 }
                                 if($('[data-time]').length){
-                                    _this.changeTime();
+                                    Item.changeTime();
                                 }
                                 //Common.addItems(obj.item_list.list);
                                 getData = true;
@@ -162,7 +161,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 var _this = $(this),
                     _url = _this.attr('data-url'),
                     _scroll_top = $(window).scrollTop();
-                    localStorage.setItem('ScrollTop',_scroll_top);
+                localStorage.setItem('ScrollTop',_scroll_top);
                 Common.saveFromUrl(function(){
                     location.href = _url;
                 });
@@ -193,14 +192,14 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             });
             localStorage.removeItem('FromUrl');
             if(localStorage.getItem('ScrollTop') && Base.others.getUrlPrem('item')){//存在scrollTop时页面下滚到记忆中的top值
-                if(Base.others.verifyBower().ios){
-                    _this.goScroll();
-                }
+                //if(Base.others.verifyBower().ios){
+                _this.goScroll();
+                //}
             }
             if($('.j_show_contact').length){
                 _this.contact = Contact({
                     data : {
-                        tel : init_data.shop.phone,
+                        tel : !init_data.shop.line_url&&!init_data.shop.phone?'':init_data.shop.phone,
                         line : init_data.shop.line_url
                     },
                     lang:Lang
@@ -208,7 +207,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 $('body').on('click','.j_show_contact',function(){
                     _this.contact.createHtm({
                         data : {
-                            tel : init_data.shop.phone,
+                            tel : !init_data.shop.line_url&&!init_data.shop.phone?'':init_data.shop.phone,
                             line : init_data.shop.line_url
                         },
                         lang:Lang
@@ -272,116 +271,6 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 item : _item,
                 tags : _this.getTags(items).tags
             };
-        },
-        discountTime : function(nowTime,endTime){
-            var _nt = this.datetime_to_unix(nowTime),
-                _et = this.datetime_to_unix(endTime),
-                _send = (_et - _nt + 3600000)/1000,
-                _hour = ''+(_send - _send % 3600)/3600,
-                _second = ''+(_send - _hour*3600)%60,
-                _minute = ''+(_send - _hour*3600 - _second)/60;
-            if(_send < 0){
-                return {
-                    time : '00.00.00',
-                    second : _send
-                };
-            }
-            return {
-                time : ((_hour.length<2?'0'+_hour:_hour)+'.'+(_minute.length<2?'0'+_minute:_minute)+'.'+(_second.length<2?'0'+_second:_second)),
-                second : _send
-            };
-        },
-        datetime_to_unix :function(datetime){
-            var tmp_datetime = datetime.replace(/:/g,'-');
-            tmp_datetime = tmp_datetime.replace(/ /g,'-');
-            var arr = tmp_datetime.split("-");
-            var now = new Date(Date.UTC(arr[0],arr[1]-1,arr[2],arr[3]-8,arr[4],arr[5]));
-            return parseInt(now.getTime());
-        },
-        countTime : function(_send){
-            var _hour = ''+(_send - _send % 3600)/3600,
-                _second = ''+(_send - _hour*3600)%60,
-                _minute = ''+(_send - _hour*3600 - _second)/60;
-            if(_send < 0){
-                return '00:00:00';
-            }
-            return ((_hour.length<2?'0'+_hour:_hour)+':'+(_minute.length<2?'0'+_minute:_minute)+':'+(_second.length<2?'0'+_second:_second));
-        },
-        changeTime : function(){
-            var _this = this;
-            $('[data-time]').each(function(i,item){
-                var _second = $(item).attr('data-time');
-                setInterval(function(){
-                    --_second;
-                    $(item).attr('data-time',_second).html(_this.countTime(_second));
-                },1000);
-            });
-        },
-        addItem : function(items){
-            var out = "",
-                _this = this,
-                _webplog = !Base.others.webpLog(),
-                i = 0;
-            for (i; i < items.length;i++) {
-                var _time = _this.discountTime(items[i].discount.now_time,items[i].discount.end_time),
-                    _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
-                out += '<li><a class="item-info j_item_info" data-url="'+(_url+(_webplog?'?webpLog=1':''))+'" href="javascript:;">'
-                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img,160)+'">';
-                if(items[i].is_discount){
-                    out +='<span>-'+items[i].discount.value+'%</span>';
-                    if(items[i].discounting){
-                        out +='<p><i class="icon iconfont icon-time-font"></i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
-                    }else{
-                        out +='<p>'+Lang.H5_IS_ABOUT_TO_BEGIN+'</p>';
-                    }
-                }
-                out +='</div>'
-                    +'<p class="title">'+items[i].item_comment+'</p>';
-                if(items[i].price < 0){
-                    out +='<p class="price"></p>';
-                }else{
-                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
-                }
-                if(!items[i].is_discount){
-                    out +='<p class="discount-price"></p>';
-                }else{
-                    if(items[i].discounting){
-                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
-                    }else{
-                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
-                    }
-                    //out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
-                }
-
-
-                out +='</a></li>';
-            }
-            return out;
-        },
-        getImNum : function(){
-            //var im_id = Base.others.getCookie('insta-im-id');
-            //if (!im_id) {
-            //    im_id = Base.others.getCookie('test-insta-im-id');
-            //}
-            var im_id = localStorage.getItem('UID'),//im页面种如cookie
-                toImId = init_data.shop['im_id'];
-            if (im_id && toImId) {
-                var reqData = {
-                    edata: {
-                        action: 'unreadnum',
-                        uid: toImId,
-                        uid2: im_id
-                    }
-                };
-                Ajax.getJsonp(Config.host.actionUrl+Config.actions.imNum + '?param=' + JSON.stringify(reqData), function(data){
-                    //alert(data.count);
-                    if (data && data.count > 0) {
-                        $('.j_im_num').show();
-                    } else {
-                        $('.j_im_num').hide();
-                    }
-                });
-            }
         }
     };
     I.init(init_data);

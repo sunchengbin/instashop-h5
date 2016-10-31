@@ -395,6 +395,10 @@ define(function(){
                 return true;//是自定义域名
             }
             return false;
+        },
+        //回车转换为<br>
+        transTxt : function(str){
+            return str.replace(/\n/g,"<br>");
         }
     };
     return SUN;
