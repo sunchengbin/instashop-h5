@@ -105,13 +105,13 @@
                 {if $INDEX_DATA.item.shop.phone}
                     <a href="javascript:;" data-type="all" class="j_show_contact ser-box fl">
                         <i class="icon iconfont icon-news-font"></i>
-                        <p>Hubungi Penjual</p>
+                        <p>Kontak</p>
                     </a>
                 <div class="clearfix buy-btns have-contact">
                 {else}
                     <a href="{$INDEX_DATA.item.shop.line_url}" class="ser-box fl">
                         <i class="icon iconfont icon-news-font"></i>
-                        <p>Hubungi Penjual</p>
+                        <p>Kontak</p>
                     </a>
                 <div class="clearfix buy-btns have-contact">
                 {/if}
@@ -119,28 +119,33 @@
                 {if $INDEX_DATA.item.shop.phone}
                     <a href="javascript:;" data-type="tel" class="j_show_contact ser-box fl">
                         <i class="icon iconfont icon-news-font"></i>
-                        <p>Hubungi Penjual</p>
+                        <p>Kontak</p>
                     </a>
-                    <div class="clearfix buy-btns have-contact">
+                    {if $INDEX_DATA.item.stock le 0}
+                        <div class="clearfix buy-btns no-buy have-contact">
+                    {else}
+                        <div class="clearfix buy-btns have-contact">
+                    {/if}
                 {else}
-                    <div class="clearfix buy-btns">
+                    {if $INDEX_DATA.item.stock le 0}
+                        <div class="clearfix buy-btns no-buy">
+                    {else}
+                        <div class="clearfix buy-btns">
+                    {/if}
                 {/if}
             {/if}
-            {if $INDEX_DATA.item.stock le 0}
-                <a class="add-cart j_add_cart disable-addnow disable-btn" data-id="{$INDEX_DATA.item.id}" href="javascript:;">
-                    Masuk keranjang
-                </a>
-                <a href="javascript:;" class="buy-now j_buy_btn disable-buynow disable-btn">
-                    Beli sekarang
-                </a>
-            {else}
-                <a class="add-cart j_add_cart" data-id="{$INDEX_DATA.item.id}" href="javascript:;">
-                    Masuk keranjang
-                </a>
-                <a href="javascript:;" class="buy-now j_buy_btn">
-                    Beli sekarang
-                </a>
-            {/if}
+                {if $INDEX_DATA.item.stock le 0}
+                    <a class="add-cart j_add_cart disable-addnow disable-btn" data-id="{$INDEX_DATA.item.id}" href="javascript:;">
+                        Stok Kurang
+                    </a>
+                {else}
+                    <a class="add-cart j_add_cart" data-id="{$INDEX_DATA.item.id}" href="javascript:;">
+                        Masuk keranjang
+                    </a>
+                    <a href="javascript:;" class="buy-now j_buy_btn">
+                        Beli sekarang
+                    </a>
+                {/if}
             </div>
         </section>
     {/if}

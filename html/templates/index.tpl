@@ -212,19 +212,19 @@
                         {if $INDEX_DATA.shop.phone}
                             <a class="contact-services j_show_contact" data-type="all" href="javascript:;">
                                 <i class="icon iconfont icon-i-news-font"></i>
-                                Hubungi Penjual
+                                Kontak
                             </a>
                         {else}
                             <a class="contact-services" href="{$INDEX_DATA.shop.line_url}">
                                 <i class="icon iconfont icon-i-news-font"></i>
-                                Hubungi Penjual
+                                Kontak
                             </a>
                         {/if}
                     {else}
                         {if $INDEX_DATA.shop.phone}
                             <a class="contact-services j_show_contact" data-type="tel" href="javascript:;">
                                 <i class="icon iconfont icon-i-news-font"></i>
-                                Hubungi Penjual
+                                Kontak
                             </a>
                         {/if}
                     {/if}

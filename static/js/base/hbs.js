@@ -263,7 +263,7 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
     });
     function testStock(item){
         var stock = ((item.sku&&item.sku.stock)?item.sku.stock:item.item.stock);
-        return stock >= 99999999;
+        return stock >= 9999999;
     }
     HBS.registerHelper('quickcarts', function(carts) {
         var _htm = '';
@@ -274,7 +274,6 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
             for(var item in carts){
                 var _id = ((carts[item].sku&&carts[item].sku.id)?carts[item].sku.id:carts[item].item.id);
                 _htm += '<li class="clearfix cart-item b-bottom j_cart_item" data-id="'+_id+'">'
-                    //+'<i class="icon iconfont j_del_cart icon-delete-font" data-id="'+_id+'"></i>'
                     +'<img src="'+carts[item].item.img+'">'
                     +'<div class="">'
                     +'<p class="name">'+carts[item].item.item_name+'</p>';

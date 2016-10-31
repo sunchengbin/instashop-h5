@@ -252,12 +252,36 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         return;
                     }
                     //验证单品详情页的
-                    var _test_cart = _this.testDetailCarts();
-                    if(_this.isDetailQuick && _test_cart && !_test_cart.sku.id){
-                        _this.quickbuyplug.toShow();
-                        _that.cancelDisable();
-                        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
-                        return;
+                    var _test_cart = _this.testDetailCarts(),
+                        _detail_cart = _this.transCart();
+                    if(_this.isDetailQuick){
+                        if(_test_cart && !_test_cart.sku.id){
+                            _this.quickbuyplug.toShow();
+                            _that.cancelDisable();
+                            _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                            return;
+                        }else{
+                            if(_detail_cart.price < 0){
+                                //alert('请联系商家,进行购买');
+                                Dialog.tip({
+                                    top_txt : '',//可以是html
+                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_PRICE+'</p>'
+                                });
+                                _that.cancelDisable();
+                                _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                                return;
+                            }else{
+                                if((!Base.others.testObject(_detail_cart.sku) && (_detail_cart.sku.stock >= 9999999)) || (Base.others.testObject(_detail_cart.sku) && (_detail_cart.item.stock >= 9999999))){
+                                    Dialog.tip({
+                                        top_txt : '',//可以是html
+                                        body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_STOCK+'</p>'
+                                    });
+                                    _that.cancelDisable();
+                                    _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                                    return;
+                                }
+                            }
+                        }
                     }
                     var _data = _this.getData(),
                         _tel = $.trim($('.j_tel').val());

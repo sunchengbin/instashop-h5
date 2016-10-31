@@ -364,19 +364,20 @@ define(function(){
         },
         // 验证是否为空{}
         testObject : function(obj){
+            var _bool = true;
             if(typeof obj == 'object'){
                 for(var name in obj)
                 {
                     if(obj.hasOwnProperty(name))
                     {
-                        return false;
+                        _bool = false;
                     }
                 }
-                return true;
             }else{
                 console.log('请传object');
-                return false;
+                _bool = false;
             }
+            return _bool;
         },
 
         //获取cookie

@@ -201,7 +201,7 @@ define([],function(){
             'H5_ORDER_COPY_READY' : 'Sudah Disalin',
 
             // 联系卖家
-            'H5_CONNACT_SELLER' : 'Hubungi Penjual',
+            'H5_CONNACT_SELLER' : 'Kontak',
 
             // 立即购买
             'H5_BUY_NOW' : 'Beli sekarang',
@@ -289,7 +289,7 @@ define([],function(){
             'H5_COMMODIFY_SHELF':'Maaf, produk ini telah habis terjual',
             'H5_SOLD_OUT':'Produk telah habis terjual',
             'H5_OVER_INVENTORY':'Melebihi jumlah stok',
-            'H5_CONTACT_US':'Hubungi Penjual',
+            'H5_CONTACT_US':'Kontak',
             'H5_SHOPING_NO_GOODS':'Keranjang belanja Anda kosong',
             'H5_SHOPPING_CART' :'Keranjangku',
             'H5_COUND_NOT_TALK_WITH_SELF' : 'Anda tidak dapat mengirim pesan ke diri sendiri',
