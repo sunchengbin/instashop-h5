@@ -124,28 +124,34 @@ function itemPrice($data){
         }
         return '';
     }
-    if($data['sku'] && count($data['sku']) < 2){
+    if(!$data['sku']){
         if($data['price'] > 0){
             return 'Rp '.priceFormat($data['price']);
         }
         return '';
     }else{
-        $sku_price = [];
-        foreach($data['sku'] as $item){
-            if(intval($item['price']) > 0){
-                $sku_price[] = intval($item['price']);
-            }else{
-                $sku_price[] = 0;
+        if(count($data['sku']) < 2){
+            if($data['price'] > 0){
+                return 'Rp '.priceFormat($data['price']);
             }
-        };
-        usort($sku_price,'cmp');
-        if($sku_price[0] != $sku_price[(count($sku_price)-1)]){
-            return 'Rp '.priceFormat($sku_price[0]).'-'.priceFormat($sku_price[(count($sku_price)-1)]);
         }else{
-            if($sku_price[0] == 0){
-                return '';
+            $sku_price = [];
+            foreach($data['sku'] as $item){
+                if(intval($item['price']) > 0){
+                    $sku_price[] = intval($item['price']);
+                }else{
+                    $sku_price[] = 0;
+                }
+            };
+            usort($sku_price,'cmp');
+            if($sku_price[0] != $sku_price[(count($sku_price)-1)]){
+                return 'Rp '.priceFormat($sku_price[0]).'-'.priceFormat($sku_price[(count($sku_price)-1)]);
             }else{
-                return 'Rp '.priceFormat($sku_price[0]);
+                if($sku_price[0] == 0){
+                    return '';
+                }else{
+                    return 'Rp '.priceFormat($sku_price[0]);
+                }
             }
         }
     }
