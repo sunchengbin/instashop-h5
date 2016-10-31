@@ -7,5 +7,5 @@ all.prj
 .DS_Store
 php_errors.log
 build.shall.prj
-html/templates_c
+html/templates_c/*
 build.sh
