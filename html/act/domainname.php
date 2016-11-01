@@ -388,7 +388,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
                 untuk bergabung di Instashop dan dapatkan domain web yang kamu inginkan.
             </div>
             <div class="top-title fwb">
-                Promo ini hanya berlaku dari 7-8 November 2016. Batas waktu pengisian data teman dan registrasi domain web adalah 8 November 2016 pukul 23.59 WIB. Yuk buruan ikutan!
+                Promo ini hanya berlaku dari 2-3 November 2016. Batas waktu pengisian data teman dan registrasi domain web adalah 3 November 2016 pukul 23.59 WIB. Yuk buruan ikutan!
             </div>
             <div class="title-txt b-bottom">
                 Informasi detail, syarat dan ketentuan silakan dibaca di bagian bawah halaman ini.
