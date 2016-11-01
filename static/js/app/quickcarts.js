@@ -226,7 +226,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 callback : function(dom){
                     var _that = this,
                         _items = _this.getItems();
-                    if($('.j_check_box').is('.icon-checkbox-font')){
+                    if($('.j_check_box').is('.icon-checkbox-font')){//必须同意协议
                         _that.cancelDisable();
                         _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                         Dialog.tip({
@@ -235,7 +235,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         });
                         return;
                     }
-                    if(!_items.length){
+                    if(!_items.length){//如果购物车为空
                         _that.cancelDisable();
                         _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                         if( $('.error-item').length == $('.j_cart_item').length){
@@ -251,18 +251,17 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         }
                         return;
                     }
-                    //验证单品详情页的
-                    var _test_cart = _this.testDetailCarts(),
-                        _detail_cart = _this.transCart();
+                    //验证单品快速下单
                     if(_this.isDetailQuick){
-                        if(_test_cart && !_test_cart.sku.id){
+                        var _test_cart = _this.testDetailCarts(),
+                            _detail_cart = _this.transCart();
+                        if(_test_cart && !_test_cart.sku.id){//当商品存在sku的时候,弹出购买窗口
                             _this.quickbuyplug.toShow();
                             _that.cancelDisable();
                             _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                             return;
-                        }else{
+                        }else{//不存在sku可以直接购买
                             if(_detail_cart.price < 0){
-                                //alert('请联系商家,进行购买');
                                 Dialog.tip({
                                     top_txt : '',//可以是html
                                     body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_PRICE+'</p>'
@@ -272,9 +271,12 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                 return;
                             }else{
                                 if((!Base.others.testObject(_detail_cart.sku) && (_detail_cart.sku.stock >= 9999999)) || (Base.others.testObject(_detail_cart.sku) && (_detail_cart.item.stock >= 9999999))){
-                                    Dialog.tip({
+                                    Dialog.confirm({
                                         top_txt : '',//可以是html
-                                        body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_STOCK+'</p>'
+                                        body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_STOCK+'</p>',
+                                        cf_fn : function(){
+                                            _this.quickSubmit(_that,dom);
+                                        }
                                     });
                                     _that.cancelDisable();
                                     _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
@@ -282,28 +284,33 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                 }
                             }
                         }
+                    }else{//多件商品快速下单
+                        if(!_this.testShopCarts(function(){_this.quickSubmit(_that,dom);})){
+                            return;
+                        }
                     }
-                    var _data = _this.getData(),
-                        _tel = $.trim($('.j_tel').val());
-                    if(_data && Common.telVerify(_tel,function(){
-                            _this.subAjax({
-                                data : _data,
-                                that : _that,
-                                dom : dom
-                            });
-                        },function(){
-                            _that.cancelDisable();
-                            _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
-                        })){
-                        _this.subAjax({
-                            data : _data,
-                            that : _that,
-                            dom : dom
-                        });
-                    }else{
-                        _that.cancelDisable();
-                        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
-                    }
+                    _this.quickSubmit(_that,dom);
+                    //var _data = _this.getData(),
+                    //    _tel = $.trim($('.j_tel').val());
+                    //if(_data && Common.telVerify(_tel,function(){
+                    //        _this.subAjax({
+                    //            data : _data,
+                    //            that : _that,
+                    //            dom : dom
+                    //        });
+                    //    },function(){
+                    //        _that.cancelDisable();
+                    //        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                    //    })){
+                    //    _this.subAjax({
+                    //        data : _data,
+                    //        that : _that,
+                    //        dom : dom
+                    //    });
+                    //}else{
+                    //    _that.cancelDisable();
+                    //    _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                    //}
                 }
             });
             $('body').on('keyup','.j_tel',function(){
@@ -314,18 +321,38 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         top_txt : '',//可以是html
                         body_txt : '<p class="dialog-body-p">'+Lang.H5_TEL_PASS_20+'</p>'
                     });
-                }else{
-
                 }
-                //if(_val){
-                //    Common.telVerify(_dom.val());
-                //}
             });
             Common.listenAndroidKeyboardToggle(function(){
                 Common.ScorllToBottom('.j_street');
             },function(){
                 Common.ScorllToBottom('.j_street');
             });
+        },
+        quickSubmit : function(that,dom){
+            var _this = this,
+                _that = that,
+                _data = _this.getData(),
+                _tel = $.trim($('.j_tel').val());
+            if(_data && Common.telVerify(_tel,function(){
+                    _this.subAjax({
+                        data : _data,
+                        that : _that,
+                        dom : dom
+                    });
+                },function(){
+                    _that.cancelDisable();
+                    _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+                })){
+                _this.subAjax({
+                    data : _data,
+                    that : _that,
+                    dom : dom
+                });
+            }else{
+                _that.cancelDisable();
+                _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
+            }
         },
         subAjax : function(opts){
             var _data = opts.data,
@@ -803,6 +830,35 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 return _cart;
             }
             return false;
+        },
+        testShopCarts : function(callback){//提交前验证快速购物车中是否有没有价格或者没设置库存的
+            var _this = this,
+                _carts = _this.carts,
+                _beal = true;
+            for(var _index in _carts){
+                var _detail_cart = _carts[_index];
+                if(_detail_cart.price < 0){
+                    Dialog.tip({
+                        top_txt : '',//可以是html
+                        body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_PRICE+'</p>'
+                    });
+                    _beal = false;
+                    return;
+                }else{
+                    if((!Base.others.testObject(_detail_cart.sku) && (_detail_cart.sku.stock >= 9999999)) || (Base.others.testObject(_detail_cart.sku) && (_detail_cart.item.stock >= 9999999))){
+                        Dialog.confirm({
+                            top_txt : '',//可以是html
+                            body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_STOCK+'</p>',
+                            cf_fn : function(){
+                                callback && callback();
+                            }
+                        });
+                        _beal = false;
+                        return;
+                    }
+                }
+            }
+            return _beal;
         },
         transCart : function(){//解析cart
             var _this = this,
