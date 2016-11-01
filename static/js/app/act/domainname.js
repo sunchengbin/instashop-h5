@@ -19,6 +19,7 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
             //};
             //_this.handleFn();
             //实际测试
+            Fastclick.attach(document.body);
             _this.user_info = null;
             window.InsCallBack = function(obj){
                 if(obj){
@@ -35,13 +36,18 @@ require(['config','ajax','slide','dialog','fastclick'],function(Config,Ajax,Slid
                 Dialog.alert({
                     body_txt : 'Silakan upgrade ke Instashop versi 3.3 sebelum melanjutkan'
                 });
+                $('body').on('click','.j_tel_btn',function(){
+                    Dialog.alert({
+                        body_txt : 'Silakan upgrade ke Instashop versi 3.3 sebelum melanjutkan'
+                    });
+                });
             }
         },
         handleFn : function(){
             var _this = this;
             _this.tel_dialog = null;
             _this.domain_dialog = null;
-            Fastclick.attach(document.body);
+
             $('body').on('click','.j_tel_btn',function(){
                 _this.tel_dialog = Dialog.dialog({
                     body_txt : _this.createTelDialogHtm(),
