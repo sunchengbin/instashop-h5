@@ -400,6 +400,10 @@ define(function(){
         //回车转换为<br>
         transTxt : function(str){
             return str.replace(/\n/g,"<br>");
+        },
+        //判断是不是
+        isInsBrowser : function(){
+            return /Instashop/g.test(navigator.userAgent);
         }
     };
     return SUN;
