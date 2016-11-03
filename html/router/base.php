@@ -112,10 +112,7 @@ function viewerImg($imgurl){
     return $imgurl;
 }
 function transDate($datetime){
-    $tmp_datetime = str_replace(':','-',$datetime);
-    $tmp_datetime = str_replace(' ','-',$tmp_datetime);
-    $arr = explode('-',$tmp_datetime);
-    return $arr[2]+'/'+$arr[1]+' '+$arr[3]+'.'+$arr[4];
+    return date('d/m/Y H.i',strtotime($datetime));
 }
 function itemPrice($data){
     if($data['is_discount']){
