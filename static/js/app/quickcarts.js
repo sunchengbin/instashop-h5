@@ -615,7 +615,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             };
             Ajax.getJsonp(Config.host.actionUrl+Config.actions.expressesList+'?param='+JSON.stringify(_data),
                 function(obj){
-                    //_this.loading.remove();
+                    _this.loading.remove();
                     if(obj.code == 200){
                         if(init_data.shop.express_free == 0){
                             if(_this.testExpress(obj.express_fee_list.list)){
@@ -632,7 +632,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     }
                 },
                 function(error){
-                    //_this.loading.remove();
+                    _this.loading.remove();
                 });
         },
         testExpress : function(list){
