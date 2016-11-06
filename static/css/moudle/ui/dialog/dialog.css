@@ -43,7 +43,9 @@
 }
 .dialog-wraper .loader{
     box-sizing: border-box;
-    display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
     flex: 0 1 auto;
     flex-direction: column;
     flex-grow: 1;
