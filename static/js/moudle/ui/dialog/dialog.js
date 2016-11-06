@@ -208,19 +208,11 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
 
     };
     function loadHTM(){
-        var _htm = '<div class="loader">'
-            +'<div class="loader-inner ball-spin-fade-loader">'
-            +'<div></div>'
-            +'<div></div>'
-            +'<div></div>'
-            +'<div></div>'
-            +'<div></div>'
-            +'<div></div>'
-            +'<div></div>'
-            +'<div></div>'
+        var _htm = '<div class="load1">'
+            +'<div class="loader">'
             +'</div>'
             +'</div>';
-        return _htm
+        return _htm;
     }
     return {
         dialog : function(opts) {
