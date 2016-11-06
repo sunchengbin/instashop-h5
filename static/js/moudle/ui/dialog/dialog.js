@@ -205,7 +205,23 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
             }
         }
 
+
     };
+    function loadHTM(){
+        var _htm = '<div class="loader">'
+            +'<div class="loader-inner ball-spin-fade-loader">'
+            +'<div></div>'
+            +'<div></div>'
+            +'<div></div>'
+            +'<div></div>'
+            +'<div></div>'
+            +'<div></div>'
+            +'<div></div>'
+            +'<div></div>'
+            +'</div>'
+            +'</div>';
+        return _htm
+    }
     return {
         dialog : function(opts) {
             return new dialog(opts);
@@ -223,7 +239,7 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
             return new dialog(opts);
         },
         loading : function(opts){
-            opts = $.extend({show_footer:false,show_top:false,width:0,cover_event:true},opts);
+            opts = $.extend({show_footer:false,show_top:false,width:0,cover_event:true,body_txt:loadHTM(),wraper_css:{'background-color':'transparent'}},opts);
             return new dialog(opts);
         },
         cover : function(opts){
