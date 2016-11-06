@@ -208,19 +208,8 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
 
     };
     function loadHTM(){
-        var _htm = '<div class="loader">'
-            +'<div class="loader-inner ball-spin-fade-loader">'
-            +'<div></div>'
-            +'<div></div>'
-            +'<div></div>'
-            +'<div></div>'
-            +'<div></div>'
-            +'<div></div>'
-            +'<div></div>'
-            +'<div></div>'
-            +'</div>'
-            +'</div>';
-        return _htm
+        var _htm = '<div class="load">'  + '<div class="spinner">'  + '<div class="spinner-container container1">'  + '<div class="circle1"></div>'  + '<div class="circle2"></div>'  + '<div class="circle3"></div>'  + '<div class="circle4"></div>'  + '</div>'  + '<div class="spinner-container container2">'  + '<div class="circle1"></div>'  + '<div class="circle2"></div>'  + '<div class="circle3"></div>'  + '<div class="circle4"></div>'  + '</div>'  + '<div class="spinner-container container3">'  + '<div class="circle1"></div>'  + '<div class="circle2"></div>'  + '<div class="circle3"></div>'  + '<div class="circle4"></div>'  + '</div>'  + '</div>'  + '</div>';
+        return _htm;
     }
     return {
         dialog : function(opts) {
