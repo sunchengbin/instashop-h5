@@ -290,27 +290,6 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         }
                     }
                     _this.quickSubmit(_that,dom);
-                    //var _data = _this.getData(),
-                    //    _tel = $.trim($('.j_tel').val());
-                    //if(_data && Common.telVerify(_tel,function(){
-                    //        _this.subAjax({
-                    //            data : _data,
-                    //            that : _that,
-                    //            dom : dom
-                    //        });
-                    //    },function(){
-                    //        _that.cancelDisable();
-                    //        _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
-                    //    })){
-                    //    _this.subAjax({
-                    //        data : _data,
-                    //        that : _that,
-                    //        dom : dom
-                    //    });
-                    //}else{
-                    //    _that.cancelDisable();
-                    //    _that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
-                    //}
                 }
             });
             $('body').on('keyup','.j_tel',function(){
@@ -618,6 +597,10 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
         },
         getLogistics : function(type){
             var _this = this;
+            _this.loading = Dialog.loading({
+                width:100,
+                height:100
+            });
             var _province = $.trim($('.j_province').html()),
                 _city = $.trim($('.j_city').html()),
                 _country = $.trim($('.j_country').html()),
@@ -633,6 +616,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             };
             Ajax.getJsonp(Config.host.actionUrl+Config.actions.expressesList+'?param='+JSON.stringify(_data),
                 function(obj){
+                    _this.loading.remove();
                     if(obj.code == 200){
                         if(init_data.shop.express_free == 0){
                             if(_this.testExpress(obj.express_fee_list.list)){
@@ -646,11 +630,10 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                                 //不能提交订单
                             }
                         }
-                    }else{
-
                     }
                 },
                 function(error){
+                    _this.loading.remove();
                 });
         },
         testExpress : function(list){
