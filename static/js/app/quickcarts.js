@@ -598,8 +598,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
         getLogistics : function(type){
             var _this = this;
             _this.loading = Dialog.loading({
-                width:100,
-                height:100
+                width:100
             });
             var _province = $.trim($('.j_province').html()),
                 _city = $.trim($('.j_city').html()),
