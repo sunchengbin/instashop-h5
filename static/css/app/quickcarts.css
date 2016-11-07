@@ -271,6 +271,9 @@ body .address-list{
     font-size: 1.4rem;
     position: relative;
 }
+.logistics-list li.no-logistic{
+    padding-left:0;
+}
 .cart-item div.price{
     line-height: 2.4rem;
     font-size: 14px;

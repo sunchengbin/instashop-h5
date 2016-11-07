@@ -224,6 +224,9 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 event_type : 'click',
                 loading_txt:Lang.H5_SUBMITTING_ORDER,
                 callback : function(dom){
+                    if($('.j_submit_buy').attr('data-disable')){
+                        return;
+                    }
                     var _that = this,
                         _items = _this.getItems();
                     if($('.j_check_box').is('.icon-checkbox-font')){//必须同意协议
@@ -621,11 +624,13 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                             if(_this.testExpress(obj.express_fee_list.list)){
                                 $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
                                 $('.j_logistics').show();
+                                $('.j_submit_buy').show();
                                 type && $('body').scrollTop(9999);
                             }else{
-                                var _li = '<li>'+Lang.H5_NO_LOGISTICS_COMPANY+'</li>';
+                                var _li = '<li class="no-logistic">'+Lang.H5_NO_LOGISTICS_COMPANY+'</li>';
                                 $('.j_logistics ul').html(_li);
-                                $('.j_submit_buy').attr('data-disable',true);
+                                $('.j_logistics').show();
+                                $('.j_submit_buy').hide();
                                 //不能提交订单
                             }
                         }
