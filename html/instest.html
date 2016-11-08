@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expect" content="0">
+    <title>webview-demo</title>
+</head>
+<body>
+<div>
+    insjs测试页面
+    <div id="show" style="color:red;"></div>
+</div>
+<script>
+    var WIN = window;
+    var INSJS = {
+        WebOnReady: function (callback,errorback) {
+            var _this = this;
+            if (/Instashop/g.test(navigator.userAgent)) {//在ins的app中的回调
+                //todo 区分ios和android
+                _this.connectWebViewBridge(function(bridge){
+                    bridge.callHandler(
+                        'actionFn',
+                        {'param':
+                            {
+                                action : '接口url',
+                                data : {
+                                    userid : '2111',
+                                    username : 'nike'
+                                }
+                            }
+                        },
+                        function(responseData) {
+                            callback && callback(responseData);
+                        }
+                    );
+                });
+            } else {//非ins的直接执行的回调
+                errorback && errorback();
+            }
+        },
+        connectWebViewBridge : function(callback){
+            if (window.WebViewJavascriptBridge) {
+                callback(WebViewJavascriptBridge);
+            } else {
+                document.addEventListener(
+                    'WebViewJavascriptBridgeReady'
+                    , function() {
+                        callback(WebViewJavascriptBridge)
+                    },
+                    false
+                );
+            }
+        }
+    };
+    WIN.onload = function(){
+        INSJS.WebOnReady(
+            function(obj){
+                alert(1);
+                document.getElementById("show").innerHTML = "send get responseData from java, data = " + obj;
+            },
+            function(obj){
+                alert(2);
+                document.getElementById("show").innerHTML = "send get responseData from java, data = " + obj;
+            }
+        )
+    }
+</script>
+</body>
+</html>
