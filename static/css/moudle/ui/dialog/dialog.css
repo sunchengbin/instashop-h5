@@ -2,7 +2,7 @@
  * Created by sunchengbin on 15/6/29.
  */
 .dialog-wraper{
-    position:absolute;
+    position:fixed;
     background-color : #fff;
     border-radius: 5px;
     font-size: 1.4rem;
