@@ -12,6 +12,7 @@
 <div>
     insjs测试页面
     <div id="show" style="color:red;"></div>
+    <button id="reg">oc调用js</button>
 </div>
 <script>
     var WIN = window;
@@ -36,6 +37,14 @@
                             callback && callback(responseData);
                         }
                     );
+                    document.querySelector('#reg').onclick = function(){
+                        bridge.registerHandler('jsHandler', function(data, responseCallback) {
+                            alert(data);
+                            var responseData = data.name;
+                            alert(responseData);
+                            responseCallback(responseData);
+                        });
+                    }
                 });
             } else {//非ins的直接执行的回调
                 errorback && errorback();
