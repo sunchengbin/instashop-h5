@@ -11,22 +11,31 @@
     <title>Feedback</title>
     <style>
 
-        @font-face {font-family: "iconfont";
-            src: url('../static/css/base/fonts/iconfont.woff?t=1473737446') format('woff'), /* chrome, firefox */
-            url('../static/css/base/fonts/iconfont.ttf?t=1473737446') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-            url('../static/css/base/fonts/iconfont.svg?t=1473737446#iconfont') format('svg'); /* iOS 4.1- */
+        @font-face {
+            font-family: "iconfont";
+            src: url('../static/css/base/fonts/iconfont.woff?t=1473737446') format('woff'), /* chrome, firefox */ url('../static/css/base/fonts/iconfont.ttf?t=1473737446') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url('../static/css/base/fonts/iconfont.svg?t=1473737446#iconfont') format('svg'); /* iOS 4.1- */
         }
 
         .iconfont {
-            font-family:"iconfont" !important;
-            font-size:.3rem;
-            font-style:normal;
+            font-family: "iconfont" !important;
+            font-size: .4rem;
+            font-style: normal;
             -webkit-font-smoothing: antialiased;
             -webkit-text-stroke-width: 0.2px;
             -moz-osx-font-smoothing: grayscale;
         }
-        .icon-phone-font:before { content: "\e605"; }
-        .icon-shop-font:before { content: "\e607"; }
+
+        .icon-phone-font:before {
+            content: "\e605";
+        }
+
+        .icon-shop-font:before {
+            content: "\e607";
+        }
+
+        .icon-line:before {
+            content: "\e61e";
+        }
 
         html {
             font-size: 100px;
@@ -72,10 +81,6 @@
         /*body, button,a, p,input, select,option,td, textarea !* for ie *! {*/
         /*font: 12px/1.5 'Roboto-Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
         /*}*/
-        .f-pad {
-            /*background:#fff;*/
-            /*border-bottom:solid 1px #dedede;*/
-        }
 
         .f-input-box {
             font-size: .28rem;
@@ -151,8 +156,9 @@
             font-size: 14px;
             line-height: 1.5;
         }
+
         .contact-us i {
-            color:#999999;
+            color: #999999;
         }
         .contact-us h3 {
             font-size: 24px;
@@ -219,13 +225,41 @@
         .dialog-body-p {
             font-size: 12px;
         }
+
+        /*特殊处理line-font尺寸问题 @lanchenghao*/
+        .icon-line {
+            font-size: .58rem;
+            margin-left: -0.05rem;
+        }
+        .icon-line:before {
+            position: absolute;
+            line-height: 2;
+        }
+
+        .contact-us span {
+            width: .6rem;
+            text-align: left;
+            display: inline-block;
+        }
+        .contact-us span:first-child {
+            position: relative;
+        }
     </style>
     <script>
-        (function (win, dom) {
-            var $html = dom.querySelector("html");
-            var scale = win.innerWidth / 720;
-            $html.style.fontSize = 100 * scale + 'px';
-        })(window, document)
+        //常规rem适配
+        !(function(doc, win) {
+            var docEle = doc.documentElement,
+                    evt = "onorientationchange" in window ? "orientationchange" : "resize",
+                    fn = function() {
+                        var width = docEle.getBoundingClientRect().width;
+                        width && (docEle.style.fontSize = 100 * (width / 720) + "px");
+                    };
+
+            win.addEventListener(evt, fn, false);
+            doc.addEventListener("DOMContentLoaded", fn, false);
+
+        }(document, window));
+
     </script>
 </head>
 
@@ -247,9 +281,17 @@
 <div class="contact-us">
     <ul>
         <li>Contact us:</li>
-        <li><i class="iconfont icon-phone-font"></i> LINE: @instashop</li>
-        <li><i class="iconfont icon-phone-font"></i> PH/WA: 0812 8491 8486</li>
-        <li><i class="iconfont icon-shop-font"></i> Instashop Versi Desktop : 'http://dashboard.instashop.co.id'</li>
+        <li>
+            <span><i class="iconfont icon-line"></i></span>
+            LINE: @instashop
+        </li>
+        <li>
+            <span><i class="iconfont icon-phone-font"></i></span>
+            PH/WA: 0812 8491 8486
+        </li>
+        <li><span><i class="iconfont icon-shop-font"></i></span>
+            Instashop Versi Desktop : <br>'http://dashboard.instashop.co.id'
+        </li>
     </ul>
 </div>
 <div class="f-contact">
