@@ -49,7 +49,7 @@
                     );
                     bridge.registerHandler('registerSocket', function(data, responseCallback) {
                         alert(data);
-                        var responseData = data.name;
+                        var responseData = data.code;
                         alert(responseData);
                         responseCallback(responseData);
                     });
