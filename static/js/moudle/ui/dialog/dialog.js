@@ -245,7 +245,7 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
             return new dialog(opts);
         },
         tip : function(opts){
-            opts = $.extend({show_footer:false,show_top:false,is_cover:false,wraper_css:{'background-color':'rgba(0,0,0,.5)',color:'#fff','text-align':'center'},animation_css:{'opacity':'1'},auto_fn:function(){var _this = this;setTimeout(function(){_this.remove()},1000)}},opts);
+            opts = $.extend({show_footer:false,show_top:false,cover_css : {'background-color':'rgba(255,255,255,.1)'},wraper_css:{'background-color':'rgba(0,0,0,.5)',color:'#fff','text-align':'center'},animation_css:{'opacity':'1'},auto_fn:function(){var _this = this;setTimeout(function(){_this.remove()},1000)}},opts);
             return new dialog(opts);
         },
         loading : function(opts){

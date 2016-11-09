@@ -9,17 +9,27 @@
     <title>弹窗</title>
     <link href="../../../../css/moudle/ui/dialog/dialog.css" rel="stylesheet"/>
     <script src="../../../base/require-zepto.js"></script>
-    <script src="../../../base/require-config.js"></script>
     <script>
-        require(['h5_base','dialog'],function(h5_base,dialog){
-            console.log(dialog.dialog().show());
-            h5_base.dom.eventUtil.on('click','.btn','button',function(e){
-                dialog.tip({
-                    body_txt : '<p style="">sfsdfsfs</p><p style="">sfsdfsfs</p>',
-                    c_fn : function(dom){
-                        console.log(dom);
-                    }
-                });
+        require.config({
+            baseUrl: "../../../",
+            paths: {
+                //基础框架配置
+                base: 'base/base/base',
+                lang:"moudle/data/lang",
+                fastclick:"moudle/ui/fastclick/fastclick",
+                //组件配置路径
+                dialog : 'moudle/ui/dialog/dialog'
+            },
+            packages: []
+        });
+    </script>
+    <script>
+        require(['dialog'],function(dialog){
+            dialog.tip({
+                body_txt : '<p style="">sfsdfsfs</p><p style="">sfsdfsfs</p>',
+                c_fn : function(dom){
+                    console.log(dom);
+                }
             });
         });
 

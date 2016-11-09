@@ -39,25 +39,11 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 if($(this).is('.disable-btn')){
                     return false;
                 }
-                //if(_config.data.item.sku.length){
                 if($('.j_plug_submit').length){
                     $('.j_plug_submit').attr('data-buynow','true');
                 }
                 _config.data.buyNow = true;
                 _this.createHtm(_config.data).toShow();
-                //}else{
-                //    Cart(_config.data).addItem({
-                //        item : _config.data.item,
-                //        num : 1,
-                //        price:_config.data.item.price,
-                //        callback : function(){
-                //            _this.resetNum.apply(this);
-                //            setTimeout(function(){
-                //                location.href = Config.host.hrefUrl+'cart.php';
-                //            },0);
-                //        }
-                //    });
-                //}
             });
             $(_config.wraper).on('click',_config.closeBtn,function(){
                 _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
@@ -178,29 +164,11 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                                 num : _num,
                                 callback : function(){
                                     _this.addSuccessFn(_is_buy_now,_w_h);
-                                    //if(_is_buy_now == 'true'){
-                                    //    Common.saveFromUrl(function(){
-                                    //        location.href = Config.host.hrefUrl+'cart.php';
-                                    //    });
-                                    //}else{
-                                    //    _this.resetNum.apply(this);
-                                    //    _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
-                                    //}
-                                    //_this.resetNum.apply(this);
-                                    //_this.toHide(document.querySelector('.j_buy_plug'),_w_h);
-                                    //if(_is_buy_now == 'true'){
-                                    //    Common.saveFromUrl(function(){
-                                    //        location.href = Config.host.hrefUrl+'cart.php';
-                                    //    });
-                                    //}
                                 }
                             });
                         }
                     }
                 }
-
-
-
             });
         },
         addSuccessFn:function(is_buy_now,wh){

@@ -4,7 +4,6 @@ require.config({
     paths: {
         //基础框架配置
         base: 'base/base/base',
-        h5_base : 'base/base/h5_base',
         handlebars : 'base/handlebars-v2.0.0',
         hbs : 'base/hbs',
         text : 'base/text',
@@ -20,6 +19,7 @@ require.config({
         ajax:"moudle/ui/ajax/ajax",
         common:"moudle/app/common/common",
         buyplug:"moudle/app/buyplug/buyplug",
+        item:"moudle/app/item/item",
         quickbuyplug:"moudle/app/quickbuyplug/quickbuyplug",
         cart:"moudle/app/cart/cart",
         logistics:"moudle/app/logistics/logistics",

@@ -1,9 +1,16 @@
 /**
  * Created by sunchengbin on 16/6/2.
  */
-define(['config'],function(Config){
+define(['config','base'],function(Config,Base){
+    var Debug = Base.others.getUrlPrem('_debug_env');
     var Ajax = {
         getJsonp : function ( url, success, error ) {
+            var _data = Base.others.getUrlPrem('param',url)?JSON.parse(Base.others.getUrlPrem('param',url)):null;
+            if(_data && Debug){
+                _data.edata['_debug_env'] = Debug;
+                url = url.split('?')[0];
+                url = url +'?param='+JSON.stringify(_data);
+            }
             $.ajax( {
                 url: url + "&callback=?",
                 dataType: "JSONP",
@@ -16,6 +23,11 @@ define(['config'],function(Config){
             } )
         },
         postJsonp : function (opts) {//{url:, data:, type:, success:, error:}
+            var _data = opts.data.param?JSON.parse(opts.data.param).edata:null;
+            if(_data && Debug){
+                _data['_debug_env'] = Debug;
+                opts.data.param = JSON.stringify({'edata':_data});
+            }
             var _data = {
                 url: Config.host.hostUrl+'router/api.php?_path_=' + opts.url,
                 dataType: "JSON",

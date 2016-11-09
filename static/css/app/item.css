@@ -146,6 +146,9 @@ body{
 .have-contact a{
     width: 40%;
 }
+.no-buy a{
+    width: 80%;
+}
 .buy-btns a.disable-addnow{
     background-color: #d8d8d8;
 }

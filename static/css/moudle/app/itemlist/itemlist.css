@@ -61,7 +61,7 @@
 }
 
 .title{
-    word-break: break-all;
+    /*word-break: break-all;*/
 }
 .item-info > p{
     font-size: 1.4rem;
@@ -70,10 +70,11 @@
 }
 .item-info > p.title{
     display: -webkit-box;
-    text-overflow: ellipsis;
+    word-break: break-word;
+    /*text-overflow: ellipsis;*/
     overflow : hidden;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    /*-webkit-line-clamp: 2;*/
+    /*-webkit-box-orient: vertical;*/
     color: #444;
     margin:.3rem 0;
     font-size: 14px;

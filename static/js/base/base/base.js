@@ -364,19 +364,20 @@ define(function(){
         },
         // 验证是否为空{}
         testObject : function(obj){
+            var _bool = true;
             if(typeof obj == 'object'){
                 for(var name in obj)
                 {
                     if(obj.hasOwnProperty(name))
                     {
-                        return false;
+                        _bool = false;
                     }
                 }
-                return true;
             }else{
                 console.log('请传object');
-                return false;
+                _bool = false;
             }
+            return _bool;
         },
 
         //获取cookie
@@ -395,6 +396,14 @@ define(function(){
                 return true;//是自定义域名
             }
             return false;
+        },
+        //回车转换为<br>
+        transTxt : function(str){
+            return str.replace(/\n/g,"<br>");
+        },
+        //判断是不是
+        isInsBrowser : function(){
+            return /Instashop/g.test(navigator.userAgent);
         }
     };
     return SUN;

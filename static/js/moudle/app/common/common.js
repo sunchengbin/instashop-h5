@@ -96,7 +96,21 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
         telVerify : function(tel,callback,ccallback){//手机号验证
             tel = Number(tel);
             if(/^\d{9,12}$/g.test(tel)){
-                return true;
+                if(/^8/.test(tel)){
+                    return true;
+                }
+                Dialog.confirm({
+                    top_txt : '',//可以是html
+                    body_txt : '<p class="dialog-body-p">Nomor ponsel ini tidak diawali angka 8, yakin nomor ini sudah benar? </p>',
+                    cfb_txt : Lang.H5_GO_CONFIRM,//确定按钮文字
+                    c_fn : function(){
+                        callback && callback();
+                    },
+                    cf_fn : function(){
+                        ccallback && ccallback();
+                    }
+                });
+                return false;
             }else{
                 if(/^\d{21,}$/g.test(tel)){//手机号码不能超过20位
                     Dialog.tip({
