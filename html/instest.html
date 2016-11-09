@@ -22,7 +22,7 @@
                 //todo 区分ios和android
                 _this.connectWebViewBridge(function(bridge){
                     bridge.callHandler(
-                        'actionFn',
+                        'getUserInfo',
                         {'param':
                             {
                                 action : '接口url',
@@ -42,16 +42,35 @@
             }
         },
         connectWebViewBridge : function(callback){
-            if (window.WebViewJavascriptBridge) {
-                callback(WebViewJavascriptBridge);
-            } else {
-                document.addEventListener(
-                    'WebViewJavascriptBridgeReady'
-                    , function() {
-                        callback(WebViewJavascriptBridge)
-                    },
-                    false
-                );
+            if(/ios/g.test(navigator.userAgent)){
+                //ios下注入页面的初始
+                alert('is ios');
+                if (WIN.WebViewJavascriptBridge) {
+                    return callback(WebViewJavascriptBridge);
+                }
+                if (WIN.WVJBCallbacks) {
+                    return WIN.WVJBCallbacks.push(callback);
+                }
+                WIN.WVJBCallbacks = [callback];
+                var WVJBIframe = document.createElement('iframe');
+                    WVJBIframe.style.display = 'none';
+                    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+                    document.documentElement.appendChild(WVJBIframe);
+                setTimeout(function() {
+                    document.documentElement.removeChild(WVJBIframe)
+                }, 0);
+            }else{
+                if (WIN.WebViewJavascriptBridge) {
+                    callback(WebViewJavascriptBridge)
+                } else {
+                    document.addEventListener(
+                        'WebViewJavascriptBridgeReady'
+                        , function() {
+                            callback(WebViewJavascriptBridge)
+                        },
+                        false
+                    );
+                }
             }
         }
     };
