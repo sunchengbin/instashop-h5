@@ -37,14 +37,12 @@
                             callback && callback(responseData);
                         }
                     );
-                    document.querySelector('#reg').onclick = function(){
-                        bridge.registerHandler('jsHandler', function(data, responseCallback) {
-                            alert(data);
-                            var responseData = data.name;
-                            alert(responseData);
-                            responseCallback(responseData);
-                        });
-                    }
+                    bridge.registerHandler('jsHandler', function(data, responseCallback) {
+                        alert(data);
+                        var responseData = data.name;
+                        alert(responseData);
+                        responseCallback(responseData);
+                    });
                 });
             } else {//非ins的直接执行的回调
                 errorback && errorback();
