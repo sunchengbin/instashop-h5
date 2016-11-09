@@ -47,7 +47,7 @@
                     );
                     bridge.registerHandler('registerSocket', function(data, responseCallback) {
                         alert(data);
-                        var responseData = data.result;
+                        var responseData = JSON.parse(data).result;
                         alert(responseData);
                         responseCallback(responseData);
                     });
