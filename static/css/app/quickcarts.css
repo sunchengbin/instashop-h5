@@ -82,7 +82,7 @@ body .address-list{
     color: #F5A623;
 }
 .cart-item:last-child::after{
-    border-bottom: none;
+    /*border-bottom: none;*/
 }
 .user-info,.user-address{
     background-color: #fff;
@@ -385,4 +385,8 @@ body .address-list{
 }
 .disable-btn{
     width: 80%;
+}
+.address-buyer-note {
+    padding:1.25rem 1rem;
+    color:#999999;
 }

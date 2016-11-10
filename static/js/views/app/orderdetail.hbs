@@ -51,7 +51,7 @@
         </div>
         <div class="user-address-info">
             <div class="address-info">
-                {{data.order.buyer_address.street}}, {{data.order.buyer_address.country}}, {{data.order.buyer_address.city}}, {{data.order.buyer_address.province}}
+                {{data.order.buyer_address.street}} {{data.order.buyer_address.post}}, {{data.order.buyer_address.country}}, {{data.order.buyer_address.city}}, {{data.order.buyer_address.province}}
             </div>
             {{#nempty data.order.logistics_info.express_buyer.title}}
                 {{#if data.order.logistics_info.express_buyer.express_expect_day}}
