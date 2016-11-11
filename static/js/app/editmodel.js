@@ -17,6 +17,7 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
         },
         handelFn : function(bridge){
             var _this = this;
+            alert(bridge);
             if(!bridge){
                 alert(bridge);
                 return;
@@ -91,8 +92,10 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
             });
         },
         registerFn : function(bridge){
-            bridge.registerHandler('registerSocket',data, function(responseCallback) {
+            bridge.registerHandler('registerSocket', function(data, responseCallback) {
                 alert(data);
+                var responseData = JSON.parse(data).result;
+                alert(responseData);
                 responseCallback(responseData);
             });
         },
