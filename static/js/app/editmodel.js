@@ -8,13 +8,19 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
             var _this = this;
             //_this.initHtml(init_data);
             Insjs.WebOnReady(function(bridge){
+                alert(1)
                 _this.handelFn(bridge);
             },function(){
+                alert(2)
                 _this.handelFn();
             });
         },
         handelFn : function(bridge){
             var _this = this;
+            if(!bridge){
+                alert(bridge);
+                return;
+            }
             _this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
@@ -43,10 +49,8 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
                         type:'edit_model',
                         param:{
                             index : _index,
-                            data  : {
-                                type:'static_banner',
-                                data: [{img:'',link_url:''}]
-                            }
+                            type:'static_banner',
+                            data: [{img:'',link_url:''}]
                         }
                     }
                 };

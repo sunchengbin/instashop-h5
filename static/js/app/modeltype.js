@@ -24,10 +24,8 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
                         type:'edit_model',
                         param:{
                             index : _index,
-                            data  : {
-                                type: _type,
-                                data: _data
-                            }
+                            type: _type,
+                            data: _data
                         }
                     }
                 };
