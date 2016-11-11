@@ -59,9 +59,11 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <button class="j_insert_model">insert_model</button>
     <button class="j_edit_signage">edit_signage</button>
     <button class="j_edit_model">edit_model</button>
+    <button class="j_show_loading">show_loading</button>
+    <button class="j_close_loading">close_loading</button>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
-    <script src="<?=STATIC_HOST?>/js/app/editmodel.js?v=1478407361226"></script>
+    <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
+    <script src="<?=STATIC_HOST?>/js/dist/app/editmodel.js?v=1478407361226"></script>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

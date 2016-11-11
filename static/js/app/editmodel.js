@@ -45,10 +45,35 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
                             data  : {
                                 index : _index,
                                 data : {
-                                    type:'staticBanner',
+                                    type:'static_banner',
                                     data: [{img:'',link_url:''}]
                                 }
                             }
+                        }
+                    }
+                };
+                bridge.callHandler('insSocket',_param, function(response) {
+                    return null;
+                });
+            });
+            $('body').on('click','.j_show_loading',function(){
+                var _param = {
+                    param:{
+                        type:'show_loading',
+                        param:null
+                    }
+                };
+                bridge.callHandler('insSocket',_param, function(response) {
+                    return null;
+                });
+            });
+            $('body').on('click','.j_close_loading',function(){
+                var _param = {
+                    param:{
+                        type:'close_model',
+                        param:{
+                            code : 200,
+                            message : 'sss'
                         }
                     }
                 };
