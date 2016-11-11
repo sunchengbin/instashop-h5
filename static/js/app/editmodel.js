@@ -2,11 +2,12 @@
  * Created by sunchengbin on 2016/11/10.
  * 店铺装修首页
  */
-require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Config){
+require(['base','lazyload','insjs','fastclick','config','hbs','text!views/moudle/model/signage.hbs','text!views/moudle/model/staticbanner.hbs','text!views/moudle/model/itemmodel.hbs'],function(Base,Lazyload,Insjs,FastClick,Config,Hbs,SignageHtm,StaticBannerHtm,Itemmodel){
     var EditModel = {
         init : function(){
             var _this = this;
-            //_this.initHtml(init_data);
+            Lazyload();
+            _this.initHtml();
             Insjs.WebOnReady(function(bridge){
                 _this.handelFn(bridge);
             },function(){
@@ -17,6 +18,7 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
         handelFn : function(bridge){
             var _this = this;
             if(!bridge){
+                //location.reload();
                 return;
             }
             _this.registerFn(bridge);
@@ -97,13 +99,32 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
             });
         },
         initHtml : function(){
-
+            var _this = this,
+                _html = '';
+            _html+= _this.createModelHtm()+_this.createInsertHtm()+_this.defaultItemsHtm();
+            $('body').prepend(_html);
+        },
+        createInsertHtm : function(){
+            return '<div class="insert-box"><button class="handle-btn insert-btn">Insert ad rotation</button></div>'
+        },
+        defaultItemsHtm : function(){
+            return Hbs.compile(Itemmodel)({
+                data : {shop:init_data}
+            });
         },
         createModelHtm : function(){
-
+            var _this = this;
+            return _this.createSignageHtm()+_this.staticBannerHtm();
+        },
+        createSignageHtm : function(){
+            return Hbs.compile(SignageHtm)({
+                data : {shop:init_data}
+            });
         },
         staticBannerHtm : function(){
-
+            return Hbs.compile(StaticBannerHtm)({
+                name : 'static-banner'
+            });
         },
         rotateBannerHtm : function(){
 

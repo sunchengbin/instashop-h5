@@ -94,16 +94,19 @@
 		{
 		    index : 0,
 			type : two_li_items,
+			title : '',
 			data : [后端item完整数据,]
 		},
 		{
 		    index : 0,
 			type : big_img_item,
+			title : '',
 			data : [后端item完整数据,]
 		},
 		{
 		    index : 0,
 			type : list_items,
+			title : '',
 			data : [后端item完整数据,]
 		}
 	]
@@ -127,7 +130,7 @@ define([],function(){
         connectWebViewBridge : function(callback){
             if(/ios/g.test(navigator.userAgent)){
                 //ios下注入页面的初始
-                alert('is ios');
+                //alert('is ios');
                 if (WIN.WebViewJavascriptBridge) {
                     return callback(WebViewJavascriptBridge);
                 }
