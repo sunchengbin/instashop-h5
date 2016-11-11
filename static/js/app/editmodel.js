@@ -43,11 +43,8 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
                         param:{
                             index : _index,
                             data  : {
-                                index : _index,
-                                data : {
-                                    type:'static_banner',
-                                    data: [{img:'',link_url:''}]
-                                }
+                                type:'static_banner',
+                                data: [{img:'',link_url:''}]
                             }
                         }
                     }
@@ -86,22 +83,6 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
             });
             $('body').on('click','.j_moveup_model',function(){
 
-            });
-            $('body').on('click','.j_edit_signage',function(){
-                var _param = {
-                    param:{
-                        type:'edit_signage',
-                        param:{
-                            index : 0,
-                            data  : {
-                                img : ''
-                            }
-                        }
-                    }
-                };
-                bridge.callHandler('insSocket',_param, function(response) {
-                    return null;
-                });
             });
         },
         registerFn : function(bridge){

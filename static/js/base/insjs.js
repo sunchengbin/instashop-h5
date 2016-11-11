@@ -37,11 +37,6 @@
  * })
  *
  * insSocket桥接种type方法名列表:
- * edit_signage//编辑的店招
- * bridge.callHandler('insSocket', {param:{type:'edit_signage',param:{img:}}, function(response) {
- *      return null;
- *      //native本地跳转到店招编辑页面
- * })
  * edit_model//编辑模块
  * bridge.callHandler('insSocket', {param:{type:'edit_model',param:{index:0,data:{type:'staticBanner',data:}}}, function(response) {
  *      return null;
@@ -74,7 +69,7 @@
 		{
 		    index : 0,
 			type : edit_signage,
-			data : {img:}
+			data : {img:[]}
 		},
 		{
 		    index : 0,

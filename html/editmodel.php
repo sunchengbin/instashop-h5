@@ -57,7 +57,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body>
     <button class="j_insert_model">insert_model</button>
-    <button class="j_edit_signage">edit_signage</button>
     <button class="j_edit_model">edit_model</button>
     <button class="j_show_loading">show_loading</button>
     <button class="j_close_loading">close_loading</button>
