@@ -15,6 +15,7 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
         },
         handelFn : function(bridge){
             var _this = this;
+            _this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
                 var _dom = $(this),
