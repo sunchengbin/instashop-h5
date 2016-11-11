@@ -47,11 +47,6 @@
  *      return null;
  *      //native本地跳转到选择模板类型页面
  * })
- * select_model//选择新建模板类型
- * bridge.callHandler('insSocket', {param:{type:'select_model',param:{index:0,data{type:'static_banner'}}, function(response) {
- *      return null;
- *      //native本地跳转到新建模板页
- * })
  * show_loading//调用native本地loading动画
  * bridge.callHandler('insSocket', {param:{type:'show_loading',param:null, function(response) {
  *      return null;
