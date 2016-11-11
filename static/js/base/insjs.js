@@ -21,7 +21,7 @@
  *                  param:{
  *                      index:0,
  *                      data:{
- *                          type:'staticBanner',
+ *                          type:'static_banner',
  *                          data:
  *                  }
  *          }(insSocket的参数结构),
@@ -38,7 +38,7 @@
  *
  * insSocket桥接种type方法名列表:
  * edit_model//编辑模块
- * bridge.callHandler('insSocket', {param:{type:'edit_model',param:{index:0,data:{type:'staticBanner',data:}}}, function(response) {
+ * bridge.callHandler('insSocket', {param:{type:'edit_model',param:{index:0,data:{type:'static_banner',data:}}}, function(response) {
  *      return null;
  *      //native本地跳转到模板编辑页
  * })
