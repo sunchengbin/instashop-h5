@@ -10,7 +10,7 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
             Insjs.WebOnReady(function(bridge){
                 _this.handelFn(bridge);
             },function(){
-                alert(2)
+                //alert(2)
                 _this.handelFn();
             });
         },

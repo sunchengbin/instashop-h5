@@ -14,7 +14,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
     <link href="<?=STATIC_HOST?>/css/dist/app/orderconfirm.css?v=1478407361226" rel="stylesheet"/>
-    <title>店铺装修</title>
+    <title>选择新建模板</title>
     <style>
         button{
            display: block;

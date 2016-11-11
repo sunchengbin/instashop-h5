@@ -17,7 +17,6 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
             FastClick.attach(document.body);
             $('body').on('click','.j_model_type',function(){
                 var _type = $(this).attr('data-type'),
-                    _data = $(this).attr('data-json'),
                     _index = Base.others.getUrlPrem('index');
                 var _param = {
                     param:{
@@ -25,7 +24,7 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
                         param:{
                             index : _index,
                             type: _type,
-                            data: _data
+                            data: []
                         }
                     }
                 };
