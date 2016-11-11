@@ -8,7 +8,6 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
             var _this = this;
             //_this.initHtml(init_data);
             Insjs.WebOnReady(function(bridge){
-                alert(1)
                 _this.handelFn(bridge);
             },function(){
                 alert(2)
@@ -17,9 +16,7 @@ require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Conf
         },
         handelFn : function(bridge){
             var _this = this;
-            alert(bridge);
             if(!bridge){
-                alert(bridge);
                 return;
             }
             _this.registerFn(bridge);
