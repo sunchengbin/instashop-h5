@@ -12,8 +12,14 @@
 }
 .viewer-box li div{
     text-align:center;
-    display: table-cell;
-    vertical-align: middle;
+    /*display: table-cell;*/
+    /*vertical-align: middle;*/
+
+    /*text-align: center;*/
+    /*display: inline-block;*/
+    /*vertical-align: middle;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
 }
 /*.viewer-box img{*/
     /*transform: scale(0);*/

@@ -25,12 +25,16 @@
     </script>
     <script>
         require(['dialog'],function(dialog){
-            dialog.tip({
-                body_txt : '<p style="">sfsdfsfs</p><p style="">sfsdfsfs</p>',
-                c_fn : function(dom){
-                    console.log(dom);
-                }
+            window.dialog = dialog.loading({
+                width:100
             });
+
+//            dialog.tip({
+//                body_txt : '<p style="">sfsdfsfs</p><p style="">sfsdfsfs</p>',
+//                c_fn : function(dom){
+//                    console.log(dom);
+//                }
+//            });
         });
 
     </script>
