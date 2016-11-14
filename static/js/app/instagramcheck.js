@@ -18,12 +18,15 @@ require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config',
             var _that = this;
             var _instagram_name = $.trim($(".j_instagram_name").val())||"";
             var _reqData = {
-                frm: Common.getQueryParam("frm"),
-                wduss: Common.getQueryParam("wduss"),
-                seller_id: Common.getQueryParam("seller_id"),
-                ins_name: _instagram_name,
-                item_count: "0",
-                action: "import"
+                edata:{
+                    frm: Common.getQueryParam("frm"),
+                    wduss: Common.getQueryParam("wduss"),
+                    seller_id: Common.getQueryParam("seller_id"),
+                    ins_name: _instagram_name,
+                    item_count: "0",
+                    action: "import",
+                    _debug_env:"3.4"
+                }
             }
             for(var key in _reqData){
                 document.querySelector(".req_msg").innerHTML += key+":"+_reqData[key]+"</br>";
@@ -34,6 +37,7 @@ require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config',
                 type: 'POST',
                 success: function (obj) {
                     if (obj.code == 200) {
+                        document.querySelector(".error_msg").innerHTML = "成功:"+JSON.stringify(obj);
                         window.location.href = "instashop://app/instagram_move?id="+_instagram_name;
                     } else {
                         document.querySelector(".error_msg").innerHTML = "出错啦:"+JSON.stringify(obj);
