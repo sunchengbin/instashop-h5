@@ -2,10 +2,12 @@
  * Created by sunchengbin on 2016/11/10.
  * 店铺装修首页
  */
-require(['base','lazyload','insjs','fastclick','config','hbs','text!views/moudle/model/signage.hbs','text!views/moudle/model/banner.hbs','text!views/moudle/model/itemmodel.hbs','text!views/moudle/model/editbtns.hbs','text!views/moudle/model/navigation.hbs'],function(Base,Lazyload,Insjs,FastClick,Config,Hbs,SignageHtm,StaticBannerHtm,Itemmodel,ModelBtns,Navigation){
+require(['base','dialog','lang','lazyload','insjs','fastclick','config','hbs','text!views/moudle/model/signage.hbs','text!views/moudle/model/banner.hbs','text!views/moudle/model/itemmodel.hbs','text!views/moudle/model/editbtns.hbs','text!views/moudle/model/navigation.hbs'],function(Base,Dialog,Lang,Lazyload,Insjs,FastClick,Config,Hbs,SignageHtm,StaticBannerHtm,Itemmodel,ModelBtns,Navigation){
     var EditModel = {
         init : function(){
             var _this = this;
+            //todo 这里要从后端读数据赋值给model_data
+            _this.model_data = [];
             Lazyload();
             _this.initHtml();
             Insjs.WebOnReady(function(bridge){
@@ -17,16 +19,16 @@ require(['base','lazyload','insjs','fastclick','config','hbs','text!views/moudle
         },
         handelFn : function(bridge){
             var _this = this;
-            if(!bridge){
-                //location.reload();
-                return;
-            }
-            _this.registerFn(bridge);
+            //if(!bridge){
+            //    //location.reload();
+            //    //alert('not find bridge');
+            //    return;
+            //}
+            //_this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
                 var _dom = $(this),
                     _index = $('.j_insert_model').index(_dom);
-                console.log(_index);
                 var _param = {
                     param:{
                         type:'create_model',
@@ -36,24 +38,28 @@ require(['base','lazyload','insjs','fastclick','config','hbs','text!views/moudle
                         }
                     }
                 };
+                console.log(JSON.stringify(_param));
                 bridge.callHandler('insSocket',_param, function(response) {
                       return null;
                 });
             });
             $('body').on('click','.j_edit_model',function(){
                 var _dom = $(this),
-                    _index = $('.j_edit_model').index(_dom);
-                console.log(_index);
+                    _index = $('.j_edit_model').index(_dom),
+                    _type = _dom.attr('data-type'),
+                    _data = _this.model_data[_index]?_this.model_data[_index]:null;
                 var _param = {
                     param:{
                         type:'edit_model',
                         param:{
                             index : _index,
-                            type:'static_banner',
-                            data: [{img:'',link_url:''}]
+                            type : _type,
+                            title : _data&&_data.title?_data.title:'',
+                            data : _data&&_data.data?_data.data:[]
                         }
                     }
                 };
+                console.log(JSON.stringify(_param));
                 bridge.callHandler('insSocket',_param, function(response) {
                     return null;
                 });
@@ -84,42 +90,70 @@ require(['base','lazyload','insjs','fastclick','config','hbs','text!views/moudle
                 });
             });
             $('body').on('click','.j_del_model',function(){
-
+                var _model = $(this).parents('.j_model_box'),
+                    _index = $('.j_del_model').index($(this)),
+                    _insert_dom = _model.prev();
+                console.log(_index)
+                Dialog.confirm({
+                    cover_event : true,
+                    cf_fn : function(){
+                        _model.remove();
+                        _insert_dom.remove();
+                        //todo 删除模块数据
+                    }
+                });
             });
             $('body').on('click','.j_moveup_model',function(){
-
+                var _dom = $(this),
+                    _model = _dom.parents('.j_model_box'),
+                    _index = Number($('.j_moveup_model').index(_dom)),
+                    _insert_dom = _model.prev();
+                    _model.remove();
+                    _insert_dom.remove();
+                var _insert_box = $('.insert-box').eq(_index);
+                _insert_box.before(_insert_dom.clone());
+                _insert_box.before(_model.clone());
+                $('.j_model_btns');
+                //todo 数据前移
             });
         },
         registerFn : function(bridge){
+            var _this = this;
             bridge.registerHandler('registerSocket', function(data, responseCallback) {
-                alert(data);
-                var responseData = JSON.parse(data).result;
-                alert(responseData);
-                responseCallback(responseData);
+                //alert(data);
+                //var responseData = JSON.parse(data).result;
+                _this.insertModel(JSON.parse(data),function(obj){
+                    responseCallback(obj);
+                });
             });
+        },
+        insertModel : function(data,callbcak){
+            //todo native编辑后插入模块
         },
         initHtml : function(){
             var _this = this,
                 _html = '';
             _html+= _this.createModelHtm()
-                +_this.staticBannerHtm()
+                +_this.staticBannerHtm('notmove')
                 +_this.rotateBannerHtm()
                 +_this.twoListBannerHtm()
-                +_this.textNavigationHtm('notmove')
+                +_this.textNavigationHtm()
                 +_this.imgNavigationHtm()
                 +_this.twoLiItemsHtm()
                 +_this.bigImgItem()
                 +_this.listItems()
-                +_this.defaultItemsHtm();
+                +_this.defaultItemsHtm()
+                +'<button class="j_submit_btn sub-btn b-top">Applications to shop</button>';
             $('body').prepend(_html);
         },
-        createModelBtnHtm : function(beal){
+        createModelBtnHtm : function(opts){
             return Hbs.compile(ModelBtns)({
-                notmove : beal
+                notmove : opts.notmove,
+                type : opts.type
             });
         },
         createInsertHtm : function(){
-            return '<div class="insert-box"><button class="handle-btn insert-btn">Insert ad rotation</button></div>'
+            return '<div class="insert-box"><button class="handle-btn j_insert_model insert-btn">Insert ad rotation</button></div>'
         },
         defaultItemsHtm : function(){
             var _this = this;
@@ -136,60 +170,84 @@ require(['base','lazyload','insjs','fastclick','config','hbs','text!views/moudle
                 data : {shop:init_data}
             });
         },
-        staticBannerHtm : function(){
+        staticBannerHtm : function(notmove){
             var _this = this;
             return _this.createInsertHtm()+Hbs.compile(StaticBannerHtm)({
                 type : 'static',
-                btns : _this.createModelBtnHtm()
+                btns : _this.createModelBtnHtm({
+                    type : 'static_banner',
+                    notmove : notmove
+                })
             });
         },
-        rotateBannerHtm : function(){
+        rotateBannerHtm : function(notmove){
             var _this = this;
             return _this.createInsertHtm()+Hbs.compile(StaticBannerHtm)({
                 type : 'rotate',
-                btns : _this.createModelBtnHtm()
+                btns : _this.createModelBtnHtm({
+                    type : 'rotate_banner',
+                    notmove : notmove
+                })
             });
         },
-        twoListBannerHtm : function(){
+        twoListBannerHtm : function(notmove){
             var _this = this;
             return _this.createInsertHtm()+Hbs.compile(StaticBannerHtm)({
                 type : 'two_list',
-                btns : _this.createModelBtnHtm()
+                btns : _this.createModelBtnHtm({
+                    type : 'two_list_banner',
+                    notmove : notmove
+                })
             });
         },
         imgNavigationHtm : function(notmove){
             var _this = this;
             return this.createInsertHtm() + Hbs.compile(Navigation)({
                 type : 'img',
-                btns : _this.createModelBtnHtm(notmove)
+                btns : _this.createModelBtnHtm({
+                    type : 'img_navigation',
+                    notmove : notmove
+                })
             });
         },
         textNavigationHtm : function(notmove){
             var _this = this;
             return this.createInsertHtm() + Hbs.compile(Navigation)({
                 type : 'text',
-                btns : _this.createModelBtnHtm(notmove)
+                btns : _this.createModelBtnHtm({
+                    type : 'text_navigation',
+                    notmove : notmove
+                })
             });
         },
         twoLiItemsHtm : function(notmove){
             var _this = this;
             return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
                 type : 'twoItem',
-                btns : _this.createModelBtnHtm(notmove)
+                btns : _this.createModelBtnHtm({
+                    type : 'two_li_items',
+                    notmove : notmove
+                })
             });
         },
         bigImgItem : function(notmove){
             var _this = this;
             return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
                 type : 'bigitem',
-                btns : _this.createModelBtnHtm(notmove)
+                btns : _this.createModelBtnHtm({
+                    type : 'big_img_item',
+                    notmove : notmove
+                })
             });
         },
         listItems : function(notmove){
             var _this = this;
             return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
                 type : 'listitem',
-                btns : _this.createModelBtnHtm(notmove)
+                btns : _this.createModelBtnHtm({
+                    type : 'list_items',
+                    notmove : notmove
+                })
             });
         }
     };

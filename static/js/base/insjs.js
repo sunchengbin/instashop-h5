@@ -16,22 +16,21 @@
  * 页面中创建一个监听事件registerSocket,等待native通过data传输数据.然后根据data数据进行js中的对应操作.responseCallback为native本地的回调.如果需要我们把数据处理好传给native就通过这个回调来传输处理好的数据
  * bridge.registerHandler('registerSocket',function(data,responseCallback) {
  *      data = {
- *          param : {
- *              type:'edit_model',
-*               param:{
-*                   index:0,
-*                   title:'',
-*                   type:'static_banner',
-*                   data:{
-*
-*
-*                   }
- *          }(insSocket的参数结构),
+ *          param:{
+				type:'edit_model',
+				param:{
+					index : 0,
+					type : '',
+					title : '',
+					data : []
+				}
+			}(insSocket的参数结构),
  *          result : {
  *              //具体模块数据,以标准广告数据为例
  *              index : 0,
-                type : static_banner,
-                data : [{img:,link_url:},]
+				title : '',
+				type : edit_signage,
+				data : {img:[]}
  *          }
  *      }
  *      var responseData = js对客户端返回的data进行的处理;
