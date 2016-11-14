@@ -18,13 +18,15 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','
                         "province": "",//省
                         "city": "",//市
                         "country": "",//街道
-                        "street": ""//详细地址
+                        "street": "",//详细地址
+                        "post": ""//邮编
                     }
                 };
             }else{
                 _this['province'] = _address.address.province;
                 _this['city'] = _address.address.city;
                 _this['country'] = _address.address.country;
+                _this['post'] = _address.address.post;
             }
             _address.lang = Lang;
             var _htm= Hbs.compile(Addresshtm)(_address);
@@ -108,7 +110,8 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','
                     _province = $.trim($('.j_province').html()),
                     _city = $.trim($('.j_city').html()),
                     _country = $.trim($('.j_country').html()),
-                    _street = $.trim($('.j_street').val());
+                    _street = $.trim($('.j_street').val()),
+                    _post = $.trim($('.j_post').val());
                     if(!_name||!_telephone||!_province||!_city||!_country||!_street||(_province==Lang.H5_PROVINCE)||(_city==Lang.H5_CITY)||(_country==Lang.H5_DISTRICT)){
                         Dialog.tip({
                             top_txt : '',//可以是html
@@ -127,7 +130,8 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','
                                 "province": _province,//省
                                 "city": _city,//市
                                 "country": _country,//街道
-                                "street": _street//详细地址
+                                "street": _street,//详细地址
+                                "post":_post
                             }
                         };
                         _data_json.Address = _address;
@@ -149,7 +153,8 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','
                             "province": _province,//省
                             "city": _city,//市
                             "country": _country,//街道
-                            "street": _street//详细地址
+                            "street": _street,//详细地址
+                            "post":_post
                         }
                     };
                     _data_json.Address = _address;

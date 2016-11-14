@@ -206,7 +206,7 @@
 <div class="index-btn-box">
     <div class="btn confirm-btn">
         <i class="iconfont icon-shop-font"></i>
-        <a href="http://www.instashop.co.id/" target="_self">Aku harus membuka Instashop</a>
+        <a href="http://www.instashop.co.id/" target="_self">Buat webstore gratis sekarang!</a>
     </div>
 </div>
 

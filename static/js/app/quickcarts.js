@@ -23,13 +23,15 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         "province": "",//省
                         "city": "",//市
                         "country": "",//街道
-                        "street": ""//详细地址
+                        "street": "",//详细地址
+                        "post":""//邮编
                     }
                 };
             }else{
                 _this['province'] = _address.address.province;
                 _this['city'] = _address.address.city;
                 _this['country'] = _address.address.country;
+                _this['post'] = _address.address.post;
             }
             if(_is_detail){
                 //判断是否是单品详情页面

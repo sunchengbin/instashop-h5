@@ -17,7 +17,7 @@
                 </ul>
             </section>
             <div class="address-buyer-note user-info info-box">
-                <input class="j_buyer_note" type="text" value="{{address.buyer_note}}" placeholder="{{lang.H5_BUYER_NOTE}}"/>
+                <input class="j_buyer_note" type="text" value="{{address.buyer_note}}" placeholder="{{lang.H5_BUYER_NOTE_TOO_LONG}}"/>
             </div>
             <p class="address-title">Silakan isi alamat pengirimanmu</p>
             <div class="user-info">
@@ -46,11 +46,11 @@
                     <i class="icon iconfont fr icon-go-font"></i>
                     <p class="j_country">{{#if address.address.country}}{{address.address.country}}{{else}}{{lang.H5_DISTRICT}}{{/if}}</p>
                 </div>
-                <div class="info-box-address">
+                <div class="info-box-address clearfix">
                     <textarea class="j_street" placeholder="{{lang.H5_DETAIL_ADDRESS}}">{{#if address.address.street}}{{address.address.street}}{{/if}}</textarea>
                 </div>
-                <div class="info-box b-bottom">
-                    <input class="j_post" type="text" value="{{address.address.post}}" placeholder="{{lang.H5_ADVICE_FILL}}"/>
+                <div class="info-box b-top clearfix">
+                    <input class="j_post" maxlength="10" type="text" value="{{address.address.post}}" placeholder="{{lang.H5_ADVICE_FILL}}"/>
                 </div>
             </div>
             {{#eq shop.express_free 0}}
