@@ -82,6 +82,7 @@ define(['base','slide','dialog'],function(Base,Slide,Dialog){
             var _img = new Image();
             _img.src = url;
             _img.onload = function(){
+                if(!!_this._loading)_this._loading.remove();
                 callback && callback(_img);
             };
             _img.onerror = function(){
@@ -117,8 +118,6 @@ define(['base','slide','dialog'],function(Base,Slide,Dialog){
                 if(_this.whichPlatform.isPc){
                     _this.fixedImageSize(_viewerImages,_img,index)
                 }
-                _this._loading.remove();
-
                 Slide.createNew({
                     dom: document.querySelector('.j_viewer_ul'),
                     needTab: true,
