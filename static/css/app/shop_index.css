@@ -340,6 +340,9 @@ footer .btn i{
     float: left;
     width: 100%;
 }
+.item-banner li img {
+    cursor: pointer;
+}
 /*banner*/
 .banner-box{
     min-height: 240px;

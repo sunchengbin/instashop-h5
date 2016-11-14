@@ -148,6 +148,12 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                 return url.replace(/http/g,'https');
             }
             return url;
+        },
+        getQueryParam: function (key) {
+            var reg = RegExp("(^|&)" + key + "=([^&]*)(&|$)", "i");
+            var r = location.search.substr(1).match(reg);
+            if (r != null)return unescape(r[2]);
+            return null;
         }
     };
 

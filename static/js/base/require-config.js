@@ -1,4 +1,4 @@
-//baseUrl 放在服务端写入页面
+匆fig//baseUrl 放在服务端写入页面
 require.config({
     baseUrl: "/static/js/",
     paths: {

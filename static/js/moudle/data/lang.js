@@ -138,13 +138,13 @@ define([],function(){
             H5_SUBMIT_SUCCESS:'提交成功',
             H5_INDEX_NO_GOOD:'没有商品',
             H5_SUNMITING:'提交...',
-            H5_ADVICE_FILL:'邮编，选填，建议填写'
+            H5_ADVICE_FILL:'邮编：选填，建议填写'
 
         },
 
         id : {
             //选填 建议填写
-            'H5_ADVICE_FILL':'Kode Pos, Pilih, Sebaiknya diisi',
+            'H5_ADVICE_FILL':'Kode Pos：Pilih, Sebaiknya diisi',
             // 收货地址
             'H5_SHIPPING_ADDRESS' : 'Alamat Pengiriman',
 
