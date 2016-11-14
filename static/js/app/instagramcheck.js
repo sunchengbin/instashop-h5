@@ -18,14 +18,16 @@ require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config',
             var _that = this;
             var _instagram_name = $.trim($(".j_instagram_name").val())||"";
             var _reqData = {
-                frm: "1",
+                frm: Common.getQueryParam("frm"),
                 wduss: Common.getQueryParam("wduss"),
                 seller_id: Common.getQueryParam("seller_id"),
                 ins_name: _instagram_name,
                 item_count: "0",
                 action: "import"
             }
-            console.info(_reqData);
+            for(var key in _reqData){
+                document.querySelector(".req_msg").innerHTML += key+":"+_reqData[key]+"</br>";
+            }
             Ajax.postJsonp({
                 url: Config.actions.instagramcheck,
                 data: {param: JSON.stringify(_reqData)},
