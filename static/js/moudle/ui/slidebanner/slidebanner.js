@@ -393,6 +393,7 @@ define(["dialog"],function (Dialog) {
                 var _viewerImageLi = _this.viewerImageLis[idx];
                 var _viewerImage = _viewerImageLi.getElementsByTagName("img")[0];
                 var _img_src = _viewerImageLi.getAttribute("data-src");
+                $(_this.arrowBox).find("i").css({color:"#ffffff"})
                 _this._loading = Dialog.loading({
                     width:100,
                     is_cover:false

@@ -306,4 +306,16 @@ body{
     margin: 2rem auto 0;
 }
 
+/*3.5 功能4需求 去官网按钮box*/
+.index-btn-box {
+    padding:0 2.5rem;
+    margin:2.5rem 0 2rem;
+}
+.index-btn-box .btn {
+    font-size:1.6rem;
+    border-radius: 3px!important;
+}
+.index-btn-box a {
+    color:#ffffff;
+}
 
