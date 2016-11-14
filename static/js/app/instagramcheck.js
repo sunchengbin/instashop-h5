@@ -34,25 +34,11 @@ require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config',
                     if (obj.code == 200) {
                         window.location.href = "instashop://app/instagram_move?id="+_instagram_name;
                     } else {
-                        Dialog.alert({
-                            top_txt: '',//可以是html
-                            cfb_txt: '跳转失败',
-                            body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
-                            cf_fn: function () {
-                                location.reload();
-                            }
-                        });
+                        document.querySelector(".error_msg").innerHTML = "出错啦:"+JSON.stringify(obj);
                     }
                 },
                 error: function (error) {
-                    Dialog.alert({
-                        top_txt: '',//可以是html
-                        cfb_txt: '跳转失败',
-                        body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
-                        cf_fn: function () {
-                            location.reload();
-                        }
-                    });
+                    document.querySelector(".error_msg").innerHTML = "出错啦:网络请求出错";
                 }
             });
         }
