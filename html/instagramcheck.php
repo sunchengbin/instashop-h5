@@ -14,6 +14,19 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_FONT_CSS?>
     <link href="<?=STATIC_HOST?>/css/dist/app/address.css?v=1478407361224" rel="stylesheet"/>
     <title>Keranjangku</title>
+    <style>
+    .index-btn-box {
+        padding:0 2.5rem;
+        margin:2.5rem 0 2rem;
+    }
+    .index-btn-box .btn {
+        font-size:1.6rem;
+        border-radius: 3px!important;
+    }
+    .index-btn-box a {
+        color:#ffffff;
+    }
+    </style>
 </head>
 <body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>

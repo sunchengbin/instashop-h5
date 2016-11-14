@@ -8,6 +8,7 @@ define(['base','slide','dialog'],function(Base,Slide,Dialog){
         _this.config = $.extend({
             wraper : 'body',
             btn : '.j_viewer_btn',
+            arrowbox:".slide_arrow",
             speed : '.5s',
             images : null
         },opts);
@@ -120,13 +121,21 @@ define(['base','slide','dialog'],function(Base,Slide,Dialog){
                 if(_this.whichPlatform.isPc){
                     _this.fixedImageSize(_viewerImages,_img,index)
                 }
-                Slide.createNew({
+                var _slide = Slide.createNew({
                     dom: document.querySelector('.j_viewer_ul'),
                     needTab: true,
                     auto : false,
                     viewerImageLis:_viewerImages,
                     curPage : index+1
                 });
+                if(_slide.arrowBox){
+                    $(_slide.arrowBox).on("click",function(event){
+                        if("slide_arrow"==event.target.className){
+                            _this.hide();
+                        }
+                    })
+                }
+                console.info(_slide);
             });
         },
         hide : function(){

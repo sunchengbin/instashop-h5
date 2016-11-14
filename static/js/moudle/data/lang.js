@@ -136,13 +136,17 @@ define([],function(){
             H5_NOT_EMPTY:'不能为空',
             H5_PRICE_MUST_NUM:'金额必须为大于0的整数',
             H5_SUBMIT_SUCCESS:'提交成功',
+            H5_SUBMIT_TXT:"提交",
             H5_INDEX_NO_GOOD:'没有商品',
             H5_SUNMITING:'提交...',
-            H5_ADVICE_FILL:'邮编：选填，建议填写'
+            H5_ADVICE_FILL:'邮编：选填，建议填写',
+            H5_INS_INPUT:"输入Instagram账户"
 
         },
 
         id : {
+            H5_INS_INPUT:"Masukkan username Instagrammu",
+            H5_SUBMIT_TXT:"Ajukan",
             //选填 建议填写
             'H5_ADVICE_FILL':'Kode Pos：Pilih, Sebaiknya diisi',
             // 收货地址

@@ -15,7 +15,7 @@ require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config',
             })
         },
         subData: function () {
-            var _that = this;
+            var _this = this;
             var _instagram_name = $.trim($(".j_instagram_name").val())||"";
             var _reqData = {
                 edata:{
@@ -28,23 +28,37 @@ require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config',
                     _debug_env:"3.4"
                 }
             }
-            for(var key in _reqData){
-                document.querySelector(".req_msg").innerHTML += key+":"+_reqData[key]+"</br>";
-            }
+            // for(var key in _reqData){
+            //     document.querySelector(".req_msg").innerHTML += key+":"+_reqData[key]+"</br>";
+            // }
             Ajax.postJsonp({
                 url: Config.actions.instagramcheck,
                 data: {param: JSON.stringify(_reqData)},
                 type: 'POST',
                 success: function (obj) {
                     if (obj.code == 200) {
-                        document.querySelector(".error_msg").innerHTML = "成功:"+JSON.stringify(obj);
                         window.location.href = "instashop://app/instagram_move?id="+_instagram_name;
                     } else {
-                        document.querySelector(".error_msg").innerHTML = "出错啦:"+JSON.stringify(obj);
+                        Dialog.tip({
+                            top_txt : '',//可以是html
+                            body_txt : '<p class="dialog-body-p">'+(_this.msg?_this.msg:Lang.H5_ERROR)+'</p>',
+                            auto_fn : function(){
+                                setTimeout(function(){
+                                    location.reload();
+                                },2000);
+                            }
+                        });
                     }
                 },
                 error: function (error) {
-                    document.querySelector(".error_msg").innerHTML = "出错啦:网络请求出错";
+                    Dialog.alert({
+                        top_txt : '',//可以是html
+                        cfb_txt:Lang.H5_FRESHEN,
+                        body_txt : '<p class="dialog-body-p">'+Lang.H5_ERROR+'</p>',
+                        cf_fn : function(){
+                            location.reload();
+                        }
+                    });
                 }
             });
         }
