@@ -398,6 +398,9 @@ define(["dialog"],function (Dialog) {
                     is_cover:false
                 })
                 _viewerImage.src = _img_src;
+                if(_viewerImage.complete){
+                    _this._loading.remove();
+                }
                 _viewerImage.onload = function(){
                     //宽图
                     _this.fixedImageSize(_viewerImage);

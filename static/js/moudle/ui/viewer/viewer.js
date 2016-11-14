@@ -81,8 +81,10 @@ define(['base','slide','dialog'],function(Base,Slide,Dialog){
             var _this = this;
             var _img = new Image();
             _img.src = url;
+            if(_img.complete){
+                _this._loading.remove();
+            }
             _img.onload = function(){
-                if(!!_this._loading)_this._loading.remove();
                 callback && callback(_img);
             };
             _img.onerror = function(){
