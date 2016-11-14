@@ -345,7 +345,7 @@ define([],function(){
             'H5_CREATE_ORDER':'Ajukan Pesanan',
             'H5_SORT_DELED':'Kategori ini telah dihapus',
             H5_GOOD_SORT:'Kategori produk',
-            H5_MSG_NO_GOOD:'Ada produk yang sudah habis terjual loh',
+            H5_MSG_NO_GOOD:'Maaf, stok produk ini sudah habis',
             H5_SORT_EMPTY:'Tidak ada produk untuk kategori ini',
             H5_MSG_ADDRESS : 'Alamat Pengiriman',
             H5_MAX_BUY:'Kamu maksimal hanya dapat membeli',
