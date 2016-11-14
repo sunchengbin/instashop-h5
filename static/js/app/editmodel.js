@@ -2,7 +2,7 @@
  * Created by sunchengbin on 2016/11/10.
  * 店铺装修首页
  */
-require(['base','lazyload','insjs','fastclick','config','hbs','text!views/moudle/model/signage.hbs','text!views/moudle/model/staticbanner.hbs','text!views/moudle/model/itemmodel.hbs'],function(Base,Lazyload,Insjs,FastClick,Config,Hbs,SignageHtm,StaticBannerHtm,Itemmodel){
+require(['base','lazyload','insjs','fastclick','config','hbs','text!views/moudle/model/signage.hbs','text!views/moudle/model/banner.hbs','text!views/moudle/model/itemmodel.hbs','text!views/moudle/model/editbtns.hbs','text!views/moudle/model/navigation.hbs'],function(Base,Lazyload,Insjs,FastClick,Config,Hbs,SignageHtm,StaticBannerHtm,Itemmodel,ModelBtns,Navigation){
     var EditModel = {
         init : function(){
             var _this = this;
@@ -101,20 +101,35 @@ require(['base','lazyload','insjs','fastclick','config','hbs','text!views/moudle
         initHtml : function(){
             var _this = this,
                 _html = '';
-            _html+= _this.createModelHtm()+_this.createInsertHtm()+_this.defaultItemsHtm();
+            _html+= _this.createModelHtm()
+                +_this.staticBannerHtm()
+                +_this.rotateBannerHtm()
+                +_this.twoListBannerHtm()
+                +_this.textNavigationHtm('notmove')
+                +_this.imgNavigationHtm()
+                +_this.twoLiItemsHtm()
+                +_this.bigImgItem()
+                +_this.listItems()
+                +_this.defaultItemsHtm();
             $('body').prepend(_html);
+        },
+        createModelBtnHtm : function(beal){
+            return Hbs.compile(ModelBtns)({
+                notmove : beal
+            });
         },
         createInsertHtm : function(){
             return '<div class="insert-box"><button class="handle-btn insert-btn">Insert ad rotation</button></div>'
         },
         defaultItemsHtm : function(){
-            return Hbs.compile(Itemmodel)({
-                data : {shop:init_data}
+            var _this = this;
+            return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
+                type : 'twoItem'
             });
         },
         createModelHtm : function(){
             var _this = this;
-            return _this.createSignageHtm()+_this.staticBannerHtm();
+            return _this.createSignageHtm();
         },
         createSignageHtm : function(){
             return Hbs.compile(SignageHtm)({
@@ -122,30 +137,60 @@ require(['base','lazyload','insjs','fastclick','config','hbs','text!views/moudle
             });
         },
         staticBannerHtm : function(){
-            return Hbs.compile(StaticBannerHtm)({
-                name : 'static-banner'
+            var _this = this;
+            return _this.createInsertHtm()+Hbs.compile(StaticBannerHtm)({
+                type : 'static',
+                btns : _this.createModelBtnHtm()
             });
         },
         rotateBannerHtm : function(){
-
+            var _this = this;
+            return _this.createInsertHtm()+Hbs.compile(StaticBannerHtm)({
+                type : 'rotate',
+                btns : _this.createModelBtnHtm()
+            });
         },
         twoListBannerHtm : function(){
-
+            var _this = this;
+            return _this.createInsertHtm()+Hbs.compile(StaticBannerHtm)({
+                type : 'two_list',
+                btns : _this.createModelBtnHtm()
+            });
         },
-        imgNavigationHtm : function(){
-
+        imgNavigationHtm : function(notmove){
+            var _this = this;
+            return this.createInsertHtm() + Hbs.compile(Navigation)({
+                type : 'img',
+                btns : _this.createModelBtnHtm(notmove)
+            });
         },
-        textNavigationHtm : function(){
-
+        textNavigationHtm : function(notmove){
+            var _this = this;
+            return this.createInsertHtm() + Hbs.compile(Navigation)({
+                type : 'text',
+                btns : _this.createModelBtnHtm(notmove)
+            });
         },
-        twoLiItemsHtm : function(){
-
+        twoLiItemsHtm : function(notmove){
+            var _this = this;
+            return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
+                type : 'twoItem',
+                btns : _this.createModelBtnHtm(notmove)
+            });
         },
-        bigImgItem : function(){
-
+        bigImgItem : function(notmove){
+            var _this = this;
+            return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
+                type : 'bigitem',
+                btns : _this.createModelBtnHtm(notmove)
+            });
         },
-        listItems : function(){
-
+        listItems : function(notmove){
+            var _this = this;
+            return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
+                type : 'listitem',
+                btns : _this.createModelBtnHtm(notmove)
+            });
         }
     };
     EditModel.init();

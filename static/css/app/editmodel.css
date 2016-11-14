@@ -2,16 +2,23 @@
 @import "../moudle/app/header/header.css";
 @import "../moudle/app/common/common.css";
 @import "../moudle/app/contact/contact.css";
-@import "../moudle/app/itemlist/itemlist.css";
+@import "../moudle/app/model/model.css";
 body{
     padding:1rem 1.5rem;
     background-color: #333;
 }
 section{
     background-color: #fff;
+    position: relative;
 }
 .shop-header{
     position: relative;
+}
+.shop-header .handle-btn{
+    position: absolute;
+    right: 0;
+    top: 100px;
+    border-radius: 2px 0 0 2px;
 }
 .shop-header-bg{
     min-height: 100px;
@@ -39,7 +46,7 @@ section{
     overflow: hidden;
 }
 .shop-info p{
-    font-size: 1.5rem;
+    font-size: 15px;
     color: #444;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -109,17 +116,51 @@ section{
 .handle-btn{
     display: block;
     box-sizing: border-box;
-    height: 4rem;
-    padding:1.3rem 1.7rem;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    padding: 0 1.5rem;
     background-color: rgba(51,51,51,.98);
     color: #fff;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 12px;
 }
 .insert-btn{
-    border-radius: .4rem;
+    border-radius: 2px;
+    position: absolute;
+    right: -1.5rem;
+    z-index: 10;
+    top: -1rem;
 }
 .insert-box{
     position: relative;
     height: 1.5rem;
+}
+.model-btns{
+    position: absolute;
+    z-index: 10;
+    left: .5rem;
+    top: .5rem;
+    border-radius: 2px;
+    overflow: hidden;
+}
+.model-btns button{
+    display: inline-block;
+    position: relative;
+    min-width: 5rem;
+    padding: 0;
+}
+.del-btn::after{
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    top: -50%;
+    bottom: -50%;
+    left:-50%;
+    right:-50%;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    z-index: 1;
 }

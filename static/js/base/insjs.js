@@ -18,12 +18,14 @@
  *      data = {
  *          param : {
  *              type:'edit_model',
- *                  param:{
- *                      index:0,
- *                      data:{
- *                          type:'static_banner',
- *                          data:
- *                  }
+*               param:{
+*                   index:0,
+*                   title:'',
+*                   type:'static_banner',
+*                   data:{
+*
+*
+*                   }
  *          }(insSocket的参数结构),
  *          result : {
  *              //具体模块数据,以标准广告数据为例
@@ -63,16 +65,19 @@
 		//推荐商品分为two_li_items、big_img_item、list_items
 		{
 		    index : 0,
+		    title : '',
 			type : edit_signage,
 			data : {img:[]}
 		},
 		{
 		    index : 0,
+		    title : '',
 			type : static_banner,
 			data : [{img:,link_url:},]
 		},
 		{
 		    index : 0,
+		    title : '',
 			type : rotate_banner,
 			data : [{img:,link_url:},]
 		},
@@ -83,11 +88,13 @@
 		},
 		{
 		    index : 0,
+		    title : '',
 			type : img_navigation,
 			data : [{img : ,navigation_name:,link_url:},]
 		},
 		{
 		    index : 0,
+		    title : '',
 			type : text_navigation,
 			data : [{navigation_name:,link_url:}]
 		},
