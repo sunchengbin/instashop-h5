@@ -388,6 +388,7 @@ define(["dialog"],function (Dialog) {
         setTab: function () {
             var _this = this,
                 idx = _this.curPage - 1;//当前浏览图片索引
+            if(!!_this._loading)_this._loading.remove();
             if(_this.viewerImageLis&&_this.viewerImageLis.length>1){
                 var _viewerImageLi = _this.viewerImageLis[idx];
                 var _viewerImage = _viewerImageLi.getElementsByTagName("img")[0];
