@@ -5,128 +5,132 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang','lazyload','hbs','text!views/app/item.hbs','ajax','config','base','common','buyplug','slide','cart','fastclick','contact','viewer','item'],function(Lang,Lazyload,Hbs,Item,Ajax,Config,Base,Common,Buyplug,Slide,Cart,Fastclick,Contact,Viewer,Item){
+require(['lang', 'lazyload', 'hbs', 'text!views/app/item.hbs', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item'], function (Lang, Lazyload, Hbs, Item, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item) {
     var ITEM = {
-        init : function(){
+        init: function () {
             var _this = this,
                 _cart_num = Cart().getCartNum();
-            if(init_data && init_data.code == 200){
-                if(_cart_num > 0){
-                    $('.j_cart_wraper').append('<span class="cart-num">'+_cart_num+'</span>');
+            if (init_data && init_data.code == 200) {
+                if (_cart_num > 0) {
+                    $('.j_cart_wraper').append('<span class="cart-num">' + _cart_num + '</span>');
                 }
                 Lazyload();
-                Slide.createNew({
+                var _slide = Slide.createNew({
                     dom: document.querySelector('.j_banner'),
                     needTab: true,
-                    auto : false
+                    auto: false
                 });
                 Buyplug({
                     data: init_data
                 });
                 Viewer({
-                    btn : '.j_banner li',
-                    images : init_data.item.imgs
+                    btn: '.j_banner li',
+                    images: init_data.item.imgs
+                }).init();
+                Viewer({
+                    btn: '.slide_arrow',
+                    images: init_data.item.imgs
                 }).init();
                 _this.handleFn();
             }
         },
-        handleFn : function(){
-            if($('[data-time]').length){
+        handleFn: function () {
+            if ($('[data-time]').length) {
                 Item.changeTime();
             }
-            if($('.txt-hide').height() > 44){
+            if ($('.txt-hide').height() > 44) {
                 $('.down-btn').show();
-                $('body').on('click','.j_down_box',function(){
-                    if($('.j_down_btn').is('.down-btn')){
+                $('body').on('click', '.j_down_box', function () {
+                    if ($('.j_down_btn').is('.down-btn')) {
                         $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
-                        $('.txt').css({'maxHeight':'none'});
-                    }else{
+                        $('.txt').css({'maxHeight': 'none'});
+                    } else {
                         $('.j_down_btn').removeClass('up-btn').addClass('down-btn');
-                        $('.txt').css({'maxHeight':'44px'});
+                        $('.txt').css({'maxHeight': '44px'});
                     }
                 });
             }
             Fastclick.attach(document.body);
-            $('body').on('click','.j_shop_info',function(){
+            $('body').on('click', '.j_shop_info', function () {
                 var _this = $(this),
                     _url = _this.attr('data-url');
-                Common.saveFromUrl(function(){
+                Common.saveFromUrl(function () {
                     location.href = _url;
                 });
             });
             //item=back是为了让返回首页的时候滚动到指定的scrolltop高度
-            $('body').on('click','.j_go_back',function(){
+            $('body').on('click', '.j_go_back', function () {
                 var _local_url = localStorage.getItem('FromUrl');
-                if(_local_url && !/detail/g.test(_local_url)){
-                    if(/\.instashop\.co\.id\/\d+/g.test(_local_url)){//我们自己的域名下
-                        if(/\/s\//g.test(_local_url)){
+                if (_local_url && !/detail/g.test(_local_url)) {
+                    if (/\.instashop\.co\.id\/\d+/g.test(_local_url)) {//我们自己的域名下
+                        if (/\/s\//g.test(_local_url)) {
                             location.href = _this.transUrl(_local_url);
-                        }else{
-                            if(/\?/g.test(_local_url)){
-                                location.href = localStorage.getItem('FromUrl')+'&item=back';
-                            }else{
-                                var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id;
-                                location.href = _url+'?item=back';
+                        } else {
+                            if (/\?/g.test(_local_url)) {
+                                location.href = localStorage.getItem('FromUrl') + '&item=back';
+                            } else {
+                                var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + init_data.item.shop.id;
+                                location.href = _url + '?item=back';
                             }
                         }
-                    }else{//独立域名
+                    } else {//独立域名
                         var _host_name = location.hostname;
-                        if(/\/\d+/g.test(_local_url)){//是当前详情页
-                            if(/\/k\/\d+/g.test(_local_url)){//分类页
+                        if (/\/\d+/g.test(_local_url)) {//是当前详情页
+                            if (/\/k\/\d+/g.test(_local_url)) {//分类页
                                 location.href = _this.transUrl(_local_url);
-                            }else{
-                                if(/\/s\//g.test(_local_url)){//m.instashop域名规则首页
+                            } else {
+                                if (/\/s\//g.test(_local_url)) {//m.instashop域名规则首页
                                     location.href = _this.transUrl(_local_url);
-                                }else{
-                                    location.href = location.protocol+'//'+_host_name+'?item=back';
+                                } else {
+                                    location.href = location.protocol + '//' + _host_name + '?item=back';
                                 }
                             }
-                        }else{
-                            if(/\?/g.test(_local_url)){
-                                location.href = localStorage.getItem('FromUrl')+'&item=back';
-                            }else{
-                                location.href = location.protocol+'//'+_host_name+'?item=back';
+                        } else {
+                            if (/\?/g.test(_local_url)) {
+                                location.href = localStorage.getItem('FromUrl') + '&item=back';
+                            } else {
+                                location.href = location.protocol + '//' + _host_name + '?item=back';
                             }
                         }
                     }
-                }else{
-                    Common.saveFromUrl(function(){
-                        var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.item.shop.id;
-                        location.href = _url+'?item=back';
+                } else {
+                    Common.saveFromUrl(function () {
+                        var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + init_data.item.shop.id;
+                        location.href = _url + '?item=back';
                     });
                 }
             });
-            $('body').on('click','.j_cart_wraper',function(){
+            $('body').on('click', '.j_cart_wraper', function () {
                 var _this = $(this),
                     _url = _this.attr('data-url');
-                Common.saveFromUrl(function(){
+                Common.saveFromUrl(function () {
                     location.href = _url;
                 });
             });
             var _this = this;
-            if($('.j_show_contact').length){
+            if ($('.j_show_contact').length) {
                 _this.contact = Contact({
-                    data : {
-                        tel : init_data.item.shop.phone,
-                        line : init_data.item.shop.line_url
+                    data: {
+                        tel: init_data.item.shop.phone,
+                        line: init_data.item.shop.line_url
                     },
-                    lang:Lang
+                    lang: Lang
                 });
-                $('body').on('click','.j_show_contact',function(){
+                $('body').on('click', '.j_show_contact', function () {
                     _this.contact.createHtm({
-                        data : {
-                            tel : init_data.item.shop.phone,
-                            line : init_data.item.shop.line_url
+                        data: {
+                            tel: init_data.item.shop.phone,
+                            line: init_data.item.shop.line_url
                         },
-                        lang:Lang
+                        lang: Lang
                     }).toShow();
                 });
             }
         },
-        transUrl : function(url){
-            if(/\?/g.test(url)){
+        transUrl: function (url) {
+            if (/\?/g.test(url)) {
                 return url + '&item=back';
-            }else{
+            } else {
                 return url + '?item=back';
             }
         }

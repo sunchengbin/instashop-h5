@@ -31,8 +31,11 @@
                     <i class="icon iconfont fr icon-go-font"></i>
                     <p class="j_country">{{#if address.country}}{{address.country}}{{else}}{{lang.H5_DISTRICT}}{{/if}}</p>
                 </div>
-                <div class="info-box-address">
+                <div class="info-box-address clearfix">
                     <textarea class="j_street" placeholder="{{lang.H5_DETAIL_ADDRESS}}">{{#if address.street}}{{address.street}}{{/if}}</textarea>
+                </div>
+                <div class="info-box b-top clearfix">
+                    <input class="j_post" type="text" maxlength="10" value="{{address.post}}" placeholder="{{lang.H5_ADVICE_FILL}}"/>
                 </div>
             </div>
         </section>

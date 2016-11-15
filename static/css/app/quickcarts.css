@@ -82,7 +82,7 @@ body .address-list{
     color: #F5A623;
 }
 .cart-item:last-child::after{
-    border-bottom: none;
+    /*border-bottom: none;*/
 }
 .user-info,.user-address{
     background-color: #fff;
@@ -385,4 +385,27 @@ body .address-list{
 }
 .disable-btn{
     width: 80%;
+}
+.address-buyer-note {
+    position: relative;
+    padding:1.25rem 1rem;
+    color:#999999;
+    height: auto!important;
+    font-size: 1.4rem;
+    overflow: hidden;
+}
+.address-buyer-note span {
+    position: absolute;
+    display: inline-block;
+    height: 3rem;
+    line-height: 3rem;
+    left: 1rem;
+    top: 1rem;
+    color: #999;
+}
+.address-buyer-note input {
+    padding: .5rem 0 .5rem 9rem!important;
+    color: black;
+    font-size: 1.2rem!important;
+    width: 100%!important;
 }

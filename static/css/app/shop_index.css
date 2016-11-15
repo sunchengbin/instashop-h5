@@ -340,6 +340,9 @@ footer .btn i{
     float: left;
     width: 100%;
 }
+.item-banner li img {
+    cursor: pointer;
+}
 /*banner*/
 .banner-box{
     min-height: 240px;
@@ -375,3 +378,18 @@ footer .btn i{
 }
 
 
+/*3.5 功能4需求 去官网按钮box*/
+.index-btn-box {
+    padding:0 2.5rem;
+    margin:2.5rem 0 2rem;
+}
+.index-btn-box .icon-shop-font {
+    font-size:1.75rem;
+}
+.index-btn-box .btn {
+    font-size:1.6rem;
+    border-radius: 3px!important;
+}
+.index-btn-box a {
+    color:#ffffff;
+}
