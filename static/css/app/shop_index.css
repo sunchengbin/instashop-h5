@@ -3,6 +3,8 @@
 @import "../moudle/app/common/common.css";
 @import "../moudle/app/contact/contact.css";
 @import "../moudle/app/itemlist/itemlist.css";
+@import "../moudle/ui/arrowslide/arrowbanner.css";
+
 body{
     color: #666;
     background-color: #ececec;
