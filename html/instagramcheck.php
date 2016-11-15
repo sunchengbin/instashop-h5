@@ -44,7 +44,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         border-radius: 5px;
         padding: 1.5rem!important;
         height: 4.5rem;
-        line-height:4.5rem;
         color:#999999!important;
     }
     </style>
