@@ -24,8 +24,7 @@ require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config',
                         seller_id: Common.getQueryParam("seller_id"),
                         ins_name: _instagram_name,
                         item_count: "0",
-                        action: "import",
-                        _debug_env: "3.4"
+                        action: "import"
                     }
                 }
                 Ajax.postJsonp({
@@ -38,7 +37,7 @@ require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config',
                         } else {
                             Dialog.tip({
                                 top_txt: '',//可以是html
-                                body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_ERROR) + '</p>',
+                                body_txt: '<p class="dialog-body-p">' + (obj.message ? obj.message : Lang.H5_ERROR) + '</p>',
                                 auto_fn: function () {
                                     setTimeout(function () {
                                         location.reload();
@@ -61,7 +60,7 @@ require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config',
             } else {
                 Dialog.tip({
                     top_txt: '',//可以是html
-                    body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_INS_VERIFY) + '</p>',
+                    body_txt: '<p class="dialog-body-p">' + Lang.H5_INS_VERIFY + '</p>',
                     auto_fn: function () {
                         setTimeout(function () {
                             location.reload();
