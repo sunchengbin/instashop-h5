@@ -61,7 +61,7 @@ require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config',
             } else {
                 Dialog.tip({
                     top_txt: '',//可以是html
-                    body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_ERROR) + '</p>',
+                    body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_INS_VERIFY) + '</p>',
                     auto_fn: function () {
                         setTimeout(function () {
                             location.reload();

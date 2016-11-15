@@ -142,11 +142,13 @@ define([],function(){
             H5_ADVICE_FILL:'邮编：选填，建议填写',
             H5_INS_INPUT:"输入Instagram账户",
             H5_INS_TIP:"注：请确保你的Instagram账户没有设置为“私密账户”",
-            H5_INS_INPUT_PLACEHOLDER:"如：instashop_ina"
+            H5_INS_INPUT_PLACEHOLDER:"如：instashop_ina",
+            H5_INS_VERIFY:"请输入正确的Instagram账户"
 
         },
 
         id : {
+            'H5_INS_VERIFY':"Silakan masukkan Instagram akun",
             'H5_INS_INPUT_PLACEHOLDER':"Contoh: instashop_ina",
             //注：请确保你的Instagram账户没有设置为“私密账户”
             'H5_INS_TIP':"Pastikan akun Instagrammu tidak diprivate",
@@ -358,7 +360,7 @@ define([],function(){
             'H5_CREATE_ORDER':'Ajukan Pesanan',
             'H5_SORT_DELED':'Kategori ini telah dihapus',
             H5_GOOD_SORT:'Kategori produk',
-            H5_MSG_NO_GOOD:'Maaf, stok produk ini sudah habis',
+            H5_MSG_NO_GOOD:'Ada produk yang sudah habis terjual loh',
             H5_SORT_EMPTY:'Tidak ada produk untuk kategori ini',
             H5_MSG_ADDRESS : 'Alamat Pengiriman',
             H5_MAX_BUY:'Kamu maksimal hanya dapat membeli',
