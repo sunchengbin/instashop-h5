@@ -149,20 +149,19 @@ section{
     position: relative;
     min-width: 5rem;
     padding: 0;
+    float: left;
 }
-.del-btn::after{
+.model-btns :not(:first-child)::after{
     display: block;
     box-sizing: border-box;
     position: absolute;
     top: -50%;
     bottom: -50%;
-    left:-50%;
-    right:-50%;
+    width: 1px;
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
     border-left: 1px solid #000;
-    border-right: 1px solid #000;
     z-index: 1;
 }
 .banner-box{

@@ -1,111 +1,34 @@
-{{#eq type 'twoItem'}}
-    {{#if data}}
+{{#if data}}
+    {{#eq type 'twoItem'}}
         <section class="items-box model-box j_model_box">
             {{{btns}}}
-            <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>
+            <p class="item-title b-bottom"><span></span>{{data.title}}</p>
             <ul class="items-list clearfix j_item_list">
-                {{#tagItemList data}}{{/tagItemList}}
+                {{#tagItemList data.data}}{{/tagItemList}}
             </ul>
         </section>
-    {{else}}
-        <section class="empty-sort">
-            <i class="icon iconfont icon-empty-font"></i>
-            <p>{{lang.H5_SORT_EMPTY}}</p>
+    {{/eq}}
+    {{#eq type 'bigitem'}}
+        <section class="one-item-box j_model_box">
+            {{{btns}}}
+            <p class="item-title b-bottom"><span></span>{{data.title}}</p>
+            <ul class="items-list clearfix j_item_list">
+                {{#tagItemList data.data}}{{/tagItemList}}
+            </ul>
         </section>
-    {{/if}}
-    <!--<section class="items-box model-box ">-->
-        <!--{{{btns}}}-->
-        <!--<p class="item-title b-bottom"><span></span>Rekomendasi Item</p>-->
-        <!--<ul class="items-list clearfix j_hot_list">-->
-            <!--<li>-->
-                <!--<a class="item-info j_item_info" data-url="http://hello.test.instashop.co.id/1137342" href="javascript:;">-->
-                    <!--<div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/test_instashop40732-1474529254204-1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">-->
-                    <!--</div>-->
-                    <!--<p class="title">子账号上传商品</p>-->
-                    <!--<p class="price">Rp 2.000</p>-->
-                    <!--<p class="discount-price"></p>-->
-                <!--</a>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<a class="item-info j_item_info" data-url="http://hello.test.instashop.co.id/1137285" href="javascript:;">-->
-                    <!--<div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/instashop-1472714546971-693ac-s1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">-->
-                    <!--</div>-->
-                    <!--<p class="title">Test</p>-->
-                    <!--<p class="price">Rp 5.000</p>-->
-                    <!--<p class="discount-price"></p>-->
-                <!--</a>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<a class="item-info j_item_info" data-url="http://hello.test.instashop.co.id/1137342" href="javascript:;">-->
-                    <!--<div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/test_instashop40732-1474529254204-1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">-->
-                    <!--</div>-->
-                    <!--<p class="title">子账号上传商品</p>-->
-                    <!--<p class="price">Rp 2.000</p>-->
-                    <!--<p class="discount-price"></p>-->
-                <!--</a>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<a class="item-info j_item_info" data-url="http://hello.test.instashop.co.id/1137285" href="javascript:;">-->
-                    <!--<div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/instashop-1472714546971-693ac-s1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">-->
-                    <!--</div>-->
-                    <!--<p class="title">Test</p>-->
-                    <!--<p class="price">Rp 5.000</p>-->
-                    <!--<p class="discount-price"></p>-->
-                <!--</a>-->
-            <!--</li>-->
-        <!--</ul>-->
-    <!--</section>-->
-{{/eq}}
-{{#eq type 'bigitem'}}
-    <section class="one-item-box j_model_box">
-        {{{btns}}}
-        <div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/instashop-1472714546971-693ac-s1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">
-        </div>
-        <p class="title">子账号上传商品</p>
-        <p class="price">Rp 2.000</p>
-        <p class="discount-price"></p>
+    {{/eq}}
+    {{#eq type 'listitem'}}
+        <section class="item-list-box j_model_box">
+            {{{btns}}}
+            <p class="item-title b-bottom"><span></span>{{data.title}}</p>
+            <ul class="">
+                {{#itemlist data.data}}{{/itemlist}}
+            </ul>
+        </section>
+    {{/eq}}
+{{else}}
+    <section class="empty-sort">
+        <i class="icon iconfont icon-empty-font"></i>
+        <p>{{lang.H5_SORT_EMPTY}}</p>
     </section>
-{{/eq}}
-{{#eq type 'listitem'}}
-    <section class="item-list-box j_model_box">
-        {{{btns}}}
-        <ul class="">
-            <li class="clearfix cart-item j_cart_item" data-id="1134931">
-                <i class="icon iconfont j_del_cart icon-delete-font" data-id="1134931">
-                </i>
-                <img src="http://imghk0.geilicdn.com/test_instashop40732-1470379953035-0.jpg?w=110&amp;h=110&amp;cp=1">
-                <div class="">
-                    <p class="name">
-                        There are so many #HelloKitty limited edition goods at San Diego @Comic_con
-                        this year! You can find supercute collaborations fro
-                    </p>
-                    <p class="num">
-                        数量: 1
-                    </p>
-                    <p class="price">
-                        价格: Rp 20.000
-                    </p>
-                </div>
-            </li>
-            <li class="clearfix cart-item j_cart_item" data-id="4036214">
-                <i class="icon iconfont j_del_cart icon-delete-font" data-id="4036214">
-                </i>
-                <img src="http://imghk0.geilicdn.com/test_instashop40732-1459477564500-1.jpg?w=110&amp;h=110&amp;cp=1">
-                <div class="">
-                    <p class="name">
-                        测试支付及提现专用
-                    </p>
-                    <p class="type">
-                        型号: 型号三
-                    </p>
-                    <p class="num">
-                        数量: 1
-                    </p>
-                    <p class="price">
-                        价格: Rp 20.000
-                    </p>
-                </div>
-            </li>
-        </ul>
-    </section>
-{{/eq}}
+{{/if}}

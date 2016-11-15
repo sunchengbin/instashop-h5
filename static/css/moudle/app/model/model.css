@@ -17,6 +17,16 @@
 .one-item-box .discount-price{
     margin:0;
 }
+.one-item-box .items-list li{
+    width: 100%;
+    padding:0;
+}
+.one-item-box .items-list li a::after{
+    display: none;
+}
+.rotate-banner li{
+    float: left;
+}
 /*导航类模板样式*/
 .navigation-box{
     position: relative;

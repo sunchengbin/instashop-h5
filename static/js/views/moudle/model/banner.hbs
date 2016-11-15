@@ -2,19 +2,23 @@
     {{{btns}}}
     {{#eq type 'two_list'}}
         <ul class="two-list-box" flex="box:mean">
-            <li>
-                <div class="lazy" data-img="http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1">
-                </div>
-            </li>
-            <li>
-                <div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/instashop-1472714546971-693ac-s1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">
-                </div>
-            </li>
+            {{#each data.data}}
+                <li>
+                    <div class="lazy" data-img="{{img}}"></div>
+                </li>
+            {{/each}}
         </ul>
     {{else}}
         <div class="banner-box">
-            <ul class="item-banner j_banner clearfix">
-                <li class=""><a class="block" href=""><img data-img="http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1" src=""/></a></li>
+            {{#eq type 'rotate'}}
+                <ul class="item-banner j_banner rotate-banner clearfix">
+            {{else}}
+                <ul class="item-banner clearfix">
+            {{/eq}}
+
+            {{#each data.data}}
+                <li class=""><a class="block" href="javascript:;"><img data-img="{{img}}"/></a></li>
+            {{/each}}
             </ul>
         </div>
     {{/eq}}
