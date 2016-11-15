@@ -41,7 +41,8 @@ define([],function(){
             uploadprove:'v1/evidence',//上传付款凭证
             errorAction:'v1/h5log',//上传错误log
             feedBack:'v1/feedback',//用户反馈页面
-            domainName:'v1/domain'//自定义域名相关
+            domainName:'v1/domain',//自定义域名相关
+            sortAction:'v1/tag/'//分类页面翻页接口
         }
     };
     return CONFIG;
