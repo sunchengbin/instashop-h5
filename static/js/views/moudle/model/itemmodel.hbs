@@ -1,58 +1,60 @@
 {{#eq type 'twoItem'}}
-    <!--{{#if data}}-->
-        <!--<section class="items-box j_item_box j_model_box">-->
-            <!--<ul class="items-list clearfix j_item_list">-->
-                <!--{{#tagItemList data}}{{/tagItemList}}-->
-            <!--</ul>-->
-        <!--</section>-->
-    <!--{{else}}-->
-        <!--<section class="empty-sort">-->
-            <!--<i class="icon iconfont icon-empty-font"></i>-->
-            <!--<p>{{lang.H5_SORT_EMPTY}}</p>-->
-        <!--</section>-->
-    <!--{{/if}}-->
-    <section class="items-box model-box ">
-        {{{btns}}}
-        <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>
-        <ul class="items-list clearfix j_hot_list">
-            <li>
-                <a class="item-info j_item_info" data-url="http://hello.test.instashop.co.id/1137342" href="javascript:;">
-                    <div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/test_instashop40732-1474529254204-1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">
-                    </div>
-                    <p class="title">子账号上传商品</p>
-                    <p class="price">Rp 2.000</p>
-                    <p class="discount-price"></p>
-                </a>
-            </li>
-            <li>
-                <a class="item-info j_item_info" data-url="http://hello.test.instashop.co.id/1137285" href="javascript:;">
-                    <div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/instashop-1472714546971-693ac-s1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">
-                    </div>
-                    <p class="title">Test</p>
-                    <p class="price">Rp 5.000</p>
-                    <p class="discount-price"></p>
-                </a>
-            </li>
-            <li>
-                <a class="item-info j_item_info" data-url="http://hello.test.instashop.co.id/1137342" href="javascript:;">
-                    <div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/test_instashop40732-1474529254204-1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">
-                    </div>
-                    <p class="title">子账号上传商品</p>
-                    <p class="price">Rp 2.000</p>
-                    <p class="discount-price"></p>
-                </a>
-            </li>
-            <li>
-                <a class="item-info j_item_info" data-url="http://hello.test.instashop.co.id/1137285" href="javascript:;">
-                    <div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/instashop-1472714546971-693ac-s1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">
-                    </div>
-                    <p class="title">Test</p>
-                    <p class="price">Rp 5.000</p>
-                    <p class="discount-price"></p>
-                </a>
-            </li>
-        </ul>
-    </section>
+    {{#if data}}
+        <section class="items-box model-box j_model_box">
+            {{{btns}}}
+            <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>
+            <ul class="items-list clearfix j_item_list">
+                {{#tagItemList data}}{{/tagItemList}}
+            </ul>
+        </section>
+    {{else}}
+        <section class="empty-sort">
+            <i class="icon iconfont icon-empty-font"></i>
+            <p>{{lang.H5_SORT_EMPTY}}</p>
+        </section>
+    {{/if}}
+    <!--<section class="items-box model-box ">-->
+        <!--{{{btns}}}-->
+        <!--<p class="item-title b-bottom"><span></span>Rekomendasi Item</p>-->
+        <!--<ul class="items-list clearfix j_hot_list">-->
+            <!--<li>-->
+                <!--<a class="item-info j_item_info" data-url="http://hello.test.instashop.co.id/1137342" href="javascript:;">-->
+                    <!--<div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/test_instashop40732-1474529254204-1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">-->
+                    <!--</div>-->
+                    <!--<p class="title">子账号上传商品</p>-->
+                    <!--<p class="price">Rp 2.000</p>-->
+                    <!--<p class="discount-price"></p>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a class="item-info j_item_info" data-url="http://hello.test.instashop.co.id/1137285" href="javascript:;">-->
+                    <!--<div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/instashop-1472714546971-693ac-s1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">-->
+                    <!--</div>-->
+                    <!--<p class="title">Test</p>-->
+                    <!--<p class="price">Rp 5.000</p>-->
+                    <!--<p class="discount-price"></p>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a class="item-info j_item_info" data-url="http://hello.test.instashop.co.id/1137342" href="javascript:;">-->
+                    <!--<div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/test_instashop40732-1474529254204-1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">-->
+                    <!--</div>-->
+                    <!--<p class="title">子账号上传商品</p>-->
+                    <!--<p class="price">Rp 2.000</p>-->
+                    <!--<p class="discount-price"></p>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a class="item-info j_item_info" data-url="http://hello.test.instashop.co.id/1137285" href="javascript:;">-->
+                    <!--<div class="lazy" style="background-image: url(&quot;http://imghk0.geilicdn.com/instashop-1472714546971-693ac-s1.jpg?w=500&amp;h=500&amp;cp=1&quot;);">-->
+                    <!--</div>-->
+                    <!--<p class="title">Test</p>-->
+                    <!--<p class="price">Rp 5.000</p>-->
+                    <!--<p class="discount-price"></p>-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</section>-->
 {{/eq}}
 {{#eq type 'bigitem'}}
     <section class="one-item-box j_model_box">

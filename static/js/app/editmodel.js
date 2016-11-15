@@ -7,10 +7,12 @@ require(['base','dialog','lang','lazyload','insjs','fastclick','config','hbs','t
         init : function(){
             var _this = this;
             //todo 这里要从后端读数据赋值给model_data
-            _this.model_data = [{
-                index : 0, 
+            _this.model_data = init_data.template.length>0?init_data.template:[{
+                index : 0,
                 type : 'edit_signage',
-                data : {shop:init_data}
+                data : {
+                    shop : init_data.shop
+                }
             }];
             Lazyload();
             _this.initHtml();
@@ -133,13 +135,14 @@ require(['base','dialog','lang','lazyload','insjs','fastclick','config','hbs','t
         },
         insertModel : function(data,callbcak){
 
+            callbcak && callbcak(data);
             //todo native编辑后插入模块
         },
         initHtml : function(){
             var _this = this,
                 _html = '';
             _html+= _this.createModelHtm(_this.model_data)
-                +_this.defaultItemsHtm({data:null})
+                +_this.defaultItemsHtm()
                 +'<button class="j_submit_btn sub-btn b-top">Applications to shop</button>';
             $('body').prepend(_html);
         },
@@ -152,11 +155,11 @@ require(['base','dialog','lang','lazyload','insjs','fastclick','config','hbs','t
         createInsertHtm : function(){
             return '<div class="insert-box"><button class="handle-btn j_insert_model insert-btn">Insert ad rotation</button></div>'
         },
-        defaultItemsHtm : function(opts){
+        defaultItemsHtm : function(){
             var _this = this;
             return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
                 type : 'twoItem',
-                data : opts.data
+                data : init_data.item_list.list
             });
         },
         createModelHtm : function(model){
@@ -226,7 +229,6 @@ require(['base','dialog','lang','lazyload','insjs','fastclick','config','hbs','t
             return _html;
         },
         createSignageHtm : function(data){
-            console.log(data)
             return Hbs.compile(SignageHtm)({
                 data : data
             });
