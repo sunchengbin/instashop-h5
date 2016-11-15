@@ -16,6 +16,9 @@
                     {{{quickcarts carts}}}
                 </ul>
             </section>
+            <div class="address-buyer-note user-info info-box">
+                <input class="j_buyer_note" type="text" value="{{address.buyer_note}}" placeholder="{{lang.H5_BUYER_NOTE}}"/>
+            </div>
             <p class="address-title">Silakan isi alamat pengirimanmu</p>
             <div class="user-info">
                 <div class="user-name info-box b-bottom">
@@ -45,6 +48,9 @@
                 </div>
                 <div class="info-box-address">
                     <textarea class="j_street" placeholder="{{lang.H5_DETAIL_ADDRESS}}">{{#if address.address.street}}{{address.address.street}}{{/if}}</textarea>
+                </div>
+                <div class="info-box b-bottom">
+                    <input class="j_post" type="text" value="{{address.address.post}}" placeholder="{{lang.H5_ADVICE_FILL}}"/>
                 </div>
             </div>
             {{#eq shop.express_free 0}}

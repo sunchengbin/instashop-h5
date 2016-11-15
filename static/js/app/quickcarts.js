@@ -455,6 +455,8 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             var _this = this;
             var _data = localStorage.getItem('ShopData'),
                 _data_json = _data?JSON.parse(_data):{},
+                _buyer_note = $.trim($(".j_buyer_note").val()),
+                _post = $.trim($(".j_post").val()),
                 _name = $.trim($('.j_name').val()),
                 _telephone = $.trim($('.j_tel').val()),
                 _province = $.trim($('.j_province').html()),
@@ -469,16 +471,17 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 return null;
             }//信息不完整
             var _address = {
+                "buyer_node":_buyer_note,
                 "name": _name,
                 "telephone": _telephone,
-                "post": "",
                 "country_code": "62",
                 "email": "",
                 "address": {
                     "province": _province,//省
                     "city": _city,//市
                     "country": _country,//街道
-                    "street": _street//详细地址
+                    "street": _street,//详细地址
+                    "post": _post//邮编
                 }
             };
             _data_json.Address = _address;
@@ -487,7 +490,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 _company = _logistics_info.length?_logistics_info.attr('data-company'):'',
                 _fee_id = _logistics_info.length?_logistics_info.attr('data-id'):'',
                 _seller_id = init_data.shop.id,
-                _note = $.trim($('.j_buyer_note').val());
+                _note = _buyer_note;
             if(_logistics_info.length && !_company){//没选择物流信息
                 Dialog.tip({
                     top_txt : '',//可以是html

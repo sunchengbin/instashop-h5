@@ -2,169 +2,302 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
     <meta content="telephone=no" name="format-detection"/>
     <meta name="apple-touch-fullscreen" content="yes"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <title>Feedback</title>
     <style>
-        html{
+
+        @font-face {
+            font-family: "iconfont";
+            src: url('../static/css/base/fonts/iconfont.woff?t=1473737446') format('woff'), /* chrome, firefox */ url('../static/css/base/fonts/iconfont.ttf?t=1473737446') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url('../static/css/base/fonts/iconfont.svg?t=1473737446#iconfont') format('svg'); /* iOS 4.1- */
         }
-        body{
-            margin:0;
-            padding:0;
-            background: #f4f4f4;
-            font-size: 14px;
-            -webkit-transform:translateZ(0);
-            color:#999;
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: .4rem;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
         }
-        a,button,input{-webkit-touch-callout:none;outline:none; border:0;-webkit-appearance: none;}
-        a,a:visited{text-decoration:none;-webkit-touch-callout:none;-webkit-tap-highlight-color: rgba(0,0,0,0);}
-        *{ -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
-        *{
-            -webkit-tap-highlight-color : transparent;
+
+        .icon-phone-font:before {
+            content: "\e605";
         }
-        body, button,a, p,input, select,option,td, textarea /* for ie */ {
-            font: 12px/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+        .icon-shop-font:before {
+            content: "\e607";
         }
-        .f-pad{
-            padding:0 21px;
-            background:#fff;
-            border-bottom:solid 1px #dedede;
+
+        .icon-line:before {
+            content: "\e61e";
         }
+
+        html {
+            font-size: 100px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            font-family: 'Roboto-Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            -webkit-transform: translateZ(0);
+            color: #999;
+        }
+
+        a, button, input {
+            -webkit-touch-callout: none;
+            outline: none;
+            border: 0;
+            -webkit-appearance: none;
+        }
+
+        a, a:visited {
+            text-decoration: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        ul, h3 {
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+        }
+
+        /*body, button,a, p,input, select,option,td, textarea !* for ie *! {*/
+        /*font: 12px/1.5 'Roboto-Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
+        /*}*/
+
         .f-input-box {
-            padding: 5px 0 15px;
-            border-bottom: solid 1px #dedede;
+            font-size: .28rem;
         }
-        .f-input-box label{
-            font-size:14px;
+
+        .f-input-box label {
+            font-size: 14px;
         }
-        .f-input-box input,.add-texrea textarea{
-            display:block;
-            width:100%;
-            height:34px;
-            background:#f5f5f5;
-            border-radius:5px;
-            border:0;
-            margin-top:5px;
-            outline:none;
-            padding-left:10px;
+
+        .f-input-box input, .add-texrea textarea {
+            display: block;
+            width: 100%;
+            background: #ffffff;
+            border: 0;
+            padding: .3rem;
+            outline: none;
+            color: #999999;
 
         }
-        .add-texrea{
-            border-bottom:none;
+
+        .f-input-box input {
+            height: .9rem;
         }
-        .add-texrea textarea{
+
+        .add-texrea {
+            margin-top: .24rem;
+            border-bottom: none;
+        }
+
+        .add-texrea textarea {
             resize: none;
-            min-height:130px;
-            padding-top:10px;
+            min-height: 130px;
+            padding-top: 10px;
+            height: 2.7rem;
         }
-        .f-submit-box{
-            padding-top:10px;
-            text-align:center;
+
+        .f-submit-box {
+            text-align: center;
         }
-        .f-submit-box input{
-            width:90%;
-            font-size: 14px;
+
+        .f-submit-box input {
+            width: 88%;
+            font-size: .36rem;
             background-color: #43CB9C;
             color: #fff;
             border-radius: 2px;
         }
-        .f-contact{
-            padding:20px 0 0 20px;
-            line-height:20px;
-            font-size:16px;
+
+        .f-contact {
+            padding: 20px 0 0 20px;
+            line-height: 20px;
+            font-size: 16px;
         }
+
         .hh {
-            display:none;
+            display: none;
         }
+
         .error {
-            color:#F5A623;
-            font-size:14px;
-            padding-top:10px;
+            color: #F5A623;
+            font-size: 14px;
+            padding-top: 10px;
         }
-        .insta-btn{
-            padding:12px 0;
+
+        .insta-btn {
+            padding: 12px 0;
         }
-        .contact-us{
-            color: #aaa;
-            padding: 5px 15px 0;
+
+        .contact-us {
+            font-size: .24rem;
+            color: #666666;
+            padding: .53rem .3rem 0;
             font-size: 14px;
             line-height: 1.5;
         }
-        .dialog-wraper{
-            position:absolute;
-            background-color : #fff;
+
+        .contact-us i {
+            color: #999999;
+        }
+        .contact-us h3 {
+            font-size: 24px;
+        }
+
+        .contact-us ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-us ul > li {
+            list-style: none;
+        }
+
+        .dialog-wraper {
+            position: absolute;
+            background-color: #fff;
             border-radius: 5px;
             font-size: 1.4rem;
-            color:#666;
+            color: #666;
         }
-        .dialog-body,.dialog-top,.dialog-footer{
-            padding:10px;
+
+        .dialog-body, .dialog-top, .dialog-footer {
+            padding: 10px;
         }
-        .dialog-body{
-            overflow:auto;
+
+        .dialog-body {
+            overflow: auto;
         }
-        .dialog-footer{
+
+        .dialog-footer {
             text-align: right;
-            padding-top:0;
+            padding-top: 0;
             padding-bottom: 8px;
         }
-        .dialog-footer a{
+
+        .dialog-footer a {
             display: inline-block;
             padding: 2px 5px;
             border-radius: 3px;
             color: #43CB9C;
             font-size: 12px;
         }
-        .ca-btn{
-            margin-right:30px;
+
+        .ca-btn {
+            margin-right: 30px;
         }
-        .cf-btn{
+
+        .cf-btn {
 
         }
-        .dialog-cover{
+
+        .dialog-cover {
             position: absolute;
-            left:0;
-            top:0;
-            bottom:0;
-            right:0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
             background-color: black;
             opacity: 0.4;
             filter: Opacity(40);
         }
-    .dialog-body-p{
-        font-size: 12px;
-    }
-    </style>
 
-    <title>Feedback</title>
+        .dialog-body-p {
+            font-size: 12px;
+        }
+
+        /*特殊处理line-font尺寸问题 @lanchenghao*/
+        .icon-line {
+            font-size: .58rem;
+            margin-left: -0.05rem;
+        }
+        .icon-line:before {
+            position: absolute;
+            line-height: 2;
+        }
+
+        .contact-us span {
+            width: .6rem;
+            text-align: left;
+            display: inline-block;
+        }
+        .contact-us span:first-child {
+            position: relative;
+        }
+    </style>
+    <script>
+        doc.addEventListener("DOMContentLoaded", fn, false);
+        //常规rem适配
+        !(function(doc, win) {
+            var docEle = doc.documentElement,
+                    evt = "onorientationchange" in window ? "orientationchange" : "resize",
+                    fn = function() {
+                        var width = docEle.getBoundingClientRect().width;
+                        width && (docEle.style.fontSize = 100 * (width / 720) + "px");
+                    };
+
+            win.addEventListener(evt, fn, false);
+        }(document, window));
+
+
+    </script>
 </head>
 
 <body id="container">
-    <div id="feedbackbox" class="f-pad">
-        <div class="f-input-box">
-            <label for="contact">Nomor telpon atau Email</label>
-            <input id="contact" name="contact" type="text" placeholder="" value="">
-        </div>
-        <div class="f-input-box add-texrea">
-            <label for="content">Masalah atau Komentar Anda</label>
-            <textarea name="content" value="" id="content"></textarea>
-            <div id="error" class="error hh">Silakan masukkan kritik dan saran kamu</div>
-        </div>
+<div id="feedbackbox" class="f-pad">
+    <div class="f-input-box">
+        <!--<label for="contact">Nomor telpon atau Email</label>-->
+        <input id="contact" name="contact" type="text" placeholder="Nomor telpon atau Email" value="">
     </div>
-    <div class="f-submit-box">
-        <input type="submit" value="submit" id="f-submit" class="insta-btn">
+    <div class="f-input-box add-texrea">
+        <!--<label for="content">Masalah atau Komentar Anda</label>-->
+        <textarea name="content" value="" id="content" placeholder="Masalah atau Komentar Anda"></textarea>
+        <div id="error" class="error hh">Silakan masukkan kritik dan saran kamu</div>
     </div>
-    <div class="contact-us">
-        Contact us </br>
-        LINE: @instashop</br>
-        PH/WA: 0812 8491 8486</br>
-        Instashop Versi Desktop : 'http://dashboard.instashop.co.id'
-    </div>
-    <div class="f-contact">
-    </div>
-    <script src="http://static-test.instashop.co.id/js/base/require-zepto.js"></script>
-    <script src="http://static-test.instashop.co.id/js/dist/app/feedback.js?v=1476268969661"></script>
+</div>
+<div class="f-submit-box">
+    <input type="submit" value="Submit" id="f-submit" class="insta-btn">
+</div>
+<div class="contact-us">
+    <ul>
+        <li>Contact us:</li>
+        <li>
+            <span><i class="iconfont icon-line"></i></span>
+            LINE: @instashop
+        </li>
+        <li>
+            <span><i class="iconfont icon-phone-font"></i></span>
+            PH/WA: 0812 8491 8486
+        </li>
+        <li><span><i class="iconfont icon-shop-font"></i></span>
+            Instashop Versi Desktop : <br>'http://dashboard.instashop.co.id'
+        </li>
+    </ul>
+</div>
+<div class="f-contact">
+</div>
+<script src="http://static-test.instashop.co.id/js/base/require-zepto.js"></script>
+<script src="http://static-test.instashop.co.id/js/dist/app/feedback.js?v=1476268969661"></script>
 </body>
 </html>
