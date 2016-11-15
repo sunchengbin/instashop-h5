@@ -7,7 +7,11 @@ require(['base','dialog','lang','lazyload','insjs','fastclick','config','hbs','t
         init : function(){
             var _this = this;
             //todo 这里要从后端读数据赋值给model_data
-            _this.model_data = [];
+            _this.model_data = [{
+                index : 0, 
+                type : 'edit_signage',
+                data : {shop:init_data}
+            }];
             Lazyload();
             _this.initHtml();
             Insjs.WebOnReady(function(bridge){
@@ -128,21 +132,14 @@ require(['base','dialog','lang','lazyload','insjs','fastclick','config','hbs','t
             });
         },
         insertModel : function(data,callbcak){
+
             //todo native编辑后插入模块
         },
         initHtml : function(){
             var _this = this,
                 _html = '';
-            _html+= _this.createModelHtm()
-                +_this.staticBannerHtm('notmove')
-                +_this.rotateBannerHtm()
-                +_this.twoListBannerHtm()
-                +_this.textNavigationHtm()
-                +_this.imgNavigationHtm()
-                +_this.twoLiItemsHtm()
-                +_this.bigImgItem()
-                +_this.listItems()
-                +_this.defaultItemsHtm()
+            _html+= _this.createModelHtm(_this.model_data)
+                +_this.defaultItemsHtm({data:null})
                 +'<button class="j_submit_btn sub-btn b-top">Applications to shop</button>';
             $('body').prepend(_html);
         },
@@ -155,19 +152,83 @@ require(['base','dialog','lang','lazyload','insjs','fastclick','config','hbs','t
         createInsertHtm : function(){
             return '<div class="insert-box"><button class="handle-btn j_insert_model insert-btn">Insert ad rotation</button></div>'
         },
-        defaultItemsHtm : function(){
+        defaultItemsHtm : function(opts){
             var _this = this;
             return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
-                type : 'twoItem'
+                type : 'twoItem',
+                data : opts.data
             });
         },
-        createModelHtm : function(){
-            var _this = this;
-            return _this.createSignageHtm();
+        createModelHtm : function(model){
+            var _this = this,
+                _html = '';
+            if(!model.length)return _html;
+            for(var i = 0;i < model.length;i++){
+                var _model_info = model[i],
+                    _notmove = i==1?'notmove':null;
+                switch(model[i].type){
+                    case 'edit_signage':
+                        _html+= _this.createSignageHtm(_model_info.data);
+                        break;
+                    case 'static_banner':
+                        _html+= _this.staticBannerHtm({
+                            data : _model_info.data,
+                            notmove : _notmove
+                        });
+                        break;
+                    case 'rotate_banner':
+                        _html+= _this.rotateBannerHtm({
+                            data : _model_info.data,
+                            notmove : _notmove
+                        });
+                        break;
+                    case 'two_list_banner':
+                        _html+= _this.twoListBannerHtm({
+                            data : _model_info.data,
+                            notmove : _notmove
+                        });
+                        break;
+                    case 'img_navigation':
+                        _html+= _this.imgNavigationHtm({
+                            data : _model_info.data,
+                            notmove : _notmove
+                        });
+                        break;
+                    case 'text_navigation':
+                        _html+= _this.textNavigationHtm({
+                            data : _model_info.data,
+                            notmove : _notmove
+                        });
+                        break;
+                    case 'two_li_items':
+                        _html+= _this.twoLiItemsHtm({
+                            data : _model_info.data,
+                            notmove : _notmove
+                        });
+                        break;
+                    case 'big_img_item':
+                        _html+= _this.bigImgItem({
+                            data : _model_info.data,
+                            notmove : _notmove
+                        });
+                        break;
+                    case 'list_items':
+                        _html+= _this.listItems({
+                            data : _model_info.data,
+                            notmove : _notmove
+                        });
+                        break;
+                    default :
+                        alert('not find '+model[i].type);
+                        break;
+                }
+            }
+            return _html;
         },
-        createSignageHtm : function(){
+        createSignageHtm : function(data){
+            console.log(data)
             return Hbs.compile(SignageHtm)({
-                data : {shop:init_data}
+                data : data
             });
         },
         staticBannerHtm : function(notmove){

@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/orderconfirm.css?v=1478407361226" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/decorate.css?v=1478407361226" rel="stylesheet"/>
     <title>选择新建模板</title>
     <style>
         button{
@@ -30,15 +30,124 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     </style>
 </head>
 <body>
-    <button class="j_model_type" data-type="edit_signage" data-json="{img:[]}">edit_signage</button>
-    <button class="j_model_type" data-type="static_banner"  data-json="[{img:'',link_url:''}]">static_banner</button>
-    <button class="j_model_type" data-type="rotate_banner"  data-json="[{img:'',link_url:''}]">rotate_banner</button>
-    <button class="j_model_type" data-type="two_list_banner"  data-json="[{img:'',link_url:''}]">two_list_banner</button>
-    <button class="j_model_type" data-type="img_navigation" data-json="[{img :'',navigation_name:'',link_url:''},] ">img_navigation</button>
-    <button class="j_model_type" data-type="text_navigation" data-json="[{navigation_name:'',link_url:''},]">text_navigation</button>
-    <button class="j_model_type" data-type="two_li_items" data-json="[]">two_li_items</button>
-    <button class="j_model_type" data-type="big_img_item" data-json="[]">big_img_item</button>
-    <button class="j_model_type" data-type="list_items" data-json="[]">list_items</button>
+    <nav class="decorate-sample-tab">
+        <ul class="flex-container">
+            <li class="flex-avg decorate-sample-tab-item decorate-sample-tab-active" data-tabid="imageads">Image ads</li>
+            <li class="flex-avg decorate-sample-tab-item" data-tabid="navigation">navigation</li>
+            <li class="flex-avg decorate-sample-tab-item" data-tabid="recommended">Recommended</li>
+        </ul>
+    </nav>
+    <div class="decorate-sample-panel">
+        <div class="decorate-sample-panel-content" id="imageads">
+            <section>
+                <p><span>Image ads</span></p>
+                <div class="decorate-sample-block flex-container j_model_type" data-type="static_banner">
+                    The picture scale is not limited
+                </div>
+            </section>
+            <section>
+                <p><span>Rotate ads</span></p>
+                <div class="decorate-sample-block flex-container j_model_type" data-type="rotate_banner">The picture scale is not limited</div>
+            </section>
+            <section>
+                <p><span>Two columns of ads</span></p>
+                <div class="flex-container decorate-sample-items">
+                    <div class="flex-container j_model_type" data-type="two_list_banner">
+                        Picture ratio 1:1
+                    </div>
+                    <div class="flex-container j_model_type" data-type="two_list_banner">
+                        Picture ratio 1:1
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="decorate-sample-panel-content" id="navigation">
+            <section>
+                <p><span>Image ads</span></p>
+                <div class="decorate-sample-block flex-container j_model_type" data-type="img_navigation">
+                    <div class="decorate-sample-navigation-item"></div>
+                    <div class="decorate-sample-navigation-item"></div>
+                    <div class="decorate-sample-navigation-item"></div>
+                    <div class="decorate-sample-navigation-item"></div>
+                    <div class="decorate-sample-navigation-txt">Navigation1</div>
+                    <div class="decorate-sample-navigation-txt">Navigation2</div>
+                    <div class="decorate-sample-navigation-txt">Navigation3</div>
+                    <div class="decorate-sample-navigation-txt">Navigation4</div>
+                </div>
+            </section>
+            <section>
+                <p><span>Rotate ads</span></p>
+                <div class="decorate-sample-block j_model_type" data-type="text_navigation">
+                    <ul>
+                        <li>Navigation1</li>
+                        <li>Navigation2</li>
+                        <li>More...</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        <div class="decorate-sample-panel-content" id="recommended">
+            <section>
+                <p><span>Two-column type</span></p>
+                <div class="decorate-sample-block j_model_type" data-type="two_li_items">
+                    <ul class="items-list flex-container">
+                        <li>
+                            <div class="item-info j_item_info" href="javascript:;">
+                                <div class="lazy">
+                                </div>
+                                <p class="title">82金额不我的心的感谢和的的的的的</p>
+                                <p class="price">Rp 352.786</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-info j_item_info" href="javascript:;">
+                                <div class="lazy">
+                                </div>
+                                <p class="title">82金额不我的心的感谢和的的的的的</p>
+                                <p class="price">Rp 352.786</p>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <p><span>Gambar besar</span></p>
+                <div class="decorate-sample-block flex-container j_model_type" data-type="big_img_item">
+                    <div>
+                    </div>
+                    <p class="title">82金额不我的心的感谢和的的的的的sdfsfsdfsdfsdfsdfsfdfs</p>
+                    <p class="price">Rp 352.786</p>
+                </div>
+            </section>
+            <section>
+                <p><span>Jenis daftar</span></p>
+                <div class="decorate-sample-block j_model_type" data-type="list_items">
+                    <ul class="items-list">
+                        <li>
+                            <div class="item-info j_item_info"  href="javascript:;">
+                            </div>
+                            <div>
+                                <p class="title">82金额不我的</p>
+                                <p class="title">asfsdfdffasdfsfdfsfds</p>
+                                <p class="price">Rp 352.786</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-info j_item_info"  href="javascript:;">
+                            </div>
+                            <div>
+                                <p class="title">82金额不我的</p>
+                                <p class="title">82金额sdfsfsdfsdf不我的</p>
+                                <p class="price">Rp 352.786</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </div>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/modeltype.js?v=1478407361226"></script>
