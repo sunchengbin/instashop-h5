@@ -140,13 +140,20 @@ define([],function(){
             H5_INDEX_NO_GOOD:'没有商品',
             H5_SUNMITING:'提交...',
             H5_ADVICE_FILL:'邮编：选填，建议填写',
-            H5_INS_INPUT:"输入Instagram账户"
+            H5_INS_INPUT:"输入Instagram账户",
+            H5_INS_TIP:"注：请确保你的Instagram账户没有设置为“私密账户”",
+            H5_INS_INPUT_PLACEHOLDER:"如：instashop_ina"
 
         },
 
         id : {
-            H5_INS_INPUT:"Masukkan username Instagrammu",
-            H5_SUBMIT_TXT:"Ajukan",
+            'H5_INS_INPUT_PLACEHOLDER':"Contoh: instashop_ina",
+            //注：请确保你的Instagram账户没有设置为“私密账户”
+            'H5_INS_TIP':"Pastikan akun Instagrammu tidak diprivate",
+            //输入Instagram账户
+            'H5_INS_INPUT':"Masukkan username Instagrammu",
+            //提交
+            'H5_SUBMIT_TXT':"Ajukan",
             //选填 建议填写
             'H5_ADVICE_FILL':'Kode Pos：Pilih, Sebaiknya diisi',
             // 收货地址

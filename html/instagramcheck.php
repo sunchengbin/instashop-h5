@@ -26,6 +26,27 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     .index-btn-box a {
         color:#ffffff;
     }
+    .instagram-wraper {
+        color:#999999!important;
+    }
+    .instagram-wraper p {
+        padding:0 1rem 1rem;
+        font-size: 1.2rem;
+        color: #999999!important;
+    }
+    .instagram-wraper .info-box {
+        height:auto!important;
+        padding: 1.5rem 2rem!important;
+        line-height: inherit!important;
+    }
+    .instagram-wraper input {
+        background: #F5F5F5;
+        border-radius: 5px;
+        padding: 1.5rem!important;
+        height: 4.5rem;
+        line-height:4.5rem;
+        color:#999999!important;
+    }
     </style>
 </head>
 <body>

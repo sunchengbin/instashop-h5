@@ -1,7 +1,7 @@
 /**
  * Created by lanchenghao on 16/11/14.
  */
-require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'common'], function (Hbs, Checkhtm, Dialog, Ajax, Config, Base, Lang, Fastclick, Common) {
+require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config', 'base', 'lang', 'common'], function (Hbs, Checkhtm, Dialog, Ajax, Config, Base, Lang, Common) {
     var Instagramcheck = {
         init: function () {
             var ctx = this;
