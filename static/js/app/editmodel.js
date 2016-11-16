@@ -33,12 +33,12 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 //    type : 'two_list_banner',
                 //    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
                 //},
-                //{
-                //    index : 0,
+                //,{
+                //    index : 1,
                 //    title : 'img_navigation',
                 //    type : 'img_navigation',
                 //    data : [{img : 'http://imghk0.geilicdn.com/test_instashop40732-1474529254204-1.jpg',navigation_name:'sfdsf',link_url:''}]
-                //},
+                //}
                 //{
                 //    index : 0,
                 //    title : 'text_navigation',
@@ -68,31 +68,36 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             _this.initHtml();
             //setTimeout(function(){
             //    _this.insertModel({
-            //        param:{
-            //            type:'edit_model',
-            //            param:{
-            //                index : 1,
-            //                title : 'static-banner',
-            //                type : 'static_banner',
-            //                data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
-            //            }
+            //        "result": {
+            //            "data": [{
+            //                "img": "http:\/\/imghk0.geilicdn.com\/\/test_instashop40699-1479281421144-6309323unadjust.jpg?w=867&h=867",
+            //                "link_url": "http:\/\/wangxin.test.instashop.co.id\/1122654",
+            //                "navigation_name": "Ghj"
+            //            },
+            //                {
+            //                    "img": "http:\/\/imghk0.geilicdn.com\/\/test_instashop40699-1479281497388-3053467unadjust.jpg?w=867&h=867",
+            //                    "link_url": "http:\/\/wangxin.test.instashop.co.id\/1122652",
+            //                    "navigation_name": "Hvhvjvh"
+            //                }],
+            //            "title": " Hhjjj",
+            //            "type": "img_navigation",
+            //            "index": "1"
             //        },
-            //        result : {
-            //            //具体模块数据,以标准广告数据为例
-            //            index : 1,
-            //            title : 'static-banner-new',
-            //            type : 'static_banner',
-            //            data : [{img:'http://imghk0.geilicdn.com/instashop194270-1476256896057-1.jpg?w=110&h=110&cp=1',link_url:''}]
+            //        "param": {
+            //            "type": "edit_model",
+            //            "param": {
+            //                "data": [{
+            //                    "img": "http:\/\/imghk0.geilicdn.com\/\/test_instashop40699-1479281421144-6309323unadjust.jpg?w=867&h=867",
+            //                    "link_url": "http:\/\/wangxin.test.instashop.co.id\/1122654",
+            //                    "navigation_name": "Ghj"
+            //                }],
+            //                "title": " Hhjjj",
+            //                "type": "img_navigation",
+            //                "index": 1
+            //            }
             //        }
             //    })
-            //},10000)
-            if($('.j_banner').length){
-                Slide.createNew({
-                    dom: document.querySelector('.j_banner'),
-                    needTab: true,
-                    auto : false
-                });
-            }
+            //},5000)
             Insjs.WebOnReady(function(bridge){
                 _this.handelFn(bridge);
             },function(){
@@ -206,6 +211,16 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 }
             });
         },
+        initRotateBanner : function(){
+            var _banners = $('.j_banner');
+            if($('.j_banner').length){
+                Slide.createNew({
+                    dom: document.querySelector('.j_banner'),
+                    needTab: true,
+                    auto : false
+                });
+            }
+        },
         subModel : function(bridge){//模板提交
             var _this = this,
                 _req_data = {
@@ -269,19 +284,18 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
         insertModel : function(data,callbcak){
             var _this = this,
                 _arr = [data.result],
+                _index = Number(data.result.index),
                 _new_model = _this.createModelHtm(_arr);
-            alert(data.param.param.data);
-            alert(data.param.param.data.length);
             if(data.param.param.data.length > 0){//如果是编辑
-                _this.model_data[data.result.index+1] = data.result;//修改数据
-                $('.j_model_box').eq(data.result.index).remove();
-                $('.j_insert_model').eq(data.result.index).remove();
-                $('.j_insert_model').eq(data.result.index).before(_new_model);
+                _this.model_data[_index] = data.result;//修改数据
+                $('.j_model_box').eq(_index-1).remove();
+                $('.j_insert_model').eq(_index-1).remove();
+                $('.j_insert_model').eq(_index-1).before(_new_model);
             }else{//新建
-                _this.model_data.splice(data.result.index+1,0,data.result);
-                $('.j_insert_model').eq(data.result.index).before(_new_model);
+                _this.model_data.splice(_index+1,0,data.result);
+                $('.j_insert_model').eq(_index).before(_new_model);
             }
-            alert(JSON.stringify(_this.model_data));
+            console.log(_this.model_data);
             Lazyload();
             _this.reloadOperateBtns();
             callbcak && callbcak(data);
@@ -308,6 +322,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             var _this = this;
             return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
                 type : 'twoItem',
+                isdefault: true,
                 data : {
                     data : init_data.item_list.list,
                     title : 'Rekomendasi Item'

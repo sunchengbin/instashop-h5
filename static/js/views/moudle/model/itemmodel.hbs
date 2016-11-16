@@ -1,6 +1,10 @@
 {{#if data}}
     {{#eq type 'twoItem'}}
-        <section class="items-box model-box j_model_box">
+        {{#if isdefault}}
+            <section class="items-box model-box">
+        {{else}}
+            <section class="items-box model-box j_model_box">
+        {{/if}}
             {{{btns}}}
             <p class="item-title b-bottom"><span></span>{{data.title}}</p>
             <ul class="items-list clearfix j_item_list">
