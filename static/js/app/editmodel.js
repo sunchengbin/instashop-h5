@@ -10,9 +10,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 {
                     index: 0,
                     type: 'edit_signage',
-                    data: {
-                        shop: init_data.shop
-                    }
+                    data: [init_data.shop]
                 }
                 //},
                 //{
@@ -73,38 +71,6 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             Lazyload();
             _this.initHtml();
             _this.initRotateBanner();
-            //setTimeout(function(){
-            //    _this.insertModel({
-            //        "result": {
-            //            "data": [{
-            //                "img": "http:\/\/imghk0.geilicdn.com\/\/test_instashop40699-1479281421144-6309323unadjust.jpg?w=867&h=867",
-            //                "link_url": "http:\/\/wangxin.test.instashop.co.id\/1122654",
-            //                "navigation_name": "Ghj"
-            //            },
-            //                {
-            //                    "img": "http:\/\/imghk0.geilicdn.com\/\/test_instashop40699-1479281497388-3053467unadjust.jpg?w=867&h=867",
-            //                    "link_url": "http:\/\/wangxin.test.instashop.co.id\/1122652",
-            //                    "navigation_name": "Hvhvjvh"
-            //                }],
-            //            "title": " Hhjjj",
-            //            "type": "img_navigation",
-            //            "index": "1"
-            //        },
-            //        "param": {
-            //            "type": "edit_model",
-            //            "param": {
-            //                "data": [{
-            //                    "img": "http:\/\/imghk0.geilicdn.com\/\/test_instashop40699-1479281421144-6309323unadjust.jpg?w=867&h=867",
-            //                    "link_url": "http:\/\/wangxin.test.instashop.co.id\/1122654",
-            //                    "navigation_name": "Ghj"
-            //                }],
-            //                "title": " Hhjjj",
-            //                "type": "img_navigation",
-            //                "index": 1
-            //            }
-            //        }
-            //    })
-            //},5000)
             Insjs.WebOnReady(function(bridge){
                 _this.handelFn(bridge);
             },function(){
@@ -199,6 +165,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     _this.subModel(bridge);
                     return null;
                 });
+                //_this.subModel(bridge);
             });
         },
         reloadOperateBtns : function(){
@@ -348,7 +315,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     _notmove = i==1?'notmove':null;
                 switch(model[i].type){
                     case 'edit_signage':
-                        _html+= _this.createSignageHtm(_model_info.data);
+                        _html+= _this.createSignageHtm(_model_info.data[0]);
                         break;
                     case 'static_banner':
                         _html+= _this.staticBannerHtm({
