@@ -162,10 +162,8 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     }
                 };
                 bridge.callHandler('insSocket',_param, function(data) {
-
                     return null;
                 });
-                //_this.subModel(bridge);
             });
         },
         reloadOperateBtns : function(){
@@ -206,13 +204,12 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                         wduss : Base.others.getUrlPrem('wduss')
                     }
                 };
-            alert(_req_data);
             Ajax.postJsonp({
                 url :Config.actions.saveTemplate,
                 data : {param:JSON.stringify(_req_data)},
                 type : 'POST',
                 success : function(obj){
-                    alert(obj);
+                    alert(JSON.stringify(obj));
                     if(obj.code == 200){
                         _this.closeLoading(bridge,'success');
                     }else{
@@ -258,7 +255,6 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                         responseCallback(obj);
                     });
                 }else{
-                    alert(bridge);
                     _this.subModel(bridge);
                 }
 
