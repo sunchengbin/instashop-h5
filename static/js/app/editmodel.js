@@ -65,6 +65,26 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             ];
             Lazyload();
             _this.initHtml();
+            //setTimeout(function(){
+            //    _this.insertModel({
+            //        param:{
+            //            type:'edit_model',
+            //            param:{
+            //                index : 1,
+            //                title : 'static-banner',
+            //                type : 'static_banner',
+            //                data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
+            //            }
+            //        },
+            //        result : {
+            //            //具体模块数据,以标准广告数据为例
+            //            index : 1,
+            //            title : 'static-banner-new',
+            //            type : 'static_banner',
+            //            data : [{img:'http://imghk0.geilicdn.com/instashop194270-1476256896057-1.jpg?w=110&h=110&cp=1',link_url:''}]
+            //        }
+            //    })
+            //},10000)
             Slide.createNew({
                 dom: document.querySelector('.j_banner'),
                 needTab: true,
@@ -248,7 +268,15 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             var _this = this,
                 _arr = [data.result],
                 _new_model = _this.createModelHtm(_arr);
-            $('.j_insert_model').eq(data.result.index).before(_new_model);
+            console.log(_new_model)
+            if(data.param.param.data.length){//如果是编辑
+                $('.j_model_box').eq(data.result.index).remove();
+                $('.j_insert_model').eq(data.result.index).remove();
+                $('.j_insert_model').eq(data.result.index).before(_new_model);
+                Lazyload();
+            }else{//新建
+                $('.j_insert_model').eq(data.result.index).before(_new_model);
+            }
             _this.reloadOperateBtns();
             callbcak && callbcak(data);
             //todo native编辑后插入模块
@@ -268,7 +296,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             });
         },
         createInsertHtm : function(){
-            return '<div class="insert-box"><button class="handle-btn j_insert_model insert-btn">Insert ad rotation</button></div>'
+            return '<div class="insert-box j_insert_model"><button class="handle-btn insert-btn">Insert ad rotation</button></div>'
         },
         defaultItemsHtm : function(){
             var _this = this;

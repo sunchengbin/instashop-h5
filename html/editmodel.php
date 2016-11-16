@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/app/editmodel.css?v=1478407361226" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/editmodel.css?v=1478407361226" rel="stylesheet"/>
     <title>店铺装修</title>
     <style>
         .model-box-btns button{
@@ -48,8 +48,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
-    <script src="<?=STATIC_HOST?>/js/app/editmodel.js?v=1478407361225"></script>
+    <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
+    <script src="<?=STATIC_HOST?>/js/dist/app/editmodel.js?v=1478407361225"></script>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
