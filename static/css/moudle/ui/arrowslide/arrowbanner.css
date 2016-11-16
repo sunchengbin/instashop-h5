@@ -1,4 +1,4 @@
-/*添加pc指示箭头*/
+/*pc箭头导航样式*/
 .slide_arrow {
     position: absolute;
     top:0px;
@@ -8,12 +8,6 @@
     height: 5rem;
     line-height: 5rem;
     cursor: pointer;
-}
-.slide_arrow_left {
-
-}
-.slide_arrow_right {
-
 }
 .slide_arrow .iconfont {
     font-size: 5rem;

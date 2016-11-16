@@ -5,14 +5,28 @@
     /*background-color: #43CB9C;*/
     /*font-size: 1.6rem;*/
     /*color: #fff;*/
+    position:relative;
     padding: 0 1rem;
     height: 4rem;
     line-height: 4rem;
     background-color: #F5f5f5;
     font-size: 1.6rem;
     color: #666;
-    border-bottom: 1px solid #d8d8d8;
 }
+/*风格统一需求*/
+.header-nav:after {
+    position: absolute;
+    left: -50%;
+    right: -50%;
+    bottom: 0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
+    z-index: 1;
+}
+
 .header-nav .iconfont{
     font-size: 1.6rem;
     display: inline-block;

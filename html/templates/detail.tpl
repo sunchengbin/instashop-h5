@@ -103,7 +103,7 @@
                 <!--新增3.5 功能点4需求-->
                 <div class="btn j_submit_btn confirm-btn">
                     <i class="iconfont icon-shop-font"></i>
-                    <a href="http://www.instashop.co.id/" target="_self">Buat webstore gratis sekarang!</a>
+                    <a href="http://www.instashop.co.id/" onclick="trackOutboundLink('http://www.instashop.co.id/'); return false;" target="_self">Buat webstore gratis sekarang!</a>
                 </div>
             </div>
         </section>
