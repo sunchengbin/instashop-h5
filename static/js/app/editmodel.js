@@ -102,11 +102,11 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
         },
         handelFn : function(bridge){
             var _this = this;
-            //if(!bridge){
-            //    alert('not find bridge');
-            //    return;
-            //}
-            //_this.registerFn(bridge);
+            if(!bridge){
+                alert('not find bridge');
+                return;
+            }
+            _this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
                 var _dom = $(this),
