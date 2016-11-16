@@ -242,12 +242,12 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             var _close_param = {
                 param:{
                     type : 'close_model',
-                    param : null
+                    param : code
                 }
             };
             bridge.callHandler('insSocket',_close_param, function(response) {
                 callback && callback();
-                return code;
+                return null;
             });
         },
         registerFn : function(bridge){//对native内容监控
