@@ -59,6 +59,7 @@
     </ul>
 </div>
 {/if}
+{include file="model.tpl" title="my template model"}
 <div class="item-list-wraper">
     {if !$INDEX_DATA.item_list.list|@count}
     <section class="no_item">Belum ada produk</section>
@@ -74,8 +75,7 @@
                         {if $item.is_discount}
                         <span>-{$item.discount.value}%</span>
                         {if $item.discounting}
-                        <p><i class="icon iconfont icon-time-font"></i><span
-                                data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span>
+                        <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span>
                         </p>
                         {else}
                         <p>Coming Soon</p>

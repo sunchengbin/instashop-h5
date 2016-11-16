@@ -8,60 +8,61 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             var _this = this;
             _this.model_data = init_data.template.length>0?init_data.template:[
                 {
-                    index : 0,
-                    type : 'edit_signage',
-                    data : {
-                        shop : init_data.shop
+                    index: 0,
+                    type: 'edit_signage',
+                    data: {
+                        shop: init_data.shop
                     }
-                },
-                {
-                    index : 0,
-                    title : 'static-banner',
-                    type : 'static_banner',
-                    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
-                },
-                {
-                    index : 0,
-                    title : 'rotate_banner',
-                    type : 'rotate_banner',
-                    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
-                },
-                {
-                    index : 0,
-                    title : 'two_list_banner',
-                    type : 'two_list_banner',
-                    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
-                },
-                {
-                    index : 0,
-                    title : 'img_navigation',
-                    type : 'img_navigation',
-                    data : [{img : 'http://imghk0.geilicdn.com/test_instashop40732-1474529254204-1.jpg',navigation_name:'sfdsf',link_url:''}]
-                },
-                {
-                    index : 0,
-                    title : 'text_navigation',
-                    type : 'text_navigation',
-                    data : [{navigation_name:'sfs',link_url:''}]
-                },
-                {
-                    index : 0,
-                    type : 'two_li_items',
-                    title : 'two_li_items',
-                    data : [{"id":"1136307","item_name":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabet","seller_id":"40733","add_time":"2016-07-01 12:24:36","price":"123654.00","stock":"53","sold":"2","is_top":"1","status":"1","weight":"1000","item_comment":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabeth!","imgs":["http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=480&h=480"],"img":"http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=110&h=110&cp=1","h5_url":"http://badelong7.test.instashop.co.id/1136307","cart_url":"http://badelong7.test.instashop.co.id/address/04LBx","is_discount":0,"discounting":false,"discount":{"start_time":"1970-01-01 08:00:00","end_time":"1970-01-01 08:00:00","now_time":"2016-11-15 16:10:51","min_price":"123654.00","max_price":"123654.00","value":100},"index_type":"top"},{"id":"1136307","item_name":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabet","seller_id":"40733","add_time":"2016-07-01 12:24:36","price":"123654.00","stock":"53","sold":"2","is_top":"1","status":"1","weight":"1000","item_comment":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabeth!","imgs":["http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=480&h=480"],"img":"http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=110&h=110&cp=1","h5_url":"http://badelong7.test.instashop.co.id/1136307","cart_url":"http://badelong7.test.instashop.co.id/address/04LBx","is_discount":0,"discounting":false,"discount":{"start_time":"1970-01-01 08:00:00","end_time":"1970-01-01 08:00:00","now_time":"2016-11-15 16:10:51","min_price":"123654.00","max_price":"123654.00","value":100},"index_type":"top"},{"id":"1136307","item_name":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabet","seller_id":"40733","add_time":"2016-07-01 12:24:36","price":"123654.00","stock":"53","sold":"2","is_top":"1","status":"1","weight":"1000","item_comment":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabeth!","imgs":["http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=480&h=480"],"img":"http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=110&h=110&cp=1","h5_url":"http://badelong7.test.instashop.co.id/1136307","cart_url":"http://badelong7.test.instashop.co.id/address/04LBx","is_discount":0,"discounting":false,"discount":{"start_time":"1970-01-01 08:00:00","end_time":"1970-01-01 08:00:00","now_time":"2016-11-15 16:10:51","min_price":"123654.00","max_price":"123654.00","value":100},"index_type":"top"}]
-                },
-                {
-                    index : 0,
-                    type : 'big_img_item',
-                    title : 'big_img_item',
-                    data : [{"id":"1136307","item_name":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabet","seller_id":"40733","add_time":"2016-07-01 12:24:36","price":"123654.00","stock":"53","sold":"2","is_top":"1","status":"1","weight":"1000","item_comment":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabeth!","imgs":["http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=480&h=480"],"img":"http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=110&h=110&cp=1","h5_url":"http://badelong7.test.instashop.co.id/1136307","cart_url":"http://badelong7.test.instashop.co.id/address/04LBx","is_discount":0,"discounting":false,"discount":{"start_time":"1970-01-01 08:00:00","end_time":"1970-01-01 08:00:00","now_time":"2016-11-15 16:10:51","min_price":"123654.00","max_price":"123654.00","value":100},"index_type":"top"}]
-                },
-                {
-                    index : 0,
-                    type : 'list_items',
-                    title : 'list_items',
-                    data : [{"id":"1136307","item_name":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabet","seller_id":"40733","add_time":"2016-07-01 12:24:36","price":"123654.00","stock":"53","sold":"2","is_top":"1","status":"1","weight":"1000","item_comment":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabeth!","imgs":["http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=480&h=480"],"img":"http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=110&h=110&cp=1","h5_url":"http://badelong7.test.instashop.co.id/1136307","cart_url":"http://badelong7.test.instashop.co.id/address/04LBx","is_discount":0,"discounting":false,"discount":{"start_time":"1970-01-01 08:00:00","end_time":"1970-01-01 08:00:00","now_time":"2016-11-15 16:10:51","min_price":"123654.00","max_price":"123654.00","value":100},"index_type":"top"},{"id":"1136307","item_name":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabet","seller_id":"40733","add_time":"2016-07-01 12:24:36","price":"123654.00","stock":"53","sold":"2","is_top":"1","status":"1","weight":"1000","item_comment":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabeth!","imgs":["http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=480&h=480"],"img":"http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=110&h=110&cp=1","h5_url":"http://badelong7.test.instashop.co.id/1136307","cart_url":"http://badelong7.test.instashop.co.id/address/04LBx","is_discount":0,"discounting":false,"discount":{"start_time":"1970-01-01 08:00:00","end_time":"1970-01-01 08:00:00","now_time":"2016-11-15 16:10:51","min_price":"123654.00","max_price":"123654.00","value":100},"index_type":"top"}]
                 }
+                //},
+                //{
+                //    index : 0,
+                //    title : 'static-banner',
+                //    type : 'static_banner',
+                //    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
+                //},
+                //{
+                //    index : 0,
+                //    title : 'rotate_banner',
+                //    type : 'rotate_banner',
+                //    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
+                //},
+                //{
+                //    index : 0,
+                //    title : 'two_list_banner',
+                //    type : 'two_list_banner',
+                //    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
+                //},
+                //{
+                //    index : 0,
+                //    title : 'img_navigation',
+                //    type : 'img_navigation',
+                //    data : [{img : 'http://imghk0.geilicdn.com/test_instashop40732-1474529254204-1.jpg',navigation_name:'sfdsf',link_url:''}]
+                //},
+                //{
+                //    index : 0,
+                //    title : 'text_navigation',
+                //    type : 'text_navigation',
+                //    data : [{navigation_name:'sfs',link_url:''}]
+                //},
+                //{
+                //    index : 0,
+                //    type : 'two_li_items',
+                //    title : 'two_li_items',
+                //    data : [{"id":"1136307","item_name":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabet","seller_id":"40733","add_time":"2016-07-01 12:24:36","price":"123654.00","stock":"53","sold":"2","is_top":"1","status":"1","weight":"1000","item_comment":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabeth!","imgs":["http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=480&h=480"],"img":"http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=110&h=110&cp=1","h5_url":"http://badelong7.test.instashop.co.id/1136307","cart_url":"http://badelong7.test.instashop.co.id/address/04LBx","is_discount":0,"discounting":false,"discount":{"start_time":"1970-01-01 08:00:00","end_time":"1970-01-01 08:00:00","now_time":"2016-11-15 16:10:51","min_price":"123654.00","max_price":"123654.00","value":100},"index_type":"top"},{"id":"1136307","item_name":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabet","seller_id":"40733","add_time":"2016-07-01 12:24:36","price":"123654.00","stock":"53","sold":"2","is_top":"1","status":"1","weight":"1000","item_comment":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabeth!","imgs":["http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=480&h=480"],"img":"http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=110&h=110&cp=1","h5_url":"http://badelong7.test.instashop.co.id/1136307","cart_url":"http://badelong7.test.instashop.co.id/address/04LBx","is_discount":0,"discounting":false,"discount":{"start_time":"1970-01-01 08:00:00","end_time":"1970-01-01 08:00:00","now_time":"2016-11-15 16:10:51","min_price":"123654.00","max_price":"123654.00","value":100},"index_type":"top"},{"id":"1136307","item_name":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabet","seller_id":"40733","add_time":"2016-07-01 12:24:36","price":"123654.00","stock":"53","sold":"2","is_top":"1","status":"1","weight":"1000","item_comment":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabeth!","imgs":["http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=480&h=480"],"img":"http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=110&h=110&cp=1","h5_url":"http://badelong7.test.instashop.co.id/1136307","cart_url":"http://badelong7.test.instashop.co.id/address/04LBx","is_discount":0,"discounting":false,"discount":{"start_time":"1970-01-01 08:00:00","end_time":"1970-01-01 08:00:00","now_time":"2016-11-15 16:10:51","min_price":"123654.00","max_price":"123654.00","value":100},"index_type":"top"}]
+                //},
+                //{
+                //    index : 0,
+                //    type : 'big_img_item',
+                //    title : 'big_img_item',
+                //    data : [{"id":"1136307","item_name":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabet","seller_id":"40733","add_time":"2016-07-01 12:24:36","price":"123654.00","stock":"53","sold":"2","is_top":"1","status":"1","weight":"1000","item_comment":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabeth!","imgs":["http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=480&h=480"],"img":"http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=110&h=110&cp=1","h5_url":"http://badelong7.test.instashop.co.id/1136307","cart_url":"http://badelong7.test.instashop.co.id/address/04LBx","is_discount":0,"discounting":false,"discount":{"start_time":"1970-01-01 08:00:00","end_time":"1970-01-01 08:00:00","now_time":"2016-11-15 16:10:51","min_price":"123654.00","max_price":"123654.00","value":100},"index_type":"top"}]
+                //},
+                //{
+                //    index : 0,
+                //    type : 'list_items',
+                //    title : 'list_items',
+                //    data : [{"id":"1136307","item_name":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabet","seller_id":"40733","add_time":"2016-07-01 12:24:36","price":"123654.00","stock":"53","sold":"2","is_top":"1","status":"1","weight":"1000","item_comment":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabeth!","imgs":["http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=480&h=480"],"img":"http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=110&h=110&cp=1","h5_url":"http://badelong7.test.instashop.co.id/1136307","cart_url":"http://badelong7.test.instashop.co.id/address/04LBx","is_discount":0,"discounting":false,"discount":{"start_time":"1970-01-01 08:00:00","end_time":"1970-01-01 08:00:00","now_time":"2016-11-15 16:10:51","min_price":"123654.00","max_price":"123654.00","value":100},"index_type":"top"},{"id":"1136307","item_name":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabet","seller_id":"40733","add_time":"2016-07-01 12:24:36","price":"123654.00","stock":"53","sold":"2","is_top":"1","status":"1","weight":"1000","item_comment":"Happy birthday to this adventurous, whole-hearted and inspiring woman I get to call my mama. I love you so much @roseannelizabeth!","imgs":["http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=480&h=480"],"img":"http://imghk0.geilicdn.com/test_instashop40733-1471502119127-0.jpg?w=110&h=110&cp=1","h5_url":"http://badelong7.test.instashop.co.id/1136307","cart_url":"http://badelong7.test.instashop.co.id/address/04LBx","is_discount":0,"discounting":false,"discount":{"start_time":"1970-01-01 08:00:00","end_time":"1970-01-01 08:00:00","now_time":"2016-11-15 16:10:51","min_price":"123654.00","max_price":"123654.00","value":100},"index_type":"top"}]
+                //}
             ];
             Lazyload();
             _this.initHtml();
@@ -85,11 +86,13 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             //        }
             //    })
             //},10000)
-            Slide.createNew({
-                dom: document.querySelector('.j_banner'),
-                needTab: true,
-                auto : false
-            });
+            if($('.j_banner').length){
+                Slide.createNew({
+                    dom: document.querySelector('.j_banner'),
+                    needTab: true,
+                    auto : false
+                });
+            }
             Insjs.WebOnReady(function(bridge){
                 _this.handelFn(bridge);
             },function(){
@@ -99,12 +102,11 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
         },
         handelFn : function(bridge){
             var _this = this;
-            if(!bridge){
-                //location.reload();
-                alert('not find bridge');
-                return;
-            }
-            _this.registerFn(bridge);
+            //if(!bridge){
+            //    alert('not find bridge');
+            //    return;
+            //}
+            //_this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
                 var _dom = $(this),
@@ -258,7 +260,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
         registerFn : function(bridge){//对native内容监控
             var _this = this;
             bridge.registerHandler('registerSocket', function(data, responseCallback) {
-                //alert(data);
+                alert(data);
                 _this.insertModel(JSON.parse(data),function(obj){
                     responseCallback(obj);
                 });
@@ -268,15 +270,19 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             var _this = this,
                 _arr = [data.result],
                 _new_model = _this.createModelHtm(_arr);
-            console.log(_new_model)
-            if(data.param.param.data.length){//如果是编辑
+            alert(data.param.param.data);
+            alert(data.param.param.data.length);
+            if(data.param.param.data.length > 0){//如果是编辑
+                _this.model_data[data.result.index+1] = data.result;//修改数据
                 $('.j_model_box').eq(data.result.index).remove();
                 $('.j_insert_model').eq(data.result.index).remove();
                 $('.j_insert_model').eq(data.result.index).before(_new_model);
-                Lazyload();
             }else{//新建
+                _this.model_data.splice(data.result.index+1,0,data.result);
                 $('.j_insert_model').eq(data.result.index).before(_new_model);
             }
+            alert(JSON.stringify(_this.model_data));
+            Lazyload();
             _this.reloadOperateBtns();
             callbcak && callbcak(data);
             //todo native编辑后插入模块
