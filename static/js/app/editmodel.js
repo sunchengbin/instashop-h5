@@ -21,12 +21,18 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 //    type : 'static_banner',
                 //    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
                 //},
-                //{
+                //,{
                 //    index : 0,
                 //    title : 'rotate_banner',
                 //    type : 'rotate_banner',
                 //    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
                 //},
+                //{
+                //    index : 0,
+                //    title : 'rotate_banner',
+                //    type : 'rotate_banner',
+                //    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
+                //}
                 //{
                 //    index : 0,
                 //    title : 'two_list_banner',
@@ -66,6 +72,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             ];
             Lazyload();
             _this.initHtml();
+            _this.initRotateBanner();
             //setTimeout(function(){
             //    _this.insertModel({
             //        "result": {
@@ -125,7 +132,6 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                         }
                     }
                 };
-                console.log(JSON.stringify(_param));
                 bridge.callHandler('insSocket',_param, function(response) {
                       return null;
                 });
@@ -146,7 +152,6 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                         }
                     }
                 };
-                console.log(JSON.stringify(_param));
                 bridge.callHandler('insSocket',_param, function(response) {
                     return null;
                 });
@@ -161,7 +166,6 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                         _model.remove();
                         _insert_dom.remove();
                         _this.model_data.splice(_index,1);
-                        console.log(_this.model_data)
                         _this.reloadOperateBtns();
                         //todo 如果是第一个就需要改变新进的操作btn
                     }
@@ -182,7 +186,6 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     _change_data = _this.model_data[_index+1];
                 _this.model_data[_index+2] = _change_data;
                 _this.model_data[_index+1] = _move_data;
-                console.log( _this.model_data);
                 //todo 数据前移
             });
             $('body').on('click','.j_submit_btn',function(){
@@ -193,12 +196,13 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     }
                 };
                 bridge.callHandler('insSocket',_param, function(data) {
+                    _this.subModel(bridge);
                     return null;
                 });
-                _this.subModel(bridge);
             });
         },
         reloadOperateBtns : function(){
+            this.initRotateBanner();
             $('.j_model_btns').each(function(i,item){
                 if(i == 0){
                     if($(item).find('.j_moveup_model').length) {
@@ -212,12 +216,17 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             });
         },
         initRotateBanner : function(){
-            var _banners = $('.j_banner');
+            var _banners = document.querySelectorAll('.j_banner');
             if($('.j_banner').length){
-                Slide.createNew({
-                    dom: document.querySelector('.j_banner'),
-                    needTab: true,
-                    auto : false
+                $.each(_banners,function(i,item){
+                    if(!item['data-init']){
+                        Slide.createNew({
+                            dom: item,
+                            needTab: true,
+                            auto : false
+                        });
+                        item['data-init'] = true;
+                    }
                 });
             }
         },
