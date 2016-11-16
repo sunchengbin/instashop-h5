@@ -162,6 +162,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     }
                 };
                 bridge.callHandler('insSocket',_param, function(data) {
+                    alert(bridge);
                     _this.subModel(bridge);
                     return null;
                 });
@@ -206,11 +207,13 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                         wduss : Base.others.getUrlPrem('wduss')
                     }
                 };
+            alert(_req_data);
             Ajax.postJsonp({
                 url :Config.actions.saveTemplate,
                 data : {param:JSON.stringify(_req_data)},
                 type : 'POST',
                 success : function(obj){
+                    alert(obj);
                     if(obj.code == 200){
                         _this.closeLoading(bridge);
                     }else{
@@ -251,7 +254,6 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
         registerFn : function(bridge){//对native内容监控
             var _this = this;
             bridge.registerHandler('registerSocket', function(data, responseCallback) {
-                alert(data);
                 _this.insertModel(JSON.parse(data),function(obj){
                     responseCallback(obj);
                 });
@@ -263,10 +265,15 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 _index = Number(data.result.index),
                 _new_model = _this.createModelHtm(_arr);
             if(data.param.param.data.length > 0){//如果是编辑
-                _this.model_data[_index] = data.result;//修改数据
-                $('.j_model_box').eq(_index-1).remove();
-                $('.j_insert_model').eq(_index-1).remove();
-                $('.j_insert_model').eq(_index-1).before(_new_model);
+                if(data.param.param.type != 'edit_signage'){
+                    _this.model_data[_index] = data.result;//修改数据
+                    $('.j_model_box').eq(_index-1).remove();
+                    $('.j_insert_model').eq(_index-1).remove();
+                    $('.j_insert_model').eq(_index-1).before(_new_model);
+                }else{
+                    _this.model_data[0] = data.result;//修改数据
+                    $('.j_shop_bg').attr('src',data.result.data[0].front_cover);
+                }
             }else{//新建
                 _this.model_data.splice(_index+1,0,data.result);
                 $('.j_insert_model').eq(_index).before(_new_model);
@@ -292,7 +299,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             });
         },
         createInsertHtm : function(){
-            return '<div class="insert-box j_insert_model"><button class="handle-btn insert-btn">Insert ad rotation</button></div>'
+            return '<div class="insert-box j_insert_model"><button class="handle-btn insert-btn">Sisipkan</button></div>'
         },
         defaultItemsHtm : function(){
             var _this = this;
