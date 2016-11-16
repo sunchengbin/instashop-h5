@@ -162,8 +162,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     }
                 };
                 bridge.callHandler('insSocket',_param, function(data) {
-                    alert(bridge);
-                    _this.subModel(bridge);
+
                     return null;
                 });
                 //_this.subModel(bridge);
@@ -215,9 +214,9 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 success : function(obj){
                     alert(obj);
                     if(obj.code == 200){
-                        _this.closeLoading(bridge);
+                        _this.closeLoading(bridge,'success');
                     }else{
-                        _this.closeLoading(bridge,function(){
+                        _this.closeLoading(bridge,'error',function(){
                             Dialog.tip({
                                 top_txt : '',//可以是html
                                 body_txt : '<p class="dialog-body-p">'+obj.message+'</p>'
@@ -226,7 +225,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     }
                 },
                 error : function(error){
-                    _this.closeLoading(bridge,function(){
+                    _this.closeLoading(bridge,'error',function(){
                         Dialog.alert({
                             top_txt : '',//可以是html
                             cfb_txt:Lang.H5_FRESHEN,
@@ -239,7 +238,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 }
             });
         },
-        closeLoading : function(bridge,callback){//关闭native的loading
+        closeLoading : function(bridge,code,callback){//关闭native的loading
             var _close_param = {
                 param:{
                     type : 'close_model',
@@ -248,15 +247,21 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             };
             bridge.callHandler('insSocket',_close_param, function(response) {
                 callback && callback();
-                return null;
+                return code;
             });
         },
         registerFn : function(bridge){//对native内容监控
             var _this = this;
             bridge.registerHandler('registerSocket', function(data, responseCallback) {
-                _this.insertModel(JSON.parse(data),function(obj){
-                    responseCallback(obj);
-                });
+                if(data != 'done'){
+                    _this.insertModel(JSON.parse(data),function(obj){
+                        responseCallback(obj);
+                    });
+                }else{
+                    alert(bridge);
+                    _this.subModel(bridge);
+                }
+
             });
         },
         insertModel : function(data,callbcak){
