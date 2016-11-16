@@ -115,13 +115,21 @@
                         <i class="icon iconfont icon-news-font"></i>
                         <p>Kontak</p>
                     </a>
-                <div class="clearfix buy-btns have-contact">
+                    {if $INDEX_DATA.item.stock le 0}
+                        <div class="clearfix buy-btns no-buy have-contact">
+                    {else}
+                        <div class="clearfix buy-btns have-contact">
+                    {/if}
                 {else}
                     <a href="{$INDEX_DATA.item.shop.line_url}" class="ser-box fl">
                         <i class="icon iconfont icon-news-font"></i>
                         <p>Kontak</p>
                     </a>
-                <div class="clearfix buy-btns have-contact">
+                    {if $INDEX_DATA.item.stock le 0}
+                        <div class="clearfix buy-btns no-buy have-contact">
+                    {else}
+                        <div class="clearfix buy-btns have-contact">
+                    {/if}
                 {/if}
             {else}
                 {if $INDEX_DATA.item.shop.phone}

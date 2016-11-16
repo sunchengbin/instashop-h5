@@ -71,7 +71,8 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                             action : 'tag',
                             page_size : 10,
                             tag_id : _tag_id,
-                            last_id : _last_id
+                            last_id : _last_id,
+                            havestock : 1
                         }
                     };
                 $(document).on('scroll', function(e) {
@@ -80,7 +81,7 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                         _bh = $(document).height();
                     if ((_st + _wh > _bh - 200) && getData) {
                         getData = false;
-                        Ajax.getJsonp(Config.host.actionUrl+Config.actions.shopList+init_data.tag.seller_id+'/items?param='+JSON.stringify(reqData),function(obj){
+                        Ajax.getJsonp(Config.host.actionUrl+Config.actions.sortAction+_tag_id+'/items?param='+JSON.stringify(reqData),function(obj){
                             if(obj.code == 200){
                                 var _list = obj.item_list.list,
                                     _last_id = _list.length?_list[(_list.length-1)].id:null;
