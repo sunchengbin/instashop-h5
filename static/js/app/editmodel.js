@@ -12,13 +12,13 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     type: 'edit_signage',
                     data: [init_data.shop]
                 }
-                //},
+                //,
                 //{
                 //    index : 0,
                 //    title : 'static-banner',
                 //    type : 'static_banner',
                 //    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
-                //},
+                //}
                 //,{
                 //    index : 0,
                 //    title : 'rotate_banner',
@@ -30,26 +30,26 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 //    title : 'rotate_banner',
                 //    type : 'rotate_banner',
                 //    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
-                //}
+                //},
                 //{
                 //    index : 0,
                 //    title : 'two_list_banner',
                 //    type : 'two_list_banner',
                 //    data : [{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''},{img:'http://imghk0.geilicdn.com/test_instashop40732-1474882279724-1.jpg?w=420&h=315&cp=1',link_url:''}]
-                //},
+                //}
                 //,{
                 //    index : 1,
                 //    title : 'img_navigation',
                 //    type : 'img_navigation',
                 //    data : [{img : 'http://imghk0.geilicdn.com/test_instashop40732-1474529254204-1.jpg',navigation_name:'sfdsf',link_url:''}]
-                //}
+                //},
                 //{
                 //    index : 0,
                 //    title : 'text_navigation',
                 //    type : 'text_navigation',
                 //    data : [{navigation_name:'sfs',link_url:''}]
-                //},
-                //{
+                //}
+                //,{
                 //    index : 0,
                 //    type : 'two_li_items',
                 //    title : 'two_li_items',
@@ -74,7 +74,6 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             Insjs.WebOnReady(function(bridge){
                 _this.handelFn(bridge);
             },function(){
-                //alert(2)
                 _this.handelFn();
             });
         },
@@ -155,6 +154,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 //todo 数据前移
             });
             $('body').on('click','.j_submit_btn',function(){
+                _this.subModel(bridge);
                 var _param = {
                     param:{
                         type:'show_loading',
@@ -210,32 +210,14 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 type : 'POST',
                 success : function(obj){
                     alert(JSON.stringify(obj));
-                    if(obj.code == 200){
-                        _this.closeLoading(bridge,'success');
-                    }else{
-                        _this.closeLoading(bridge,'error',function(){
-                            Dialog.tip({
-                                top_txt : '',//可以是html
-                                body_txt : '<p class="dialog-body-p">'+obj.message+'</p>'
-                            });
-                        });
-                    }
+                    _this.closeLoading(bridge,obj);
                 },
                 error : function(error){
-                    _this.closeLoading(bridge,'error',function(){
-                        Dialog.alert({
-                            top_txt : '',//可以是html
-                            cfb_txt:Lang.H5_FRESHEN,
-                            body_txt : '<p class="dialog-body-p">'+Lang.H5_ERROR+'</p>',
-                            cf_fn : function(){
-                                location.reload();
-                            }
-                        });
-                    });
+                    _this.closeLoading(bridge,{code:'error',message:Lang.H5_ORDER_TIMEOUT_ERROR});
                 }
             });
         },
-        closeLoading : function(bridge,code,callback){//关闭native的loading
+        closeLoading : function(bridge,code){//关闭native的loading
             var _close_param = {
                 param:{
                     type : 'close_model',
@@ -243,7 +225,6 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 }
             };
             bridge.callHandler('insSocket',_close_param, function(response) {
-                callback && callback();
                 return null;
             });
         },

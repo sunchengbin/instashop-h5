@@ -2,7 +2,7 @@
 @import "../moudle/app/header/header.css";
 @import "../moudle/app/common/common.css";
 @import "../moudle/app/contact/contact.css";
-@import "../moudle/app/itemlist/itemlist.css";
+@import "../moudle/app/model/model.css";
 body{
     color: #666;
     background-color: #ececec;
@@ -147,8 +147,11 @@ section{
     width: 100%;
     overflow-x: hidden;
 }
-.items-box:first-child{
-    margin-top:.5rem;
+/*.items-box:first-child{*/
+    /*margin-top:.5rem;*/
+/*}*/
+.items-box{
+    margin-top:1rem;
 }
 /*店铺被禁*/
 .shop-delete{
@@ -389,4 +392,15 @@ footer .btn i{
 }
 .index-btn-box a {
     color:#ffffff;
+}
+
+/*模板样式*/
+.model-box{
+    margin-top:1rem;
+}
+.model-box .banner-box{
+    margin-top: 0;
+}
+.two-list-banner{
+    background-color: transparent;
 }

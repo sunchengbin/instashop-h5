@@ -148,7 +148,7 @@ section{
     display: inline-block;
     position: relative;
     min-width: 5rem;
-    padding: 0;
+    padding: 0 .5rem;
     float: left;
 }
 .model-btns :not(:first-child)::after{
@@ -157,6 +157,7 @@ section{
     position: absolute;
     top: -50%;
     bottom: -50%;
+    left: 0;
     width: 1px;
     content: '';
     -webkit-transform: scale(0.5);

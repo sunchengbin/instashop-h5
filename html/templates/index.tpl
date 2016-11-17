@@ -45,20 +45,7 @@
         <p><i class="icon iconfont j_down_btn down-btn"></i></p>
     </div>
 </section>
-{if $INDEX_DATA.shop.banners}
-<div class="banner-box">
-    <ul class="item-banner j_banner clearfix">
-        {foreach $INDEX_DATA.shop.banners as $banner}
-        {if $banner.href}
-        <li class=""><a class="block" href="{$banner.href}"><img data-img="{$banner.url|format_img}" src=""/></a></li>
-        {else}
-        <li class=""><a class="block" href="javascript:;"><img data-img="{$banner.url|format_img}" src=""/></a></li>
-        {/if}
 
-        {/foreach}
-    </ul>
-</div>
-{/if}
 {include file="model.tpl" title="my template model"}
 <div class="item-list-wraper">
     {if !$INDEX_DATA.item_list.list|@count}

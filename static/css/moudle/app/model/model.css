@@ -60,7 +60,7 @@
 }
 .nav-img-ul a{
     box-sizing: border-box;
-    padding: 1rem;
+    padding: 0 1rem 1rem;
     color: #666;
 }
 .nav-img-ul .lazy::after{
