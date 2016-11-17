@@ -289,6 +289,8 @@ body{
 .index-btn-box {
     padding:0 2.5rem;
     margin:2.5rem 0 2rem;
+    position: relative;
+    z-index: 100;
 }
 .index-btn-box .btn {
     font-size:1.6rem;
