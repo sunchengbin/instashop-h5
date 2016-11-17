@@ -275,7 +275,8 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
         createModelBtnHtm : function(opts){
             return Hbs.compile(ModelBtns)({
                 notmove : opts.notmove,
-                type : opts.type
+                type : opts.type,
+                lang : Lang
             });
         },
         createInsertHtm : function(){
