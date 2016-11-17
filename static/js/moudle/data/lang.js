@@ -165,6 +165,16 @@ define([],function(){
         },
 
         id : {
+            //插入模块
+            'H5_INSERT_MODEL' : 'Sisipkan',//文案标红
+            //编辑
+            'H5_EDIT':'Ubah',
+            //上移
+            'H5_MOVE_UP':'Pindah ke Atas',//文案标红
+            //删除
+            'H5_DELETE':'Hapus',
+            //应用到店铺
+            'H5_APPLY_MODEL':'Gunakan ke Tokomu',
             //商品描述
             'H5_MODELTYPE_GOOD_DESC':'Deskripsi Produk',
             //图片广告
