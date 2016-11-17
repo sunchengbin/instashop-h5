@@ -231,6 +231,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
         registerFn : function(bridge){//对native内容监控
             var _this = this;
             bridge.registerHandler('registerSocket', function(data, responseCallback) {
+                alert(data)
                 if(data != 'done'){
                     _this.insertModel(JSON.parse(data),function(obj){
                         responseCallback(obj);
