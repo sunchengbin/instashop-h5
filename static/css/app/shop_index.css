@@ -403,4 +403,13 @@ footer .btn i{
 }
 .two-list-banner{
     background-color: transparent;
+    padding:0 1rem;
+    margin-bottom:-1rem;
+}
+.one-item-box .items-list li{
+    padding:0 1rem;
+}
+.banner-wraper{
+    background-color: transparent;
+    padding:0 1rem;
 }

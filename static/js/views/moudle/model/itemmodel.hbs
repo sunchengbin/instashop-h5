@@ -6,7 +6,9 @@
             <section class="items-box model-box j_model_box">
         {{/if}}
             {{{btns}}}
+            {{#if data.title}}
             <p class="item-title b-bottom"><span></span>{{data.title}}</p>
+            {{/if}}
             <ul class="items-list clearfix j_item_list">
                 {{#tagItemList data.data}}{{/tagItemList}}
             </ul>
@@ -15,7 +17,9 @@
     {{#eq type 'bigitem'}}
         <section class="one-item-box j_model_box">
             {{{btns}}}
-            <p class="item-title b-bottom"><span></span>{{data.title}}</p>
+            {{#if data.title}}
+                <p class="item-title b-bottom"><span></span>{{data.title}}</p>
+            {{/if}}
             <ul class="items-list clearfix j_item_list">
                 {{#tagItemList data.data}}{{/tagItemList}}
             </ul>
@@ -24,7 +28,9 @@
     {{#eq type 'listitem'}}
         <section class="item-list-box j_model_box">
             {{{btns}}}
-            <p class="item-title b-bottom"><span></span>{{data.title}}</p>
+            {{#if data.title}}
+                <p class="item-title b-bottom"><span></span>{{data.title}}</p>
+            {{/if}}
             <ul class="">
                 {{#itemlist data.data}}{{/itemlist}}
             </ul>

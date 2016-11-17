@@ -1,6 +1,8 @@
 <section class="navigation-box j_model_box">
     {{{btns}}}
-    <p class="item-title b-bottom"><span></span>{{data.title}}</p>
+    {{#if data.title}}
+        <p class="item-title b-bottom"><span></span>{{data.title}}</p>
+    {{/if}}
     {{#eq type 'text'}}
         <ul class="nav-text-ul">
         {{#each data.data}}

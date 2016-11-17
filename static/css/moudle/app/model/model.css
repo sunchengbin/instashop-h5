@@ -88,9 +88,14 @@
     text-align: center;
 }
 /*banner类模板样式*/
+.two-list-box{
+    padding-top:1rem;
+}
 .two-list-box li{
-    max-width: 50%;
+    width: 50%;
     box-sizing: border-box;
+    float: left;
+    margin-bottom:1rem;
 }
 .two-list-box .lazy::after{
     display: block;

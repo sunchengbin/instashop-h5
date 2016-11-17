@@ -154,7 +154,6 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 //todo 数据前移
             });
             $('body').on('click','.j_submit_btn',function(){
-                //_this.subModel(bridge);
                 var _param = {
                     param:{
                         type:'show_loading',
@@ -209,7 +208,6 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 data : {param:JSON.stringify(_req_data)},
                 type : 'POST',
                 success : function(obj){
-                    alert(JSON.stringify(obj));
                     _this.closeLoading(bridge,obj);
                 },
                 error : function(error){
@@ -231,12 +229,11 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
         registerFn : function(bridge){//对native内容监控
             var _this = this;
             bridge.registerHandler('registerSocket', function(data, responseCallback) {
-                alert(data)
                 if(data != 'done'){
                     _this.insertModel(JSON.parse(data),function(obj){
                         responseCallback(obj);
                     });
-                }else{
+                }else{//如果返回done说明native的loading已经弹出,直接提交数据
                     _this.subModel(bridge);
                 }
 
@@ -272,7 +269,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 _html = '';
             _html+= _this.createModelHtm(_this.model_data)
                 +_this.defaultItemsHtm()
-                +'<button class="j_submit_btn sub-btn b-top">Applications to shop</button>';
+                +'<button class="j_submit_btn sub-btn b-top">Gunakan ke Tokomu</button>';
             $('body').prepend(_html);
         },
         createModelBtnHtm : function(opts){
