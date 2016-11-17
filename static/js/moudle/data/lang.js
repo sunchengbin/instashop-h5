@@ -139,7 +139,6 @@ define([],function(){
             H5_INDEX_NO_GOOD:'没有商品',
             H5_SUNMITING:'提交...',
             H5_ADVICE_FILL:'邮编，选填，建议填写',
-
             H5_MODELTYPE_AD_IMG:"图片广告",
             H5_MODELTYPE_NAVIGATION:"导航",
             H5_MODELTYPE_RECOMMENDED:"推荐商品",
@@ -157,7 +156,12 @@ define([],function(){
             H5_MODELTYPE_TYPE_TWOCOLUMN:"两列式",
             H5_MODELTYPE_TYPE_BIGIMG:"大图式",
             H5_MODELTYPE_TYPE_LIST:"列表式",
-            H5_MODELTYPE_GOOD_DESC:"商品描述"
+            H5_MODELTYPE_GOOD_DESC:"商品描述",
+            H5_INSERT_MODEL : '插入模块',
+            H5_EDIT:'编辑',
+            H5_MOVE_UP:'上移',
+            H5_DELETE:'删除',
+            H5_APPLY_MODEL:'应用到店铺'
         },
 
         id : {
@@ -427,7 +431,12 @@ define([],function(){
             H5_PRICE_MUST_NUM:'Jumlah transfer harus lebih besar dari 0',
             H5_SUBMIT_SUCCESS:'Pengajuan Berhasil',
             H5_INDEX_NO_GOOD:'Belum ada produk',
-            H5_SUNMITING:'Ajukan...'
+            H5_SUNMITING:'Ajukan...',
+            H5_INSERT_MODEL : 'Sisipkan',
+            H5_EDIT:'Ubah',
+            H5_DELETE:'Hapus',
+            H5_MOVE_UP:'Pindah ke Atas',
+            H5_APPLY_MODEL:'Gunakan ke Tokomu'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );
