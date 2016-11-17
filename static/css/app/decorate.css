@@ -211,6 +211,21 @@ html,body {
     display: block;
     margin-top:4.5rem;
 }
+
+@media screen and (min-width: 320px) {
+    .imageads-3 div {
+        width: 9.5rem;
+        height:9.5rem;
+    }
+    .imageads-3 div span {
+        display: block;
+        margin-top:3.5rem;
+    }
+}
+
+#navigation {
+    display: none;
+}
 .navigation-1 {
     border-top: 1rem solid #ffffff;
     border-bottom: 1rem solid #ffffff;
@@ -259,6 +274,9 @@ html,body {
     border-bottom: 1px solid #d8d8d8;
     z-index: 1;
 }
+#recommended {
+    display: none;
+}
 .recommended-1-img {
     width: 10.5rem;
     height: 10.5rem;
@@ -278,6 +296,17 @@ html,body {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
+
+@media screen and (min-width: 320px) {
+    .recommended-1-img {
+        width: 9.5rem;
+        height:9.5rem;
+    }
+    .recommended-1-desc,.recommended-1-price{
+        width: 9.5rem;
+    }
+}
+
 .recommended-2 {
 
 }
