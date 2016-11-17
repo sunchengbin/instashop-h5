@@ -138,11 +138,66 @@ define([],function(){
             H5_SUBMIT_SUCCESS:'提交成功',
             H5_INDEX_NO_GOOD:'没有商品',
             H5_SUNMITING:'提交...',
-            H5_ADVICE_FILL:'邮编，选填，建议填写'
+            H5_ADVICE_FILL:'邮编，选填，建议填写',
 
+            H5_MODELTYPE_AD_IMG:"图片广告",
+            H5_MODELTYPE_NAVIGATION:"导航",
+            H5_MODELTYPE_RECOMMENDED:"推荐商品",
+            H5_MODELTYPE_AD_NORMAL:"普通广告",
+            H5_MODELTYPE_AD_SLIDE:"轮播广告",
+            H5_MODELTYPE_TWOCOLUMNAD:"两列广告",
+            H5_MODELTYPE_RECOMMENDED_EDITOR:"编辑推荐商品",
+            H5_MODELTYPE_SIZE_UNLIMIT:"不限制图片比例",
+            H5_MODELTYPE_SIZE_43:"图片比例4:3",
+            H5_MODELTYPE_NAV_IMGTEXT:"图文导航",
+            H5_MODELTYPE_NAV_TXT:"文字导航",
+            H5_MODELTYPE_NAV_TITLE:"导航标题",
+            H5_MODELTYPE_OP_ADD_NAVLINK:"添加导航链接",
+            H5_MODELTYPE_TIP_ADD_IMG:"请添加图片",
+            H5_MODELTYPE_TYPE_TWOCOLUMN:"两列式",
+            H5_MODELTYPE_TYPE_BIGIMG:"大图式",
+            H5_MODELTYPE_TYPE_LIST:"列表式",
+            H5_MODELTYPE_GOOD_DESC:"商品描述"
         },
 
         id : {
+            //商品描述
+            'H5_MODELTYPE_GOOD_DESC':'Deskripsi Produk',
+            //图片广告
+            'H5_MODELTYPE_AD_IMG':'Banner',
+            //导航
+            'H5_MODELTYPE_NAVIGATION':'Menu',
+            //推荐商品
+            'H5_MODELTYPE_RECOMMENDED':'Display Produk',
+            //普通广告
+            'H5_MODELTYPE_AD_NORMAL':'Banner Standar',
+            //轮播广告
+            'H5_MODELTYPE_AD_SLIDE':'Banner Bergerak',
+            //两列广告
+            'H5_MODELTYPE_TWOCOLUMNAD':'Banner Dua Kolom',
+            //编辑推荐商品
+            'H5_MODELTYPE_RECOMMENDED_EDITOR':'Ubah',
+            //不限制图片比例
+            'H5_MODELTYPE_SIZE_UNLIMIT':'Ukuran gambar tidak ditentukan',
+            //图片比例4:3
+            'H5_MODELTYPE_SIZE_43':'Ukuran gambar harus 4:3',
+            //图文导航
+            'H5_MODELTYPE_NAV_IMGTEXT':'Menu Gambar',
+            //文字导航
+            'H5_MODELTYPE_NAV_TXT':'Menu Tulisan',
+            //导航标题
+            'H5_MODELTYPE_NAV_TITLE':'Judul Menu',
+            //添加导航链接
+            'H5_MODELTYPE_OP_ADD_NAVLINK':'Tambahkan Link Menu',
+            //请添加图片
+            'H5_MODELTYPE_TIP_ADD_IMG':'Tambah Gambar',
+            //两列式
+            'H5_MODELTYPE_TYPE_TWOCOLUMN':'Tampilan Dua Kolom',
+            //大图式
+            'H5_MODELTYPE_TYPE_BIGIMG':'Tampilan Satu Kolom',
+            //列表式
+            'H5_MODELTYPE_TYPE_LIST':'Tampilan Baris',
+
             //选填 建议填写
             'H5_ADVICE_FILL':'Kode Pos, Pilih, Sebaiknya diisi',
             // 收货地址

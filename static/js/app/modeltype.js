@@ -2,10 +2,14 @@
  * Created by sunchengbin on 2016/11/11.
  * 选择模块类型
  */
-require(['base','insjs','fastclick','config'],function(Base,Insjs,FastClick,Config){
+require(['base','hbs','text!views/app/modeltype.hbs','insjs','fastclick','config','lang'],function(Base,Hbs,Modeltype,Insjs,FastClick,Config,Lang){
     var ModelType = {
         init : function(){
-            var _this = this;
+            var _this = this,
+                _htm= Hbs.compile(Modeltype)({
+                    lang:Lang
+                });
+            $('body').prepend(_htm);
             Insjs.WebOnReady(function(bridge){
                 _this.handelFn(bridge);
             },function(){
