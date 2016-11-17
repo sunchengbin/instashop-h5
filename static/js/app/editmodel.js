@@ -269,7 +269,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 _html = '';
             _html+= _this.createModelHtm(_this.model_data)
                 +_this.defaultItemsHtm()
-                +'<button class="j_submit_btn sub-btn b-top">Gunakan ke Tokomu</button>';
+                +'<button class="j_submit_btn sub-btn b-top">'+Lang.H5_APPLY_MODEL+'</button>';
             $('body').prepend(_html);
         },
         createModelBtnHtm : function(opts){
@@ -279,7 +279,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             });
         },
         createInsertHtm : function(){
-            return '<div class="insert-box j_insert_model"><button class="handle-btn insert-btn">Sisipkan</button></div>'
+            return '<div class="insert-box j_insert_model"><button class="handle-btn insert-btn">'+Lang.H5_INSERT_MODEL+'</button></div>'
         },
         defaultItemsHtm : function(){
             var _this = this;
@@ -361,7 +361,8 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
         },
         createSignageHtm : function(data){
             return Hbs.compile(SignageHtm)({
-                data : data
+                data : data,
+                lang:Lang
             });
         },
         staticBannerHtm : function(opts){
