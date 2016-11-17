@@ -4,7 +4,7 @@
         {elseif $model.type eq 'static_banner'}
         <section class="banner-wraper model-box j_model_box">
             <div class="banner-box">
-                <ul class="item-banner clearfix">
+                <ul class="item-banner static-banner clearfix">
                     {foreach $model.data as $banner}
                         <li class=""><a class="block" href="{$banner.link_url}"><img data-img="{$banner.img}"/></a></li>
                     {/foreach}
@@ -54,7 +54,7 @@
             {if $model.title}
             <p class="item-title b-bottom"><span></span>{$model.title}</p>
             {/if}
-            <ul class="nav-text-ul" flex="box:mean">
+            <ul class="nav-text-ul">
                 {foreach $model.data as $navigation}
                     <li class="b-top">
                         <a class="block clearfix" href="{$navigation.link_url}">

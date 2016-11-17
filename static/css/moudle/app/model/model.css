@@ -117,3 +117,9 @@
 .two-list-box li:nth-child(even){
     padding-left: .85rem;
 }
+.static-banner li:not(:first-child){
+    margin-top:1rem;
+}
+.banner-wraper{
+    background-color: transparent;
+}

@@ -6,6 +6,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
     var EditModel = {
         init : function(){
             var _this = this;
+            _this.is_edit = true;//native是否可以回退
             _this.model_data = init_data.template.length>0?init_data.template:[
                 {
                     index: 0,
@@ -86,6 +87,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             _this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
+                _this.setIsEdited();
                 var _dom = $(this),
                     _index = $('.j_insert_model').index(_dom);
                 var _param = {
@@ -102,6 +104,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 });
             });
             $('body').on('click','.j_edit_model',function(){
+                _this.setIsEdited();
                 var _dom = $(this),
                     _index = $('.j_edit_model').index(_dom),
                     _type = _dom.attr('data-type'),
@@ -128,6 +131,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 Dialog.confirm({
                     cover_event : true,
                     cf_fn : function(){
+                        _this.setIsEdited();
                         _model.remove();
                         _insert_dom.remove();
                         _this.model_data.splice(_index,1);
@@ -137,6 +141,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 });
             });
             $('body').on('click','.j_moveup_model',function(){
+                _this.setIsEdited();
                 var _dom = $(this),
                     _model = _dom.parents('.j_model_box'),
                     _index = Number($('.j_moveup_model').index(_dom)),
@@ -164,6 +169,9 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     return null;
                 });
             });
+        },
+        setIsEdited : function(){
+            this.is_edit = false;
         },
         reloadOperateBtns : function(){
             this.initRotateBanner();
@@ -230,9 +238,15 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             var _this = this;
             bridge.registerHandler('registerSocket', function(data, responseCallback) {
                 if(data != 'done'){
-                    _this.insertModel(JSON.parse(data),function(obj){
-                        responseCallback(obj);
-                    });
+                    if(data == 'back'){
+                        bridge.callHandler('insSocket',{type:'go_back',param:_this.is_edit}, function(response) {
+                            return null;
+                        });
+                    }else{
+                        _this.insertModel(JSON.parse(data),function(obj){
+                            responseCallback(obj);
+                        });
+                    }
                 }else{//如果返回done说明native的loading已经弹出,直接提交数据
                     _this.subModel(bridge);
                 }
