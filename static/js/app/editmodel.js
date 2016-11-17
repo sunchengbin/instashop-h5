@@ -239,7 +239,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             bridge.registerHandler('registerSocket', function(data, responseCallback) {
                 if(data != 'done'){
                     if(data == 'back'){
-                        bridge.callHandler('insSocket',{type:'go_back',param:_this.is_edit}, function(response) {
+                        bridge.callHandler('insSocket',{type:'go_back',param:{param:_this.is_edit}}, function(response) {
                             return null;
                         });
                     }else{
