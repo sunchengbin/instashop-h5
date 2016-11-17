@@ -22,8 +22,8 @@
             </div>
         </section>
         {elseif $model.type eq 'two_list_banner'}
-        <section class="banner-wraper two-list-banner model-box j_model_box">
-            <ul class="two-list-box" flex="box:mean">
+        <section class="banner-wraper two-list-banner j_model_box">
+            <ul class="two-list-box clearfix">
                 {foreach $model.data as $banner}
                     <li>
                         <a class="block" href="{$banner.link_url}">
@@ -35,7 +35,9 @@
         </section>
         {elseif $model.type eq 'img_navigation'}
         <section class="navigation-box model-box j_model_box">
+            {if $model.title}
             <p class="item-title b-bottom"><span></span>{$model.title}</p>
+            {/if}
             <ul class="nav-img-ul" flex="box:mean">
                 {foreach $model.data as $navigation}
                     <li class="">
@@ -49,7 +51,9 @@
         </section>
         {elseif $model.type eq 'text_navigation'}
         <section class="navigation-box model-box j_model_box">
+            {if $model.title}
             <p class="item-title b-bottom"><span></span>{$model.title}</p>
+            {/if}
             <ul class="nav-text-ul" flex="box:mean">
                 {foreach $model.data as $navigation}
                     <li class="b-top">
@@ -63,7 +67,9 @@
         </section>
         {elseif $model.type eq 'two_li_items'}
         <section class="items-box model-box j_model_box">
-            <p class="item-title b-bottom"><span></span>{$model.title}</p>
+             {if $model.title}
+             <p class="item-title b-bottom"><span></span>{$model.title}</p>
+             {/if}
             <ul class="items-list clearfix">
                 {foreach $model.data as $item}
                     <li>
@@ -103,7 +109,9 @@
         </section>
         {elseif $model.type eq 'big_img_item'}
         <section class="one-item-box model-box j_model_box">
+            {if $model.title neq ''}
             <p class="item-title b-bottom"><span></span>{$model.title}</p>
+            {/if}
             <ul class="items-list clearfix">
                 {foreach $model.data as $item}
                     <li>
@@ -143,7 +151,9 @@
         </section>
         {elseif $model.type eq 'list_items'}
         <section class="item-list-box model-box j_model_box">
+            {if $model.title}
             <p class="item-title b-bottom"><span></span>{$model.title}</p>
+            {/if}
             <ul class="">
             {foreach $model.data as $item}
                 <li class="clearfix cart-item">
