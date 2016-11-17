@@ -154,7 +154,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 //todo 数据前移
             });
             $('body').on('click','.j_submit_btn',function(){
-                _this.subModel(bridge);
+                //_this.subModel(bridge);
                 var _param = {
                     param:{
                         type:'show_loading',

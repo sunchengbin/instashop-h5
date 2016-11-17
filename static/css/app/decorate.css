@@ -101,6 +101,12 @@ html,body {
     text-align: center;
     font-size:1rem;
     margin-top:.5rem;
+    display: -webkit-box;
+    word-break: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 #navigation section:nth-child(2) ul>li{
     height: 4.2rem;

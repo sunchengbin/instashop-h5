@@ -20,6 +20,7 @@ section{
     right: 0;
     top: 100px;
     border-radius: 2px 0 0 2px;
+    z-index: 100;
 }
 .shop-header-bg{
     min-height: 100px;
