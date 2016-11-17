@@ -242,7 +242,9 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                         var _param = {
                             param:{
                                 type : 'go_back',
-                                param : _this.is_edit
+                                param : {
+                                    result : _this.is_edit
+                                }
                             }
                         };
                         bridge.callHandler('insSocket',_param, function(response) {
