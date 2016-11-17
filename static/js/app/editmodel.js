@@ -6,7 +6,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
     var EditModel = {
         init : function(){
             var _this = this;
-            _this.is_edit = true;//native是否可以回退
+            _this.is_edit = 0;//native是否可以回退
             _this.model_data = init_data.template.length>0?init_data.template:[
                 {
                     index: 0,
@@ -171,7 +171,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             });
         },
         setIsEdited : function(){
-            this.is_edit = false;
+            this.is_edit = 1;
         },
         reloadOperateBtns : function(){
             this.initRotateBanner();
