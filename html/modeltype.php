@@ -31,53 +31,74 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body>
     <nav class="decorate-sample-tab">
-        <ul class="flex-container">
-            <li class="flex-avg decorate-sample-tab-item decorate-sample-tab-active" data-tabid="imageads">Banner</li>
-            <li class="flex-avg decorate-sample-tab-item" data-tabid="navigation">Menu</li>
-            <li class="flex-avg decorate-sample-tab-item" data-tabid="recommended">Display Produk</li>
+        <ul class="decorate-avg-sm-3">
+            <li class="decorate-sample-tab-item decorate-sample-tab-active" data-tabid="imageads">Banner</li>
+            <li class="decorate-sample-tab-item" data-tabid="navigation">Menu</li>
+            <li class="decorate-sample-tab-item" data-tabid="recommended">Display Produk</li>
         </ul>
     </nav>
-    <div class="decorate-sample-panel">
-        <div class="decorate-sample-panel-content" id="imageads">
+    <div class="">
+        <div class="decorate-sample-panel" id="imageads">
             <section>
                 <p><span>Banner Standar</span></p>
-                <div class="decorate-sample-block flex-container j_model_type" data-type="static_banner">
+                <div class="imageads-1 decorate-sample-block j_model_type" data-type="static_banner">
                     Ukuran gambar tidak ditentukan
                 </div>
             </section>
             <section>
                 <p><span>Banner Bergerak</span></p>
-                <div class="decorate-sample-block flex-container j_model_type" data-type="rotate_banner">Ukuran gambar harus 4:3</div>
+                <div class="imageads-2 decorate-sample-block j_model_type" data-type="rotate_banner">
+                    Ukuran gambar harus 4:3
+                    <div class="imageads-2-slidehander">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </div>
+                </div>
             </section>
             <section>
                 <p><span>Banner Dua Kolom</span></p>
-                <div class="flex-container decorate-sample-items">
-                    <div class="flex-container j_model_type" data-type="two_list_banner">
-                        Ukuran gambar harus 4:3
+                <div class="imageads-3">
+                    <div class="j_model_type" data-type="two_list_banner">
+                        <span>Ukuran gambar harus 4:3</span>
                     </div>
-                    <div class="flex-container j_model_type" data-type="two_list_banner">
-                        Ukuran gambar harus 4:3
+                    <div class="j_model_type pull-right clearfix" data-type="two_list_banner">
+                        <span>Ukuran gambar harus 4:3</span>
                     </div>
                 </div>
             </section>
         </div>
-        <div class="decorate-sample-panel-content" id="navigation">
+        <div class="decorate-sample-panel" id="navigation">
             <section>
                 <p><span>Menu Gambar</span></p>
-                <div class="decorate-sample-block flex-container j_model_type" data-type="img_navigation">
-                    <div class="decorate-sample-navigation-item"></div>
-                    <div class="decorate-sample-navigation-item"></div>
-                    <div class="decorate-sample-navigation-item"></div>
-                    <div class="decorate-sample-navigation-item"></div>
-                    <div class="decorate-sample-navigation-txt">Menu1</div>
-                    <div class="decorate-sample-navigation-txt">Menu2</div>
-                    <div class="decorate-sample-navigation-txt">Menu3</div>
-                    <div class="decorate-sample-navigation-txt">Menu4</div>
+                <div class="navigation-1 decorate-sample-block j_model_type" data-type="img_navigation">
+                    <ul class="decorate-avg-sm-4">
+                        <li>
+                            <div class="navigation-1-img">
+                            </div>
+                            <div class="title navigation-1-title">Menu1</div>
+                        </li>
+                        <li>
+                            <div class="navigation-1-img">
+                            </div>
+                            <div class="title navigation-1-title">Menu2</div>
+                        </li>
+                        <li>
+                            <div class="navigation-1-img">
+                            </div>
+                            <div class="title navigation-1-title">Menu3</div>
+                        </li>
+                        <li>
+                            <div class="navigation-1-img">
+                            </div>
+                            <div class="title navigation-1-title">Menu4</div>
+                        </li>
+                    </ul>
                 </div>
             </section>
             <section>
                 <p><span>Menu Tulisan</span></p>
-                <div class="decorate-sample-block j_model_type" data-type="text_navigation">
+                <div class="navigation-2 decorate-sample-block j_model_type" data-type="text_navigation">
                     <ul>
                         <li>Menu1</li>
                         <li>Menu2</li>
@@ -86,58 +107,51 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
                 </div>
             </section>
         </div>
-        <div class="decorate-sample-panel-content" id="recommended">
+        <div class="decorate-sample-panel" id="recommended">
             <section>
-                <p><span>Tampilan Dua Kolom</span></p>
-                <div class="decorate-sample-block j_model_type" data-type="two_li_items">
-                    <ul class="items-list flex-container">
+                <p><span>Two-column type</span></p>
+                <div class="decorate-sample-block recommended-1 j_model_type" data-type="two_li_items">
+                    <ul class="decorate-avg-sm-2">
                         <li>
-                            <div class="item-info j_item_info" href="javascript:;">
-                                <div class="lazy">
-                                </div>
-                                <p class="title">Deskripsi Produk</p>
-                                <p class="price">Rp 50.000</p>
-                            </div>
+                            <div class="recommended-1-img pull-left"></div>
+                            <div class="title recommended-1-desc">Deskripsi Produk</div>
+                            <div class="price recommended-1-price">Rp 50.000</div>
                         </li>
                         <li>
-                            <div class="item-info j_item_info" href="javascript:;">
-                                <div class="lazy">
-                                </div>
-                                <p class="title">Deskripsi Produk</p>
-                                <p class="price">Rp 50.000</p>
-                            </div>
+                            <div class="recommended-1-img pull-right"></div>
+                            <div class="title recommended-1-desc pull-right">Deskripsi Produk</div>
+                            <div class="price recommended-1-price pull-right">Rp 50.000</div>
                         </li>
-
                     </ul>
                 </div>
             </section>
             <section>
                 <p><span>Tampilan Satu Kolom</span></p>
-                <div class="decorate-sample-block flex-container j_model_type" data-type="big_img_item">
-                    <div>
+                <div class="recommended-2 decorate-sample-block j_model_type" data-type="big_img_item">
+                    <div class="recommended-2-img">
                     </div>
-                    <p class="title">Deskripsi Produk</p>
-                    <p class="price">Rp 50.000</p>
+                    <div class="title recommended-2-title">Deskripsi Produk</div>
+                    <div class="price recommended-2-price">Rp 50.000</div>
                 </div>
             </section>
             <section>
                 <p><span>Tampilan Baris</span></p>
-                <div class="decorate-sample-block j_model_type" data-type="list_items">
-                    <ul class="items-list">
-                        <li>
-                            <div class="item-info j_item_info"  href="javascript:;">
+                <div class="recommended-3 decorate-sample-block j_model_type" data-type="list_items">
+                    <ul class="">
+                        <li class="clearfix">
+                            <div class="recommended-3-img pull-left j_item_info" href="javascript:;">
                             </div>
-                            <div>
-                                <p class="title">Deskripsi Produk</p>
-                                <p class="price">Rp 50.000</p>
+                            <div class="recommended-3-desc">
+                                <div class="title">Deskripsi Produk</div>
+                                <div class="price">Rp 50.000</div>
                             </div>
                         </li>
-                        <li>
-                            <div class="item-info j_item_info"  href="javascript:;">
+                        <li class="clearfix">
+                            <div class="recommended-3-img pull-left j_item_info" href="javascript:;">
                             </div>
-                            <div>
-                                <p class="title">Deskripsi Produk</p>
-                                <p class="price">Rp 50.000</p>
+                            <div class="recommended-3-desc">
+                                <div class="title">Deskripsi Produk</div>
+                                <div class="price">Rp 50.000</div>
                             </div>
                         </li>
                     </ul>

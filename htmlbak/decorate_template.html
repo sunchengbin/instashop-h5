@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
@@ -11,115 +12,127 @@
 </head>
 <body>
 <nav class="decorate-sample-tab">
-    <ul class="flex-container">
-        <li class="flex-avg decorate-sample-tab-item decorate-sample-tab-active" data-tabid="imageads">Image ads</li>
-        <li class="flex-avg decorate-sample-tab-item" data-tabid="navigation">navigation</li>
-        <li class="flex-avg decorate-sample-tab-item" data-tabid="recommended">Recommended</li>
+    <ul class="decorate-avg-sm-3">
+        <li class="decorate-sample-tab-item decorate-sample-tab-active" data-tabid="imageads">Image ads</li>
+        <li class="decorate-sample-tab-item" data-tabid="navigation">navigation</li>
+        <li class="decorate-sample-tab-item" data-tabid="recommended">Recommended</li>
     </ul>
 </nav>
-<div class="decorate-sample-panel">
-    <div class="decorate-sample-panel-content" id="imageads">
+<div class="">
+    <div class="decorate-sample-panel" id="imageads">
         <section>
-            <p><span>Image ads</span></p>
-            <div class="decorate-sample-block flex-container">
-                The picture scale is not limited
+            <p><span>Banner Standar</span></p>
+            <div class="imageads-1 decorate-sample-block j_model_type" data-type="static_banner">
+                Ukuran gambar tidak ditentukan
             </div>
         </section>
         <section>
-            <p><span>Rotate ads</span></p>
-            <div class="decorate-sample-block flex-container">The picture scale is not limited</div>
+            <p><span>Banner Bergerak</span></p>
+            <div class="imageads-2 decorate-sample-block j_model_type" data-type="rotate_banner">
+                Ukuran gambar harus 4:3
+                <div class="imageads-2-slidehander">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </div>
+            </div>
         </section>
         <section>
-            <p><span>Two columns of ads</span></p>
-            <div class="flex-container decorate-sample-items">
-                <div class="flex-container">
-                    Picture ratio 1:1
+            <p><span>Banner Dua Kolom</span></p>
+            <div class="imageads-3">
+                <div class="j_model_type" data-type="two_list_banner">
+                    Ukuran gambar harus 4:3
                 </div>
-                <div class="flex-container">
-                    Picture ratio 1:1
+                <div class="j_model_type pull-right clearfix" data-type="two_list_banner">
+                    Ukuran gambar harus 4:3
                 </div>
             </div>
         </section>
     </div>
-    <div class="decorate-sample-panel-content" id="navigation">
+    <div class="decorate-sample-panel" id="navigation">
         <section>
-            <p><span>Image ads</span></p>
-            <div class="decorate-sample-block flex-container">
-                <div class="decorate-sample-navigation-item"></div>
-                <div class="decorate-sample-navigation-item"></div>
-                <div class="decorate-sample-navigation-item"></div>
-                <div class="decorate-sample-navigation-item"></div>
-                <div class="decorate-sample-navigation-txt">Navigation1</div>
-                <div class="decorate-sample-navigation-txt">Navigation2</div>
-                <div class="decorate-sample-navigation-txt">Navigation3</div>
-                <div class="decorate-sample-navigation-txt">Navigation4</div>
+            <p><span>Menu Gambar</span></p>
+            <div class="navigation-1 decorate-sample-block j_model_type" data-type="img_navigation">
+                <ul class="decorate-avg-sm-4">
+                    <li>
+                        <div class="navigation-1-img">
+                        </div>
+                        <div class="title navigation-1-title">Menu1</div>
+                    </li>
+                    <li>
+                        <div class="navigation-1-img">
+                        </div>
+                        <div class="title navigation-1-title">Menu2</div>
+                    </li>
+                    <li>
+                        <div class="navigation-1-img">
+                        </div>
+                        <div class="title navigation-1-title">Menu3</div>
+                    </li>
+                    <li>
+                        <div class="navigation-1-img">
+                        </div>
+                        <div class="title navigation-1-title">Menu4</div>
+                    </li>
+                </ul>
             </div>
         </section>
         <section>
-            <p><span>Rotate ads</span></p>
-            <div class="decorate-sample-block">
+            <p><span>Menu Tulisan</span></p>
+            <div class="navigation-2 decorate-sample-block j_model_type" data-type="text_navigation">
                 <ul>
-                    <li>Navigation1</li>
-                    <li>Navigation2</li>
+                    <li>Menu1</li>
+                    <li>Menu2</li>
                     <li>More...</li>
                 </ul>
             </div>
         </section>
     </div>
-    <div class="decorate-sample-panel-content" id="recommended">
+    <div class="decorate-sample-panel" id="recommended">
         <section>
             <p><span>Two-column type</span></p>
-            <div class="decorate-sample-block">
-                <ul class="items-list flex-container">
+            <div class="decorate-sample-block recommended-1 j_model_type" data-type="two_li_items">
+                <ul class="decorate-avg-sm-2">
                     <li>
-                        <div class="item-info j_item_info" href="javascript:;">
-                            <div class="lazy">
-                            </div>
-                            <p class="title">82金额不我的心的感谢和的的的的的</p>
-                            <p class="price">Rp 352.786</p>
-                        </div>
+                        <div class="recommended-1-img pull-left"></div>
+                        <div class="title recommended-1-desc">Deskripsi Produk</div>
+                        <div class="price recommended-1-price">Rp 50.000</div>
                     </li>
                     <li>
-                        <div class="item-info j_item_info" href="javascript:;">
-                            <div class="lazy">
-                            </div>
-                            <p class="title">82金额不我的心的感谢和的的的的的</p>
-                            <p class="price">Rp 352.786</p>
-                        </div>
+                        <div class="recommended-1-img pull-right"></div>
+                        <div class="title recommended-1-desc pull-right">Deskripsi Produk</div>
+                        <div class="price recommended-1-price pull-right">Rp 50.000</div>
                     </li>
-
                 </ul>
             </div>
         </section>
         <section>
-            <p><span>Gambar besar</span></p>
-            <div class="decorate-sample-block flex-container">
-                <div>
+            <p><span>Tampilan Satu Kolom</span></p>
+            <div class="recommended-2 decorate-sample-block j_model_type" data-type="big_img_item">
+                <div class="recommended-2-img">
                 </div>
-                <p class="title">82金额不我的心的感谢和的的的的的sdfsfsdfsdfsdfsdfsfdfs</p>
-                <p class="price">Rp 352.786</p>
+                <div class="title recommended-2-title">Deskripsi Produk</div>
+                <div class="price recommended-2-price">Rp 50.000</div>
             </div>
         </section>
         <section>
-            <p><span>Jenis daftar</span></p>
-            <div class="decorate-sample-block">
-                <ul class="items-list">
-                    <li>
-                        <div class="item-info j_item_info"  href="javascript:;">
+            <p><span>Tampilan Baris</span></p>
+            <div class="recommended-3 decorate-sample-block j_model_type" data-type="list_items">
+                <ul class="">
+                    <li class="clearfix">
+                        <div class="recommended-3-img pull-left j_item_info" href="javascript:;">
                         </div>
-                        <div>
-                            <p class="title">82金额不我的</p>
-                            <p class="title">asfsdfdffasdfsfdfsfds</p>
-                            <p class="price">Rp 352.786</p>
+                        <div class="recommended-3-desc">
+                            <div class="title">Deskripsi Produk</div>
+                            <div class="price">Rp 50.000</div>
                         </div>
                     </li>
-                    <li>
-                        <div class="item-info j_item_info"  href="javascript:;">
+                    <li class="clearfix">
+                        <div class="recommended-3-img pull-left j_item_info" href="javascript:;">
                         </div>
-                        <div>
-                            <p class="title">82金额不我的</p>
-                            <p class="title">82金额sdfsfsdfsdf不我的</p>
-                            <p class="price">Rp 352.786</p>
+                        <div class="recommended-3-desc">
+                            <div class="title">Deskripsi Produk</div>
+                            <div class="price">Rp 50.000</div>
                         </div>
                     </li>
                 </ul>
@@ -131,45 +144,45 @@
 <script src="../static/js/base/require-zepto.js?v=1466419017429"></script>
 <script src="../static/js/base/require-config.js"></script>
 <script>
-    (function(win,dom){
+    (function (win, dom) {
         var SwitchTap = {
-            init:function(){
+            init: function () {
                 this.bind();
-                this.switchTap(null,"imageads");
+                this.switchTap(null, "imageads");
             },
-            changeId:function(tabid){
-                var _alltab = dom.querySelectorAll(".decorate-sample-panel-content")||[];
-                var _alltabitem = dom.querySelectorAll(".decorate-sample-tab-item")||[];
-                for(var _i = 0;_i<_alltabitem.length;_i++){
-                    _alltabitem[_i].className = _alltabitem[_i].className.replace("decorate-sample-tab-active","");
+            changeId: function (tabid) {
+                var _alltab = dom.querySelectorAll(".decorate-sample-panel") || [];
+                var _alltabitem = dom.querySelectorAll(".decorate-sample-tab-item") || [];
+                for (var _i = 0; _i < _alltabitem.length; _i++) {
+                    _alltabitem[_i].className = _alltabitem[_i].className.replace("decorate-sample-tab-active", "");
                 }
-                for(var _i = 0;_i<_alltab.length;_i++){
+                for (var _i = 0; _i < _alltab.length; _i++) {
                     _alltab[_i].style.display = "none";
                 }
-                dom.querySelector("#"+tabid).style.display = "block";
+                dom.querySelector("#" + tabid).style.display = "block";
             },
-            switchTap:function(event,tabid){
+            switchTap: function (event, tabid) {
                 var ctx = this;
                 var _tabid = "";
-                if(!!event&&event.target){
-                    _tabid = event.target.getAttribute("data-tabid")||"imageads";
+                if (!!event && event.target) {
+                    _tabid = event.target.getAttribute("data-tabid") || "imageads";
                     ctx.changeId(_tabid);
-                    event.target.className = "flex-avg decorate-sample-tab-item decorate-sample-tab-active";
-                }else{
+                    event.target.className = " decorate-sample-tab-item decorate-sample-tab-active";
+                } else {
                     ctx.changeId(tabid);
-                    document.querySelectorAll(".decorate-sample-tab-item")&&(document.querySelectorAll(".decorate-sample-tab-item")[0].className= "flex-avg decorate-sample-tab-item decorate-sample-tab-active")
+                    document.querySelectorAll(".decorate-sample-tab-item") && (document.querySelectorAll(".decorate-sample-tab-item")[0].className = "decorate-sample-tab-item decorate-sample-tab-active")
                 }
 
             },
-            bind:function(){
+            bind: function () {
                 var ctx = this;
-                dom.querySelector(".decorate-sample-tab").addEventListener("click",function(event){
-                        ctx.switchTap(event);
+                dom.querySelector(".decorate-sample-tab").addEventListener("click", function (event) {
+                    ctx.switchTap(event);
                 });
             }
         }
         SwitchTap.init();
-    })(window,document)
+    })(window, document)
 </script>
 </body>
 </html>
