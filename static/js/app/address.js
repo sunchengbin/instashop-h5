@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','dialog','cart','common','validator'],function(Hbs,Addresshtm,City,Config,Lang,Fastclick,Dialog,Cart,Common,Validator){
+require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','dialog','cart','common'],function(Hbs,Addresshtm,City,Config,Lang,Fastclick,Dialog,Cart,Common){
     var Address = {
         init : function(){
             var _this = this,
@@ -112,41 +112,13 @@ require(['hbs','text!views/app/address.hbs','city','config','lang','fastclick','
                     _country = $.trim($('.j_country').html()),
                     _street = $.trim($('.j_street').val()),
                     _post = $.trim($('.j_post').val());
-                    Validator.addBatch([
-                        {target:_name,rules:[{
-                            strategy: 'isNonEmpty',
-                            errorMsg: '请输入内容!'
-                        }]},
-                        {target:_telephone,rules:[{
-                            strategy: 'isNonEmpty',
-                            errorMsg: '请输入内容!'
-                        }]},
-                        {target:_province,rules:[{
-                            strategy: 'isNonEmpty',
-                            errorMsg: Lang.H5_PROVINCE
-                        },{
-                            strategy: 'isEqualPlaceholder',
-                            errorMsg: Lang.H5_PROVINCE
-                        }]},
-                        {target:_city,rules:[{
-                            strategy: 'isNonEmpty',
-                            errorMsg: Lang.H5_CITY
-                        },{
-                            strategy: 'isEqualPlaceholder',
-                            errorMsg: Lang.H5_CITY
-                        }]},
-                        {target:_country,rules:[{
-                            strategy: 'isNonEmpty',
-                            errorMsg: Lang.H5_DISTRICT
-                        },{
-                            strategy: 'isEqualPlaceholder',
-                            errorMsg: Lang.H5_DISTRICT
-                        }]},
-                        {target:_street,rules:[{
-                            strategy: 'isNonEmpty',
-                            errorMsg: Lang.H5_STREET
-                        }]}
-                    ]).start();
+                    if(!_name||!_telephone||!_province||!_city||!_country||!_street||(_province==Lang.H5_PROVINCE)||(_city==Lang.H5_CITY)||(_country==Lang.H5_DISTRICT)){
+                        Dialog.tip({
+                            top_txt : '',//可以是html
+                            body_txt : '<p class="dialog-body-p">'+Lang.H5_MSG_ADDRESS+'</p>'
+                        });
+                        return;
+                    }
                 if(Common.telVerify(_telephone,function(){
                         var _address = {
                             "name": _name,
