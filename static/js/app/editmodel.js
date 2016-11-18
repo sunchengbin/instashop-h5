@@ -152,16 +152,17 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     _model = _dom.parents('.j_model_box'),
                     _index = Number($('.j_moveup_model').index(_dom)),
                     _insert_dom = _model.prev();
-                    _model.remove();
-                    _insert_dom.remove();
                 var _insert_box = $('.insert-box').eq(_index);
                 alert(_model.attr('data-init'));
+                _insert_dom.remove();
                 if(_model.attr('data-init')){//确定是轮播图模块
+                    _model.remove();
                     _insert_box.before(_this.rotateBannerHtm({
                         data : _this.model_data[_index+1],
                         notmove : null
                     }));
                 }else{
+                    _model.remove();
                     _insert_box.before(_insert_dom.clone());
                     _insert_box.before(_model.clone());
                 }
@@ -206,7 +207,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             var _banners = document.querySelectorAll('.j_banner');
             if($('.j_banner').length){
                 $.each(_banners,function(i,item){
-                    if(!item.getAttribute('data-init')){
+                    if(item.getAttribute('data-init') != 1){
                         Slide.createNew({
                             dom: item,
                             needTab: true,
