@@ -291,8 +291,12 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     $('.j_shop_bg').attr('src',data.result.data[0].front_cover);
                 }
             }else{//新建
-                _this.model_data.splice(_index+1,0,data.result);
-                $('.j_insert_model').eq(_index).before(_new_model);
+                alert(data.result.data);
+                alert(data.result.data.length);
+                if(data.result.data.length > 0){//编辑了新数据
+                    _this.model_data.splice(_index+1,0,data.result);
+                    $('.j_insert_model').eq(_index).before(_new_model);
+                }
             }
             console.log(_this.model_data);
             Lazyload();
