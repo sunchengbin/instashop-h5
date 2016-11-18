@@ -269,9 +269,21 @@ html, body {
 #navigation {
     display: none;
 }
-
+.navigation-header {
+    height: 3.5rem;
+    padding-left: 1rem;
+    line-height: 3.5rem;
+    position: relative;
+}
+.navigation-header div {
+    display: inline-block;
+    height: 1rem;
+    width: .5rem;
+    margin-right: .5rem;
+    background: #F6A623;
+    line-height: 1.5rem;
+}
 .navigation-1 {
-    border-top: 1rem solid #ffffff;
     border-bottom: 1rem solid #ffffff;
 }
 
@@ -308,7 +320,7 @@ html, body {
     height: 4.2rem;
     line-height: 4.2rem;
     font-size: 1.5rem;
-    margin: 0 1rem;
+    padding: 0 1rem;
     position: relative;
 }
 
@@ -324,6 +336,20 @@ html, body {
     border-bottom: 1px solid #d8d8d8;
     z-index: 1;
 }
+
+.decorate-border-bottom:after {
+    position: absolute;
+    left: -50%;
+    right: -50%;
+    bottom: 0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
+    z-index: 1;
+}
+
 
 #recommended {
     display: none;
