@@ -155,6 +155,9 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     _model.remove();
                     _insert_dom.remove();
                 var _insert_box = $('.insert-box').eq(_index);
+                if(_model.attr('data-init')){//轮播图的时候去掉初始轮播标识
+                    _model.attr('data-init',false);
+                }
                 _insert_box.before(_insert_dom.clone());
                 _insert_box.before(_model.clone());
                 _this.reloadOperateBtns();
