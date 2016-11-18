@@ -90,6 +90,21 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 alert('not find bridge');
                 return;
             }
+            //提供给native设置回退锁,为了回退的时候
+            (function(bridge){
+                var _param = {
+                    param:{
+                        type : 'go_back',
+                        param : {
+                            type : 'loaded',
+                            result : _this.is_edit
+                        }
+                    }
+                };
+                bridge.callHandler('insSocket',_param, function(response) {
+                    return null;
+                });
+            })(bridge);
             _this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
@@ -257,6 +272,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                             param:{
                                 type : 'go_back',
                                 param : {
+                                    type : 'edit',
                                     result : _this.is_edit
                                 }
                             }
