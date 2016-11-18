@@ -145,6 +145,7 @@ define([],function(){
             H5_MODELTYPE_RECOMMENDED_EDITOR:"编辑推荐商品",
             H5_MODELTYPE_SIZE_UNLIMIT:"不限制图片比例",
             H5_MODELTYPE_SIZE_43:"图片比例4:3",
+            H5_MODELTYPE_SIZE_11:"图片比例1:1",
             H5_MODELTYPE_NAV_IMGTEXT:"图文导航",
             H5_MODELTYPE_NAV_TXT:"文字导航",
             H5_MODELTYPE_NAV_TITLE:"导航标题",
@@ -162,6 +163,8 @@ define([],function(){
         },
 
         id : {
+            //
+            'H5_MODELTYPE_SIZE_11':"Ukuran gambar harus 1:1",
             //商品描述
             'H5_MODELTYPE_GOOD_DESC':'Deskripsi Produk',
             //图片广告
