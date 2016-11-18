@@ -147,11 +147,8 @@ section{
     width: 100%;
     overflow-x: hidden;
 }
-/*.items-box:first-child{*/
-    /*margin-top:.5rem;*/
-/*}*/
-.items-box{
-    margin-top:1rem;
+.items-box:first-child{
+    margin-top:.5rem;
 }
 /*店铺被禁*/
 .shop-delete{
@@ -392,24 +389,4 @@ footer .btn i{
 }
 .index-btn-box a {
     color:#ffffff;
-}
-
-/*模板样式*/
-.model-box{
-    margin-top:1rem;
-}
-.model-box .banner-box{
-    margin-top: 0;
-}
-.two-list-banner{
-    background-color: transparent;
-    padding:0 1rem;
-    margin-bottom:-1rem;
-}
-.one-item-box .items-list li{
-    padding:0 1rem;
-}
-.banner-wraper{
-    background-color: transparent;
-    padding:0 1rem;
 }

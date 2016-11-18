@@ -6,7 +6,7 @@
                     <div class="act">
                         1.Alamat Pengiriman
                     </div>
-                    <div >
+                    <div>
                         2.Informasi Pembayaran
                     </div>
                 </section>
@@ -17,7 +17,9 @@
                 </ul>
             </section>
             <div class="address-buyer-note user-info info-box">
-                <input class="j_buyer_note" type="text" value="{{address.buyer_note}}" placeholder="{{lang.H5_BUYER_NOTE}}"/>
+                <span>{{lang.H5_BUYER_NOTE}}: </span>
+                <input class="j_buyer_note" type="text" value="{{address.buyer_note}}" maxlength="500"
+                       placeholder="{{lang.H5_BUYER_NOTE_TOO_LONG}}"/>
             </div>
             <p class="address-title">Silakan isi alamat pengirimanmu</p>
             <div class="user-info">
@@ -26,7 +28,8 @@
                 </div>
                 <div class="user-tel info-box b-bottom">
                     <span>+62</span>
-                    <input class="j_tel" type="tel" value="{{address.telephone}}" placeholder="{{lang.H5_USER_TELE_PH}}" maxlength="20"/>
+                    <input class="j_tel" type="tel" value="{{address.telephone}}" placeholder="{{lang.H5_USER_TELE_PH}}"
+                           maxlength="20"/>
                 </div>
 
             </div>
@@ -36,29 +39,34 @@
             <div class="user-address j_user_address">
                 <div class="info-box b-bottom b-top act clearfix" data-name="province">
                     <i class="icon iconfont fr icon-go-font"></i>
-                    <p class="j_province">{{#if address.address.province}}{{address.address.province}}{{else}}{{lang.H5_PROVINCE}}{{/if}}</p>
+                    <p class="j_province">{{#if
+                            address.address.province}}{{address.address.province}}{{else}}{{lang.H5_PROVINCE}}{{/if}}</p>
                 </div>
                 <div class="info-box b-bottom {{#if address.address.city}}act{{/if}} clearfix" data-name="city">
                     <i class="icon iconfont fr icon-go-font"></i>
-                    <p class="j_city">{{#if address.address.city}}{{address.address.city}}{{else}}{{lang.H5_CITY}}{{/if}}</p>
+                    <p class="j_city">{{#if
+                            address.address.city}}{{address.address.city}}{{else}}{{lang.H5_CITY}}{{/if}}</p>
                 </div>
                 <div class="info-box b-bottom {{#if address.address.country}}act{{/if}} clearfix" data-name="country">
                     <i class="icon iconfont fr icon-go-font"></i>
-                    <p class="j_country">{{#if address.address.country}}{{address.address.country}}{{else}}{{lang.H5_DISTRICT}}{{/if}}</p>
+                    <p class="j_country">{{#if
+                            address.address.country}}{{address.address.country}}{{else}}{{lang.H5_DISTRICT}}{{/if}}</p>
                 </div>
-                <div class="info-box-address">
-                    <textarea class="j_street" placeholder="{{lang.H5_DETAIL_ADDRESS}}">{{#if address.address.street}}{{address.address.street}}{{/if}}</textarea>
+                <div class="info-box-address clearfix">
+                    <textarea class="j_street" placeholder="{{lang.H5_DETAIL_ADDRESS}}">{{#if
+                            address.address.street}}{{address.address.street}}{{/if}}</textarea>
                 </div>
-                <div class="info-box b-bottom">
-                    <input class="j_post" type="text" value="{{address.address.post}}" placeholder="{{lang.H5_ADVICE_FILL}}"/>
+                <div class="info-box b-top clearfix">
+                    <input class="j_post" maxlength="10" type="text" value="{{address.address.post}}"
+                           placeholder="{{lang.H5_ADVICE_FILL}}"/>
                 </div>
             </div>
             {{#eq shop.express_free 0}}
-            <div class="hiden j_logistics">
-                <p class="address-title">{{lang.H5_SELECT_LOGISTICS_COMPANY}}</p>
-                <ul class="logistics-list j_logistics_info">
-                </ul>
-            </div>
+                <div class="hiden j_logistics">
+                    <p class="address-title">{{lang.H5_SELECT_LOGISTICS_COMPANY}}</p>
+                    <ul class="logistics-list j_logistics_info">
+                    </ul>
+                </div>
             {{/eq}}
             <div class="total-box">
                 <div class="total-ps b-top">

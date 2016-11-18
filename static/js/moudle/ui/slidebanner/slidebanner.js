@@ -388,15 +388,20 @@ define(["dialog"],function (Dialog) {
         setTab: function () {
             var _this = this,
                 idx = _this.curPage - 1;//当前浏览图片索引
+            if(!!_this._loading)_this._loading.remove();
             if(_this.viewerImageLis&&_this.viewerImageLis.length>1){
                 var _viewerImageLi = _this.viewerImageLis[idx];
                 var _viewerImage = _viewerImageLi.getElementsByTagName("img")[0];
                 var _img_src = _viewerImageLi.getAttribute("data-src");
+                $(_this.arrowBox).find("i").css({color:"#ffffff"})
                 _this._loading = Dialog.loading({
                     width:100,
                     is_cover:false
                 })
                 _viewerImage.src = _img_src;
+                if(_viewerImage.complete){
+                    _this._loading.remove();
+                }
                 _viewerImage.onload = function(){
                     //宽图
                     _this.fixedImageSize(_viewerImage);
