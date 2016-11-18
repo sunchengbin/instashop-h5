@@ -16,16 +16,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <link href="<?=STATIC_HOST?>/css/dist/app/editmodel.css?v=1478407361226" rel="stylesheet"/>
     <title>店铺装修</title>
     <style>
-        .model-box-btns button{
-           display: block;
-           width: 200px;
-           height: 40px;
-           line-height: 40px;
-           background-color: #43CB9C;
-           margin-top: 10px;
-           color: #fff;
-           font-size: 16px;
-           border-radius: 2px;
+        body{
+            background-color: #333;
         }
     </style>
     <script>
@@ -47,6 +39,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     </script>
 </head>
 <body>
+    <div class="j_start_loading" style="color:#fff;">Memuat...</div>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/editmodel.js?v=1478407361255"></script>
