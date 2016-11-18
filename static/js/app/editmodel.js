@@ -153,6 +153,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     _index = Number($('.j_moveup_model').index(_dom)),
                     _insert_dom = _model.prev();
                 var _insert_box = $('.insert-box').eq(_index);
+                alert(_index);
                 alert(_model.find('.slide_tab').length);
                 _insert_dom.remove();
                 if(_model.find('.slide_tab').length){//确定是轮播图模块
