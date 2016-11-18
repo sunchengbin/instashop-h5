@@ -126,9 +126,7 @@ define([],function(){
             if (/Instashop/g.test(navigator.userAgent)) {//内嵌浏览器访问
                 //todo 区分ios和android
                 _this.connectWebViewBridge(function(bridge){
-					$.ready(function(){
-						callback && callback(bridge);
-					});
+                    callback && callback(bridge);
                 });
             } else {
                 //任意非内嵌浏览器
