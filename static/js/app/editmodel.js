@@ -156,11 +156,16 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                     _insert_dom.remove();
                 var _insert_box = $('.insert-box').eq(_index);
                 alert(_model.attr('data-init'));
-                if(_model.attr('data-init')){//轮播图的时候去掉初始轮播标识
-                    _model.attr('data-init',false);
+                if(_model.attr('data-init')){//确定是轮播图模块
+                    _insert_box.before(_this.rotateBannerHtm({
+                        data : _this.model_data[_index+1],
+                        notmove : null
+                    }));
+                }else{
+                    _insert_box.before(_insert_dom.clone());
+                    _insert_box.before(_model.clone());
                 }
-                _insert_box.before(_insert_dom.clone());
-                _insert_box.before(_model.clone());
+
                 _this.reloadOperateBtns();
                 var _move_data = _this.model_data[_index+2],
                     _change_data = _this.model_data[_index+1];
@@ -201,13 +206,13 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
             var _banners = document.querySelectorAll('.j_banner');
             if($('.j_banner').length){
                 $.each(_banners,function(i,item){
-                    if(!item['data-init']){
+                    if(!item.getAttribute('data-init')){
                         Slide.createNew({
                             dom: item,
                             needTab: true,
                             auto : true
                         });
-                        item['data-init'] = true;
+                        item.setAttribute('data-init','1');
                     }
                 });
             }
