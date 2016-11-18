@@ -1,6 +1,7 @@
 @import "../../app/itemlist/itemlist.css";
 @import "../../app/item/item.css";
 @import "../../../base/common/flex.css";
+@import "../../ui/arrowslide/arrowbanner.css";
 /*推荐单件商品导航样式*/
 .one-item-box .title{
     display: -webkit-box;

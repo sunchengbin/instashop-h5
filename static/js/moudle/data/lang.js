@@ -22,10 +22,8 @@ define([],function(){
             'H5_FAVORITE' : '热卖',
             'H5_COPY_FAIL' : '复制失败',
             'H5_NEED_MANUAL_COPY' : '请手动复制',
-            'H5_PLEASE_CHOOSE_SKU' : '请选择一个型号',
             'H5_ORDER_COPY_READY' : '已复制到剪切板',
             'H5_CONNACT_SELLER' : '联系卖家',
-            'H5_BUY_NOW' : '立即购买',
             'H5_QUANTITY' : '数量',
             'H5_CONFIRM' : '确定',
             'H5_PLEASE_CHOOSE_SKU' : '请选择型号',
@@ -33,7 +31,6 @@ define([],function(){
             'H5_ORDER_CONFIRM' : '确认订单',
             'H5_ORDER' : '订单详情',
             'H5_SUBMITTING_ORDER' : '正在提交订单...',
-            'H5_ORDER_COPY_READY' : '已经复制到剪切板',
             'H5_CLOSE' : '关闭',
             'H5_COUNTER' : '收银台',
             'H5_COPY_COUNTER_INFO' : '复制收款信息',
@@ -136,15 +133,8 @@ define([],function(){
             H5_NOT_EMPTY:'不能为空',
             H5_PRICE_MUST_NUM:'金额必须为大于0的整数',
             H5_SUBMIT_SUCCESS:'提交成功',
-            H5_SUBMIT_TXT:"提交",
             H5_INDEX_NO_GOOD:'没有商品',
             H5_SUNMITING:'提交...',
-            H5_ADVICE_FILL:'邮编：选填，建议填写',
-            H5_INS_INPUT:"输入Instagram账户",
-            H5_INS_TIP:"注：请确保你的Instagram账户没有设置为“私密账户”",
-            H5_INS_INPUT_PLACEHOLDER:"如：instashop_ina",
-            H5_INS_VERIFY:"请输入正确的Instagram账户"
-
             H5_ADVICE_FILL:'邮编，选填，建议填写',
             H5_MODELTYPE_AD_IMG:"图片广告",
             H5_MODELTYPE_NAVIGATION:"导航",
@@ -172,24 +162,6 @@ define([],function(){
         },
 
         id : {
-            'H5_INS_VERIFY':"Silakan masukkan Instagram akun",
-            'H5_INS_INPUT_PLACEHOLDER':"Contoh: instashop_ina",
-            //注：请确保你的Instagram账户没有设置为“私密账户”
-            'H5_INS_TIP':"Pastikan akun Instagrammu tidak diprivate",
-            //输入Instagram账户
-            'H5_INS_INPUT':"Masukkan username Instagrammu",
-            //提交
-            'H5_SUBMIT_TXT':"Ajukan",
-            //插入模块
-            'H5_INSERT_MODEL' : 'Sisipkan',//文案标红
-            //编辑
-            'H5_EDIT':'Ubah',
-            //上移
-            'H5_MOVE_UP':'Pindah ke Atas',//文案标红
-            //删除
-            'H5_DELETE':'Hapus',
-            //应用到店铺
-            'H5_APPLY_MODEL':'Gunakan ke Tokomu',
             //商品描述
             'H5_MODELTYPE_GOOD_DESC':'Deskripsi Produk',
             //图片广告
@@ -228,7 +200,7 @@ define([],function(){
             'H5_MODELTYPE_TYPE_LIST':'Tampilan Baris',
 
             //选填 建议填写
-            'H5_ADVICE_FILL':'Kode Pos：Pilih, Sebaiknya diisi',
+            'H5_ADVICE_FILL':'Kode Pos, Pilih, Sebaiknya diisi',
             // 收货地址
             'H5_SHIPPING_ADDRESS' : 'Alamat Pengiriman',
 
@@ -280,11 +252,7 @@ define([],function(){
             // 请手动复制
             'H5_NEED_MANUAL_COPY' : 'Silakan salin secara manual',
 
-            // 请选择一个型号
-            'H5_PLEASE_CHOOSE_SKU' : 'Silakan pilih model produk yang Anda inginkan',
 
-            // 已复制到剪切板
-            'H5_ORDER_COPY_READY' : 'Sudah Disalin',
 
             // 联系卖家
             'H5_CONNACT_SELLER' : 'Kontak',
@@ -294,9 +262,6 @@ define([],function(){
 
             // 数量
             'H5_QUANTITY' : 'Jumlah',
-
-            // 确定
-            'H5_CONFIRM' : 'OK',
 
             'H5_OK_ICON' : 'Ya',
 
@@ -369,8 +334,6 @@ define([],function(){
 
             'H5_ADD_CART' : 'Masuk keranjang',
 
-            'H5_BUY_NOW' :'Beli sekarang ',
-
             'H5_CONFIRM_ORDER' : 'Konfirmasi Pesanan',
             'H5_COMMODIFY_SHELF':'Maaf, produk ini telah habis terjual',
             'H5_SOLD_OUT':'Produk telah habis terjual',
@@ -431,7 +394,7 @@ define([],function(){
             'H5_CREATE_ORDER':'Ajukan Pesanan',
             'H5_SORT_DELED':'Kategori ini telah dihapus',
             H5_GOOD_SORT:'Kategori produk',
-            H5_MSG_NO_GOOD:'Ada produk yang sudah habis terjual loh',
+            H5_MSG_NO_GOOD:'Maaf, stok produk ini sudah habis',
             H5_SORT_EMPTY:'Tidak ada produk untuk kategori ini',
             H5_MSG_ADDRESS : 'Alamat Pengiriman',
             H5_MAX_BUY:'Kamu maksimal hanya dapat membeli',

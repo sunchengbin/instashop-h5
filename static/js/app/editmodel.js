@@ -201,7 +201,7 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                         Slide.createNew({
                             dom: item,
                             needTab: true,
-                            auto : false
+                            auto : true
                         });
                         item['data-init'] = true;
                     }

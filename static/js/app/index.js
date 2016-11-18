@@ -30,7 +30,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                         Slide.createNew({
                             dom: item,
                             needTab: true,
-                            auto : false
+                            auto : true
                         });
                         item['data-init'] = true;
                     }
