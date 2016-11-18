@@ -276,13 +276,15 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 if(data.param.param.type != 'edit_signage'){
                     $('.j_model_box').eq(_index-1).remove();
                     $('.j_insert_model').eq(_index-1).remove();
+                    alert(data.result.data);
+                    alert(data.result.data.length);
                     if(data.result.data.length > 0){
                         _this.model_data[_index] = data.result;//修改数据
                         $('.j_insert_model').eq(_index-1).before(_new_model);
                     }else{
-                        alert(_this.model_data[_index-1]);
+                        alert(_this.model_data[_index]);
                         //如果没有数据(相当于删除了该模块)
-                        _this.model_data.splice(_index-1,1);
+                        _this.model_data.splice(_index,1);
                     }
                 }else{
                     _this.model_data[0] = data.result;//修改数据
