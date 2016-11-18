@@ -272,8 +272,6 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
                 +'<img src="'+carts[item].img+'">'
                 +'<div class="">'
                 +'<p class="name">'+carts[item].item_name+'</p>'
-                +(carts[item].sku?'<p class="type">'+Lang.H5_SKU+': '+carts[item].sku.title+'</p>':'')
-                +'<p class="num"></p>';
             if(carts[item].is_discount && carts[item].discounting){
                 _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(carts[item].discount.price)+'</p>';
             }else{

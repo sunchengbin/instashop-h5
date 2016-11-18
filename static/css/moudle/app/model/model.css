@@ -28,6 +28,21 @@
 .rotate-banner li{
     float: left;
 }
+.cart-item {
+    padding:1rem;
+    min-height: 10rem;
+}
+.cart-item > div{
+    margin: 0 1rem 0 11rem;
+}
+.cart-item img{
+    width: 10rem;
+    height: 10rem;
+}
+.cart-item::after{
+    top: 0;
+    border-top: 1px solid #d8d8d8;
+}
 /*导航类模板样式*/
 .navigation-box{
     position: relative;
