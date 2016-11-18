@@ -38,7 +38,7 @@
             {if $model.title}
             <p class="item-title b-bottom"><span></span>{$model.title}</p>
             {/if}
-            <ul class="nav-img-ul" flex="box:mean">
+            <ul class="nav-img-ul clearfix">
                 {foreach $model.data as $navigation}
                     <li class="">
                         <a class="block clearfix" href="{$navigation.link_url}">

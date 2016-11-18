@@ -57,7 +57,8 @@
     font-size: 14px;
 }
 .nav-img-ul li{
-    max-width: 25%;
+    float: left;
+    width: 25%;
 }
 .nav-img-ul a{
     box-sizing: border-box;

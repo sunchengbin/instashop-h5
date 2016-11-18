@@ -274,10 +274,16 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 _new_model = _this.createModelHtm(_arr);
             if(data.param.param.data.length > 0){//如果是编辑
                 if(data.param.param.type != 'edit_signage'){
-                    _this.model_data[_index] = data.result;//修改数据
                     $('.j_model_box').eq(_index-1).remove();
                     $('.j_insert_model').eq(_index-1).remove();
-                    $('.j_insert_model').eq(_index-1).before(_new_model);
+                    if(data.result.data.length > 0){
+                        _this.model_data[_index] = data.result;//修改数据
+                        $('.j_insert_model').eq(_index-1).before(_new_model);
+                    }else{
+                        alert(_this.model_data[_index-1]);
+                        //如果没有数据(相当于删除了该模块)
+                        _this.model_data.splice(_index-1,1);
+                    }
                 }else{
                     _this.model_data[0] = data.result;//修改数据
                     $('.j_shop_bg').attr('src',data.result.data[0].front_cover);
