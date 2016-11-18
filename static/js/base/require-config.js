@@ -43,6 +43,8 @@ require.config({
         server:'moudle/app/im/server',
         //公用方法
         imcommon:'moudle/app/im/common',
+        //校验模块
+        validator:"moudle/app/validator/validator",
         //功能模块
         user:'moudle/app/im/user',
         history:'moudle/app/im/history',

@@ -143,11 +143,13 @@ define([],function(){
             H5_INS_INPUT:"输入Instagram账户",
             H5_INS_TIP:"注：请确保你的Instagram账户没有设置为“私密账户”",
             H5_INS_INPUT_PLACEHOLDER:"如：instashop_ina",
-            H5_INS_VERIFY:"请输入正确的Instagram账户"
+            H5_INS_VERIFY:"请输入正确的Instagram账户",
+            H5_STREET : "请输入详细地址"
 
         },
 
         id : {
+            'H5_STREET':"Silakan tulis alamat lengkap pengiriman",
             'H5_INS_VERIFY':"Silakan masukkan Instagram akun",
             'H5_INS_INPUT_PLACEHOLDER':"Contoh: instashop_ina",
             //注：请确保你的Instagram账户没有设置为“私密账户”
