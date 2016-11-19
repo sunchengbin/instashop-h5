@@ -231,6 +231,10 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                 });
             }
         },
+        verifySub : function(){//提交前验证
+            if($('.static-banner').length > 5)return false;
+            return true;
+        },
         subModel : function(bridge){//模板提交
             var _this = this,
                 _req_data = {
@@ -240,6 +244,13 @@ require(['base','dialog','slide','ajax','lang','lazyload','insjs','fastclick','c
                         wduss : Base.others.getUrlPrem('wduss')
                     }
                 };
+            if(!_this.verifySub()){
+                Dialog.tip({
+                    top_txt : '',//可以是html
+                    body_txt : '<p class="dialog-body-p">普通广告不能超过5个</p>'
+                });
+                return;
+            }
             Ajax.postJsonp({
                 url :Config.actions.saveTemplate,
                 data : {param:JSON.stringify(_req_data)},

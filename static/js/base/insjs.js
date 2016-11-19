@@ -56,6 +56,34 @@
  * bridge.callHandler('insSocket', {param:{type:'close_model',param:{code:(保持和后台接口返回code值一样,判断是否提交成功),message:}, function(response) {
  *      return null;
  * })
+ * share//分享
+ * var Param = {param:{
+		type : 'share',
+			param : {
+				type : 分享类型,
+				data : [{
+					img : '',
+					content:''
+				}]
+		}
+	}}
+	type值列表
+	share_to_instagram
+	share_to_line
+	share_to_whatsapp
+	share_to_bbm
+	share_to_copy
+	share_to_more
+	share_to_facebook
+	share_to_twitter
+	share_to_sms
+	share_to_preview
+	share_to_copy_link
+	share_to_copy_detail
+	share_to_save
+ * bridge.callHandler('insSocket',Param, function(response) {
+ *      return null;
+ * })
  * moudel : [
 		//type为模块类型
 		//店招
