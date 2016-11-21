@@ -20,6 +20,9 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
         background: transparent;
         outline: none;
     }
+    body{
+        background-color:#E9DAC9;
+    }
     img{
         width:100%;
     }
