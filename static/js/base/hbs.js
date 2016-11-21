@@ -273,10 +273,10 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
                 +'<div class="">'
                 +'<p class="name">'+carts[item].item_name+'</p>'
             if(carts[item].is_discount && carts[item].discounting){
-                _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(carts[item].discount.price)+'</p>';
+                _htm +='<p class="price">Rp '+Base.others.priceFormat(carts[item].discount.price)+'</p>';
             }else{
                 var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].price;
-                _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_price)+'</p>';
+                _htm +='<p class="price">Rp '+Base.others.priceFormat(_price)+'</p>';
 
             }
             _htm +='</div>'
