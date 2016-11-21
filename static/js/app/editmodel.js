@@ -169,17 +169,22 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     _insert_dom = _model.prev();
                 var _insert_box = $('.insert-box').eq(_index);
                 _insert_dom.remove();
-                if(_model.find('.slide_tab').length){//确定是轮播图模块
-                    _model.remove();
-                    _insert_box.before(_this.rotateBannerHtm({
-                        data : _this.model_data[_index+2],
-                        notmove : null
-                    }));
-                }else{
-                    _model.remove();
-                    _insert_box.before(_insert_dom.clone());
-                    _insert_box.before(_model.clone());
+                //if(_model.find('.slide_tab').length){//确定是轮播图模块
+                //    _model.remove();
+                //    _insert_box.before(_this.rotateBannerHtm({
+                //        data : _this.model_data[_index+2],
+                //        notmove : null
+                //    }));
+                //}else{
+
+                if(_model.find('.slide_tab').length){
+                    _model.find('.slide_arrow').remove();
+                    _model.find('.slide_tab').remove();
                 }
+                _model.remove();
+                _insert_box.before(_insert_dom.clone());
+                _insert_box.before(_model.clone());
+                //}
 
                 _this.reloadOperateBtns();
                 var _move_data = _this.model_data[_index+2],
