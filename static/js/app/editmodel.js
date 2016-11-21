@@ -327,9 +327,10 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 if(data.result.data.length > 0){//编辑了新数据
                     _this.model_data.splice(_index+1,0,data.result);
                     $('.j_insert_model').eq(_index).before(_new_model);
+                }else{
+                    return;
                 }
             }
-            console.log(_this.model_data);
             Lazyload();
             _this.reloadOperateBtns();
             callbcak && callbcak(data);
