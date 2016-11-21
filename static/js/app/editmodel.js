@@ -312,13 +312,10 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 if(data.param.param.type != 'edit_signage'){
                     $('.j_model_box').eq(_index-1).remove();
                     $('.j_insert_model').eq(_index-1).remove();
-                    alert(data.result.data);
-                    alert(data.result.data.length);
                     if(data.result.data.length > 0){
                         _this.model_data[_index] = data.result;//修改数据
                         $('.j_insert_model').eq(_index-1).before(_new_model);
                     }else{
-                        alert(_this.model_data[_index]);
                         //如果没有数据(相当于删除了该模块)
                         _this.model_data.splice(_index,1);
                     }
@@ -327,8 +324,6 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     $('.j_shop_bg').attr('src',data.result.data[0].front_cover);
                 }
             }else{//新建
-                alert(data.result.data);
-                alert(data.result.data.length);
                 if(data.result.data.length > 0){//编辑了新数据
                     _this.model_data.splice(_index+1,0,data.result);
                     $('.j_insert_model').eq(_index).before(_new_model);
