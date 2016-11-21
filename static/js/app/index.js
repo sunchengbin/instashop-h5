@@ -27,14 +27,11 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             var _banners = document.querySelectorAll('.j_banner');
             if($('.j_banner').length){
                 $.each(_banners,function(i,item){
-                    if(!item['data-init']){
-                        Slide.createNew({
-                            dom: item,
-                            needTab: true,
-                            auto : true
-                        });
-                        item['data-init'] = true;
-                    }
+                    Slide.createNew({
+                        dom: item,
+                        needTab: true,
+                        auto : true
+                    });
                 });
             }
         },

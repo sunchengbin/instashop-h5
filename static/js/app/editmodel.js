@@ -221,7 +221,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             var _banners = document.querySelectorAll('.j_banner');
             if($('.j_banner').length){
                 $.each(_banners,function(i,item){
-                    if(!$('.j_banner').eq(i).find('.slide_tab').length){
+                    if(!$('.j_banner').eq(i).parent().find('.slide_tab').length){
                         Slide.createNew({
                             dom: item,
                             needTab: true,
