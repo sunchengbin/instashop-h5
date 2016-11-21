@@ -49,7 +49,7 @@
                         </li>
                     {/foreach}
                 </ul>
-            <div>
+            </div>
         </section>
         {elseif $model.type eq 'text_navigation'}
         <section class="navigation-box model-box j_model_box">

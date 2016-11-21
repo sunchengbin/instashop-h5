@@ -408,6 +408,13 @@ footer .btn i{
 }
 .one-item-box .items-list li{
     padding:0 1rem;
+    margin-bottom: 1rem;
+}
+.one-item-box .items-list li:last-child{
+    margin-bottom: 0;
+}
+.one-item-box .items-list::before{
+    border: none;
 }
 .banner-wraper{
     background-color: transparent;
