@@ -212,7 +212,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     }
                 }else{
                     if(!$(item).find('.j_moveup_model').length){
-                        $(item).append('<button class="move-btn j_moveup_model handle-btn">Move up</button>');
+                        $(item).append('<button class="move-btn j_moveup_model handle-btn">'+Lang.H5_MOVE_UP+'</button>');
                     }
                 }
             });
