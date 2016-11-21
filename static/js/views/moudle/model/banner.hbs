@@ -4,7 +4,7 @@
         <ul class="two-list-box clearfix">
             {{#each data.data}}
                 <li>
-                    <div class="lazy" data-img="{{img}}"></div>
+                    <div class="lazy" data-img="{{transimgurl img}}"></div>
                 </li>
             {{/each}}
         </ul>
@@ -17,7 +17,7 @@
             {{/eq}}
 
             {{#each data.data}}
-                <li class=""><a class="block" href="javascript:;"><img data-img="{{img}}"/></a></li>
+                <li class=""><a class="block" href="javascript:;"><img data-img="{{transimgurl img}}"/></a></li>
             {{/each}}
             </ul>
         </div>

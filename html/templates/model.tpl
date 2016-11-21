@@ -27,7 +27,7 @@
                 {foreach $model.data as $banner}
                     <li>
                         <a class="block" href="{$banner.link_url}">
-                            <div class="lazy" data-img="{$banner.img}"></div>
+                            <div class="lazy" data-img="{$banner.img|list_img}"></div>
                         </a>
                     </li>
                 {/foreach}
@@ -43,7 +43,7 @@
                     {foreach $model.data as $navigation}
                         <li class="">
                             <a class="block clearfix" href="{$navigation.link_url}">
-                                <div class="lazy" data-img="{$navigation.img}"></div>
+                                <div class="lazy" data-img="{$navigation.img|list_img}"></div>
                                 <p class="">{$navigation.navigation_name}</p>
                             </a>
                         </li>

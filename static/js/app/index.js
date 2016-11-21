@@ -20,10 +20,10 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             if($('.txt-hide').height() > 44){
                 $('.down-btn').show();
             }
-            Common.slideImgNav();
             this.handleFn();
         },
         initRotateBanner : function(){
+            Common.slideImgNav();
             var _banners = document.querySelectorAll('.j_banner');
             if($('.j_banner').length){
                 $.each(_banners,function(i,item){

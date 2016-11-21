@@ -161,9 +161,12 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                 child : 'li',
                 childNum : 0
             },opts);
-            var _c_w = $(_config.wraper).find(_config.child).width(),
-                _num = $(_config.wraper).find(_config.child).length;
-            $(_config.wraper).css('width',_c_w*_num);
+            $(_config.wraper).each(function(i,item){
+                var _item = $(item),
+                    _c_w = _item.find(_config.child).width(),
+                    _num = _item.find(_config.child).length;
+                _item.css('width',_c_w*_num);
+            });
         }
     };
 
