@@ -271,7 +271,7 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
             _htm += '<li class="clearfix cart-item j_cart_item" data-id="'+_id+'">'
                 +'<img src="'+carts[item].img+'">'
                 +'<div class="">'
-                +'<p class="name">'+carts[item].item_name+'</p>'
+                +'<p class="name">'+Base.others.transTxt(carts[item].item_name)+'</p>'
             if(carts[item].is_discount && carts[item].discounting){
                 _htm +='<p class="price">Rp '+Base.others.priceFormat(carts[item].discount.price)+'</p>';
             }else{
