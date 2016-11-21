@@ -7,7 +7,11 @@
 {else}
 {if $INDEX_DATA.shop.status eq '2'}
 <section class="shop-header">
-    <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover}" src="">
+    {if $INDEX_DATA.template|@count}
+        <img class="shop-header-bg" data-img="{$INDEX_DATA.template[0].data[0].front_cover}" src="">
+    {else}
+        <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover}" src="">
+    {/if}
     <div class="clearfix shop-info">
         <div class="shop-img">
             <img data-img="{$INDEX_DATA.shop.logo}" src=""/>
