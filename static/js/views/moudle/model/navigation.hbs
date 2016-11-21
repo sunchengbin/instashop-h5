@@ -15,15 +15,17 @@
         {{/each}}
         </ul>
     {{else}}
-        <ul class="nav-img-ul clearfix">
-            {{#each data.data}}
-                <li class="">
-                    <a class="block clearfix" href="javascript:;">
-                        <div class="lazy" data-img="{{img}}"></div>
-                        <p class="">{{navigation_name}}</p>
-                    </a>
-                </li>
-            {{/each}}
-        </ul>
+        <div class="nav-img-box j_nav_img_box">
+            <ul class="nav-img-ul clearfix">
+                {{#each data.data}}
+                    <li class="">
+                        <a class="block clearfix" href="javascript:;">
+                            <div class="lazy" data-img="{{img}}"></div>
+                            <p class="">{{navigation_name}}</p>
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
     {{/eq}}
 </section>

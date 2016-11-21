@@ -59,6 +59,7 @@
 /*导航类模板样式*/
 .navigation-box{
     position: relative;
+    overflow: hidden;
 }
 .nav-text-ul{
 
@@ -84,9 +85,13 @@
     white-space: nowrap;
     font-size: 14px;
 }
+.nav-img-box{
+    overflow-y: hidden;
+    overflow-x:scroll;
+}
 .nav-img-ul li{
     float: left;
-    width: 25%;
+    width: 8.5rem;
 }
 .nav-img-ul a{
     box-sizing: border-box;

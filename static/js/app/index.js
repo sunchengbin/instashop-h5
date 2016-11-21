@@ -20,6 +20,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             if($('.txt-hide').height() > 44){
                 $('.down-btn').show();
             }
+            Common.slideImgNav();
             this.handleFn();
         },
         initRotateBanner : function(){

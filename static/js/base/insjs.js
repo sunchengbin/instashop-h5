@@ -63,7 +63,8 @@
 				type : 分享类型,
 				data : [{
 					img : '',
-					content:''
+					content:'',
+					link_url:''
 				}]
 		}
 	}}

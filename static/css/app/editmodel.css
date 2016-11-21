@@ -209,3 +209,6 @@ section{
 .two-list-box{
     background-color: #fff;
 }
+.static-banner li:not(:first-child){
+    margin-top:1.5rem;
+}

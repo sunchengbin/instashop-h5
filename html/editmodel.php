@@ -14,7 +14,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
     <link href="<?=STATIC_HOST?>/css/dist/app/editmodel.css?v=1478407361226" rel="stylesheet"/>
-    <title>店铺装修</title>
+    <title>Kreasikan Tokomu</title>
     <style>
         body{
             background-color: #333;

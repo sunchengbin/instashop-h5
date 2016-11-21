@@ -154,6 +154,16 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
             var r = location.search.substr(1).match(reg);
             if (r != null)return unescape(r[2]);
             return null;
+        },
+        slideImgNav:function(opts){
+            var _config = $.extend({
+                wraper : '.j_nav_img_box ul',
+                child : 'li',
+                childNum : 0
+            },opts);
+            var _c_w = $(_config.wraper).find(_config.child).width(),
+                _num = $(_config.wraper).find(_config.child).length;
+            $(_config.wraper).css('width',_c_w*_num);
         }
     };
 

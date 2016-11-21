@@ -38,16 +38,18 @@
             {if $model.title}
             <p class="item-title b-bottom"><span></span>{$model.title}</p>
             {/if}
-            <ul class="nav-img-ul clearfix">
-                {foreach $model.data as $navigation}
-                    <li class="">
-                        <a class="block clearfix" href="{$navigation.link_url}">
-                            <div class="lazy" data-img="{$navigation.img}"></div>
-                            <p class="">{$navigation.navigation_name}</p>
-                        </a>
-                    </li>
-                {/foreach}
-            </ul>
+            <div class="nav-img-box j_nav_img_box">
+                <ul class="nav-img-ul clearfix">
+                    {foreach $model.data as $navigation}
+                        <li class="">
+                            <a class="block clearfix" href="{$navigation.link_url}">
+                                <div class="lazy" data-img="{$navigation.img}"></div>
+                                <p class="">{$navigation.navigation_name}</p>
+                            </a>
+                        </li>
+                    {/foreach}
+                </ul>
+            <div>
         </section>
         {elseif $model.type eq 'text_navigation'}
         <section class="navigation-box model-box j_model_box">
