@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
-    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="telephone=no"/>
     <title>Free domain webstore</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -17,6 +18,7 @@
             background: transparent;
             outline: none;
         }
+
         button, input, select, textarea {
             font-size: 100%;
             border: 0;
@@ -25,118 +27,151 @@
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
         }
-        body, button, input, select,option,td, textarea /* for ie */ {
+
+        body, button, input, select, option, td, textarea /* for ie */
+        {
             font: 12px/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
-        .fl{
-            float:left;
+
+        .fl {
+            float: left;
         }
-        .fr{
-            float:right;
+
+        .fr {
+            float: right;
         }
-        img{
+
+        img {
             width: 100%;
             vertical-align: middle;
         }
-        .block{
+
+        .block {
             display: block;
         }
+
         .clearfix:after {
             content: '\20';
             display: block;
             height: 0;
             clear: both;
         }
+
         .clearfix {
             *zoom: 1;
         }
+
         ul, ol {
             list-style: none;
         }
-        a{
-            text-decoration:none;
+
+        a {
+            text-decoration: none;
         }
-        body{
-            background-color:#F8FDFB;
+
+        body {
+            background-color: #E9DAC9;
+            color: #8B572A;
         }
+
         @media only screen and (min-width: 641px) {
             body {
                 max-width: 640px;
                 margin: 0 auto;
-                background-color: #F5F5F5;
+                background-color: #E9DAC9;
             }
-            body .buy-box,body .logistics-plug,body .buy-plug,body .shop-header-nav,body footer,body .prove-btn,body .index-footer{
+
+            body .buy-box, body .logistics-plug, body .buy-plug, body .shop-header-nav, body footer, body .prove-btn, body .index-footer {
                 max-width: 640px;
                 left: 50%;
                 margin-left: -320px;
             }
-            body .address-list{
+
+            body .address-list {
                 max-width: 640px;
             }
         }
-        .dialog-wraper{
-            position:absolute;
-            background-color : #fff;
+
+        .dialog-wraper {
+            position: absolute;
+            background-color: #fff;
             border-radius: 5px;
             font-size: 1.4rem;
-            color:#666;
+            color: #666;
         }
-        .dialog-body,.dialog-top,.dialog-footer{
-            padding:10px;
-            font-size:12px;
+
+        .dialog-body, .dialog-top, .dialog-footer {
+            padding: 10px;
+            font-size: 12px;
         }
-        .dialog-body{
-            overflow:auto;
+
+        .dialog-body {
+            overflow: auto;
         }
-        .dialog-footer{
+
+        .dialog-footer {
             text-align: right;
-            padding-top:0;
+            padding-top: 0;
             padding-bottom: 8px;
         }
-        .dialog-footer a{
+
+        .dialog-footer a {
             display: inline-block;
             padding: 2px 5px;
             border-radius: 3px;
             color: #43CB9C;
         }
-        .ca-btn{
-            margin-right:30px;
+
+        .ca-btn {
+            margin-right: 30px;
         }
-        .dialog-cover{
+
+        .dialog-cover {
             position: absolute;
-            left:0;
-            top:0;
-            bottom:0;
-            right:0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
             background-color: black;
             opacity: 0.4;
             filter: Opacity(40);
         }
-        h1{
-            margin-top:20px;
-            font-size:18px;
-            text-align:center;
+
+        h1 {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
         }
-        .content{
-            padding:10px 20px 20px;
+        .text-center {
+            text-align: center;
         }
-        .fwb{
-            font-weight:bolder;
+        .content {
+            background: #E0CEBA;
+            margin: 10px 20px 20px;
+            padding: 10px 20px 20px;
         }
-        .title-txt{
-            color:#666;
+
+        .fwb {
+            font-weight: bolder;
         }
-        .content > div{
-            margin-top:10px;
+
+        .title-txt {
+            color: #666;
         }
-        .b-bottom{
+
+        .content > div {
+            margin-top: 10px;
+        }
+
+        .b-bottom {
             position: relative;
         }
-        .b-bottom::after{
+
+        .b-bottom::after {
             position: absolute;
-            left:-50%;
+            left: -50%;
             right: -50%;
-            bottom:0;
+            bottom: 0;
             height: 1px;
             content: '';
             -webkit-transform: scale(0.5);
@@ -144,61 +179,107 @@
             border-bottom: 1px solid #d8d8d8;
             z-index: 1;
         }
-        .title-txt{
-            padding-bottom:13px;
+
+        .margin-top {
+            margin-top: 15px;
         }
-        .step::before{
-            display:block;
-            content:"";
-            width:40px;
-            height:45px;
-            float:left;
+
+        .title-txt {
+            padding-bottom: 13px;
         }
-        .step-1::before{
-            background:url(images/step1.jpg) no-repeat;
-            background-size:contain;
+
+        .step {
+            margin-top: 20px!important;
         }
-        .step-2::before{
-            background:url(images/step2.jpg) no-repeat;
-            background-size:contain;
+
+        .step::before {
+            display: block;
+            position: relative;
+            content: "";
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: #BC9971;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            float: left;
         }
-        .step-contet{
-            margin-left:45px;
+        .step:nth-last-child(n+2):after {
+            height: 1px;
+            content: '';
+            width: 100%;
+            margin-top:15px;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            border-bottom: 1px solid #91714E;
+            z-index: 1;
         }
-        .btn{
-            display:block;
-            height: 30px;
-            width: 230px;
-            margin: 10px auto 0;
+
+        .step-1::before {
+            content: 'STEP1';
         }
-        .btn1{
-            background:url(images/btn1.jpg) no-repeat;
-            background-size:contain;
+
+        .step-2::before {
+            content: 'STEP2';
         }
-        .btn2{
-            background:url(images/btn2.jpg) no-repeat;
-            background-size:contain;
+
+        .step-3::before {
+            content: 'STEP3';
         }
-        .disable-btn2{
-            background:url(images/disable-btn2.jpg) no-repeat;
-            background-size:contain;
+
+        .step-contet {
+            margin-left: 60px;
         }
-        .user-list{
-            background-color:rgba(67,203,156,.15);
-            overflow:hidden;
-            position:relative;
+
+        .btn {
+            font-family: Roboto-Bold;
+            font-size: 14px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            text-shadow: 0 2px 0 #D74629;
+            display: block;
+            height: 40px;
+            line-height: 40px;
+            width: 200px;
+            margin: 15px auto 0;
+            background-image: linear-gradient(-180deg, #FD675C 0%, #F15737 100%);
+            border-radius: 100px;
         }
-        .user-list li{
-            float:left;
-            width:100%;
-            padding:20px 0 40px;
+
+        .btn1 {
+            /*background: url(images/btn1.jpg) no-repeat;*/
+            background-size: contain;
+        }
+
+        .btn2 {
+            /*background: url(images/btn2.jpg) no-repeat;*/
+            background-size: contain;
+        }
+
+        .disable-btn2 {
+            /*background: url(images/disable-btn2.jpg) no-repeat;*/
+            background-size: contain;
+        }
+
+        .user-list {
+            background-color: rgba(67, 203, 156, .15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .user-list li {
+            float: left;
+            width: 100%;
+            padding: 20px 0 40px;
             display: -webkit-box;
             display: -webkit-flex;
             display: -ms-flexbox;
             display: flex;
         }
-        .user-list li > div{
-            width:33.333333%;
+
+        .user-list li > div {
+            width: 33.333333%;
             -webkit-box-flex: 1;
             -webkit-flex-grow: 1;
             -ms-flex-positive: 1;
@@ -206,98 +287,114 @@
             -webkit-flex-shrink: 1;
             -ms-flex-negative: 1;
             flex-shrink: 1;
-            flex:1;
-            text-align:center;
-            font-weight:bolder;
-            overflow:hidden;
+            flex: 1;
+            text-align: center;
+            font-weight: bolder;
+            overflow: hidden;
         }
-        .user-list li div img{
-            width:30px;
-            height:30px;
-            border-radius:50%;
+
+        .user-list li div img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
         }
-        .user-list li .name{
-            color:#43CB9C;
+
+        .user-list li .name {
+            color: #43CB9C;
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
             display: block;
         }
-        .user-list li .url{
-            padding:0 5px;
+
+        .user-list li .url {
+            padding: 0 5px;
         }
-        .user-list li .url a{
-            color:#000;
+
+        .user-list li .url a {
+            color: #000;
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
             display: block;
         }
-        .info-box{
+
+        .info-box {
             padding: 20px;
-            line-height:2;
-            color:#444;
+            line-height: 2;
+            color: #8B572A;
         }
-        .info-box p span{
-            color:#000;
-            font-weight:bolder;
+
+        .info-box p span {
+            color: #8B572A;
+            font-weight: bolder;
         }
-        .slide_tab{
+
+        .slide_tab {
             position: absolute;
-            bottom:10px;
+            bottom: 10px;
             left: 0;
             width: 100%;
             height: 20px;
             text-align: center;
         }
-        .slide_tab i{
+
+        .slide_tab i {
             display: inline-block;
             width: 8px;
             height: 8px;
             border-radius: 50%;
             background-color: #fff;
-            margin-right:5px;
+            margin-right: 5px;
         }
-        .slide_tab i.cur{
+
+        .slide_tab i.cur {
             background-color: #43CB9C;
         }
-        .tel-dialog >p {
-            font-size:14px;
-            font-weight:bolder;
+
+        .tel-dialog > p {
+            font-size: 14px;
+            font-weight: bolder;
         }
-        .tel-dialog li{
+
+        .tel-dialog li {
             padding: 10px 0;
         }
-        .tel-dialog li::before{
-            display:block;
-            content:" ";
+
+        .tel-dialog li::before {
+            display: block;
+            content: " ";
             margin-top: 3px;
-            width:16px;
-            height:24px;
-            float:left;
-            background:url(images/phone.png) no-repeat;
-            background-size:contain;
+            width: 16px;
+            height: 24px;
+            float: left;
+            background: url(images/phone.png) no-repeat;
+            background-size: contain;
         }
-        .tel-dialog li > div{
-            margin-left:25px;
-            position:relative;
+
+        .tel-dialog li > div {
+            margin-left: 25px;
+            position: relative;
             padding-right: 5px;
         }
-        .tel-dialog li input{
+
+        .tel-dialog li input {
             width: 100%;
             height: 30px;
             padding: 5px 5px 5px 40px;
             background-color: #f5f5f5;
             border-radius: 2px;
         }
-        .tel-dialog li span{
+
+        .tel-dialog li span {
             position: absolute;
             left: 10px;
             top: 0;
             font-size: 12px;
-            line-height:30px;
+            line-height: 30px;
         }
-        .tel-dialog button{
+
+        .tel-dialog button {
             display: block;
             width: 100%;
             height: 40px;
@@ -308,69 +405,120 @@
             background-color: #43cb9c;
             border-radius: 2px;
         }
-        .tel-dialog button.disable-btn{
+
+        .tel-dialog button.disable-btn {
             background-color: #eee;
             color: #ff584c;
         }
-        .domain-box{
-            color:#000;
+
+        .domain-box {
+            color: #000;
         }
-        .domain-box > p{
-            font-weight:bolder;
-            font-size:14px;
+
+        .domain-box > p {
+            font-weight: bolder;
+            font-size: 14px;
         }
-        .domain-input{
-            position:relative;
-            margin:10px 0;
+
+        .domain-input {
+            position: relative;
+            margin: 10px 0;
         }
-        .domain-input input{
-            background:#ffffff;
-            border:2px solid #d8d8d8;
-            border-radius:4px;
-            width:100%;
-            height:35px;
-            padding:8px 60px;
-            font-size:14px;
+
+        .domain-input input {
+            background: #ffffff;
+            border: 2px solid #d8d8d8;
+            border-radius: 4px;
+            width: 100%;
+            height: 35px;
+            padding: 8px 60px;
+            font-size: 14px;
         }
-        .domain-input::after,.domain-input::before{
-            display:block;
-            height:35px;
-            line-height:35px;
-            font-size:14px;
-            font-weight:bolder;
-            position:absolute;
-            top:0;
+
+        .domain-input::after, .domain-input::before {
+            display: block;
+            height: 35px;
+            line-height: 35px;
+            font-size: 14px;
+            font-weight: bolder;
+            position: absolute;
+            top: 0;
         }
-        .domain-input::before{
-            content:"www.";
-            left:20px;
+
+        .domain-input::before {
+            content: "www.";
+            left: 20px;
         }
-        .domain-input::after{
-            content:".com";
-            right:25px;
+
+        .domain-input::after {
+            content: ".com";
+            right: 25px;
         }
-        .btn3{
-            display:block;
-            width:250px;
-            height:35px;
-            margin:0 auto 10px;
-            background:url(images/btn3.jpg) no-repeat;
-            background-size:contain;
+
+        .btn3 {
+            display: block;
+            width: 250px;
+            height: 35px;
+            margin: 0 auto 10px;
+            background: url(images/btn3.jpg) no-repeat;
+            background-size: contain;
         }
-        .domain-cont > p{
-            line-height:2;
-            font-size:12px;
+
+        .domain-cont > p {
+            line-height: 2;
+            font-size: 12px;
         }
-        .domain-cont > p span{
-            font-weight:bolder;
+
+        .domain-cont > p span {
+            font-weight: bolder;
         }
-        .tel-dialog >p.tel-error,.domain-error{
-            color:#ff584c;
-            font-size:12px;
+
+        .tel-dialog > p.tel-error, .domain-error {
+            color: #ff584c;
+            font-size: 12px;
             margin-bottom: 10px;
         }
-        .domain-error{
-            margin:5px 0;
+
+        .domain-error {
+            margin: 5px 0;
+        }
+
+        .intro {
+            font-size: 18px;
+        }
+        .invite-box {
+            text-align: center;
+        }
+        .invite-number {
+            letter-spacing: 1px;
+        }
+        .invite-iscan {
+            font-family: Roboto-Medium;
+            font-size: 18px;
+            color: #54AE59;
+            letter-spacing: 0;
+            font-weight: bolder;
+        }
+        .invite-table table {
+            margin: 0 auto;
+            border-color: #8B572A;
+            border-width: 0px;
+            border-collapse: collapse;
+            border: none;
+            background: #BB9873;
+        }
+        .invite-table table td {
+            border: 2px solid #8B572A;
+            width: 50%;
+            text-align: center;
+            height: 40px;
+            font-size: 16px;
+            font-weight: normal;
+        }
+        .invite-table .t-header {
+            width: 100%;
+            font-size: 16px;
+            font-weight: bolder;
         }
     </style>
 </head>
@@ -378,169 +526,108 @@
 <section class="banner">
     <img src="images/banner.jpg">
 </section>
-<h1>Ubah domain web Instashop kamu <br>menjadi namatokokamu.com!</h1>
+<!--<h1>Ubah domain web Instashop kamu <br>menjadi namatokokamu.com!</h1>-->
+
 <section class="content">
-    <div class="top-title fwb">
-        Caranya gampang banget: Ajak 5 teman online shopmu
-        untuk bergabung di Instashop dan dapatkan domain web yang kamu inginkan.
+    <div class="intro">
+        Belum kebagian domain .com di promo bulan lalu? Jangan khawatir,sekarang Instashop bagi-bagi domain gratis lagi
+        untuk web Instashopmu dari 1-15 DESEMBER 2016
     </div>
-    <div class="top-title fwb">
-        Promo ini hanya berlaku dari 2-3 November 2016. Batas waktu pengisian data teman dan registrasi domain web adalah 3 November 2016 pukul 23.59 WIB. Yuk buruan ikutan!
-    </div>
-    <div class="title-txt b-bottom">
-        Informasi detail, syarat dan ketentuan silakan dibaca di bagian bawah halaman ini.
-    </div>
-    <div class="step step-1 fwb clearfix">
+
+    <div class="step step-1 clearfix">
         <div class="step-contet">
-            Masukkan 5 nomor ponsel teman yang kamu referensikan untuk bergabung di Instashop.
-            <button class="btn btn1 j_tel_btn"></button>
+            Kamu harus upload min 10 produk / memiliki min 3 pesanan selesai
+            <p class="invite-iscan">
+                Syarat sudah terpenuhi
+            </p>
         </div>
     </div>
-    <div class="step step-2 fwb clearfix">
+    <div class="step step-2 clearfix">
         <div class="step-contet">
-            Setelah data temanmu terverifikasi, klik tombol berikut untuk mendaftarkan domain web yang kamu mau.
-            <button class="btn btn2 j_domain_btn disable-btn2"></button>
+            <p>Ajak 5 teman online shop kamu (followers IG MINIMAL 500) untuk registrasi di Instashop menggunakan kode
+                referralmu （123456）
+                dan upload 10 produk
+            </p>
+        </div>
+        <div>
+            <p class="text-center margin-top">
+                kode referralmu:<br>
+                <span class="invite-number fwb">123456</span>
+            </p>
+            <div class="invite-box margin-top">
+                Belum ada teman yang memenuhi syarat
+                <div class="invite-table">
+                    <table>
+                        <tr>
+                            <td class="t-header" colspan="2">
+                                Belum ada teman yang memenuhi syarat
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>serifendga</td>
+                            <td>18525354556</td>
+                        </tr>
+                        <tr>
+                            <td>serifendga</td>
+                            <td>18525354556</td>
+                        </tr>
+                        <tr>
+                            <td>serifendga</td>
+                            <td>18525354556</td>
+                        </tr>
+                        <tr>
+                            <td>serifendga</td>
+                            <td>18525354556</td>
+                        </tr>
+                        <tr>
+                            <td>serifendga</td>
+                            <td>18525354556</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn btn2 j_domain_btn disable-btn2">BAGIKAN KODE REFERRA</button>
+            <div class="margin-top">
+                Notice: teman online shop kamu  untuk registrasi di Instashop
+                menggunakan kode referralmu teman online shop kamu  untuk
+                registrasi di Instashop menggunakan kode referralmu
+            </div>
         </div>
     </div>
-</section>
-<section class="user-list">
-    <ul class="clearfix j_user_list">
-        <li>
-            <div>
-                <img src="images/www.espanolasz.com.jpg">
-                <p class="name">Espanolasz</p>
-                <p class="url"><a href="//www.espanolasz.com" class="">espanolasz.com</a></p>
-            </div>
-            <div>
-                <img src="images/www.collabsstore.com.jpg">
-                <p class="name">Collabsstore</p>
-                <p class="url"><a href="//www.collabsstorejkt.com" class="">collabsstorejkt.com</a></p>
-            </div>
-            <div>
-                <img src="images/www.laplacestore.com.jpg">
-                <p class="name">Laplace store</p>
-                <p class="url"><a href="//www.laplacestore.com" class="">laplacestore.com</a></p>
-                <div>
-        </li>
-        <li>
-            <div>
-                <img src="images/www.uwearstoree.com.jpg">
-                <p class="name">Uwear store</p>
-                <p class="url"><a href="//www.uwearstoree.com" class="">uwearstoree.com</a></p>
-            </div>
-            <div>
-                <img src="images/www.kxystuff.com.jpg">
-                <p class="name">Kxystuff</p>
-                <p class="url"><a href="//www.kxystuff.com" class="">kxystuff.com</a></p>
-            </div>
-            <div>
-                <img src="images/www.chocohollicshop.com.jpg">
-                <p class="name">Chocohollic shop</p>
-                <p class="url"><a href="//www.chocohollicshop.com" class="">chocohollicshop.com</a></p>
-                <div>
-        </li>
-        <li>
-            <div>
-                <img src="images/www.hijabbymp.com.jpg">
-                <p class="name">Hijab_bymayangpathiloka</p>
-                <p class="url"><a href="//www.hijabbymp.com" class="">hijabbymp.com</a></p>
-            </div>
-            <div>
-                <img src="images/www.welovetinypeach.com.jpg">
-                <p class="name">Tinypeach</p>
-                <p class="url"><a href="//www.welovetinypeach.com" class="">welovetinypeach.com</a></p>
-            </div>
-            <div>
-                <img src="images/www.griyabajumuslimanak.com.jpg">
-                <p class="name">Baju_muslim_anak</p>
-                <p class="url"><a href="//www.griyabajumuslimanak.com" class="">griyabajumuslimanak.com</a></p>
-                <div>
-        </li>
-        <li>
-            <div>
-                <img src="images/www.arikahijab.com.jpg">
-                <p class="name">Arika hijab</p>
-                <p class="url"><a href="//www.arikahijab.com" class="">arikahijab.com</a></p>
-            </div>
-            <div>
-                <img src="images/www.sistershijabshop.com.jpg">
-                <p class="name">Sistershijab</p>
-                <p class="url"><a href="//www.sistershijabshop.com" class="">sistershijabshop.com</a></p>
-            </div>
-            <div>
-                <img src="images/www.babymilestonecard.com.jpg">
-                <p class="name">Harumi design</p>
-                <p class="url"><a href="//www.babymilestonecard.com" class="">babymilestonecard.com</a></p>
-                <div>
-        </li>
-        <li>
-            <div>
-                <img src="images/www.mamalovashop.com.jpg">
-                <p class="name">Mamalova</p>
-                <p class="url"><a href="//www.mamalovashop.com" class="">mamalovashop.com</a></p>
-            </div>
-            <div>
-                <img src="images/www.garskinlaptopku.com.jpg">
-                <p class="name">Garskin laptopku</p>
-                <p class="url"><a href="//www.garskinlaptopku.com" class="">garskinlaptopku.com</a></p>
-            </div>
-            <div>
-                <img src="images/www.griyavhy.com.jpg">
-                <p class="name">Griyavhy</p>
-                <p class="url"><a href="//www.griyavhy.com" class="">griyavhy.com</a></p>
-                <div>
-        </li>
-        <li>
-            <div>
-                <img src="images/www.dapuracine.com.jpg">
-                <p class="name">Acine</p>
-                <p class="url"><a href="//www.dapuracine.com" class="">dapuracine.com</a></p>
-            </div>
-            <div>
-                <img src="images/www.nomphonestuff.com.jpg">
-                <p class="name">Nomphone_stuff</p>
-                <p class="url"><a href="//www.nomphonestuff.com" class="">nomphonestuff.com</a></p>
-            </div>
-            <div>
-                <img src="images/www.lapulchraahijab.com.jpg">
-                <p class="name">La pulchraa</p>
-                <p class="url"><a href="//www.lapulchraahijab.com" class="">lapulchraahijab.com</a></p>
-                <div>
-        </li>
-        <li>
-            <div>
-                <img src="images/www.hijabbywm.com.jpg">
-                <p class="name">hijabbywm</p>
-                <p class="url"><a href="//www.hijabbywm.com" class="">hijabbywm.com</a></p>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-        </li>
-    </ul>
+    <div class="step step-3 clearfix">
+        <div class="step-contet">
+            Setelah mendapat notifikasi berhasil, klik tombol ini untuk mendaftarkan domain web
+        </div>
+        <div>
+            <button class="btn btn2 j_domain_btn disable-btn2">DAFTAR DOMAIN WEB</button>
+        </div>
+    </div>
 </section>
 <section class="info-box">
-    <p><span>Detail, Syarat dan Ketentuan:</span></p>
-    <p>Instashop mau bagi-bagi <span>DOMAIN WEB GRATIS</span> untuk link toko webstore Instashop kalian nih. </p>
-    <p>Caranya simpel banget: </p>
-    <p>1. Ajak <span>5 orang teman online shop</span> kamu (harus memiliki followers Instagram minimal <span>2000</span>) untuk bergabung
-        dengan Instashop. Teman kamu harus belum pernah terdaftar di Instashop ya sebelumnya:)</p>
-    <p>2. Setelah registrasi, minta teman kamu untuk mengisi lengkap <span>Atur Toko</span> dan <span>meng-upload minimal 10 produk.</span>
-        PS: Untuk memudahkan proses upload produk, gunakan
-        fitur <span>tambah produk dari Instagram</span> ya!</p>
-    <p>3. Masukkan nomor ponsel yang diregistrasikan di Instashop dari teman kamu dengan <span>klik "Isi Data Teman".</span></p>
-    <p>4. Tim Instashop akan memverifikasi data-data yang kamu berikan. Jika data yang kamu berikan sudah valid,
-        tombol <span>"Daftar Domain Web"</span> akan berubah menjadi dapat diklik. Klik tombol tersebut untuk mendaftarkan domain web
-        yang kamu inginkan. </p>
-    <p>5. Ajak juga kelima temanmu ini untuk menyebarkan kabar baik ini ke teman-teman online shop lainnya, agar mereka juga bisa menikmati domain gratis!<br>
-        Keputusan tim Instashop adalah mutlak dan tidak dapat diganggu gugat. Untuk pertanyaan lebih lanjut, silakan hubungi CS Instashop ya:)</p>
+    <p><span>Syarat & Ketentuan:</span></p>
+    <p>1. Teman yang kamu ajak HARUS merupakan online shop, belum pernah terregistrasi akunnya di Instashop sebelum 1
+        Desember 2016 dan memiliki min. 500 followers di akun Instagram online shopnya.</p>
+    <p>2. Satu akun Instagram hanya dapat ditambahkan SATU KALI. Temanmu tidak dapat menambahkan gambar dari akun
+        Instagram yang sebelumnya sudah digunakan oleh pengguna lain. </p>
+    <p>3. Instashop akan otomatis memverifikasi data kelima temanmu. Kamu tidak perlu mengisi nomor ponsel temanmu di
+        halaman ini, cukup tunggu notifikasi verifikasi berhasil dari Instashop, lalu daftarkan domain web yang kamu
+        inginkan.</p>
+    <p>4. Promo ini berlaku hingga 15 Desember 2016 pukul 22.00 WIB</p>
+    <p>5. Keputusan Instashop adalah mutlak dan tidak dapat diganggu gugat. Jika kamu sudah memiliki domain sendiri dan
+        ingin mengkoneksikannya dengan web Instashopmu, hubungi CS kami.</p>
 </section>
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-78448705-7', 'auto');
     ga('send', 'pageview');
 </script>
