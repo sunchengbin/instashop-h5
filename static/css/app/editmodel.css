@@ -130,7 +130,7 @@ section{
     border-radius: 2px;
     position: absolute;
     right: -1.5rem;
-    z-index: 10;
+    z-index: 101;
     top: -1rem;
 }
 .insert-box{

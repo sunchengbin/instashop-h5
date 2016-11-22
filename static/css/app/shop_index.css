@@ -343,6 +343,9 @@ footer .btn i{
     float: left;
     width: 100%;
 }
+.static-banner li,.two-list-banner li{
+    padding:1rem 0;
+}
 /*banner*/
 .banner-box{
     min-height: 240px;
@@ -402,21 +405,26 @@ footer .btn i{
     margin-top: 0;
 }
 .two-list-banner{
-    background-color: transparent;
+    /*background-color: transparent;*/
     padding:0 1rem;
-    margin-bottom:-1rem;
+    /*margin-bottom:-1rem;*/
+    margin-top:1rem;
 }
 .one-item-box .items-list li{
     padding:0 1rem;
     margin-bottom: 1rem;
+    background-color: #fff;
 }
 .one-item-box .items-list li:last-child{
     margin-bottom: 0;
+}
+.one-item-box .items-list li:not(:last-child){
+    margin-bottom:1rem;
 }
 .one-item-box .items-list::before{
     border: none;
 }
 .banner-wraper{
-    background-color: transparent;
+    background-color: #fff;
     padding:0 1rem;
 }
