@@ -160,11 +160,10 @@ define([],function(){
             H5_MOVE_UP:'上移',
             H5_DELETE:'删除',
             H5_APPLY_MODEL:'应用到店铺',
-
+            H5_EDIT_SHOW_ITEM:'商品展示',
             H5_INS_INPUT_PLACEHOLDER:"如：instashop_ina",
             H5_INS_VERIFY:"请输入正确的Instagram账户"
-            H5_APPLY_MODEL:'应用到店铺',
-            H5_EDIT_SHOW_ITEM:'商品展示'
+
         },
 
         id : {
