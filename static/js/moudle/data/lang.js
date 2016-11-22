@@ -162,11 +162,16 @@ define([],function(){
             H5_APPLY_MODEL:'应用到店铺',
             H5_EDIT_SHOW_ITEM:'商品展示',
             H5_INS_INPUT_PLACEHOLDER:"如：instashop_ina",
-            H5_INS_VERIFY:"请输入正确的Instagram账户"
-
+            H5_INS_VERIFY:"请输入正确的Instagram账户",
+            H5_INS_TIP:"注：请确保你的Instagram账户没有设置为“私密账户”",
+            H5_SUBMIT_TXT:"提交",
         },
 
         id : {
+            //提交
+            'H5_SUBMIT_TXT':"Ajukan",
+            //注：请确保你的Instagram账户没有设置为“私密账户”
+            'H5_INS_TIP':"Pastikan akun Instagrammu tidak diprivate",
             //请输入正确的Instagram账户
             'H5_INS_VERIFY':"Silakan masukkan Instagram akun",
             //如：instashop_ina
