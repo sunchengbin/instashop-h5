@@ -160,11 +160,20 @@ define([],function(){
             H5_MOVE_UP:'上移',
             H5_DELETE:'删除',
             H5_APPLY_MODEL:'应用到店铺',
+
+            H5_INS_INPUT_PLACEHOLDER:"如：instashop_ina",
+            H5_INS_VERIFY:"请输入正确的Instagram账户"
+            H5_APPLY_MODEL:'应用到店铺',
             H5_EDIT_SHOW_ITEM:'商品展示'
         },
 
         id : {
-            //
+            //请输入正确的Instagram账户
+            'H5_INS_VERIFY':"Silakan masukkan Instagram akun",
+            //如：instashop_ina
+            'H5_INS_INPUT_PLACEHOLDER':"Contoh: instashop_ina",
+
+            //图片比例1:1
             'H5_MODELTYPE_SIZE_11':"Ukuran gambar harus 1:1",
             //商品描述
             'H5_MODELTYPE_GOOD_DESC':'Deskripsi Produk',
@@ -204,7 +213,7 @@ define([],function(){
             'H5_MODELTYPE_TYPE_LIST':'Tampilan Baris',
 
             //选填 建议填写
-            'H5_ADVICE_FILL':'Kode Pos, Pilih, Sebaiknya diisi',
+            'H5_ADVICE_FILL':'Kode Pos: Pilih, Sebaiknya diisi',
             // 收货地址
             'H5_SHIPPING_ADDRESS' : 'Alamat Pengiriman',
 
