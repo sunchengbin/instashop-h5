@@ -12,7 +12,7 @@
             </div>
         </section>
         {elseif $model.type eq 'rotate_banner'}
-        <section class="banner-wraper model-box j_model_box">
+        <section class="model-box j_model_box">
             <div class="banner-box">
                 <ul class="item-banner j_banner rotate-banner clearfix">
                     {foreach $model.data as $banner}

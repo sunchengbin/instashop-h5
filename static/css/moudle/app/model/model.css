@@ -47,7 +47,6 @@
 }
 .cart-item::after{
     top: 0;
-    border-top: 1px solid #d8d8d8;
 }
 /*导航类模板样式*/
 .navigation-box{

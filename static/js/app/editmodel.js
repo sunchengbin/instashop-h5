@@ -441,6 +441,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         createSignageHtm : function(data){
             return Hbs.compile(SignageHtm)({
                 data : data,
+                shop : init_data.shop,
                 lang:Lang
             });
         },
