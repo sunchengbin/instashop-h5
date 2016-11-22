@@ -14,19 +14,26 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 if(_cart_num > 0){
                     $('.j_cart_wraper').append('<span class="cart-num">'+_cart_num+'</span>');
                 }
-                if($('.j_banner').length){
-                    Slide.createNew({
-                        dom: document.querySelector('.j_banner'),
-                        needTab: true,
-                        auto : true
-                    });
-                }
+                _this.initRotateBanner();
             }
             $('.j_php_loding').remove();
             if($('.txt-hide').height() > 44){
                 $('.down-btn').show();
             }
             this.handleFn();
+        },
+        initRotateBanner : function(){
+            Common.slideImgNav();
+            var _banners = document.querySelectorAll('.j_banner');
+            if($('.j_banner').length){
+                $.each(_banners,function(i,item){
+                    Slide.createNew({
+                        dom: item,
+                        needTab: true,
+                        auto : true
+                    });
+                });
+            }
         },
         getTags : function(list){
             if(!list.length)return null;

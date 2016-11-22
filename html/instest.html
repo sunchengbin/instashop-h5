@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expect" content="0">
+    <title>webview-demo</title>
+</head>
+<body>
+<div>
+    insjs测试页面
+    <div id="show" style="color:red;"></div>
+    <button id="reg">oc调用js</button>
+</div>
+<script>
+    var WIN = window;
+    var INSJS = {
+        WebOnReady: function (callback,errorback) {
+            var _this = this;
+            if (/Instashop/g.test(navigator.userAgent)) {//内嵌浏览器访问
+                //todo 区分ios和android
+                _this.connectWebViewBridge(function(bridge){
+                    bridge.callHandler(
+                            'insSocket',
+                            {
+                                type : '接口名',
+                                param : {
+                                    userid : '2111',
+                                    username : 'nike'
+                                }
+                            },
+                            function(responseData) {
+                                //responseData = {
+                                //    param : {
+                                //          type : '接口名',
+                                //          param : {
+                                //              userid : '2111',
+                                //              username : 'nike'
+                                //          }
+                                //    },
+                                //    result : {}
+                                //}
+                                callback && callback(responseData);
+                            }
+                    );
+                    bridge.registerHandler('registerSocket', function(data, responseCallback) {
+                        alert(data);
+                        var responseData = JSON.parse(data).result;
+                        alert(responseData);
+                        responseCallback(responseData);
+                    });
+                });
+            } else {
+                //任意非内嵌浏览器
+                errorback && errorback();
+            }
+        },
+        connectWebViewBridge : function(callback){
+            if(/ios/g.test(navigator.userAgent)){
+                //ios下注入页面的初始
+                alert('is ios');
+                if (WIN.WebViewJavascriptBridge) {
+                    return callback(WebViewJavascriptBridge);
+                }
+                if (WIN.WVJBCallbacks) {
+                    return WIN.WVJBCallbacks.push(callback);
+                }
+                WIN.WVJBCallbacks = [callback];
+                var WVJBIframe = document.createElement('iframe');
+                WVJBIframe.style.display = 'none';
+                WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+                document.documentElement.appendChild(WVJBIframe);
+                setTimeout(function() {
+                    document.documentElement.removeChild(WVJBIframe)
+                }, 0);
+            }else{
+                if (WIN.WebViewJavascriptBridge) {
+                    callback(WebViewJavascriptBridge)
+                } else {
+                    document.addEventListener(
+                            'WebViewJavascriptBridgeReady'
+                            , function() {
+                                callback(WebViewJavascriptBridge)
+                            },
+                            false
+                    );
+                }
+            }
+        }
+    };
+    WIN.onload = function(){
+        INSJS.WebOnReady(
+            function(obj){
+                alert(1);
+                document.getElementById("show").innerHTML = "send get responseData from java, data = " + obj;
+            },
+            function(obj){
+                alert(2);
+                document.getElementById("show").innerHTML = "send get responseData from java, data = " + obj;
+            }
+        )
+    }
+</script>
+</body>
+</html>

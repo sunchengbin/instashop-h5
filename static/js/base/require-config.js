@@ -7,6 +7,7 @@ require.config({
         handlebars : 'base/handlebars-v2.0.0',
         hbs : 'base/hbs',
         text : 'base/text',
+        insjs : 'base/insjs',
         //组件配置路径
         dialog : 'moudle/ui/dialog/dialog',
         select : 'moudle/ui/select/select',

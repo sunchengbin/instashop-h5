@@ -261,6 +261,29 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
         }
         return _htm;
     });
+    HBS.registerHelper('itemlist', function(carts) {
+        var _htm = '';
+        if(!carts.length){
+            return '<li class="empty-cart">'+Lang.H5_SHOPING_NO_GOODS+'</li>';
+        }
+        for(var item in carts){
+            var _id = (carts[item].sku?carts[item].sku.id:carts[item].id);
+            _htm += '<li class="clearfix cart-item j_cart_item" data-id="'+_id+'">'
+                +'<img src="'+carts[item].img+'">'
+                +'<div class="">'
+                +'<p class="name">'+Base.others.transTxt(carts[item].item_comment)+'</p>'
+            if(carts[item].is_discount && carts[item].discounting){
+                _htm +='<p class="price">Rp '+Base.others.priceFormat(carts[item].discount.price)+'</p>';
+            }else{
+                var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].price;
+                _htm +='<p class="price">Rp '+Base.others.priceFormat(_price)+'</p>';
+
+            }
+            _htm +='</div>'
+                +'</li>';
+        }
+        return _htm;
+    });
     function testStock(item){
         var stock = ((item.sku&&item.sku.stock)?item.sku.stock:item.item.stock);
         return stock >= 9999999;

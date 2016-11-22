@@ -1,0 +1,26 @@
+<section class="banner-wraper j_model_box">
+    {{{btns}}}
+    {{#eq type 'two_list'}}
+        <ul class="two-list-box clearfix">
+            {{#each data.data}}
+                <li>
+                    <div class="lazy" data-img="{{transimgurl img}}"></div>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <div class="banner-box">
+            {{#eq type 'rotate'}}
+                <ul class="item-banner j_banner rotate-banner clearfix">
+            {{else}}
+                <ul class="item-banner static-banner clearfix">
+            {{/eq}}
+
+            {{#each data.data}}
+                <li class=""><a class="block" href="javascript:;"><img data-img="{{transimgurl img}}"/></a></li>
+            {{/each}}
+            </ul>
+        </div>
+    {{/eq}}
+</section>
+

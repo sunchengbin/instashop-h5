@@ -7,7 +7,11 @@
 {else}
 {if $INDEX_DATA.shop.status eq '2'}
 <section class="shop-header">
-    <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover}" src="">
+    {if $INDEX_DATA.template|@count}
+        <img class="shop-header-bg" data-img="{$INDEX_DATA.template[0].data[0].front_cover}" src="">
+    {else}
+        <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover}" src="">
+    {/if}
     <div class="clearfix shop-info">
         <div class="shop-img">
             <img data-img="{$INDEX_DATA.shop.logo}" src=""/>
@@ -45,20 +49,8 @@
         <p><i class="icon iconfont j_down_btn down-btn"></i></p>
     </div>
 </section>
-{if $INDEX_DATA.shop.banners}
-<div class="banner-box">
-    <ul class="item-banner j_banner clearfix">
-        {foreach $INDEX_DATA.shop.banners as $banner}
-        {if $banner.href}
-        <li class=""><a class="block" href="{$banner.href}"><img data-img="{$banner.url|format_img}" src=""/></a></li>
-        {else}
-        <li class=""><a class="block" href="javascript:;"><img data-img="{$banner.url|format_img}" src=""/></a></li>
-        {/if}
 
-        {/foreach}
-    </ul>
-</div>
-{/if}
+{include file="model.tpl" title="my template model"}
 <div class="item-list-wraper">
     {if !$INDEX_DATA.item_list.list|@count}
     <section class="no_item">Belum ada produk</section>
@@ -74,8 +66,7 @@
                         {if $item.is_discount}
                         <span>-{$item.discount.value}%</span>
                         {if $item.discounting}
-                        <p><i class="icon iconfont icon-time-font"></i><span
-                                data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span>
+                        <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span>
                         </p>
                         {else}
                         <p>Coming Soon</p>
