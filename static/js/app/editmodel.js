@@ -111,6 +111,11 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 _this.setIsEdited();
                 var _dom = $(this),
                     _index = $('.j_insert_model').index(_dom);
+                try{
+                    goUrlStatistics('insert_model');
+                }catch(error){
+                    console.log('error')
+                }
                 var _param = {
                     param:{
                         type:'create_model',
@@ -123,6 +128,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 bridge.callHandler('insSocket',_param, function(response) {
                       return null;
                 });
+
             });
             $('body').on('click','.j_edit_model',function(){
                 _this.setIsEdited();

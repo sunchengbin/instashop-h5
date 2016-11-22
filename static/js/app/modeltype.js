@@ -22,6 +22,11 @@ require(['base','hbs','text!views/app/modeltype.hbs','insjs','fastclick','config
             $('body').on('click','.j_model_type',function(){
                 var _type = $(this).attr('data-type'),
                     _index = Base.others.getUrlPrem('index');
+                try{
+                    goUrlStatistics(_type);
+                }catch(error){
+                    console.log('error')
+                }
                 var _param = {
                     param:{
                         type:'edit_model',
