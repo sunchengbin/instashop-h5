@@ -27,6 +27,7 @@ require(['hbs', 'text!views/app/instagramcheck.hbs', 'dialog', 'ajax', 'config',
                         action: "import"
                     }
                 }
+                //http://api-test.instashop.co.id/instashop/v1/auth?param={"action":"instagram","wduss":"ePGlfTEW5GzoBB5rUZA48dc/KC20YzKxkrLWfi38kTc=","seller_id":"40786","_debug_env":"3.6"}
                 Ajax.postJsonp({
                     url: Config.actions.instagramcheck,
                     data: {param: JSON.stringify(_reqData)},
