@@ -343,8 +343,14 @@ footer .btn i{
     float: left;
     width: 100%;
 }
-.static-banner li,.two-list-banner li{
+/*.static-banner li,.two-list-banner li{*/
+    /*padding:1rem 0;*/
+/*}*/
+.static-banner,.two-list-banner{
     padding:1rem 0;
+}
+.one-item-box .items-list li a{
+    padding:1rem 0 0;
 }
 /*banner*/
 .banner-box{

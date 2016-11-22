@@ -367,7 +367,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 isdefault: true,
                 data : {
                     data : init_data.item_list.list,
-                    title : 'Rekomendasi Item'
+                    title : Lang.H5_EDIT_SHOW_ITEM
                 },
                 lang : Lang
             });

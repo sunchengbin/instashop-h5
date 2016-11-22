@@ -212,3 +212,6 @@ section{
 .static-banner li:not(:first-child){
     margin-top:1.5rem;
 }
+.one-item-box .items-list li a{
+    padding: 1rem 1rem 0;
+}

@@ -33,6 +33,26 @@ require(['insjs','fastclick','config'],function(Insjs,FastClick,Config){
                     return null;
                 });
             });
+            $('body').on('click','.j_no_img',function(){
+                var _dom = $(this),
+                    _type = _dom.attr('data-type');
+                var _param = {
+                    param:{
+                        type : 'share',
+                        param : {
+                            type : _type,
+                            data : [{
+                                img : '',
+                                content:'fenxiangceshifenxiangceshishsishsishsihfiadfhafenxiangceshishsishsishsihfiadfhashsishsishsihfiadfha',
+                                link_url:'http://badelong7.test.instashop.co.id/1161354'
+                            }]
+                        }
+                    }
+                };
+                bridge.callHandler('insSocket',_param, function(response) {
+                    return null;
+                });
+            });
         }
     };
     Share.init();

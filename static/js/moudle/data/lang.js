@@ -159,7 +159,8 @@ define([],function(){
             H5_EDIT:'编辑',
             H5_MOVE_UP:'上移',
             H5_DELETE:'删除',
-            H5_APPLY_MODEL:'应用到店铺'
+            H5_APPLY_MODEL:'应用到店铺',
+            H5_EDIT_SHOW_ITEM:'商品展示'
         },
 
         id : {
@@ -427,7 +428,8 @@ define([],function(){
             H5_EDIT:'Ubah',
             H5_DELETE:'Hapus',
             H5_MOVE_UP:'Pindah ke Atas',
-            H5_APPLY_MODEL:'Gunakan ke Tokomu'
+            H5_APPLY_MODEL:'Gunakan ke Tokomu',
+            H5_EDIT_SHOW_ITEM:'Tampilan Produk'
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

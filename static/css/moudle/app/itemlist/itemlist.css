@@ -48,10 +48,10 @@
     box-sizing:border-box;
 }
 .items-list li:nth-child(odd) a{
-    padding-right:.5rem;
+    padding:1rem .5rem 0 1rem;
 }
 .items-list li:nth-child(even) a{
-    padding-left:.5rem;
+    padding:1rem 1rem 0 .5rem;
 }
 .item-info{
     display: block;
@@ -73,6 +73,9 @@
     transform: scale(0.5);
     border-top: 1px solid #d8d8d8;
     z-index: 100;
+}
+.items-list li a{
+    padding-top:1rem;
 }
 .items-list li a::after{
     display: block;
