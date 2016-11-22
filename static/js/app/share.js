@@ -12,6 +12,7 @@ require(['insjs','fastclick','config'],function(Insjs,FastClick,Config){
             });
         },
         handelFn : function(bridge){
+            FastClick.attach(document.body);
             $('body').on('click','.j_share_btn',function(){
                 var _dom = $(this),
                     _type = _dom.attr('data-type');
@@ -21,9 +22,9 @@ require(['insjs','fastclick','config'],function(Insjs,FastClick,Config){
                         param : {
                             type : _type,
                             data : [{
-                                img : '',
-                                content:'',
-                                link_url:''
+                                img : 'http://imghk0.geilicdn.com/test_instashop-1479194911269-1unadjust.jpg?w=500&h=500&cp=1',
+                                content:'fenxiangceshifenxiangceshishsishsishsihfiadfhafenxiangceshishsishsishsihfiadfhashsishsishsihfiadfha',
+                                link_url:'http://badelong7.test.instashop.co.id/1161354'
                             }]
                         }
                     }
