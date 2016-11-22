@@ -112,6 +112,7 @@ define(['base', 'slide', 'dialog'], function (Base, Slide, Dialog) {
                 _this._loading.remove();
             }
             _img.onload = function () {
+                _this._loading.remove();
                 callback && callback(_img);
             };
             _img.onerror = function () {
