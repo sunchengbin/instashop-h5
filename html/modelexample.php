@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <title>Kreasikan Tokomu</title>
+    <title>Contoh</title>
     <style>
         *{padding:0;margin:0;}
         img{width:100%;}
