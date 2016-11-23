@@ -1,3 +1,6 @@
+<?php
+include_once( dirname(__FILE__).'/../../html/router/common.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -616,6 +619,9 @@
     <p>5. Keputusan Instashop adalah mutlak dan tidak dapat diganggu gugat. Jika kamu sudah memiliki domain sendiri dan
         ingin mengkoneksikannya dengan web Instashopmu, hubungi CS kami.</p>
 </section>
+<script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
+<!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
+<script src="<?=STATIC_HOST?>/js/dist/app/act/domainname.js?v=1479790786163"></script>
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
