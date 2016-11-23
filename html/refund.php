@@ -13,29 +13,13 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/orderdetail.css?v=1479804152451" rel="stylesheet"/>
-    <title>Detail Pesanan</title>
-    <script>
-        <?php
-        include_once( dirname(__FILE__).'/../html/router/util.php' );
-        $params = [
-            'buyer_id' => 0,
-            'opt' => 'desc,pay_info,shop_info,logistics_info,refund_card,buyer_op'
-        ];
-        $order_id = $_REQUEST['order_id'];
-        if (!$order_id) {
-            $ss = split('\/', $_SERVER['REQUEST_URI']);
-            $order_id = end($ss);
-        }
-        $path = 'v1/orders/'.$order_id;
-        ?>
-        var init_data = JSON.parse(<?php echo get_init_data($path, $params); ?>);
-    </script>
+    <link href="<?=STATIC_HOST?>/css/dist/app/refund.css?v=1479804152451" rel="stylesheet"/>
+    <title>Nomor rekening pengembalian dana</title>
 </head>
 <body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="../js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/orderdetail.js?v=1479804152451"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/refund.js?v=1479804152451"></script>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

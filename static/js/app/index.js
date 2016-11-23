@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/6.
  * 首页
  */
-require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','base','common','cart','fastclick','contact','slide','item'],function(Lang,Lazyload,Hbs,Index,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item){
+require(['lang','lazyload','ajax','config','base','common','cart','fastclick','contact','slide','item'],function(Lang,Lazyload,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item){
     var I = {
         init : function(init_data){
             Lazyload();

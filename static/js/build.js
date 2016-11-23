@@ -18,6 +18,7 @@
         "ajax":"moudle/ui/ajax/ajax",
         "city":"moudle/data/city",
         "lang":"moudle/data/lang",
+        "bankcity":"moudle/data/bankcity",
         "common":"moudle/app/common/common",
         "buyplug":"moudle/app/buyplug/buyplug",
         "item":"moudle/app/item/item",

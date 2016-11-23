@@ -8,6 +8,9 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact','base'
             if(init_data && init_data.code == 200){
                 localStorage.setItem('BankInfo',JSON.stringify(init_data.order.pay_info.banks));
                 localStorage.setItem('OrderInfo',JSON.stringify(init_data.order));
+                if(init_data.order.refund_card && init_data.order.refund_card.b_branch){
+                    localStorage.setItem('RefundCard',JSON.stringify(init_data.order.refund_card));
+                }
                 ItemHtm= Hbs.compile(OrderDetail)({
                     data : init_data,
                     lang : Lang,

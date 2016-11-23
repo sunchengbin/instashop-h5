@@ -5,7 +5,7 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang', 'lazyload', 'hbs', 'text!views/app/item.hbs', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item'], function (Lang, Lazyload, Hbs, Item, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item'], function (Lang, Lazyload,  Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item) {
     var ITEM = {
         init: function () {
             var _this = this,
