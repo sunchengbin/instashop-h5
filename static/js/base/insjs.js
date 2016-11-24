@@ -159,6 +159,7 @@ define([],function(){
                 });
             } else {
                 //任意非内嵌浏览器
+                alert("hahah")
                 errorback && errorback();
             }
         },
