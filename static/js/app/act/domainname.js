@@ -22,8 +22,6 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
                 seller_id: Common.getQueryParam("seller_id"),
                 wduss: Common.getQueryParam("wduss")
             };
-            //初始化数据
-            _this.initData();
 
             //初始化状态监控
             _this.initStatus();
@@ -31,6 +29,8 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
             //初始化jsbridge
             if(window.WebViewJavascriptBridge){
                 _this.StatusCheck.isClient = true;
+                //初始化数据
+                _this.initData();
                 Insjs.WebOnReady(function(bridge){
                     _this.handleFn(bridge);
                 },function(){
