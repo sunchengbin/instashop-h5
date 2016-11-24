@@ -95,8 +95,8 @@ function format_img($imgurl, $w=420, $h=315){
 	return $imgurl;
 }
 function list_img($imgurl){
-    $w = 500;
-    $h = 500;
+    $w = 750;
+    $h = 750;
 	if (false !== strpos($imgurl, '?')) {
 		$tmp_arr = explode('?', $imgurl);
 		$imgurl = $tmp_arr[0];
