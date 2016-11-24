@@ -94,9 +94,19 @@ function format_img($imgurl, $w=420, $h=315){
 	$imgurl .= sprintf("?w=%s&h=%s&cp=1", $w, $h);
 	return $imgurl;
 }
-function list_img($imgurl){
+function item_img($imgurl){
     $w = 750;
     $h = 750;
+	if (false !== strpos($imgurl, '?')) {
+		$tmp_arr = explode('?', $imgurl);
+		$imgurl = $tmp_arr[0];
+	}
+	$imgurl .= sprintf("?w=%s&h=%s&cp=1", $w, $h);
+	return $imgurl;
+}
+function list_img($imgurl){
+    $w = 640;
+    $h = 640;
 	if (false !== strpos($imgurl, '?')) {
 		$tmp_arr = explode('?', $imgurl);
 		$imgurl = $tmp_arr[0];
