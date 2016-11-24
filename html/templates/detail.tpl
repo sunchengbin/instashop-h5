@@ -37,7 +37,7 @@
             <div class="banner-box">
                 <ul class="item-banner j_banner clearfix">
                     {foreach $INDEX_DATA.item.imgs as $banner_img}
-                        <li data-num="{$banner_img@index}" data-src="{$banner_img|viewerImg}"><img data-img="{$banner_img|list_img}" src=""/></li>
+                        <li data-num="{$banner_img@index}" data-src="{$banner_img|viewerImg}"><img data-img="{$banner_img|item_img}" src=""/></li>
                      {/foreach}
                 </ul>
             </div>
