@@ -437,6 +437,7 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
                     var _domain = $.trim($('.j_domain_ipt').val());
                     if (_this.testDomain(_domain)) {
                         $('.j_domain_error').html('Ajukan...');
+                        //先查询有没有
                         _this.actionFn({
                             action: 'search',
                             seller_id: _this.user_info.seller_id,
@@ -444,11 +445,15 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
                             domain: _domain + '.com'
                         }, function () {
                             if (confirm('Domain ini masih bisa digunakan, segera registrasikan domainmu!')) {
+                                //没有重复的 提交
                                 _this.actionFn({
                                     domain: _domain + '.com',
                                     seller_id: _this.user_info.seller_id,
                                     wduss: _this.user_info.wduss
                                 }, function (obj) {
+                                    //申请中
+                                    $(".j_domain_tip").text("Pendaftaran Sedang Diproses")
+                                    $(".j_domain_btn").hide();
                                     _this.domain_dialog.remove();
                                     _this.StatusCheck.isAllowApply = false;
                                     alert('Pendaftaran domain membutuhkan 72 jam, silakan tunggu sejenak. Selama kurun waktu ini, customermu masih dapat mengunjungi mini webmu di alamat ' + _this.user_info.seller_id + '.instashop.co.id ');
