@@ -355,6 +355,7 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common', 'l
                     _type = _dom.attr('data-type'),
                     _report = _dom.attr('data-report'),
                     _invite_txt = $.trim($(".j_invite_txt").val()) || "Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Klik:http://www.instashop.co.id/";
+                alert(_type);
                 var _param = {
                     param: {
                         type: 'share',
@@ -466,7 +467,7 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common', 'l
             _htm = '<div class="invite-dialog">' +
                 '    <div class="invite-dialog-input">' +
                 '        <textarea name="content" value="" id="j_invite_txt"' +
-                '                  placeholder=" Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Klik"></textarea>' +
+                '                  placeholder=" Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Klik:http://www.instashop.co.id"></textarea>' +
                 '    </div>' +
                 '    <div class="invite-share-box">' +
                 '        <ul class="ins-avg-sm-4">' +
