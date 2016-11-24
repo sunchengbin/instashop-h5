@@ -152,7 +152,6 @@ define([],function(){
     var INSJS = {
         WebOnReady: function (callback,errorback) {
             var _this = this;
-            alert("begin jsbridge")
             if (/Instashop/g.test(navigator.userAgent)) {//内嵌浏览器访问
                 //todo 区分ios和android
                 _this.connectWebViewBridge(function(bridge){

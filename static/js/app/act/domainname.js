@@ -1,7 +1,7 @@
 /**
  * 独立域名活动-第二季
  */
-require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','lang'], function (Config, Insjs, Ajax, Slide, Dialog, Fastclick, Common,Lang) {
+require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common', 'lang'], function (Config, Insjs, Ajax, Slide, Dialog, Fastclick, Common, Lang) {
     "use strict";
 
 
@@ -25,23 +25,15 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
 
             //初始化状态监控
             _this.initStatus();
-
-            //初始化jsbridge
-            // alert(window.WebViewJavascriptBridge)
-            if(true){
+            Insjs.WebOnReady(function (bridge) {
                 _this.StatusCheck.isClient = true;
                 //初始化数据
                 _this.initData();
-                Insjs.WebOnReady(function(bridge){
-                    alert(bridge)
-                    _this.handleFn(bridge);
-                },function(){
-                    alert(1)
-                    _this.handleFn();
-                });
-            }else{
+                _this.handleFn(bridge);
+            }, function () {
                 _this.versionTipDialog();
-            }
+                return;
+            });
         },
         versionTipDialog: function () {
             Dialog.alert({
@@ -51,14 +43,14 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
         initData: function () {
             var _this = this;
             var _reqParam = {
-                edata:{
-                    action:"invite",
-                    seller_id:_this.user_info.seller_id,
-                    wduss:_this.user_info.wduss,
-                    _debug_env:"3.6"
+                edata: {
+                    action: "invite",
+                    seller_id: _this.user_info.seller_id,
+                    wduss: _this.user_info.wduss,
+                    _debug_env: "3.6"
                 }
             }
-            var _reqUrl = Config.host.actionUrl+Config.actions.selfCheckDomain+"?param="+JSON.stringify(_reqParam);
+            var _reqUrl = Config.host.actionUrl + Config.actions.selfCheckDomain + "?param=" + JSON.stringify(_reqParam);
             Ajax.getJsonp(_reqUrl, function (res) {
                 // var res = {
                 //     code: 200,
@@ -351,8 +343,8 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
                         body_txt: _this.createShareDialogHtm(),
                         show_footer: false,
                         show_top: false,
-                        body_fn:function(){
-                            $(".invite-dialog-img-url").attr('src',_this.domainImg);
+                        body_fn: function () {
+                            $(".invite-dialog-img-url").attr('src', _this.domainImg);
                         }
                     });
                 }
