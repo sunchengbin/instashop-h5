@@ -355,7 +355,7 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common', 'l
                     _type = _dom.attr('data-type'),
                     _report = _dom.attr('data-report'),
                     _invite_txt = $.trim($(".j_invite_txt").val()) || "Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Klik:http://www.instashop.co.id/";
-                alert(_type);
+                alert(bridge.callHandler);
                 var _param = {
                     param: {
                         type: 'share',
