@@ -551,7 +551,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                     border: 1px solid #D8D8D8;
                     outline: none;
                     color: #999999;
-                    font-size: 18px;
+                    font-size: 15px;
                     resize: none;
                     padding:10px;
                     min-height: 130px;
@@ -599,17 +599,20 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                 .invite-share-box p {
                     margin-top:-22px;
                 }
-                .invite-share-box ul li:nth-child(1){
+                .icon-share-copy {
                     color: #49C0FB;
                 }
-                .invite-share-box ul li:nth-child(2){
+                .icon-share-line {
                     color: #7EDB5C;
                 }
-                .invite-share-box ul li:nth-child(3){
+                .icon-share-whatsapp {
                     color: #38A6D7;
                 }
-                .invite-share-box ul li:nth-child(4){
+                .icon-share-bbm {
                     color: #6ED65B;
+                }
+                .icon-share-instagram {
+                    color: #B98E5C;
                 }
                 .invite-share-box p {
                     color: #666666!important;
@@ -643,8 +646,15 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                 .icon-share-line:before {
                     content: "\e622";
                 }
+                .icon-share-instagram:before { content: "\e623"; }
                 .j_share_btn,.invite-number-box {
                     display:none;
+                }
+                .j_domain_tip {
+                        margin-top: 20px;
+                        font-size: 16px;
+                        font-weight: bolder;
+                        text-align: center;
                 }
 
     </style>
@@ -713,7 +723,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                     </table>
                 </div>
             </div>
-            <button class="btn btn2 j_invite_btn disable-btn">Ajak teman sekarang</button>
+            <button class="btn btn2 j_invite_btn disable-btn" data-report="domain_btn_invite">Ajak teman sekarang</button>
             <div class="margin-top">
                 Notice: teman online shop kamu  untuk registrasi di Instashop
                 menggunakan kode referralmu teman online shop kamu  untuk
@@ -721,15 +731,17 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
             </div>
         </div>
     </div>
-    <div class="step step-3 clearfix">
+    <div id="result" class="step step-3 clearfix">
         <div class="step-contet">
             Setelah mendapat notifikasi berhasil, klik tombol ini untuk mendaftarkan domain web
         </div>
-        <div>
-            <button class="btn btn2 j_domain_btn disable-btn">Daftar</button>
+        <div class="j_domain_tip">
         </div>
-        <div>
-            <button class="btn btn2 j_share_btn disable-btn">Bagikan ke Teman</button>
+        <div style="text-align:center">
+            <button class="btn btn2 j_domain_btn disable-btn" data-report="domain_btn_apply">Daftar</button>
+        </div>
+        <div style="text-align:center">
+            <button class="btn btn2 j_share_btn" data-report="domain_btn_share">Bagikan ke Teman</button>
         </div>
     </div>
 </section>
@@ -750,19 +762,17 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
 <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
 <script src="<?=STATIC_HOST?>/js/dist/app/act/domainname.js?v=1479790786163"></script>
 <script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-78448705-7', 'auto');
-    ga('send', 'pageview');
-</script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+          function reportEventStatistics(type) {
+                console.log(type)
+              ga('send', 'event', type, 'click');
+          }
+          ga('create', 'UA-78448705-7', 'auto');
+          ga('send', 'pageview');
+
+      </script>
 </body>
 </html>
