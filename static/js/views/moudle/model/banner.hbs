@@ -13,12 +13,12 @@
             {{#eq type 'rotate'}}
                 <ul class="item-banner j_banner rotate-banner clearfix">
                     {{#each data.data}}
-                        <li class=""><a class="block" href="javascript:;"><div class="lazy" data-img="{{img}}"></div></a></li>
+                        <li class=""><a class="block" href="javascript:;"><img data-img="{{img}}"/></a></li>
                     {{/each}}
             {{else}}
                 <ul class="item-banner static-banner clearfix">
                     {{#each data.data}}
-                        <li class=""><a class="block" href="javascript:;"><div class="lazy" data-img="{{img}}"></div></a></li>
+                        <li class=""><a class="block" href="javascript:;"><img data-img="{{img}}"/></a></li>
                     {{/each}}
             {{/eq}}
 
