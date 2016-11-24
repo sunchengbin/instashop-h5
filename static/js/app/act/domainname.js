@@ -370,7 +370,6 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common', 'l
                 };
                 try {
                     reportEventStatistics(_report);
-                    alert(bridge.callHandler)
                     bridge.callHandler('insSocket', _param, function (response) {
                         return null;
                     });
@@ -472,7 +471,7 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common', 'l
                 '    <div class="invite-share-box">' +
                 '        <ul class="ins-avg-sm-4">' +
                 '            <li>' +
-                '                <i class="iconfont icon-share-copy j_invite_action" data-report="domain_btn_invite_copy" data-type="copy"></i>' +
+                '                <i class="iconfont icon-share-copy j_invite_action" data-report="domain_btn_invite_copy" data-type="share_to_copy"></i>' +
                 '                <p>COPY</p>' +
                 '            </li>' +
                 '            <li><i class="iconfont icon-share-line j_invite_action" data-report="domain_btn_invite_line" data-type="line"></i>' +
