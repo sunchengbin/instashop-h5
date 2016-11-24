@@ -76,7 +76,7 @@ function priceFormat($price) {
     return number_format($price, 0, '.', '.');
 }
 function bg_img($imgurl, $w=500){
-    $w = 500;
+    $w = 750;
 	if (false !== strpos($imgurl, '?')) {
 		$tmp_arr = explode('?', $imgurl);
 		$imgurl = $tmp_arr[0];
