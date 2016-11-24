@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expect" content="0">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>Free domain webstore</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-touch-callout: none;
+            background: transparent;
+            outline: none;
+        }
+
+        button, input, select, textarea {
+            font-size: 100%;
+            border: 0;
+            border-radius: 0;
+            -webkit-appearance: none;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body, button, input, select, option, td, textarea /* for ie */
+        {
+            font: 12px/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        img {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .block {
+            display: block;
+        }
+
+        .clearfix:after {
+            content: '\20';
+            display: block;
+            height: 0;
+            clear: both;
+        }
+
+        .clearfix {
+            *zoom: 1;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #E9DAC9;
+            color: #8B572A;
+        }
+
+        @media only screen and (min-width: 641px) {
+            body {
+                max-width: 640px;
+                margin: 0 auto;
+                background-color: #E9DAC9;
+            }
+
+            body .buy-box, body .logistics-plug, body .buy-plug, body .shop-header-nav, body footer, body .prove-btn, body .index-footer {
+                max-width: 640px;
+                left: 50%;
+                margin-left: -320px;
+            }
+
+            body .address-list {
+                max-width: 640px;
+            }
+        }
+
+        .dialog-wraper {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 5px;
+            font-size: 1.4rem;
+            color: #666;
+        }
+
+        .dialog-body, .dialog-top, .dialog-footer {
+            padding: 10px;
+            font-size: 12px;
+        }
+
+        .dialog-body {
+            overflow: auto;
+        }
+
+        .dialog-footer {
+            text-align: right;
+            padding-top: 0;
+            padding-bottom: 8px;
+        }
+
+        .dialog-footer a {
+            display: inline-block;
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #43CB9C;
+        }
+
+        .ca-btn {
+            margin-right: 30px;
+        }
+
+        .dialog-cover {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            background-color: black;
+            opacity: 0.4;
+            filter: Opacity(40);
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .content {
+            background: #E0CEBA;
+            margin: 10px 20px 20px;
+            padding: 10px 20px 20px;
+        }
+
+        .fwb {
+            font-weight: bolder;
+        }
+
+        .title-txt {
+            color: #666;
+        }
+
+        .content > div {
+            margin-top: 10px;
+        }
+
+        .b-bottom {
+            position: relative;
+        }
+
+        .b-bottom::after {
+            position: absolute;
+            left: -50%;
+            right: -50%;
+            bottom: 0;
+            height: 1px;
+            content: '';
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+            border-bottom: 1px solid #d8d8d8;
+            z-index: 1;
+        }
+
+        .margin-top {
+            margin-top: 15px;
+        }
+
+        .title-txt {
+            padding-bottom: 13px;
+        }
+
+        .step {
+            margin-top: 20px !important;
+        }
+
+        .step::before {
+            display: block;
+            position: relative;
+            content: "";
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: #BC9971;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            float: left;
+        }
+
+        .step:nth-last-child(n+2):after {
+            height: 1px;
+            content: '';
+            width: 100%;
+            margin-top: 15px;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            border-bottom: 1px solid #91714E;
+            z-index: 1;
+        }
+
+        .step-1::before {
+            content: 'STEP1';
+        }
+
+        .step-2::before {
+            content: 'STEP2';
+        }
+
+        .step-3::before {
+            content: 'STEP3';
+        }
+
+        .step-contet {
+            margin-left: 60px;
+        }
+
+        .btn {
+            font-family: Roboto-Bold;
+            font-size: 14px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            text-shadow: 0 2px 0 #D74629;
+            display: block;
+            height: 40px;
+            line-height: 40px;
+            width: 200px;
+            margin: 15px auto 0;
+            background-image: linear-gradient(-180deg, #FD675C 0%, #F15737 100%);
+            border-radius: 100px;
+        }
+
+        .btn1 {
+            /*background: url(images/btn1.jpg) no-repeat;*/
+            background-size: contain;
+        }
+
+        .btn2 {
+            /*background: url(images/btn2.jpg) no-repeat;*/
+            background-size: contain;
+        }
+
+        .disable-btn {
+            /*background: url(images/disable-btn.jpg) no-repeat;*/
+            background-image: linear-gradient(-180deg, #BAB5AF 0%, #B3A99E 100%);
+            text-shadow: 0 2px 0 #9F958B;
+        }
+
+        .user-list {
+            background-color: rgba(67, 203, 156, .15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .user-list li {
+            float: left;
+            width: 100%;
+            padding: 20px 0 40px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .user-list li > div {
+            width: 33.333333%;
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            -webkit-flex-shrink: 1;
+            -ms-flex-negative: 1;
+            flex-shrink: 1;
+            flex: 1;
+            text-align: center;
+            font-weight: bolder;
+            overflow: hidden;
+        }
+
+        .user-list li div img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .user-list li .name {
+            color: #43CB9C;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            display: block;
+        }
+
+        .user-list li .url {
+            padding: 0 5px;
+        }
+
+        .user-list li .url a {
+            color: #000;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            display: block;
+        }
+
+        .info-box {
+            padding: 20px;
+            line-height: 2;
+            color: #8B572A;
+        }
+
+        .info-box p span {
+            color: #8B572A;
+            font-weight: bolder;
+        }
+
+        .slide_tab {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            text-align: center;
+        }
+
+        .slide_tab i {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin-right: 5px;
+        }
+
+        .slide_tab i.cur {
+            background-color: #43CB9C;
+        }
+
+        .tel-dialog > p {
+            font-size: 14px;
+            font-weight: bolder;
+        }
+
+        .tel-dialog li {
+            padding: 10px 0;
+        }
+
+        .tel-dialog li::before {
+            display: block;
+            content: " ";
+            margin-top: 3px;
+            width: 16px;
+            height: 24px;
+            float: left;
+            background: url(images/phone.png) no-repeat;
+            background-size: contain;
+        }
+
+        .tel-dialog li > div {
+            margin-left: 25px;
+            position: relative;
+            padding-right: 5px;
+        }
+
+        .tel-dialog li input {
+            width: 100%;
+            height: 30px;
+            padding: 5px 5px 5px 40px;
+            background-color: #f5f5f5;
+            border-radius: 2px;
+        }
+
+        .tel-dialog li span {
+            position: absolute;
+            left: 10px;
+            top: 0;
+            font-size: 12px;
+            line-height: 30px;
+        }
+
+        .tel-dialog button {
+            display: block;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            background-color: #43cb9c;
+            border-radius: 2px;
+        }
+
+        .tel-dialog button.disable-btn {
+            background-color: #eee;
+            color: #ff584c;
+        }
+
+        .domain-box {
+            color: #000;
+        }
+
+        .domain-box > p {
+            font-weight: bolder;
+            font-size: 14px;
+        }
+
+        .domain-input {
+            position: relative;
+            margin: 10px 0;
+        }
+
+        .domain-input input {
+            background: #ffffff;
+            border: 2px solid #d8d8d8;
+            border-radius: 4px;
+            width: 100%;
+            height: 35px;
+            padding: 8px 60px;
+            font-size: 14px;
+        }
+
+        .domain-input::after, .domain-input::before {
+            display: block;
+            height: 35px;
+            line-height: 35px;
+            font-size: 14px;
+            font-weight: bolder;
+            position: absolute;
+            top: 0;
+        }
+
+        .domain-input::before {
+            content: "www.";
+            left: 20px;
+        }
+
+        .domain-input::after {
+            content: ".com";
+            right: 25px;
+        }
+
+        .btn3 {
+            display: block;
+            width: 250px;
+            height: 35px;
+            margin: 0 auto 10px;
+            background: url(images/btn3.jpg) no-repeat;
+            background-size: contain;
+        }
+
+        .domain-cont > p {
+            line-height: 2;
+            font-size: 12px;
+        }
+
+        .domain-cont > p span {
+            font-weight: bolder;
+        }
+
+        .tel-dialog > p.tel-error, .domain-error {
+            color: #ff584c;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .domain-error {
+            margin: 5px 0;
+        }
+
+        .intro {
+            font-size: 18px;
+        }
+
+        .invite-box {
+            text-align: center;
+        }
+
+        .invite-number {
+            letter-spacing: 1px;
+        }
+
+        .invite-iscan {
+            font-family: Roboto-Medium;
+            font-size: 18px;
+            color: #54AE59;
+            letter-spacing: 0;
+            font-weight: bolder;
+        }
+
+        .invite-table table {
+            margin: 0 auto;
+            border-color: #8B572A;
+            border-width: 0px;
+            border-collapse: collapse;
+            border: none;
+            background: #BB9873;
+        }
+
+        .invite-table table td {
+            border: 2px solid #8B572A;
+            width: 50%;
+            text-align: center;
+            height: 40px;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .invite-table .t-header {
+            width: 100%;
+            font-size: 16px;
+            font-weight: bolder;
+        }
+        .invite-dialog {
+            background: #ffffff;
+        }
+        .invite-dialog-input,.invite-dialog-img {
+            padding:10px 10px 0;
+        }
+
+        .invite-dialog-input textarea {
+            display: block;
+            width: 100%;
+            background: #F5F5F5;
+            border: 1px solid #D8D8D8;
+            outline: none;
+            color: #999999;
+            font-size: 18px;
+            resize: none;
+            padding:10px;
+            min-height: 130px;
+            height: 50px;
+        }
+        .invite-dialog-img img {
+            display: block;
+            margin: 0px;
+            padding: 0px;
+            border: 0;
+            width: 100%;
+        }
+
+        [class*="ins-avg-"] {
+            display: block;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        [class*="ins-avg-"]:before,
+        [class*="ins-avg-"]:after {
+            content: " ";
+            display: table;
+        }
+
+        [class*="ins-avg-"]:after {
+            clear: both;
+        }
+
+        [class*="ins-avg-"] > li {
+            display: block;
+            height: auto;
+            float: left;
+        }
+
+        .ins-avg-sm-4 > li {
+            width: 25%;
+        }
+
+        .ins-avg-sm-4 > li:nth-of-type(n) {
+            clear: none;
+        }
+
+        .ins-avg-sm-4 > li:nth-of-type(4n + 1) {
+            clear: both;
+        }
+
+        .invite-share-box {
+            text-align: center;
+        }
+        .invite-share-box p {
+            margin-top:-22px;
+        }
+        .invite-share-box ul li:nth-child(1){
+            color: #49C0FB;
+        }
+        .invite-share-box ul li:nth-child(2){
+            color: #7EDB5C;
+        }
+        .invite-share-box ul li:nth-child(3){
+            color: #38A6D7;
+        }
+        .invite-share-box ul li:nth-child(4){
+            color: #6ED65B;
+        }
+        .invite-share-box p {
+            color: #666666!important;
+        }
+        @font-face {
+            font-family: "iconfont";
+            src: url('../../../static/css/base/fonts/iconfont.woff?t=1473737446') format('woff'), /* chrome, firefox */ url('../../../static/css/base/fonts/iconfont.ttf?t=1473737446') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url('../../../static/css/base/fonts/iconfont.svg?t=1473737446#iconfont') format('svg'); /* iOS 4.1- */
+        }
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 75px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .icon-share-copy:before {
+            content: "\e61f";
+        }
+
+        .icon-share-bbm:before {
+            content: "\e620";
+        }
+
+        .icon-share-whatsapp:before {
+            content: "\e621";
+        }
+
+        .icon-share-line:before {
+            content: "\e622";
+        }
+
+    </style>
+</head>
+<body>
+<div class="invite-dialog">
+    <div class="invite-dialog-img">
+        <img src="images/share_demo.jpeg">
+    </div>
+    <div class="invite-share-box">
+        <ul class="ins-avg-sm-4">
+            <li>
+                <i class="iconfont icon-share-copy"></i>
+                <p>COPY</p>
+            </li>
+            <li><i class="iconfont icon-share-line"></i>
+                <p>LINE</p></li>
+            <li><i class="iconfont icon-share-bbm"></i>
+                <p>BBM</p></li>
+            <li><i class="iconfont icon-share-whatsapp"></i>
+                <p>WhatsApp</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--<div class="invite-dialog">-->
+    <!--<div class="invite-dialog-input">-->
+        <!--<textarea name="content" value="" id="j_invite_txt"-->
+                  <!--placeholder="Undang copy + link download instashop"></textarea>-->
+    <!--</div>-->
+    <!--<div class="invite-share-box">-->
+        <!--<ul class="ins-avg-sm-4">-->
+            <!--<li>-->
+                <!--<i class="iconfont icon-share-copy"></i>-->
+                <!--<p>COPY</p>-->
+            <!--</li>-->
+            <!--<li><i class="iconfont icon-share-line"></i>-->
+                <!--<p>LINE</p></li>-->
+            <!--<li><i class="iconfont icon-share-bbm"></i>-->
+                <!--<p>BBM</p></li>-->
+            <!--<li><i class="iconfont icon-share-whatsapp"></i>-->
+                <!--<p>WhatsApp</p>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</div>-->
+<section class="banner">
+    <img src="images/banner.jpg">
+</section>
+<!--<h1>Ubah domain web Instashop kamu <br>menjadi namatokokamu.com!</h1>-->
+
+<section class="content">
+    <div class="intro">
+        Belum kebagian domain .com di promo bulan lalu? Jangan khawatir,sekarang Instashop bagi-bagi domain gratis lagi
+        untuk web Instashopmu dari 1-15 DESEMBER 2016
+    </div>
+
+    <div class="step step-1 clearfix">
+        <div class="step-contet">
+            Kamu harus upload min 10 produk / memiliki min 3 pesanan selesai
+            <p class="invite-iscan">
+                Syarat sudah terpenuhi
+            </p>
+        </div>
+    </div>
+    <div class="step step-2 clearfix">
+        <div class="step-contet">
+            <p>Ajak 5 teman online shop kamu (followers IG MINIMAL 500) untuk registrasi di Instashop menggunakan kode
+                referralmu （123456）
+                dan upload 10 produk
+            </p>
+        </div>
+        <div>
+            <p class="invite-number-box text-center margin-top">
+                kode referralmu:<br>
+                <span class="invite-number fwb">123456</span>
+            </p>
+            <div class="invite-box margin-top">
+                Belum ada teman yang memenuhi syarat
+                <div class="invite-table">
+                    <table>
+                        <tr>
+                            <td class="t-header" colspan="2">
+                                Belum ada teman yang memenuhi syarat
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>serifendga</td>
+                            <td>18525354556</td>
+                        </tr>
+                        <tr>
+                            <td>serifendga</td>
+                            <td>18525354556</td>
+                        </tr>
+                        <tr>
+                            <td>serifendga</td>
+                            <td>18525354556</td>
+                        </tr>
+                        <tr>
+                            <td>serifendga</td>
+                            <td>18525354556</td>
+                        </tr>
+                        <tr>
+                            <td>serifendga</td>
+                            <td>18525354556</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn btn2 j_invite_btn disable-btn">BAGIKAN KODE REFERRA</button>
+            <div class="margin-top">
+                Notice: teman online shop kamu untuk registrasi di Instashop
+                menggunakan kode referralmu teman online shop kamu untuk
+                registrasi di Instashop menggunakan kode referralmu
+            </div>
+        </div>
+    </div>
+    <div class="step step-3 clearfix">
+        <div class="step-contet">
+            Setelah mendapat notifikasi berhasil, klik tombol ini untuk mendaftarkan domain web
+        </div>
+        <div>
+            <button class="btn btn2 j_domain_btn disable-btn">DAFTAR DOMAIN WEB</button>
+        </div>
+    </div>
+</section>
+<section class="info-box">
+    <p><span>Syarat & Ketentuan:</span></p>
+    <p>1. Teman yang kamu ajak HARUS merupakan online shop, belum pernah terregistrasi akunnya di Instashop sebelum 1
+        Desember 2016 dan memiliki min. 500 followers di akun Instagram online shopnya.</p>
+    <p>2. Satu akun Instagram hanya dapat ditambahkan SATU KALI. Temanmu tidak dapat menambahkan gambar dari akun
+        Instagram yang sebelumnya sudah digunakan oleh pengguna lain. </p>
+    <p>3. Instashop akan otomatis memverifikasi data kelima temanmu. Kamu tidak perlu mengisi nomor ponsel temanmu di
+        halaman ini, cukup tunggu notifikasi verifikasi berhasil dari Instashop, lalu daftarkan domain web yang kamu
+        inginkan.</p>
+    <p>4. Promo ini berlaku hingga 15 Desember 2016 pukul 22.00 WIB</p>
+    <p>5. Keputusan Instashop adalah mutlak dan tidak dapat diganggu gugat. Jika kamu sudah memiliki domain sendiri dan
+        ingin mengkoneksikannya dengan web Instashopmu, hubungi CS kami.</p>
+</section>
+</body>
+</html>
