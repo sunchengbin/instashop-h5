@@ -51,10 +51,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 }
             }
             var _reqUrl = Config.host.actionUrl + Config.actions.selfCheckDomain + "?param=" + JSON.stringify(_reqParam);
-            _this._loading = Dialog.loading({
-                width: 100,
-                is_cover: false
-            })
             Ajax.getJsonp(_reqUrl, function (res) {
                 // var res = {
                 //     code: 200,
@@ -195,7 +191,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 //         };
                 //         break;
                 // }
-                _this._loading.remove();
                 var _selfCheckData = res.self_check || {};
                 var _domainCheckData = res.domain;
                 var _inviteUserList = res.invite_user;
@@ -250,11 +245,11 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     }
                 } else {
                     Dialog.alert({
-                        body_txt: '接口返回错误'
-                    })
+                        top_txt: '',//可以是html
+                        body_txt: '<p class="dialog-body-p">' + (res.message ? res.message : Lang.H5_ERROR) + '</p>'
+                    });
                 }
             }, function () {
-                _this._loading.remove();
                 Dialog.alert({
                     top_txt: '',//可以是html
                     cfb_txt: Lang.H5_FRESHEN,
