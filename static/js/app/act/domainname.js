@@ -54,9 +54,16 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
         },
         initData: function () {
             var _this = this;
-            //TODO 上线替换
-            var testApi = 'http://api-test.instashop.co.id/instashop/v1/domain?param={"action":"invite","seller_id":"40687","wduss":"1k29nj9vdh6Pz/jqIZtKWdbTLsYA7YzMfdjiJm4UrQI=","_debug_env":"3.6"}'
-            Ajax.getJsonp(testApi, function (_res) {
+            var _reqParam = {
+                edata:{
+                    action:"invite",
+                    seller_id:_this.user_info.seller_id,
+                    wduss:_this.user_info.wduss,
+                    _debug_env:"3.6"
+                }
+            }
+            var _reqUrl = Config.host.actionUrl+Config.actions.selfCheckDomain+"?param="+JSON.stringify(_reqParam);
+            Ajax.getJsonp(_reqUrl, function (_res) {
 
                 var res = {
                     code: 200,
