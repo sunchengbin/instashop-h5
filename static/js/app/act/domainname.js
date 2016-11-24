@@ -1,7 +1,7 @@
 /**
  * 独立域名活动-第二季
  */
-require(['config','insjs','ajax','slide','dialog','fastclick'],function(Config,INSJS,Ajax,Slide,Dialog,Fastclick){
+require(['config','insjs','ajax','slide','dialog','fastclick','common'],function(Config,INSJS,Ajax,Slide,Dialog,Fastclick,Common){
     "use strict";
 
 
@@ -13,16 +13,18 @@ require(['config','insjs','ajax','slide','dialog','fastclick'],function(Config,I
             isDomainDone:false,//域名是否处理完毕
             isAllowInvite:false,//用户是否可以邀请好友
             isDomainHasApply:false,//用户是否已经申请了域名（失败算否）
-            isHasInviteUser:false//用户是否已有符合邀请的被邀请者
+            isHasInviteUser:false,//用户是否已有符合邀请的被邀请者
+            isAllowShare:false//是否可以分享
         },
         init : function(){
             var _this = this;
             Fastclick.attach(document.body);
             //TODO url获取
             _this.user_info = {
-                seller_id:'40687',
-                wduss:"1k29nj9vdh6Pz/jqIZtKWdbTLsYA7YzMfdjiJm4UrQI="
+                seller_id:Common.getQueryParam("seller_id"),
+                wduss:Common.getQueryParam("wduss")
             };
+            _this.testCase = Common.getQueryParam("testcase")||1;
             _this.initStatus();
             _this.initData();
             _this.handleFn();
@@ -44,18 +46,162 @@ require(['config','insjs','ajax','slide','dialog','fastclick'],function(Config,I
             var _this = this;
             //TODO 上线替换
             var testApi = 'http://api-test.instashop.co.id/instashop/v1/domain?param={"action":"invite","seller_id":"40687","wduss":"1k29nj9vdh6Pz/jqIZtKWdbTLsYA7YzMfdjiJm4UrQI=","_debug_env":"3.6"}'
-            Ajax.getJsonp(testApi,function(res){
+            Ajax.getJsonp(testApi,function(_res){
+
+                var res = {
+                    code:200,
+                    self_check:{
+                        self_ok:false
+                    },
+                    invite_user :[],
+                    domain:false
+
+                };
+                switch(_this.testCase){
+                    //用户不符合要求
+                    case "1":
+                        res.self_check = {};
+                        res.self_check.self_ok = false;
+                        res.invite_user = [];
+                        res.domain = false;
+                        break;
+                    //用户没邀请到人 或者 邀请到的不符合要求
+                    case "2":
+                        res.self_check = {};
+                        res.self_check.self_ok = true;
+                        res.invite_user = [];
+                        res.domain = false;
+                        break;
+                    //用户有符合要求的被邀请人 但是还不够5
+                    case "3":
+                        res.self_check = {};
+                        res.self_check.self_ok = true;
+                        res.invite_user = [{
+                            shop_name:"店铺名1",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名2",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名3",
+                            telephone:"18601363531"
+                        }];
+                        res.domain = false;
+                        break;
+                    //用户没申请域名
+                    case "4":
+                        res.self_check = {};
+                        res.self_check.self_ok = true;
+                        res.invite_user = [{
+                            shop_name:"店铺名1",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名2",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名3",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名4",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名5",
+                            telephone:"18601363531"
+                        }];
+                        res.domain = false;
+                        break;
+                    //域名处理中
+                    case "5":
+                        res.self_check = {};
+                        res.self_check.self_ok = true;
+                        res.invite_user = [{
+                            shop_name:"店铺名1",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名2",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名3",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名4",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名5",
+                            telephone:"18601363531"
+                        }];
+                        res.domain = {
+                            domain:"piaohua.com",
+                            status:"wait"
+                        };
+                        break;
+                    //域名处理失败了
+                    case "6":
+                        res.self_check = {};
+                        res.self_check.self_ok = true;
+                        res.invite_user = [{
+                            shop_name:"店铺名1",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名2",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名3",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名4",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名5",
+                            telephone:"18601363531"
+                        }];
+                        res.domain = {
+                            domain:"piaohua.com",
+                            status:"fail"
+                        };
+                        break;
+                    //域名处理成功了
+                    case "7":
+                        res.self_check = {};
+                        res.self_check.self_ok = true;
+                        res.invite_user = [{
+                            shop_name:"店铺名1",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名2",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名3",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名4",
+                            telephone:"18601363531"
+                        },{
+                            shop_name:"店铺名5",
+                            telephone:"18601363531"
+                        }];
+                        res.domain = {
+                            domain:"piaohua.com",
+                            status:"success"
+                        };
+                        break;
+                }
+
                 var _selfCheckData = res.self_check||{};
                 var _domainCheckData = res.domain;
                 var _inviteUserList = res.invite_user;
-                console.info(res);
+                console.log(res);
+
                 if(res&&200==res.code){
                     //是否符合要求
                     _this.StatusCheck.isDemand = _selfCheckData.self_ok;
                     //是否允许点击邀请按钮
                     _this.StatusCheck.isAllowInvite = _selfCheckData.self_ok;
                     if(_inviteUserList.length>0){
+
+                        $(".j_invite_table").html(_this.createInviterTable(_inviteUserList));
                         $(".invite-table").show();
+                        $(".j_invite_tip").text('Undangan yang sudah memenuhi syarat')
                         if(_inviteUserList.length>=5){
                             _this.StatusCheck.isHasInviteUser = true;
                         }
@@ -63,6 +209,7 @@ require(['config','insjs','ajax','slide','dialog','fastclick'],function(Config,I
                     }else{
                         //TODO 隐藏表格
                         $(".invite-table").hide();
+                        $(".j_invite_tip").text('Undangan yang belum memenuhi syarat')
                         _this.StatusCheck.isHasInviteUser = false;
                     }
                     //是否允许点击申请按钮
@@ -106,9 +253,11 @@ require(['config','insjs','ajax','slide','dialog','fastclick'],function(Config,I
                     set:function(val){
                         if(val){
                             $(".j_invite_btn").removeClass('disable-btn')
+                            $(".invite-iscan").text("Syarat sudah terpenuhi")
                             $(".invite-number-box").show();
                         }else{
                             $(".j_invite_btn").addClass('disable-btn')
+                            $(".invite-iscan").text("Syarat belum terpenuhi")
                             $(".invite-number-box").hide();
                         }
                         this._isDemand = val;
@@ -170,15 +319,21 @@ require(['config','insjs','ajax','slide','dialog','fastclick'],function(Config,I
             _this.tel_dialog = null;
             _this.domain_dialog = null;
 
+            //邀请按钮
             $("body").on("click",".j_invite_btn",function(){
-                _this.tel_dialog = Dialog.dialog({
-                    body_txt : _this.createInviteDialogHtm(),
-                    show_footer:false,
-                    show_top:false
-                });
+                if(_this.StatusCheck.isAllowInvite){
+                    _this.tel_dialog = Dialog.dialog({
+                        body_txt : _this.createInviteDialogHtm(),
+                        show_footer:false,
+                        show_top:false
+                    });
+                }
             })
-
+            //分享按钮
             $('body').on('click','.j_share_btn',function(){
+                if(_this.StatusCheck.isAllowShare){
+
+                }
                 _this.tel_dialog = Dialog.dialog({
                     body_txt : _this.createShareDialogHtm(),
                     show_footer:false,
@@ -186,6 +341,7 @@ require(['config','insjs','ajax','slide','dialog','fastclick'],function(Config,I
                 });
 
             });
+
             $('body').on('keyup','.j_tel',function(){
                 $('.j_tel_error').html('');
                 if(_this.testTel().length == 5){
@@ -218,13 +374,13 @@ require(['config','insjs','ajax','slide','dialog','fastclick'],function(Config,I
                 }
             });
             $('body').on('click','.j_domain_btn',function(){
-                // if(_this.StatusCheck.isAllowApply){
+                if(_this.StatusCheck.isAllowApply){
                     _this.domain_dialog = Dialog.dialog({
                         body_txt : _this.createDomainDialogHtm(),
                         show_footer:false,
                         show_top:false
                     });
-                // }
+                }
             });
             $('body').on('keyup','.j_domain_ipt',function(){
                 $('.j_domain_error').html('');
@@ -277,7 +433,7 @@ require(['config','insjs','ajax','slide','dialog','fastclick'],function(Config,I
             _htm = '<div class="invite-dialog">'+
                 '    <div class="invite-dialog-input">'+
                 '        <textarea name="content" value="" id="j_invite_txt"'+
-                '                  placeholder="Undang copy + link download instashop"></textarea>'+
+                '                  placeholder=" Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Klik"></textarea>'+
                 '    </div>'+
                 '    <div class="invite-share-box">'+
                 '        <ul class="ins-avg-sm-4">'+
@@ -337,6 +493,14 @@ require(['config','insjs','ajax','slide','dialog','fastclick'],function(Config,I
                 +'<button class="tel-btn disable-btn j_submit_tel">Isi Data Teman</button>'
                 +'</div>';
             return _htm;
+        },
+        createInviterTable:function(inviters){
+            var _trs = "";
+            for(var i = 0,inviter;inviter = inviters[i++];){
+                var _curTr = '<tr><td>'+inviter.shop_name+'</td><td>'+inviter.telephone+'</td></tr>';
+                _trs +=_curTr;
+            }
+            return _trs;
         },
         createDomainDialogHtm : function(){
             var _htm = '';

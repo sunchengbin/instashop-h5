@@ -495,6 +495,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
         }
         .invite-number {
             letter-spacing: 1px;
+            font-size:20px;
         }
         .invite-iscan {
             font-family: Roboto-Medium;
@@ -520,6 +521,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
             text-align: center;
             height: 40px;
             font-size: 16px;
+            padding:0 10px;
             font-weight: normal;
         }
         .invite-table .t-header {
@@ -641,6 +643,10 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                 .icon-share-line:before {
                     content: "\e622";
                 }
+                .j_share_btn,.invite-number-box {
+                    display:none;
+                }
+
     </style>
 </head>
 <body>
@@ -659,7 +665,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
         <div class="step-contet">
             Kamu harus upload min 10 produk / memiliki min 3 pesanan selesai
             <p class="invite-iscan">
-                Syarat sudah terpenuhi
+                Syarat belum terpenuhi
             </p>
         </div>
     </div>
@@ -675,10 +681,10 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                 kode referralmu:<br>
                 <span class="invite-number fwb">123456</span>
             </p>
-            <div class="invite-box margin-top">
-                Belum ada teman yang memenuhi syarat
+            <div class="invite-box">
+                <p class="j_invite_tip"></p>
                 <div class="invite-table">
-                    <table>
+                    <table class="j_invite_table">
                         <tr>
                             <td class="t-header" colspan="2">
                                 Belum ada teman yang memenuhi syarat
@@ -707,7 +713,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                     </table>
                 </div>
             </div>
-            <button class="btn btn2 j_invite_btn disable-btn">BAGIKAN KODE REFERRA</button>
+            <button class="btn btn2 j_invite_btn disable-btn">Ajak teman sekarang</button>
             <div class="margin-top">
                 Notice: teman online shop kamu  untuk registrasi di Instashop
                 menggunakan kode referralmu teman online shop kamu  untuk
@@ -720,10 +726,10 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
             Setelah mendapat notifikasi berhasil, klik tombol ini untuk mendaftarkan domain web
         </div>
         <div>
-            <button class="btn btn2 j_domain_btn disable-btn">DAFTAR DOMAIN WEB</button>
+            <button class="btn btn2 j_domain_btn disable-btn">Daftar</button>
         </div>
         <div>
-            <button class="btn btn2 j_share_btn disable-btn">DAFTAR DOMAIN WEB</button>
+            <button class="btn btn2 j_share_btn disable-btn">Bagikan ke Teman</button>
         </div>
     </div>
 </section>
