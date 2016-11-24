@@ -474,11 +474,11 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common', 'l
                 '                <i class="iconfont icon-share-copy j_invite_action" data-report="domain_btn_invite_copy" data-type="share_to_copy"></i>' +
                 '                <p>COPY</p>' +
                 '            </li>' +
-                '            <li><i class="iconfont icon-share-line j_invite_action" data-report="domain_btn_invite_line" data-type="line"></i>' +
+                '            <li><i class="iconfont icon-share-line j_invite_action" data-report="domain_btn_invite_line" data-type="share_to_line"></i>' +
                 '                <p>LINE</p></li>' +
-                '            <li><i class="iconfont icon-share-bbm j_invite_action" data-report="domain_btn_invite_bbm" data-type="bbm"></i>' +
+                '            <li><i class="iconfont icon-share-bbm j_invite_action" data-report="domain_btn_invite_bbm" data-type="share_to_bbm"></i>' +
                 '                <p>BBM</p></li>' +
-                '            <li><i class="iconfont icon-share-whatsapp j_invite_action" data-report="domain_btn_invite_whatsapp" data-type="whatsapp"></i>' +
+                '            <li><i class="iconfont icon-share-whatsapp j_invite_action" data-report="domain_btn_invite_whatsapp" data-type="share_to_whatsapp"></i>' +
                 '                <p>WhatsApp</p>' +
                 '            </li>' +
                 '        </ul>' +
@@ -496,14 +496,14 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common', 'l
                 '    <div class="invite-share-box">' +
                 '        <ul class="ins-avg-sm-4">' +
                 '            <li>' +
-                '                <i class="iconfont icon-share-instagram j_share_action" data-report="domain_btn_share_instagram" data-type="instagram"></i>' +
+                '                <i class="iconfont icon-share-instagram j_share_action" data-report="domain_btn_share_instagram" data-type="share_to_instagram"></i>' +
                 '                <p>Instagram</p>' +
                 '            </li>' +
-                '            <li><i class="iconfont icon-share-line j_share_action" data-report="domain_btn_share_line" data-type="line"></i>' +
+                '            <li><i class="iconfont icon-share-line j_share_action" data-report="domain_btn_share_line" data-type="share_to_line"></i>' +
                 '                <p>LINE</p></li>' +
-                '            <li><i class="iconfont icon-share-whatsapp j_share_action" data-report="domain_btn_share_whatsapp" data-type="whatsapp"></i>' +
+                '            <li><i class="iconfont icon-share-whatsapp j_share_action" data-report="domain_btn_share_whatsapp" data-type="share_to_whatsapp"></i>' +
                 '                <p>WhatsApp</p></li>' +
-                '            <li><i class="iconfont icon-share-bbm j_share_action" data-report="domain_btn_share_bbm" data-type="bbm"></i>' +
+                '            <li><i class="iconfont icon-share-bbm j_share_action" data-report="domain_btn_share_bbm" data-type="share_to_bbm"></i>' +
                 '                <p>BBM</p>' +
                 '            </li>' +
                 '        </ul>' +
