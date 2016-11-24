@@ -27,14 +27,16 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
             _this.initStatus();
 
             //初始化jsbridge
-            alert(window.WebViewJavascriptBridge)
-            if(window.WebViewJavascriptBridge){
+            // alert(window.WebViewJavascriptBridge)
+            if(true){
                 _this.StatusCheck.isClient = true;
                 //初始化数据
                 _this.initData();
                 Insjs.WebOnReady(function(bridge){
+                    alert(bridge)
                     _this.handleFn(bridge);
                 },function(){
+                    alert(1)
                     _this.handleFn();
                 });
             }else{
