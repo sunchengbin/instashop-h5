@@ -1,7 +1,7 @@
 /**
  * 独立域名活动-第二季
  */
-require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common', 'lang'], function (Config, Insjs, Ajax, Slide, Dialog, Fastclick, Common, Lang) {
+require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], function (Config, Insjs, Ajax, Dialog, Fastclick, Common, Lang) {
     "use strict";
 
 
@@ -51,10 +51,10 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common', 'l
                 }
             }
             var _reqUrl = Config.host.actionUrl + Config.actions.selfCheckDomain + "?param=" + JSON.stringify(_reqParam);
-            _this._loadingDialog = Dialog.loading({
-                width: 50,
+            _this._loading = Dialog.loading({
+                width: 100,
                 is_cover: false
-            });
+            })
             Ajax.getJsonp(_reqUrl, function (res) {
                 // var res = {
                 //     code: 200,
@@ -195,7 +195,7 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common', 'l
                 //         };
                 //         break;
                 // }
-                _this._loadingDialog.remove();
+                _this._loading.remove();
                 var _selfCheckData = res.self_check || {};
                 var _domainCheckData = res.domain;
                 var _inviteUserList = res.invite_user;
@@ -254,7 +254,7 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common', 'l
                     })
                 }
             }, function () {
-                _this._loadingDialog.remove();
+                _this._loading.remove();
                 Dialog.alert({
                     top_txt: '',//可以是html
                     cfb_txt: Lang.H5_FRESHEN,
