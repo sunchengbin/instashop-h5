@@ -42,7 +42,7 @@
                 <ul class="nav-img-ul clearfix">
                     {foreach $model.data as $navigation}
                         <li class="">
-                            <a class="block clearfix" href="{$navigation.link_url}">
+                            <a class="block clearfix j_item_info" data-url="{$navigation.link_url}" href="javascript:;">
                                 <div class="lazy" data-img="{$navigation.img|list_img}"></div>
                                 <p class="">{$navigation.navigation_name}</p>
                             </a>
@@ -59,7 +59,7 @@
             <ul class="nav-text-ul">
                 {foreach $model.data as $navigation}
                     <li class="b-top">
-                        <a class="block clearfix" href="{$navigation.link_url}">
+                        <a class="block clearfix j_item_info" data-url="{$navigation.link_url}" href="javascript:;">
                             <i class="icon iconfont icon-go-font fr"></i>
                             <span>{$navigation.navigation_name}</span>
                         </a>
@@ -159,28 +159,30 @@
             <ul class="">
             {foreach $model.data as $item}
                 <li class="clearfix cart-item">
-                    <img src="{$item.img|list_img}">
-                    <div class="">
-                        <p class="name">
-                            {$item.item_comment|nl2br}
-                        </p>
-                        {if $item.price lt 0}
-                            <p class="price"></p>
-                        {elseif $item.is_discount}
-                            <p class="price cost-price">Rp {$item.price|priceFormat}</p>
-                        {else}
-                            <p class="price">Rp {$item.price|priceFormat}</p>
-                        {/if}
-                        {if $item.is_discount}
-                            {if $item.discounting}
-                                <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                    <a class="block j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <img src="{$item.img|list_img}">
+                        <div class="">
+                            <p class="name">
+                                {$item.item_comment|nl2br}
+                            </p>
+                            {if $item.price lt 0}
+                                <p class="price"></p>
+                            {elseif $item.is_discount}
+                                <p class="price cost-price">Rp {$item.price|priceFormat}</p>
                             {else}
-                                <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                <p class="price">Rp {$item.price|priceFormat}</p>
                             {/if}
-                        {else}
-                            <p class="discount-price"></p>
-                        {/if}
-                    </div>
+                            {if $item.is_discount}
+                                {if $item.discounting}
+                                    <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                {else}
+                                    <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                {/if}
+                            {else}
+                                <p class="discount-price"></p>
+                            {/if}
+                        </div>
+                    </a>
                 </li>
             {/foreach}
             </ul>

@@ -38,7 +38,7 @@
     padding:1rem;
     min-height: 10rem;
 }
-.cart-item > div{
+.cart-item  div{
     margin: 0 1rem 0 11rem;
 }
 .cart-item img{
