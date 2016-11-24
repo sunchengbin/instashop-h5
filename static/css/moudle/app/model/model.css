@@ -34,6 +34,10 @@
 .rotate-banner li{
     float: left;
 }
+.rotate-banner li img{
+    min-height: 120px;
+    background-color: #f5f5f5;
+}
 .cart-item {
     padding:1rem;
     min-height: 10rem;

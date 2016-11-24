@@ -269,6 +269,7 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
         for(var item in carts){
             var _id = (carts[item].sku?carts[item].sku.id:carts[item].id);
             _htm += '<li class="clearfix cart-item j_cart_item" data-id="'+_id+'">'
+                +'<a class="block" href="javascript:;">'
                 +'<img src="'+carts[item].img+'">'
                 +'<div class="">'
                 +'<p class="name">'+Base.others.transTxt(carts[item].item_comment)+'</p>'
@@ -279,8 +280,8 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
                 _htm +='<p class="price">Rp '+Base.others.priceFormat(_price)+'</p>';
 
             }
-            _htm +='</div>'
-                +'</li>';
+            _htm +='</div></a>'
+                 +'</li>';
         }
         return _htm;
     });
