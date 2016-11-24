@@ -606,10 +606,10 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                     color: #7EDB5C;
                 }
                 .icon-share-whatsapp {
-                    color: #38A6D7;
+                    color: #6ED65B;
                 }
                 .icon-share-bbm {
-                    color: #6ED65B;
+                    color: #38A6D7;
                 }
                 .icon-share-instagram {
                     color: #B98E5C;
