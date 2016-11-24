@@ -27,6 +27,7 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
             _this.initStatus();
 
             //初始化jsbridge
+            alert("begin WebViewJavascriptBridge")
             if(window.WebViewJavascriptBridge){
                 _this.StatusCheck.isClient = true;
                 //初始化数据
