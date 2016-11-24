@@ -11,6 +11,9 @@
 .dialog-body,.dialog-top,.dialog-footer{
     padding:10px;
 }
+.dialog-top a{
+    color: #666;
+}
 .dialog-body{
     overflow:auto;
 }

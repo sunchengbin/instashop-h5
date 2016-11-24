@@ -170,7 +170,9 @@ define([],function(){
             H5_SUB_BRANCH:'支行',
             H5_ACCOUNT_NAME:'账户名',
             H5_ACCOUNT_NUMBER:'银行号码',
-            H5_SUBMITING:'正在提交...'
+            H5_SUBMITING:'正在提交...',
+            H5_CONFIRM_SUBMIT:'确认提交？',
+            H5_EXIT_CONFIRM:'放弃更改？'
 
 
         },
@@ -456,7 +458,9 @@ define([],function(){
             H5_SUB_BRANCH:'Cabang',
             H5_ACCOUNT_NAME:'Nama Pemilik Rekening',
             H5_ACCOUNT_NUMBER:'Nomor Rekening',
-            H5_SUBMITING:'Sedang ditambahkan...'
+            H5_SUBMITING:'Sedang ditambahkan...',
+            H5_CONFIRM_SUBMIT:'Yakin ingin mengajukan？',
+            H5_EXIT_CONFIRM:'Yakin ingin keluar?'
 
         }
     };

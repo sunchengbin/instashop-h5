@@ -23,7 +23,16 @@ require(['hbs','text!views/app/refund.hbs','config','lang','fastclick','dialog',
             var _this = this;
             Fastclick.attach(document.body);
             $('body').on('click','.j_go_back',function(){
-                history.back();
+                if(_this.isEdit()){
+                    Dialog.confirm({
+                        body_txt : '<p class="dialog-body-p">'+Lang.H5_EXIT_CONFIRM+'</p>',
+                        cf_fn : function(){
+                            location.href = localStorage.getItem('RefundBack');
+                        }
+                    });
+                }else{
+                    location.href = localStorage.getItem('RefundBack');
+                }
             });
             $('body').on('focus','.j_bank_name',function(){
                 var _list = _this.createList(BankCity,'j_bank_name');
@@ -55,24 +64,59 @@ require(['hbs','text!views/app/refund.hbs','config','lang','fastclick','dialog',
                         _that.setBtnTxt(dom,Lang.H5_CONFIRM);
                         return null;
                     }
-                    //验证单品详情页的
-                    _this.saveData({
-                        data : {
-                            edata: {
-                                "action":"refund_card",
-                                "c_number":_items.c_number,
-                                "c_name":_items.c_name,
-                                "b_name":_items.b_name,
-                                "b_branch":_items.b_branch
-                            }
+                    var _body = '<p class="dialog-body-p">'+Lang.H5_BANK_NAME+' : '+_items.b_name+'</p>'
+                                +'<p class="dialog-body-p">'+Lang.H5_SUB_BRANCH+' : '+_items.b_branch+'</p>'
+                                +'<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NAME+' : '+_items.c_name+'</p>'
+                                +'<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NUMBER+' : '+_items.c_number+'</p>';
+
+                    Dialog.confirm({
+                        top_txt : Lang.H5_CONFIRM_SUBMIT,
+                        show_top : true,
+                        body_txt : _body,
+                        cf_fn : function(){
+                            //验证单品详情页的
+                            _this.saveData({
+                                data : {
+                                    edata: {
+                                        "action":"refund_card",
+                                        "c_number":_items.c_number,
+                                        "c_name":_items.c_name,
+                                        "b_name":_items.b_name,
+                                        "b_branch":_items.b_branch
+                                    }
+                                },
+                                callback : function(){
+                                    _that.cancelDisable();
+                                    _that.setBtnTxt(dom,Lang.H5_CONFIRM);
+                                }
+                            });
                         },
-                        callback : function(){
+                        c_fn : function(){
                             _that.cancelDisable();
                             _that.setBtnTxt(dom,Lang.H5_CONFIRM);
+                            return null;
                         }
                     });
                 }
             });
+        },
+        isEdit : function(){//是否编辑过
+            var _this = this,
+                _data = _this.testData(),
+                _refund = localStorage.getItem('RefundCard'),
+                _refund_card = _refund?JSON.parse(_refund):null;
+            if(_data){
+                if(_refund_card && _refund_card.b_branch){//已经提交过现在进行编辑
+                    if(_refund_card.b_branch == _data.b_branch && _refund_card.b_name == _data.b_name && _refund_card.c_name == _data.c_name && _refund_card.c_number == _data.c_number){
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }else{
+                    return true;
+                }
+            }
+            return false;
         },
         testData : function(){
             var _bankname = $.trim($('.j_bank_name').val()),
@@ -126,7 +170,9 @@ require(['hbs','text!views/app/refund.hbs','config','lang','fastclick','dialog',
                             top_txt : '',//可以是html
                             body_txt : '<p class="dialog-body-p">'+Lang.H5_SUBMIT_SUCCESS+'</p>',
                             auto_fn : function(){
-                                history.back();
+                                setTimeout(function(){
+                                    location.href = localStorage.getItem('RefundBack');
+                                },2000);
                             }
                         });
                     }else{
