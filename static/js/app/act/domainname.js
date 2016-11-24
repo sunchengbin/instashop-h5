@@ -7,7 +7,7 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
 
     var DM = window.DM = {
         StatusCheck: {
-            isClient: true,//TODO 客户端版本是否符合要求上线记得改为false
+            isClient: false,//客户端版本是否符合要求
             isDemand: false,//用户是否符合参与活动要求
             isAllowApply: false,//用户是否可以申请域名
             isAllowInvite: false,//用户是否可以邀请好友
@@ -17,35 +17,28 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
         init: function () {
             var _this = this;
             Fastclick.attach(document.body);
-            //TODO 上线去掉测试数据
+            //用户信息
             _this.user_info = {
-                seller_id: Common.getQueryParam("seller_id")||"40687",
-                wduss: Common.getQueryParam("wduss")||"1k29nj9vdh6Pz/jqIZtKWdbTLsYA7YzMfdjiJm4UrQI="
+                seller_id: Common.getQueryParam("seller_id"),
+                wduss: Common.getQueryParam("wduss")
             };
-            _this.testCase = Common.getQueryParam("testcase") || 1;
-            _this.initStatus();
+            //初始化数据
             _this.initData();
-            _this.handleFn();
 
-            //TODO 上线打开
+            //初始化状态监控
+            _this.initStatus();
 
-            // if(window.WebViewJavascriptBridge){
-            //     _this.StatusCheck.isClient = true;
-            //     Insjs.WebOnReady(function(bridge){
-            //         _this.initData(bridge);
-            //         _this.handleFn(bridge);
-            //     },function(){
-            //         _this.handelFn();
-            //     });
-            //     // _this.initData();
-            //     // _this.handleFn();
-            //     // Insjs.WebOnReady(function(bridge){
-            //     //     _this.initData();
-            //     //     _this.handleFn();
-            //     // })
-            // }else{
-            //     _this.versionTipDialog();
-            // }
+            //初始化jsbridge
+            if(window.WebViewJavascriptBridge){
+                _this.StatusCheck.isClient = true;
+                Insjs.WebOnReady(function(bridge){
+                    _this.handleFn(bridge);
+                },function(){
+                    _this.handleFn();
+                });
+            }else{
+                _this.versionTipDialog();
+            }
         },
         versionTipDialog: function () {
             Dialog.alert({
@@ -63,147 +56,146 @@ require(['config', 'insjs', 'ajax', 'slide', 'dialog', 'fastclick', 'common','la
                 }
             }
             var _reqUrl = Config.host.actionUrl+Config.actions.selfCheckDomain+"?param="+JSON.stringify(_reqParam);
-            Ajax.getJsonp(_reqUrl, function (_res) {
-
-                var res = {
-                    code: 200,
-                    self_check: {
-                        self_ok: false
-                    },
-                    invite_user: [],
-                    domain: false
-
-                };
-                switch (_this.testCase) {
-                    //用户不符合要求
-                    case "1":
-                        res.self_check = {};
-                        res.self_check.self_ok = false;
-                        res.invite_user = [];
-                        res.domain = false;
-                        break;
-                    //用户没邀请到人 或者 邀请到的不符合要求
-                    case "2":
-                        res.self_check = {};
-                        res.self_check.self_ok = true;
-                        res.invite_user = [];
-                        res.domain = false;
-                        break;
-                    //用户有符合要求的被邀请人 但是还不够5
-                    case "3":
-                        res.self_check = {};
-                        res.self_check.self_ok = true;
-                        res.invite_user = [{
-                            shop_name: "店铺名1",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名2",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名3",
-                            telephone: "18601363531"
-                        }];
-                        res.domain = false;
-                        break;
-                    //用户没申请域名
-                    case "4":
-                        res.self_check = {};
-                        res.self_check.self_ok = true;
-                        res.invite_user = [{
-                            shop_name: "店铺名1",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名2",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名3",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名4",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名5",
-                            telephone: "18601363531"
-                        }];
-                        res.domain = false;
-                        break;
-                    //域名处理中
-                    case "5":
-                        res.self_check = {};
-                        res.self_check.self_ok = true;
-                        res.invite_user = [{
-                            shop_name: "店铺名1",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名2",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名3",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名4",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名5",
-                            telephone: "18601363531"
-                        }];
-                        res.domain = {
-                            domain: "piaohua.com",
-                            status: "wait"
-                        };
-                        break;
-                    //域名处理失败了
-                    case "6":
-                        res.self_check = {};
-                        res.self_check.self_ok = true;
-                        res.invite_user = [{
-                            shop_name: "店铺名1",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名2",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名3",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名4",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名5",
-                            telephone: "18601363531"
-                        }];
-                        res.domain = {
-                            domain: "piaohua.com",
-                            status: "fail"
-                        };
-                        break;
-                    //域名处理成功了
-                    case "7":
-                        res.self_check = {};
-                        res.share = ["http://7jpswm.com1.z0.glb.clouddn.com/badge3_1.jpg"]
-                        res.self_check.self_ok = true;
-                        res.invite_user = [{
-                            shop_name: "店铺名1",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名2",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名3",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名4",
-                            telephone: "18601363531"
-                        }, {
-                            shop_name: "店铺名5",
-                            telephone: "18601363531"
-                        }];
-                        res.domain = {
-                            domain: "piaohua.com",
-                            status: "success"
-                        };
-                        break;
-                }
+            Ajax.getJsonp(_reqUrl, function (res) {
+                // var res = {
+                //     code: 200,
+                //     self_check: {
+                //         self_ok: false
+                //     },
+                //     invite_user: [],
+                //     domain: false
+                //
+                // };
+                // switch (_this.testCase) {
+                //     //用户不符合要求
+                //     case "1":
+                //         res.self_check = {};
+                //         res.self_check.self_ok = false;
+                //         res.invite_user = [];
+                //         res.domain = false;
+                //         break;
+                //     //用户没邀请到人 或者 邀请到的不符合要求
+                //     case "2":
+                //         res.self_check = {};
+                //         res.self_check.self_ok = true;
+                //         res.invite_user = [];
+                //         res.domain = false;
+                //         break;
+                //     //用户有符合要求的被邀请人 但是还不够5
+                //     case "3":
+                //         res.self_check = {};
+                //         res.self_check.self_ok = true;
+                //         res.invite_user = [{
+                //             shop_name: "店铺名1",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名2",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名3",
+                //             telephone: "18601363531"
+                //         }];
+                //         res.domain = false;
+                //         break;
+                //     //用户没申请域名
+                //     case "4":
+                //         res.self_check = {};
+                //         res.self_check.self_ok = true;
+                //         res.invite_user = [{
+                //             shop_name: "店铺名1",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名2",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名3",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名4",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名5",
+                //             telephone: "18601363531"
+                //         }];
+                //         res.domain = false;
+                //         break;
+                //     //域名处理中
+                //     case "5":
+                //         res.self_check = {};
+                //         res.self_check.self_ok = true;
+                //         res.invite_user = [{
+                //             shop_name: "店铺名1",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名2",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名3",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名4",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名5",
+                //             telephone: "18601363531"
+                //         }];
+                //         res.domain = {
+                //             domain: "piaohua.com",
+                //             status: "wait"
+                //         };
+                //         break;
+                //     //域名处理失败了
+                //     case "6":
+                //         res.self_check = {};
+                //         res.self_check.self_ok = true;
+                //         res.invite_user = [{
+                //             shop_name: "店铺名1",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名2",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名3",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名4",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名5",
+                //             telephone: "18601363531"
+                //         }];
+                //         res.domain = {
+                //             domain: "piaohua.com",
+                //             status: "fail"
+                //         };
+                //         break;
+                //     //域名处理成功了
+                //     case "7":
+                //         res.self_check = {};
+                //         res.share = ["http://7jpswm.com1.z0.glb.clouddn.com/badge3_1.jpg"]
+                //         res.self_check.self_ok = true;
+                //         res.invite_user = [{
+                //             shop_name: "店铺名1",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名2",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名3",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名4",
+                //             telephone: "18601363531"
+                //         }, {
+                //             shop_name: "店铺名5",
+                //             telephone: "18601363531"
+                //         }];
+                //         res.domain = {
+                //             domain: "piaohua.com",
+                //             status: "success"
+                //         };
+                //         break;
+                // }
 
                 var _selfCheckData = res.self_check || {};
                 var _domainCheckData = res.domain;
