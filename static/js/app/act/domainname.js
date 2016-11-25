@@ -364,7 +364,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 var _dom = $(this),
                     _type = _dom.attr('data-type'),
                     _report = _dom.attr('data-report'),
-                    _invite_txt = $.trim($(".j_invite_txt").val()) || "Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop.";
+                    _invite_txt = $.trim($(".j_invite_txt").val());
                 var _param = {
                     param: {
                         type: 'share',
@@ -372,7 +372,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             type: _type,
                             data: [{
                                 img: '',
-                                content: _invite_txt+"Klik:http://www.instashop.co.id/",
+                                content: _invite_txt,
                                 link_url: 'http://www.instashop.co.id/'
                             }]
                         }
@@ -472,10 +472,13 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
         },
         createInviteDialogHtm: function () {
             var _htm = '';
+            var _this = this;
             _htm = '<div class="invite-dialog">' +
                 '    <div class="invite-dialog-input">' +
                 '        <textarea name="content" value="" id="j_invite_txt"' +
-                '                  placeholder=" Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Klik:http://www.instashop.co.id"></textarea>' +
+                '                  >"Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. ' +
+                'Kode:'+_this.user_info.seller_id+
+                'Klik:http://www.instashop.co.id"</textarea>' +
                 '    </div>' +
                 '    <div class="invite-share-box">' +
                 '        <ul class="ins-avg-sm-4">' +
