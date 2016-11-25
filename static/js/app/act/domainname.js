@@ -237,6 +237,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                                 $(".j_domain_btn").hide();
                                 $(".j_share_btn").show();
                                 _this.domainImg = res.share[0];
+                                _this.domain = _domainCheckData.domain;
                                 _this.StatusCheck.isAllowShare = true;
                                 _this.StatusCheck.isAllowApply = false;
                                 window.location.href = "#result";
@@ -362,7 +363,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 var _dom = $(this),
                     _type = _dom.attr('data-type'),
                     _report = _dom.attr('data-report'),
-                    _invite_txt = $.trim($(".j_invite_txt").val()) || "Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Klik:http://www.instashop.co.id/";
+                    _invite_txt = $.trim($(".j_invite_txt").val()) || "Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop.";
                 var _param = {
                     param: {
                         type: 'share',
@@ -370,7 +371,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             type: _type,
                             data: [{
                                 img: '',
-                                content: _invite_txt,
+                                content: _invite_txt+"Klik:http://www.instashop.co.id/",
                                 link_url: 'http://www.instashop.co.id/'
                             }]
                         }
@@ -389,16 +390,15 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             $('body').on('click', '.j_share_action', function () {
                 var _dom = $(this),
                     _type = _dom.attr('data-type'),
-                    _report = $(this).attr('data-report'),
-                    _img = $(".invite-dialog-img-url").attr("src");
+                    _report = $(this).attr('data-report');
                 var _param = {
                     param: {
                         type: 'share',
                         param: {
                             type: _type,
                             data: [{
-                                img: _img,
-                                link_url: 'http://www.instashop.co.id/'
+                                img: _this.domainImg,
+                                link_url: _this.domain
                             }]
                         }
                     }
