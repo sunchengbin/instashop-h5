@@ -65,7 +65,9 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
             return _this;
         },
         show : function(){
+            var _this = this;
             this.opts.wraper.show();
+            this.opts.body_fn&&this.opts.body_fn.call(_this,$(this));
         },
         remove : function(){
             var _this = this,

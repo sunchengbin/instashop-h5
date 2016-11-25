@@ -20,11 +20,13 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             //用户信息
             _this.user_info = {
                 seller_id: Common.getQueryParam("seller_id"),
-                wduss: Common.getQueryParam("wduss")
+                wduss: encodeURIComponent(Common.getQueryParam("wduss"))
             };
 
             //初始化状态监控
             _this.initStatus();
+            // _this.initData();
+            // _this.handleFn();
             Insjs.WebOnReady(function (bridge) {
                 _this.StatusCheck.isClient = true;
                 //初始化数据
@@ -51,8 +53,11 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 }
             }
             var _reqUrl = Config.host.actionUrl + Config.actions.selfCheckDomain + "?param=" + JSON.stringify(_reqParam);
+            _this._loading = Dialog.loading({
+                width:100
+            })
             Ajax.getJsonp(_reqUrl, function (res) {
-
+                _this._loading.remove();
                 //  res = {
                 //     code: 200,
                 //     self_check: {
@@ -63,6 +68,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 //
                 // };
                 // _this.testCase = Math.floor(Math.random() * 7 + 1)+"";
+                // _this.testCase = Common.getQueryParam("testcase");
                 //
                 // switch (_this.testCase) {
                 //     //用户不符合要求
@@ -225,7 +231,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                         switch (_domainCheckData.status) {
                             case "fail":
                                 //TODO 域名绑定失败 请重新申请
-                                $(".j_domain_tip").text("域名申请失败文案")
+                                $(".j_domain_tip").text("Domain ini sudah digunakan, silakan gunakan domain lain")
                                 _this.StatusCheck.isAllowApply = true;
                                 break;
                             case "wait":
@@ -233,7 +239,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                                 $(".j_domain_btn").hide();
                                 _this.StatusCheck.isAllowApply = false;
                                 break;
-                            case "success":
+                            case "succ":
                                 $(".j_domain_tip").text(_domainCheckData.domain)
                                 $(".j_domain_btn").hide();
                                 $(".j_share_btn").show();
@@ -255,6 +261,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     });
                 }
             }, function () {
+                _this._loading.remove();
                 Dialog.alert({
                     top_txt: '',//可以是html
                     cfb_txt: Lang.H5_FRESHEN,
@@ -349,11 +356,12 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                         body_txt: _this.createShareDialogHtm(),
                         show_footer: false,
                         show_top: false,
-                        body_fn: function () {
-                            var _img = $(".invite-dialog-img-url")[0];
-                            _img.src = _this.domainImg;
-                            _img.onload = function(){
-                                $(".invite-dialog-img-url").show();
+                        body_fn:function(){
+                            var _dialog = this;
+                            var _shareImg = $(".invite-dialog-img-url")[0];
+                            _shareImg.src = _this.domainImg;
+                            _shareImg.onload = function(){
+                                _dialog.opts.wraper.css(_dialog.setPosition());
                             }
                         }
                     });
@@ -584,16 +592,17 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     Ajax.getJsonp(
                         Config.host.actionUrl + Config.actions.domainName + '?param=' + JSON.stringify(_data),
                         function (obj) {
+                            console.log(obj)
                             if (obj.code == 200) {
                                 callback && callback(obj);
                             } else {
                                 $('.j_domain_error').html(obj.message);
-                                _this.StatusCheck.isAllowApply = false;
+                                // _this.StatusCheck.isAllowApply = false;
                                 // _this.domain_btn_disable = true;
                             }
                         },
                         function (obj) {
-                            _this.StatusCheck.isAllowApply = false;
+                            // _this.StatusCheck.isAllowApply = false;
                             // _this.domain_btn_disable = true;
                             $('.j_domain_error').html(obj.message);
                         }
@@ -613,7 +622,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             }
                         },
                         error: function (error) {
-                            _this.StatusCheck.isAllowApply = false;
+                            // _this.StatusCheck.isAllowApply = false;
                             //_this.domain_btn_disable = true;
                             $('.j_domain_error').html(error);
                         }
