@@ -236,14 +236,14 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
         }
 
         .btn {
-            font-size: 14px;
+            font-size: 18px;
             color: #FFFFFF;
             letter-spacing: 0;
             text-shadow: 0 2px 0 #D74629;
             display: block;
             height: 40px;
             line-height: 40px;
-            width: 200px;
+            width: 220px;
             margin: 15px auto 0;
             background-image: linear-gradient(-180deg, #FD675C 0%, #F15737 100%);
             border-radius: 100px;
@@ -497,7 +497,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
             font-size:20px;
         }
         .invite-iscan {
-            font-size: 18px;
+            font-size: 14px;
             color: #54AE59;
             letter-spacing: 0;
             font-weight: bolder;
