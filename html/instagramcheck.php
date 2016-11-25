@@ -20,7 +20,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <section class="address-form-box">
         <div class="index-btn-box" style="padding:0 2rem">
             <div class="btn j_submit_btn confirm-btn j_submit_check" style="margin-top:5rem">
-                <a style="color:#ffffff" href="javascript:void(0)">去Instagram登录授权</a>
+                <a style="color:#ffffff" href="javascript:void(0)">Login ke Instagram</a>
             </div>
         </div>
     </section>
