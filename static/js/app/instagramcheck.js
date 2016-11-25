@@ -19,7 +19,7 @@ require(['config', 'base', 'lang', 'common'], function (Config, Base, Lang, Comm
         },
         subData: function () {
             var _reqData = {
-                wduss: Common.getQueryParam("wduss"),
+                wduss: encodeURIComponent(Common.getQueryParam("wduss")),
                 seller_id: Common.getQueryParam("seller_id"),
                 action: "instagram",
                 _debug_env: "3.6"
