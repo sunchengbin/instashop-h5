@@ -236,7 +236,6 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
         }
 
         .btn {
-            font-family: Roboto-Bold;
             font-size: 14px;
             color: #FFFFFF;
             letter-spacing: 0;
@@ -498,7 +497,6 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
             font-size:20px;
         }
         .invite-iscan {
-            font-family: Roboto-Medium;
             font-size: 18px;
             color: #54AE59;
             letter-spacing: 0;
