@@ -689,7 +689,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
         <div>
             <p class="invite-number-box text-center margin-top">
                 kode referralmu:<br>
-                <span class="invite-number fwb">123456</span>
+                <span class="invite-number fwb"></span>
             </p>
             <div class="invite-box">
                 <p class="j_invite_tip"></p>

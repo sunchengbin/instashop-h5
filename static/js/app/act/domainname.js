@@ -275,6 +275,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                         if (val) {
                             $(".j_invite_btn").removeClass('disable-btn')
                             $(".invite-iscan").text("Syarat sudah terpenuhi")
+                            $(".invite-number").text(_this.user_info.seller_id);
                             $(".invite-number-box").show();
                         } else {
                             $(".j_invite_btn").addClass('disable-btn')
