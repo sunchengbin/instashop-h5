@@ -14,6 +14,11 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_FONT_CSS?>
     <link href="<?=STATIC_HOST?>/css/dist/app/address.css?v=1479980281458" rel="stylesheet"/>
     <title>Tambah Produk dari Instagram</title>
+    <style>
+    .ins-wraper {
+        display:none;
+    }
+    </style>
 </head>
 <body>
 <div class="address-wraper ins-wraper">
