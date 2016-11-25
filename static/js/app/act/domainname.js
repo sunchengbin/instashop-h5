@@ -208,13 +208,14 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
 
                         $(".j_invite_table").html(_this.createInviterTable(_inviteUserList));
                         $(".invite-table").show();
-                        $(".j_invite_tip").text('Undangan yang sudah memenuhi syarat')
+                        $(".j_invite_tip").hide();
                         if (_inviteUserList.length >= 5) {
                             _this.StatusCheck.isHasInviteUser = true;
                         }
 
                     } else {
                         $(".invite-table").hide();
+                        $(".j_invite_tip").show();
                         $(".j_invite_tip").text('Undangan yang belum memenuhi syarat')
                         _this.StatusCheck.isHasInviteUser = false;
                     }

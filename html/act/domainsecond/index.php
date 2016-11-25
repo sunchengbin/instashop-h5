@@ -236,14 +236,14 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
         }
 
         .btn {
-            font-size: 18px;
+            font-size: 16px;
             color: #FFFFFF;
             letter-spacing: 0;
             text-shadow: 0 2px 0 #D74629;
             display: block;
             height: 40px;
             line-height: 40px;
-            width: 220px;
+            width: 230px;
             margin: 15px auto 0;
             background-image: linear-gradient(-180deg, #FD675C 0%, #F15737 100%);
             border-radius: 100px;
@@ -699,11 +699,11 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                     </table>
                 </div>
             </div>
-            <button class="btn btn2 j_invite_btn disable-btn" data-report="domain_btn_invite">Ajak teman sekarang</button>
+            <button class="btn btn2 j_invite_btn disable-btn" data-report="domain_btn_invite">BAGIKAN KODE REFERRAL</button>
             <div class="margin-top">
-                Notice: teman online shop kamu  untuk registrasi di Instashop
-                menggunakan kode referralmu teman online shop kamu  untuk
-                registrasi di Instashop menggunakan kode referralmu
+                Notice: Notes: Teman yang kamu ajak harus upload produk
+                dengan menggunakan "tambah produk dari Instagram".
+                1 akun Instagram hanya dapat digunakan untuk 1 akun Instashop.
             </div>
         </div>
     </div>
