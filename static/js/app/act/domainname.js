@@ -348,7 +348,11 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                         show_footer: false,
                         show_top: false,
                         body_fn: function () {
-                            $(".invite-dialog-img-url").attr('src', _this.domainImg);
+                            var _img = $(".invite-dialog-img-url")[0];
+                            _img.src = _this.domainImg;
+                            _img.onload = function(){
+                                $(".invite-dialog-img-url").show();
+                            }
                         }
                     });
                 }
@@ -517,11 +521,16 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
         },
         createInviterTable: function (inviters) {
             var _trs = "";
+            var _table_head = '<tr>'+
+                '                            <td class="t-header" colspan="2">'+
+                '                                Undangan yang sudah memenuhi syarat'+
+                '                            </td>'+
+                '                        </tr>';
             for (var i = 0, inviter; inviter = inviters[i++];) {
                 var _curTr = '<tr><td>' + inviter.shop_name + '</td><td>' + inviter.telephone + '</td></tr>';
                 _trs += _curTr;
             }
-            return _trs;
+            return _table_head+_trs;
         },
         createDomainDialogHtm: function () {
             var _htm = '';

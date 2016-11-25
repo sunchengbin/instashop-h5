@@ -536,6 +536,9 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                 .invite-dialog-input,.invite-dialog-img {
                     padding:10px 10px 0;
                 }
+                .invite-dialog-img {
+                    display:none;
+                }
                 .invite-dialog-img img {
                     display: block;
                     margin: 0px;
@@ -695,31 +698,6 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                 <p class="j_invite_tip"></p>
                 <div class="invite-table">
                     <table class="j_invite_table">
-                        <tr>
-                            <td class="t-header" colspan="2">
-                                Belum ada teman yang memenuhi syarat
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>serifendga</td>
-                            <td>18525354556</td>
-                        </tr>
-                        <tr>
-                            <td>serifendga</td>
-                            <td>18525354556</td>
-                        </tr>
-                        <tr>
-                            <td>serifendga</td>
-                            <td>18525354556</td>
-                        </tr>
-                        <tr>
-                            <td>serifendga</td>
-                            <td>18525354556</td>
-                        </tr>
-                        <tr>
-                            <td>serifendga</td>
-                            <td>18525354556</td>
-                        </tr>
                     </table>
                 </div>
             </div>
