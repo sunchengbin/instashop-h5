@@ -5,7 +5,17 @@ require(['config', 'base', 'lang', 'common'], function (Config, Base, Lang, Comm
     var Instagramcheck = {
         init: function () {
             var ctx = this;
-            ctx.subData();
+            $("body").on("click",".j_submit_btn",function(){
+                ctx.subData();
+            });
+            var insflag = Common.getQueryParam("oauth");
+            if(insflag=='fail'){
+                $(".ins-wraper").show();
+            }else{
+                $(".ins-wraper").hide();
+                ctx.subData();
+            }
+
         },
         subData: function () {
             var _reqData = {

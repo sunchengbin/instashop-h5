@@ -16,6 +16,15 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <title>Tambah Produk dari Instagram</title>
 </head>
 <body>
+<div class="address-wraper ins-wraper">
+    <section class="address-form-box">
+        <div class="index-btn-box" style="padding:0 2rem">
+            <div class="btn j_submit_btn confirm-btn j_submit_check" style="margin-top:5rem">
+                <a style="color:#ffffff" href="javascript:void(0)">去Instagram登录授权</a>
+            </div>
+        </div>
+    </section>
+</div>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/instagramcheck.js?v=1479980281458"></script>
