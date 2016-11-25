@@ -644,9 +644,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                 .invite-dialog-input,.invite-dialog-img {
                     padding:10px 10px 0;
                 }
-                .invite-dialog-img {
-                    display:none;
-                }
+
                 .invite-dialog-img img {
                     display: block;
                     margin: 0px;
