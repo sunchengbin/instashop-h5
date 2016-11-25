@@ -62,7 +62,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     domain: false
 
                 };
-                _this.testCase = Math.floor(Math.random() * 7 + 1);
+                _this.testCase = Math.floor(Math.random() * 7 + 1)+"";
 
                 switch (_this.testCase) {
                     //用户不符合要求
