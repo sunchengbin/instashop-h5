@@ -277,6 +277,8 @@ body{
 .index-btn-box .btn {
     font-size:16px;
     border-radius: 3px!important;
+    height: 3.6rem;
+    line-height: 3.6rem;
 }
 .index-btn-box a {
     color:#ffffff;
