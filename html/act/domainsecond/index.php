@@ -797,7 +797,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
         </div>
         <div>
             <p class="invite-number-box text-center margin-top">
-                kode referralmu:<br>
+                Kode Referralmu:<br>
                 <span class="invite-number fwb"></span>
             </p>
             <div class="invite-box">
@@ -809,9 +809,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
             </div>
             <button class="btn btn2 j_invite_btn disable-btn" data-report="domain_btn_invite">BAGIKAN KODE REFERRAL</button>
             <div class="margin-top">
-                Notice: Notes: Teman yang kamu ajak harus upload produk
-                dengan menggunakan "tambah produk dari Instagram".
-                1 akun Instagram hanya dapat digunakan untuk 1 akun Instashop.
+                Note: Teman yang kamu ajak harus upload produk menggunakan fitur "tambah produk dari Instagram". 1 akun Instagram hanya dapat digunakan untuk 1 akun Instashop.
             </div>
         </div>
     </div>
