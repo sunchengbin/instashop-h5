@@ -222,7 +222,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     } else {
                         $(".invite-table").hide();
                         $(".j_invite_tip").show();
-                        $(".j_invite_tip").text('Undangan yang belum memenuhi syarat')
+                        $(".j_invite_tip").text('Belum ada teman yang memenuhi syarat')
                         _this.StatusCheck.isHasInviteUser = false;
                     }
                     //是否允许点击申请按钮
@@ -534,7 +534,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             var _trs = "";
             var _table_head = '<tr>'+
                 '                            <td class="t-header" colspan="2">'+
-                '                                Undangan yang sudah memenuhi syarat'+
+                '                                Teman yang sudah memenuhi syarat'+
                 '                            </td>'+
                 '                        </tr>';
             for (var i = 0, inviter; inviter = inviters[i++];) {
