@@ -76,7 +76,9 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                         }
                     };
                 $(window).on('scroll', function(e) {
-                    var _st = $('html').scrollTop(),//firefox下body无scrollTop
+                    var moz = /Gecko\//i.test(navigator.userAgent);
+                    var body=document[moz?'documentElement':'body'];
+                    var _st = body.scrollTop,//firefox下body无scrollTop
                         _wh = $(window).height(),
                         _bh = $(document).height();
                     if (_st + _wh >= _bh-200 && getData) {
