@@ -10,7 +10,7 @@
 .logistics-list li{
     padding: .5rem 0;
     color: #666;
-    font-size: 1.4rem;
+    font-size: 14px;
     line-height: 2rem;
 }
 .logistics-list{
@@ -35,7 +35,7 @@
     border-bottom:none;
 }
 .logistics-list i{
-    font-size: 2rem;
+    font-size: 20px;
     vertical-align: middle;
     margin-right: .5rem;
     display: inline-block;
@@ -43,11 +43,11 @@
     line-height: 1.8rem;
 }
 .logistics-plug-top i{
-    font-size: 1.8rem;
+    font-size: 14px;
     color: #999;
 }
 .logistics-plug-top p{
-    font-size: 1.4rem;
+    font-size: 14px;
     line-height: 3rem;
 }
 .btn{
