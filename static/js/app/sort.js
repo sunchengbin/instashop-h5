@@ -79,7 +79,7 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                     var _st = $('body').scrollTop(),
                         _wh = $(window).height(),
                         _bh = $(document).height();
-                    if ((_st + _wh > _bh - 200) && getData) {
+                    if ((_st + _wh >= _bh - 200) && getData) {
                         getData = false;
                         Ajax.getJsonp(Config.host.actionUrl+Config.actions.sortAction+_tag_id+'/items?param='+JSON.stringify(reqData),function(obj){
                             if(obj.code == 200){
