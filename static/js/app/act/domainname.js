@@ -22,7 +22,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 seller_id: Common.getQueryParam("seller_id"),
                 wduss: encodeURIComponent(Common.getQueryParam("wduss"))
             };
-
+            // alert(_this.user_info.seller_id+" "+_this.user_info.wduss)
             //初始化状态监控
             _this.initStatus();
             // _this.initData();
@@ -56,6 +56,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             _this._loading = Dialog.loading({
                 width:100
             })
+            _this.StatusCheck.isAllowInvite = true;
             Ajax.getJsonp(_reqUrl, function (res) {
                 _this._loading.remove();
                 //  res = {
@@ -209,7 +210,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     //是否符合要求
                     _this.StatusCheck.isDemand = _selfCheckData.self_ok;
                     //是否允许点击邀请按钮
-                    _this.StatusCheck.isAllowInvite = true;
+                    // _this.StatusCheck.isAllowInvite = true;
                     if (_inviteUserList.length > 0) {
 
                         $(".j_invite_table").html(_this.createInviterTable(_inviteUserList));
