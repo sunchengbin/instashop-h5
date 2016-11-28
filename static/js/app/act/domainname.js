@@ -10,7 +10,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             isClient: false,//客户端版本是否符合要求
             isDemand: false,//用户是否符合参与活动要求
             isAllowApply: false,//用户是否可以申请域名
-            isAllowInvite: false,//用户是否可以邀请好友
+            isAllowInvite: true,//用户是否可以邀请好友
             isHasInviteUser: false,//用户是否已有符合邀请的被邀请者
             isAllowShare: false//是否可以分享
         },
@@ -67,7 +67,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 //     domain: false
                 //
                 // };
-                // // _this.testCase = Math.floor(Math.random() * 7 + 1)+"";
+                // _this.testCase = Math.floor(Math.random() * 7 + 1)+"";
                 // _this.testCase = Common.getQueryParam("testcase");
                 //
                 // switch (_this.testCase) {
@@ -209,7 +209,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     //是否符合要求
                     _this.StatusCheck.isDemand = _selfCheckData.self_ok;
                     //是否允许点击邀请按钮
-                    _this.StatusCheck.isAllowInvite = _selfCheckData.self_ok;
+                    _this.StatusCheck.isAllowInvite = true;
                     if (_inviteUserList.length > 0) {
 
                         $(".j_invite_table").html(_this.createInviterTable(_inviteUserList));
