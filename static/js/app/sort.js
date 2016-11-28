@@ -79,6 +79,8 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                     var _st = $('body').scrollTop(),
                         _wh = $(window).height(),
                         _bh = $(document).height();
+                    console.log("滚动"+_st + _wh > _bh - 200)
+                    console.log("获取数据开关"+getData)
                     if ((_st + _wh > _bh - 200) && getData) {
                         getData = false;
                         Ajax.getJsonp(Config.host.actionUrl+Config.actions.sortAction+_tag_id+'/items?param='+JSON.stringify(reqData),function(obj){
