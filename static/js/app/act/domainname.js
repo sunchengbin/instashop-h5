@@ -373,8 +373,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 var _dom = $(this),
                     _type = _dom.attr('data-type'),
                     _report = _dom.attr('data-report'),
-                    _invite_txt = $.trim($(".j_invite_txt").val());
-                alert(_invite_txt);
+                    _invite_txt = $.trim($("#j_invite_txt").val());
                 var _param = {
                     param: {
                         type: 'share',
