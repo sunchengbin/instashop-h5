@@ -314,6 +314,7 @@ footer .btn i{
     box-sizing: border-box;
     line-height: 4rem;
     text-align: center;
+    font-size: 14px;
 }
 .index-footer ul li i{
     vertical-align: middle;

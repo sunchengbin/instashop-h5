@@ -146,7 +146,7 @@ html, body {
 
 .decorate-sample-tab ul li {
     background: #F5F5F5;
-    font-size: 1.3rem;
+    font-size: 13px;
     text-align: center;
     letter-spacing: -0.5px;
     height: 4.5rem;
@@ -164,7 +164,7 @@ html, body {
 .decorate-sample-panel section p {
     height: 4.5rem;
     line-height: 4.5rem;
-    font-size: 1.5rem;
+    font-size: 15px;
     color: #fff;
 }
 
@@ -296,7 +296,7 @@ html, body {
 }
 
 .title {
-    font-size: 1.3rem;
+    font-size: 13px;
     color: #666666 !important;
     word-break: break-word;
     text-overflow: ellipsis;
@@ -306,20 +306,20 @@ html, body {
 }
 
 .price {
-    font-size: 1.4rem;
+    font-size: 14px;
     color: #F6A623 !important;
 }
 
 .navigation-1-title {
     margin-top: .5rem;
     text-align: center;
-    font-size: 1rem;
+    font-size: 10px;
 }
 
 .navigation-2 ul li {
     height: 4.2rem;
     line-height: 4.2rem;
-    font-size: 1.5rem;
+    font-size: 15px;
     padding: 0 1rem;
     position: relative;
 }

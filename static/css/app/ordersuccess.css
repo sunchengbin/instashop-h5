@@ -7,12 +7,12 @@ body{
 }
 section{
     padding:1rem;
-    font-size: 1.4rem;
+    font-size: 14px;
     background-color: #fff;
 }
 .pay-info{
     padding:.5rem 1rem;
-    font-size: 1.4rem;
+    font-size: 14px;
     background-color: transparent;
 }
 .three_info{
@@ -98,7 +98,7 @@ p{
     font-weight: bolder;
 }
 .order-content{
-    font-size: 1.2rem;
+    font-size: 12px;
     /*font-weight: bold;*/
     color: #333;
     line-height: 1.4;
@@ -128,7 +128,7 @@ p{
 }
 .f-w{
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 12px;
 }
 .f-w a{
     color:#748bcf;
@@ -148,11 +148,11 @@ p{
 }
 .pay-content-explain{
     padding:0rem 1rem 0rem .5rem;
-    font-size: 1.3rem;
+    font-size: 13px;
     color: #aaa;
 }
 .total-price{
-    font-size: 2.4rem;
+    font-size: 24px;
     color: #F5A623;
     margin-bottom: .5rem;
     /*font-weight: bold;*/
@@ -163,7 +163,7 @@ p{
     background-color: #fff;
     position: relative;
     /*margin-bottom: 2rem;*/
-    font-size: 1.2rem;
+    font-size: 12px;
 }
 .pay-time-out::after{
     position: absolute;
@@ -228,7 +228,7 @@ footer .btn{
     background: url(../../images/app/status_two.gif) no-repeat;
     background-size: cover;
     padding: 0;
-    font-size: 1.2rem;
+    font-size: 12px;
 }
 .top-status::after{
     position: absolute;
@@ -272,7 +272,7 @@ p.quick-order-txt{
     text-align: left;
     /* color: #666; */
     line-height: 1.3;
-    font-size: 1.2rem;
+    font-size: 12px;
 }
 p.quick-order-txt span{
     color: #f9b42d;
@@ -281,7 +281,7 @@ p.quick-order-txt span{
 .item-out-stock{
     padding: 10rem 0 30rem;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 14px;
     background: #fff;
 }
 .item-out-stock i{
