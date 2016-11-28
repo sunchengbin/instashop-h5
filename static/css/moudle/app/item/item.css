@@ -21,7 +21,7 @@
     height: 6rem;
 }
 .cart-item > div {
-    font-size: 1.4rem;
+    font-size: 14px;
     margin:0 4rem 0 7rem;
 }
 .cart-item p{
@@ -39,7 +39,7 @@
     background-color: #F5A623;
     color: #fff;
     border-radius: 2rem;
-    font-size: 1.2rem;
+    font-size: 12px;
 }
 .cart-item p.name{
     color: #666;
@@ -56,12 +56,12 @@
 }
 .cart-item p.error-p{
     padding: .5rem 0 0 7rem;
-    font-size: 1.4rem;
+    font-size: 14px;
     color: #F5A623;
 }
 .cart-item i{
     float: right;
-    font-size: 1.8rem;
+    font-size: 18px;
     color: #aaa;
     width: 2.4rem;
     height: 8rem;
