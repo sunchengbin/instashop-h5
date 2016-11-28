@@ -195,8 +195,8 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             telephone: "18601363531"
                         }];
                         res.domain = {
-                            domain: "piaohua.com",
-                            status: "success"
+                            domain: "www.piaohua.com",
+                            status: "succ"
                         };
                         break;
                 }
