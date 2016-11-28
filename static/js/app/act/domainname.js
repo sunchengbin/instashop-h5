@@ -205,7 +205,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 var _domainCheckData = res.domain;
                 var _inviteUserList = res.invite_user;
                 console.log(res);
-
+                alert(_inviteUserList.length);
                 if (res && 200 == res.code) {
                     //是否符合要求
                     _this.StatusCheck.isDemand = _selfCheckData.self_ok;
