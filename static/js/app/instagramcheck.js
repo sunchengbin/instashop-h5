@@ -24,7 +24,7 @@ require(['config', 'base', 'lang', 'common'], function (Config, Base, Lang, Comm
                 action: "instagram",
                 _debug_env: "3.6"
             }
-            var reqUrl = Config.host.phpHost + Config.actions.instagramcheck + "?param=" + JSON.stringify(_reqData);
+            var reqUrl = Config.host.phpHost + Config.actions.instagramcheck + "?param=" + JSON.stringify(_reqData)+"&timestamp="+new Date().getTime();
             window.location.href = reqUrl;
         }
     };
