@@ -24,15 +24,19 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
         },
         initRotateBanner : function(){
             Common.slideImgNav();
-            var _banners = document.querySelectorAll('.j_banner');
-            if($('.j_banner').length){
-                $.each(_banners,function(i,item){
-                    Slide.createNew({
-                        dom: item,
-                        needTab: true,
-                        auto : true
-                    });
-                });
+            var _banners = document.querySelectorAll('.j_banner'),
+                _len = _banners.length;
+            if(_len){
+                 //$.each(_banners,function(i,item) {
+                    for (var i = 0; i < _len; i++){
+                        var item = _banners[i];
+                        Slide.createNew({
+                            dom: item,
+                            needTab: true,
+                            auto: true
+                        });
+                    }
+                //});
             }
         },
         getTags : function(list){
