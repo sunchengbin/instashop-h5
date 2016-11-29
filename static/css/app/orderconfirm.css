@@ -47,6 +47,7 @@ body{
 .address-info{
     margin-right:3rem;
     font-size: 14px;
+    word-break:break-all;
 }
 .user-address-info{
     color: #999;
