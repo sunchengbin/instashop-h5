@@ -56,6 +56,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 }
             }
             var _reqUrl = Config.host.actionUrl + Config.actions.selfCheckDomain + "?param=" + JSON.stringify(_reqParam);
+            _this.debug.requrl = _reqUrl;
             _this._loading = Dialog.loading({
                 width:100
             })
