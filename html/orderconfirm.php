@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/orderconfirm.css?v=1479980281459" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/orderconfirm.css?v=1479980281477" rel="stylesheet"/>
     <title>Order</title>
     <script>
         <?php
