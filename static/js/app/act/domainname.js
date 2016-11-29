@@ -382,6 +382,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     _type = _dom.attr('data-type'),
                     _report = _dom.attr('data-report'),
                     _invite_txt = $.trim($("#j_invite_txt").val());
+                    _invite_txt = _invite_txt.replace('http://www-test.instashop.co.id','http://www-test.instashop.co.id?from='+_type+"&seller_id="+_this.user_info.seller_id);
                 var _param = {
                     param: {
                         type: 'share',
