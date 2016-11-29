@@ -4,7 +4,6 @@
 require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], function (Config, Insjs, Ajax, Dialog, Fastclick, Common, Lang) {
     "use strict";
 
-
     var DM = window.DM = {
         StatusCheck: {
             isClient: false,//客户端版本是否符合要求
@@ -241,7 +240,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                                 _this.StatusCheck.isAllowApply = false;
                                 break;
                             case "succ":
-                                $(".j_domain_tip").text(_domainCheckData.domain)
+                                $(".j_domain_tip").html("Selamat, registrasi domainmu berhasil!</br>"+_domainCheckData.domain);
                                 $(".j_domain_btn").hide();
                                 $(".j_share_btn").show();
                                 _this.domainImg = res.share[0];
