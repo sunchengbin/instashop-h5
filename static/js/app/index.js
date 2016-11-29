@@ -27,6 +27,7 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
             var _banners = document.querySelectorAll('.j_banner'),
                 _len = _banners.length;
             if(_len){
+                console.log(1);
                  //$.each(_banners,function(i,item) {
                     for (var i = 0; i < _len; i++){
                         var item = _banners[i];
