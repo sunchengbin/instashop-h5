@@ -814,7 +814,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
         </div>
     </div>
     <div id="result" class="step step-3 clearfix">
-        <div class="step-contet">
+        <div class="step-contet j_domain_succ">
             Setelah mendapat notifikasi berhasil, klik tombol ini untuk mendaftarkan domain web
         </div>
         <div class="j_domain_tip">

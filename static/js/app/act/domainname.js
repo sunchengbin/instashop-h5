@@ -244,7 +244,8 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                                 _this.StatusCheck.isAllowApply = false;
                                 break;
                             case "succ":
-                                $(".j_domain_tip").html("Selamat, registrasi domainmu berhasil!</br>Yuk segera bagikan web barumu ini!</br>"+_domainCheckData.domain);
+                                $(".j_domain_succ").html("Selamat, registrasi domainmu berhasil!</br>Yuk segera bagikan web barumu ini!");
+                                $(".j_domain_tip").html(_domainCheckData.domain);
                                 $(".j_domain_btn").hide();
                                 $(".j_share_btn").show();
                                 _this.domainImg = res.share[0];
