@@ -41,6 +41,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             });
         },
         versionTipDialog: function () {
+            _paq.push(['trackEvent','低于3.5版本提示','autotip','']);
             Dialog.alert({
                 body_txt: 'Silakan update ke 3.5 sebelum menggunakan fitur ini'
             });
@@ -351,7 +352,10 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     _this.invite_dialog = Dialog.dialog({
                         body_txt: _this.createInviteDialogHtm(),
                         show_footer: false,
-                        show_top: false
+                        show_top: false,
+                        c_fn:function(){
+                            _paq.push(['trackEvent','关闭邀请弹层','click','']);
+                        }
                     });
                 }
             })
@@ -372,6 +376,9 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             _shareImg.onload = function(){
                                 _dialog.opts.wraper.css(_dialog.setPosition());
                             }
+                        },
+                        c_fn:function(){
+                            _paq.push(['trackEvent','关闭分享弹层','click','']);
                         }
                     });
                 }
@@ -440,7 +447,10 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     _this.domain_dialog = Dialog.dialog({
                         body_txt: _this.createDomainDialogHtm(),
                         show_footer: false,
-                        show_top: false
+                        show_top: false,
+                        c_fn:function(){
+                            _paq.push(['trackEvent','关闭申请域名弹层','click','']);
+                        }
                     });
                 }
             });
