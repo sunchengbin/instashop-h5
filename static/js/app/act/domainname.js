@@ -6,7 +6,8 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
 
     var DM = window.DM = {
         debug:{
-            debugInfo:""
+            debugInfo:"",
+            requrl:""
         },
         StatusCheck: {
             isClient: false,//客户端版本是否符合要求
@@ -440,7 +441,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             });
             $("body").on("click",".j_debug_btn",function(){
                 Dialog.alert({
-                    body_txt: _this.debug.debugInfo
+                    body_txt: "请求:"+_this.debug.requrl+"</br>回参:</br>"+_this.debug.debugInfo
                 });
             });
             $('body').on('keyup', '.j_domain_ipt', function () {
