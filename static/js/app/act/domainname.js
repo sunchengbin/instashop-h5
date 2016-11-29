@@ -324,7 +324,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                         if (val) {
                             //当 用户3.5版本下 与 符合条件 与 有达标被邀请者 时 设置为true生效
                             if (this.isClient && this.isDemand && this.isHasInviteUser) {
-                                this.isAllowInvite = val;
                                 $(".j_domain_btn").removeClass('disable-btn')
                                 $(".j_domain_btn").show()
                             } else {
