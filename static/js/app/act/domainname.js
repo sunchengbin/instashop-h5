@@ -6,14 +6,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
 
     var DM = window.DM = {
         debug:{
-            SHAKE_THRESHOLD:3000,
-            last_update:0,
-            x:0,
-            y:0,
-            z:0,
-            last_x:0,
-            last_y:0,
-            last_z:0,
             debugInfo:""
         },
         StatusCheck: {
@@ -215,13 +207,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 var _domainCheckData = res.domain;
                 var _inviteUserList = res.invite_user;
                 _this.debug.debugInfo = JSON.stringify(res);
-                //TODO 上线撤除
-                if (true) {
-                    window.addEventListener('devicemotion', _this.deviceMotionHandler, false);
-                } else {
-                    console.info("not support devicemotion event")
-                }
-                
                 console.log(res);
 
                 if (res && 200 == res.code) {
@@ -259,7 +244,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                                 _this.StatusCheck.isAllowApply = false;
                                 break;
                             case "succ":
-                                $(".j_domain_tip").html("Selamat, registrasi domainmu berhasil!</br>"+_domainCheckData.domain);
+                                $(".j_domain_tip").html("Selamat, registrasi domainmu berhasil!</br>Yuk segera bagikan web barumu ini ke temanmu!</br>"+_domainCheckData.domain);
                                 $(".j_domain_btn").hide();
                                 $(".j_share_btn").show();
                                 _this.domainImg = res.share[0];
@@ -290,34 +275,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     }
                 });
             });
-        },
-        deviceMotionHandler : function(eventData){
-            var _this = this;
-            try {
-                var acceleration = eventData.accelerationIncludingGravity;
-                var curTime = new Date().getTime();
-                if ((curTime - _this.debug.last_update) > 100) {
-                    var diffTime = curTime - _this.debug.last_update;
-                    _this.debug.last_update = curTime;
-                    _this.debug.x = acceleration.x;
-                    _this.debug.y = acceleration.y;
-                    _this.debug.z = acceleration.z;
-                    var speed = Math.abs(_this.debug.x + _this.debug.y + _this.debug.z - _this.debug.last_x - _this.debug.last_y - _this.debug.last_z) / diffTime * 10000;
-
-                    if (speed > _this.debug.SHAKE_THRESHOLD) {
-                        Dialog.alert({
-                            top_txt: 'debug info',//可以是html
-                            body_txt: _this.debug.debugInfo
-                        });
-                    }
-                    _this.debug.last_x = _this.debug.x;
-                    _this.debug.last_y = _this.debug.y;
-                    _this.debug.last_z = _this.debug.z;
-                }
-            }catch(e){
-                return;
-            }
-
         },
         initStatus: function () {
             var ctx = this;
@@ -479,6 +436,11 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                         show_top: false
                     });
                 }
+            });
+            $("body").on("click",".j_debug_btn",function(){
+                Dialog.alert({
+                    body_txt: _this.debug.debugInfo
+                });
             });
             $('body').on('keyup', '.j_domain_ipt', function () {
                 $('.j_domain_error').html('');
