@@ -202,7 +202,6 @@ define(["dialog",'base'],function (Dialog,Base) {
             var _this = this;
             var arrowContainer = document.querySelectorAll(".slide_arrow");
             Base.others.forEach(arrowContainer,function(i,ele){
-                console.log(ele)
                 ele.addEventListener("click",function(event){
                     if(!!event.target&&!!event.target.parentElement){
                         var _curTarget = event.target.parentElement;

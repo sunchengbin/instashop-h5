@@ -194,6 +194,10 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 _sort_box.style.webkitTransform = "translate3d(0,0,0)";
                 _sort_cover.style.webkitTransitionDuration = '.3s';
                 _sort_cover.style.webkitTransform = "translate3d(0,0,0)";
+                _sort_box.style.mozTransitionDuration = '.6s';
+                _sort_box.style.mozTransform = "translate3d(0,0,0)";
+                _sort_cover.style.mozTransitionDuration = '.3s';
+                _sort_cover.style.mozTransform = "translate3d(0,0,0)";
                 _this.hideSortPrompt();
             });
             $('body').on('click','.j_sort_cover',function(){
