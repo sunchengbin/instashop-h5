@@ -11,6 +11,9 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <meta name="format-detection" content="telephone=no"/>
+
+    <meta name="spider-id" content="orju7v">
+
     <title>Free domain webstore</title>
     <style>
         * {
@@ -768,7 +771,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
 
     </style>
 </head>
-<body>
+<body data-spider="hz8xkn2i">
 <section class="banner">
     <img src="images/banner.jpg">
 </section>
@@ -839,9 +842,41 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
     <p class="j_debug_btn">5. Keputusan Instashop adalah mutlak dan tidak dapat diganggu gugat. Jika ditemukan indikasi kecurangan dalam bentuk apapun, baik selama promo ini berlangsung ataupun setelah promo ini berakhir, Instashop berhak menolak dan/atau mencabut pengajuan domain kamu.</p>
 </section>
 <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-<!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-<script src="<?=STATIC_HOST?>/js/dist/app/act/domainname.js?v=1479790786163"></script>
+<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
+<script src="<?=STATIC_HOST?>/js/app/act/domainname.js?v=1479790786163"></script>
 <script>
+
+          function getUrlPrem(key,url){
+                      var _search = url || document.location.search,
+                          _pattern = new RegExp("[?&]" + key + "\=([^&]+)", "g"),
+                          _matcher = _pattern.exec(_search),
+                          _items = null;
+                      if (null != _matcher) {
+                          try {
+                              _items = decodeURIComponent(decodeURIComponent(_matcher[1]));
+                          } catch (e) {
+                              try {
+                                  _items = decodeURIComponent(_matcher[1]);
+                              } catch (e) {
+                                  _items = _matcher[1];
+                              }
+                          }
+                      }
+                      return _items;
+                  }
+
+          function getSellerID() {
+              var _WD_s_id = getUrlPrem("seller_id")||"";
+              //获取当前时间
+              var date=new Date();
+              var expireDays=10;
+              //将date设置为10天以后的时间
+              date.setTime(date.getTime()+expireDays*24*3600*1000);
+              //将WD_s_id cookie设置为10天后过期
+              document.cookie="WD_s_id="+_WD_s_id+";expire="+date.toGMTString();
+              return _WD_s_id;
+          }
+
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -853,6 +888,23 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
           ga('create', 'UA-78448705-7', 'auto');
           ga('send', 'pageview');
 
+
+          var _paq = _paq || [];
+          _paq.push(['trackPageView']);
+          (function(){
+              var is_https = ("https:" === document.location.protocol) ? 1 : 0,
+              u = (is_https ? "https" : "http") + "://di.instashop.co.id/";
+              _paq.push(['setTrackerUrl', u +'index.php'+ '?userID=-1&sellerID='+getSellerID()]);
+              _paq.push(['setSiteId', 1]);
+              var d = document,
+                  g = d.createElement('script'),
+                  s = d.getElementsByTagName('script')[0];
+              g.type='text/javascript';
+              g.defer=true;
+              g.async=true;
+              g.src=is_https ? 'http://di.instashop.co.id/piwik-spm.js' : 'http://di.instashop.co.id/piwik-spm.js';
+              s.parentNode.insertBefore(g,s);
+          })();
       </script>
 </body>
 </html>

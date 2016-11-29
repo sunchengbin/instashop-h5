@@ -10,7 +10,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             requrl:""
         },
         StatusCheck: {
-            isClient: false,//客户端版本是否符合要求
+            isClient: true,//客户端版本是否符合要求
             isDemand: false,//用户是否符合参与活动要求
             isAllowApply: false,//用户是否可以申请域名
             isAllowInvite: true,//用户是否可以邀请好友
@@ -28,8 +28,8 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             // alert(_this.user_info.seller_id+" "+_this.user_info.wduss)
             //初始化状态监控
             _this.initStatus();
-            // _this.initData();
-            // _this.handleFn();
+            _this.initData();
+            _this.handleFn();
             Insjs.WebOnReady(function (bridge) {
                 _this.StatusCheck.isClient = true;
                 //初始化数据
@@ -345,6 +345,10 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             //邀请按钮
             $("body").on("click", ".j_invite_btn", function () {
                 if (_this.StatusCheck.isAllowInvite) {
+                    //e_c 分享按钮
+                    //e_a 点击
+                    //e_n 附加属性
+                    _paq.push(['trackEvent','邀请按钮','click','']);
                     var _report = $(this).attr("data-report");
                     reportEventStatistics(_report);
                     _this.invite_dialog = Dialog.dialog({
@@ -357,6 +361,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             //分享按钮
             $('body').on('click', '.j_share_btn', function () {
                 if (_this.StatusCheck.isAllowShare) {
+                    _paq.push(['trackEvent','分享按钮','click','']);
                     var _report = $(this).attr("data-report");
                     reportEventStatistics(_report);
                     _this.share_dialog = Dialog.dialog({
@@ -388,7 +393,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             data: [{
                                 img: '',
                                 content: _invite_txt,
-                                link_url: 'http://www.instashop.co.id/'
+                                link_url: 'http://www-test.instashop.co.id?from='+_type+"&seller_id="+_this.user_info.seller_id
                             }]
                         }
                     }
@@ -431,6 +436,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             });
             $('body').on('click', '.j_domain_btn', function () {
                 if (_this.StatusCheck.isAllowApply) {
+                    _paq.push(['trackEvent','申请域名','click','']);
                     var _report = $(this).attr('data-report');
                     reportEventStatistics(_report);
                     _this.domain_dialog = Dialog.dialog({
@@ -497,19 +503,19 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 '    <div class="invite-dialog-input">' +
                 '        <textarea name="content" value="" id="j_invite_txt"' +
                 '                  >"Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Sst, jangan lupa gunakan kode referral ini saat registrasi ya ('+_this.user_info.seller_id+
-                ')Klik:http://www.instashop.co.id"</textarea>' +
+                ')Klik:http://www-test.instashop.co.id"</textarea>' +
                 '    </div>' +
-                '    <div class="invite-share-box">' +
+                '    <div class="invite-share-box" data-spider="invitebox">' +
                 '        <ul class="ins-avg-sm-4">' +
                 '            <li>' +
-                '                <i class="iconfont icon-share-copy j_invite_action" data-report="domain_btn_invite_copy" data-type="share_to_copy"></i>' +
+                '                <i data-spider="dcopy" spm-auto="copy邀请" class="iconfont icon-share-copy j_invite_action" data-report="domain_btn_invite_copy" data-type="share_to_copy"></i>' +
                 '                <p>COPY</p>' +
                 '            </li>' +
-                '            <li><i class="iconfont icon-share-line j_invite_action" data-report="domain_btn_invite_line" data-type="share_to_line"></i>' +
+                '            <li><i data-spider="dline" spm-auto="line邀请" class="iconfont icon-share-line j_invite_action" data-report="domain_btn_invite_line" data-type="share_to_line"></i>' +
                 '                <p>LINE</p></li>' +
-                '            <li><i class="iconfont icon-share-bbm j_invite_action" data-report="domain_btn_invite_bbm" data-type="share_to_bbm"></i>' +
+                '            <li><i data-spider="dbbm" spm-auto="bbm邀请" class="iconfont icon-share-bbm j_invite_action" data-report="domain_btn_invite_bbm" data-type="share_to_bbm"></i>' +
                 '                <p>BBM</p></li>' +
-                '            <li><i class="iconfont icon-share-whatsapp j_invite_action" data-report="domain_btn_invite_whatsapp" data-type="share_to_whatsapp"></i>' +
+                '            <li><i data-spider="dwhatsapp" spm-auto="whatsapp邀请" class="iconfont icon-share-whatsapp j_invite_action" data-report="domain_btn_invite_whatsapp" data-type="share_to_whatsapp"></i>' +
                 '                <p>WhatsApp</p>' +
                 '            </li>' +
                 '        </ul>' +
@@ -524,17 +530,17 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 '    <div class="invite-dialog-img">' +
                 '        <img class="invite-dialog-img-url" src="">' +
                 '    </div>' +
-                '    <div class="invite-share-box">' +
+                '    <div class="invite-share-box" data-spider="sharebox">' +
                 '        <ul class="ins-avg-sm-4">' +
                 '            <li>' +
-                '                <i class="iconfont icon-share-instagram j_share_action" data-report="domain_btn_share_instagram" data-type="share_to_instagram"></i>' +
+                '                <i data-spider="dinstagram" spm-auto="instagram分享" class="iconfont icon-share-instagram j_share_action" data-report="domain_btn_share_instagram" data-type="share_to_instagram"></i>' +
                 '                <p>Instagram</p>' +
                 '            </li>' +
-                '            <li><i class="iconfont icon-share-line j_share_action" data-report="domain_btn_share_line" data-type="share_to_line"></i>' +
+                '            <li><i data-spider="dline" spm-auto="line分享" class="iconfont icon-share-line j_share_action" data-report="domain_btn_share_line" data-type="share_to_line"></i>' +
                 '                <p>LINE</p></li>' +
-                '            <li><i class="iconfont icon-share-whatsapp j_share_action" data-report="domain_btn_share_whatsapp" data-type="share_to_whatsapp"></i>' +
+                '            <li><i data-spider="dwhatsapp" spm-auto="whatsapp分享" class="iconfont icon-share-whatsapp j_share_action" data-report="domain_btn_share_whatsapp" data-type="share_to_whatsapp"></i>' +
                 '                <p>WhatsApp</p></li>' +
-                '            <li><i class="iconfont icon-share-bbm j_share_action" data-report="domain_btn_share_bbm" data-type="share_to_bbm"></i>' +
+                '            <li><i data-spider="dbbm" spm-auto="bbm分享" class="iconfont icon-share-bbm j_share_action" data-report="domain_btn_share_bbm" data-type="share_to_bbm"></i>' +
                 '                <p>BBM</p>' +
                 '            </li>' +
                 '        </ul>' +
