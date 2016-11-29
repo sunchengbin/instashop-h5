@@ -5,6 +5,17 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
     "use strict";
 
     var DM = window.DM = {
+        debug:{
+            SHAKE_THRESHOLD:3000,
+            last_update:0,
+            x:0,
+            y:0,
+            z:0,
+            last_x:0,
+            last_y:0,
+            last_z:0,
+            debugInfo:""
+        },
         StatusCheck: {
             isClient: false,//客户端版本是否符合要求
             isDemand: false,//用户是否符合参与活动要求
@@ -203,8 +214,16 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 var _selfCheckData = res.self_check || {};
                 var _domainCheckData = res.domain;
                 var _inviteUserList = res.invite_user;
+                _this.debug.debugInfo = JSON.stringify(res);
+                //TODO 上线撤除
+                if (true) {
+                    window.addEventListener('devicemotion', _this.deviceMotionHandler, false);
+                } else {
+                    console.info("not support devicemotion event")
+                }
+                
                 console.log(res);
-                alert(_inviteUserList.length);
+
                 if (res && 200 == res.code) {
                     //是否符合要求
                     _this.StatusCheck.isDemand = _selfCheckData.self_ok;
@@ -271,6 +290,34 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     }
                 });
             });
+        },
+        deviceMotionHandler : function(eventData){
+            var _this = this;
+            try {
+                var acceleration = eventData.accelerationIncludingGravity;
+                var curTime = new Date().getTime();
+                if ((curTime - _this.debug.last_update) > 100) {
+                    var diffTime = curTime - _this.debug.last_update;
+                    _this.debug.last_update = curTime;
+                    _this.debug.x = acceleration.x;
+                    _this.debug.y = acceleration.y;
+                    _this.debug.z = acceleration.z;
+                    var speed = Math.abs(_this.debug.x + _this.debug.y + _this.debug.z - _this.debug.last_x - _this.debug.last_y - _this.debug.last_z) / diffTime * 10000;
+
+                    if (speed > _this.debug.SHAKE_THRESHOLD) {
+                        Dialog.alert({
+                            top_txt: 'debug info',//可以是html
+                            body_txt: _this.debug.debugInfo
+                        });
+                    }
+                    _this.debug.last_x = _this.debug.x;
+                    _this.debug.last_y = _this.debug.y;
+                    _this.debug.last_z = _this.debug.z;
+                }
+            }catch(e){
+                return;
+            }
+
         },
         initStatus: function () {
             var ctx = this;
