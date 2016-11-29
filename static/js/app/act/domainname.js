@@ -10,7 +10,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             requrl:""
         },
         StatusCheck: {
-            isClient: true,//客户端版本是否符合要求
+            isClient: false,//客户端版本是否符合要求
             isDemand: false,//用户是否符合参与活动要求
             isAllowApply: false,//用户是否可以申请域名
             isAllowInvite: true,//用户是否可以邀请好友
@@ -28,8 +28,8 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             // alert(_this.user_info.seller_id+" "+_this.user_info.wduss)
             //初始化状态监控
             _this.initStatus();
-            _this.initData();
-            _this.handleFn();
+            // _this.initData();
+            // _this.handleFn();
             Insjs.WebOnReady(function (bridge) {
                 _this.StatusCheck.isClient = true;
                 //初始化数据
@@ -502,8 +502,8 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             _htm = '<div class="invite-dialog">' +
                 '    <div class="invite-dialog-input">' +
                 '        <textarea name="content" value="" id="j_invite_txt"' +
-                '                  >"Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Sst, jangan lupa gunakan kode referral ini saat registrasi ya ('+_this.user_info.seller_id+
-                ')Klik:http://www-test.instashop.co.id"</textarea>' +
+                '                  >Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Sst, jangan lupa gunakan kode referral ini saat registrasi ya ('+_this.user_info.seller_id+
+                ')Klik:http://www-test.instashop.co.id</textarea>' +
                 '    </div>' +
                 '    <div class="invite-share-box" data-spider="invitebox">' +
                 '        <ul class="ins-avg-sm-4">' +
