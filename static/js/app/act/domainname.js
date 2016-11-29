@@ -289,12 +289,10 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     },
                     set: function (val) {
                         if (val) {
-                            $(".j_invite_btn").removeClass('disable-btn')
                             $(".invite-iscan").text("Syarat sudah terpenuhi")
                             $(".invite-number").text(ctx.user_info.seller_id);
                             $(".invite-number-box").show();
                         } else {
-                            $(".j_invite_btn").addClass('disable-btn')
                             $(".invite-iscan").text("Syarat belum terpenuhi")
                             $(".invite-number-box").hide();
                         }
