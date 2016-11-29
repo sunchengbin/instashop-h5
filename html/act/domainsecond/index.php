@@ -839,8 +839,8 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
     <p class="j_debug_btn">5. Keputusan Instashop adalah mutlak dan tidak dapat diganggu gugat. Jika ditemukan indikasi kecurangan dalam bentuk apapun, baik selama promo ini berlangsung ataupun setelah promo ini berakhir, Instashop berhak menolak dan/atau mencabut pengajuan domain kamu.</p>
 </section>
 <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
-<script src="<?=STATIC_HOST?>/js/app/act/domainname.js?v=1479790786163"></script>
+<!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
+<script src="<?=STATIC_HOST?>/js/dist/app/act/domainname.js?v=1479790786163"></script>
 <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
