@@ -97,7 +97,9 @@ require(['lang','lazyload','hbs','text!views/app/index.hbs','ajax','config','bas
                 });
             }
             $(document).on('scroll', function(e) {
-                var _st = $('body').scrollTop(),
+                var moz = /Gecko\//i.test(navigator.userAgent);
+                var body=document[moz?'documentElement':'body'];
+                var _st = body.scrollTop,//firefox下body无scrollTop
                     _wh = $(window).height(),
                     _bh = $(document).height();
                 if((_st > 40) && !localStorage.getItem('IndexSortPrompt')){
