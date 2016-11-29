@@ -5,7 +5,7 @@
  * @requires
  * @author Leo
  */
-define(["dialog"],function (Dialog) {
+define(["dialog",'base'],function (Dialog,Base) {
     var SlideBanner = {
         hasPrototype: false,
         whichPlatform: (function (win) {
@@ -201,7 +201,8 @@ define(["dialog"],function (Dialog) {
         bindEVentForPc:function(){
             var _this = this;
             var arrowContainer = document.querySelectorAll(".slide_arrow");
-            arrowContainer.forEach(function(ele){
+            Base.others.forEach(arrowContainer,function(i,ele){
+                console.log(ele)
                 ele.addEventListener("click",function(event){
                     if(!!event.target&&!!event.target.parentElement){
                         var _curTarget = event.target.parentElement;
@@ -218,7 +219,25 @@ define(["dialog"],function (Dialog) {
                         }
                     }
                 })
-            })
+            });
+            //arrowContainer.forEach(function(ele){
+            //    ele.addEventListener("click",function(event){
+            //        if(!!event.target&&!!event.target.parentElement){
+            //            var _curTarget = event.target.parentElement;
+            //            switch(_curTarget.classList[1]){
+            //                case "slideArrowRight":
+            //                    _this.curPage++;
+            //                    _this.adjustTranslate();
+            //                    _this.toPageAnimation();
+            //                    break;
+            //                case "slideArrowLeft":
+            //                    _this.curPage--;
+            //                    _this.adjustTranslate();
+            //                    _this.toPageAnimation();
+            //            }
+            //        }
+            //    })
+            //})
         },
         bindEvent: function () {
             var _this = this,

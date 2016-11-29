@@ -328,7 +328,7 @@ define(function(){
             }
         },
         /*
-         *循环遍历
+         *循环遍历//array
          */
         each : function(arr,callback){
             var i = 0,
@@ -339,6 +339,14 @@ define(function(){
                 }
             }else{
                 throw new Error('not Array');
+            }
+        },
+        //for循环
+        forEach : function(arr,callback){
+            var i = 0,
+            _len = arr.length;
+            for(i;i < _len;i++){
+                callback && callback(i,arr[i]);
             }
         },
         /*
