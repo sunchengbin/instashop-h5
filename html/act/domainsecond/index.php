@@ -333,15 +333,15 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
         }
 
         .step-1::before {
-            content: 'STEP1';
+            content: 'Syarat 1';
         }
 
         .step-2::before {
-            content: 'STEP2';
+            content: 'Syarat 2';
         }
 
         .step-3::before {
-            content: 'STEP3';
+            content: 'Daftar';
         }
 
         .step-contet {
@@ -818,7 +818,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
     </div>
     <div id="result" class="step step-3 clearfix">
         <div class="step-contet j_domain_succ">
-            Setelah mendapat notifikasi berhasil, klik tombol ini untuk mendaftarkan domain web
+            Jika syarat 1 dan 2 sudah sepenuhnya terpenuhi, kamu akan mendapatkan notifikasi dari Instashop. Klik tombol di bawah ini untuk mendaftarkan domain webmu
         </div>
         <div class="j_domain_tip">
         </div>
@@ -839,7 +839,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
     Kamu dapat setiap saat mengecek perkembangan teman yang menggunakan <span>kode referralmu</span> di bagian atas halaman ini - kolom "STEP 2". Jika sudah ada 5 temanmu yang memenuhi syarat, Instashop akan mengirimkan notifikasi verifikasi berhasil. Kamu dapat segera mendaftarkan domain web yang kamu inginkan.
     </p>
     <p>4. Promo ini berlaku hingga 15 Desember 2016 pukul 22.00 WIB</p>
-    <p class="j_debug_btn">5. Keputusan Instashop adalah mutlak dan tidak dapat diganggu gugat. Jika ditemukan indikasi kecurangan dalam bentuk apapun, baik selama promo ini berlangsung ataupun setelah promo ini berakhir, Instashop berhak menolak dan/atau mencabut pengajuan domain kamu.</p>
+    <p>5. Keputusan Instashop adalah mutlak dan tidak dapat diganggu gugat. Jika ditemukan indikasi kecurangan dalam bentuk apapun, baik selama promo ini berlangsung ataupun setelah promo ini berakhir, Instashop berhak menolak dan/atau mencabut pengajuan domain kamu.</p>
 </section>
 <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
 <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->

@@ -290,11 +290,11 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     },
                     set: function (val) {
                         if (val) {
-                            $(".invite-iscan").text("Syarat sudah terpenuhi")
+                            $(".invite-iscan").text("Syarat ini belum terpenuhi")
                             $(".invite-number").text(ctx.user_info.seller_id);
                             $(".invite-number-box").show();
                         } else {
-                            $(".invite-iscan").text("Syarat belum terpenuhi")
+                            $(".invite-iscan").text("Syarat ini sudah terpenuhi")
                             $(".invite-number-box").hide();
                         }
                         this._isDemand = val;
