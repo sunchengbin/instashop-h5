@@ -611,7 +611,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                 }
                 .invite-iscan {
                     font-size: 14px;
-                    color: #54AE59;
+                    color: red;
                     letter-spacing: 0;
                     font-weight: bolder;
                 }

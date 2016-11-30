@@ -291,11 +291,11 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     },
                     set: function (val) {
                         if (val) {
-                            $(".invite-iscan").text("Syarat ini sudah terpenuhi")
+                            $(".invite-iscan").text("Syarat ini sudah terpenuhi").css("color","red");
                             $(".invite-number").text(ctx.user_info.seller_id);
                             $(".invite-number-box").show();
                         } else {
-                            $(".invite-iscan").text("Syarat ini belum terpenuhi")
+                            $(".invite-iscan").text("Syarat ini belum terpenuhi").css("color","#54AE59");
                             $(".invite-number-box").hide();
                         }
                         this._isDemand = val;
