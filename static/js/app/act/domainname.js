@@ -542,6 +542,8 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
         },
         createShareDialogHtm: function () {
             var _htm = "";
+            alert(window.navigator.userAgent);
+            alert(/ios/i.test(window.navigator.userAgent));
             if(/ios/i.test(window.navigator.userAgent)){
                 _htm = '<div class="invite-dialog">' +
                 '    <div class="invite-dialog-img">' +
