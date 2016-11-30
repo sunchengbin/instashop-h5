@@ -7,20 +7,22 @@ require(['config', 'base', 'lang', 'common'], function (Config, Base, Lang, Comm
             var ctx = this;
             
             ctx.deleteAllCookies();
-            
+            var _logoutInstagramHack = new Image();
+            _logoutInstagramHack.src = "https://instagram.com/accounts/logout/";
+            _logoutInstagramHack.onload = function(){
+                var insflag = Common.getQueryParam("oauth");
+                if(insflag=='fail'){
+                    $(".ins-wraper").show();
+                }else{
+                    $(".ins-wraper").hide();
+                    ctx.subData();
+                }
+            };
             localStorage&&localStorage.clear();
-            alert(document.cookie);
-            alert(localStorage.length);
             $("body").on("click",".j_submit_btn",function(){
                 ctx.subData();
             });
-            var insflag = Common.getQueryParam("oauth");
-            if(insflag=='fail'){
-                $(".ins-wraper").show();
-            }else{
-                $(".ins-wraper").hide();
-                ctx.subData();
-            }
+            
 
         },
         deleteAllCookies:function() {
