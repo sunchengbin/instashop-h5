@@ -102,7 +102,7 @@ require(['hbs','text!views/app/refund.hbs','config','lang','fastclick','dialog',
         },
         isEdit : function(){//是否编辑过
             var _this = this,
-                _data = _this.testData(),
+                _data = _this.testIsEmpty(),
                 _refund = localStorage.getItem('RefundCard'),
                 _refund_card = _refund?JSON.parse(_refund):null;
             if(_data){
@@ -117,6 +117,30 @@ require(['hbs','text!views/app/refund.hbs','config','lang','fastclick','dialog',
                 }
             }
             return false;
+        },
+        testIsEmpty : function(){
+            var _bankname = $.trim($('.j_bank_name').val()),
+                _branch= $.trim($('.j_branch').val()),
+                _name = $.trim($('.j_name').val()),
+                _number = $.trim($('.j_number').val());
+            if(!_bankname){
+                return null;
+            }
+            if(!_branch){
+                return null;
+            }
+            if(!_name){
+                return null;
+            }
+            if(!_number){
+                return null;
+            }
+            return {
+                "c_number":_number,
+                "c_name":_name,
+                "b_name":_bankname,
+                "b_branch":_branch
+            }
         },
         testData : function(){
             var _bankname = $.trim($('.j_bank_name').val()),
