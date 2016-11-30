@@ -22,8 +22,7 @@ require(['config', 'base', 'lang', 'common'], function (Config, Base, Lang, Comm
             var _reqData = {
                 wduss: encodeURIComponent(Common.getQueryParam("wduss")),
                 seller_id: Common.getQueryParam("seller_id"),
-                action: "instagram",
-                _debug_env: "3.6"
+                action: "instagram"
             }
             var reqUrl = Config.host.phpHost + Config.actions.instagramcheck + "?param=" + JSON.stringify(_reqData)+"&timestamp="+new Date().getTime();
             window.location.href = reqUrl;

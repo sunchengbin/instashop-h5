@@ -54,8 +54,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 edata: {
                     action: "invite",
                     seller_id: _this.user_info.seller_id,
-                    wduss: _this.user_info.wduss,
-                    _debug_env: "3.6"
+                    wduss: _this.user_info.wduss
                 }
             }
             var _reqUrl = Config.host.actionUrl + Config.actions.selfCheckDomain + "?param=" + JSON.stringify(_reqParam);
