@@ -385,7 +385,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                                 _dialog.opts.wraper.css(_dialog.setPosition());
                             }
                             //判断是否为ios 如果是 隐藏掉bbm share-bug-bbm
-                            if(/iPhone/i.test(window.navigator.userAgent)){
+                            if(/ios/i.test(window.navigator.userAgent)){
                                 $("#share-bug-bbm").hide();
                                 $("#share-bug").addClass("ins-avg-sm-3");
                                 $("#share-bug").removeClass("ins-avg-sm-4");
