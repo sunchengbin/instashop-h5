@@ -28,6 +28,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             // alert(_this.user_info.seller_id+" "+_this.user_info.wduss)
             //初始化状态监控
             _this.initStatus();
+            _this.StatusCheck.isAllowInvite = true;
             // _this.initData();
             // _this.handleFn();
             Insjs.WebOnReady(function (bridge) {
@@ -37,6 +38,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 _this.handleFn(bridge);
             }, function () {
                 _this.versionTipDialog();
+                _this.handleFn();
                 return;
             });
         },
@@ -61,7 +63,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             _this._loading = Dialog.loading({
                 width:100
             })
-            _this.StatusCheck.isAllowInvite = true;
             Ajax.getJsonp(_reqUrl, function (res) {
                 _this._loading.remove();
                 //  res = {
@@ -342,7 +343,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
 
             //邀请按钮
             $("body").on("click", ".j_invite_btn", function () {
-                if (_this.StatusCheck.isAllowInvite) {
+                if (_this.StatusCheck.isAllowInvite&&_this.StatusCheck.isClient) {
                     //e_c 分享按钮
                     //e_a 点击
                     //e_n 附加属性
@@ -357,6 +358,8 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             _paq.push(['trackEvent','关闭邀请弹层','click','']);
                         }
                     });
+                }else{
+                    _this.versionTipDialog();
                 }
             })
             //分享按钮
