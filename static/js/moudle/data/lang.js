@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/1.
  * 语言翻译
  */
-define([],function(){
+define(['base'],function(Base){
     var Lang = {
         'zh-cn' : {
             'H5_SHIPPING_ADDRESS' : '收货地址',
@@ -172,7 +172,9 @@ define([],function(){
             H5_ACCOUNT_NUMBER:'银行号码',
             H5_SUBMITING:'正在提交...',
             H5_CONFIRM_SUBMIT:'确认提交？',
-            H5_EXIT_CONFIRM:'放弃更改？'
+            H5_EXIT_CONFIRM:'放弃更改？',
+            H5_ITEM_LIST_TYPE_TWO:'一行2个',
+            H5_ITEM_LIST_TYPE_THREE:'一行3个'
 
 
         },
@@ -460,11 +462,12 @@ define([],function(){
             H5_ACCOUNT_NUMBER:'Nomor Rekening',
             H5_SUBMITING:'Sedang ditambahkan...',
             H5_CONFIRM_SUBMIT:'Yakin ingin mengajukan？',
-            H5_EXIT_CONFIRM:'Yakin ingin keluar?'
-
+            H5_EXIT_CONFIRM:'Yakin ingin keluar?',
+            H5_ITEM_LIST_TYPE_TWO:'一行2个',
+            H5_ITEM_LIST_TYPE_THREE:'一行3个'
         }
     };
-    return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );
+    return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );
     // 暴露到window上，方便在模板中使用
     //window.Lang = ( Lang[ navigator.language.toLowerCase() ] || Lang.id )
 })
