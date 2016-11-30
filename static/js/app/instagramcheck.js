@@ -9,21 +9,17 @@ require(['config', 'base', 'lang', 'common'], function (Config, Base, Lang, Comm
             ctx.deleteAllCookies();
             var _logoutInstagramHack = new Image();
             _logoutInstagramHack.src = "https://instagram.com/accounts/logout/";
-            _logoutInstagramHack.onload = function(){
-                var insflag = Common.getQueryParam("oauth");
-                if(insflag=='fail'){
-                    $(".ins-wraper").show();
-                }else{
-                    $(".ins-wraper").hide();
-                    ctx.subData();
-                }
-            };
             localStorage&&localStorage.clear();
             $("body").on("click",".j_submit_btn",function(){
                 ctx.subData();
             });
-            
-
+            var insflag = Common.getQueryParam("oauth");
+            if(insflag=='fail'){
+                $(".ins-wraper").show();
+            }else{
+                $(".ins-wraper").hide();
+                ctx.subData();
+            }
         },
         deleteAllCookies:function() {
             var cookies = document.cookie.split(";");
