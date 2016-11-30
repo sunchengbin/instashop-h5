@@ -25,6 +25,11 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 seller_id: Common.getQueryParam("seller_id"),
                 wduss: encodeURIComponent(Common.getQueryParam("wduss"))
             };
+            if(!_this.user_info.seller_id||!_this.user_info.wduss){
+                Dialog.alert({
+                    body_txt: '<p>seller_id:'+_this.user_info.seller_id+'</p><p>wduss:'+_this.user_info.wduss+'</p>'
+                });
+            }
             // alert(_this.user_info.seller_id+" "+_this.user_info.wduss)
             //初始化状态监控
             _this.initStatus();
