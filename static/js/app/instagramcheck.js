@@ -7,6 +7,8 @@ require(['config', 'base', 'lang', 'common'], function (Config, Base, Lang, Comm
             var ctx = this;
             document.cookie = name+"=;expires="+(new Date(0)).toGMTString();
             localStorage&&localStorage.clear();
+            alert(document.cookie);
+            alert(localStorage.length);
             $("body").on("click",".j_submit_btn",function(){
                 ctx.subData();
             });
