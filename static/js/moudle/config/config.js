@@ -10,25 +10,25 @@ define([],function(){
     var CONFIG = {
         host : {
             //线上
-            hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
-            host : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/',
-            imgUrl : URL_HTTP_TYPE+'//static.instashop.co.id/images',
-            hrefUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',
-            hrefHost : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html',
-            actionUrl : 'https://apip.instashop.co.id/instashop/',
-            imHost : 'http://218.213.86.206',
-            phpHost : 'http://api.instashop.co.id/instashop/',
-            imUserNameHost : 'http://218.213.86.206:2040/'//存储im用户名字
-            //本地开发环境和测试环境
             // hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
             // host : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/',
-            // imgUrl : URL_HTTP_TYPE+'//static-test.instashop.co.id/images',
+            // imgUrl : URL_HTTP_TYPE+'//static.instashop.co.id/images',
             // hrefUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',
             // hrefHost : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html',
-            // actionUrl : 'https://apip-test.instashop.co.id/instashop/',
-            // imHost : 'http://10.5.15.10:2000',
-            // imUserNameHost : 'http://10.5.15.10:2040/',//存储im用户名字
-            // phpHost : 'http://api-test.instashop.co.id/instashop/'
+            // actionUrl : 'https://apip.instashop.co.id/instashop/',
+            // imHost : 'http://218.213.86.206',
+            // phpHost : 'http://api.instashop.co.id/instashop/',
+            // imUserNameHost : 'http://218.213.86.206:2040/'//存储im用户名字
+            //本地开发环境和测试环境
+            hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
+            host : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/',
+            imgUrl : URL_HTTP_TYPE+'//static-test.instashop.co.id/images',
+            hrefUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',
+            hrefHost : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html',
+            actionUrl : 'https://apip-test.instashop.co.id/instashop/',
+            imHost : 'http://10.5.15.10:2000',
+            imUserNameHost : 'http://10.5.15.10:2040/',//存储im用户名字
+            phpHost : 'http://api-test.instashop.co.id/instashop/'
         },
         actions : {
             setUserName : 'set_user_memo',//设置app中用户的name

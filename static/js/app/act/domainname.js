@@ -384,6 +384,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             _shareImg.onload = function(){
                                 _dialog.opts.wraper.css(_dialog.setPosition());
                             }
+                            alert(window.navigator.userAgent);
                             //判断是否为ios 如果是 隐藏掉bbm share-bug-bbm
                             if(/ios/i.test(window.navigator.userAgent)){
                                 $("#share-bug-bbm").hide();
