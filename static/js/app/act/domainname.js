@@ -391,7 +391,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     _type = _dom.attr('data-type'),
                     _report = _dom.attr('data-report'),
                     _invite_txt = $.trim($("#j_invite_txt").val());
-                    _invite_txt = _invite_txt.replace('http://www-test.instashop.co.id','http://www-test.instashop.co.id?from='+_type+"&seller_id="+_this.user_info.seller_id);
+                    _invite_txt = _invite_txt.replace('http://www.instashop.co.id','http://www.instashop.co.id?from='+_type+"&seller_id="+_this.user_info.seller_id);
                 var _param = {
                     param: {
                         type: 'share',
@@ -400,7 +400,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             data: [{
                                 img: '',
                                 content: _invite_txt,
-                                link_url: 'http://www-test.instashop.co.id?from='+_type+"&seller_id="+_this.user_info.seller_id
+                                link_url: 'http://www.instashop.co.id?from='+_type+"&seller_id="+_this.user_info.seller_id
                             }]
                         }
                     }
@@ -513,7 +513,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 '    <div class="invite-dialog-input">' +
                 '        <textarea name="content" value="" id="j_invite_txt"' +
                 '                  >Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Sst, jangan lupa gunakan kode referral ini saat registrasi ya ('+_this.user_info.seller_id+
-                ')Klik:http://www-test.instashop.co.id</textarea>' +
+                ')Klik:http://www.instashop.co.id</textarea>' +
                 '    </div>' +
                 '    <div class="invite-share-box" data-spider="invitebox">' +
                 '        <ul class="ins-avg-sm-4">' +
