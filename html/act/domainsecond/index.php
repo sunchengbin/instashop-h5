@@ -787,7 +787,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
         <div class="step-contet">
             Kamu harus upload min 10 produk / memiliki min 3 pesanan selesai
             <p class="invite-iscan">
-                Syarat belum terpenuhi
+                Syarat ini belum terpenuhi
             </p>
         </div>
     </div>
