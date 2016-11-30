@@ -30,7 +30,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         </div>
     </section>
 </div>
-<script src="https://instagram.com/accounts/logout"></script>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/instagramcheck.js?v=1480490722952"></script>

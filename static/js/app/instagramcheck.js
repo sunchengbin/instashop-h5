@@ -7,9 +7,21 @@ require(['config', 'base', 'lang', 'common'], function (Config, Base, Lang, Comm
             var ctx = this;
             
             ctx.deleteAllCookies();
-            var _logoutInstagramHack = new Image();
-            _logoutInstagramHack.src = "https://instagram.com/accounts/logout/";
             localStorage&&localStorage.clear();
+            var _logoutInstagramHack = new Image();
+            _logoutInstagramHack.src = "https://instagram.com/accounts/logout?timestamp"+new Date().getTime();
+            _logoutInstagramHack.onerror = function(){
+                ctx.main();
+            }
+            _logoutInstagramHack.onload = function(){
+                ctx.main();
+            }
+
+            
+            
+        },
+        main:function(){
+            var ctx = this;
             $("body").on("click",".j_submit_btn",function(){
                 ctx.subData();
             });
