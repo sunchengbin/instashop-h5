@@ -818,7 +818,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
     </div>
     <div id="result" class="step step-3 clearfix">
         <div class="step-contet j_domain_succ">
-            Jika syarat 1 dan 2 sudah sepenuhnya terpenuhi, kamu akan mendapatkan notifikasi dari Instashop. Klik tombol di bawah ini untuk mendaftarkan domain webmu
+            Jika syarat 1 dan 2 sudah terpenuhi, kamu akan mendapatkan notifikasi dari Instashop. Klik tombol di bawah ini untuk mendaftarkan domain webmu
         </div>
         <div class="j_domain_tip">
         </div>
@@ -834,9 +834,9 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
     <p><span>*Syarat & Ketentuan:</span></p>
     <p>1. Teman yang kamu ajak <span>harus</span> merupakan online shop, belum pernah terregistrasi akunnya di Instashop sebelum 1 Desember 2016 dan memiliki min. 500 followers di akun Instagram online shopnya. </p>
     <p>2. Satu akun Instagram <span>hanya</span> dapat digunakan oleh satu pengguna akun Instashop. Temanmu <span>tidak dapat</span> menambahkan gambar dari akun Instagram yang sebelumnya <span>sudah digunakan</span> oleh pengguna Instashop lain. </p>
-    <p>3. Pada saat registrasi, teman yang kamu ajak <span>wajib</span> mengisi kolom kode referral dengan kode referralmu yang tertera di atas. Kode referral ini digunakan Instashop untuk memverifikasi otomatis data teman yang kamu ajak.
+    <p>3. Pada saat registrasi, teman yang kamu ajak wajib mengisi kolom kode referral dengan kode referralmu yang tertera di atas. Kode referral ini digunakan Instashop untuk memverifikasi otomatis data teman yang kamu ajak.
     </br>
-    Kamu dapat setiap saat mengecek perkembangan teman yang menggunakan <span>kode referralmu</span> di bagian atas halaman ini - kolom "STEP 2". Jika sudah ada 5 temanmu yang memenuhi syarat, Instashop akan mengirimkan notifikasi verifikasi berhasil. Kamu dapat segera mendaftarkan domain web yang kamu inginkan.
+    Kamu dapat setiap saat mengecek perkembangan teman yang menggunakan kode referralmu di bagian atas halaman ini - kolom "SYARAT 2".
     </p>
     <p>4. Promo ini berlaku hingga 15 Desember 2016 pukul 22.00 WIB</p>
     <p>5. Keputusan Instashop adalah mutlak dan tidak dapat diganggu gugat. Jika ditemukan indikasi kecurangan dalam bentuk apapun, baik selama promo ini berlangsung ataupun setelah promo ini berakhir, Instashop berhak menolak dan/atau mencabut pengajuan domain kamu.</p>
