@@ -41,7 +41,7 @@ body .address-list{
     height: 6rem;
 }
 .cart-item > div {
-    font-size: 1.4rem;
+    font-size: 14px;
     margin:0 4rem 0 7rem;
 }
 .cart-item p{
@@ -56,7 +56,7 @@ body .address-list{
     background-color: #F5A623;
     color: #fff;
     border-radius: 2rem;
-    font-size: 1.2rem;
+    font-size: 12px;
 }
 .cart-item p.name{
     color: #666;
@@ -78,7 +78,7 @@ body .address-list{
 }
 .cart-item p.error-p{
     padding: .5rem 0 0 7rem;
-    font-size: 1.4rem;
+    font-size: 14px;
     color: #F5A623;
 }
 .cart-item:last-child::after{
@@ -90,7 +90,7 @@ body .address-list{
 }
 .info-box{
     color: #aaa;
-    font-size: 1.4rem;
+    font-size: 14px;
     padding:1rem 0;
     height: 2.4rem;
     line-height: 2.4rem;
@@ -152,7 +152,7 @@ body .address-list{
     width: 100%;
     resize: none;
     height: 5rem;
-    font-size: 1.4rem;
+    font-size: 14px;
 }
 .user-info{
     /*margin-bottom:2rem;*/
@@ -187,7 +187,7 @@ body .address-list{
 }
 .empty-cart{
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 16px;
     margin-top: 2rem;
     color: #999;
 }
@@ -256,7 +256,7 @@ body .address-list{
 }
 .logistics-list i{
     color: #43cb9c;
-    font-size: 2rem;
+    font-size: 20px;
     vertical-align: middle;
     margin-right: .5rem;
     display: inline-block;
@@ -268,7 +268,7 @@ body .address-list{
 }
 .logistics-list li{
     padding: 1rem 0 0 2.5rem;
-    font-size: 1.4rem;
+    font-size: 14px;
     position: relative;
 }
 .logistics-list li.no-logistic{
@@ -299,12 +299,12 @@ body .address-list{
     position: relative;
 }
 .cart-item .item-num-box span i{
-    font-size: 1.4rem;
+    font-size: 14px;
     color: #999;
 }
 .cart-item .item-num-box input{
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 14px;
     height: 2.4rem;
     padding: .5rem;
     width: 3rem;
@@ -355,13 +355,13 @@ body .address-list{
 }
 .total-p{
     color: #666;
-    font-size: 1.4rem;
+    font-size: 14px;
 }
 .total-p span{
     color: #F5A623;
 }
 .agree-info{
-    font-size: 1.4rem;
+    font-size: 14px;
     padding: 1rem 0;
     line-height: 2rem;
     width: 80%;
@@ -369,12 +369,12 @@ body .address-list{
 }
 .agree-info p{
     margin-left: 35px;
-    font-size: 1.2rem;
+    font-size: 12px;
     word-break: break-all;
     overflow: hidden;
 }
 .agree-info i{
-    font-size: 2.2rem;
+    font-size: 22px;
     color: #43CB9B;
     padding-right:1rem;
     margin-top: 1rem;
@@ -391,7 +391,7 @@ body .address-list{
     padding:1.25rem 1rem;
     color:#999999;
     height: auto!important;
-    font-size: 1.4rem;
+    font-size: 14px;
     overflow: hidden;
 }
 .address-buyer-note span {
@@ -406,6 +406,6 @@ body .address-list{
 .address-buyer-note input {
     padding: .5rem 0 .5rem 9rem!important;
     color: black;
-    font-size: 1.2rem!important;
+    font-size: 12px!important;
     width: 100%!important;
 }

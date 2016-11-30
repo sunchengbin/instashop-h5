@@ -32,6 +32,7 @@ require.config({
         //数据存储js
         city:"moudle/data/city",
         lang:"moudle/data/lang",
+        bankcity:'moudle/data/bankcity',
         //im配置
         //imconfig:'moudle/config/imconfig',
         //im通信接口参数加密

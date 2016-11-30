@@ -8,7 +8,7 @@
 /*}*/
 .iconfont {
     font-family:"iconfont" !important;
-    font-size:1.4rem;
+    font-size:14px;
     font-style:normal;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
@@ -46,3 +46,8 @@
 .icon-tag-font:before { content: "\e61d"; }
 .icon-i-shop-font:before { content: "\e61b"; }
 .icon-line:before { content: "\e61e"; }
+.icon-share-copy:before { content: "\e61f"; }
+.icon-share-bbm:before { content: "\e620"; }
+.icon-share-whatsapp:before { content: "\e621"; }
+.icon-share-line:before { content: "\e622"; }
+.icon-share-instagram:before { content: "\e623"; }

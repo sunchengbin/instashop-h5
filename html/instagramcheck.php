@@ -15,40 +15,21 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <link href="<?=STATIC_HOST?>/css/dist/app/address.css?v=1480393970204" rel="stylesheet"/>
     <title>Tambah Produk dari Instagram</title>
     <style>
-    .index-btn-box {
-        padding:0 2.5rem;
-        margin:2.5rem 0 2rem;
-    }
-    .index-btn-box .btn {
-        font-size:1.6rem;
-        border-radius: 3px!important;
-    }
-    .index-btn-box a {
-        color:#ffffff;
-    }
-    .instagram-wraper {
-        color:#999999!important;
-    }
-    .instagram-wraper p {
-        padding:0 1rem 1rem;
-        font-size: 1.2rem;
-        color: #999999!important;
-    }
-    .instagram-wraper .info-box {
-        height:auto!important;
-        padding: 1.5rem 2rem!important;
-        line-height: inherit!important;
-    }
-    .instagram-wraper input {
-        background: #F5F5F5;
-        border-radius: 5px;
-        padding: 1.5rem!important;
-        height: 4.5rem;
-        color:#999999!important;
+    .ins-wraper {
+        display:none;
     }
     </style>
 </head>
 <body>
+<div class="address-wraper ins-wraper">
+    <section class="address-form-box">
+        <div class="index-btn-box" style="padding:0 2rem">
+            <div class="btn j_submit_btn confirm-btn j_submit_check" style="margin-top:5rem">
+                <a style="color:#ffffff" href="javascript:void(0)">Login ke Instagram</a>
+            </div>
+        </div>
+    </section>
+</div>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/instagramcheck.js?v=1480393970204"></script>
@@ -60,7 +41,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
       ga('create', 'UA-78448705-7', 'auto');
       ga('send', 'pageview');
-
     </script>
 </body>
 </html>

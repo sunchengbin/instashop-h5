@@ -65,7 +65,9 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
             return _this;
         },
         show : function(){
+            var _this = this;
             this.opts.wraper.show();
+            this.opts.body_fn&&this.opts.body_fn.call(_this,$(this));
         },
         remove : function(){
             var _this = this,
@@ -88,7 +90,7 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
             if(!_this.opts.show_top) return '';
             _htm = '<div class="dialog-top j_d_top">'
                 +_this.opts.top_txt
-                +'<a href="javascript:;" class="j_c_btn fr">close</a>'
+                +'<a href="javascript:;" class="j_c_btn fr"><i class="icon iconfont icon-cancel-font"></i></a>'
                 +'</div>';
             return _htm;
 

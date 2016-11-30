@@ -20,7 +20,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         include_once( dirname(__FILE__).'/../html/router/util.php' );
         $params = [
             'buyer_id' => 0,
-            'opt' => 'desc,pay_info,shop_info,logistics_info'
+            'opt' => 'desc,pay_info,shop_info,logistics_info,refund_card,buyer_op'
         ];
         $order_id = $_REQUEST['order_id'];
         if (!$order_id) {

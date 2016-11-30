@@ -165,6 +165,16 @@ define([],function(){
             H5_INS_VERIFY:"请输入正确的Instagram账户",
             H5_INS_TIP:"注：请确保你的Instagram账户没有设置为“私密账户”",
             H5_SUBMIT_TXT:"提交",
+            H5_EDIT_REFUND_CARD:'填写退款账号',
+            H5_BANK_NAME:'银行名称',
+            H5_SUB_BRANCH:'支行',
+            H5_ACCOUNT_NAME:'账户名',
+            H5_ACCOUNT_NUMBER:'银行号码',
+            H5_SUBMITING:'正在提交...',
+            H5_CONFIRM_SUBMIT:'确认提交？',
+            H5_EXIT_CONFIRM:'放弃更改？'
+
+
         },
 
         id : {
@@ -442,7 +452,16 @@ define([],function(){
             H5_DELETE:'Hapus',
             H5_MOVE_UP:'Pindah ke Atas',
             H5_APPLY_MODEL:'Gunakan ke Tokomu',
-            H5_EDIT_SHOW_ITEM:'Tampilan Produk'
+            H5_EDIT_SHOW_ITEM:'Tampilan Produk',
+            H5_EDIT_REFUND_CARD:'Nomor rekening pengembalian dana',
+            H5_BANK_NAME:'Nama bank',
+            H5_SUB_BRANCH:'Cabang',
+            H5_ACCOUNT_NAME:'Nama Pemilik Rekening',
+            H5_ACCOUNT_NUMBER:'Nomor Rekening',
+            H5_SUBMITING:'Sedang ditambahkan...',
+            H5_CONFIRM_SUBMIT:'Yakin ingin mengajukan？',
+            H5_EXIT_CONFIRM:'Yakin ingin keluar?'
+
         }
     };
     return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );

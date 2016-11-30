@@ -5,11 +5,14 @@
     position:absolute;
     background-color : #fff;
     border-radius: 5px;
-    font-size: 1.4rem;
+    font-size: 14px;
     color:#666;
 }
 .dialog-body,.dialog-top,.dialog-footer{
     padding:10px;
+}
+.dialog-top a{
+    color: #666;
 }
 .dialog-body{
     overflow:auto;

@@ -16,7 +16,7 @@ body{
 }
 
 .user-info{
-    font-size: 1.4rem;
+    font-size: 14px;
     color: #999;
     padding-right: 1rem;
     line-height: 1.6rem;
@@ -24,11 +24,11 @@ body{
 }
 .user-info i{
     color: #43CB9C;
-    font-size: 1.8rem;
+    font-size: 18px;
     margin-right: .2rem;
 }
 .user-info i.icon-phone-font{
-    font-size: 1.6rem;
+    font-size: 16px;
 }
 .address-box{
     padding:1rem 1rem 1.2rem;
@@ -46,7 +46,8 @@ body{
 }
 .address-info{
     margin-right:3rem;
-    font-size: 1.4rem;
+    font-size: 14px;
+    word-break:break-all;
 }
 .user-address-info{
     color: #999;
@@ -56,27 +57,27 @@ body{
     border-bottom: none;
 }
 .user-address-info i,.logistics-box i,.cart-item i{
-    font-size: 1.4rem;
+    font-size: 14px;
     color: #999;
 }
 .cart-item i{
     width: auto;
 }
 .logistics-box{
-    font-size: 1.4rem;
+    font-size: 14px;
     height: 3rem;
     line-height: 3rem;
     padding: .5rem 1rem;
     color: #999;
 }
 .logistics-box div{
-    font-size: 1.6rem;
+    font-size: 16px;
     display: inline-block;
     height: 3rem;
 }
 .logistics-box span{
     margin-right: .5rem;
-    font-size: 1.4rem;
+    font-size: 14px;
     display: inline-block;
     height: 3rem;
     color: #666;
@@ -85,7 +86,7 @@ body{
     padding-bottom:1rem;
 }
 .order-info p{
-    font-size: 1.4rem;
+    font-size: 14px;
     color: #999;
     padding-top: 1rem;
 }
@@ -121,7 +122,7 @@ body{
     margin-left: 4rem;
     height: 3rem;
     line-height: 3rem;
-    font-size: 1.4rem;
+    font-size: 14px;
     color: #666;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -130,7 +131,7 @@ body{
 .empty-cart{
     text-align: center;
     padding: 1rem;
-    font-size: 1.4rem;
+    font-size: 14px;
     color: #999;
     height: 3rem;
     line-height: 3rem;
@@ -145,7 +146,7 @@ textarea{
 .buyer-note-p{
     position: relative;
     padding: 1rem 0;
-    font-size: 1.4rem;
+    font-size: 14px;
     overflow: hidden;
 }
 .buyer-note-p::before{
@@ -185,21 +186,21 @@ textarea{
     padding: .5rem 0 .5rem 9rem;
     height: 3rem;
     line-height: 3rem;
-    font-size: 1.2rem;
+    font-size: 12px;
 }
 .agree-info{
-    font-size: 1.4rem;
+    font-size: 14px;
     padding: 2rem 0;
     line-height: 2rem;
 }
 .agree-info p{
     margin-left: 35px;
-    font-size: 1.2rem;
+    font-size: 12px;
     word-break: break-all;
     overflow: hidden;
 }
 .agree-info i{
-    font-size: 2.2rem;
+    font-size: 22px;
     color: #43CB9B;
     padding-right:1rem;
     margin-top: 1rem;
