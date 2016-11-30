@@ -20,7 +20,7 @@
 }
 .item-title em{
     display: inline-block;
-    width: 15rem;
+    width: 19rem;
     overflow: hidden;
     vertical-align: middle;
     text-overflow: ellipsis;
