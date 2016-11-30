@@ -9,6 +9,8 @@ require(['config', 'base', 'lang', 'common'], function (Config, Base, Lang, Comm
             ctx.deleteAllCookies();
             
             localStorage&&localStorage.clear();
+            alert(document.cookie);
+            alert(localStorage.length);
             $("body").on("click",".j_submit_btn",function(){
                 ctx.subData();
             });
