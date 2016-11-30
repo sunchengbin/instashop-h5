@@ -693,6 +693,18 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                             float: left;
                         }
 
+                        .ins-avg-sm-3 > li {
+                            width: 33.33333333%;
+                        }
+
+                        .ins-avg-sm-3 > li:nth-of-type(n) {
+                            clear: none;
+                        }
+
+                        .ins-avg-sm-3 > li:nth-of-type(3n + 1) {
+                            clear: both;
+                        }
+
                         .ins-avg-sm-4 > li {
                             width: 25%;
                         }

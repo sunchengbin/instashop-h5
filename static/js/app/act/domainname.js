@@ -384,6 +384,12 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             _shareImg.onload = function(){
                                 _dialog.opts.wraper.css(_dialog.setPosition());
                             }
+                            //判断是否为ios 如果是 隐藏掉bbm share-bug-bbm
+                            if(/iPhone/i.test(window.navigator.userAgent)){
+                                $("#share-bug-bbm").hide();
+                                $("#share-bug").addClass("ins-avg-sm-3");
+                                $("#share-bug").removeClass("ins-avg-sm-4");
+                            }
                         },
                         c_fn:function(){
                             _paq.push(['trackEvent','关闭分享弹层','click','']);
@@ -547,7 +553,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 '        <img class="invite-dialog-img-url" src="">' +
                 '    </div>' +
                 '    <div class="invite-share-box" data-spider="sharebox">' +
-                '        <ul class="ins-avg-sm-4">' +
+                '        <ul id="share-bug" class="ins-avg-sm-4">' +
                 '            <li>' +
                 '                <i data-spider="dinstagram" spm-auto="instagram分享" class="iconfont icon-share-instagram j_share_action" data-report="domain_btn_share_instagram" data-type="share_to_instagram"></i>' +
                 '                <p>Instagram</p>' +
@@ -556,7 +562,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 '                <p>LINE</p></li>' +
                 '            <li><i data-spider="dwhatsapp" spm-auto="whatsapp分享" class="iconfont icon-share-whatsapp j_share_action" data-report="domain_btn_share_whatsapp" data-type="share_to_whatsapp"></i>' +
                 '                <p>WhatsApp</p></li>' +
-                '            <li><i data-spider="dbbm" spm-auto="bbm分享" class="iconfont icon-share-bbm j_share_action" data-report="domain_btn_share_bbm" data-type="share_to_bbm"></i>' +
+                '            <li id="share-bug-bbm"><i data-spider="dbbm" spm-auto="bbm分享" class="iconfont icon-share-bbm j_share_action" data-report="domain_btn_share_bbm" data-type="share_to_bbm"></i>' +
                 '                <p>BBM</p>' +
                 '            </li>' +
                 '        </ul>' +
