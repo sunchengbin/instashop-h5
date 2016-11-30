@@ -8,17 +8,7 @@ require(['config', 'base', 'lang', 'common'], function (Config, Base, Lang, Comm
             
             ctx.deleteAllCookies();
             localStorage&&localStorage.clear();
-            var _logoutInstagramHack = new Image();
-            _logoutInstagramHack.src = "https://instagram.com/accounts/logout?timestamp"+new Date().getTime();
-            _logoutInstagramHack.onerror = function(){
-                ctx.main();
-            }
-            _logoutInstagramHack.onload = function(){
-                ctx.main();
-            }
-
-            
-            
+            ctx.main();
         },
         main:function(){
             var ctx = this;
