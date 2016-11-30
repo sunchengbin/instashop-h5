@@ -29,6 +29,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 Dialog.alert({
                     body_txt: '<p>seller_id:'+_this.user_info.seller_id+'</p><p>wduss:'+_this.user_info.wduss+'</p>'
                 });
+                return;
             }
             // alert(_this.user_info.seller_id+" "+_this.user_info.wduss)
             //初始化状态监控
