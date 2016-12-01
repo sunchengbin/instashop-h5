@@ -166,11 +166,11 @@ define([],function(){
 				if(_getCurVersionFloat>=targetVersion){
 					succ&&succ();
 				}else{//不符合
-					fail&&fall();
+					fail&&fail();
 				}
 			}catch (e) {
 				//异常情况 [不在壳内] [获取不到 userAgent] 或 [转换出错]
-				fail&&fall();
+				fail&&fail();
 			}
 		},
         WebOnReady: function (callback,errorback) {
