@@ -26,26 +26,26 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         },
         handelFn : function(bridge){
             var _this = this;
-            if(!bridge){
-                alert('not find bridge');
-                return;
-            }
+            //if(!bridge){
+            //    alert('not find bridge');
+            //    return;
+            //}
             //提供给native设置回退锁,为了回退的时候
-            (function(bridge){
-                var _param = {
-                    param:{
-                        type : 'go_back',
-                        param : {
-                            type : 'loaded',
-                            result : _this.is_edit
-                        }
-                    }
-                };
-                bridge.callHandler('insSocket',_param, function(response) {
-                    return null;
-                });
-            })(bridge);
-            _this.registerFn(bridge);
+            //(function(bridge){
+            //    var _param = {
+            //        param:{
+            //            type : 'go_back',
+            //            param : {
+            //                type : 'loaded',
+            //                result : _this.is_edit
+            //            }
+            //        }
+            //    };
+            //    bridge.callHandler('insSocket',_param, function(response) {
+            //        return null;
+            //    });
+            //})(bridge);
+            //_this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
                 _this.setIsEdited();
@@ -78,7 +78,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     _data = _this.model_data[_index]?_this.model_data[_index]:null;
                 if(_type == 'item_list_type'){//选择
                     var _sel_htm = '<div>';
-                    _sel_htm += '<p><i class="icon iconfont check-btn icon-radio-font j_item_list_type" data-type="2"></i>'+Lang.H5_ITEM_LIST_TYPE_TWO+'</p>';
+                    _sel_htm += '<p><i class="icon iconfont check-btn checked-btn icon-radioed-font j_item_list_type" data-type="2"></i>'+Lang.H5_ITEM_LIST_TYPE_TWO+'</p>';
                     _sel_htm += '<p><i class="icon iconfont check-btn icon-radio-font j_item_list_type" data-type="3"></i>'+Lang.H5_ITEM_LIST_TYPE_THREE+'</p>';
                     _sel_htm += '</div>';
                     Dialog.confirm({
@@ -103,6 +103,16 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     bridge.callHandler('insSocket',_param, function(response) {
                         return null;
                     });
+                }
+            });
+            $('body').on('click','.j_item_list_type',function(){
+                if($(this).find('.check-btn').length){
+                    $('.checked-btn').addClass('check-btn').removeClass('checked-btn');
+                    $(this).find('.check-btn').addClass('checked-btn');
+                    $('.icon-radioed-font').addClass('icon-radio-font').removeClass('icon-radioed-font');
+                    $(this).find('.check-btn').addClass('icon-radioed-font').removeClass('icon-radio-font');
+                }else{
+
                 }
             });
             $('body').on('click','.j_del_model',function(){
