@@ -33,11 +33,14 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     _this.handleFn();
                     Insjs.WebOnReady(function (bridge) {
                         _this.bridge = bridge;
-                    },function(){
+                    }, function () {
                         _this.versionTipDialog();
                     });
                 }, function () {
-                    _this.versionTipDialog();
+                    _paq.push(['trackEvent', '低于3.5版本提示', 'autotip', '']);
+                    Dialog.alert({
+                        body_txt: 'Silakan update ke versi terbaru untuk mengikuti promo ini'
+                    });
                 })
                 //初始化状态监控
                 // _this.initStatus();
