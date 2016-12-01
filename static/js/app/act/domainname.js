@@ -27,18 +27,21 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             };
             //初始化状态监控
             _this.initStatus();
-            _this.StatusCheck.isAllowInvite = true;
+
+            // //初始化必须数据
+            if (!_this.user_info.seller_id || !_this.user_info.wduss) {
+                Dialog.alert({
+                    body_txt: '<p>seller_id:' + _this.user_info.seller_id + '</p><p>wduss:' + _this.user_info.wduss + '</p>'
+                });
+                _this.StatusCheck.isAllowInvite = false;
+            }else{
+                _this.StatusCheck.isAllowInvite = true;
+            }
+
             //版本判断 符合3.5进入主流程 不符合的提示
             Insjs.judgeVersion("3.5", function () {
                 //初始化Insjs WebOnReady
                 Insjs.WebOnReady(function (bridge) {
-                    // //初始化必须数据
-                    // if (!_this.user_info.seller_id || !_this.user_info.wduss) {
-                    //     Dialog.alert({
-                    //         body_txt: '<p>seller_id:' + _this.user_info.seller_id + '</p><p>wduss:' + _this.user_info.wduss + '</p>'
-                    //     });
-                    //     return;
-                    // }
                     _this.StatusCheck.isClient = true;
                     _this.initData();
                     _this.handleFn(bridge);
