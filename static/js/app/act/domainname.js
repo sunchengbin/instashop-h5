@@ -14,7 +14,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             isClient: false, //客户端版本是否符合要求
             isDemand: false, //用户是否符合参与活动要求
             isAllowApply: false, //用户是否可以申请域名
-            isAllowInvite: true, //用户是否可以邀请好友
+            isAllowInvite: false, //用户是否可以邀请好友
             isHasInviteUser: false, //用户是否已有符合邀请的被邀请者
             isAllowShare: false //是否可以分享
         },
@@ -28,7 +28,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             };
             //初始化状态监控
             _this.initStatus();
-            _this.StatusCheck.isAllowInvite = true;
             _this.initData();
             _this.handleFn();
             Insjs.WebOnReady(function (bridge) {
@@ -67,7 +66,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     //是否符合要求
                     _this.StatusCheck.isDemand = _selfCheckData.self_ok;
                     //是否允许点击邀请按钮
-                    // _this.StatusCheck.isAllowInvite = true;
+                    _this.StatusCheck.isAllowInvite = true;
                     if (_inviteUserList.length > 0) {
 
                         $(".j_invite_table").html(_this.createInviterTable(_inviteUserList));
@@ -112,8 +111,10 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     } else {
                         //没申请过
                         _this.StatusCheck.isAllowApply = true;
+                        _this.StatusCheck.isAllowInvite = false;
                     }
                 } else {
+                    _this.StatusCheck.isAllowInvite = false;
                     Dialog.alert({
                         top_txt: '', //可以是html
                         body_txt: '<p class="dialog-body-p">' + (res.message ? res.message : Lang.H5_ERROR) + '</p>'
