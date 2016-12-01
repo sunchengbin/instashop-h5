@@ -53,12 +53,12 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 _this.handleFn();
                 _this.versionTipDialog();
                 //初始化必须数据
-                if (!_this.user_info.seller_id || !_this.user_info.wduss) {
-                    Dialog.alert({
-                        body_txt: '<p>seller_id:' + _this.user_info.seller_id + '</p><p>wduss:' + _this.user_info.wduss + '</p>'
-                    });
-                    return;
-                }
+                // if (!_this.user_info.seller_id || !_this.user_info.wduss) {
+                //     Dialog.alert({
+                //         body_txt: '<p>seller_id:' + _this.user_info.seller_id + '</p><p>wduss:' + _this.user_info.wduss + '</p>'
+                //     });
+                //     return;
+                // }
             })
         },
         versionTipDialog: function () {
