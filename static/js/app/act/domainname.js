@@ -67,6 +67,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             _this._loading = Dialog.loading({
                 width: 100
             })
+            $(".invite-iscan").text("Sedang diverifikasi").css("color", "#8B572A");
             Ajax.getJsonp(_reqUrl, function (res) {
                 _this._loading.remove();
                 var _selfCheckData = res.self_check || {};
