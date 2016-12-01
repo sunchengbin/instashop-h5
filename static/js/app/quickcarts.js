@@ -66,6 +66,27 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             _this.getTotal();
             _this.handleFn();
         },
+        //检查活动
+        checkReducAct:function(){
+            var _reqUrl = "";
+            var _reqParam = {
+                "action": "price",
+                "seller_id": 40778,
+                "wduss": "UTxEIIP8LpNKdvZ9Mwq4XE3iFj0F07SJH7yw%2BD8nV5M%3D",
+                "items": [{
+                    "itemID": 1137596,
+                    "item_sku": 4036741,
+                    "itemNum": 125
+                }],
+                "_debug_env": "yuhaiwei"
+            }
+            _reqUrl = Config.host.actionUrl+""+JSON.stringify(_reqParam)
+            Ajax.getJsonp(_reqUrl,)
+        },
+        //重新渲染价格
+        renderReducPrice:function(){
+            
+        },
         getTotal : function(){//计算总额(出问题的商品价格不算到总额中)
             var _this = this,
                 _sum = 0,
