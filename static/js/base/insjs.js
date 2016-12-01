@@ -149,7 +149,30 @@
  */
 define([],function(){
     var WIN = window;
+	var MATCHVERSION = /Instashop\-(.+?)\-/;
     var INSJS = {
+		//todo 目前默认处理不低于targetVersion 如果低于弹出提示
+		judgeVersion:function(targetVersion,succ,fail){
+			var _getCurVersion = "";
+			var _getCurVersionFloat = "";
+
+			try {
+				//提取版本号 从Instashop-3.5.1/3.5-ios/Android
+				_getCurVersion = WIN.navigator.userAgent.match(/Instashop\-(.+?)\-/)[1]||"";
+				_getCurVersionFloat = parseFloat(_getCurVersion.substr(0,3));//目前只支持取前两位'3.5.1'=>3.5 '3.5'=>3.5
+				targetVersion = parseFloat(targetVersion);
+				//比较 例:_getCurVersionFloat 3.5| targetVersion 3.4
+				//符合
+				if(_getCurVersionFloat>=targetVersion){
+					succ&&succ();
+				}else{//不符合
+					fail&&fall();
+				}
+			}catch (e) {
+				//异常情况 [不在壳内] [获取不到 userAgent] 或 [转换出错]
+				fail&&fall();
+			}
+		},
         WebOnReady: function (callback,errorback) {
             var _this = this;
             if (/Instashop/g.test(navigator.userAgent)) {//内嵌浏览器访问
