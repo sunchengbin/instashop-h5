@@ -49,7 +49,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 });
             }, function () {
                 //版本不对 但允许弹出邀请dialog
-                _this.initData();
+                // _this.initData();
                 _this.handleFn();
                 _this.versionTipDialog();
                 //初始化必须数据
