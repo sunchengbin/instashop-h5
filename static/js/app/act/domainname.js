@@ -18,13 +18,20 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             isHasInviteUser: false, //用户是否已有符合邀请的被邀请者
             isAllowShare: false //是否可以分享
         },
+        getQueryParam: function (key) {
+            var _url = location.search.split('?')[1];
+            var reg = RegExp("(^|&)" + key + "=([^&]*)(&|$)", "i");
+            var r = _url.substr(1).match(reg);
+            if (r != null)return unescape(r[2]);
+            return null;
+        },
         init: function () {
             var _this = this;
             Fastclick.attach(document.body);
             //用户信息
             _this.user_info = {
-                seller_id: Common.getQueryParam("seller_id"),
-                wduss: encodeURIComponent(Common.getQueryParam("wduss"))
+                seller_id: _this.getQueryParam("seller_id"),
+                wduss: encodeURIComponent(_this.getQueryParam("wduss"))
             };
             //初始化状态监控
             _this.initStatus();
