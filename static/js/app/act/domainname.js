@@ -37,17 +37,21 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             _this.StatusCheck.isAllowInvite = true;
             //版本判断 符合3.5进入主流程 不符合的提示
             Insjs.judgeVersion("3.5", function () {
+                alert(1)
                 //初始化Insjs WebOnReady
                 Insjs.WebOnReady(function (bridge) {
+                    alert(2)
                     _this.StatusCheck.isClient = true;
                     _this.initData();
                     _this.handleFn(bridge);
                 }, function () {
+                    alert(3)
                     _this.versionTipDialog();
                     _this.handleFn();
                     return;
                 });
             }, function () {
+                alert("版本不对")
                 //版本不对 但允许弹出邀请dialog
                 _this.initData();
                 _this.handleFn();
