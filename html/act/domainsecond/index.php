@@ -799,7 +799,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
         <div class="step-contet">
             Kamu harus upload min 10 produk / memiliki min 3 pesanan selesai
             <p class="invite-iscan">
-                Syarat ini belum terpenuhi
+                Sedang diverifikasi
             </p>
         </div>
     </div>
@@ -822,7 +822,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                     </table>
                 </div>
             </div>
-            <button class="btn btn2 j_invite_btn" data-report="domain_btn_invite">BAGIKAN KODE REFERRAL</button>
+            <button class="btn btn2 j_invite_btn disable-btn" data-report="domain_btn_invite">BAGIKAN KODE REFERRAL</button>
             <div class="margin-top">
                 Note: Teman yang kamu ajak harus upload produk menggunakan fitur "tambah produk dari Instagram". 1 akun Instagram hanya dapat digunakan untuk 1 akun Instashop.
             </div>
@@ -855,7 +855,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
 </section>
 <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
 <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-<script src="<?=STATIC_HOST?>/js/dist/app/act/domainname.js?v=1480509344768"></script>
+<script src="<?=STATIC_HOST?>/js/dist/app/act/domainname.js?v=1480578543807"></script>
 <script>
 
           function getUrlPrem(key,url){

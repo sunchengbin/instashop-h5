@@ -10,15 +10,15 @@ define([],function(){
     var CONFIG = {
         host : {
             //线上
-            //  hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
-            //  host : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/',
-            //  imgUrl : URL_HTTP_TYPE+'//static.instashop.co.id/images',
-            //  hrefUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',
-            //  hrefHost : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html',
-            //  actionUrl : 'https://apip.instashop.co.id/instashop/',
-            //  imHost : 'http://218.213.86.206',
-            //  phpHost : 'http://api.instashop.co.id/instashop/',
-            //  imUserNameHost : 'http://218.213.86.206:2040/'//存储im用户名字
+            //   hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
+            //   host : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/',
+            //   imgUrl : URL_HTTP_TYPE+'//static.instashop.co.id/images',
+            //   hrefUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',
+            //   hrefHost : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html',
+            //   actionUrl : 'https://apip.instashop.co.id/instashop/',
+            //   imHost : 'http://218.213.86.206',
+            //   phpHost : 'http://api.instashop.co.id/instashop/',
+            //   imUserNameHost : 'http://218.213.86.206:2040/'//存储im用户名字
             //本地开发环境和测试环境
             hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
             host : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/',

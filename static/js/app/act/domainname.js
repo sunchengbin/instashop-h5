@@ -9,11 +9,12 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             debugInfo: "",
             requrl: ""
         },
+        bridge: null,
         StatusCheck: {
             isClient: false, //客户端版本是否符合要求
             isDemand: false, //用户是否符合参与活动要求
             isAllowApply: false, //用户是否可以申请域名
-            isAllowInvite: true, //用户是否可以邀请好友
+            isAllowInvite: false, //用户是否可以邀请好友
             isHasInviteUser: false, //用户是否已有符合邀请的被邀请者
             isAllowShare: false //是否可以分享
         },
@@ -25,34 +26,13 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 seller_id: Common.getQueryParam("seller_id"),
                 wduss: encodeURIComponent(Common.getQueryParam("wduss"))
             };
-            //初始化必须数据
-            if (!_this.user_info.seller_id || !_this.user_info.wduss) {
-                Dialog.alert({
-                    body_txt: '<p>seller_id:' + _this.user_info.seller_id + '</p><p>wduss:' + _this.user_info.wduss + '</p>'
-                });
-                return;
-            }
             //初始化状态监控
             _this.initStatus();
-            _this.StatusCheck.isAllowInvite = true;
-            //版本判断 符合3.5进入主流程 不符合的提示
-            Insjs.judgeVersion("3.5", function () {
-                //初始化Insjs WebOnReady
-                Insjs.WebOnReady(function (bridge) {
-                    _this.StatusCheck.isClient = true;
-                    _this.initData();
-                    _this.handleFn(bridge);
-                }, function () {
-                    _this.versionTipDialog();
-                    _this.handleFn();
-                    return;
-                });
-            }, function () {
-                //版本不对 但允许弹出邀请dialog
-                _this.initData();
-                _this.handleFn();
-                _this.versionTipDialog();
-            })
+            _this.initData();
+            _this.handleFn();
+            Insjs.WebOnReady(function (bridge) {
+                _this.bridge = bridge;
+            });
         },
         versionTipDialog: function () {
             _paq.push(['trackEvent', '低于3.5版本提示', 'autotip', '']);
@@ -76,148 +56,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             })
             Ajax.getJsonp(_reqUrl, function (res) {
                 _this._loading.remove();
-                //  res = {
-                //     code: 200,
-                //     self_check: {
-                //         self_ok: false
-                //     },
-                //     invite_user: [],
-                //     domain: false
-                //
-                // };
-                // _this.testCase = Math.floor(Math.random() * 7 + 1)+"";
-                // _this.testCase = Common.getQueryParam("testcase");
-                //
-                // switch (_this.testCase) {
-                //     //用户不符合要求
-                //     case "1":
-                //         res.self_check = {};
-                //         res.self_check.self_ok = false;
-                //         res.invite_user = [];
-                //         res.domain = false;
-                //         break;
-                //     //用户没邀请到人 或者 邀请到的不符合要求
-                //     case "2":
-                //         res.self_check = {};
-                //         res.self_check.self_ok = true;
-                //         res.invite_user = [];
-                //         res.domain = false;
-                //         break;
-                //     //用户有符合要求的被邀请人 但是还不够5
-                //     case "3":
-                //         res.self_check = {};
-                //         res.self_check.self_ok = true;
-                //         res.invite_user = [{
-                //             shop_name: "店铺名1",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名2",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名3",
-                //             telephone: "18601363531"
-                //         }];
-                //         res.domain = false;
-                //         break;
-                //     //用户没申请域名
-                //     case "4":
-                //         res.self_check = {};
-                //         res.self_check.self_ok = true;
-                //         res.invite_user = [{
-                //             shop_name: "店铺名1",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名2",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名3",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名4",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名5",
-                //             telephone: "18601363531"
-                //         }];
-                //         res.domain = false;
-                //         break;
-                //     //域名处理中
-                //     case "5":
-                //         res.self_check = {};
-                //         res.self_check.self_ok = true;
-                //         res.invite_user = [{
-                //             shop_name: "店铺名1",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名2",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名3",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名4",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名5",
-                //             telephone: "18601363531"
-                //         }];
-                //         res.domain = {
-                //             domain: "piaohua.com",
-                //             status: "wait"
-                //         };
-                //         break;
-                //     //域名处理失败了
-                //     case "6":
-                //         res.self_check = {};
-                //         res.self_check.self_ok = true;
-                //         res.invite_user = [{
-                //             shop_name: "店铺名1",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名2",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名3",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名4",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名5",
-                //             telephone: "18601363531"
-                //         }];
-                //         res.domain = {
-                //             domain: "piaohua.com",
-                //             status: "fail"
-                //         };
-                //         break;
-                //     //域名处理成功了
-                //     case "7":
-                //         res.self_check = {};
-                //         res.share = ["http://7jpswm.com1.z0.glb.clouddn.com/badge3_1.jpg"]
-                //         res.self_check.self_ok = true;
-                //         res.invite_user = [{
-                //             shop_name: "店铺名1",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名2",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名3",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名4",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名5",
-                //             telephone: "18601363531"
-                //         }];
-                //         res.domain = {
-                //             domain: "www.piaohua.com",
-                //             status: "succ"
-                //         };
-                //         break;
-                // }
                 var _selfCheckData = res.self_check || {};
                 var _domainCheckData = res.domain;
                 var _inviteUserList = res.invite_user;
@@ -228,7 +66,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     //是否符合要求
                     _this.StatusCheck.isDemand = _selfCheckData.self_ok;
                     //是否允许点击邀请按钮
-                    // _this.StatusCheck.isAllowInvite = true;
+                    _this.StatusCheck.isAllowInvite = true;
                     if (_inviteUserList.length > 0) {
 
                         $(".j_invite_table").html(_this.createInviterTable(_inviteUserList));
@@ -273,8 +111,10 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     } else {
                         //没申请过
                         _this.StatusCheck.isAllowApply = true;
+                        _this.StatusCheck.isAllowInvite = false;
                     }
                 } else {
+                    _this.StatusCheck.isAllowInvite = false;
                     Dialog.alert({
                         top_txt: '', //可以是html
                         body_txt: '<p class="dialog-body-p">' + (res.message ? res.message : Lang.H5_ERROR) + '</p>'
@@ -298,7 +138,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 "isDemand": {
                     get: function () {
                         //客户端是否符合 && 接口
-                        return !!this.isClient && this._isDemand;
+                        return !!this._isDemand;
                     },
                     set: function (val) {
                         if (val) {
@@ -307,7 +147,8 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             $(".invite-number-box").show();
                         } else {
                             $(".invite-iscan").text("Syarat ini belum terpenuhi").css("color", "red");
-                            $(".invite-number-box").hide();
+                            $(".invite-number").text(ctx.user_info.seller_id);
+                            $(".invite-number-box").show();
                         }
                         this._isDemand = val;
                     }
@@ -334,7 +175,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     set: function (val) {
                         if (val) {
                             //当 用户3.5版本下 与 符合条件 与 有达标被邀请者 时 设置为true生效
-                            if (this.isClient && this.isDemand && this.isHasInviteUser) {
+                            if (this.isDemand && this.isHasInviteUser) {
                                 $(".j_domain_btn").removeClass('disable-btn')
                                 $(".j_domain_btn").show()
                             } else {
@@ -348,16 +189,14 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 }
             })
         },
-        handleFn: function (bridge) {
+        handleFn: function () {
             var _this = this;
             _this.domain_dialog = null;
 
             //邀请按钮
             $("body").on("click", ".j_invite_btn", function () {
-                    if (_this.StatusCheck.isAllowInvite && _this.StatusCheck.isClient) {
-                        //e_c 分享按钮
-                        //e_a 点击
-                        //e_n 附加属性
+                Insjs.judgeVersion("3.5", function () {
+                    if (_this.StatusCheck.isAllowInvite) {
                         _paq.push(['trackEvent', '邀请按钮', 'click', '']);
                         var _report = $(this).attr("data-report");
                         reportEventStatistics(_report);
@@ -369,33 +208,39 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                                 _paq.push(['trackEvent', '关闭邀请弹层', 'click', '']);
                             }
                         });
-                    } else {
-                        _this.versionTipDialog();
                     }
+                }, function () {
+                    _this.versionTipDialog();
                 })
-                //分享按钮
+            })
+            //分享按钮
             $('body').on('click', '.j_share_btn', function () {
-                if (_this.StatusCheck.isAllowShare) {
-                    _paq.push(['trackEvent', '分享按钮', 'click', '']);
-                    var _report = $(this).attr("data-report");
-                    reportEventStatistics(_report);
-                    _this.share_dialog = Dialog.dialog({
-                        body_txt: _this.createShareDialogHtm(),
-                        show_footer: false,
-                        show_top: false,
-                        body_fn: function () {
-                            var _dialog = this;
-                            var _shareImg = $(".invite-dialog-img-url")[0];
-                            _shareImg.src = _this.domainImg;
-                            _shareImg.onload = function () {
-                                _dialog.opts.wraper.css(_dialog.setPosition());
+                Insjs.judgeVersion("3.5", function () {
+                    if (_this.StatusCheck.isAllowShare) {
+                        _paq.push(['trackEvent', '分享按钮', 'click', '']);
+                        var _report = $(this).attr("data-report");
+                        reportEventStatistics(_report);
+                        _this.share_dialog = Dialog.dialog({
+                            body_txt: _this.createShareDialogHtm(),
+                            show_footer: false,
+                            show_top: false,
+                            body_fn: function () {
+                                var _dialog = this;
+                                var _shareImg = $(".invite-dialog-img-url")[0];
+                                _shareImg.src = _this.domainImg;
+                                _shareImg.onload = function () {
+                                    _dialog.opts.wraper.css(_dialog.setPosition());
+                                }
+                            },
+                            c_fn: function () {
+                                _paq.push(['trackEvent', '关闭分享弹层', 'click', '']);
                             }
-                        },
-                        c_fn: function () {
-                            _paq.push(['trackEvent', '关闭分享弹层', 'click', '']);
-                        }
-                    });
-                }
+                        });
+                    }
+
+                }, function () {
+                    _this.versionTipDialog();
+                })
             });
 
             $('body').on('click', '.j_invite_action', function () {
@@ -419,13 +264,12 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 };
                 try {
                     reportEventStatistics(_report);
-                    bridge.callHandler('insSocket', _param, function (response) {
+                    _this.bridge.callHandler('insSocket', _param, function (response) {
                         return null;
                     });
                 } catch (e) {
                     _this.versionTipDialog();
                 }
-
             });
             $('body').on('click', '.j_share_action', function () {
                 var _dom = $(this),
@@ -445,14 +289,15 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 };
                 try {
                     reportEventStatistics(_report);
-                    bridge.callHandler('insSocket', _param, function (response) {
+                    _this.bridge.callHandler('insSocket', _param, function (response) {
                         return null;
                     });
                 } catch (e) {
                     _this.versionTipDialog();
                 }
-
             });
+
+
             $('body').on('click', '.j_domain_btn', function () {
                 if (_this.StatusCheck.isAllowApply) {
                     _paq.push(['trackEvent', '申请域名', 'click', '']);
@@ -643,7 +488,8 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             callback && callback(obj);
                         }
                     },
-                    function (obj) {}
+                    function (obj) {
+                    }
                 );
             } else {
                 if (opts.action == 'search') {
