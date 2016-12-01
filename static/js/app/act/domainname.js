@@ -9,6 +9,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             debugInfo: "",
             requrl: ""
         },
+        bridge: null,
         StatusCheck: {
             isClient: false, //客户端版本是否符合要求
             isDemand: false, //用户是否符合参与活动要求
@@ -30,6 +31,9 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             _this.StatusCheck.isAllowInvite = true;
             _this.initData();
             _this.handleFn();
+            Insjs.WebOnReady(function (bridge) {
+                _this.bridge = bridge;
+            });
         },
         versionTipDialog: function () {
             _paq.push(['trackEvent', '低于3.5版本提示', 'autotip', '']);
@@ -239,66 +243,57 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             });
 
             $('body').on('click', '.j_invite_action', function () {
-                Insjs.WebOnReady(function (bridge) {
-                    var _dom = $(this),
-                        _type = _dom.attr('data-type'),
-                        _report = _dom.attr('data-report'),
-                        _invite_txt = $.trim($("#j_invite_txt").val());
-                    _invite_txt = _invite_txt.replace('http://www.instashop.co.id', 'http://www.instashop.co.id?from=' + _type + "&seller_id=" + _this.user_info.seller_id);
-                    var _param = {
+                var _dom = $(this),
+                    _type = _dom.attr('data-type'),
+                    _report = _dom.attr('data-report'),
+                    _invite_txt = $.trim($("#j_invite_txt").val());
+                _invite_txt = _invite_txt.replace('http://www.instashop.co.id', 'http://www.instashop.co.id?from=' + _type + "&seller_id=" + _this.user_info.seller_id);
+                var _param = {
+                    param: {
+                        type: 'share',
                         param: {
-                            type: 'share',
-                            param: {
-                                type: _type,
-                                data: [{
-                                    img: '',
-                                    content: _invite_txt,
-                                    link_url: 'http://www.instashop.co.id?from=' + _type + "&seller_id=" + _this.user_info.seller_id
-                                }]
-                            }
+                            type: _type,
+                            data: [{
+                                img: '',
+                                content: _invite_txt,
+                                link_url: 'http://www.instashop.co.id?from=' + _type + "&seller_id=" + _this.user_info.seller_id
+                            }]
                         }
-                    };
-                    try {
-                        reportEventStatistics(_report);
-                        bridge.callHandler('insSocket', _param, function (response) {
-                            return null;
-                        });
-                    } catch (e) {
-                        _this.versionTipDialog();
                     }
-
-                }, function () {
+                };
+                try {
+                    reportEventStatistics(_report);
+                    _this.bridge.callHandler('insSocket', _param, function (response) {
+                        return null;
+                    });
+                } catch (e) {
                     _this.versionTipDialog();
-                });
+                }
             });
             $('body').on('click', '.j_share_action', function () {
-                Insjs.WebOnReady(function (bridge) {
-                    var _dom = $(this),
-                        _type = _dom.attr('data-type'),
-                        _report = $(this).attr('data-report');
-                    var _param = {
+                var _dom = $(this),
+                    _type = _dom.attr('data-type'),
+                    _report = $(this).attr('data-report');
+                var _param = {
+                    param: {
+                        type: 'share',
                         param: {
-                            type: 'share',
-                            param: {
-                                type: _type,
-                                data: [{
-                                    img: _this.domainImg,
-                                    link_url: _this.domain
-                                }]
-                            }
+                            type: _type,
+                            data: [{
+                                img: _this.domainImg,
+                                link_url: _this.domain
+                            }]
                         }
-                    };
-                    try {
-                        reportEventStatistics(_report);
-                        bridge.callHandler('insSocket', _param, function (response) {
-                            return null;
-                        });
-                    } catch (e) {
-                        _this.versionTipDialog();
                     }
-                }, function () {
+                };
+                try {
+                    reportEventStatistics(_report);
+                    _this.bridge.callHandler('insSocket', _param, function (response) {
+                        return null;
+                    });
+                } catch (e) {
                     _this.versionTipDialog();
-                });
+                }
             });
 
 
