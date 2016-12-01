@@ -70,6 +70,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             _this._loading = Dialog.loading({
                 width: 100
             })
+            _this.StatusCheck.isAllowInvite = true;
             $(".invite-iscan").text("Sedang diverifikasi").css("color", "#8B572A");
             Ajax.getJsonp(_reqUrl, function (res) {
                 _this._loading.remove();
@@ -128,7 +129,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     } else {
                         //没申请过
                         _this.StatusCheck.isAllowApply = true;
-                        _this.StatusCheck.isAllowInvite = false;
                     }
                 } else {
                     _this.StatusCheck.isAllowInvite = false;
