@@ -31,7 +31,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             //版本判断 符合3.5进入主流程 不符合的提示
             Insjs.judgeVersion("3.5", function () {
                 //初始化Insjs WebOnReady
-                alert(window.navigator.userAgent)
                 Insjs.WebOnReady(function (bridge) {
                     _this.StatusCheck.isClient = true;
                     _this.initData();
