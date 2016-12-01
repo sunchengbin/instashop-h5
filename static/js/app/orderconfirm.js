@@ -348,9 +348,9 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
         countSum: function (carts) {
             var _this = this;
             //判断是否参与满减
-            if(true){
+            if (true) {
                 _this.countSumReduc();
-            }else{
+            } else {
                 _this.countSumNoReduc();
             }
         },
@@ -371,15 +371,18 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             var _this = this;
             var _reqUrl = "";
             var _reqParam = {
-                "action": "price",
-                "seller_id": JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
-                "wduss": '',
-                // "items": [{
-                //     "itemID": 1137596,
-                //     "item_sku": 4036741,
-                //     "itemNum": 125
-                // }],
-                "items": _this.getItems()
+                edata: {
+                    "action": "price",
+                    "seller_id": JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
+                    "wduss": '',
+                    // "items": [{
+                    //     "itemID": 1137596,
+                    //     "item_sku": 4036741,
+                    //     "itemNum": 125
+                    // }],
+                    "items": _this.getItems()
+                }
+
             }
             _reqUrl = Config.host.actionUrl + Config.actions.shopsDiscount + "?param=" + JSON.stringify(_reqParam);
             Ajax.getJsonp(_reqUrl, function (res) {

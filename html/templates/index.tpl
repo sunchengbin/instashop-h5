@@ -49,6 +49,16 @@
         <p><i class="icon iconfont j_down_btn down-btn"></i></p>
     </div>
 </section>
+<section>
+    <div>
+        <p>
+        Kirimkan Rp288.000 penuh Rp100.000 
+        </p>
+        <p>
+        08/08 14.29 - 09/09 14.29 WIB
+        </p>
+    </div>
+</section>
 
 {include file="model.tpl" title="my template model"}
 <div class="item-list-wraper">
