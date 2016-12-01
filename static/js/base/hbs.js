@@ -285,6 +285,19 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
         }
         return _htm;
     });
+    HBS.registerHelper('threeItemList', function(carts) {
+        var _htm = '';
+        if(!carts.length){
+            return '<li class="empty-cart">'+Lang.H5_SHOPING_NO_GOODS+'</li></ul>';
+        }
+        for(var item in carts){
+            _htm += '<li><div class="lazy" data-img="'+carts[item].img+'"></div></li>';
+            //if(item!=0 && item%3 == 0){
+            //    _htm += '</ul>';
+            //}
+        }
+        return _htm;
+    });
     function testStock(item){
         var stock = ((item.sku&&item.sku.stock)?item.sku.stock:item.item.stock);
         return stock >= 9999999;

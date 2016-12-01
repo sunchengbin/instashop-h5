@@ -14,6 +14,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     data: [init_data.shop]
                 }
             ];
+            _this.getItemListType();
             Lazyload();
             $('.j_start_loading').remove();
             _this.initHtml();
@@ -22,6 +23,16 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 _this.handelFn(bridge);
             },function(){
                 _this.handelFn();
+            });
+        },
+        getItemListType : function(){
+            var _this = this;
+            _this.item_list_type = 2;//默认商品列表为两列
+            $.each(_this.model_data,function(i,item){
+                if(item.type == 'item_list_type'){
+                    _this.item_list_type = item.data[0];
+                    _this.have_list_type = true;
+                }
             });
         },
         handelFn : function(bridge){
@@ -78,14 +89,17 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     _data = _this.model_data[_index]?_this.model_data[_index]:null;
                 if(_type == 'item_list_type'){//选择
                     var _sel_htm = '<div>';
-                    _sel_htm += '<p><i class="icon iconfont check-btn checked-btn icon-radioed-font j_item_list_type" data-type="2"></i>'+Lang.H5_ITEM_LIST_TYPE_TWO+'</p>';
-                    _sel_htm += '<p><i class="icon iconfont check-btn icon-radio-font j_item_list_type" data-type="3"></i>'+Lang.H5_ITEM_LIST_TYPE_THREE+'</p>';
+                    _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn checked-btn icon-radioed-font" data-type="2"></i>'+Lang.H5_ITEM_LIST_TYPE_TWO+'</p>';
+                    _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn icon-radio-font" data-type="3"></i>'+Lang.H5_ITEM_LIST_TYPE_THREE+'</p>';
                     _sel_htm += '</div>';
                     Dialog.confirm({
                         top_txt : '',//可以是html
                         body_txt : _sel_htm,
                         cf_fn : function(){
-
+                            var _type = Number($('.j_item_list_type .checked-btn').attr('data-type'));
+                            if(_type != _this.item_list_type){//列表类型被修改了
+                                _this.setDefaultItemType(_type);
+                            }
                         }
                     });
                 }else{
@@ -169,6 +183,27 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     return null;
                 });
             });
+        },
+        setDefaultItemType : function(type){//设置默认列表样式type
+            var _this = this;
+            if(type == 3){
+                $('.j_default_item_box').prepend(Hbs.compile(Itemmodel)({
+                        type : 'twoItem',
+                        isdefault: true,
+                        listtype : type,
+                        btns : _this.createModelBtnHtm({
+                            type : 'item_list_type',
+                            notmove : null
+                        }),
+                        data : {
+                            data : _this.item_list_type == 2?init_data.item_list.list.slice(0,2):init_data.item_list.list,
+                            title : Lang.H5_EDIT_SHOW_ITEM
+                        },
+                        lang : Lang
+                    }));
+            }else{
+
+            }
         },
         setIsEdited : function(){
             this.is_edit = 1;
@@ -326,15 +361,17 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         },
         defaultItemsHtm : function(){
             var _this = this;
+            _this.item_list_type = 3;
             return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
                 type : 'twoItem',
                 isdefault: true,
+                listtype : _this.item_list_type,
                 btns : _this.createModelBtnHtm({
                     type : 'item_list_type',
                     notmove : null
                 }),
                 data : {
-                    data : init_data.item_list.list,
+                    data : _this.item_list_type == 2?init_data.item_list.list.slice(0,2):init_data.item_list.list,
                     title : Lang.H5_EDIT_SHOW_ITEM
                 },
                 lang : Lang

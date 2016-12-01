@@ -164,3 +164,11 @@
 .lazy p span{
     display: inline-block;
 }
+/*三列*/
+.three-items-list{
+
+}
+.three-items-list li{
+    width: 33.3333%;
+    float: left;
+}
