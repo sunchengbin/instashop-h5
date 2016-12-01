@@ -25,37 +25,40 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 seller_id: Common.getQueryParam("seller_id"),
                 wduss: encodeURIComponent(Common.getQueryParam("wduss"))
             };
-            //初始化必须数据
-            if (!_this.user_info.seller_id || !_this.user_info.wduss) {
-                Dialog.alert({
-                    body_txt: '<p>seller_id:' + _this.user_info.seller_id + '</p><p>wduss:' + _this.user_info.wduss + '</p>'
-                });
-                return;
-            }
             //初始化状态监控
             _this.initStatus();
             _this.StatusCheck.isAllowInvite = true;
             //版本判断 符合3.5进入主流程 不符合的提示
             Insjs.judgeVersion("3.5", function () {
-                alert(1)
                 //初始化Insjs WebOnReady
                 Insjs.WebOnReady(function (bridge) {
-                    alert(2)
+                    //初始化必须数据
+                    if (!_this.user_info.seller_id || !_this.user_info.wduss) {
+                        Dialog.alert({
+                            body_txt: '<p>seller_id:' + _this.user_info.seller_id + '</p><p>wduss:' + _this.user_info.wduss + '</p>'
+                        });
+                        return;
+                    }
                     _this.StatusCheck.isClient = true;
                     _this.initData();
                     _this.handleFn(bridge);
                 }, function () {
-                    alert(3)
                     _this.versionTipDialog();
                     _this.handleFn();
                     return;
                 });
             }, function () {
-                alert("版本不对")
                 //版本不对 但允许弹出邀请dialog
                 _this.initData();
                 _this.handleFn();
                 _this.versionTipDialog();
+                //初始化必须数据
+                if (!_this.user_info.seller_id || !_this.user_info.wduss) {
+                    Dialog.alert({
+                        body_txt: '<p>seller_id:' + _this.user_info.seller_id + '</p><p>wduss:' + _this.user_info.wduss + '</p>'
+                    });
+                    return;
+                }
             })
         },
         versionTipDialog: function () {
