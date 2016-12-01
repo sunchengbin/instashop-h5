@@ -32,13 +32,13 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             Insjs.judgeVersion("3.5", function () {
                 //初始化Insjs WebOnReady
                 Insjs.WebOnReady(function (bridge) {
-                    //初始化必须数据
-                    if (!_this.user_info.seller_id || !_this.user_info.wduss) {
-                        Dialog.alert({
-                            body_txt: '<p>seller_id:' + _this.user_info.seller_id + '</p><p>wduss:' + _this.user_info.wduss + '</p>'
-                        });
-                        return;
-                    }
+                    // //初始化必须数据
+                    // if (!_this.user_info.seller_id || !_this.user_info.wduss) {
+                    //     Dialog.alert({
+                    //         body_txt: '<p>seller_id:' + _this.user_info.seller_id + '</p><p>wduss:' + _this.user_info.wduss + '</p>'
+                    //     });
+                    //     return;
+                    // }
                     _this.StatusCheck.isClient = true;
                     _this.initData();
                     _this.handleFn(bridge);
