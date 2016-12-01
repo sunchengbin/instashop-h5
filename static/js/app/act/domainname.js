@@ -307,7 +307,8 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             $(".invite-number-box").show();
                         } else {
                             $(".invite-iscan").text("Syarat ini belum terpenuhi").css("color", "red");
-                            $(".invite-number-box").hide();
+                            $(".invite-number").text(ctx.user_info.seller_id);
+                            $(".invite-number-box").show();
                         }
                         this._isDemand = val;
                     }
