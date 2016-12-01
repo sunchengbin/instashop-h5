@@ -128,7 +128,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     } else {
                         //没申请过
                         _this.StatusCheck.isAllowApply = true;
-                        _this.StatusCheck.isAllowInvite = false;
                     }
                 } else {
                     _this.StatusCheck.isAllowInvite = false;
