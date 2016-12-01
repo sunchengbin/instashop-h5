@@ -26,13 +26,26 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 seller_id: Common.getQueryParam("seller_id"),
                 wduss: encodeURIComponent(Common.getQueryParam("wduss"))
             };
-            //初始化状态监控
-            _this.initStatus();
-            _this.initData();
-            _this.handleFn();
-            Insjs.WebOnReady(function (bridge) {
-                _this.bridge = bridge;
-            });
+            Insjs.judgeVersion("3.5", function () {
+                    //初始化状态监控
+                    _this.initStatus();
+                    _this.initData();
+                    _this.handleFn();
+                    Insjs.WebOnReady(function (bridge) {
+                        _this.bridge = bridge;
+                    },function(){
+                        _this.versionTipDialog();
+                    });
+                }, function () {
+                    _this.versionTipDialog();
+                })
+                //初始化状态监控
+                // _this.initStatus();
+                // _this.initData();
+                // _this.handleFn();
+                // Insjs.WebOnReady(function (bridge) {
+                //     _this.bridge = bridge;
+                // });
         },
         versionTipDialog: function () {
             _paq.push(['trackEvent', '低于3.5版本提示', 'autotip', '']);
@@ -54,6 +67,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             _this._loading = Dialog.loading({
                 width: 100
             })
+            $(".invite-iscan").text("Sedang diverifikasi").css("color", "#8B572A");
             Ajax.getJsonp(_reqUrl, function (res) {
                 _this._loading.remove();
                 var _selfCheckData = res.self_check || {};
@@ -195,25 +209,25 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
 
             //邀请按钮
             $("body").on("click", ".j_invite_btn", function () {
-                Insjs.judgeVersion("3.5", function () {
-                    if (_this.StatusCheck.isAllowInvite) {
-                        _paq.push(['trackEvent', '邀请按钮', 'click', '']);
-                        var _report = $(this).attr("data-report");
-                        reportEventStatistics(_report);
-                        _this.invite_dialog = Dialog.dialog({
-                            body_txt: _this.createInviteDialogHtm(),
-                            show_footer: false,
-                            show_top: false,
-                            c_fn: function () {
-                                _paq.push(['trackEvent', '关闭邀请弹层', 'click', '']);
-                            }
-                        });
-                    }
-                }, function () {
-                    _this.versionTipDialog();
+                    Insjs.judgeVersion("3.5", function () {
+                        if (_this.StatusCheck.isAllowInvite) {
+                            _paq.push(['trackEvent', '邀请按钮', 'click', '']);
+                            var _report = $(this).attr("data-report");
+                            reportEventStatistics(_report);
+                            _this.invite_dialog = Dialog.dialog({
+                                body_txt: _this.createInviteDialogHtm(),
+                                show_footer: false,
+                                show_top: false,
+                                c_fn: function () {
+                                    _paq.push(['trackEvent', '关闭邀请弹层', 'click', '']);
+                                }
+                            });
+                        }
+                    }, function () {
+                        _this.versionTipDialog();
+                    })
                 })
-            })
-            //分享按钮
+                //分享按钮
             $('body').on('click', '.j_share_btn', function () {
                 Insjs.judgeVersion("3.5", function () {
                     if (_this.StatusCheck.isAllowShare) {
@@ -488,8 +502,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             callback && callback(obj);
                         }
                     },
-                    function (obj) {
-                    }
+                    function (obj) {}
                 );
             } else {
                 if (opts.action == 'search') {
