@@ -3,6 +3,8 @@
 @import "../moudle/app/common/common.css";
 @import "../moudle/app/contact/contact.css";
 @import "../moudle/app/model/model.css";
+@import "../moudle/ui/dialog/dialog.css";
+@import "./reduc.css";
 body{
     color: #666;
     background-color: #ececec;

@@ -345,6 +345,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             };
             return _data;
         },
+        //满减
         countSum: function (carts) {
             var _this = this;
             //判断是否参与满减
@@ -371,7 +372,6 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             var _this = this;
             var _reqUrl = "";
             var _reqParam = {
-                edata: {
                     "action": "price",
                     "seller_id": JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
                     "wduss": '',
@@ -380,11 +380,10 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     //     "item_sku": 4036741,
                     //     "itemNum": 125
                     // }],
-                    "items": _this.getItems()
-                }
-
+                    "items": _this.getItems(),
+                    "_debug_env"
             }
-            _reqUrl = Config.host.actionUrl + Config.actions.shopsDiscount + "?param=" + JSON.stringify(_reqParam);
+            _reqUrl = "http://api-test.instashop.co.id/instashop/" + Config.actions.shopsDiscount + "?param=" + JSON.stringify(_reqParam);
             Ajax.getJsonp(_reqUrl, function (res) {
                 console.info(res);
             }, function (error) {

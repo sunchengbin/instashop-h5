@@ -107,6 +107,15 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     location.href = _url;
                 });
             });
+            //满减 lanchenghao
+            $('body').on('click','.j_reduc_box',function(){
+                Dialog.alert({
+                    body_txt:'<div><p class="reduc-title">Ketentuan:</p>'+
+                        '<p>1.Fitur Promo Minimal Pembelian dapat digabungkan dengan fitur promo potongan harga.</p>'+
+                        '<p>2.Nominal Minimal Pembelian tidak termasuk biaya ongkos kirim</p>'+
+                    '</div>'
+                })
+            })
             var _this = this;
             if ($('.j_show_contact').length) {
                 _this.contact = Contact({

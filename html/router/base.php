@@ -163,3 +163,6 @@ function itemPrice($data){
         }
     }
 }
+function dateFormat($datetime){
+    return date('d/m H:i',strtotime($datetime));
+}

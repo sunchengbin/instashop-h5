@@ -49,16 +49,26 @@
         <p><i class="icon iconfont j_down_btn down-btn"></i></p>
     </div>
 </section>
-<section>
-    <div>
-        <p>
-        Kirimkan Rp288.000 penuh Rp100.000 
-        </p>
-        <p>
-        08/08 14.29 - 09/09 14.29 WIB
-        </p>
-    </div>
+{if $INDEX_DATA.shop.shop_discount}
+<section class="reduc-box">
+<div class="reduc-box-wrap j_reduc_box">
+<i class="iconfont icon-go-font fr reduc-box-go"></i>
+<div>
+<p class="reduc-box-info">
+            <i class="iconfont icon-bugle"></i>
+             {foreach $INDEX_DATA.shop.shop_discount.info as $item}
+                Minimal Pembelian Rp{$item.condition_price} Potongan Rp{$item.discount_price}
+             {/foreach}
+            </p>
+            <p>
+            {$INDEX_DATA.shop.shop_discount.start_time|dateFormat} - {$INDEX_DATA.shop.shop_discount.end_time|dateFormat} WIB
+            </p>
+            </div>
+</div>
+            
+
 </section>
+{/if}
 
 {include file="model.tpl" title="my template model"}
 <div class="item-list-wraper">

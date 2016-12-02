@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/6.
  * 首页
  */
-require(['lang','lazyload','ajax','config','base','common','cart','fastclick','contact','slide','item'],function(Lang,Lazyload,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item){
+require(['lang','lazyload','ajax','config','base','common','cart','fastclick','contact','slide','item','dialog'],function(Lang,Lazyload,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item,Dialog){
     var I = {
         init : function(init_data){
             Lazyload();
@@ -208,6 +208,15 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                 _sort_cover.style.webkitTransitionDuration = '.6s';
                 _sort_cover.style.webkitTransform = "translate3d(-100%,0,0)";
             });
+            //满减 lanchenghao
+            $('body').on('click','.j_reduc_box',function(){
+                Dialog.alert({
+                    body_txt:'<div><p class="reduc-title">Ketentuan:</p>'+
+                        '<p>1.Fitur Promo Minimal Pembelian dapat digabungkan dengan fitur promo potongan harga.</p>'+
+                        '<p>2.Nominal Minimal Pembelian tidak termasuk biaya ongkos kirim</p>'+
+                    '</div>'
+                })
+            })
             localStorage.removeItem('FromUrl');
             if(localStorage.getItem('ScrollTop') && Base.others.getUrlPrem('item')){//存在scrollTop时页面下滚到记忆中的top值
                 //if(Base.others.verifyBower().ios){
