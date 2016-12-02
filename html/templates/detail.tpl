@@ -62,8 +62,9 @@
         <p class="price discount-price">
             {$INDEX_DATA.item|itemPrice}
         </p>
-        {/if} {if $INDEX_DATA.item.shop.shop_discount}
-        <section class="reduc-box">
+        {/if} 
+        {if $INDEX_DATA.item.shop.shop_discount}
+        <section class="reduc-box-line">
             <div class="reduc-box-wrap j_reduc_box">
                 <i class="iconfont icon-go-font fr reduc-box-go"></i>
                 <div>

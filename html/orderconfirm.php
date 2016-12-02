@@ -35,10 +35,21 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             'receive_addr' => urlencode($addr)
         ];
         $path = 'v1/expresses';
-        ?>
-        var api_url = '<?php echo check_api($path, $params); ?>';
 
+        $paramsPrice = [
+            'action' => 'price',
+            'seller_id' => $seller_id,
+            'items' => $items,
+            '_debug_env' => '3.7.1'
+        ];
+        $pathPrice = 'v1/shopsDiscount';
+        ?>
+        
+        var api_url = '<?php echo check_api($path, $params); ?>';
+        var api_url_price = '<?php echo check_api($pathPrice, $paramsPrice); ?>';
         var express_data = JSON.parse(<?php echo get_init_data($path, $params); ?>);
+        var price_data = JSON.parse(<?php echo get_init_data($pathPrice, $paramsPrice); ?>);
+
 
       </script>
 </head>

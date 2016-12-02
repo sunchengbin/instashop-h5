@@ -16,7 +16,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     lang: Lang,
                     host: Config.host,
                     nofree: JSON.parse(_data).ShopInfo.express_free == 0,
-                    express: (JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list))
+                    express: (JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list)),
+                    isHaveReduc:(price_data.price_info.shop_discount.length!=0)
                 });
             $('body').prepend(_htm);
             if (JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list)) {
@@ -348,14 +349,14 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
         //满减
         countSum: function (carts) {
             var _this = this;
-            //判断是否参与满减
-            if (true) {
-                _this.countSumReduc();
+            //判断是否参与满减 如果为0 则为不参加满减
+            if (price_data.price_info.shop_discount.length==0) {
+                return _this.countSumNoReduc(carts);
             } else {
-                _this.countSumNoReduc();
+                return _this.countSumReduc();
             }
         },
-        countSumNoReduc: function () {
+        countSumNoReduc: function (carts) {
             var _sum = 0;
             for (var cart in carts) {
                 if (carts[cart].item.is_discount && carts[cart].item.discounting) {
@@ -367,28 +368,12 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             }
             return _sum;
         },
-        //检查活动
+        //渲染满减活动
         countSumReduc: function () {
             var _this = this;
-            var _reqUrl = "";
-            var _reqParam = {
-                    "action": "price",
-                    "seller_id": JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
-                    "wduss": '',
-                    // "items": [{
-                    //     "itemID": 1137596,
-                    //     "item_sku": 4036741,
-                    //     "itemNum": 125
-                    // }],
-                    "items": _this.getItems(),
-                    "_debug_env"
-            }
-            _reqUrl = "http://api-test.instashop.co.id/instashop/" + Config.actions.shopsDiscount + "?param=" + JSON.stringify(_reqParam);
-            Ajax.getJsonp(_reqUrl, function (res) {
-                console.info(res);
-            }, function (error) {
-                _this.loading.remove();
-            })
+            var _last_price = price_data.price_info.total_price;
+            $(".j_reduc_price").text(_last_price)
+            return _last_price;
         }
     };
     OrderConfirmHtm.init();

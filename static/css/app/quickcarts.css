@@ -5,6 +5,7 @@
 @import "../moudle/app/logistics/logistics.css";
 @import "../moudle/app/address/address.css";
 @import "../moudle/app/buyplug/buyplug.css";
+@import "./reduc.css";
 html{
     height: 100%;
 }

@@ -172,12 +172,15 @@ define([],function(){
             H5_ACCOUNT_NUMBER:'银行号码',
             H5_SUBMITING:'正在提交...',
             H5_CONFIRM_SUBMIT:'确认提交？',
-            H5_EXIT_CONFIRM:'放弃更改？'
+            H5_EXIT_CONFIRM:'放弃更改？',
+            H5_REDUC_PAVORABLE:'满减优惠'
 
 
         },
 
         id : {
+            //满减优惠
+            'H5_REDUC_PAVORABLE':'Potongan Harga',
             //提交
             'H5_SUBMIT_TXT':"Ajukan",
             //注：请确保你的Instagram账户没有设置为“私密账户”
