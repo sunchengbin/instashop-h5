@@ -7,6 +7,7 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
         init : function(init_data){
             Lazyload();
             var _this = this;
+            _this.item_type = Common.getItemListType(init_data.template);
             _this.sortTimes = 0;
             var _cart_num = Cart().getCartNum();
             if(init_data){
@@ -130,25 +131,25 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                                         var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="items-list j_item_list clearfix"></ul>';
                                         $('.j_item_box').html(_htm);
                                     }
-                                    $('.j_item_box ul').append(Item.addItem(_list_data.item));
+                                    $('.j_item_box ul').append(Item.addItem(_list_data.item,_this.item_type));
                                 }
                                 if(_list_data.hot.length){
                                     if(!$('.j_hot_list').length){
                                         var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_HOT+'</p><ul class="items-list j_hot_list clearfix"></ul>';
                                         $('.j_hot_list').html(_htm);
                                     }
-                                    $('.j_hot_list').append(Item.addItem(_list_data.hot));
+                                    $('.j_hot_list').append(Item.addItem(_list_data.hot,_this.item_type));
                                 }
                                 if(_list_data.tags.length){
                                     var _tags = _list_data.tags;
                                     for(var tagid in _tags){
                                         if($('[data-tagid="'+_tags[tagid].id+'"]').length){
-                                            $('[data-tagid="'+_tags[tagid].id+'"] ul').append(Item.addItem(_list_data.tags[tagid].item));
+                                            $('[data-tagid="'+_tags[tagid].id+'"] ul').append(Item.addItem(_list_data.tags[tagid].item,_this.item_type));
                                         }else{
                                             var _htm = '<section class="items-box" data-tagid="'+_tags[tagid].id+'">'
                                                 +'<p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.host+'k/'+_tags[tagid].id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>'
                                                 +'<ul class="items-list j_item_list clearfix">'
-                                                +Item.addItem(_list_data.tags[tagid].item)
+                                                +Item.addItem(_list_data.tags[tagid].item,_this.item_type)
                                                 +'</ul>'
                                                 +'</section>';
                                             $('.j_box').eq(($('.j_box').length-1)).before(_htm);

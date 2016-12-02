@@ -166,9 +166,54 @@
 }
 /*三列*/
 .three-items-list{
-
+    position: relative;
+}
+.three-items-list::before{
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    left:-50%;
+    right:-50%;
+    bottom:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-top: 1px solid #d8d8d8;
+    z-index: 101;
 }
 .three-items-list li{
     width: 33.3333%;
     float: left;
+    box-sizing: border-box;
+    position:relative;
+    padding:.5rem .25rem;
+}
+.three-items-list li::before{
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    left:-50%;
+    right:-50%;
+    top:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-top: 1px solid #d8d8d8;
+    z-index: 101;
+}
+.three-items-list li:not(:nth-child(3n+3))::after{
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    top:-50%;
+    bottom:-50%;
+    right:0;
+    width: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-right: 1px solid #d8d8d8;
+    z-index: 101;
 }

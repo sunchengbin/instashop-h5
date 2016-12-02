@@ -167,6 +167,15 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                     _num = _item.find(_config.child).length;
                 _item.css('width',_c_w*_num);
             });
+        },
+        getItemListType : function(template){
+            var _type = 2;
+            $.each(template,function(i,item){
+                if(item.type == 'item_list_type'){
+                    _type = item.data[0];
+                }
+            });
+            return _type;
         }
     };
 

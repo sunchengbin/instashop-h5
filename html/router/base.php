@@ -163,3 +163,13 @@ function itemPrice($data){
         }
     }
 }
+function getItemListType($template){
+    $len = count($template);
+    $type = 2;
+    for ($i=0; $i < $len;$i++) {
+        if($template[i].type == 'item_list_type'){
+            $type = $template[i].data[0];
+        }
+    }
+    return $type;
+}

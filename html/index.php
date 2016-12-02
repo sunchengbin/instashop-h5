@@ -43,6 +43,8 @@
 
     include_once( dirname(__FILE__).'/../html/router/base.php');
     $items = transItems($json["item_list"]["list"]);
+    $itemtype = getItemListType($json["template"]);
+    $smarty->assign('ITEMTYPE',$itemtype);
     $smarty->assign('RECOMMEND_ITEM',$items["hot"]);
     $smarty->assign('TAGS_ITEM',$items["tags"]);
     $smarty->assign('HOT_ITEM',$items["item"]);
