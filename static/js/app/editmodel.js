@@ -79,7 +79,6 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 bridge.callHandler('insSocket',_param, function(response) {
                       return null;
                 });
-
             });
             $('body').on('click','.j_edit_model',function(){
                 _this.setIsEdited();
@@ -179,6 +178,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 //todo 数据前移
             });
             $('body').on('click','.j_submit_btn',function(){
+                //_this.subModel();
                 var _param = {
                     param:{
                         type:'show_loading',
@@ -191,10 +191,9 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             });
         },
         setDefaultItemType : function(type){//设置默认列表样式type
-            var _this = this;
-            $('.j_default_item_box .item-title').remove();
-            $('.j_default_item_list').remove();
-            $('.j_default_item_box').prepend(Hbs.compile(Itemmodel)({
+            var _this = this,
+                _item_box = $('.j_default_item_box');
+            _item_box.before(Hbs.compile(Itemmodel)({
                 type : 'twoItem',
                 isdefault: true,
                 listtype : type,
@@ -208,6 +207,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 },
                 lang : Lang
             }));
+            _item_box.remove();
         },
         setIsEdited : function(){
             this.is_edit = 1;
@@ -215,13 +215,17 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         reloadOperateBtns : function(){
             this.initRotateBanner();
             $('.j_model_btns').each(function(i,item){
+                var _item = $(item);
                 if(i == 0){
-                    if($(item).find('.j_moveup_model').length) {
-                        $(item).find('.j_moveup_model').remove();
+                    if(_item.find('.j_moveup_model').length) {
+                        _item.find('.j_moveup_model').remove();
                     }
                 }else{
-                    if(!$(item).find('.j_moveup_model').length){
-                        $(item).append('<button class="move-btn j_moveup_model handle-btn">'+Lang.H5_MOVE_UP+'</button>');
+                    if(!_item.find('.j_moveup_model').length){
+                        if(!_item.parent().is('.j_default_item_box')){
+                            _item.append('<button class="move-btn j_moveup_model handle-btn">'+Lang.H5_MOVE_UP+'</button>');
+                        }
+
                     }
                 }
             });
@@ -247,20 +251,29 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         },
         subModel : function(bridge){//模板提交
             var _this = this,
-                _req_data = {
-                    edata : {
-                        content : _this.model_data,
-                        seller_id : Base.others.getUrlPrem('seller_id'),
-                        wduss : Base.others.getUrlPrem('wduss')
-                    }
-                };
-            //if(!_this.verifySub()){
-            //    Dialog.tip({
-            //        top_txt : '',//可以是html
-            //        body_txt : '<p class="dialog-body-p">普通广告不能超过5个</p>'
-            //    });
-            //    return;
-            //}
+                _len = _this.model_data.length;
+            if(_this.have_list_type){
+                _this.model_data.splice(_len-1,1);
+                _this.model_data.push({
+                    index: 0,
+                    type: 'item_list_type',
+                    data: [_this.item_list_type]
+                });
+            }else{
+                _this.model_data.push({
+                    index: 0,
+                    type: 'item_list_type',
+                    data: [_this.item_list_type]
+                });
+                _this.have_list_type = true;
+            }
+            var _req_data = {
+                edata : {
+                    content : _this.model_data,
+                    seller_id : Base.others.getUrlPrem('seller_id'),
+                    wduss : Base.others.getUrlPrem('wduss')
+                }
+            };
             Ajax.postJsonp({
                 url :Config.actions.saveTemplate,
                 data : {param:JSON.stringify(_req_data)},

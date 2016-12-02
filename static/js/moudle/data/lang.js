@@ -463,8 +463,8 @@ define(['base'],function(Base){
             H5_SUBMITING:'Sedang ditambahkan...',
             H5_CONFIRM_SUBMIT:'Yakin ingin mengajukan？',
             H5_EXIT_CONFIRM:'Yakin ingin keluar?',
-            H5_ITEM_LIST_TYPE_TWO:'一行2个',
-            H5_ITEM_LIST_TYPE_THREE:'一行3个'
+            H5_ITEM_LIST_TYPE_TWO:'Tampilan 1 Baris 2 Produk',
+            H5_ITEM_LIST_TYPE_THREE:'Tampilan 1 Baris 3 Produk'
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );
