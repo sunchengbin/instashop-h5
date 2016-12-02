@@ -804,8 +804,8 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
     </div>
     <div class="step step-2 clearfix">
         <div class="step-contet">
-            <p>Ajak 5 teman online shop kamu (followers IG MINIMAL 500) untuk registrasi di Instashop menggunakan kode
-                referralmu
+            <p>Ajak 5 teman online shop kamu (followers IG MINIMAL 500) untuk registrasi di Instashop <span class="fwb">menggunakan kode
+                referralmu</span>
                 dan upload 10 produk
             </p>
         </div>
@@ -845,7 +845,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
     <p><span>*Syarat & Ketentuan:</span></p>
     <p>1. Teman yang kamu ajak <span>harus</span> merupakan online shop, belum pernah terregistrasi akunnya di Instashop sebelum 1 Desember 2016 dan memiliki min. 500 followers di akun Instagram online shopnya. </p>
     <p>2. Satu akun Instagram <span>hanya</span> dapat digunakan oleh satu pengguna akun Instashop. Temanmu <span>tidak dapat</span> menambahkan gambar dari akun Instagram yang sebelumnya <span>sudah digunakan</span> oleh pengguna Instashop lain. </p>
-    <p>3. Pada saat registrasi, teman yang kamu ajak wajib mengisi kolom kode referral dengan kode referralmu yang tertera di atas. Kode referral ini digunakan Instashop untuk memverifikasi otomatis data teman yang kamu ajak.
+    <p>3. Pada saat registrasi,<span class="fwb"> teman yang kamu ajak wajib mengisi kolom kode referral dengan KODE REFERRALMU</span> yang tertera di atas. Kode referral ini digunakan Instashop untuk memverifikasi otomatis data teman yang kamu ajak.
     </br>
     Kamu dapat setiap saat mengecek perkembangan teman yang menggunakan kode referralmu di bagian atas halaman ini - kolom "SYARAT 2".
     </p>
