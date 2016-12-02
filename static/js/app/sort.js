@@ -9,6 +9,7 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
             if(init_data){
                 SortHtm= Hbs.compile(Sort)({
                     data : init_data,
+                    listtype : Common.getItemListType(init_data.template),
                     name : init_data.tag.name,
                     lang : Lang,
                     hrefUrl : Config.host.hrefUrl,

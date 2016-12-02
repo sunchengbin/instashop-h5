@@ -128,14 +128,14 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                                 //console.log(_list_data);
                                 if(_list_data.item.length){
                                     if(!$('.j_item_box .j_item_list').length){
-                                        var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="items-list j_item_list clearfix"></ul>';
+                                        var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="'+(_this.item_type==2?'items-list':'three-items-list')+' j_item_list clearfix"></ul>';
                                         $('.j_item_box').html(_htm);
                                     }
                                     $('.j_item_box ul').append(Item.addItem(_list_data.item,_this.item_type));
                                 }
                                 if(_list_data.hot.length){
                                     if(!$('.j_hot_list').length){
-                                        var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_HOT+'</p><ul class="items-list j_hot_list clearfix"></ul>';
+                                        var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_HOT+'</p><ul class="'+(_this.item_type==2?'items-list':'three-items-list')+' j_hot_list clearfix"></ul>';
                                         $('.j_hot_list').html(_htm);
                                     }
                                     $('.j_hot_list').append(Item.addItem(_list_data.hot,_this.item_type));
@@ -147,9 +147,13 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                                             $('[data-tagid="'+_tags[tagid].id+'"] ul').append(Item.addItem(_list_data.tags[tagid].item,_this.item_type));
                                         }else{
                                             var _htm = '<section class="items-box" data-tagid="'+_tags[tagid].id+'">'
-                                                +'<p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.host+'k/'+_tags[tagid].id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>'
-                                                +'<ul class="items-list j_item_list clearfix">'
-                                                +Item.addItem(_list_data.tags[tagid].item,_this.item_type)
+                                                +'<p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.host+'k/'+_tags[tagid].id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>';
+                                            if(_this.item_type == 2){
+                                                _htm +='<ul class="items-list j_item_list clearfix">';
+                                            }else{
+                                                _htm +='<ul class="three-items-list j_item_list clearfix">';
+                                            }
+                                            _htm += Item.addItem(_list_data.tags[tagid].item,_this.item_type)
                                                 +'</ul>'
                                                 +'</section>';
                                             $('.j_box').eq(($('.j_box').length-1)).before(_htm);

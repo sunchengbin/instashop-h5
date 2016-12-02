@@ -18,7 +18,7 @@ define(['base','config','lang'],function(Base,Config,Lang){
             return out;
         },
         threeList : function(item){
-            return '<li><div class="lazy" data-img="'+item.img+'"></div></li>';
+            return '<li><a class="item-info j_item_info" data-url="'+item.h5_url+'" href="javascript:;"><div class="lazy" data-img="'+item.img+'"></div></a></li>';
         },
         twoList : function(item){
             var _this = this,
