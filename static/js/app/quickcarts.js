@@ -66,21 +66,6 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             _this.getTotal();
             _this.handleFn();
         },
-        getTotal : function(){//计算总额(出问题的商品价格不算到总额中)
-            var _this = this,
-                _sum = 0,
-                _freight = 0;
-            $('.j_item_num').each(function(i,item){
-                var _num = Number($(item).val()),
-                    _price = Number($(item).attr('data-price'));
-                _sum+=_num*_price;
-            });
-            if($('.icon-radioed-font').length){
-                _freight = Number($('.icon-radioed-font').attr('data-price'));
-            }
-            $('.j_total').html('Rp '+Base.others.priceFormat((_sum+_freight)));
-            $('.j_freight').html('Rp '+Base.others.priceFormat(_freight));
-        },
         selectQuick : function(opts){
             var _this = this,
                 _wraper = $('.j_cart_item[data-id="'+opts.id+'"]'),
@@ -860,6 +845,61 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 _cart =  _carts[id];
             }
             return _cart;
+        },
+        getTotalNoReduc : function(){//计算总额(出问题的商品价格不算到总额中)
+            var _this = this,
+                _sum = 0,
+                _freight = 0;
+            $('.j_item_num').each(function(i,item){
+                var _num = Number($(item).val()),
+                    _price = Number($(item).attr('data-price'));
+                _sum+=_num*_price;
+            });
+            if($('.icon-radioed-font').length){
+                _freight = Number($('.icon-radioed-font').attr('data-price'));
+            }
+            $('.j_total').html('Rp '+Base.others.priceFormat((_sum+_freight)));
+            $('.j_freight').html('Rp '+Base.others.priceFormat(_freight));
+        },
+        //满减
+        getTotal: function () {
+            var _this = this;
+            //判断是否参与满减 如果为0 则为不参加满减
+            if (init_data.shop.shop_discount.length==0) {
+                _this.getTotalNoReduc();
+            } else {
+                _this.countSumReduc();
+            }
+        },
+        //渲染满减活动
+        countSumReduc: function () {
+            var _this = this;
+            var _param = {
+                edata: {
+                    "action": "price",
+                    "seller_id": init_data.shop.id,
+                    "wduss": "",
+                    "items": _this.getItems()
+                }
+            }
+            var _req = Config.host.phpHost+Config.actions.shopsDiscount+'?param='+JSON.stringify(_param);
+            Ajax.getJsonp(_req,function(_res){
+                if (_res && _res.code == 200) {
+                    var _items_price = price_data.price_info.items_price;
+                    var _last_price = price_data.price_info.total_price;
+                    $(".j_reduc_price").html('-Rp '+(_items_price-_last_price));
+                    $('.j_total').html('Rp '+Base.others.priceFormat(_res.price_info.total_price));
+                }
+            },function(){
+                Dialog.alert({
+                    top_txt: '', //可以是html
+                    cfb_txt: Lang.H5_FRESHEN,
+                    body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
+                    cf_fn: function () {
+                        location.reload();
+                    }
+                });
+            })
         }
     };
     QuickCartsHtm.init();

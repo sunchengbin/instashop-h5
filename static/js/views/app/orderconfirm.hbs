@@ -44,11 +44,11 @@
             <span>{{lang.H5_BUYER_NOTE}}: </span>
             <input maxlength="500" type="text" placeholder="{{lang.H5_BUYER_NOTE_TOO_LONG}}" class="j_buyer_note"/>
         </p>
-        {{!--{{#if isHaveReduc}}--}}
-        <div class="reduc-info">
-            <p class="clearfix"><span class="fr j_reduc_price">-Rp 0</span>{{lang.H5_REDUC_PAVORABLE}}: </p>
+        {{#if isHaveReduc}}
+        <div class="reduc-info b-bottom" style="color:#999999">
+            <p class="clearfix"><span class="fr j_reduc_price">-Rp {{transprice favorable}}</span>{{lang.H5_REDUC_PAVORABLE}}: </p>
         </div>
-        {{!--{{/if}}--}}
+        {{/if}}
         <div class="order-info">
             <p class="clearfix"><span class="fr j_post">Rp 0</span>{{lang.H5_SHIPPING_COST}}: </p>
             <p class="clearfix"><span class="fr j_sum">Rp {{transprice sum}}</span>{{lang.H5_ORDER_TOTAL_PRICE}}: </p>

@@ -57,10 +57,10 @@
 <p class="reduc-box-info">
             <i class="iconfont icon-bugle"></i>
              {foreach $INDEX_DATA.shop.shop_discount.info as $item}
-                Minimal Pembelian Rp{$item.condition_price} Potongan Rp{$item.discount_price}
+                Minimal Pembelian Rp {$item.condition_price|priceFormat} Potongan Rp {$item.discount_price|priceFormat}
              {/foreach}
             </p>
-            <p>
+            <p class="reduc-expire">
             {$INDEX_DATA.shop.shop_discount.start_time|dateFormat} - {$INDEX_DATA.shop.shop_discount.end_time|dateFormat} WIB
             </p>
             </div>

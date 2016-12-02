@@ -109,12 +109,21 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             });
             //满减 lanchenghao
             $('body').on('click','.j_reduc_box',function(){
-                Dialog.alert({
-                    body_txt:'<div><p class="reduc-title">Ketentuan:</p>'+
-                        '<p>1.Fitur Promo Minimal Pembelian dapat digabungkan dengan fitur promo potongan harga.</p>'+
-                        '<p>2.Nominal Minimal Pembelian tidak termasuk biaya ongkos kirim</p>'+
-                    '</div>'
-                })
+                var _htm = '';
+                if(!!init_data.item.shop.shop_discount){
+                    for(var i=0,_reducItem;_reducItem=init_data.item.shop.shop_discount.info[i++];){
+                        _htm+="Minimal Pembelian Rp "+Base.others.priceFormat(_reducItem.condition_price)+" Potongan Rp "+ Base.others.priceFormat(_reducItem.discount_price)+","
+                    }
+                    _htm = _htm.replace(/,$/gi,'') +"</br>"+ $(".reduc-expire").text();
+                    Dialog.alert({
+                        top_txt:"<p style='text-align:center'>"+Lang.H5_REDUC_TITLE+"</p>",
+                        show_top:true,
+                        body_txt:_htm,
+                        body_fn:function(){
+                            $('.j_c_btn').hide();
+                        }
+                    })
+                }
             })
             var _this = this;
             if ($('.j_show_contact').length) {

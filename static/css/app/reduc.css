@@ -27,17 +27,19 @@
 
 .reduc-box-info {
     width: 90%;
-    overflow: hidden;
-    white-space: nowrap;
+    word-break: break-all;
     text-overflow: ellipsis;
-    word-break: break-word;
+    display: -webkit-box; 
+    -webkit-box-orient: vertical; 
+    -webkit-line-clamp: 2;
+    overflow: hidden;
     font-size: 14px;
 }
 
 .reduc-box-go {
     color: #999999!important;
     font-size: 14px;
-    line-height: 4rem;
+    line-height: 6rem;
 }
 
 
@@ -54,17 +56,6 @@
     color: #F5A623;
 }
 
-.reduc-info:after {
-    position: absolute;
-    left: -50%;
-    right: -50%;
-    bottom: 0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    border-bottom: 1px solid #d8d8d8;
-}
 .reduc-box-line:before {
     position: absolute;
     left: -50%;
@@ -75,4 +66,21 @@
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
     border-bottom: 1px solid #d8d8d8;
+}
+
+
+.total-box .reduc-info:before {
+    position: absolute;
+    left: -50%;
+    right: -50%;
+    top: 0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-bottom: 1px solid #d8d8d8;
+}
+.reduc-expire {
+    font-size: 14px;
+    margin-top: 3px;
 }

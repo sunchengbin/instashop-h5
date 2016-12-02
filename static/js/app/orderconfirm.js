@@ -12,6 +12,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     data: JSON.parse(_data),
                     carts: _carts,
                     sum: _this.countSum(_carts),
+                    favorable:price_data.price_info.shop_discount.length!=0?_this.getFavorable():0,
                     address: _address,
                     lang: Lang,
                     host: Config.host,
@@ -372,8 +373,15 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
         countSumReduc: function () {
             var _this = this;
             var _last_price = price_data.price_info.total_price;
-            $(".j_reduc_price").text(_last_price)
             return _last_price;
+        },
+        //获取优惠
+        getFavorable:function(){
+            var _this = this;
+            var _items_price = price_data.price_info.items_price;
+            var _last_price = price_data.price_info.total_price;
+            console.log(_items_price-_last_price);
+            return _items_price-_last_price;
         }
     };
     OrderConfirmHtm.init();

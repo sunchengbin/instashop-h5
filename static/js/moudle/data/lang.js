@@ -173,12 +173,14 @@ define([],function(){
             H5_SUBMITING:'正在提交...',
             H5_CONFIRM_SUBMIT:'确认提交？',
             H5_EXIT_CONFIRM:'放弃更改？',
-            H5_REDUC_PAVORABLE:'满减优惠'
-
+            H5_REDUC_PAVORABLE:'满减优惠',
+            H5_REDUC_TITLE:'全店满减'
 
         },
 
         id : {
+            //全店满减
+            'H5_REDUC_TITLE':'Promo Minimal Pembelian',
             //满减优惠
             'H5_REDUC_PAVORABLE':'Potongan Harga',
             //提交

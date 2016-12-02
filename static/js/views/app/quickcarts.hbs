@@ -65,12 +65,13 @@
                 </ul>
             </div>
             {{/eq}} 
-            {{!--{{#if isHaveReduc}}--}}
-            <div class="reduc-info">
-                <p class="clearfix"><span class="fr j_reduc_price">-Rp 0</span>{{lang.H5_REDUC_PAVORABLE}}: </p>
-            </div>
-            {{!--{{/if}}--}}
+            
             <div class="total-box">
+                {{#if shop.shop_discount}}
+                <div class="reduc-info">
+                    <p class="clearfix"><span class="fr j_reduc_price"></span>{{lang.H5_REDUC_PAVORABLE}}: </p>
+                </div>
+                {{/if}}
                 <div class="total-ps b-top">
                     <p class="total-p clearfix"><span class="fr j_freight">Rp 0</span>Biaya Pengiriman: </p>
                     <p class="total-p clearfix"><span class="fr j_total">Rp 0</span>Jumlah Total: </p>
