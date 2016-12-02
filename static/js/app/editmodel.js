@@ -282,7 +282,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     _this.closeLoading(bridge,obj);
                 },
                 error : function(error){
-                    _this.closeLoading(bridge,{code:'error',message:Lang.H5_ORDER_TIMEOUT_ERROR});
+                    _this.closeLoading(bridge,{code:500,message:Lang.H5_ORDER_TIMEOUT_ERROR});
                 }
             });
         },

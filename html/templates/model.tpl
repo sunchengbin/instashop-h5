@@ -161,26 +161,19 @@
                 <li class="clearfix cart-item">
                     <a class="block j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                         <img src="{$item.img|list_img}">
-                        <div class="">
+                        <div class="item-info-box">
                             <p class="name">
                                 {$item.item_comment|nl2br}
                             </p>
                             {if $item.price lt 0}
                                 <p class="price"></p>
                             {elseif $item.is_discount}
-                                <p class="price cost-price">Rp {$item.price|priceFormat}</p>
+                                <p class="price cost-price"><span class="fr">-{$item.discount.value}%</span>Rp {$item.price|priceFormat}</p>
+                                <p class="soon-time">{$item.discount.start_time|transDate}-{$item.discount.end_time|transDate}WIB</p>
                             {else}
                                 <p class="price">Rp {$item.price|priceFormat}</p>
                             {/if}
-                            {if $item.is_discount}
-                                {if $item.discounting}
-                                    <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
-                                {else}
-                                    <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
-                                {/if}
-                            {else}
-                                <p class="discount-price"></p>
-                            {/if}
+
                         </div>
                     </a>
                 </li>
