@@ -882,15 +882,21 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     "items": _this.getItems()
                 }
             }
-            var _req = Config.host.phpHost+Config.actions.shopsDiscount+'?param='+JSON.stringify(_param);
-            Ajax.getJsonp(_req,function(_res){
+            var _req = Config.host.actionUrl+Config.actions.shopsDiscount+'?param='+JSON.stringify(_param);
+            Ajax.getJsonp(_req, function (_res) {
                 if (_res && _res.code == 200) {
-                    var _items_price = price_data.price_info.items_price;
-                    var _last_price = price_data.price_info.total_price;
-                    $(".j_reduc_price").html('-Rp '+(_items_price-_last_price));
-                    $('.j_total').html('Rp '+Base.others.priceFormat(_res.price_info.total_price));
+                    var _items_price = _res.price_info.items_price;
+                    var _last_price = _res.price_info.total_price;
+                    var _freight = 0;
+                    $(".j_reduc_price").html('-Rp ' + (_items_price - _last_price));
+                    
+                    if ($('.icon-radioed-font').length) {
+                        _freight = Number($('.icon-radioed-font').attr('data-price'));
+                    }
+                    $('.j_freight').html('Rp ' + Base.others.priceFormat(_freight));
+                    $('.j_total').html('Rp ' + Base.others.priceFormat(_res.price_info.total_price+_freight));
                 }
-            },function(){
+            }, function () {
                 Dialog.alert({
                     top_txt: '', //可以是html
                     cfb_txt: Lang.H5_FRESHEN,
