@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/1.
  * 语言翻译
  */
-define([],function(){
+define(['base'],function(Base){
     var Lang = {
         'zh-cn' : {
             'H5_SHIPPING_ADDRESS' : '收货地址',
@@ -174,8 +174,7 @@ define([],function(){
             H5_CONFIRM_SUBMIT:'确认提交？',
             H5_EXIT_CONFIRM:'放弃更改？',
             H5_REDUC_PAVORABLE:'满减优惠',
-            H5_REDUC_TITLE:'全店满减'
-            H5_EXIT_CONFIRM:'放弃更改？',
+            H5_REDUC_TITLE:'全店满减',
             H5_ITEM_LIST_TYPE_TWO:'一行2个',
             H5_ITEM_LIST_TYPE_THREE:'一行3个'
 
@@ -473,7 +472,7 @@ define([],function(){
 
         }
     };
-    return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );
+    return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );
     // 暴露到window上，方便在模板中使用
     //window.Lang = ( Lang[ navigator.language.toLowerCase() ] || Lang.id )
 })

@@ -47,7 +47,7 @@ define([],function(){
             sortAction:'v1/tag/',//分类页面翻页接口
             saveTemplate:'v1/shopsTemplate',//提交装修模板
             selfCheckDomain:'v1/domain',//第二期自定义域名活动接口
-            shopsDiscount:'v1/shopsDiscount'//第二期自定义域名活动接口
+            shopsDiscount:'v1/shopsDiscount'//满减验证接口
         }
     };
     function isTestHost(){
