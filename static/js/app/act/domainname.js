@@ -5,17 +5,18 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
     "use strict";
 
     var DM = window.DM = {
-        debug:{
-            debugInfo:"",
-            requrl:""
+        debug: {
+            debugInfo: "",
+            requrl: ""
         },
+        bridge: null,
         StatusCheck: {
-            isClient: false,//客户端版本是否符合要求
-            isDemand: false,//用户是否符合参与活动要求
-            isAllowApply: false,//用户是否可以申请域名
-            isAllowInvite: true,//用户是否可以邀请好友
-            isHasInviteUser: false,//用户是否已有符合邀请的被邀请者
-            isAllowShare: false//是否可以分享
+            isClient: false, //客户端版本是否符合要求
+            isDemand: false, //用户是否符合参与活动要求
+            isAllowApply: false, //用户是否可以申请域名
+            isAllowInvite: false, //用户是否可以邀请好友
+            isHasInviteUser: false, //用户是否已有符合邀请的被邀请者
+            isAllowShare: false //是否可以分享
         },
         init: function () {
             var _this = this;
@@ -25,25 +26,32 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 seller_id: Common.getQueryParam("seller_id"),
                 wduss: encodeURIComponent(Common.getQueryParam("wduss"))
             };
-            // alert(_this.user_info.seller_id+" "+_this.user_info.wduss)
-            //初始化状态监控
-            _this.initStatus();
-            _this.StatusCheck.isAllowInvite = true;
-            // _this.initData();
-            // _this.handleFn();
-            Insjs.WebOnReady(function (bridge) {
-                _this.StatusCheck.isClient = true;
-                //初始化数据
-                _this.initData();
-                _this.handleFn(bridge);
-            }, function () {
-                _this.versionTipDialog();
-                _this.handleFn();
-                return;
-            });
+            Insjs.judgeVersion("3.5", function () {
+                    //初始化状态监控
+                    _this.initStatus();
+                    _this.initData();
+                    _this.handleFn();
+                    Insjs.WebOnReady(function (bridge) {
+                        _this.bridge = bridge;
+                    }, function () {
+                        _this.versionTipDialog();
+                    });
+                }, function () {
+                    _paq.push(['trackEvent', '低于3.5版本提示', 'autotip', '']);
+                    Dialog.alert({
+                        body_txt: 'Silakan update ke versi terbaru untuk mengikuti promo ini'
+                    });
+                })
+                //初始化状态监控
+                // _this.initStatus();
+                // _this.initData();
+                // _this.handleFn();
+                // Insjs.WebOnReady(function (bridge) {
+                //     _this.bridge = bridge;
+                // });
         },
         versionTipDialog: function () {
-            _paq.push(['trackEvent','低于3.5版本提示','autotip','']);
+            _paq.push(['trackEvent', '低于3.5版本提示', 'autotip', '']);
             Dialog.alert({
                 body_txt: 'Silakan update ke 3.5 sebelum menggunakan fitur ini'
             });
@@ -60,152 +68,12 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             var _reqUrl = Config.host.actionUrl + Config.actions.selfCheckDomain + "?param=" + JSON.stringify(_reqParam);
             _this.debug.requrl = _reqUrl;
             _this._loading = Dialog.loading({
-                width:100
+                width: 100
             })
+            _this.StatusCheck.isAllowInvite = true;
+            $(".invite-iscan").text("Sedang diverifikasi").css("color", "#8B572A");
             Ajax.getJsonp(_reqUrl, function (res) {
                 _this._loading.remove();
-                //  res = {
-                //     code: 200,
-                //     self_check: {
-                //         self_ok: false
-                //     },
-                //     invite_user: [],
-                //     domain: false
-                //
-                // };
-                // _this.testCase = Math.floor(Math.random() * 7 + 1)+"";
-                // _this.testCase = Common.getQueryParam("testcase");
-                //
-                // switch (_this.testCase) {
-                //     //用户不符合要求
-                //     case "1":
-                //         res.self_check = {};
-                //         res.self_check.self_ok = false;
-                //         res.invite_user = [];
-                //         res.domain = false;
-                //         break;
-                //     //用户没邀请到人 或者 邀请到的不符合要求
-                //     case "2":
-                //         res.self_check = {};
-                //         res.self_check.self_ok = true;
-                //         res.invite_user = [];
-                //         res.domain = false;
-                //         break;
-                //     //用户有符合要求的被邀请人 但是还不够5
-                //     case "3":
-                //         res.self_check = {};
-                //         res.self_check.self_ok = true;
-                //         res.invite_user = [{
-                //             shop_name: "店铺名1",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名2",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名3",
-                //             telephone: "18601363531"
-                //         }];
-                //         res.domain = false;
-                //         break;
-                //     //用户没申请域名
-                //     case "4":
-                //         res.self_check = {};
-                //         res.self_check.self_ok = true;
-                //         res.invite_user = [{
-                //             shop_name: "店铺名1",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名2",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名3",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名4",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名5",
-                //             telephone: "18601363531"
-                //         }];
-                //         res.domain = false;
-                //         break;
-                //     //域名处理中
-                //     case "5":
-                //         res.self_check = {};
-                //         res.self_check.self_ok = true;
-                //         res.invite_user = [{
-                //             shop_name: "店铺名1",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名2",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名3",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名4",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名5",
-                //             telephone: "18601363531"
-                //         }];
-                //         res.domain = {
-                //             domain: "piaohua.com",
-                //             status: "wait"
-                //         };
-                //         break;
-                //     //域名处理失败了
-                //     case "6":
-                //         res.self_check = {};
-                //         res.self_check.self_ok = true;
-                //         res.invite_user = [{
-                //             shop_name: "店铺名1",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名2",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名3",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名4",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名5",
-                //             telephone: "18601363531"
-                //         }];
-                //         res.domain = {
-                //             domain: "piaohua.com",
-                //             status: "fail"
-                //         };
-                //         break;
-                //     //域名处理成功了
-                //     case "7":
-                //         res.self_check = {};
-                //         res.share = ["http://7jpswm.com1.z0.glb.clouddn.com/badge3_1.jpg"]
-                //         res.self_check.self_ok = true;
-                //         res.invite_user = [{
-                //             shop_name: "店铺名1",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名2",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名3",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名4",
-                //             telephone: "18601363531"
-                //         }, {
-                //             shop_name: "店铺名5",
-                //             telephone: "18601363531"
-                //         }];
-                //         res.domain = {
-                //             domain: "www.piaohua.com",
-                //             status: "succ"
-                //         };
-                //         break;
-                // }
                 var _selfCheckData = res.self_check || {};
                 var _domainCheckData = res.domain;
                 var _inviteUserList = res.invite_user;
@@ -216,7 +84,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     //是否符合要求
                     _this.StatusCheck.isDemand = _selfCheckData.self_ok;
                     //是否允许点击邀请按钮
-                    // _this.StatusCheck.isAllowInvite = true;
+                    _this.StatusCheck.isAllowInvite = true;
                     if (_inviteUserList.length > 0) {
 
                         $(".j_invite_table").html(_this.createInviterTable(_inviteUserList));
@@ -263,15 +131,16 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                         _this.StatusCheck.isAllowApply = true;
                     }
                 } else {
+                    _this.StatusCheck.isAllowInvite = false;
                     Dialog.alert({
-                        top_txt: '',//可以是html
+                        top_txt: '', //可以是html
                         body_txt: '<p class="dialog-body-p">' + (res.message ? res.message : Lang.H5_ERROR) + '</p>'
                     });
                 }
             }, function () {
                 _this._loading.remove();
                 Dialog.alert({
-                    top_txt: '',//可以是html
+                    top_txt: '', //可以是html
                     cfb_txt: Lang.H5_FRESHEN,
                     body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
                     cf_fn: function () {
@@ -286,16 +155,17 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 "isDemand": {
                     get: function () {
                         //客户端是否符合 && 接口
-                        return !!this.isClient && this._isDemand;
+                        return !!this._isDemand;
                     },
                     set: function (val) {
                         if (val) {
-                            $(".invite-iscan").text("Syarat ini sudah terpenuhi").css("color","#54AE59");
+                            $(".invite-iscan").text("Syarat ini sudah terpenuhi").css("color", "#54AE59");
                             $(".invite-number").text(ctx.user_info.seller_id);
                             $(".invite-number-box").show();
                         } else {
-                            $(".invite-iscan").text("Syarat ini belum terpenuhi").css("color","red");
-                            $(".invite-number-box").hide();
+                            $(".invite-iscan").text("Syarat ini belum terpenuhi").css("color", "red");
+                            $(".invite-number").text(ctx.user_info.seller_id);
+                            $(".invite-number-box").show();
                         }
                         this._isDemand = val;
                     }
@@ -322,7 +192,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     set: function (val) {
                         if (val) {
                             //当 用户3.5版本下 与 符合条件 与 有达标被邀请者 时 设置为true生效
-                            if (this.isClient && this.isDemand && this.isHasInviteUser) {
+                            if (this.isDemand && this.isHasInviteUser) {
                                 $(".j_domain_btn").removeClass('disable-btn')
                                 $(".j_domain_btn").show()
                             } else {
@@ -336,54 +206,58 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 }
             })
         },
-        handleFn: function (bridge) {
+        handleFn: function () {
             var _this = this;
             _this.domain_dialog = null;
 
             //邀请按钮
             $("body").on("click", ".j_invite_btn", function () {
-                if (_this.StatusCheck.isAllowInvite&&_this.StatusCheck.isClient) {
-                    //e_c 分享按钮
-                    //e_a 点击
-                    //e_n 附加属性
-                    _paq.push(['trackEvent','邀请按钮','click','']);
-                    var _report = $(this).attr("data-report");
-                    reportEventStatistics(_report);
-                    _this.invite_dialog = Dialog.dialog({
-                        body_txt: _this.createInviteDialogHtm(),
-                        show_footer: false,
-                        show_top: false,
-                        c_fn:function(){
-                            _paq.push(['trackEvent','关闭邀请弹层','click','']);
+                    Insjs.judgeVersion("3.5", function () {
+                        if (_this.StatusCheck.isAllowInvite) {
+                            _paq.push(['trackEvent', '邀请按钮', 'click', '']);
+                            var _report = $(this).attr("data-report");
+                            reportEventStatistics(_report);
+                            _this.invite_dialog = Dialog.dialog({
+                                body_txt: _this.createInviteDialogHtm(),
+                                show_footer: false,
+                                show_top: false,
+                                c_fn: function () {
+                                    _paq.push(['trackEvent', '关闭邀请弹层', 'click', '']);
+                                }
+                            });
                         }
-                    });
-                }else{
-                    _this.versionTipDialog();
-                }
-            })
-            //分享按钮
+                    }, function () {
+                        _this.versionTipDialog();
+                    })
+                })
+                //分享按钮
             $('body').on('click', '.j_share_btn', function () {
-                if (_this.StatusCheck.isAllowShare) {
-                    _paq.push(['trackEvent','分享按钮','click','']);
-                    var _report = $(this).attr("data-report");
-                    reportEventStatistics(_report);
-                    _this.share_dialog = Dialog.dialog({
-                        body_txt: _this.createShareDialogHtm(),
-                        show_footer: false,
-                        show_top: false,
-                        body_fn:function(){
-                            var _dialog = this;
-                            var _shareImg = $(".invite-dialog-img-url")[0];
-                            _shareImg.src = _this.domainImg;
-                            _shareImg.onload = function(){
-                                _dialog.opts.wraper.css(_dialog.setPosition());
+                Insjs.judgeVersion("3.5", function () {
+                    if (_this.StatusCheck.isAllowShare) {
+                        _paq.push(['trackEvent', '分享按钮', 'click', '']);
+                        var _report = $(this).attr("data-report");
+                        reportEventStatistics(_report);
+                        _this.share_dialog = Dialog.dialog({
+                            body_txt: _this.createShareDialogHtm(),
+                            show_footer: false,
+                            show_top: false,
+                            body_fn: function () {
+                                var _dialog = this;
+                                var _shareImg = $(".invite-dialog-img-url")[0];
+                                _shareImg.src = _this.domainImg;
+                                _shareImg.onload = function () {
+                                    _dialog.opts.wraper.css(_dialog.setPosition());
+                                }
+                            },
+                            c_fn: function () {
+                                _paq.push(['trackEvent', '关闭分享弹层', 'click', '']);
                             }
-                        },
-                        c_fn:function(){
-                            _paq.push(['trackEvent','关闭分享弹层','click','']);
-                        }
-                    });
-                }
+                        });
+                    }
+
+                }, function () {
+                    _this.versionTipDialog();
+                })
             });
 
             $('body').on('click', '.j_invite_action', function () {
@@ -391,7 +265,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     _type = _dom.attr('data-type'),
                     _report = _dom.attr('data-report'),
                     _invite_txt = $.trim($("#j_invite_txt").val());
-                    _invite_txt = _invite_txt.replace('http://www.instashop.co.id','http://www.instashop.co.id?from='+_type+"&seller_id="+_this.user_info.seller_id);
+                _invite_txt = _invite_txt.replace('http://www.instashop.co.id', 'http://www.instashop.co.id?from=' + _type + "&seller_id=" + _this.user_info.seller_id);
                 var _param = {
                     param: {
                         type: 'share',
@@ -400,20 +274,19 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             data: [{
                                 img: '',
                                 content: _invite_txt,
-                                link_url: 'http://www.instashop.co.id?from='+_type+"&seller_id="+_this.user_info.seller_id
+                                link_url: 'http://www.instashop.co.id?from=' + _type + "&seller_id=" + _this.user_info.seller_id
                             }]
                         }
                     }
                 };
                 try {
                     reportEventStatistics(_report);
-                    bridge.callHandler('insSocket', _param, function (response) {
+                    _this.bridge.callHandler('insSocket', _param, function (response) {
                         return null;
                     });
                 } catch (e) {
                     _this.versionTipDialog();
                 }
-
             });
             $('body').on('click', '.j_share_action', function () {
                 var _dom = $(this),
@@ -433,32 +306,33 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 };
                 try {
                     reportEventStatistics(_report);
-                    bridge.callHandler('insSocket', _param, function (response) {
+                    _this.bridge.callHandler('insSocket', _param, function (response) {
                         return null;
                     });
                 } catch (e) {
                     _this.versionTipDialog();
                 }
-
             });
+
+
             $('body').on('click', '.j_domain_btn', function () {
                 if (_this.StatusCheck.isAllowApply) {
-                    _paq.push(['trackEvent','申请域名','click','']);
+                    _paq.push(['trackEvent', '申请域名', 'click', '']);
                     var _report = $(this).attr('data-report');
                     reportEventStatistics(_report);
                     _this.domain_dialog = Dialog.dialog({
                         body_txt: _this.createDomainDialogHtm(),
                         show_footer: false,
                         show_top: false,
-                        c_fn:function(){
-                            _paq.push(['trackEvent','关闭申请域名弹层','click','']);
+                        c_fn: function () {
+                            _paq.push(['trackEvent', '关闭申请域名弹层', 'click', '']);
                         }
                     });
                 }
             });
-            $("body").on("click",".j_debug_btn",function(){
+            $("body").on("click", ".j_debug_btn", function () {
                 Dialog.alert({
-                    body_txt: "请求:"+_this.debug.requrl+"</br>回参:</br>"+_this.debug.debugInfo
+                    body_txt: "请求:" + _this.debug.requrl + "</br>回参:</br>" + _this.debug.debugInfo
                 });
             });
             $('body').on('keyup', '.j_domain_ipt', function () {
@@ -512,7 +386,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             _htm = '<div class="invite-dialog">' +
                 '    <div class="invite-dialog-input">' +
                 '        <textarea name="content" value="" id="j_invite_txt"' +
-                '                  >Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Sst, jangan lupa gunakan kode referral ini saat registrasi ya ('+_this.user_info.seller_id+
+                '                  >Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi. Yuk buat webstore GRATIS untuk online shopmu dengan Instashop. Sst, jangan lupa gunakan kode referral ini saat registrasi ya (' + _this.user_info.seller_id +
                 ')Klik:http://www.instashop.co.id</textarea>' +
                 '    </div>' +
                 '    <div class="invite-share-box" data-spider="invitebox">' +
@@ -536,66 +410,86 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
         },
         createShareDialogHtm: function () {
             var _htm = "";
-            _htm = '<div class="invite-dialog">' +
-                '    <div class="invite-dialog-img">' +
-                '        <img class="invite-dialog-img-url" src="">' +
-                '    </div>' +
-                '    <div class="invite-share-box" data-spider="sharebox">' +
-                '        <ul class="ins-avg-sm-4">' +
-                '            <li>' +
-                '                <i data-spider="dinstagram" spm-auto="instagram分享" class="iconfont icon-share-instagram j_share_action" data-report="domain_btn_share_instagram" data-type="share_to_instagram"></i>' +
-                '                <p>Instagram</p>' +
-                '            </li>' +
-                '            <li><i data-spider="dline" spm-auto="line分享" class="iconfont icon-share-line j_share_action" data-report="domain_btn_share_line" data-type="share_to_line"></i>' +
-                '                <p>LINE</p></li>' +
-                '            <li><i data-spider="dwhatsapp" spm-auto="whatsapp分享" class="iconfont icon-share-whatsapp j_share_action" data-report="domain_btn_share_whatsapp" data-type="share_to_whatsapp"></i>' +
-                '                <p>WhatsApp</p></li>' +
-                '            <li><i data-spider="dbbm" spm-auto="bbm分享" class="iconfont icon-share-bbm j_share_action" data-report="domain_btn_share_bbm" data-type="share_to_bbm"></i>' +
-                '                <p>BBM</p>' +
-                '            </li>' +
-                '        </ul>' +
-                '    </div>' +
-                '</div>';
+            if (/ios/i.test(window.navigator.userAgent)) {
+                _htm = '<div class="invite-dialog">' +
+                    '    <div class="invite-dialog-img">' +
+                    '        <img class="invite-dialog-img-url" src="">' +
+                    '    </div>' +
+                    '    <div class="invite-share-box" data-spider="sharebox">' +
+                    '        <ul class="ins-avg-sm-3">' +
+                    '            <li>' +
+                    '                <i data-spider="dinstagram" spm-auto="instagram分享" class="iconfont icon-share-instagram j_share_action" data-report="domain_btn_share_instagram" data-type="share_to_instagram"></i>' +
+                    '                <p>Instagram</p>' +
+                    '            </li>' +
+                    '            <li><i data-spider="dline" spm-auto="line分享" class="iconfont icon-share-line j_share_action" data-report="domain_btn_share_line" data-type="share_to_line"></i>' +
+                    '                <p>LINE</p></li>' +
+                    '            <li><i data-spider="dwhatsapp" spm-auto="whatsapp分享" class="iconfont icon-share-whatsapp j_share_action" data-report="domain_btn_share_whatsapp" data-type="share_to_whatsapp"></i>' +
+                    '                <p>WhatsApp</p></li>' +
+                    '        </ul>' +
+                    '    </div>' +
+                    '</div>';
+            } else {
+                _htm = '<div class="invite-dialog">' +
+                    '    <div class="invite-dialog-img">' +
+                    '        <img class="invite-dialog-img-url" src="">' +
+                    '    </div>' +
+                    '    <div class="invite-share-box" data-spider="sharebox">' +
+                    '        <ul class="ins-avg-sm-4">' +
+                    '            <li>' +
+                    '                <i data-spider="dinstagram" spm-auto="instagram分享" class="iconfont icon-share-instagram j_share_action" data-report="domain_btn_share_instagram" data-type="share_to_instagram"></i>' +
+                    '                <p>Instagram</p>' +
+                    '            </li>' +
+                    '            <li><i data-spider="dline" spm-auto="line分享" class="iconfont icon-share-line j_share_action" data-report="domain_btn_share_line" data-type="share_to_line"></i>' +
+                    '                <p>LINE</p></li>' +
+                    '            <li><i data-spider="dwhatsapp" spm-auto="whatsapp分享" class="iconfont icon-share-whatsapp j_share_action" data-report="domain_btn_share_whatsapp" data-type="share_to_whatsapp"></i>' +
+                    '                <p>WhatsApp</p></li>' +
+                    '            <li><i data-spider="dbbm" spm-auto="bbm分享" class="iconfont icon-share-bbm j_share_action" data-report="domain_btn_share_bbm" data-type="share_to_bbm"></i>' +
+                    '                <p>BBM</p>' +
+                    '            </li>' +
+                    '        </ul>' +
+                    '    </div>' +
+                    '</div>';
+            }
             return _htm;
         },
         createInviterTable: function (inviters) {
             var _trs = "";
-            var _table_head = '<tr>'+
-                '                            <td class="t-header" colspan="2">'+
-                '                                Teman yang sudah memenuhi syarat'+
-                '                            </td>'+
+            var _table_head = '<tr>' +
+                '                            <td class="t-header" colspan="2">' +
+                '                                Teman yang sudah memenuhi syarat' +
+                '                            </td>' +
                 '                        </tr>';
             for (var i = 0, inviter; inviter = inviters[i++];) {
                 var _curTr = '<tr><td>' + inviter.shop_name + '</td><td>' + inviter.telephone + '</td></tr>';
                 _trs += _curTr;
             }
-            return _table_head+_trs;
+            return _table_head + _trs;
         },
         createDomainDialogHtm: function () {
             var _htm = '';
-            _htm += '<div class="domain-box">'
-                + '<p>Tulis domain web yang kamu inginkan :</p>'
-                + '<div class="domain-error j_domain_error"></div>'
-                + '<div class="domain-input">'
-                + '<input class="j_domain_ipt" maxlength="20" type="text">'
-                + '</div>'
-                + '<div class="input-explain">'
-                + '1. Link toko terdiri dari 5-20 karakter<br>'
-                + '2. Hanya diperbolehkan berupa angka (0-9) dan abjad (a-z)<br>'
-                + '3. Di dalam nama domain tersebut tidak boleh mengandung Instashop<br>'
-                + '4. Jika ada pertanyaan, silahkan hubungi kami<br>'
-                + '</div>'
-                + '<button class="btn j_domain_submit">Yakin ingin mengajukan?</button>'
-                + '<div class="domain-cont">'
-                + '<p>1. Setelah diubah, nanti alamat web Instashop kalian bukan lagi namatoko.instashop.co.id, tapi langsung berubah menjadi <span>namatoko.com :)</span></p>'
-                + '<p>2. Nama domain tidak harus sama dengan nama toko,tapi hanya boleh mengandung angka dan huruf abjad <span>(tidak boleh mengandung karakter).</span></p>'
-                + '<p>Contoh domain yang tepat: namatoko.com, </p>'
-                + '<p>namatoko123.com</p>'
-                + '<p>Contoh domain yang salah: nama_toko.com, </p>'
-                + '<p>namatoko@.com </p>'
-                + '<p>3. Domain tidak dapat diubah setelah didaftarkan.Proses pendaftaran domain web membutuhkan waktu <span>72 jam</span> sebelum dapat digunakan. Sebelum itu, kamu masih bisa menggunakan namatoko.instashop.co.id</p>'
-                + '</div>'
-                + '</div>';
+            _htm += '<div class="domain-box">' +
+                '<p>Tulis domain web yang kamu inginkan :</p>' +
+                '<div class="domain-error j_domain_error"></div>' +
+                '<div class="domain-input">' +
+                '<input class="j_domain_ipt" maxlength="20" type="text">' +
+                '</div>' +
+                '<div class="input-explain">' +
+                '1. Link toko terdiri dari 5-20 karakter<br>' +
+                '2. Hanya diperbolehkan berupa angka (0-9) dan abjad (a-z)<br>' +
+                '3. Di dalam nama domain tersebut tidak boleh mengandung Instashop<br>' +
+                '4. Jika ada pertanyaan, silahkan hubungi kami<br>' +
+                '</div>' +
+                '<button class="btn j_domain_submit">Yakin ingin mengajukan?</button>' +
+                '<div class="domain-cont">' +
+                '<p>1. Setelah diubah, nanti alamat web Instashop kalian bukan lagi namatoko.instashop.co.id, tapi langsung berubah menjadi <span>namatoko.com :)</span></p>' +
+                '<p>2. Nama domain tidak harus sama dengan nama toko,tapi hanya boleh mengandung angka dan huruf abjad <span>(tidak boleh mengandung karakter).</span></p>' +
+                '<p>Contoh domain yang tepat: namatoko.com, </p>' +
+                '<p>namatoko123.com</p>' +
+                '<p>Contoh domain yang salah: nama_toko.com, </p>' +
+                '<p>namatoko@.com </p>' +
+                '<p>3. Domain tidak dapat diubah setelah didaftarkan.Proses pendaftaran domain web membutuhkan waktu <span>72 jam</span> sebelum dapat digunakan. Sebelum itu, kamu masih bisa menggunakan namatoko.instashop.co.id</p>' +
+                '</div>' +
+                '</div>';
             return _htm;
         },
         actionFn: function (opts, callback) {
@@ -611,8 +505,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                             callback && callback(obj);
                         }
                     },
-                    function (obj) {
-                    }
+                    function (obj) {}
                 );
             } else {
                 if (opts.action == 'search') {
@@ -637,7 +530,9 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 } else {
                     Ajax.postJsonp({
                         url: Config.actions.domainName,
-                        data: {param: JSON.stringify(_data)},
+                        data: {
+                            param: JSON.stringify(_data)
+                        },
                         type: 'POST',
                         success: function (obj) {
                             //_this.domain_btn_disable = true;

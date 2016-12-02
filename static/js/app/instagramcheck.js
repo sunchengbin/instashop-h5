@@ -1,11 +1,10 @@
 /**
  * Created by lanchenghao on 16/11/14.
  */
-require(['config', 'base', 'lang', 'common'], function (Config, Base, Lang, Common) {
+require(['config', 'base', 'lang', 'common','dialog'], function (Config, Base, Lang, Common,Dialog) {
     var Instagramcheck = {
         init: function () {
             var ctx = this;
-            
             ctx.deleteAllCookies();
             localStorage&&localStorage.clear();
             ctx.main();
@@ -39,7 +38,15 @@ require(['config', 'base', 'lang', 'common'], function (Config, Base, Lang, Comm
                 action: "instagram"
             }
             var reqUrl = Config.host.phpHost + Config.actions.instagramcheck + "?param=" + JSON.stringify(_reqData)+"&timestamp="+new Date().getTime();
-            window.location.href = reqUrl;
+             Dialog.confirm({
+                body_txt: 'Pastikan akun Instagrammu tidak diprivate',
+                cf_fn:function(){
+                    window.location.href = reqUrl;
+                },
+                c_fn:function(){
+                    window.location.href = window.location.href+"&oauth=fail";
+                }
+            })
         }
     };
     Instagramcheck.init();
