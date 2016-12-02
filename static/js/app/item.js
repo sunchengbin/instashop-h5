@@ -5,7 +5,7 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item'], function (Lang, Lazyload,  Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item','dialog'], function (Lang, Lazyload,  Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item,Dialog) {
     var ITEM = {
         init: function () {
             var _this = this,
@@ -107,6 +107,24 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     location.href = _url;
                 });
             });
+            //满减 lanchenghao
+            $('body').on('click','.j_reduc_box',function(){
+                var _htm = '';
+                if(!!init_data.item.shop.shop_discount){
+                    for(var i=0,_reducItem;_reducItem=init_data.item.shop.shop_discount.info[i++];){
+                        _htm+="Minimal Pembelian Rp "+Base.others.priceFormat(_reducItem.condition_price)+" Potongan Rp "+ Base.others.priceFormat(_reducItem.discount_price)+","
+                    }
+                    _htm = _htm.replace(/,$/gi,'') +"</br>"+ $(".reduc-expire").text();
+                    Dialog.alert({
+                        top_txt:"<p style='text-align:center'>"+Lang.H5_REDUC_TITLE+"</p>",
+                        show_top:true,
+                        body_txt:_htm,
+                        body_fn:function(){
+                            $('.j_c_btn').hide();
+                        }
+                    })
+                }
+            })
             var _this = this;
             if ($('.j_show_contact').length) {
                 _this.contact = Contact({

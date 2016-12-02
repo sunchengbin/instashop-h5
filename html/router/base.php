@@ -173,3 +173,6 @@ function getItemListType($template){
     }
     return $type;
 }
+function dateFormat($datetime){
+    return date('d/m H:i',strtotime($datetime));
+}

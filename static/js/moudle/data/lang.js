@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/1.
  * 语言翻译
  */
-define(['base'],function(Base){
+define([],function(){
     var Lang = {
         'zh-cn' : {
             'H5_SHIPPING_ADDRESS' : '收货地址',
@@ -173,6 +173,9 @@ define(['base'],function(Base){
             H5_SUBMITING:'正在提交...',
             H5_CONFIRM_SUBMIT:'确认提交？',
             H5_EXIT_CONFIRM:'放弃更改？',
+            H5_REDUC_PAVORABLE:'满减优惠',
+            H5_REDUC_TITLE:'全店满减'
+            H5_EXIT_CONFIRM:'放弃更改？',
             H5_ITEM_LIST_TYPE_TWO:'一行2个',
             H5_ITEM_LIST_TYPE_THREE:'一行3个'
 
@@ -180,6 +183,10 @@ define(['base'],function(Base){
         },
 
         id : {
+            //全店满减
+            'H5_REDUC_TITLE':'Promo Minimal Pembelian',
+            //满减优惠
+            'H5_REDUC_PAVORABLE':'Potongan Harga',
             //提交
             'H5_SUBMIT_TXT':"Ajukan",
             //注：请确保你的Instagram账户没有设置为“私密账户”
@@ -462,12 +469,11 @@ define(['base'],function(Base){
             H5_ACCOUNT_NUMBER:'Nomor Rekening',
             H5_SUBMITING:'Sedang ditambahkan...',
             H5_CONFIRM_SUBMIT:'Yakin ingin mengajukan？',
-            H5_EXIT_CONFIRM:'Yakin ingin keluar?',
-            H5_ITEM_LIST_TYPE_TWO:'Tampilan 1 Baris 2 Produk',
-            H5_ITEM_LIST_TYPE_THREE:'Tampilan 1 Baris 3 Produk'
+            H5_EXIT_CONFIRM:'Yakin ingin keluar?'
+
         }
     };
-    return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );
+    return ( Lang[ navigator.language.toLowerCase() ] || Lang.id );
     // 暴露到window上，方便在模板中使用
     //window.Lang = ( Lang[ navigator.language.toLowerCase() ] || Lang.id )
 })

@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1479895185413'); /* IE9*/
-  src: url('iconfont.eot?t=1479895185413#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1479895185413') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1479895185413') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1479895185413#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1480643678952'); /* IE9*/
+  src: url('iconfont.eot?t=1480643678952#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1480643678952') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1480643678952') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1480643678952#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -85,4 +85,8 @@
 .icon-share-whatsapp:before { content: "\e621"; }
 
 .icon-share-line:before { content: "\e622"; }
+
+.icon-share-instagram:before { content: "\e623"; }
+
+.icon-bugle:before { content: "\e624"; }
 
