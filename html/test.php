@@ -47,6 +47,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
                     return null;
                 });
             });
+            alert(localStorage.getItem('TEST'));
+            localStorage.setItem('TEST','hello world');
             registerFn(bridge);
         }
         function registerFn(bridge){//对native内容监控
@@ -54,6 +56,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
                 alert(data)
             });
         }
+
     })
     </script>
 </body>
