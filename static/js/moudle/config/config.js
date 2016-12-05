@@ -4,7 +4,7 @@
  * 图片,接口
  */
 
-define([],function(){
+define(['base'],function(Base){
     var URL_HTTP_TYPE = location.protocol,
         URL_HOST_NAME = location.hostname,
         HOST = {//线上环境
@@ -56,5 +56,10 @@ define([],function(){
         }
         return HOST;
     }
+    function setDebugEnv(){
+        var Debug = Base.others.getUrlPrem('_debug_env') || localStorage.getItem('DebugEnv');
+        localStorage.setItem('DebugEnv',Debug);
+    }
+    setDebugEnv();
     return CONFIG;
 })

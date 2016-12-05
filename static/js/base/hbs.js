@@ -292,11 +292,12 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
             return '<li class="empty-cart">'+Lang.H5_SHOPING_NO_GOODS+'</li></ul>';
         }
         for(var item in carts){
-            _htm += '<li><div class="lazy" data-img="'+carts[item].img+'">';
-            if(item.is_discount && item.discounting){
-                _htm +='<span class="">-'+item.discount.value+'%</span>';
+            var _item = carts[item];
+            _htm += '<li><a class="item-info j_item_info" data-url="'+_item.h5_url+'" href="javascript:;"><div class="lazy" data-img="'+_item.img+'">';
+            if(_item.is_discount && _item.discounting){
+                _htm +='<span class="">-'+_item.discount.value+'%</span>';
             }
-            _htm +='</div></li>';
+            _htm +='</div></a></li>';
         }
         return _htm;
     });
