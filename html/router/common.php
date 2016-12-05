@@ -50,6 +50,15 @@ function is_https()
 	$p_arr = explode(':', $proto);
 	return trim($p_arr[0]) === 'https';
 }
+function getSellerInfo(){
+    $seller_id = $_REQUEST['seller_id'];
+    $wduss = $_REQUEST['wduss'];
+    $params = [
+        'seller_id' => $seller_id,
+        'wduss' => urlencode($wduss)
+    ];
+    return $params;
+}
 spl_autoload_register('loadClass');
 $prompt = is_https() ? 'https:' : 'http:';
 $prompt = '';

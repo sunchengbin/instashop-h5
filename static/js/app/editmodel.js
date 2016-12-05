@@ -264,11 +264,12 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 });
                 _this.have_list_type = true;
             }
+            var _seller_info = Common.getUrlSellerInfo();
             var _req_data = {
                 edata : {
                     content : _this.model_data,
-                    seller_id : Base.others.getUrlPrem('seller_id'),
-                    wduss : Base.others.getUrlPrem('wduss')
+                    seller_id : _seller_info.seller_id,
+                    wduss : _seller_info.wduss
                 }
             };
             Ajax.postJsonp({
