@@ -219,6 +219,7 @@ section{
 .check-btn, .checked-btn{
     font-size: 18px;
     margin-right: 10px;
+    vertical-align: middle;
 }
 .checked-btn{
     color: #43CB9C;

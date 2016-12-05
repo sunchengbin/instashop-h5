@@ -472,6 +472,7 @@ define(['base'],function(Base){
 
         }
     };
+    console.log(Lang[Base.others.getUrlPrem('language')]);
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );
     // 暴露到window上，方便在模板中使用
     //window.Lang = ( Lang[ navigator.language.toLowerCase() ] || Lang.id )
