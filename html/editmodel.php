@@ -25,13 +25,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             include_once( dirname(__FILE__).'/../html/router/util.php' );
             error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
             ini_set('display_errors', 0);
-
-            $seller_id = $_REQUEST['seller_id'];
-            $wduss = $_REQUEST['wduss'];
-            $params = [
-                'seller_id' => $seller_id,
-                'wduss' => $wduss
-            ];
+            $params = getSellerInfo();
             $path = 'v1/shopsTemplate';
         ?>
         var api_url = '<?php echo check_api($path, $params); ?>';

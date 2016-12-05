@@ -168,6 +168,12 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                 _item.css('width',_c_w*_num);
             });
         },
+        getUrlSellerInfo : function(){//内嵌webview中的页面取seller_id和wduss
+            return {
+                seller_id : Base.others.getUrlPrem('seller_id'),
+                wduss : encodeURIComponent(Base.others.getUrlPrem('wduss'))
+            }
+        },
         getItemListType : function(template,callback){
             var _type = 2;
             $.each(template,function(i,item){
@@ -175,8 +181,8 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                     _type = item.data[0];
                 }
             });
-            callback && callback(3);
-            return 3;
+            callback && callback(_type);
+            return _type;
         }
     };
 
