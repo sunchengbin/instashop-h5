@@ -782,6 +782,24 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                         }
 
     </style>
+    <script>
+        <?php
+        include_once( dirname(__FILE__).'/../../../html/router/util.php' );
+
+        $seller_id = $_REQUEST['seller_id'];
+        $wduss = $_REQUEST['wduss'];
+        $params = [
+                'action' => 'invite',
+                'seller_id' => $seller_id,
+                'wduss' => urlencode($wduss)
+        ];
+        $path = 'v1/domain';
+        ?>
+        var api_url = '<?php echo check_api($path, $params); ?>';
+
+        var act_data = JSON.parse(<?php echo get_init_data($path, $params); ?>);
+
+      </script>
 </head>
 <body data-spider="hz8xkn2i">
 <section class="banner">

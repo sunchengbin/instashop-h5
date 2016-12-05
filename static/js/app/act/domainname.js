@@ -9,6 +9,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             debugInfo: "",
             requrl: ""
         },
+        act_data: act_data,
         bridge: null,
         StatusCheck: {
             isClient: false, //客户端版本是否符合要求
@@ -58,96 +59,70 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
         },
         initData: function () {
             var _this = this;
-            var _reqParam = {
-                edata: {
-                    action: "invite",
-                    seller_id: _this.user_info.seller_id,
-                    wduss: _this.user_info.wduss
-                }
-            }
-            var _reqUrl = Config.host.actionUrl + Config.actions.selfCheckDomain + "?param=" + JSON.stringify(_reqParam);
-            _this.debug.requrl = _reqUrl;
-            _this._loading = Dialog.loading({
-                width: 100
-            })
             _this.StatusCheck.isAllowInvite = true;
             $(".invite-iscan").text("Sedang diverifikasi").css("color", "#8B572A");
-            Ajax.getJsonp(_reqUrl, function (res) {
-                _this._loading.remove();
-                var _selfCheckData = res.self_check || {};
-                var _domainCheckData = res.domain;
-                var _inviteUserList = res.invite_user;
-                _this.debug.debugInfo = JSON.stringify(res);
-                console.log(res);
+            var res = _this.act_data;
+            var _selfCheckData = res.self_check || {};
+            var _domainCheckData = res.domain;
+            var _inviteUserList = res.invite_user;
+            _this.debug.debugInfo = JSON.stringify(res);
+            if (res && 200 == res.code) {
+                //是否符合要求
+                _this.StatusCheck.isDemand = _selfCheckData.self_ok;
+                //是否允许点击邀请按钮
+                _this.StatusCheck.isAllowInvite = true;
+                if (_inviteUserList.length > 0) {
 
-                if (res && 200 == res.code) {
-                    //是否符合要求
-                    _this.StatusCheck.isDemand = _selfCheckData.self_ok;
-                    //是否允许点击邀请按钮
-                    _this.StatusCheck.isAllowInvite = true;
-                    if (_inviteUserList.length > 0) {
-
-                        $(".j_invite_table").html(_this.createInviterTable(_inviteUserList));
-                        $(".invite-table").show();
-                        $(".j_invite_tip").hide();
-                        if (_inviteUserList.length >= 5) {
-                            _this.StatusCheck.isHasInviteUser = true;
-                        }
-
-                    } else {
-                        $(".invite-table").hide();
-                        $(".j_invite_tip").show();
-                        $(".j_invite_tip").text('Belum ada teman yang memenuhi syarat')
-                        _this.StatusCheck.isHasInviteUser = false;
+                    $(".j_invite_table").html(_this.createInviterTable(_inviteUserList));
+                    $(".invite-table").show();
+                    $(".j_invite_tip").hide();
+                    if (_inviteUserList.length >= 5) {
+                        _this.StatusCheck.isHasInviteUser = true;
                     }
-                    //是否允许点击申请按钮
-                    if (_domainCheckData) {
-                        //域名状态 失败 等待 成功
-                        switch (_domainCheckData.status) {
-                            case "fail":
-                                //TODO 域名绑定失败 请重新申请
-                                $(".j_domain_tip").text("Domain ini sudah digunakan, silakan gunakan domain lain")
-                                _this.StatusCheck.isAllowApply = true;
-                                break;
-                            case "wait":
-                                $(".j_domain_tip").text("Pendaftaran Sedang Diproses")
-                                $(".j_domain_btn").hide();
-                                _this.StatusCheck.isAllowApply = false;
-                                break;
-                            case "succ":
-                                $(".j_domain_succ").html("Selamat, registrasi domainmu berhasil!</br>Yuk segera bagikan web barumu ini!");
-                                $(".j_domain_tip").html(_domainCheckData.domain);
-                                $(".j_domain_btn").hide();
-                                $(".j_share_btn").show();
-                                _this.domainImg = res.share[0];
-                                _this.domain = _domainCheckData.domain;
-                                _this.StatusCheck.isAllowShare = true;
-                                _this.StatusCheck.isAllowApply = false;
-                                window.location.href = "#result";
-                                break;
-                        }
-                    } else {
-                        //没申请过
-                        _this.StatusCheck.isAllowApply = true;
+
+                } else {
+                    $(".invite-table").hide();
+                    $(".j_invite_tip").show();
+                    $(".j_invite_tip").text('Belum ada teman yang memenuhi syarat')
+                    _this.StatusCheck.isHasInviteUser = false;
+                }
+                //是否允许点击申请按钮
+                if (_domainCheckData) {
+                    //域名状态 失败 等待 成功
+                    switch (_domainCheckData.status) {
+                        case "fail":
+                            //TODO 域名绑定失败 请重新申请
+                            $(".j_domain_tip").text("Domain ini sudah digunakan, silakan gunakan domain lain")
+                            _this.StatusCheck.isAllowApply = true;
+                            break;
+                        case "wait":
+                            $(".j_domain_tip").text("Pendaftaran Sedang Diproses")
+                            $(".j_domain_btn").hide();
+                            _this.StatusCheck.isAllowApply = false;
+                            break;
+                        case "succ":
+                            $(".j_domain_succ").html("Selamat, registrasi domainmu berhasil!</br>Yuk segera bagikan web barumu ini!");
+                            $(".j_domain_tip").html(_domainCheckData.domain);
+                            $(".j_domain_btn").hide();
+                            $(".j_share_btn").show();
+                            _this.domainImg = res.share[0];
+                            _this.domain = _domainCheckData.domain;
+                            _this.StatusCheck.isAllowShare = true;
+                            _this.StatusCheck.isAllowApply = false;
+                            window.location.href = "#result";
+                            break;
                     }
                 } else {
-                    _this.StatusCheck.isAllowInvite = false;
-                    Dialog.alert({
-                        top_txt: '', //可以是html
-                        body_txt: '<p class="dialog-body-p">' + (res.message ? res.message : Lang.H5_ERROR) + '</p>'
-                    });
+                    //没申请过
+                    _this.StatusCheck.isAllowApply = true;
                 }
-            }, function () {
-                _this._loading.remove();
+            } else {
+                _this.StatusCheck.isAllowInvite = false;
                 Dialog.alert({
                     top_txt: '', //可以是html
-                    cfb_txt: Lang.H5_FRESHEN,
-                    body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
-                    cf_fn: function () {
-                        location.reload();
-                    }
+                    body_txt: '<p class="dialog-body-p">' + (res.message ? res.message : Lang.H5_ERROR) + '</p>'
                 });
-            });
+            }
         },
         initStatus: function () {
             var ctx = this;
