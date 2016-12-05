@@ -875,10 +875,14 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
         getTotal: function () {
             var _this = this;
             //判断是否参与满减 如果为0 则为不参加满减
-            if (init_data.shop.shop_discount.length==0) {
+            if(!!init_data.shop.shop_discount){
+                if(init_data.shop.shop_discount.length==0){
+                    _this.getTotalNoReduc();
+                }else{
+                    _this.countSumReduc();
+                }
+            }else{
                 _this.getTotalNoReduc();
-            } else {
-                _this.countSumReduc();
             }
         },
         //渲染满减活动

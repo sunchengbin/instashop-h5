@@ -21,9 +21,8 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact','base'
                     isHaveReduc:(function(){
                         if(!!init_data.order.shop_discount){
                             return (init_data.order.shop_discount.length!=0)
-                        }else{
-                            return false;
                         }
+                        return false;
                     })()
                 });
             }else{

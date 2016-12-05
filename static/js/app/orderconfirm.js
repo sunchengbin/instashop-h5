@@ -12,13 +12,24 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     data: JSON.parse(_data),
                     carts: _carts,
                     sum: _this.countSum(_carts),
-                    favorable:price_data.price_info.shop_discount.length!=0?_this.getFavorable():0,
+                    favorable:(function(){
+                        //有就返回优惠额 没有返回0
+                        if(!!price_data.price_info.shop_discount){
+                            return price_data.price_info.shop_discount.length!=0?_this.getFavorable():0
+                        }
+                        return 0;
+                    })(),
                     address: _address,
                     lang: Lang,
                     host: Config.host,
                     nofree: JSON.parse(_data).ShopInfo.express_free == 0,
                     express: (JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list)),
-                    isHaveReduc:(price_data.price_info.shop_discount.length!=0)
+                    isHaveReduc:(function(){
+                        if(!!price_data.price_info.shop_discount){
+                            return (price_data.price_info.shop_discount.length!=0)
+                        }
+                        return false;
+                    })()
                 });
             $('body').prepend(_htm);
             if (JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list)) {
