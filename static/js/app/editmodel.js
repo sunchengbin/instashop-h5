@@ -41,7 +41,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 alert('not find bridge');
                 return;
             }
-            提供给native设置回退锁,为了回退的时候
+            //提供给native设置回退锁,为了回退的时候
             (function(bridge){
                 var _param = {
                     param:{
