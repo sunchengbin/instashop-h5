@@ -468,12 +468,13 @@ define(['base'],function(Base){
             H5_ACCOUNT_NUMBER:'Nomor Rekening',
             H5_SUBMITING:'Sedang ditambahkan...',
             H5_CONFIRM_SUBMIT:'Yakin ingin mengajukan？',
-            H5_EXIT_CONFIRM:'Yakin ingin keluar?'
+            H5_EXIT_CONFIRM:'Yakin ingin keluar?',
+            H5_ITEM_LIST_TYPE_TWO:'Tampilan 1 Baris 2 Produk',
+            H5_ITEM_LIST_TYPE_THREE:'Tampilan 1 Baris 3 Produk'
 
         }
     };
-    console.log(Base.others.getUrlPrem('language') && Lang[Base.others.getUrlPrem('language')]);
-    return ((Base.others.getUrlPrem('language') && Lang[Base.others.getUrlPrem('language')]) || Lang[ navigator.language.toLowerCase() ] || Lang.id );
+    return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );
     // 暴露到window上，方便在模板中使用
     //window.Lang = ( Lang[ navigator.language.toLowerCase() ] || Lang.id )
 })
