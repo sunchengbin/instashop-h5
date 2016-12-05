@@ -51,7 +51,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         }
         function registerFn(bridge){//对native内容监控
             bridge.registerHandler('registerSocket', function(data, responseCallback) {
-                alert(JSON.stringify(data))
+                alert(data)
             });
         }
     })
