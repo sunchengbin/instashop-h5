@@ -149,7 +149,7 @@ p{
 .pay-content-explain{
     padding:0rem 1rem 0rem .5rem;
     font-size: 13px;
-    color: #aaa;
+    /*color: #aaa;*/
 }
 .total-price{
     font-size: 24px;

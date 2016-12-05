@@ -325,11 +325,11 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
                     var _item_price = carts[item].item.discount.price;
                     _htm +='<div class="price clearfix"><span>'+(_item_price < 0?'':Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_item_price))
                         +'</span><div class="item-num-box clearfix">'
-                        +'<span class="j_reduce_btn">'
+                        +'<span class="j_reduce_btn" data-id="'+_id+'">'
                         +'<i class="icon iconfont icon-minus-font"></i>'
                         +'</span>'
                         +'<input class="fl j_item_num" type="text" data-price="'+carts[item].item.discount.price+'" value="'+carts[item].num+'" readonly="readonly"/>'
-                        +'<span class="j_add_btn" data-stock="'+_item_stock+'">'
+                        +'<span class="j_add_btn" data-id="'+_id+'" data-stock="'+_item_stock+'">'
                         +'<i class="icon iconfont icon-add-font"></i>'
                         +'</span>'
                         +'</div>'
@@ -338,11 +338,11 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
                     var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].item.price;
                     _htm +='<div class="price clearfix"><span>'+(_price < 0?'':Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_price))
                         +'</span><div class="item-num-box clearfix">'
-                        +'<span class="j_reduce_btn">'
+                        +'<span class="j_reduce_btn" data-id="'+_id+'" >'
                         +'<i class="icon iconfont icon-minus-font"></i>'
                         +'</span>'
                         +'<input class="fl j_item_num" type="text" data-price="'+_price+'" value="'+carts[item].num+'" readonly="readonly"/>'
-                        +'<span class="j_add_btn" data-stock="'+(((carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock))+'">'
+                        +'<span class="j_add_btn" data-id="'+_id+'" data-stock="'+(((carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock))+'">'
                         +'<i class="icon iconfont icon-add-font"></i>'
                         +'</span>'
                         +'</div>'

@@ -60,6 +60,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     data: _this.transCart(),
                     callback : function(opts){
                         _this.selectQuick(opts);
+                        _this.updateCartsNum(opts.id,opts.num)
                     }
                 });
             }
@@ -92,6 +93,11 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 };
             }
         },
+        updateCartsNum:function(dataId,num){
+            var _this = this;
+            _this.carts[dataId].num = num;
+            _this.getLogistics();
+        },
         handleFn : function(){
             var _this = this;
             Fastclick.attach(document.body);
@@ -99,7 +105,8 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             $('.j_cart_list').on('click','.j_add_btn',function(){
                 var _item_num = $(this).parent().find('.j_item_num'),
                     _num = Number(_item_num.val()),
-                    _stock = $(this).attr('data-stock');
+                    _stock = $(this).attr('data-stock'),
+                    _dataId = $(this).attr('data-id');
                 if(_this.isDetailQuick && _this.testDetailCarts()){
                     _this.quickbuyplug.toShow();
                 }else{
@@ -107,13 +114,16 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         return;
                     }
                     _item_num.val(++_num);
+                    _this.updateCartsNum(_dataId,_num);
                 }
                 _this.getTotal();
             });
             $('.j_cart_list').on('click','.j_reduce_btn',function(){
                 var _item_num =  $(this).parent().find('.j_item_num'),
-                    _num = Number(_item_num.val());
+                    _num = Number(_item_num.val()),
+                    _dataId = $(this).attr('data-id');
                 _item_num.val((--_num > 0)?_num:1);
+                _this.updateCartsNum(_dataId,_num);
                 _this.getTotal();
             });
             $('body').on('click','.j_user_address .act',function(){
@@ -885,6 +895,12 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             var _req = Config.host.actionUrl+Config.actions.shopsDiscount+'?param='+JSON.stringify(_param);
             Ajax.getJsonp(_req, function (_res) {
                 if (_res && _res.code == 200) {
+                    var _curSum = "";
+                    if(_res.price_info.items_price!=_res.price_info.total_price){
+                        $(".reduc-info").show();
+                    }
+                    
+
                     var _items_price = _res.price_info.items_price;
                     var _last_price = _res.price_info.total_price;
                     var _freight = 0;
