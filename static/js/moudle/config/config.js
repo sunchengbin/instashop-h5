@@ -58,7 +58,9 @@ define(['base'],function(Base){
     }
     function setDebugEnv(){
         var Debug = Base.others.getUrlPrem('_debug_env') || localStorage.getItem('DebugEnv');
-        localStorage.setItem('DebugEnv',Debug);
+        if(Debug){
+            localStorage.setItem('DebugEnv',Debug);
+        }
     }
     setDebugEnv();
     return CONFIG;
