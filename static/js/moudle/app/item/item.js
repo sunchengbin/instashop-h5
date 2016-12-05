@@ -18,7 +18,12 @@ define(['base','config','lang'],function(Base,Config,Lang){
             return out;
         },
         threeList : function(item){
-            return '<li><a class="item-info j_item_info" data-url="'+item.h5_url+'" href="javascript:;"><div class="lazy" data-img="'+item.img+'"></div></a></li>';
+           var _htm = '<li><a class="item-info j_item_info" data-url="'+item.h5_url+'" href="javascript:;"><div class="lazy" data-img="'+item.img+'">';
+                if(item.is_discount && item.discounting){
+                    _htm +='<span class="">-'+item.discount.value+'%</span>';
+                }
+            _htm+='</div></a></li>';
+            return _htm;
         },
         twoList : function(item){
             var _this = this,

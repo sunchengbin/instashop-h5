@@ -143,6 +143,22 @@
     position: absolute;
     border-radius: 2rem;
 }
+.three-items-list .lazy > span{
+    display: inline-block;
+    position: absolute;
+    border-radius: 2rem;
+    color: #fff;
+    bottom: .2rem;
+    right: .2rem;
+    min-width: 30px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 .5rem;
+    background-color: rgba(245,166,35,.8);
+    font-size: 12px;
+    left: inherit;
+    top: inherit;
+}
 .lazy p{
     position: absolute;
     bottom: 0;

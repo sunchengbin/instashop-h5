@@ -168,14 +168,15 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                 _item.css('width',_c_w*_num);
             });
         },
-        getItemListType : function(template){
+        getItemListType : function(template,callback){
             var _type = 2;
             $.each(template,function(i,item){
                 if(item.type == 'item_list_type'){
                     _type = item.data[0];
                 }
             });
-            return _type;
+            callback && callback(3);
+            return 3;
         }
     };
 

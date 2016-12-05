@@ -27,12 +27,9 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         },
         getItemListType : function(){
             var _this = this;
-            _this.item_list_type = 2;//默认商品列表为两列
-            $.each(_this.model_data,function(i,item){
-                if(item.type == 'item_list_type'){
-                    _this.item_list_type = item.data[0];
-                    _this.have_list_type = true;
-                }
+            Common.getItemListType(_this.model_data,function(type){
+                _this.item_list_type = type;
+                _this.have_list_type = true;
             });
         },
         handelFn : function(bridge){

@@ -124,12 +124,6 @@
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
-                                {if $item.discounting}
-                                <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span>
-                                </p>
-                                {else}
-                                <p>Coming Soon</p>
-                                {/if}
                                 {/if}
                             </div>
                         </a>
@@ -190,12 +184,6 @@
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
-                                {if $item.discounting}
-                                <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span>
-                                </p>
-                                {else}
-                                <p>Coming Soon</p>
-                                {/if}
                                 {/if}
                             </div>
                         </a>
@@ -254,12 +242,6 @@
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
-                                {if $item.discounting}
-                                <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span>
-                                </p>
-                                {else}
-                                <p>Coming Soon</p>
-                                {/if}
                                 {/if}
                             </div>
                         </a>
