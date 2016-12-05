@@ -81,7 +81,6 @@
             {if $ITEMTYPE eq '2'}
                 <ul class="items-list clearfix j_hot_list">
                     {foreach $RECOMMEND_ITEM as $item}
-
                     <li>
                         <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
@@ -135,6 +134,7 @@
     </section>
     {foreach $TAGS_ITEM as $tag_list}
     <section class="items-box j_box" data-tagid="{$tag_list.id}">
+        {if $tag_list|@count}
         <p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;"
                                                    data-url="{$HOST_NAME}/k/{$tag_list.id}">more<i
                 class="icon iconfont icon-go-font"></i></a><span></span><em>{$tag_list.name}</em></p>
@@ -178,7 +178,7 @@
                 </ul>
             {else}
                 <ul class="three-items-list clearfix j_item_list">
-                    {foreach $RECOMMEND_ITEM as $item}
+                    {foreach $tag_list.tag_data as $item}
                     <li>
                         <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
@@ -191,6 +191,7 @@
                     {/foreach}
                 </ul>
             {/if}
+         {/if}
     </section>
     {/foreach}
     <section class="items-box j_item_box j_box">
@@ -236,7 +237,7 @@
             </ul>
             {else}
                 <ul class="three-items-list clearfix j_item_list">
-                    {foreach $RECOMMEND_ITEM as $item}
+                    {foreach $HOT_ITEM as $item}
                     <li>
                         <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
