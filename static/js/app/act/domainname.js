@@ -240,7 +240,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     _type = _dom.attr('data-type'),
                     _report = _dom.attr('data-report'),
                     _invite_txt = $.trim($("#j_invite_txt").val());
-                _invite_txt = escape(_invite_txt.replace('http://www.instashop.co.id', 'http://www.instashop.co.id?from=' + _type + escape('&')+"seller_id=" + _this.user_info.seller_id));
+                _invite_txt = escape(_invite_txt.replace('http://www.instashop.co.id', 'http://www.instashop.co.id?from=' + _type +"\&seller_id=" + _this.user_info.seller_id));
                 var _param = {
                     param: {
                         type: 'share',
@@ -362,7 +362,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 '    <div class="invite-dialog-input">' +
                 '        <textarea name="content" value="" id="j_invite_txt"' +
                 '                  >Hi! Sekarang bikin web ga perlu bayar jutaan rupiah, karena sudah ada INSTASHOP,aplikasi untuk membuat \& mengelola webstore. Pakai KODE REFERRAL ' + _this.user_info.seller_id +
-                ' saat registrasi untuk membuat webstore GRATIS！Download sekarang http://www.instashop.co.id</textarea>' +
+                ' saat registrasi untuk membuat webstore GRATIS!Download sekarang http://www.instashop.co.id</textarea>' +
                 '    </div>' +
                 '    <div class="invite-share-box" data-spider="invitebox">' +
                 '        <ul class="ins-avg-sm-4">' +
