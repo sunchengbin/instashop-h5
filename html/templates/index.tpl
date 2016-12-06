@@ -71,7 +71,7 @@
 {/if}
 
 {include file="model.tpl" title="my template model"}
-<div class="item-list-wraper">
+<div data-spider="商品展示模块" class="item-list-wraper">
     {if !$INDEX_DATA.item_list.list|@count}
     <section class="no_item">Belum ada produk</section>
     {/if}
@@ -82,7 +82,7 @@
                 <ul class="items-list clearfix j_hot_list">
                     {foreach $RECOMMEND_ITEM as $item}
                     <li>
-                        <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
@@ -119,7 +119,7 @@
                 <ul class="three-items-list clearfix j_hot_list">
                     {foreach $RECOMMEND_ITEM as $item}
                     <li>
-                        <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
@@ -135,14 +135,12 @@
     {foreach $TAGS_ITEM as $tag_list}
     <section class="items-box j_box" data-tagid="{$tag_list.id}">
         {if $tag_list|@count}
-        <p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;"
-                                                   data-url="{$HOST_NAME}/k/{$tag_list.id}">more<i
-                class="icon iconfont icon-go-font"></i></a><span></span><em>{$tag_list.name}</em></p>
+        <p class="item-title b-bottom clearfix"><a spm-auto="商品所属分类" spm-click="{$tag_list.id}" class="fr j_item_info" href="javascript:;" data-url="{$HOST_NAME}/k/{$tag_list.id}">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>{$tag_list.name}</em></p>
             {if $ITEMTYPE eq '2'}
                 <ul class="items-list j_item_list clearfix">
                     {foreach $tag_list.tag_data as $item}
                     <li>
-                        <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
@@ -180,7 +178,7 @@
                 <ul class="three-items-list clearfix j_item_list">
                     {foreach $tag_list.tag_data as $item}
                     <li>
-                        <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
@@ -201,7 +199,7 @@
             <ul class="items-list j_item_list clearfix">
                 {foreach $HOT_ITEM as $item}
                 <li>
-                    <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                    <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                         <div class="lazy" data-img="{$item.img|list_img}">
                             {if $item.is_discount}
                             <span>-{$item.discount.value}%</span>
@@ -239,7 +237,7 @@
                 <ul class="three-items-list clearfix j_item_list">
                     {foreach $HOT_ITEM as $item}
                     <li>
-                        <a class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
@@ -253,55 +251,54 @@
         {/if}
     </section>
 </div>
-<section class="sort-list-wraper j_sort_box">
+<section class="sort-list-wraper j_sort_box" data-spider="分类选择模块">
     <p>Kategori produk</p>
     <ul>
         {foreach $TAG_LIST as $tag}
-        <li class=""><a class="j_item_info" href="javascript:;" data-url="{$HOST_NAME}/k/{$tag.id}"
-                        class=""><span></span>{$tag.name}</a></li>
+        <li class=""><a spm-auto="侧栏分类" spm-click="itemId={$tag.id}" class="j_item_info" href="javascript:;" data-url="{$HOST_NAME}/k/{$tag.id}" class=""><span></span>{$tag.name}</a></li>
         {/foreach}
     </ul>
 </section>
 
 <!--新增3.5 功能点4需求-->
-<div class="index-btn-box">
+<div class="index-btn-box" data-spider="我要开店模块">
     <div class="btn confirm-btn">
         <i class="iconfont icon-shop-font"></i>
-        <a href="http://www.instashop.co.id/" onclick="trackOutboundLink('http://www.instashop.co.id/'); return false;" target="_self">Buat webstore gratis sekarang!</a>
+        <a spm-auto="我也要开店" spm-click="go-home" href="http://www.instashop.co.id/" onclick="trackOutboundLink('http://www.instashop.co.id/'); return false;" target="_self">Buat webstore gratis sekarang!</a>
     </div>
 </div>
 
 <div class="sort-list-cover j_sort_cover">
     <i class="icon iconfont icon-fold-font"></i>
 </div>
-<section class="index-footer">
+<section class="index-footer" data-spider="底部导航">
     <ul class="b-top">
         {if $INDEX_DATA.tag_list|@count}
-        <li class="j_category b-right">
+        <li class="j_category b-right" spm-auto="查看分类" spm-click="查看分类">
             <i class="icon iconfont icon-tag-font"></i>
             Kategori
         </li>
         {/if}
-        <li class="j_cart_wraper b-right" data-url="{$HOST_NAME}/html/cart.php">
+        <li class="j_cart_wraper b-right" data-url="{$HOST_NAME}/html/cart.php" spm-auto="去购物车" spm-click="去购物车">
             <i class="icon iconfont icon-i-shop-font"></i>
             Troli
         </li>
         <li>
             {if $INDEX_DATA.shop.line_url}
             {if $INDEX_DATA.shop.phone}
-            <a class="contact-services j_show_contact" data-type="all" href="javascript:;">
+            <a spm-auto="查看联系方式" spm-click="查看联系方式" class="contact-services j_show_contact" data-type="all" href="javascript:;">
                 <i class="icon iconfont icon-i-news-font"></i>
                 Kontak
             </a>
             {else}
-            <a class="contact-services" href="{$INDEX_DATA.shop.line_url}">
+            <a spm-auto="查看联系方式" spm-click="查看联系方式" class="contact-services" href="{$INDEX_DATA.shop.line_url}">
                 <i class="icon iconfont icon-i-news-font"></i>
                 Kontak
             </a>
             {/if}
             {else}
             {if $INDEX_DATA.shop.phone}
-            <a class="contact-services j_show_contact" data-type="tel" href="javascript:;">
+            <a spm-auto="查看联系方式" spm-click="查看联系方式" class="contact-services j_show_contact" data-type="tel" href="javascript:;">
                 <i class="icon iconfont icon-i-news-font"></i>
                 Kontak
             </a>
