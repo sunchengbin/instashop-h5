@@ -908,7 +908,7 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     var _items_price = _res.price_info.items_price;
                     var _last_price = _res.price_info.total_price;
                     var _freight = 0;
-                    $(".j_reduc_price").html('-Rp ' + (_items_price - _last_price));
+                    $(".j_reduc_price").html('-Rp ' + Base.others.priceFormat(_items_price - _last_price));
                     
                     if ($('.icon-radioed-font').length) {
                         _freight = Number($('.icon-radioed-font').attr('data-price'));
