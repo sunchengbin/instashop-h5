@@ -240,7 +240,10 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                     _type = _dom.attr('data-type'),
                     _report = _dom.attr('data-report'),
                     _invite_txt = $.trim($("#j_invite_txt").val());
-                _invite_txt = escape(_invite_txt.replace('http://www.instashop.co.id', 'http://www.instashop.co.id?from=' + _type +"\&seller_id=" + _this.user_info.seller_id));
+                _invite_txt = _invite_txt.replace('http://www.instashop.co.id', 'http://www.instashop.co.id?from=' + _type +"\&seller_id=" + _this.user_info.seller_id);
+                if("share_to_bbm"==_type){
+                    _invite_txt = escape(_invite_txt);
+                }
                 var _param = {
                     param: {
                         type: 'share',
