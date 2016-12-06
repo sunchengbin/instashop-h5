@@ -9,10 +9,10 @@ define(['base','config','lang'],function(Base,Config,Lang){
                 _this = this,
                 i = 0;
             for (i; i < items.length;i++) {
-                if(type == 2){
-                    out += _this.twoList(items[i]);
-                }else{
+                if(type == 3){
                     out += _this.threeList(items[i]);
+                }else{
+                    out += _this.twoList(items[i]);
                 }
             }
             return out;
