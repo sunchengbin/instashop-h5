@@ -6,7 +6,7 @@
             <div class="banner-box">
                 <ul class="item-banner static-banner clearfix">
                     {foreach $model.data as $banner}
-                        <li class=""><a spm-auto="标准banner" spm-click="static-banner" class="block" href="{$banner.link_url}"><img data-img="{$banner.img}"/></a></li>
+                        <li class=""><a spm-auto="标准banner" spm-click="static-banner" class="block" href="{$banner.link_url|setHref}"><img data-img="{$banner.img}"/></a></li>
                     {/foreach}
                 </ul>
             </div>
@@ -16,7 +16,7 @@
             <div class="banner-box">
                 <ul class="item-banner j_banner rotate-banner clearfix">
                     {foreach $model.data as $banner}
-                        <li class=""><a spm-auto="轮播banner" spm-click="rotate-banner" class="block" href="{$banner.link_url}"><img data-img="{$banner.img}"/></a></li>
+                        <li class=""><a spm-auto="轮播banner" spm-click="rotate-banner" class="block" href="{$banner.link_url|setHref}"><img data-img="{$banner.img}"/></a></li>
                     {/foreach}
                 </ul>
             </div>
@@ -26,7 +26,7 @@
             <ul class="two-list-box clearfix">
                 {foreach $model.data as $banner}
                     <li>
-                        <a spm-auto="两列banner" spm-click="two-list-banner" class="block" href="{$banner.link_url}">
+                        <a spm-auto="两列banner" spm-click="two-list-banner" class="block" href="{$banner.link_url|setHref}">
                             <div class="lazy" data-img="{$banner.img|list_img}"></div>
                         </a>
                     </li>

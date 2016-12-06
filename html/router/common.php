@@ -109,6 +109,12 @@ $js = <<<JS
 JS;
 return $js;
 }
+function setHref($link){
+    if(!$link){
+        $link = 'javascript:;';
+    }
+    return $link;
+}
 spl_autoload_register('loadClass');
 $prompt = is_https() ? 'https:' : 'http:';
 $prompt = '';

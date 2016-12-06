@@ -180,6 +180,7 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                 var _this = $(this),
                     _url = _this.attr('data-url'),
                     _scroll_top = $(window).scrollTop();
+                if(!_url){return;}
                 localStorage.setItem('ScrollTop',_scroll_top);
                 Common.saveFromUrl(function(){
                     location.href = _url;
