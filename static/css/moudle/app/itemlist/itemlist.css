@@ -33,7 +33,7 @@
     background-color: #F5A623;
     position: absolute;
     left: 1rem;
-    top: 1.55rem;
+    top: 1.7rem;
     border-radius: 1px;
 }
 .item-title a{
@@ -202,7 +202,7 @@
     float: left;
     box-sizing: border-box;
     position:relative;
-    padding:.5rem .25rem;
+    padding:.25rem;
 }
 .three-items-list li::before{
     display: block;

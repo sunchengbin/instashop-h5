@@ -7,10 +7,11 @@
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <meta name="spider-id" content="orju7v">
   {$STATIC_DNS}
   {$STATIC_ICO_CSS}
   {$STATIC_FONT_CSS}
   {$INDEX_TITLE}
   <link href="{$STATIC_HOST}/css/dist/app/{$INDEX_CSS_NAME}.css?v=1480588647588" rel="stylesheet"/>
 </head>
-<body>
+<body data-spider="615lnd28">
