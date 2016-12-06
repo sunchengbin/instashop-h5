@@ -2,7 +2,7 @@
     {foreach $INDEX_DATA.template as $model}
         {if $model.type eq 'edit_signage'}
         {elseif $model.type eq 'static_banner'}
-        <section class="banner-wraper model-box j_model_box" data-spider="标准banner模块">
+        <section class="banner-wraper model-box j_model_box" data-spider="static_banner">
             <div class="banner-box">
                 <ul class="item-banner static-banner clearfix">
                     {foreach $model.data as $banner}
@@ -12,7 +12,7 @@
             </div>
         </section>
         {elseif $model.type eq 'rotate_banner'}
-        <section class="model-box j_model_box" data-spider="轮播banner模块">
+        <section class="model-box j_model_box" data-spider="rotate_banner">
             <div class="banner-box">
                 <ul class="item-banner j_banner rotate-banner clearfix">
                     {foreach $model.data as $banner}
@@ -22,11 +22,11 @@
             </div>
         </section>
         {elseif $model.type eq 'two_list_banner'}
-        <section class="banner-wraper two-list-banner j_model_box">
+        <section class="banner-wraper two-list-banner j_model_box" data-spider="two_list_banner">
             <ul class="two-list-box clearfix">
                 {foreach $model.data as $banner}
                     <li>
-                        <a spm-auto="两列banner" data-spider="two-list-banner" class="block" href="{$banner.link_url}">
+                        <a spm-auto="两列banner" spm-click="two-list-banner" class="block" href="{$banner.link_url}">
                             <div class="lazy" data-img="{$banner.img|list_img}"></div>
                         </a>
                     </li>
@@ -34,7 +34,7 @@
             </ul>
         </section>
         {elseif $model.type eq 'img_navigation'}
-        <section class="navigation-box model-box j_model_box">
+        <section class="navigation-box model-box j_model_box" data-spider="img_navigation">
             {if $model.title}
             <p class="item-title b-bottom"><span></span>{$model.title}</p>
             {/if}
@@ -42,7 +42,7 @@
                 <ul class="nav-img-ul clearfix">
                     {foreach $model.data as $navigation}
                         <li class="">
-                            <a spm-auto="图文导航" data-spider="img-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url}" href="javascript:;">
+                            <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url}" href="javascript:;">
                                 <div class="lazy" data-img="{$navigation.img|list_img}"></div>
                                 <p class="">{$navigation.navigation_name}</p>
                             </a>
@@ -52,14 +52,14 @@
             </div>
         </section>
         {elseif $model.type eq 'text_navigation'}
-        <section class="navigation-box model-box j_model_box">
+        <section class="navigation-box model-box j_model_box" data-spider="text_navigation">
             {if $model.title}
             <p class="item-title b-bottom"><span></span>{$model.title}</p>
             {/if}
             <ul class="nav-text-ul">
                 {foreach $model.data as $navigation}
                     <li class="b-top">
-                        <a spm-auto="文字导航" data-spider="text-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url}" href="javascript:;">
+                        <a spm-auto="文字导航" spm-click="text-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url}" href="javascript:;">
                             <i class="icon iconfont icon-go-font fr"></i>
                             <span>{$navigation.navigation_name}</span>
                         </a>
@@ -68,14 +68,14 @@
             </ul>
         </section>
         {elseif $model.type eq 'two_li_items'}
-        <section class="items-box model-box j_model_box">
+        <section class="items-box model-box j_model_box" data-spider="two_li_items">
              {if $model.title}
              <p class="item-title b-bottom"><span></span>{$model.title}</p>
              {/if}
             <ul class="items-list clearfix">
                 {foreach $model.data as $item}
                     <li>
-                        <a spm-auto="行单品" data-spider="{$item.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <a spm-auto="行单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
@@ -110,14 +110,14 @@
             </ul>
         </section>
         {elseif $model.type eq 'big_img_item'}
-        <section class="one-item-box model-box j_model_box">
+        <section class="one-item-box model-box j_model_box" data-spider="big_img_item">
             {if $model.title neq ''}
             <p class="item-title b-bottom"><span></span>{$model.title}</p>
             {/if}
             <ul class="items-list clearfix">
                 {foreach $model.data as $item}
                     <li>
-                        <a spm-auto="大图单品" data-spider="{$item.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <a spm-auto="大图单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
@@ -152,14 +152,14 @@
             </ul>
         </section>
         {elseif $model.type eq 'list_items'}
-        <section class="item-list-box model-box j_model_box">
+        <section class="item-list-box model-box j_model_box" data-spider="list_items">
             {if $model.title}
             <p class="item-title b-bottom"><span></span>{$model.title}</p>
             {/if}
             <ul class="">
             {foreach $model.data as $item}
                 <li class="clearfix cart-item">
-                    <a spm-auto="两列单品" data-spider="{$item.id}" class="block j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                    <a spm-auto="两列单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="block j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                         <img src="{$item.img|list_img}">
                         <div class="item-info-box">
                             <p class="name">

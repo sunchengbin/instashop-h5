@@ -71,7 +71,7 @@
 {/if}
 
 {include file="model.tpl" title="my template model"}
-<div data-spider="商品展示模块" class="item-list-wraper">
+<div data-spider="item-list" class="item-list-wraper">
     {if !$INDEX_DATA.item_list.list|@count}
     <section class="no_item">Belum ada produk</section>
     {/if}
@@ -251,7 +251,7 @@
         {/if}
     </section>
 </div>
-<section class="sort-list-wraper j_sort_box" data-spider="分类选择模块">
+<section class="sort-list-wraper j_sort_box" data-spider="sort-list">
     <p>Kategori produk</p>
     <ul>
         {foreach $TAG_LIST as $tag}
@@ -261,7 +261,7 @@
 </section>
 
 <!--新增3.5 功能点4需求-->
-<div class="index-btn-box" data-spider="我要开店模块">
+<div class="index-btn-box" data-spider="set-up-shop">
     <div class="btn confirm-btn">
         <i class="iconfont icon-shop-font"></i>
         <a spm-auto="我也要开店" spm-click="go-home" href="http://www.instashop.co.id/" onclick="trackOutboundLink('http://www.instashop.co.id/'); return false;" target="_self">Buat webstore gratis sekarang!</a>
@@ -271,7 +271,7 @@
 <div class="sort-list-cover j_sort_cover">
     <i class="icon iconfont icon-fold-font"></i>
 </div>
-<section class="index-footer" data-spider="底部导航">
+<section class="index-footer" data-spider="foot-nav">
     <ul class="b-top">
         {if $INDEX_DATA.tag_list|@count}
         <li class="j_category b-right" spm-auto="查看分类" spm-click="查看分类">
