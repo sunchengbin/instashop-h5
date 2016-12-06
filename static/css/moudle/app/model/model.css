@@ -40,14 +40,18 @@
 }
 .cart-item {
     padding:1rem;
-    min-height: 10rem;
+    min-height: 80px;
 }
-.cart-item a > div{
-    margin: 0 1rem 0 11rem;
+.cart-item a .item-info-box{
+    margin: 0px 1rem 0 90px;
+}
+.cart-item p.soon-time{
+    font-size: 12px;
+    margin-top: 0.8rem;
 }
 .cart-item img{
-    width: 10rem;
-    height: 10rem;
+    width: 85px;
+    height: 85px;
 }
 .cart-item::after{
     top: 0;

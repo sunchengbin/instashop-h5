@@ -18,9 +18,15 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact','base'
                     hrefUrl : Config.host.hrefUrl,
                     host:Config.host.host,
                     shopUrl: Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.order.shop_info.id,
+                    isHaveReduc:(function(){
+                        if(!!init_data.order.shop_discount){
+                            return (init_data.order.shop_discount.length!=0)
+                        }
+                        return false;
+                    })()
                 });
             }else{
-                if(init_data.code == 430016){
+                if(init_data.code == 430016){ 
                     ItemHtm ='<div class="no-exists"><img src="'+Config.host.imgUrl+'/app/404.png"/><p>Pesanan tidak ditemukan!</p></div>';
                 }else{
                     ItemHtm = '<div>'+Lang.H5_ERROR+'</div>';

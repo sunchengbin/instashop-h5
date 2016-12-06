@@ -3,6 +3,8 @@
 @import "../moudle/app/common/common.css";
 @import "../moudle/app/contact/contact.css";
 @import "../moudle/app/model/model.css";
+@import "../moudle/ui/dialog/dialog.css";
+@import "./reduc.css";
 body{
     color: #666;
     background-color: #ececec;
@@ -421,4 +423,7 @@ footer .btn i{
 .banner-wraper{
     background-color: #fff;
     padding:0 1rem;
+}
+.no-cursor{
+    cursor: none;
 }

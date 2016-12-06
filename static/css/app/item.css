@@ -6,6 +6,7 @@
 @import "../moudle/app/contact/contact.css";
 @import "../moudle/ui/viewer/viewer.css";
 @import "../moudle/ui/arrowslide/arrowbanner.css";
+@import "./reduc.css";
 body{
     color: #666;
     background-color: #f5f5f5;

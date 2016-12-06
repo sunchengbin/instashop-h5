@@ -15,8 +15,8 @@
           }
           ga('create', 'UA-78448705-7', 'auto');
           ga('send', 'pageview');
-
     </script>
 {/literal}
+<script>{$BI_SCRIPT}</script>
 </body>
 </html>

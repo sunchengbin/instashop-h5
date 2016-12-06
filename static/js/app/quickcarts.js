@@ -60,26 +60,12 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                     data: _this.transCart(),
                     callback : function(opts){
                         _this.selectQuick(opts);
+                        _this.updateCartsNum(opts.id,opts.num)
                     }
                 });
             }
             _this.getTotal();
             _this.handleFn();
-        },
-        getTotal : function(){//计算总额(出问题的商品价格不算到总额中)
-            var _this = this,
-                _sum = 0,
-                _freight = 0;
-            $('.j_item_num').each(function(i,item){
-                var _num = Number($(item).val()),
-                    _price = Number($(item).attr('data-price'));
-                _sum+=_num*_price;
-            });
-            if($('.icon-radioed-font').length){
-                _freight = Number($('.icon-radioed-font').attr('data-price'));
-            }
-            $('.j_total').html('Rp '+Base.others.priceFormat((_sum+_freight)));
-            $('.j_freight').html('Rp '+Base.others.priceFormat(_freight));
         },
         selectQuick : function(opts){
             var _this = this,
@@ -107,6 +93,11 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 };
             }
         },
+        updateCartsNum:function(dataId,num){
+            var _this = this;
+            _this.carts[dataId].num = num;
+            _this.getLogistics();
+        },
         handleFn : function(){
             var _this = this;
             Fastclick.attach(document.body);
@@ -114,7 +105,8 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
             $('.j_cart_list').on('click','.j_add_btn',function(){
                 var _item_num = $(this).parent().find('.j_item_num'),
                     _num = Number(_item_num.val()),
-                    _stock = $(this).attr('data-stock');
+                    _stock = $(this).attr('data-stock'),
+                    _dataId = $(this).attr('data-id');
                 if(_this.isDetailQuick && _this.testDetailCarts()){
                     _this.quickbuyplug.toShow();
                 }else{
@@ -122,13 +114,16 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                         return;
                     }
                     _item_num.val(++_num);
+                    _this.updateCartsNum(_dataId,_num);
                 }
                 _this.getTotal();
             });
             $('.j_cart_list').on('click','.j_reduce_btn',function(){
                 var _item_num =  $(this).parent().find('.j_item_num'),
-                    _num = Number(_item_num.val());
+                    _num = Number(_item_num.val()),
+                    _dataId = $(this).attr('data-id');
                 _item_num.val((--_num > 0)?_num:1);
+                _this.updateCartsNum(_dataId,_num);
                 _this.getTotal();
             });
             $('body').on('click','.j_user_address .act',function(){
@@ -860,6 +855,77 @@ require(['hbs','text!views/app/quickcarts.hbs','cart','dialog','ajax','config','
                 _cart =  _carts[id];
             }
             return _cart;
+        },
+        getTotalNoReduc : function(){//计算总额(出问题的商品价格不算到总额中)
+            var _this = this,
+                _sum = 0,
+                _freight = 0;
+            $('.j_item_num').each(function(i,item){
+                var _num = Number($(item).val()),
+                    _price = Number($(item).attr('data-price'));
+                _sum+=_num*_price;
+            });
+            if($('.icon-radioed-font').length){
+                _freight = Number($('.icon-radioed-font').attr('data-price'));
+            }
+            $('.j_total').html('Rp '+Base.others.priceFormat((_sum+_freight)));
+            $('.j_freight').html('Rp '+Base.others.priceFormat(_freight));
+        },
+        //满减
+        getTotal: function () {
+            var _this = this;
+            //判断是否参与满减 如果为0 则为不参加满减
+            if(!!init_data.shop.shop_discount){
+                if(init_data.shop.shop_discount.length==0){
+                    _this.getTotalNoReduc();
+                }else{
+                    _this.countSumReduc();
+                }
+            }else{
+                _this.getTotalNoReduc();
+            }
+        },
+        //渲染满减活动
+        countSumReduc: function () {
+            var _this = this;
+            var _param = {
+                edata: {
+                    "action": "price",
+                    "seller_id": init_data.shop.id,
+                    "wduss": "",
+                    "items": _this.getItems()
+                }
+            }
+            var _req = Config.host.actionUrl+Config.actions.shopsDiscount+'?param='+JSON.stringify(_param);
+            Ajax.getJsonp(_req, function (_res) {
+                if (_res && _res.code == 200) {
+                    var _curSum = "";
+                    if(_res.price_info.items_price!=_res.price_info.total_price){
+                        $(".reduc-info").show();
+                    }
+                    
+
+                    var _items_price = _res.price_info.items_price;
+                    var _last_price = _res.price_info.total_price;
+                    var _freight = 0;
+                    $(".j_reduc_price").html('-Rp ' + Base.others.priceFormat(_items_price - _last_price));
+                    
+                    if ($('.icon-radioed-font').length) {
+                        _freight = Number($('.icon-radioed-font').attr('data-price'));
+                    }
+                    $('.j_freight').html('Rp ' + Base.others.priceFormat(_freight));
+                    $('.j_total').html('Rp ' + Base.others.priceFormat(_res.price_info.total_price+_freight));
+                }
+            }, function () {
+                Dialog.alert({
+                    top_txt: '', //可以是html
+                    cfb_txt: Lang.H5_FRESHEN,
+                    body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
+                    cf_fn: function () {
+                        location.reload();
+                    }
+                });
+            })
         }
     };
     QuickCartsHtm.init();

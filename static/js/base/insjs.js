@@ -1,6 +1,7 @@
 /**
  * Created by sunchengbin on 2016/10/30.
  *
+ * 默认情况下webview打开就清掉缓存,url中添加参数ins_keep_cache通知app不清楚缓存
  * 资料
  * ios文档链接地址 https://github.com/marcuswestin/WebViewJavascriptBridge
  * android文档链接地址 https://github.com/lzyzsd/JsBridge
@@ -54,6 +55,10 @@
  * })
  * close_model//提交模板数据编辑后操作
  * bridge.callHandler('insSocket', {param:{type:'close_model',param:{code:(保持和后台接口返回code值一样,判断是否提交成功),message:}, function(response) {
+ *      return null;
+ * })
+ * get_seller_info//获取用户seller_id和wduss
+ * bridge.callHandler('insSocket', {param:{type:'get_seller_info',param:null, function(response) {
  *      return null;
  * })
  * share//分享
@@ -143,6 +148,12 @@
 			type : list_items,
 			title : '',
 			data : [后端item完整数据,]
+		},
+		{//所有商品列表的样式选择,3列还是2列
+		    index : 0,
+			type : item_list_type,
+			title : '',
+			data : []
 		}
 	]
  *

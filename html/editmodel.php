@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/editmodel.css?v=1481005714919" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/editmodel.css?v=1480490722952" rel="stylesheet"/>
     <title>Kreasikan Tokomu</title>
     <style>
         body{
@@ -25,13 +25,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             include_once( dirname(__FILE__).'/../html/router/util.php' );
             error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
             ini_set('display_errors', 0);
-
-            $seller_id = $_REQUEST['seller_id'];
-            $wduss = $_REQUEST['wduss'];
-            $params = [
-                'seller_id' => $seller_id,
-                'wduss' => $wduss
-            ];
+            $params = getSellerInfo();
             $path = 'v1/shopsTemplate';
         ?>
         var api_url = '<?php echo check_api($path, $params); ?>';
@@ -42,7 +36,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <div class="j_start_loading" style="color:#fff;">Memuat...</div>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/editmodel.js?v=1481005714919"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/editmodel.js?v=1480490722922"></script>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

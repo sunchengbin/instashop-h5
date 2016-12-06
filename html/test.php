@@ -1,49 +1,65 @@
+<!DOCTYPE html>
 <?php
-    require_once('./lib/libs/Smarty.class.php');
-    $smarty = new Smarty();
-    $smarty->setTemplateDir('./templates/');
-    $smarty->setCompileDir('./templates_c/');
-    $smarty->setConfigDir('./configs/');
-    $smarty->setCacheDir('./cache/');
-
-
-    include_once( dirname(__FILE__).'/../html/router/common.php');
-    $smarty->assign('STATIC_DNS',STATIC_DNS);
-    $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
-    $smarty->assign('STATIC_FONT_CSS',STATIC_FONT_CSS);
-    $smarty->assign('STATIC_HOST',STATIC_HOST);
-
-    /*HOST_NAME*/
-    $hostname=$_SERVER['SERVER_NAME'];
-    $smarty->assign('HOST_NAME',HOST_NAME);
-
-    /*获取item页面的数据*/
-    include_once( dirname(__FILE__).'/../html/router/util.php' );
-    include_once( dirname(__FILE__).'/../html/router/base.php');
-    $params = [];
-    $item_id = $_REQUEST['item_id'];
-    if (!$item_id) {
-        $ss = split('\/', $_SERVER['REQUEST_URI']);
-        $item_id = end($ss);
-    }
-    $path = 'v1/items/'.$item_id;
-    $ret = get_init_php_data($path, $params);
-    $json = json_decode($ret, true);
-    $url = $json['item']['img'];
-    $url = str_replace("w=110", "w=140", $url);
-    $url = str_replace("h=110", "h=140", $url);
-
-    $smarty->assign('INDEX_DATA',$json);
-    $smarty->assign('INDEX_DATA_STR',$ret);
-
-    /*item页面支持app分享的数据*/
-    $item_title = '<meta property="og:image" content="'.$url.'"><title>'.$json["item"]["item_name"].'</title>';
-    $smarty->assign('INDEX_TITLE',$item_title);
-
-    /*基础的js,css文件名*/
-    $smarty->assign('INDEX_JS_NAME','test');
-    $smarty->assign('INDEX_CSS_NAME','item');
-    $smarty->display('detail.tpl');
-
-
+include_once( dirname(__FILE__).'/../html/router/common.php');
 ?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expect" content="0">
+    <meta name="format-detection" content="telephone=no" />
+    <?=STATIC_DNS?>
+    <?=STATIC_ICO_CSS?>
+    <?=STATIC_FONT_CSS?>
+
+    <title>Kreasikan Tokomu</title>
+    <style>
+        button{
+            background-color: #333;
+            color:#fff;
+            border:none;
+            padding:10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <button class="j_btn">get_seller_info</button>
+    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
+    <script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
+    <script>
+    require(['insjs','fastclick'],function(Insjs,FastClick){
+        Insjs.WebOnReady(function(bridge){
+            handelFn(bridge);
+        },function(){
+            handelFn();
+        });
+        function handelFn(bridge){
+            $('body').on('click','.j_btn',function(){
+                var _param = {
+                    param:{
+                        type:'get_seller_info',
+                        param : null
+                    }
+                };
+                bridge.callHandler('insSocket',_param, function(data) {
+                    return null;
+                });
+            });
+            alert(localStorage.getItem('TEST'));
+            localStorage.setItem('TEST','hello world');
+            registerFn(bridge);
+        }
+        function registerFn(bridge){//对native内容监控
+            bridge.registerHandler('registerSocket', function(data, responseCallback) {
+                alert(data)
+                alert(JSON.parse(data).result.data.wduss)
+                alert(JSON.parse(data).result.data.seller_id)
+            });
+        }
+
+    })
+    </script>
+</body>
+</html>

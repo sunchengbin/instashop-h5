@@ -267,21 +267,37 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
             return '<li class="empty-cart">'+Lang.H5_SHOPING_NO_GOODS+'</li>';
         }
         for(var item in carts){
-            var _id = (carts[item].sku?carts[item].sku.id:carts[item].id);
-            _htm += '<li class="clearfix cart-item j_cart_item" data-id="'+_id+'">'
-                +'<a class="block" href="javascript:;">'
-                +'<img src="'+carts[item].img+'">'
-                +'<div class="">'
-                +'<p class="name">'+Base.others.transTxt(carts[item].item_comment)+'</p>'
-            if(carts[item].is_discount && carts[item].discounting){
-                _htm +='<p class="price">Rp '+Base.others.priceFormat(carts[item].discount.price)+'</p>';
+            var _item = carts[item],
+                _id = (_item.sku?_item.sku.id:_item.id);
+            _htm += '<li class="cart-item j_cart_item" data-id="'+_id+'">'
+                +'<a class="block clearfix" href="javascript:;">'
+                +'<img src="'+Base.others.cutImg(_item.img)+'">';
+            _htm +='<div class="item-info-box">'
+                +'<p class="name">'+Base.others.transTxt(_item.item_comment)+'</p>';
+            if(_item.is_discount && _item.discounting){
+                _htm +='<p class="price clearfix"><span class="fr">-'+_item.discount.value+'%</span>'+'Rp '+Base.others.priceFormat(_item.discount.price)+'</p>';
+                _htm +='<p class="soon-time">'+transDate(_item.discount.start_time)+'-'+transDate(_item.discount.end_time)+'WIB</p>';
             }else{
-                var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].price;
+                var _price = (_item.sku&&_item.sku.id)?_item.sku.price:_item.price;
                 _htm +='<p class="price">Rp '+Base.others.priceFormat(_price)+'</p>';
-
             }
             _htm +='</div></a>'
                  +'</li>';
+        }
+        return _htm;
+    });
+    HBS.registerHelper('threeItemList', function(carts) {
+        var _htm = '';
+        if(!carts.length){
+            return '<li class="empty-cart">'+Lang.H5_SHOPING_NO_GOODS+'</li></ul>';
+        }
+        for(var item in carts){
+            var _item = carts[item];
+            _htm += '<li><a class="item-info j_item_info" data-url="'+_item.h5_url+'" href="javascript:;"><div class="lazy" data-img="'+_item.img+'">';
+            if(_item.is_discount && _item.discounting){
+                _htm +='<span class="">-'+_item.discount.value+'%</span>';
+            }
+            _htm +='</div></a></li>';
         }
         return _htm;
     });
@@ -311,11 +327,11 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
                     var _item_price = carts[item].item.discount.price;
                     _htm +='<div class="price clearfix"><span>'+(_item_price < 0?'':Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_item_price))
                         +'</span><div class="item-num-box clearfix">'
-                        +'<span class="j_reduce_btn">'
+                        +'<span class="j_reduce_btn" data-id="'+_id+'">'
                         +'<i class="icon iconfont icon-minus-font"></i>'
                         +'</span>'
                         +'<input class="fl j_item_num" type="text" data-price="'+carts[item].item.discount.price+'" value="'+carts[item].num+'" readonly="readonly"/>'
-                        +'<span class="j_add_btn" data-stock="'+_item_stock+'">'
+                        +'<span class="j_add_btn" data-id="'+_id+'" data-stock="'+_item_stock+'">'
                         +'<i class="icon iconfont icon-add-font"></i>'
                         +'</span>'
                         +'</div>'
@@ -324,11 +340,11 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
                     var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].item.price;
                     _htm +='<div class="price clearfix"><span>'+(_price < 0?'':Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_price))
                         +'</span><div class="item-num-box clearfix">'
-                        +'<span class="j_reduce_btn">'
+                        +'<span class="j_reduce_btn" data-id="'+_id+'" >'
                         +'<i class="icon iconfont icon-minus-font"></i>'
                         +'</span>'
                         +'<input class="fl j_item_num" type="text" data-price="'+_price+'" value="'+carts[item].num+'" readonly="readonly"/>'
-                        +'<span class="j_add_btn" data-stock="'+(((carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock))+'">'
+                        +'<span class="j_add_btn" data-id="'+_id+'" data-stock="'+(((carts[item].sku&&carts[item].sku.stock)?carts[item].sku.stock:carts[item].item.stock))+'">'
                         +'<i class="icon iconfont icon-add-font"></i>'
                         +'</span>'
                         +'</div>'

@@ -167,6 +167,22 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                     _num = _item.find(_config.child).length;
                 _item.css('width',_c_w*_num);
             });
+        },
+        getUrlSellerInfo : function(){//内嵌webview中的页面取seller_id和wduss
+            return {
+                seller_id : Base.others.getUrlPrem('seller_id'),
+                wduss : encodeURIComponent(Base.others.getUrlPrem('wduss'))
+            }
+        },
+        getItemListType : function(template,callback){
+            var _type = 2;
+            $.each(template,function(i,item){
+                if(item.type == 'item_list_type'){
+                    _type = item.data[0];
+                }
+            });
+            callback && callback(_type);
+            return _type;
         }
     };
 

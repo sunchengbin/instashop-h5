@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/orderconfirm.css?v=1481005714919" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/orderconfirm.css?v=1480588647499" rel="stylesheet"/>
     <title>Order</title>
     <script>
         <?php
@@ -35,17 +35,28 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             'receive_addr' => urlencode($addr)
         ];
         $path = 'v1/expresses';
-        ?>
-        var api_url = '<?php echo check_api($path, $params); ?>';
 
+        $paramsPrice = [
+            'action' => 'price',
+            'seller_id' => $seller_id,
+            'items' => $items,
+            '_debug_env' => '3.7.1'
+        ];
+        $pathPrice = 'v1/shopsDiscount';
+        ?>
+        
+        var api_url = '<?php echo check_api($path, $params); ?>';
+        var api_url_price = '<?php echo check_api($pathPrice, $paramsPrice); ?>';
         var express_data = JSON.parse(<?php echo get_init_data($path, $params); ?>);
+        var price_data = JSON.parse(<?php echo get_init_data($pathPrice, $paramsPrice); ?>);
+
 
       </script>
 </head>
 <body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/orderconfirm.js?v=1481005714919"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/orderconfirm.js?v=1480578543489"></script>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

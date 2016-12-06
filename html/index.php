@@ -12,6 +12,7 @@
     $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
     $smarty->assign('STATIC_FONT_CSS',STATIC_FONT_CSS);
     $smarty->assign('STATIC_HOST',STATIC_HOST);
+    $smarty->assign('BI_SCRIPT',BI_SCRIPT);
 
     /*获取index页面的数据*/
     include_once( dirname(__FILE__).'/../html/router/util.php' );
@@ -43,6 +44,8 @@
 
     include_once( dirname(__FILE__).'/../html/router/base.php');
     $items = transItems($json["item_list"]["list"]);
+    $itemtype = getItemListType($json["template"]);
+    $smarty->assign('ITEMTYPE',$itemtype);
     $smarty->assign('RECOMMEND_ITEM',$items["hot"]);
     $smarty->assign('TAGS_ITEM',$items["tags"]);
     $smarty->assign('HOT_ITEM',$items["item"]);

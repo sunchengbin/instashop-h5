@@ -2,11 +2,12 @@
  * Created by sunchengbin on 16/6/6.
  * 首页
  */
-require(['lang','lazyload','ajax','config','base','common','cart','fastclick','contact','slide','item'],function(Lang,Lazyload,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item){
+require(['lang','lazyload','ajax','config','base','common','cart','fastclick','contact','slide','item','dialog'],function(Lang,Lazyload,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item,Dialog){
     var I = {
         init : function(init_data){
             Lazyload();
             var _this = this;
+            _this.item_type = Common.getItemListType(init_data.template);
             _this.sortTimes = 0;
             var _cart_num = Cart().getCartNum();
             if(init_data){
@@ -127,28 +128,32 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                                 //console.log(_list_data);
                                 if(_list_data.item.length){
                                     if(!$('.j_item_box .j_item_list').length){
-                                        var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="items-list j_item_list clearfix"></ul>';
+                                        var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="'+(_this.item_type==2?'items-list':'three-items-list')+' j_item_list clearfix"></ul>';
                                         $('.j_item_box').html(_htm);
                                     }
-                                    $('.j_item_box ul').append(Item.addItem(_list_data.item));
+                                    $('.j_item_box ul').append(Item.addItem(_list_data.item,_this.item_type));
                                 }
                                 if(_list_data.hot.length){
                                     if(!$('.j_hot_list').length){
-                                        var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_HOT+'</p><ul class="items-list j_hot_list clearfix"></ul>';
+                                        var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_HOT+'</p><ul class="'+(_this.item_type==2?'items-list':'three-items-list')+' j_hot_list clearfix"></ul>';
                                         $('.j_hot_list').html(_htm);
                                     }
-                                    $('.j_hot_list').append(Item.addItem(_list_data.hot));
+                                    $('.j_hot_list').append(Item.addItem(_list_data.hot,_this.item_type));
                                 }
                                 if(_list_data.tags.length){
                                     var _tags = _list_data.tags;
                                     for(var tagid in _tags){
                                         if($('[data-tagid="'+_tags[tagid].id+'"]').length){
-                                            $('[data-tagid="'+_tags[tagid].id+'"] ul').append(Item.addItem(_list_data.tags[tagid].item));
+                                            $('[data-tagid="'+_tags[tagid].id+'"] ul').append(Item.addItem(_list_data.tags[tagid].item,_this.item_type));
                                         }else{
                                             var _htm = '<section class="items-box" data-tagid="'+_tags[tagid].id+'">'
-                                                +'<p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.host+'k/'+_tags[tagid].id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>'
-                                                +'<ul class="items-list j_item_list clearfix">'
-                                                +Item.addItem(_list_data.tags[tagid].item)
+                                                +'<p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.host+'k/'+_tags[tagid].id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>';
+                                            if(_this.item_type == 2){
+                                                _htm +='<ul class="items-list j_item_list clearfix">';
+                                            }else{
+                                                _htm +='<ul class="three-items-list j_item_list clearfix">';
+                                            }
+                                            _htm += Item.addItem(_list_data.tags[tagid].item,_this.item_type)
                                                 +'</ul>'
                                                 +'</section>';
                                             $('.j_box').eq(($('.j_box').length-1)).before(_htm);
@@ -175,6 +180,7 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                 var _this = $(this),
                     _url = _this.attr('data-url'),
                     _scroll_top = $(window).scrollTop();
+                if(!_url){return;}
                 localStorage.setItem('ScrollTop',_scroll_top);
                 Common.saveFromUrl(function(){
                     location.href = _url;
@@ -208,6 +214,25 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                 _sort_cover.style.webkitTransitionDuration = '.6s';
                 _sort_cover.style.webkitTransform = "translate3d(-100%,0,0)";
             });
+            //满减 lanchenghao
+            $('body').on('click','.j_reduc_box',function(){
+                var _htm = '<ul class="reduc-rule-list">';
+                if(!!init_data.shop.shop_discount){
+                    for(var i=0,_reducItem;_reducItem=init_data.shop.shop_discount.info[i++];){
+                        _htm+="<li><span></span>Minimal Pembelian Rp "+Base.others.priceFormat(_reducItem.condition_price)+" Potongan Rp "+ Base.others.priceFormat(_reducItem.discount_price)+"</li>"
+                    }
+                    _htm +='<li><span></span>'+$(".reduc-expire").text()+'</li></ul>'
+                    // _htm = _htm.replace(/,$/gi,'') +"</br>"+ $(".reduc-expire").text();
+                    Dialog.alert({
+                        top_txt:"<p style='text-align:center'>"+Lang.H5_REDUC_TITLE+"</p>",
+                        show_top:true,
+                        body_txt:_htm,
+                        body_fn:function(){
+                            $('.j_c_btn').hide();
+                        }
+                    })
+                }
+            })
             localStorage.removeItem('FromUrl');
             if(localStorage.getItem('ScrollTop') && Base.others.getUrlPrem('item')){//存在scrollTop时页面下滚到记忆中的top值
                 //if(Base.others.verifyBower().ios){

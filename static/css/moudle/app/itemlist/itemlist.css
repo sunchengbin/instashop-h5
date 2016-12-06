@@ -33,7 +33,7 @@
     background-color: #F5A623;
     position: absolute;
     left: 1rem;
-    top: 1.55rem;
+    top: 1.7rem;
     border-radius: 1px;
 }
 .item-title a{
@@ -136,12 +136,27 @@
 .lazy > span{
     display: inline-block;
     padding: .2rem 1rem;
-    background-color: #F5A623;
+    background-color: rgba(245,166,35,.8);
     color: #fff;
     top: .5rem;
     left: .5rem;
     position: absolute;
     border-radius: 2rem;
+}
+.three-items-list .lazy > span{
+    display: inline-block;
+    position: absolute;
+    border-radius: 2rem;
+    color: #fff;
+    bottom: .2rem;
+    right: .2rem;
+    min-width: 30px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 .5rem;
+    font-size: 12px;
+    left: inherit;
+    top: inherit;
 }
 .lazy p{
     position: absolute;
@@ -163,4 +178,57 @@
 }
 .lazy p span{
     display: inline-block;
+}
+/*三列*/
+.three-items-list{
+    position: relative;
+}
+.three-items-list::before{
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    left:-50%;
+    right:-50%;
+    bottom:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-top: 1px solid #d8d8d8;
+    z-index: 101;
+}
+.three-items-list li{
+    width: 33.3333%;
+    float: left;
+    box-sizing: border-box;
+    position:relative;
+    padding:.25rem;
+}
+.three-items-list li::before{
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    left:-50%;
+    right:-50%;
+    top:0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-top: 1px solid #d8d8d8;
+    z-index: 101;
+}
+.three-items-list li:not(:nth-child(3n+3))::after{
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    top:-50%;
+    bottom:-50%;
+    right:0;
+    width: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-right: 1px solid #d8d8d8;
+    z-index: 101;
 }

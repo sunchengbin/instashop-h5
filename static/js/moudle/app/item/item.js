@@ -4,42 +4,60 @@
  */
 define(['base','config','lang'],function(Base,Config,Lang){
     var ITEM = {
-        addItem : function(items){
+        addItem : function(items,type){
             var out = "",
                 _this = this,
-                _webplog = Base.others.webpLog(),
                 i = 0;
             for (i; i < items.length;i++) {
-                var _time = _this.discountTime(items[i].discount.now_time,items[i].discount.end_time),
-                    _url = Base.others.isCustomHost()?Config.host.host+items[i].id:Config.host.host+'detail/'+items[i].id;
-                out += '<li><a class="item-info j_item_info" data-url="'+(_url+(_webplog?'?webpLog=1':''))+'" href="javascript:;">'
-                    +'<div class="lazy" data-img="'+Base.others.cutImg(items[i].img)+'">';
-                if(items[i].is_discount){
-                    out +='<span>-'+items[i].discount.value+'%</span>';
-                    if(items[i].discounting){
-                        out +='<p><i class="icon iconfont icon-time-font"></i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
-                    }else{
-                        out +='<p>'+Lang.H5_IS_ABOUT_TO_BEGIN+'</p>';
-                    }
-                }
-                out +='</div>'
-                    +'<p class="title">'+Base.others.transTxt(items[i].item_comment)+'</p>';
-                if(items[i].price < 0){
-                    out +='<p class="price"></p>';
+                if(type == 2){
+                    out += _this.twoList(items[i]);
                 }else{
-                    out +='<p class="price '+(items[i].is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(items[i].price)+'</p>';
+                    out += _this.threeList(items[i]);
                 }
-                if(!items[i].is_discount){
-                    out +='<p class="discount-price"></p>';
-                }else{
-                    if(items[i].discounting){
-                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
-                    }else{
-                        out +='<p class="discount-price">Rp '+Base.others.priceFormat(items[i].discount.price)+'</p>';
-                    }
-                }
-                out +='</a></li>';
             }
+            return out;
+        },
+        threeList : function(item){
+           var _htm = '<li><a class="item-info j_item_info" data-url="'+item.h5_url+'" href="javascript:;"><div class="lazy" data-img="'+item.img+'">';
+                if(item.is_discount && item.discounting){
+                    _htm +='<span class="">-'+item.discount.value+'%</span>';
+                }
+            _htm+='</div></a></li>';
+            return _htm;
+        },
+        twoList : function(item){
+            var _this = this,
+                _webplog = Base.others.webpLog(),
+                out = '';
+            var _time = _this.discountTime(item.discount.now_time,item.discount.end_time),
+                _url = Base.others.isCustomHost()?Config.host.host+item.id:Config.host.host+'detail/'+item.id;
+            out += '<li><a class="item-info j_item_info" data-url="'+(_url+(_webplog?'?webpLog=1':''))+'" href="javascript:;">'
+                +'<div class="lazy" data-img="'+Base.others.cutImg(item.img)+'">';
+            if(item.is_discount){
+                out +='<span>-'+item.discount.value+'%</span>';
+                if(item.discounting){
+                    out +='<p><i class="icon iconfont icon-time-font"></i><span data-time="'+_time.second+'">'+_time.time+'</span></p>';
+                }else{
+                    out +='<p>'+Lang.H5_IS_ABOUT_TO_BEGIN+'</p>';
+                }
+            }
+            out +='</div>'
+                +'<p class="title">'+Base.others.transTxt(item.item_comment)+'</p>';
+            if(item.price < 0){
+                out +='<p class="price"></p>';
+            }else{
+                out +='<p class="price '+(item.is_discount?'cost-price':'')+'">Rp '+Base.others.priceFormat(item.price)+'</p>';
+            }
+            if(!item.is_discount){
+                out +='<p class="discount-price"></p>';
+            }else{
+                if(item.discounting){
+                    out +='<p class="discount-price">Rp '+Base.others.priceFormat(item.discount.price)+'</p>';
+                }else{
+                    out +='<p class="discount-price">Rp '+Base.others.priceFormat(item.discount.price)+'</p>';
+                }
+            }
+            out +='</a></li>';
             return out;
         },
         discountTime : function(nowTime,endTime){
