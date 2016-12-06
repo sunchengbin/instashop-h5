@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-12-02 09:50:54
+/* Smarty version 3.1.30, created on 2016-12-06 02:23:04
   from "/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/header.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5840d37e369a54_42785636',
+  'unifunc' => 'content_5845b088321713_54928365',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '24d16bc955f8502ea76f84211190205401146590' => 
     array (
       0 => '/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/header.tpl',
-      1 => 1480589112,
+      1 => 1480935948,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5840d37e369a54_42785636 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5845b088321713_54928365 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +31,7 @@ function content_5840d37e369a54_42785636 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <meta name="spider-id" content="orju7v">
   <?php echo $_smarty_tpl->tpl_vars['STATIC_DNS']->value;?>
 
   <?php echo $_smarty_tpl->tpl_vars['STATIC_ICO_CSS']->value;?>
@@ -41,7 +42,7 @@ function content_5840d37e369a54_42785636 (Smarty_Internal_Template $_smarty_tpl)
 
   <link href="<?php echo $_smarty_tpl->tpl_vars['STATIC_HOST']->value;?>
 /css/dist/app/<?php echo $_smarty_tpl->tpl_vars['INDEX_CSS_NAME']->value;?>
-.css?v=1480490723045" rel="stylesheet"/>
+.css?v=1480588647588" rel="stylesheet"/>
 </head>
-<body><?php }
+<body data-spider="615lnd28"><?php }
 }
