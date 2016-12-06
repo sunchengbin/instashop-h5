@@ -80,7 +80,7 @@ $js = <<<JS
           return _items;
     }
     function getSellerID() {
-        var _WD_s_id = getUrlPrem("seller_id")||"";
+        var _WD_s_id = getUrlPrem("seller_id")||(init_data&&init_data.shop?init_data.shop.id:"")||"";
         //获取当前时间
         var date=new Date();
         var expireDays=10;
