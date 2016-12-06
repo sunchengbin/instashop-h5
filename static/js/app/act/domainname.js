@@ -361,7 +361,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             _htm = '<div class="invite-dialog">' +
                 '    <div class="invite-dialog-input">' +
                 '        <textarea name="content" value="" id="j_invite_txt"' +
-                '                  >Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi, karena sudah ada INSTASHOP,  aplikasi praktis untuk membuat \& mengelola webstore. Pakai KODE REFERRAL ini ' + _this.user_info.seller_id +
+                '                  >Hi! Sekarang bikin web ga perlu bayar jutaan rupiah lagi, karena sudah ada INSTASHOP,  aplikasi praktis untuk membuat '+escape("&")+'mengelola webstore. Pakai KODE REFERRAL ini ' + _this.user_info.seller_id +
                 ' saat registrasi untuk mendapatkan webstore GRATIS！Download sekarang http://www.instashop.co.id</textarea>' +
                 '    </div>' +
                 '    <div class="invite-share-box" data-spider="invitebox">' +
