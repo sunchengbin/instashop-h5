@@ -215,12 +215,13 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
             });
             //满减 lanchenghao
             $('body').on('click','.j_reduc_box',function(){
-                var _htm = '';
+                var _htm = '<ul class="reduc-rule-list">';
                 if(!!init_data.shop.shop_discount){
                     for(var i=0,_reducItem;_reducItem=init_data.shop.shop_discount.info[i++];){
-                        _htm+="Minimal Pembelian Rp "+Base.others.priceFormat(_reducItem.condition_price)+" Potongan Rp "+ Base.others.priceFormat(_reducItem.discount_price)+","
+                        _htm+="<li><span></span>Minimal Pembelian Rp "+Base.others.priceFormat(_reducItem.condition_price)+" Potongan Rp "+ Base.others.priceFormat(_reducItem.discount_price)+"</li>"
                     }
-                    _htm = _htm.replace(/,$/gi,'') +"</br>"+ $(".reduc-expire").text();
+                    _htm +='<li><span></span>'+$(".reduc-expire").text()+'</li></ul>'
+                    // _htm = _htm.replace(/,$/gi,'') +"</br>"+ $(".reduc-expire").text();
                     Dialog.alert({
                         top_txt:"<p style='text-align:center'>"+Lang.H5_REDUC_TITLE+"</p>",
                         show_top:true,
