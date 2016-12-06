@@ -6,7 +6,11 @@
             <div class="banner-box">
                 <ul class="item-banner static-banner clearfix">
                     {foreach $model.data as $banner}
+                    {if $banner.link_url}
                         <li class=""><a spm-auto="标准banner" spm-click="static-banner" class="block" href="{$banner.link_url|setHref}"><img data-img="{$banner.img}"/></a></li>
+                    {else}
+                        <li class=""><a spm-auto="标准banner" spm-click="static-banner" class="block no-cursor" href="{$banner.link_url|setHref}"><img data-img="{$banner.img}"/></a></li>
+                    {/if}
                     {/foreach}
                 </ul>
             </div>
@@ -16,7 +20,11 @@
             <div class="banner-box">
                 <ul class="item-banner j_banner rotate-banner clearfix">
                     {foreach $model.data as $banner}
+                    {if $banner.link_url}
                         <li class=""><a spm-auto="轮播banner" spm-click="rotate-banner" class="block" href="{$banner.link_url|setHref}"><img data-img="{$banner.img}"/></a></li>
+                    {else}
+                        <li class=""><a spm-auto="轮播banner" spm-click="rotate-banner" class="block no-cursor" href="{$banner.link_url|setHref}"><img data-img="{$banner.img}"/></a></li>
+                    {/if}
                     {/foreach}
                 </ul>
             </div>
@@ -25,11 +33,19 @@
         <section class="banner-wraper two-list-banner j_model_box" data-spider="two_list_banner">
             <ul class="two-list-box clearfix">
                 {foreach $model.data as $banner}
+                {if $banner.link_url}
                     <li>
                         <a spm-auto="两列banner" spm-click="two-list-banner" class="block" href="{$banner.link_url|setHref}">
                             <div class="lazy" data-img="{$banner.img|list_img}"></div>
                         </a>
                     </li>
+                {else}
+                    <li>
+                        <a spm-auto="两列banner" spm-click="two-list-banner" class="block no-cursor" href="{$banner.link_url|setHref}">
+                            <div class="lazy" data-img="{$banner.img|list_img}"></div>
+                        </a>
+                    </li>
+                {/if}
                 {/foreach}
             </ul>
         </section>

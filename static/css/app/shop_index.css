@@ -424,3 +424,6 @@ footer .btn i{
     background-color: #fff;
     padding:0 1rem;
 }
+.no-cursor{
+    cursor: none;
+}
