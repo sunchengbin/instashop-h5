@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-12-02 14:54:04
+/* Smarty version 3.1.30, created on 2016-12-06 18:21:37
   from "/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/footer.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_58411a8ca28fb1_76825181',
+  'unifunc' => 'content_58469131f175b5_62016477',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '34c6b0037ed3f27673c64cda35fe63e36bb71ff0' => 
     array (
       0 => '/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/footer.tpl',
-      1 => 1480661577,
+      1 => 1481019583,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_58411a8ca28fb1_76825181 (Smarty_Internal_Template $_smarty_tpl) {
+function content_58469131f175b5_62016477 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['STATIC_HOST']->value;?>
 /js/base/require-zepto.js"><?php echo '</script'; ?>
@@ -32,7 +32,7 @@ echo '<script'; ?>
 <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['STATIC_HOST']->value;?>
 /js/dist/app/<?php echo $_smarty_tpl->tpl_vars['INDEX_JS_NAME']->value;?>
-.js?v=1480661577713"><?php echo '</script'; ?>
+.js?v=1481019583188"><?php echo '</script'; ?>
 >
 
     <?php echo '<script'; ?>
@@ -49,10 +49,13 @@ echo '<script'; ?>
           }
           ga('create', 'UA-78448705-7', 'auto');
           ga('send', 'pageview');
-
     <?php echo '</script'; ?>
 >
 
+<?php echo '<script'; ?>
+><?php echo $_smarty_tpl->tpl_vars['BI_SCRIPT']->value;
+echo '</script'; ?>
+>
 </body>
 </html>
 <?php }
