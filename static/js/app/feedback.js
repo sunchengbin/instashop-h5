@@ -14,6 +14,7 @@ require(['ajax','config','dialog','lang','common'],function(Ajax,Config,Dialog,L
             _wduss = _seller_info.wduss,
             _contact = $('#contact').val(),
             _content = $('#content').val();
+        alert(location.href);
         if (!_content) {
             $('#error').show();
             return false;
