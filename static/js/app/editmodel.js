@@ -29,6 +29,8 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             var _this = this;
             Common.getItemListType(_this.model_data,function(type){
                 _this.item_list_type = type;
+            });
+            Common.isHaveListType(_this.model_data,function(){
                 _this.have_list_type = true;
             });
         },
@@ -127,8 +129,6 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     $(this).find('.check-btn').addClass('checked-btn');
                     $('.icon-radioed-font').addClass('icon-radio-font').removeClass('icon-radioed-font');
                     $(this).find('.check-btn').addClass('icon-radioed-font').removeClass('icon-radio-font');
-                }else{
-
                 }
             });
             $('body').on('click','.j_del_model',function(){

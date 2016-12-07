@@ -183,6 +183,13 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
             });
             callback && callback(_type);
             return _type;
+        },
+        isHaveListType : function(template,callback){
+            $.each(template,function(i,item){
+                if(item.type == 'item_list_type'){
+                    callback && callback();
+                }
+            });
         }
     };
 
