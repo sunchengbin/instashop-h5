@@ -171,8 +171,12 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
           -webkit-transform: scale(1.0);
       }
 }
-
-
+html{
+height:100%;
+}
+body{
+height:100%;
+}
 
     </style>
 </head>
