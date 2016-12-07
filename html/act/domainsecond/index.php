@@ -785,14 +785,10 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
     <script>
         <?php
         include_once( dirname(__FILE__).'/../../../html/router/util.php' );
-
-        $seller_id = $_REQUEST['seller_id'];
-        $wduss = $_REQUEST['wduss'];
-        $params = [
-                'action' => 'invite',
-                'seller_id' => $seller_id,
-                'wduss' => urlencode($wduss)
-        ];
+        include_once( dirname(__FILE__).'/../../../html/router/common.php' );
+        $params = array_merge(getSellerInfo(),[
+             'action' => 'invite'
+        ]);
         $path = 'v1/domain';
         ?>
         var api_url = '<?php echo check_api($path, $params); ?>';

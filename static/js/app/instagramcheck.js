@@ -32,11 +32,12 @@ require(['config', 'base', 'lang', 'common','dialog'], function (Config, Base, L
             }
         },
         subData: function () {
+            var _seller_info = Common.getUrlSellerInfo();
             var _reqData = {
-                wduss: encodeURIComponent(Common.getQueryParam("wduss")),
-                seller_id: Common.getQueryParam("seller_id"),
+                wduss: _seller_info.wduss,
+                seller_id: _seller_info.seller_id,
                 action: "instagram"
-            }
+            };
             var reqUrl = Config.host.phpHost + Config.actions.instagramcheck + "?param=" + JSON.stringify(_reqData)+"&timestamp="+new Date().getTime();
              Dialog.confirm({
                 body_txt: 'Pastikan akun Instagrammu tidak diprivate',

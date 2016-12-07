@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/10/13.
  */
-require(['ajax','config','dialog','lang'],function(Ajax,Config,Dialog,Lang){
+require(['ajax','config','dialog','lang','common'],function(Ajax,Config,Dialog,Lang,Common){
     function getRequestParam(param) {
         var value;
         var uri = window.location.href;
@@ -9,8 +9,9 @@ require(['ajax','config','dialog','lang'],function(Ajax,Config,Dialog,Lang){
         return value ? decodeURIComponent(value[1]) : value;
     }
     $('#f-submit').on('click',function(){
-        var _seller_id = getRequestParam('seller_id'),
-            _wduss = getRequestParam('wduss'),
+        var _seller_info = Common.getUrlSellerInfo(),
+            _seller_id = _seller_info.seller_id,
+            _wduss = _seller_info.wduss,
             _contact = $('#contact').val(),
             _content = $('#content').val();
         if (!_content) {
