@@ -29,7 +29,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
     <script>
-    alert(loaction.href);
+    alert(location.href);
     require(['insjs','fastclick'],function(Insjs,FastClick){
         Insjs.WebOnReady(function(bridge){
             handelFn(bridge);
