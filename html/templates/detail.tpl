@@ -70,9 +70,13 @@
                 <div>
                     <p class="reduc-box-info">
                         <i class="iconfont icon-bugle"></i> 
-                        {foreach $INDEX_DATA.item.shop.shop_discount.info as $item} Minimal
-                            Pembelian Rp {$item.condition_price|priceFormat} Potongan Rp {$item.discount_price|priceFormat} 
-                        {/foreach}
+                            {foreach $INDEX_DATA.item.shop.shop_discount.info as $keyvar=>$item} 
+                                {if $keyvar eq 0}
+                                    Minimal Pembelian Rp {$item.condition_price|priceFormat} Potongan Rp {$item.discount_price|priceFormat} 
+                                {else}
+                                    , Minimal Pembelian Rp {$item.condition_price|priceFormat} Potongan Rp {$item.discount_price|priceFormat}
+                                {/if}
+                            {/foreach}
                     </p>
                     <p class='reduc-expire'>
                         {$INDEX_DATA.item.shop.shop_discount.start_time|dateFormat} - {$INDEX_DATA.item.shop.shop_discount.end_time|dateFormat} WIB
