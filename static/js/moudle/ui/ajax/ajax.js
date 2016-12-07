@@ -3,8 +3,7 @@
  */
 define(['config','base'],function(Config,Base){
     var Debug = Base.others.getUrlPrem('_debug_env') || localStorage.getItem('DebugEnv');
-    alert(location.href);
-    alert(Debug);
+    Debug = Debug && Debug == 'null'?false:Debug;
     var Ajax = {
         getJsonp : function ( url, success, error ) {
             var _data = Base.others.getUrlPrem('param',url)?JSON.parse(Base.others.getUrlPrem('param',url)):null;
