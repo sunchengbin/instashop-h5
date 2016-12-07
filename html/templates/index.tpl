@@ -24,6 +24,10 @@
     <p>Akun ini telah dihapus karena melanggar syarat dan ketentuan penggunaan Instashop</p>
 </section>
 {else}
+<section class="search-box" data-spider="search-box">
+    <input class="search-ipt j_search_ipt" type="text"/>
+    <a class="j_search_btn" spm-auto="搜索" spm-click="sellerId={$INDEX_DATA.shop.id}" href="javascript:;">Cari</a>
+</section>
 <section class="shop-header">
     <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
     <div class="clearfix shop-info">

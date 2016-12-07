@@ -21,24 +21,21 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
             if($('.txt-hide').height() > 44){
                 $('.down-btn').show();
             }
-            this.handleFn();
+            _this.handleFn();
         },
         initRotateBanner : function(){
             Common.slideImgNav();
             var _banners = document.querySelectorAll('.j_banner'),
                 _len = _banners.length;
             if(_len){
-                console.log(1);
-                 //$.each(_banners,function(i,item) {
-                    for (var i = 0; i < _len; i++){
-                        var item = _banners[i];
-                        Slide.createNew({
-                            dom: item,
-                            needTab: true,
-                            auto: true
-                        });
-                    }
-                //});
+                for (var i = 0; i < _len; i++){
+                    var item = _banners[i];
+                    Slide.createNew({
+                        dom: item,
+                        needTab: true,
+                        auto: true
+                    });
+                }
             }
         },
         getTags : function(list){
@@ -91,7 +88,6 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
             }
             Fastclick.attach(document.body);
             if($('.txt-hide').height() > 44){
-                console.log(1)
                 $('body').on('click','.j_down_box',function(){
                     if($('.j_down_btn').is('.down-btn')){
                         $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
@@ -123,9 +119,7 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                                 }
                             };
                             if(obj.item_list.list.length > 0){
-                                //console.log(obj.item_list.list);
                                 var _list_data = _this.transItems(obj.item_list.list);
-                                //console.log(_list_data);
                                 if(_list_data.item.length){
                                     if(!$('.j_item_box .j_item_list').length){
                                         var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="'+(_this.item_type==2?'items-list':'three-items-list')+' j_item_list clearfix"></ul>';
@@ -232,7 +226,12 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                         }
                     })
                 }
-            })
+            });
+            $('body').on('click','.j_search_btn',function(){
+                var _val = $.trim($('.j_search_ipt').val());
+                if(!_val){return;}
+                location.href = Config.hrefUrl + 'search.php?key='+encodeURIComponent(_val)+'&seller_id='+init_data.shop.id;
+            });
             localStorage.removeItem('FromUrl');
             if(localStorage.getItem('ScrollTop') && Base.others.getUrlPrem('item')){//存在scrollTop时页面下滚到记忆中的top值
                 //if(Base.others.verifyBower().ios){
@@ -275,7 +274,6 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                 _l_top = 0;
             }
             if(_this.t){
-                //console.log(1)
                 clearTimeout(_this.t);
             }
             _this.t = setTimeout(function(){
@@ -283,18 +281,14 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                 if(_this.sortTimes > 7){
                     clearTimeout(_this.t);
                 }else{
-                    //console.log(_this.t)
                     $(window).scrollTop(_l_top);
                     if ($(document).height() < _l_top) {
                         _this.goScroll();
                     }else{
                         clearTimeout(_this.t);
-                        //console.log('end')
                     }
                 }
-
             },100);
-
         },
         transItems : function(items){
             var i = 0,
