@@ -204,6 +204,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 },
                 lang : Lang
             }));
+            Lazyload();
             _item_box.remove();
         },
         setIsEdited : function(){
