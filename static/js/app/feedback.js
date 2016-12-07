@@ -44,7 +44,7 @@ require(['ajax','config','dialog','lang','common'],function(Ajax,Config,Dialog,L
                 }else{
                     Dialog.tip({
                         top_txt : '',//可以是html
-                        body_txt : '<p class="dialog-body-p">'+obj.msg+'</p>',
+                        body_txt : '<p class="dialog-body-p">'+obj.message+'</p>',
                         auto_fn : function(){
                             setTimeout(function(){
                                 location.reload();
