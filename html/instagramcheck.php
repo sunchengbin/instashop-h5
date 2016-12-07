@@ -173,13 +173,14 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 }
 html{
 height:100%;
+overflow:hidden;
 }
 body{
 position:absolute;
 top:0;
 bottom:0;
 width:100%;
-height:1000px;
+height:600px;
 }
 
     </style>
