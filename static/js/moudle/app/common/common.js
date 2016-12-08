@@ -176,11 +176,13 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
         },
         getItemListType : function(template,callback){
             var _type = 2;
-            $.each(template,function(i,item){
-                if(item.type == 'item_list_type'){
-                    _type = item.data[0];
-                }
-            });
+            //if(template.length){
+                $.each(template,function(i,item){
+                    if(item.type == 'item_list_type'){
+                        _type = item.data[0];
+                    }
+                });
+            //}
             callback && callback(_type);
             return _type;
         },

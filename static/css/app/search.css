@@ -1,0 +1,76 @@
+@import "../base/base.css";
+@import "../moudle/app/header/header.css";
+@import "../moudle/app/common/common.css";
+@import "../moudle/ui/dialog/dialog.css";
+@import "../moudle/app/itemlist/itemlist.css";
+body{
+    padding-top:4rem;
+}
+.shop-header-nav{
+    background-color: #f5f5f5;
+    color:#666;
+    padding:.5rem 0;
+}
+.shop-header-nav > p{
+    margin: 0 5rem;
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 16px;
+}
+.shop-header-nav::after{
+    position: absolute;
+    left:-50%;
+    right: -50%;
+    bottom:-1px;
+    height: 1px;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-top: 1px solid #d8d8d8;
+}
+.shop-header-nav button i.icon-back-font{
+    font-size: 24px;
+    color: #999;
+}
+.shop-header-nav > div{
+    height: 3rem;
+}
+.shop-header-nav > div.back-box{
+    width: 2rem;
+    margin:0 0 0 .5rem;
+}
+.shop-header-nav button{
+    width: 2rem;
+    text-align: right;
+}
+
+.shop-header-nav > div.search-box{
+    margin:0 .5rem 0 3rem;
+    width: initial;
+    position: relative;
+}
+.search-box a{
+    display: block;
+    height: 3rem;
+    line-height: 3rem;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    width: 4rem;
+}
+.search-box i{
+    position: absolute;
+    left: .5rem;
+    top: .6rem;
+    color: #999;
+}
+.key-box{
+    margin-right:4rem;
+}
+.key-box input{
+    width: 100%;
+    height: 3rem;
+    line-height: 3rem;
+    padding: .5rem .5rem .5rem 2rem;
+    background: #fff;
+}

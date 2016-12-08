@@ -17,22 +17,7 @@
 
     /*获取搜索列表页面*/
     include_once( dirname(__FILE__).'/../html/router/util.php' );
-    $params = [
-        'search' => $_REQUEST['key'],
-        'seller_id' => $_REQUEST['seller_id']
-    ];
-    $path = 'v1/shopsItems/self';
-    $ret = get_init_php_data($path, $params);
-    $json = json_decode($ret, true);
-
     include_once( dirname(__FILE__).'/../html/router/base.php');
-    $items = transItems($json["item_list"]["list"]);
-    $itemtype = getItemListType($json["template"]);
-    $smarty->assign('ITEMTYPE',$itemtype);
-    $smarty->assign('KEY',$_REQUEST['key']);
-    $smarty->assign('SEARCH_DATA',$json);
-    $smarty->assign('SEARCH_DATA_STR',$ret);
-
 
     /*基础的js,css文件名*/
     $smarty->assign('INDEX_JS_NAME','search');
