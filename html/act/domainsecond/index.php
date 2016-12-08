@@ -891,7 +891,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                   }
 
           function getSellerID() {
-              var _WD_s_id = getUrlPrem("seller_id")||"";
+              var _WD_s_id = -1;
               //获取当前时间
               var date=new Date();
               var expireDays=10;
