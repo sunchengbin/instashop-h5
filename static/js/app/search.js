@@ -35,9 +35,9 @@ require(['config','ajax','common','item','fastclick','dialog'],function(Config,A
                         var _list_type = Common.getItemListType(obj.template),
                             _html = Item.addItem(obj.item_list.list,_list_type);
                         if(_list_type == 3){
-                            _html = '';
+                            _html = '<ul class="items-list clearfix j_item_list">'+_html+'</ul>';
                         }else{
-                            _html = '';
+                            _html = '<ul class="three-items-list clearfix j_default_item_list">'+_html+'</ul>';
                         }
                         $('.j_item_box').html(_html);
                     }else{
