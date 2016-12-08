@@ -211,7 +211,6 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                             //_msg = Lang.H5_NO_STOCK;
                         } else {
                             if (_stock == -1) {
-                                //存在error_status 表示 商品已下架
                                 //校验是否存在need_sku
                                 //存在need_sku:卖家需要填写sku
                                 if (item.need_sku) {
