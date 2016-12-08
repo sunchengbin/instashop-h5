@@ -1,4 +1,5 @@
 {include file="header.tpl" title="My Page Title"}
+<body data-spider="402ngpd7">
 <nav class="shop-header-nav clearfix">
     <div class="fl back-box">
         <button class="j_go_back">

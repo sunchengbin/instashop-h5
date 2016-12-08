@@ -14,4 +14,3 @@
   {$INDEX_TITLE}
   <link href="{$STATIC_HOST}/css/app/{$INDEX_CSS_NAME}.css?v=1481112205516" rel="stylesheet"/>
 </head>
-<body data-spider="615lnd28">

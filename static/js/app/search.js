@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 2016/12/7.
  */
-require(['config','ajax','common','item','fastclick','dialog'],function(Config,Ajax,Common,Item,Fastclick,Dialog){
+require(['config','ajax','common','item','fastclick','dialog','lazyload','base'],function(Config,Ajax,Common,Item,Fastclick,Dialog,Lazyload,Base){
     var Search = {
         init : function(){
             var _this = this;
@@ -15,6 +15,31 @@ require(['config','ajax','common','item','fastclick','dialog'],function(Config,A
                 var _key = $.trim($('.j_key').val());
                 if(!_key)return;
                 _this.getSearchValue(_key);
+            });
+            $(document).on('keydwon',function(e){
+                if(e.keyCode){
+
+                }
+            });
+            $('body').on('blur','.j_key',function(){
+                var _key = $.trim($(this).val());
+                if(!_key)return;
+                _this.getSearchValue(_key);
+            });
+            $('body').on('click','.j_item_info',function(){
+                var _this = $(this),
+                    _url = _this.attr('data-url');
+                localStorage.setItem('SortTop',$(window).scrollTop());
+                Common.saveFromUrl(function(){
+                    location.href = _url;
+                });
+            });
+            $('body').on('click','.j_go_back',function(){
+                var URL_HTTP_TYPE = location.protocol,
+                    URL_HOST_NAME = location.hostname,
+                    _shop_data = localStorage.getItem('ShopData'),
+                    _home = _shop_data?JSON.parse(_shop_data).ShopInfo.url:URL_HTTP_TYPE+'//'+URL_HOST_NAME;
+                location.href = _home;
             });
         },
         getSearchValue : function(val){
@@ -35,11 +60,12 @@ require(['config','ajax','common','item','fastclick','dialog'],function(Config,A
                         var _list_type = Common.getItemListType(obj.template),
                             _html = Item.addItem(obj.item_list.list,_list_type);
                         if(_list_type == 3){
-                            _html = '<ul class="items-list clearfix j_item_list">'+_html+'</ul>';
-                        }else{
                             _html = '<ul class="three-items-list clearfix j_default_item_list">'+_html+'</ul>';
+                        }else{
+                            _html = '<ul class="items-list clearfix j_item_list">'+_html+'</ul>';
                         }
                         $('.j_item_box').html(_html);
+                        Lazyload();
                     }else{
                         Dialog.tip({
                             body_txt:'<p>'+obj.message+'</p>'
@@ -50,9 +76,6 @@ require(['config','ajax','common','item','fastclick','dialog'],function(Config,A
 
                 }
             );
-        },
-        showItemList : function(){
-
         }
     };
     Search.init();

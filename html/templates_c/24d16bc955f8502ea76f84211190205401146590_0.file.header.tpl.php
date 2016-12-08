@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-12-08 11:25:44
+/* Smarty version 3.1.30, created on 2016-12-08 17:46:20
   from "/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/header.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5848d2b8537838_71457368',
+  'unifunc' => 'content_58492bec7ac796_92915175',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '24d16bc955f8502ea76f84211190205401146590' => 
     array (
       0 => '/Users/sunchengbin/workspace/instashop/instashop-new/html/templates/header.tpl',
-      1 => 1481167542,
+      1 => 1481190084,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5848d2b8537838_71457368 (Smarty_Internal_Template $_smarty_tpl) {
+function content_58492bec7ac796_92915175 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,5 +44,5 @@ function content_5848d2b8537838_71457368 (Smarty_Internal_Template $_smarty_tpl)
 /css/app/<?php echo $_smarty_tpl->tpl_vars['INDEX_CSS_NAME']->value;?>
 .css?v=1481112205516" rel="stylesheet"/>
 </head>
-<body data-spider="615lnd28"><?php }
+<?php }
 }
