@@ -34,7 +34,7 @@ function loadClass($strClassName)
     }
 }
 function getFontCss($url){
-    return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1481090019012") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1481090019012#iconfont") format("svg");}</style>';
+    return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1481112205657") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1481112205657#iconfont") format("svg");}</style>';
 }
 function getIco($url){
     return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';
@@ -117,7 +117,6 @@ function setHref($link){
 }
 spl_autoload_register('loadClass');
 $prompt = is_https() ? 'https:' : 'http:';
-$prompt = '';
 $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
 $static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
 $static_font_css =C_RUNTIME_ONLINE?getFontCss($host_name.'/static'):getFontCss($host_name.'/static');

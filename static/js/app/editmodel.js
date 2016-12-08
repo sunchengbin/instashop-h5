@@ -27,8 +27,22 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         },
         getItemListType : function(){
             var _this = this;
+            _this.type_num = 0;
+            _this.index = [];
+            $.each(_this.model_data,function(i,item){
+                if(item.type == 'item_list_type'){
+                    _this.type_num++;
+                    _this.index.push(i);
+                }
+            });
+            if(_this.type_num > 1){
+                _this.model_data.splice(_this.index[0],1);
+            }
             Common.getItemListType(_this.model_data,function(type){
                 _this.item_list_type = type;
+            });
+            Common.isHaveListType(_this.model_data,function(){
+
                 _this.have_list_type = true;
             });
         },
@@ -127,8 +141,6 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     $(this).find('.check-btn').addClass('checked-btn');
                     $('.icon-radioed-font').addClass('icon-radio-font').removeClass('icon-radioed-font');
                     $(this).find('.check-btn').addClass('icon-radioed-font').removeClass('icon-radio-font');
-                }else{
-
                 }
             });
             $('body').on('click','.j_del_model',function(){
@@ -204,6 +216,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 },
                 lang : Lang
             }));
+            Lazyload();
             _item_box.remove();
         },
         setIsEdited : function(){
