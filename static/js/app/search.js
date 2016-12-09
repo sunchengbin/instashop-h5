@@ -29,6 +29,7 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base']
                 _this.getSearchValue(_key);
             });
             $('body').on('blur','.j_key',function(){
+                _paq.push(['trackEvent', '失去焦点搜索', 'blur', '搜索']);
                 var _key = $.trim($(this).val());
                 if(!_key)return;
                 if(_this.searching)return;
