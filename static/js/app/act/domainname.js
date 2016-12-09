@@ -43,13 +43,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                         body_txt: 'Silakan update ke versi terbaru untuk mengikuti promo ini'
                     });
                 })
-                //初始化状态监控
-                // _this.initStatus();
-                // _this.initData();
-                // _this.handleFn();
-                // Insjs.WebOnReady(function (bridge) {
-                //     _this.bridge = bridge;
-                // });
         },
         versionTipDialog: function () {
             _paq.push(['trackEvent', '低于3.5版本提示', 'autotip', '']);

@@ -631,13 +631,16 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                     width: 50%;
                     text-align: center;
                     height: 40px;
-                    font-size: 16px;
+                    font-size: 14px;
                     padding:0 10px;
                     font-weight: normal;
                 }
+                .invite-table table td:first-child {
+                    width: 38%;
+                }
                 .invite-table .t-header {
                     width: 100%;
-                    font-size: 16px;
+                    font-size: 14px;
                     font-weight: bolder;
                 }
 
@@ -867,8 +870,8 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
     <p>5. Keputusan Instashop adalah mutlak dan tidak dapat diganggu gugat. Jika ditemukan indikasi kecurangan dalam bentuk apapun, baik selama promo ini berlangsung ataupun setelah promo ini berakhir, Instashop berhak menolak dan/atau mencabut pengajuan domain kamu.</p>
 </section>
 <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-<!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-<script src="<?=STATIC_HOST?>/js/dist/app/act/domainname.js?v=1481112205844"></script>
+<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
+<script src="<?=STATIC_HOST?>/js/app/act/domainname.js?v=1481112205844"></script>
 <script>
 
           function getUrlPrem(key,url){
