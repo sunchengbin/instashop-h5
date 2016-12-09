@@ -19,11 +19,17 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             $('.j_start_loading').remove();
             _this.initHtml();
             _this.initRotateBanner();
+            var _wh = $(window).height(),
+                _bh = $('body').height();
+            if( _wh > _bh){
+                $('body').height(_wh);
+            }
             Insjs.WebOnReady(function(bridge){
                 _this.handelFn(bridge);
             },function(){
                 _this.handelFn();
             });
+
         },
         getItemListType : function(){
             var _this = this;
