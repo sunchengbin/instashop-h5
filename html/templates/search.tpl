@@ -6,9 +6,9 @@
             <i class="icon iconfont icon-back-font"></i>
         </button>
     </div>
-    <div class="search-box clearfix">
+    <div class="search-box clearfix" data-spider="search-btn">
         <i class="iconfont icon-search-font"></i>
-        <a href="javascript:;" class="j_search_btn fr">Cari</a>
+        <a href="javascript:;" spm-auto="搜索按钮" spm-click="搜索" class="j_search_btn fr">Cari</a>
         <div class="key-box">
             <input value="{$KEY}" class="j_key" type="text"/>
         </div>
@@ -21,7 +21,7 @@
                 <ul class="items-list clearfix j_hot_list">
                     {foreach $SEARCH_DATA.item_list.list as $item}
                     <li>
-                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$item.seller_id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>

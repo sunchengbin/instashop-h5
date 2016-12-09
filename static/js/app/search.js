@@ -42,6 +42,7 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base']
                 });
             });
             $('body').on('click','.j_go_back',function(){
+                _paq.push(['trackEvent', '返回', 'click', '']);
                 var URL_HTTP_TYPE = location.protocol,
                     URL_HOST_NAME = location.hostname,
                     _shop_data = localStorage.getItem('ShopData'),
