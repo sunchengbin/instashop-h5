@@ -626,6 +626,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                     border: none;
                     background: #BB9873;
                 }
+
                 .invite-table table td {
                     border: 2px solid #8B572A;
                     width: 50%;
@@ -635,6 +636,24 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
                     padding:0 10px;
                     font-weight: normal;
                 }
+
+                @media only screen and (min-width: 319px) {
+                    .invite-table table td {
+                        border: 2px solid #8B572A;
+                        width: 50%;
+                        text-align: center;
+                        height: 40px;
+                        font-size: 12px;
+                        padding:0 2px;
+                        font-weight: normal;
+                    }
+                    .invite-table .t-header {
+                        width: 100%;
+                        font-size: 12px;
+                        font-weight: bolder;
+                    }
+                }
+
                 .invite-table table td:first-child {
                     width: 38%;
                 }
@@ -870,8 +889,8 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
     <p>5. Keputusan Instashop adalah mutlak dan tidak dapat diganggu gugat. Jika ditemukan indikasi kecurangan dalam bentuk apapun, baik selama promo ini berlangsung ataupun setelah promo ini berakhir, Instashop berhak menolak dan/atau mencabut pengajuan domain kamu.</p>
 </section>
 <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
-<script src="<?=STATIC_HOST?>/js/app/act/domainname.js?v=1481112205844"></script>
+<!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
+<script src="<?=STATIC_HOST?>/js/dist/app/act/domainname.js?v=1481112205844"></script>
 <script>
 
           function getUrlPrem(key,url){
