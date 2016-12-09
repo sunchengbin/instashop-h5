@@ -60,6 +60,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             });
             //item=back是为了让返回首页的时候滚动到指定的scrolltop高度
             $('body').on('click', '.j_go_back', function () {
+                _paq.push(['trackEvent', '返回', 'click', '']);
                 var _local_url = localStorage.getItem('FromUrl'),
                     _host_url = location.href,
                     _key = Base.others.getUrlPrem('search'),

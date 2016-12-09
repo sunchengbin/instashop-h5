@@ -16,7 +16,7 @@
     <p>Produk tidak ditemukan!</p>
 </div>
 {else}
-<nav class="shop-header-nav clearfix">
+<nav class="shop-header-nav clearfix" >
     <div class="fl">
         <button class="j_go_back">
                     <i class="icon iconfont icon-back-font"></i>
@@ -106,11 +106,11 @@
             <p><i class="icon iconfont j_down_btn down-btn"></i></p>
         </div>
     </div>
-    <div class="index-btn-box">
+    <div class="index-btn-box" data-spider="set-up-shop">
         <!--新增3.5 功能点4需求-->
         <div class="btn j_submit_btn confirm-btn">
             <i class="iconfont icon-shop-font"></i>
-            <a href="http://www.instashop.co.id/" onclick="trackOutboundLink('http://www.instashop.co.id/'); return false;" target="_self">Buat webstore gratis sekarang!</a>
+            <a href="http://www.instashop.co.id/" spm-auto="去开店" spm-click="去开店"  onclick="trackOutboundLink('http://www.instashop.co.id/'); " target="_self">Buat webstore gratis sekarang!</a>
         </div>
     </div>
 </section>

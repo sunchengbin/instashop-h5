@@ -82,7 +82,7 @@ $js = <<<JS
     function getSellerID() {
         var _shop_data = localStorage.getItem('ShopData');
         var _s_id = _shop_data?JSON.parse(_shop_data).ShopInfo.id:-1;
-        var _WD_s_id = getUrlPrem("seller_id") || _s_id;
+        var _WD_s_id = _s_id;
         //获取当前时间
         var date=new Date();
         var expireDays=10;
