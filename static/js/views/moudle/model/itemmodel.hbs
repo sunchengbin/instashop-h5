@@ -1,9 +1,9 @@
 {{#if data}}
     {{#eq type 'twoItem'}}
         {{#if isdefault}}
-            <section class="items-box model-box j_default_item_box">
+            <section class="items-box model-box j_default_item_box" data-spider="default-item">
         {{else}}
-            <section class="items-box model-box j_model_box">
+            <section class="items-box model-box j_model_box" data-spider="two-item">
         {{/if}}
             {{{btns}}}
             {{#if data.title}}
@@ -27,7 +27,7 @@
         </section>
     {{/eq}}
     {{#eq type 'bigitem'}}
-        <section class="one-item-box j_model_box">
+        <section class="one-item-box j_model_box" data-spider="big-item">
             {{{btns}}}
             {{#if data.title}}
                 <p class="item-title b-bottom"><span></span>{{data.title}}</p>
@@ -38,7 +38,7 @@
         </section>
     {{/eq}}
     {{#eq type 'listitem'}}
-        <section class="item-list-box j_model_box">
+        <section class="item-list-box j_model_box" data-spider="list-item">
             {{{btns}}}
             {{#if data.title}}
                 <p class="item-title b-bottom"><span></span>{{data.title}}</p>

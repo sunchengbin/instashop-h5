@@ -32,7 +32,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         var init_data = JSON.parse(<?php echo get_init_data($path, $params); ?>);
     </script>
 </head>
-<body>
+<body data-spider="yngoklm4">
     <div class="j_start_loading" style="color:#fff;">Memuat...</div>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
@@ -48,7 +48,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
           }
           ga('create', 'UA-78448705-7', 'auto');
           ga('send', 'pageview');
-
+          <?=BI_SCRIPT?>
     </script>
 </body>
 </html>

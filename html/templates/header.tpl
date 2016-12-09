@@ -7,7 +7,6 @@
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-  <meta name="spider-id" content="orju7v">
   {$STATIC_DNS}
   {$STATIC_ICO_CSS}
   {$STATIC_FONT_CSS}

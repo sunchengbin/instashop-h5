@@ -70,6 +70,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             _this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
+                _paq.push(['trackEvent', '插入模块', 'click', '插入模块']);
                 _this.setIsEdited();
                 var _dom = $(this),
                     _index = $('.j_insert_model').index(_dom);
@@ -97,6 +98,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     _index = $('.j_edit_model').index(_dom),
                     _type = _dom.attr('data-type'),
                     _data = _this.model_data[_index]?_this.model_data[_index]:null;
+                _paq.push(['trackEvent', '编辑模板', 'click', _type]);
                 if(_type == 'item_list_type'){//选择
                     var _sel_htm = '<div>';
                     if(_this.item_list_type == 2){
@@ -137,6 +139,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             });
             $('body').on('click','.j_item_list_type',function(){
                 if($(this).find('.check-btn').length){
+                    _paq.push(['trackEvent', '切换商品展示', 'click', $(this).find('i').attr('data-type')]);
                     $('.checked-btn').addClass('check-btn').removeClass('checked-btn');
                     $(this).find('.check-btn').addClass('checked-btn');
                     $('.icon-radioed-font').addClass('icon-radio-font').removeClass('icon-radioed-font');
@@ -147,6 +150,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 var _model = $(this).parents('.j_model_box'),
                     _index = Number($('.j_del_model').index($(this)))+1,
                     _insert_dom = _model.prev();
+                _paq.push(['trackEvent', '删除模块', 'click', '删除模块']);
                 Dialog.confirm({
                     cover_event : true,
                     cf_fn : function(){
@@ -160,6 +164,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 });
             });
             $('body').on('click','.j_moveup_model',function(){
+                _paq.push(['trackEvent', '上移模块', 'click', '上移模块']);
                 _this.setIsEdited();
                 var _dom = $(this),
                     _model = _dom.parents('.j_model_box'),
@@ -187,6 +192,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 //todo 数据前移
             });
             $('body').on('click','.j_submit_btn',function(){
+                _paq.push(['trackEvent', '应用到店铺', 'click', '应用到店铺']);
                 //_this.subModel();
                 var _param = {
                     param:{

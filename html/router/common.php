@@ -82,6 +82,9 @@ $js = <<<JS
     function getSellerID() {
         var _shop_data = localStorage.getItem('ShopData');
         var _s_id = _shop_data?JSON.parse(_shop_data).ShopInfo.id:-1;
+        if(getUrlPrem('seller_id')){
+            _s_id = -1;
+        }
         var _WD_s_id = _s_id;
         //获取当前时间
         var date=new Date();
@@ -123,7 +126,7 @@ $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
 $static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
 $static_font_css =C_RUNTIME_ONLINE?getFontCss($host_name.'/static'):getFontCss($host_name.'/static');
 $static_ico_css =C_RUNTIME_ONLINE?getIco($prompt.'//m.instashop.co.id'):getIco($prompt.'//m-test.instashop.co.id');
-$static_dns = '<link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';
+$static_dns = '<meta name="spider-id" content="orju7v"><link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';
 $bi_js = biJs();
 define('STATIC_DNS', $static_dns);
 define('STATIC_FONT_CSS', $static_font_css);

@@ -1,4 +1,4 @@
-<section class="shop-header">
+<section class="shop-header" data-spider="edit-signage">
     <button class="handle-btn j_edit_model" data-type="edit_signage">{{lang.H5_EDIT}}</button>
     <img class="shop-header-bg j_shop_bg" data-img="{{transshopbgimgurl data.front_cover}}" src="">
     <div class="clearfix shop-info">
@@ -12,10 +12,19 @@
     <div>
         <span class="top-angle"></span>
         <div class="txt">
-            {{{transtxt shop.note}}}
+            {{#if shop.note}}
+                {{{transtxt shop.note}}}
+            {{else}}
+                Selamat datang di mini websiteku
+            {{/if}}
+
         </div>
         <div class="txt-hide">
-            {{{transtxt shop.note}}}
+            {{#if shop.note}}
+                {{{transtxt shop.note}}}
+            {{else}}
+                Selamat datang di mini websiteku
+            {{/if}}
         </div>
         <p><i class="icon iconfont j_down_btn down-btn"></i></p>
     </div>
