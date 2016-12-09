@@ -890,7 +890,7 @@ include_once( dirname(__FILE__).'/../../../html/router/common.php');
 </section>
 <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
 <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-<script src="<?=STATIC_HOST?>/js/dist/app/act/domainname.js?v=1481112205844"></script>
+<script src="<?=STATIC_HOST?>/js/dist/app/act/domainname.js?v=1481270403788"></script>
 <script>
 
           function getUrlPrem(key,url){
