@@ -21,9 +21,17 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base']
                     _this.getSearchValue(_key);
                 }
             });
+            _this.searching = false;
+            $('body').on('click','.j_search_btn',function(){
+                var _key = $.trim($(this).val());
+                if(!_key)return;
+                if(_this.searching)return;
+                _this.getSearchValue(_key);
+            });
             $('body').on('blur','.j_key',function(){
                 var _key = $.trim($(this).val());
                 if(!_key)return;
+                if(_this.searching)return;
                 _this.getSearchValue(_key);
             });
             $('body').on('click','.j_item_info',function(){
@@ -42,8 +50,10 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base']
             });
         },
         getSearchValue : function(val){
-            var _shop_data = localStorage.getItem('ShopData');
-            var _s_id = _shop_data?JSON.parse(_shop_data).ShopInfo.id:null;
+            var _this = this,
+                _shop_data = localStorage.getItem('ShopData'),
+                _s_id = _shop_data?JSON.parse(_shop_data).ShopInfo.id:null;
+            _this.searching = true;
             if(!_s_id){return;}
             var _data = {
                 edata:{
@@ -55,6 +65,7 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base']
             Ajax.getJsonp(
                 Config.host.actionUrl+Config.actions.search+'?param='+JSON.stringify(_data),
                 function(obj){
+                    _this.searching = false;
                     if(obj.code == 200){
                         var _list_type = Common.getItemListType(obj.template),
                             _html = Item.addItem(obj.item_list.list,_list_type);
