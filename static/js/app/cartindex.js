@@ -63,6 +63,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                 });
             });
             $('body').on('click', '.j_go_back', function () {
+                //TODO 返回埋点
                 var _fromurl = localStorage.getItem('FromUrl');
                 if (!_fromurl) {
                     var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
