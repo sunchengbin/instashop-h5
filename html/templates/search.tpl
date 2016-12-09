@@ -10,7 +10,7 @@
         <i class="iconfont icon-search-font"></i>
         <a href="javascript:;" class="j_search_btn fr">Cari</a>
         <div class="key-box">
-            <input class="j_key" type="text"/>
+            <input value="{$KEY}" class="j_key" type="text"/>
         </div>
     </div>
 </nav>

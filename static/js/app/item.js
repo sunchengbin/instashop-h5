@@ -62,7 +62,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             $('body').on('click', '.j_go_back', function () {
                 var _local_url = localStorage.getItem('FromUrl'),
                     _host_url = location.href,
-                    _search_url = Config.host.hrefUrl + 'search.php?key='+Base.others.getUrlPrem('search')+'&seller_id='+init_data.item.seller_id;
+                    _key = Base.others.getUrlPrem('search'),
+                    _search_url = Config.host.hrefUrl + 'search.php'+(_key?'?key='+_key+'&seller_id='+init_data.item.seller_id:'');
                 if (_local_url && !/detail/g.test(_local_url)) {
                     if (/\.instashop\.co\.id\/\d+/g.test(_local_url)) {//我们自己的域名下
                         if(/\?search/g.test(_host_url)){//搜索页

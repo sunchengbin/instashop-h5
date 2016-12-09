@@ -34,6 +34,7 @@
         $items = transItems($json["item_list"]["list"]);
         $itemtype = getItemListType($json["template"]);
         $smarty->assign('ITEMTYPE',$itemtype);
+        $smarty->assign('KEY',$key);
     }
 
     /*基础的js,css文件名*/
