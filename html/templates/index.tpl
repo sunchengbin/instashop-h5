@@ -274,7 +274,13 @@
 <div class="sort-list-cover j_sort_cover">
     <i class="icon iconfont icon-fold-font"></i>
 </div>
+
 <section class="index-footer" data-spider="foot-nav">
+    <div class="search-box" data-spider="go-search">
+        <a href="{$HOST_NAME}/html/search.php" class="search-btn block" spm-auto="搜索商品" spm-click="搜索商品">
+            <i class="iconfont icon-search-font"></i>
+        </a>
+    </div>
     <ul class="b-top">
         {if $INDEX_DATA.tag_list|@count}
         <li class="j_category b-right" spm-auto="查看分类" spm-click="查看分类">

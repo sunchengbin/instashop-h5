@@ -427,3 +427,19 @@ footer .btn i{
 .no-cursor{
     cursor: default;
 }
+.search-box{
+    width: 4rem;
+    height: 4rem;
+    line-height: 4rem;
+    position: absolute;
+    right: 0;
+    bottom: 4.5rem;
+    z-index: 200;
+    background-color: rgba(246,166,35,.9);
+    text-align: center;
+    border-radius: 50%;
+}
+.search-btn i{
+    font-size: 24px;
+    color: #fff;
+}

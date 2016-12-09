@@ -18,6 +18,23 @@
     /*获取搜索列表页面*/
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     include_once( dirname(__FILE__).'/../html/router/base.php');
+    $seller_id = $_REQUEST['seller_id'];
+    $key = $_REQUEST['key'];
+    if($seller_id && $key){
+        $params = [
+            'action' => 'digital',
+            'seller_id' => $seller_id,
+            'search' => $key
+        ];
+        $path = 'v1/shopsItems/self';
+        $ret = get_init_php_data($path, $params);
+        $json = json_decode($ret, true);
+        $smarty->assign('SEARCH_DATA',$json);
+        $smarty->assign('SEARCH_DATA_STR',$ret);
+        $items = transItems($json["item_list"]["list"]);
+        $itemtype = getItemListType($json["template"]);
+        $smarty->assign('ITEMTYPE',$itemtype);
+    }
 
     /*基础的js,css文件名*/
     $smarty->assign('INDEX_JS_NAME','search');

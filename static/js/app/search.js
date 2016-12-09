@@ -10,15 +10,15 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base']
         handleFn : function(){
             var _this = this;
             Fastclick.attach(document.body);
+            if(Base.others.getUrlPrem('key') && Base.others.getUrlPrem('seller_id')){
+                Lazyload();
+            }
             document.querySelector('.j_key').focus();
-            $('body').on('click','.j_search_btn',function(){
-                var _key = $.trim($('.j_key').val());
-                if(!_key)return;
-                _this.getSearchValue(_key);
-            });
-            $(document).on('keydwon',function(e){
-                if(e.keyCode){
-
+            $('body').on('keyup',function(e){
+                if(e.keyCode == 13){
+                    var _key = $.trim($('.j_key').val());
+                    if(!_key)return;
+                    _this.getSearchValue(_key);
                 }
             });
             $('body').on('blur','.j_key',function(){
@@ -28,8 +28,7 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base']
             });
             $('body').on('click','.j_item_info',function(){
                 var _this = $(this),
-                    _url = _this.attr('data-url');
-                localStorage.setItem('SortTop',$(window).scrollTop());
+                    _url = _this.attr('data-url')+'?search='+encodeURIComponent($.trim($('.j_key').val()));
                 Common.saveFromUrl(function(){
                     location.href = _url;
                 });

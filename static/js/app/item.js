@@ -60,36 +60,46 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             });
             //item=back是为了让返回首页的时候滚动到指定的scrolltop高度
             $('body').on('click', '.j_go_back', function () {
-                var _local_url = localStorage.getItem('FromUrl');
+                var _local_url = localStorage.getItem('FromUrl'),
+                    _host_url = location.href,
+                    _search_url = Config.host.hrefUrl + 'search.php?key='+Base.others.getUrlPrem('search')+'&seller_id='+init_data.item.seller_id;
                 if (_local_url && !/detail/g.test(_local_url)) {
                     if (/\.instashop\.co\.id\/\d+/g.test(_local_url)) {//我们自己的域名下
-                        if (/\/s\//g.test(_local_url)) {
-                            location.href = _this.transUrl(_local_url);
-                        } else {
-                            if (/\?/g.test(_local_url)) {
-                                location.href = localStorage.getItem('FromUrl') + '&item=back';
+                        if(/\?search/g.test(_host_url)){//搜索页
+                            location.href = _search_url;
+                        }else{
+                            if (/\/s\//g.test(_local_url)) {
+                                location.href = _this.transUrl(_local_url);
                             } else {
-                                var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + init_data.item.shop.id;
-                                location.href = _url + '?item=back';
+                                if (/\?/g.test(_local_url)) {
+                                    location.href = localStorage.getItem('FromUrl') + '&item=back';
+                                } else {
+                                    var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + init_data.item.shop.id;
+                                    location.href = _url + '?item=back';
+                                }
                             }
                         }
                     } else {//独立域名
                         var _host_name = location.hostname;
-                        if (/\/\d+/g.test(_local_url)) {//是当前详情页
-                            if (/\/k\/\d+/g.test(_local_url)) {//分类页
-                                location.href = _this.transUrl(_local_url);
-                            } else {
-                                if (/\/s\//g.test(_local_url)) {//m.instashop域名规则首页
+                        if(/\?search/g.test(_host_url)){//搜索页
+                            location.href = _search_url;
+                        }else {
+                            if (/\/\d+/g.test(_local_url)) {//是当前详情页
+                                if (/\/k\/\d+/g.test(_local_url)) {//分类页
                                     location.href = _this.transUrl(_local_url);
+                                } else {
+                                    if (/\/s\//g.test(_local_url)) {//m.instashop域名规则首页
+                                        location.href = _this.transUrl(_local_url);
+                                    } else {
+                                        location.href = location.protocol + '//' + _host_name + '?item=back';
+                                    }
+                                }
+                            } else {
+                                if (/\?/g.test(_local_url)) {
+                                    location.href = localStorage.getItem('FromUrl') + '&item=back';
                                 } else {
                                     location.href = location.protocol + '//' + _host_name + '?item=back';
                                 }
-                            }
-                        } else {
-                            if (/\?/g.test(_local_url)) {
-                                location.href = localStorage.getItem('FromUrl') + '&item=back';
-                            } else {
-                                location.href = location.protocol + '//' + _host_name + '?item=back';
                             }
                         }
                     }
