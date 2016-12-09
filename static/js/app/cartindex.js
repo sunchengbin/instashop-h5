@@ -49,6 +49,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
             Fastclick.attach(document.body);
             $('body').on('click', '.j_del_cart', function () {
                 var _this = $(this);
+                _paq.push(['trackEvent', '从购物车删除', 'itemId='+_this.attr('data-id')+',sellerId='+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id, '']);
                 Dialog.confirm({
                     cover_event: true,
                     cf_fn: function () {
@@ -71,10 +72,12 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                 }
             });
             $('body').on('click', '.j_go_shop', function () {
+                _paq.push(['trackEvent', '去逛逛', 'click', '']);
                 var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
                 location.href = _url;
             });
             $('body').on('click', '.j_submit_btn', function () {
+                _paq.push(['trackEvent', '去结算', 'click', '']);
                 _that.subData();
             });
             if (Base.others.getUrlPrem('error')) {
