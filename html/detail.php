@@ -12,6 +12,7 @@
     $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
     $smarty->assign('STATIC_FONT_CSS',STATIC_FONT_CSS);
     $smarty->assign('STATIC_HOST',STATIC_HOST);
+    $smarty->assign('BI_SCRIPT',BI_SCRIPT);
 
     /*HOST_NAME*/
     $hostname=$_SERVER['SERVER_NAME'];

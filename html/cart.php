@@ -15,7 +15,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <link href="<?=STATIC_HOST?>/css/dist/app/cart.css?v=1481112205428" rel="stylesheet"/>
     <title>Keranjangku</title>
 </head>
-<body>
+<body data-spider="a5fivmur">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/cartindex.js?v=1481112205428"></script>
