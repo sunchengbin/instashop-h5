@@ -43,13 +43,6 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                         body_txt: 'Silakan update ke versi terbaru untuk mengikuti promo ini'
                     });
                 })
-                //初始化状态监控
-                // _this.initStatus();
-                // _this.initData();
-                // _this.handleFn();
-                // Insjs.WebOnReady(function (bridge) {
-                //     _this.bridge = bridge;
-                // });
         },
         versionTipDialog: function () {
             _paq.push(['trackEvent', '低于3.5版本提示', 'autotip', '']);
@@ -432,13 +425,38 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
         },
         createInviterTable: function (inviters) {
             var _trs = "";
+            var _error_status_map = [{//以前是否有账号搬过家
+                rule:"is_import_ins",
+                txt:"Sama sekali belum menambahkan produk dari Instagram",
+            },{//粉丝数
+                rule:"followed_by_count_full",
+                txt:"Followers IG kurang dari 500",
+            },{//10件
+                rule:"ins_item_count_full",
+                txt:"Sudah menambahkan produk dari Instagram, tetapi produk yang diupload kurang dari 10",
+            },];
             var _table_head = '<tr>' +
-                '                            <td class="t-header" colspan="2">' +
-                '                                Teman yang sudah memenuhi syarat' +
+                '                            <td class="t-header">' +
+                '                                Teman Yang Diundang' +
+                '                            </td>' +
+                '                            <td class="t-header">' +
+                '                                Status' +
                 '                            </td>' +
                 '                        </tr>';
             for (var i = 0, inviter; inviter = inviters[i++];) {
-                var _curTr = '<tr><td>' + inviter.shop_name + '</td><td>' + inviter.telephone + '</td></tr>';
+                var _curTr = "";
+                // var _curTr = '<tr><td>' + inviter.shop_name + '</td><td>' + inviter.telephone + '</td></tr>';
+                if(inviter.ins_item_count_full&&inviter.followed_by_count_full&&inviter.prev_ins_count_full){
+                    _curTr = '<tr><td>' + inviter.shop_name + '</br>' + inviter.telephone + '</td><td style="text-align:left">Sudah memenuhi syarat</td></tr>';
+                }else{
+                    for(var j=0,_curCheckStatus;_curCheckStatus=_error_status_map[j++];){
+                        if(!inviter[_curCheckStatus.rule]){
+                            //TODO 对应文案
+                            _curTr = '<tr><td>' + inviter.shop_name + '</br>' + inviter.telephone + '</td><td style="text-align:left">' + _curCheckStatus.txt + '</td></tr>';
+                            break;
+                        }
+                    }
+                }
                 _trs += _curTr;
             }
             return _table_head + _trs;
