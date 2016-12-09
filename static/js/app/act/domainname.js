@@ -432,16 +432,16 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
         },
         createInviterTable: function (inviters) {
             var _trs = "";
-            var _error_status_map = [{//搬家
-                rule:"ins_item_count_full",
-                txt:"Sudah menambahkan produk dari Instagram, tetapi produk yang diupload kurang dari 10",
+            var _error_status_map = [{//以前是否有账号搬过家
+                rule:"is_import_ins",
+                txt:"Sama sekali belum menambahkan produk dari Instagram",
             },{//粉丝数
                 rule:"followed_by_count_full",
                 txt:"Followers IG kurang dari 500",
-            },{//10件商品
-                rule:"prev_ins_count_full",
-                txt:"Sama sekali belum menambahkan produk dari Instagram",
-            }];
+            },{//10件
+                rule:"ins_item_count_full",
+                txt:"Sudah menambahkan produk dari Instagram, tetapi produk yang diupload kurang dari 10",
+            },];
             var _table_head = '<tr>' +
                 '                            <td class="t-header">' +
                 '                                Teman Yang Diundang' +
@@ -454,12 +454,12 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 var _curTr = "";
                 // var _curTr = '<tr><td>' + inviter.shop_name + '</td><td>' + inviter.telephone + '</td></tr>';
                 if(inviter.ins_item_count_full&&inviter.followed_by_count_full&&inviter.prev_ins_count_full){
-                    _curTr = '<tr><td>' + inviter.shop_name + '</br>' + inviter.telephone + '</td><td>Sudah memenuhi syarat</td></tr>';
+                    _curTr = '<tr><td>' + inviter.shop_name + '</br>' + inviter.telephone + '</td><td style="text-align:left">Sudah memenuhi syarat</td></tr>';
                 }else{
                     for(var j=0,_curCheckStatus;_curCheckStatus=_error_status_map[j++];){
                         if(!inviter[_curCheckStatus.rule]){
                             //TODO 对应文案
-                            _curTr = '<tr><td>' + inviter.shop_name + '</br>' + inviter.telephone + '</td><td>' + _curCheckStatus.txt + '</td></tr>';
+                            _curTr = '<tr><td>' + inviter.shop_name + '</br>' + inviter.telephone + '</td><td style="text-align:left">' + _curCheckStatus.txt + '</td></tr>';
                             break;
                         }
                     }
