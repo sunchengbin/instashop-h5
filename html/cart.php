@@ -27,7 +27,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
       ga('create', 'UA-78448705-7', 'auto');
       ga('send', 'pageview');
-
+      <?=BI_SCRIPT?>
     </script>
 </body>
 </html>
