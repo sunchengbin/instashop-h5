@@ -60,8 +60,8 @@ body{
 }
 .search-box i{
     position: absolute;
-    left: .5rem;
-    top: .3rem;
+    left: .3rem;
+    top: .2rem;
     color: #999;
     font-size: 18px;
 }
