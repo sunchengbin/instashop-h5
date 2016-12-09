@@ -10,7 +10,7 @@
         <i class="iconfont icon-search-font"></i>
         <a href="javascript:;" spm-auto="搜索按钮" spm-click="搜索" class="j_search_btn fr">Cari</a>
         <div class="key-box">
-            <input value="{$KEY}" class="j_key" type="text"/>
+            <input value="{$KEY}" placeholder="Silakan masukkan kata kunci produk" class="j_key" type="text"/>
         </div>
     </div>
 </nav>
