@@ -34,6 +34,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body>
     <div class="j_start_loading" style="color:#fff;">Memuat...</div>
+    <div class="edit-wraper-box">
+    </div>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/editmodel.js?v=1481270403379"></script>

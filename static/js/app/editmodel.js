@@ -19,17 +19,19 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             $('.j_start_loading').remove();
             _this.initHtml();
             _this.initRotateBanner();
-            var _wh = $(window).height(),
-                _bh = $('body').height();
-            if( _wh > _bh){
-                $('body').height(_wh);
-            }
+            _this.setBodyHeight();
             Insjs.WebOnReady(function(bridge){
                 _this.handelFn(bridge);
             },function(){
                 _this.handelFn();
             });
-
+        },
+        setBodyHeight:function(){
+            var _wh = $(window).height(),
+                _bh = $('body').height();
+            //if( _wh > _bh){
+                $('body').height(_wh);
+            //}
         },
         getItemListType : function(){
             var _this = this;
@@ -381,7 +383,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             _html+= _this.createModelHtm(_this.model_data)
                 +_this.defaultItemsHtm()
                 +'<button class="j_submit_btn sub-btn b-top">'+Lang.H5_APPLY_MODEL+'</button>';
-            $('body').prepend(_html);
+            $('.edit-wraper-box').prepend(_html);
         },
         createModelBtnHtm : function(opts){
             return Hbs.compile(ModelBtns)({
