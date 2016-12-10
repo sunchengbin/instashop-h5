@@ -5,8 +5,10 @@
 @import "../moudle/app/model/model.css";
 @import "../moudle/ui/dialog/dialog.css";
 body{
-    padding:1rem 1.5rem 5rem;
     background-color: #333;
+}
+.edit-wraper-box{
+    padding:1rem 1.5rem 5rem;
 }
 section{
     background-color: #fff;
