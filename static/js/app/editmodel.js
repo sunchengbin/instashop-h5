@@ -325,6 +325,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         registerFn : function(bridge){//对native内容监控
             var _this = this;
             bridge.registerHandler('registerSocket', function(data, responseCallback) {
+                alert(data);
                 if(data != 'done'){
                     if(data == 'back'){
                         var _param = {
