@@ -120,6 +120,12 @@ function setHref($link){
     }
     return $link;
 }
+function transUrl($url){
+    if(is_https()){
+        return str_replace('http:', 'https:', $url);
+    }
+    return $url;
+}
 spl_autoload_register('loadClass');
 $prompt = is_https() ? 'https:' : 'http:';
 $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];

@@ -58,7 +58,7 @@
                 <ul class="nav-img-ul clearfix">
                     {foreach $model.data as $navigation}
                         <li class="">
-                            <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url}" href="javascript:;">
+                            <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url|transUrl}" href="javascript:;">
                                 <div class="lazy" data-img="{$navigation.img|list_img}"></div>
                                 <p class="">{$navigation.navigation_name}</p>
                             </a>
@@ -75,7 +75,7 @@
             <ul class="nav-text-ul">
                 {foreach $model.data as $navigation}
                     <li class="b-top">
-                        <a spm-auto="文字导航" spm-click="text-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url}" href="javascript:;">
+                        <a spm-auto="文字导航" spm-click="text-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url|transUrl}" href="javascript:;">
                             <i class="icon iconfont icon-go-font fr"></i>
                             <span>{$navigation.navigation_name}</span>
                         </a>
@@ -91,7 +91,7 @@
             <ul class="items-list clearfix">
                 {foreach $model.data as $item}
                     <li>
-                        <a spm-auto="行单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <a spm-auto="行单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
@@ -133,7 +133,7 @@
             <ul class="items-list clearfix">
                 {foreach $model.data as $item}
                     <li>
-                        <a spm-auto="大图单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <a spm-auto="大图单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
@@ -175,7 +175,7 @@
             <ul class="">
             {foreach $model.data as $item}
                 <li class="clearfix cart-item">
-                    <a spm-auto="两列单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="block j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                    <a spm-auto="两列单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="block j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
                         <img src="{$item.img|list_img}">
                         <div class="item-info-box">
                             <p class="name">
