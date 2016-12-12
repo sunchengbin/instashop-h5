@@ -404,6 +404,9 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         defaultItemsHtm : function(){
             var _this = this;
             //_this.item_list_type = 3;
+            if(!init_data.item_list.list.length){
+                return '';
+            }
             return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
                 type : 'twoItem',
                 isdefault: true,
