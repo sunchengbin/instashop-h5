@@ -16,7 +16,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <link href="<?=STATIC_HOST?>/css/dist/app/address.css?v=1481270403378" rel="stylesheet"/>
     <title>Address</title>
 </head>
-<body>
+<body data-spider="jx3zb1yh">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/address.js?v=1481270403378"></script>

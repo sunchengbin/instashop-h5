@@ -38,7 +38,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
     ?>
 </head>
-<body>
+<body data-spider="v4ty5c2x">
   <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
   <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
   <script src="<?=STATIC_HOST?>/js/dist/app/sort.js?v=1481270403379"></script>
