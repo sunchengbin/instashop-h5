@@ -101,7 +101,6 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
         handleFn: function () {
             var _this = this;
             Fastclick.attach(document.body);
-            //_this.subData();
             $('.j_cart_list').on('click', '.j_add_btn', function () {
                 var _item_num = $(this).parent().find('.j_item_num'),
                     _num = Number(_item_num.val()),
@@ -227,74 +226,72 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     var _that = this,
                         _items = _this.getItems();
 
-                    _this.testShelves(function () {
-                        if ($('.j_check_box').is('.icon-checkbox-font')) { //必须同意协议
-                            _that.cancelDisable();
-                            _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                    if ($('.j_check_box').is('.icon-checkbox-font')) { //必须同意协议
+                        _that.cancelDisable();
+                        _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                        Dialog.tip({
+                            top_txt: '', //可以是html
+                            body_txt: '<p class="dialog-body-p">aggree is must checked</p>'
+                        });
+                        return;
+                    }
+                    if (!_items.length) { //如果购物车为空
+                        _that.cancelDisable();
+                        _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                        if ($('.error-item').length == $('.j_cart_item').length) {
                             Dialog.tip({
                                 top_txt: '', //可以是html
-                                body_txt: '<p class="dialog-body-p">aggree is must checked</p>'
+                                body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_ERROR) + '</p>',
+                                auto_fn: function () {
+                                    setTimeout(function () {
+                                        location.href = Config.host.host + 's/' + init_data.shop.id;
+                                    }, 1000);
+                                }
                             });
-                            return;
                         }
-                        if (!_items.length) { //如果购物车为空
+                        return;
+                    }
+                    //验证单品快速下单
+                    if (_this.isDetailQuick) {
+                        var _test_cart = _this.testDetailCarts(),
+                            _detail_cart = _this.transCart();
+                        if (_test_cart && !_test_cart.sku.id) { //当商品存在sku的时候,弹出购买窗口
+                            _this.quickbuyplug.toShow();
                             _that.cancelDisable();
                             _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-                            if ($('.error-item').length == $('.j_cart_item').length) {
+                            return;
+                        } else { //不存在sku可以直接购买
+                            if (_detail_cart.price < 0) {
                                 Dialog.tip({
                                     top_txt: '', //可以是html
-                                    body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_ERROR) + '</p>',
-                                    auto_fn: function () {
-                                        setTimeout(function () {
-                                            location.href = Config.host.host + 's/' + init_data.shop.id;
-                                        }, 1000);
-                                    }
+                                    body_txt: '<p class="dialog-body-p">' + Lang.H5_NO_PRICE + '</p>'
                                 });
-                            }
-                            return;
-                        }
-                        //验证单品快速下单
-                        if (_this.isDetailQuick) {
-                            var _test_cart = _this.testDetailCarts(),
-                                _detail_cart = _this.transCart();
-                            if (_test_cart && !_test_cart.sku.id) { //当商品存在sku的时候,弹出购买窗口
-                                _this.quickbuyplug.toShow();
                                 _that.cancelDisable();
                                 _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
                                 return;
-                            } else { //不存在sku可以直接购买
-                                if (_detail_cart.price < 0) {
-                                    Dialog.tip({
+                            } else {
+                                if ((!Base.others.testObject(_detail_cart.sku) && (_detail_cart.sku.stock >= 9999999)) || (Base.others.testObject(_detail_cart.sku) && (_detail_cart.item.stock >= 9999999))) {
+                                    Dialog.confirm({
                                         top_txt: '', //可以是html
-                                        body_txt: '<p class="dialog-body-p">' + Lang.H5_NO_PRICE + '</p>'
+                                        body_txt: '<p class="dialog-body-p">' + Lang.H5_NO_STOCK + '</p>',
+                                        cf_fn: function () {
+                                            _this.quickSubmit(_that, dom);
+                                        }
                                     });
                                     _that.cancelDisable();
                                     _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
                                     return;
-                                } else {
-                                    if ((!Base.others.testObject(_detail_cart.sku) && (_detail_cart.sku.stock >= 9999999)) || (Base.others.testObject(_detail_cart.sku) && (_detail_cart.item.stock >= 9999999))) {
-                                        Dialog.confirm({
-                                            top_txt: '', //可以是html
-                                            body_txt: '<p class="dialog-body-p">' + Lang.H5_NO_STOCK + '</p>',
-                                            cf_fn: function () {
-                                                _this.quickSubmit(_that, dom);
-                                            }
-                                        });
-                                        _that.cancelDisable();
-                                        _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-                                        return;
-                                    }
                                 }
                             }
-                        } else { //多件商品快速下单
-                            if (!_this.testShopCarts(function () {
-                                    _this.quickSubmit(_that, dom);
-                                })) {
-                                return;
-                            }
                         }
-                        _this.quickSubmit(_that, dom);
-                    });
+                    } else { //多件商品快速下单
+                        if (!_this.testShopCarts(function () {
+                                _this.quickSubmit(_that, dom);
+                            })) {
+                            return;
+                        }
+                    }
+                    _this.quickSubmit(_that, dom);
                 }
             });
             $('body').on('keyup', '.j_tel', function () {
@@ -337,63 +334,6 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                 _that.cancelDisable();
                 _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
             }
-        },
-        testShelves: function (callback) {
-            var _this = this;
-            var reqData = {
-                edata: {
-                    action: 'check',
-                    items: _this.getItems(),
-                    seller_id: init_data.shop.id,
-                    wduss: ''
-                }
-            };
-            Ajax.postJsonp({
-                url: Config.actions.testCart,
-                data: {
-                    param: JSON.stringify(reqData)
-                },
-                type: 'POST',
-                success: function (obj) {
-                    if (obj.code == 200) {
-                        if (obj.carts) {
-                            if (!_this.testCarts(obj.carts)) {
-                                Dialog.tip({
-                                    top_txt: '', //可以是html
-                                    body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_ERROR) + '</p>',
-                                    auto_fn: function () {
-                                        setTimeout(function () {
-                                            location.reload();
-                                        }, 2000);
-                                    }
-                                });
-                            } else {
-                                callback && callback();
-                            }
-                        }
-                    } else {
-                        Dialog.tip({
-                            top_txt: '', //可以是html
-                            body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_ERROR) + '</p>',
-                            auto_fn: function () {
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 2000);
-                            }
-                        });
-                    }
-                },
-                error: function (error) {
-                    Dialog.alert({
-                        top_txt: '', //可以是html
-                        cfb_txt: Lang.H5_FRESHEN,
-                        body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
-                        cf_fn: function () {
-                            location.reload();
-                        }
-                    });
-                }
-            });
         },
         subAjax: function (opts) {
             var _data = opts.data,
@@ -868,61 +808,6 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                 }
             });
             return _beal;
-        },
-        subData: function () { //进入页面对购物车商品进行检查
-            var _that = this;
-            var _items = _that.getItems(),
-                _telephone = $.trim($('.j_tel').val());
-            if (!_items.length) {
-                return;
-            }
-            var reqData = {
-                edata: {
-                    action: 'check',
-                    items: _items,
-                    telephone: _telephone,
-                    seller_id: init_data.shop.id,
-                    wduss: ''
-                }
-            };
-            Ajax.postJsonp({
-                url: Config.actions.testCart,
-                data: {
-                    param: JSON.stringify(reqData)
-                },
-                type: 'POST',
-                success: function (obj) {
-                    if (obj.code == 200) {
-                        if (obj.carts) {
-                            if (_that.testCarts(obj.carts, 1)) {
-                                if ($('.error-item').length == $('.j_cart_item').length) {
-                                    _that.msg = obj.msg;
-                                }
-                            }
-                        }
-                    } else {
-                        Dialog.tip({
-                            top_txt: '', //可以是html
-                            body_txt: '<p class="dialog-body-p">' + obj.msg + '</p>',
-                            auto_fn: function () {
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 2000);
-                            }
-                        });
-                    }
-                },
-                error: function (error) {
-                    Dialog.alert({
-                        top_txt: '', //可以是html
-                        cfb_txt: Lang.H5_FRESHEN,
-                        body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
-                        cf_fn: function () {
-                            location.reload();
-                        }
-                    });
-                }
-            });
         },
         getAddressId: function () {
             var _url = location.href,
