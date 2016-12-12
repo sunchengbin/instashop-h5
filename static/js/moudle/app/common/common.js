@@ -178,7 +178,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
             var _type = 2;
             if(template.length){
                 $.each(template,function(i,item){
-                    if(item.type == 'item_list_type'){
+                    if(item && item.type == 'item_list_type'){
                         _type = item.data[0];
                     }
                 });
@@ -188,7 +188,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
         },
         isHaveListType : function(template,callback){
             $.each(template,function(i,item){
-                if(item.type == 'item_list_type'){
+                if(item && item.type == 'item_list_type'){
                     callback && callback();
                 }
             });

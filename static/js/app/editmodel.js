@@ -27,18 +27,14 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             });
         },
         setBodyHeight:function(){
-            var _wh = $(window).height(),
-                _bh = $('body').height();
-            //if( _wh > _bh){
-                $('body').height(_wh);
-            //}
+            $('body').height($(window).height());
         },
         getItemListType : function(){
             var _this = this;
             _this.type_num = 0;
             _this.index = [];
             $.each(_this.model_data,function(i,item){
-                if(item.type == 'item_list_type'){
+                if(item && item.type == 'item_list_type'){
                     _this.type_num++;
                     _this.index.push(i);
                 }
@@ -325,7 +321,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         registerFn : function(bridge){//对native内容监控
             var _this = this;
             bridge.registerHandler('registerSocket', function(data, responseCallback) {
-                alert(data);
+                //alert(data);
                 if(data != 'done'){
                     if(data == 'back'){
                         var _param = {
@@ -341,7 +337,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                             return null;
                         });
                     }else{
-                        alert(data);
+                        //alert(data);
                         _this.insertModel(JSON.parse(data),function(obj){
                             responseCallback(obj);
                         });
@@ -431,65 +427,68 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             for(var i = 0;i < model.length;i++){
                 var _model_info = model[i],
                     _notmove = i==1?'notmove':null;
-                switch(model[i].type){
-                    case 'edit_signage':
-                        _html+= _this.createSignageHtm(_model_info.data[0]);
-                        break;
-                    case 'static_banner':
-                        _html+= _this.staticBannerHtm({
-                            data : _model_info,
-                            notmove : _notmove
-                        });
-                        break;
-                    case 'rotate_banner':
-                        _html+= _this.rotateBannerHtm({
-                            data : _model_info,
-                            notmove : _notmove
-                        });
-                        break;
-                    case 'two_list_banner':
-                        _html+= _this.twoListBannerHtm({
-                            data : _model_info,
-                            notmove : _notmove
-                        });
-                        break;
-                    case 'img_navigation':
-                        _html+= _this.imgNavigationHtm({
-                            data : _model_info,
-                            notmove : _notmove
-                        });
-                        break;
-                    case 'text_navigation':
-                        _html+= _this.textNavigationHtm({
-                            data : _model_info,
-                            notmove : _notmove
-                        });
-                        break;
-                    case 'two_li_items':
-                        _html+= _this.twoLiItemsHtm({
-                            data : _model_info,
-                            notmove : _notmove
-                        });
-                        break;
-                    case 'big_img_item':
-                        _html+= _this.bigImgItem({
-                            data : _model_info,
-                            notmove : _notmove
-                        });
-                        break;
-                    case 'list_items':
-                        _html+= _this.listItems({
-                            data : _model_info,
-                            notmove : _notmove
-                        });
-                        break;
-                    case 'item_list_type':
-                        console.log('选择商品列表样式');
-                        break;
-                    default :
-                        alert('not find '+model[i].type);
-                        break;
+                if(model[i]){
+                    switch(model[i].type){
+                        case 'edit_signage':
+                            _html+= _this.createSignageHtm(_model_info.data[0]);
+                            break;
+                        case 'static_banner':
+                            _html+= _this.staticBannerHtm({
+                                data : _model_info,
+                                notmove : _notmove
+                            });
+                            break;
+                        case 'rotate_banner':
+                            _html+= _this.rotateBannerHtm({
+                                data : _model_info,
+                                notmove : _notmove
+                            });
+                            break;
+                        case 'two_list_banner':
+                            _html+= _this.twoListBannerHtm({
+                                data : _model_info,
+                                notmove : _notmove
+                            });
+                            break;
+                        case 'img_navigation':
+                            _html+= _this.imgNavigationHtm({
+                                data : _model_info,
+                                notmove : _notmove
+                            });
+                            break;
+                        case 'text_navigation':
+                            _html+= _this.textNavigationHtm({
+                                data : _model_info,
+                                notmove : _notmove
+                            });
+                            break;
+                        case 'two_li_items':
+                            _html+= _this.twoLiItemsHtm({
+                                data : _model_info,
+                                notmove : _notmove
+                            });
+                            break;
+                        case 'big_img_item':
+                            _html+= _this.bigImgItem({
+                                data : _model_info,
+                                notmove : _notmove
+                            });
+                            break;
+                        case 'list_items':
+                            _html+= _this.listItems({
+                                data : _model_info,
+                                notmove : _notmove
+                            });
+                            break;
+                        case 'item_list_type':
+                            console.log('选择商品列表样式');
+                            break;
+                        default :
+                            alert('not find '+model[i].type);
+                            break;
+                    }
                 }
+
             }
             return _html;
         },
