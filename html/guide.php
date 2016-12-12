@@ -20,7 +20,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 
 
-<body id="container">
+<body id="container" data-spider="hys5g2pi">
 
   <div id="header">
       <!-- tpl-header -->
@@ -71,7 +71,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
             ga('create', 'UA-78448705-7', 'auto');
             ga('send', 'pageview');
-
+<?=BI_SCRIPT?>
         </script>
 </body>
 </html>

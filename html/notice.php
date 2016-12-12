@@ -79,7 +79,7 @@ if(preg_match('/^https?\:\/\/[^\s]+$/i',$content)){
   <?php
           echo '<title>'.$json['notice']['title'].'</title>';
           echo '</head>';
-          echo '<body>';
+          echo '<body data-spider="w4lu897y">';
           echo '<section>'.$json['notice']['content'].'</section>';
       ?>
 
@@ -92,7 +92,7 @@ if(preg_match('/^https?\:\/\/[^\s]+$/i',$content)){
 
       ga('create', 'UA-78448705-7', 'auto');
       ga('send', 'pageview');
-
+<?=BI_SCRIPT?>
   </script>
 </body>
 </html>

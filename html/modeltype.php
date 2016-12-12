@@ -29,7 +29,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         }
     </style>
 </head>
-<body>
+<body data-spider="jx3zb1yh">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/modeltype.js?v=1481270403379"></script>
@@ -44,7 +44,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
           }
           ga('create', 'UA-78448705-7', 'auto');
           ga('send', 'pageview');
-
+<?=BI_SCRIPT?>
       </script>
 </body>
 </html>

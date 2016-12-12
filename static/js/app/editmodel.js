@@ -340,6 +340,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                             return null;
                         });
                     }else{
+                        alert(data);
                         _this.insertModel(JSON.parse(data),function(obj){
                             responseCallback(obj);
                         });
