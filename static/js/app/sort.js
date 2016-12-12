@@ -98,13 +98,22 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                                     }
                                 };
                                 if(obj.item_list.list.length > 0){
-                                    var _list_data = _this.transItems(obj.item_list.list);
+                                    var _list_data = _this.transItems(obj.item_list.list),
+                                        _type = Common.getItemListType(init_data.template);
                                     if(_list_data.item.length){
-                                        if(!$('.j_item_list').length){
-                                            var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="items-list j_item_list clearfix"></ul>';
-                                            $('.j_item_box').html(_htm);
+                                        if(_type == 3){
+                                            if(!$('.j_default_item_list').length){
+                                                var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="items-list j_item_list clearfix"></ul>';
+                                                $('.j_item_box').html(_htm);
+                                            }
+                                            $('.j_default_item_list').append(Item.addItem(_list_data.item,_type));
+                                        }else{
+                                            if(!$('.j_item_list').length){
+                                                var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_ORTHER+'</p><ul class="items-list j_item_list clearfix"></ul>';
+                                                $('.j_item_box').html(_htm);
+                                            }
+                                            $('.j_item_list').append(Item.addItem(_list_data.item,_type));
                                         }
-                                        $('.j_item_list').append(Item.addItem(_list_data.item));
                                     }
                                     if($('[data-time]').length){
                                         Item.changeTime();

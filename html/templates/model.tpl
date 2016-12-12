@@ -184,8 +184,8 @@
                             {if $item.price lt 0}
                                 <p class="price"></p>
                             {elseif $item.is_discount}
-                                <p class="price cost-price"><span class="fr">-{$item.discount.value}%</span>Rp {$item.price|priceFormat}</p>
-                                <p class="soon-time">{$item.discount.start_time|transDate}-{$item.discount.end_time|transDate}WIB</p>
+                                <p class="discount-price price"><span class="fr">-{$item.discount.value}%</span>Rp {$item.discount.price|priceFormat}</p>
+                                <p class="soon-time">{$item.discount.start_time|transDate}-{$item.discount.end_time|transDate} WIB</p>
                             {else}
                                 <p class="price">Rp {$item.price|priceFormat}</p>
                             {/if}

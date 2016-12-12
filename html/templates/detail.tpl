@@ -55,8 +55,10 @@
         <p class="price-lang">Rp {$INDEX_DATA.item.discount.min_price|priceFormat} - {$INDEX_DATA.item.discount.max_price|priceFormat}</p>
         {/if}
         <p class="discount-info">
-            <span>-{$INDEX_DATA.item.discount.value|abs}%</span> {if $INDEX_DATA.item.discounting} Time remaining :
-            <span data-time="{$INDEX_DATA.item.discount.end_time|discountSecond}">{$INDEX_DATA.item.discount.end_time|discountTime}</span>            {else} Start time {$INDEX_DATA.item.discount.start_time|transDate} WIB {/if}
+            <span>-{$INDEX_DATA.item.discount.value|abs}%</span>
+            {if $INDEX_DATA.item.discounting} Time remaining :
+            <span data-time="{$INDEX_DATA.item.discount.end_time|discountSecond}">{$INDEX_DATA.item.discount.end_time|discountTime}</span>
+           {else} Start time {$INDEX_DATA.item.discount.start_time|transDate} WIB {/if}
         </p>
         {else}
         <p class="price discount-price">

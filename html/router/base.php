@@ -122,7 +122,7 @@ function viewerImg($imgurl){
     return $imgurl;
 }
 function transDate($datetime){
-    return date('d/m/Y H.i',strtotime($datetime));
+    return date('d/m H.i',strtotime($datetime));
 }
 function itemPrice($data){
     if($data['is_discount']){
