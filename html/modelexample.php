@@ -20,7 +20,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     </style>
 </head>
 <img src="../static/images/app/model_example.jpg">
-<body data-spider="jx3zb1yh">
+<body data-spider="ynvc8m5q">
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -29,7 +29,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
           ga('create', 'UA-78448705-7', 'auto');
           ga('send', 'pageview');
-
+<?=BI_SCRIPT?>
     </script>
 </body>
 </html>

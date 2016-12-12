@@ -16,7 +16,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <link href="<?=STATIC_HOST?>/css/dist/app/address.css?v=1481270403378" rel="stylesheet"/>
     <title>Address</title>
 </head>
-<body data-spider="jx3zb1yh">
+<body data-spider="oxv83yea">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/address.js?v=1481270403378"></script>
@@ -28,7 +28,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
       ga('create', 'UA-78448705-7', 'auto');
       ga('send', 'pageview');
-
+<?=BI_SCRIPT?>
     </script>
 </body>
 </html>
