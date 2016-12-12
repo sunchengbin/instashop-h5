@@ -152,7 +152,12 @@
                     {/if} 
                 {if $INDEX_DATA.item.stock le 0 || $INDEX_DATA.item.status eq 2}
                                     <a class="add-cart j_add_cart disable-addnow disable-btn" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="已售完" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}">
-                        Stok Kurang
+                        {if $INDEX_DATA.item.status eq 2}
+                            Sudah Digudangkan
+                        {else}
+                            Stok Kurang
+                        {/if}
+
                     </a> {else}
                                     <a class="add-cart j_add_cart" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="添加购物车" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
                         Masuk keranjang
