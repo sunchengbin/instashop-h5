@@ -12,10 +12,10 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     data: JSON.parse(_data),
                     carts: _carts,
                     sum: _this.countSum(_carts),
-                    favorable:(function(){
+                    favorable: (function () {
                         //有就返回优惠额 没有返回0
-                        if(!!price_data.price_info.shop_discount){
-                            return price_data.price_info.shop_discount.length!=0?_this.getFavorable():0
+                        if (!!price_data.price_info.shop_discount) {
+                            return price_data.price_info.shop_discount.length != 0 ? _this.getFavorable() : 0
                         }
                         return 0;
                     })(),
@@ -24,9 +24,9 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     host: Config.host,
                     nofree: JSON.parse(_data).ShopInfo.express_free == 0,
                     express: (JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list)),
-                    isHaveReduc:(function(){
-                        if(!!price_data.price_info.shop_discount){
-                            return (price_data.price_info.shop_discount.length!=0)
+                    isHaveReduc: (function () {
+                        if (!!price_data.price_info.shop_discount) {
+                            return (price_data.price_info.shop_discount.length != 0)
                         }
                         return false;
                     })()
@@ -270,38 +270,43 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     _num = Number(item.itemNum),
                     _stock = item.stock,
                     _msg = null;
-                if (_stock == 0) { //库存为0
-                    if (item.is_discount_err) {
-                        _msg = Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT;
-                    } else {
-                        _msg = Lang.H5_SOLD_OUT;
-                    }
-
+                if (item.error_status) {
+                    _msg = Lang.H5_IS_HAVESHEFL;
                 } else {
-                    if (_stock >= 9999999) { //没设置库存,需要联系商家
-                        //_msg = Lang.H5_NO_STOCK;
-                    } else {
-                        if (_stock == -1) {
-                            if (item.need_sku) {
-                                _msg = Lang.H5_GOOD_DETAIL_CHANGE;
-                            } else {
-                                _msg = Lang.H5_COMMODIFY_SHELF;
-                            }
+                    if (_stock == 0) { //库存为0
+                        if (item.is_discount_err) {
+                            _msg = Lang.H5_DISCOUTN_CAN_NOT_ABOVE_COUNT;
                         } else {
-                            if (_stock > 0) {
-                                if (_stock < _num) { //超出库存
-                                    if (item.is_discount_err) {
-                                        _msg = Lang.H5_X_PCS_LEFT + _stock + Lang.H5_PCS;
-                                    } else {
-                                        _msg = Lang.H5_X_PCS_LEFT + _stock + Lang.H5_PCS;
-                                    }
+                            _msg = Lang.H5_SOLD_OUT;
+                        }
+
+                    } else {
+                        if (_stock >= 9999999) { //没设置库存,需要联系商家
+                            //_msg = Lang.H5_NO_STOCK;
+                        } else {
+                            if (_stock == -1) {
+                                if (item.need_sku) {
+                                    _msg = Lang.H5_GOOD_DETAIL_CHANGE;
+                                } else {
+                                    _msg = Lang.H5_COMMODIFY_SHELF;
                                 }
                             } else {
-                                _msg = Lang.H5_COMMODIFY_SHELF;
+                                if (_stock > 0) {
+                                    if (_stock < _num) { //超出库存
+                                        if (item.is_discount_err) {
+                                            _msg = Lang.H5_X_PCS_LEFT + _stock + Lang.H5_PCS;
+                                        } else {
+                                            _msg = Lang.H5_X_PCS_LEFT + _stock + Lang.H5_PCS;
+                                        }
+                                    }
+                                } else {
+                                    _msg = Lang.H5_COMMODIFY_SHELF;
+                                }
                             }
                         }
                     }
                 }
+
                 if (_msg) {
                     $('.j_cart_item[data-id="' + _id + '"] .error-p').remove();
                     $('.j_cart_item[data-id="' + _id + '"]').append('<p class="error-p">' + _msg + '</p>');
@@ -362,7 +367,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
         countSum: function (carts) {
             var _this = this;
             //判断是否参与满减 如果为0 则为不参加满减
-            if (price_data.price_info.shop_discount.length==0) {
+            if (price_data.price_info.shop_discount.length == 0) {
                 return _this.countSumNoReduc(carts);
             } else {
                 return _this.countSumReduc();
@@ -387,12 +392,12 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             return _last_price;
         },
         //获取优惠
-        getFavorable:function(){
+        getFavorable: function () {
             var _this = this;
             var _items_price = price_data.price_info.items_price;
             var _last_price = price_data.price_info.total_price;
-            console.log(_items_price-_last_price);
-            return _items_price-_last_price;
+            console.log(_items_price - _last_price);
+            return _items_price - _last_price;
         }
     };
     OrderConfirmHtm.init();
