@@ -183,8 +183,8 @@ define(['base'],function(Base){
             H5_VALIDATOR_CITY:"请填写市",
             H5_VALIDATOR_DIS:"请填写区",
             H5_VALIDATOR_STREET:"请填写详细地址",
-            H5_IS_SOLDOUTTRUE:"已下架"
-
+            H5_IS_SOLDOUTTRUE:"已下架",
+            H5_IS_HAVESHEFL:"有商品已下架"
         },
 
         id : {
@@ -490,7 +490,9 @@ define(['base'],function(Base){
             //请填写区
             'H5_VALIDATOR_DIS':"Silakan pilih kecamatan",
             //已下架
-            'H5_IS_SOLDOUTTRUE':"Sudah Digudangkan"
+            'H5_IS_SOLDOUTTRUE':"Sudah Digudangkan",
+            //有商品已下架
+            'H5_IS_HAVESHEFL':"Ada produk yang sudah digudangkan!"
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );

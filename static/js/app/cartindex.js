@@ -202,7 +202,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     _msg = null;
                 //存在error_status 表示 商品已下架
                 if (item.error_status) {
-                    _msg = Lang.H5_COMMODIFY_SHELF;
+                    _msg = Lang.H5_IS_HAVESHEFL;
                 } else {
                     if (_stock == 0) { //库存为0
                         if (item.is_discount_err) {
