@@ -1,5 +1,5 @@
 <script src="{$STATIC_HOST}/js/base/require-zepto.js"></script>
-<!-- <script src="{$STATIC_HOST}/js/base/require-config.js"></script>-->
+<!--<script src="{$STATIC_HOST}/js/base/require-config.js"></script>-->
 <script src="{$STATIC_HOST}/js/dist/app/{$INDEX_JS_NAME}.js?v=1481112205517"></script>
 {literal}
     <script>
