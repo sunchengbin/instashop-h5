@@ -37,7 +37,8 @@
         "imcommon":"moudle/app/im/common",
         "user":"moudle/app/im/user",
         "history":"moudle/app/im/history",
-        "message":"moudle/app/im/message"
+        "message":"moudle/app/im/message",
+        "validator":"moudle/ui/validator/validator"
     },
     "fileExclusionRegExp": "/.hbs$/",
     "keepBuildDir": true,

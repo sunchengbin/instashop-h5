@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/7/26.
  */
-require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug'], function (Hbs, QuickCarts, Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug) {
+require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator'], function (Hbs, QuickCarts, Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator) {
     var QuickCartsHtm = {
         init: function () {
             var _this = this,
@@ -416,7 +416,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     //_that.cancelDisable();
                     //_that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                     if (obj.code == 200) {
-                        _paq.push(['trackEvent', '成功生成订单', 'orderId='+obj.order.id+',sellerId='+init_data.shop.id, '']);
+                        _paq.push(['trackEvent', '成功生成订单', 'orderId=' + obj.order.id + ',sellerId=' + init_data.shop.id, '']);
                         var _bank_info = JSON.stringify(obj.order.pay_info.banks),
                             _name = $.trim($('.j_name').val()),
                             _telephone = $.trim($('.j_tel').val());
@@ -527,13 +527,62 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                 _city = $.trim($('.j_city').html()),
                 _country = $.trim($('.j_country').html()),
                 _street = $.trim($('.j_street').val());
-            if (!_name || !_telephone || !_province || !_city || !_country || !_street || (_province == Lang.H5_PROVINCE) || (_city == Lang.H5_CITY) || (_country == Lang.H5_DISTRICT)) {
+            //update by lanchenghao-https://trello.com/c/BF8TbDWE
+            //信息校验
+            try {
+                Validator.execBatch([{
+                    target: _name,
+                    rules: [{
+                        strategy: 'isNonEmpty',
+                        errorMsg: Lang.H5_VALIDATOR_NAME
+                    }]
+                }, {
+                    target: _telephone,
+                    rules: [{
+                        strategy: 'isNonEmpty',
+                        errorMsg: Lang.H5_VALIDATOR_TEL
+                    }]
+                }, {
+                    target: _province,
+                    rules: [{
+                        strategy: 'isNonEmpty',
+                        errorMsg: Lang.H5_VALIDATOR_PROVINCE
+                    }, {
+                        strategy: 'isEqualPlaceholder:' + Lang.H5_PROVINCE,
+                        errorMsg: Lang.H5_VALIDATOR_PROVINCE
+                    }]
+                }, {
+                    target: _city,
+                    rules: [{
+                        strategy: 'isNonEmpty',
+                        errorMsg: Lang.H5_VALIDATOR_CITY
+                    }, {
+                        strategy: 'isEqualPlaceholder:' + Lang.H5_CITY,
+                        errorMsg: Lang.H5_VALIDATOR_CITY
+                    }]
+                }, {
+                    target: _country,
+                    rules: [{
+                        strategy: 'isNonEmpty',
+                        errorMsg: Lang.H5_VALIDATOR_DIS
+                    }, {
+                        strategy: 'isEqualPlaceholder:' + Lang.H5_DISTRICT,
+                        errorMsg: Lang.H5_VALIDATOR_DIS
+                    }]
+                }, {
+                    target: _street,
+                    rules: [{
+                        strategy: 'isNonEmpty',
+                        errorMsg: Lang.H5_VALIDATOR_STREET
+                    }]
+                }])
+            } catch (error) {
                 Dialog.tip({
                     top_txt: '', //可以是html
-                    body_txt: '<p class="dialog-body-p">' + Lang.H5_MSG_ADDRESS + '</p>'
+                    body_txt: '<p class="dialog-body-p">' + error.message + '</p>'
                 });
-                return null;
-            } //信息不完整
+                return;
+            }
             var _address = {
                 "buyer_node": _buyer_note,
                 "name": _name,

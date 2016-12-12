@@ -176,7 +176,13 @@ define(['base'],function(Base){
             H5_REDUC_PAVORABLE:'满减优惠',
             H5_REDUC_TITLE:'全店满减',
             H5_ITEM_LIST_TYPE_TWO:'一行2个',
-            H5_ITEM_LIST_TYPE_THREE:'一行3个'
+            H5_ITEM_LIST_TYPE_THREE:'一行3个',
+            H5_VALIDATOR_NAME:"请填写姓名",
+            H5_VALIDATOR_TEL:"请填写电话",
+            H5_VALIDATOR_PROVINCE:"请填写省",
+            H5_VALIDATOR_CITY:"请填写市",
+            H5_VALIDATOR_DIS:"请填写区",
+            H5_VALIDATOR_STREET:"请填写详细地址"
 
 
         },
@@ -470,7 +476,19 @@ define(['base'],function(Base){
             H5_CONFIRM_SUBMIT:'Yakin ingin mengajukan？',
             H5_EXIT_CONFIRM:'Yakin ingin keluar?',
             H5_ITEM_LIST_TYPE_TWO:'Tampilan 1 Baris 2 Produk',
-            H5_ITEM_LIST_TYPE_THREE:'Tampilan 1 Baris 3 Produk'
+            H5_ITEM_LIST_TYPE_THREE:'Tampilan 1 Baris 3 Produk',
+            //请填写详细地址
+            'H5_VALIDATOR_STREET':"Silakan tulis alamat lengkap pengiriman",
+            //请填写姓名
+            'H5_VALIDATOR_NAME':"Silakan tulis nama",
+            //请填写电话
+            'H5_VALIDATOR_TEL':"Silakan tulis nomor telepon",
+            //请填写省
+            'H5_VALIDATOR_PROVINCE':"Silakan pilih provinsi",
+            //请填写市
+            'H5_VALIDATOR_CITY':"Silakan pilih kota/kabupaten",
+            //请填写区
+            'H5_VALIDATOR_DIS':"Silakan pilih kecamatan",
 
         }
     };

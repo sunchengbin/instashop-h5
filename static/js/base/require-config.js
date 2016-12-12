@@ -48,7 +48,8 @@ require.config({
         //功能模块
         user:'moudle/app/im/user',
         history:'moudle/app/im/history',
-        message:'moudle/app/im/message'
+        message:'moudle/app/im/message',
+        validator:'moudle/ui/validator/validator'
     },
     packages: []
 });
