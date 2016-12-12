@@ -335,7 +335,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     </style>
 </head>
 
-<body id="container">
+<body id="container" data-spider="8divulwy">
 <div id="feedbackbox" class="f-pad">
     <div class="f-input-box">
         <!--<label for="contact">Nomor telpon atau Email</label>-->
@@ -382,7 +382,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
       }
       ga('create', 'UA-78448705-7', 'auto');
       ga('send', 'pageview');
-
+        <?=BI_SCRIPT?>
 </script>
 </body>
 </html>

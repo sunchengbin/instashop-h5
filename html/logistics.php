@@ -37,7 +37,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         document.title=(Lang[ navigator.language.toLowerCase() ] || Lang.id).H5_LOGISTICS_DETAIL;
       </script>
 </head>
-<body>
+<body data-spider="exchn31z">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="../js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/logistics.js?v=1481270403379"></script>
@@ -49,7 +49,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
           ga('create', 'UA-78448705-7', 'auto');
           ga('send', 'pageview');
-
+<?=BI_SCRIPT?>
       </script>
 </body>
 </html>

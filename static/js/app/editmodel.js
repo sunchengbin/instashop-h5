@@ -351,6 +351,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             });
         },
         insertModel : function(data,callbcak){
+            alert(JSON.stringify(data));
             var _this = this,
                 _arr = [data.result],
                 _index = Number(data.result.index),

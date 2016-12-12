@@ -185,8 +185,8 @@ height:600px;
 
     </style>
 </head>
-<body>
-<div class="address-wraper ins-wraper">
+<body data-spider="8divulwy">
+<div class="address-wraper ins-wraper" data-spider="xbf2dazq">
     <section class="address-form-box">
         <div class="index-btn-box" style="padding:0 2rem">
             <div class="btn j_submit_btn confirm-btn j_submit_check" style="margin-top:5rem">
@@ -206,6 +206,7 @@ height:600px;
 
       ga('create', 'UA-78448705-7', 'auto');
       ga('send', 'pageview');
+      <?=BI_SCRIPT?>
     </script>
 </body>
 </html>

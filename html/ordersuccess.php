@@ -16,7 +16,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <link href="<?=STATIC_HOST?>/css/dist/app/ordersuccess.css?v=1481270403379" rel="stylesheet"/>
     <title>Informasi Pembayaran</title>
 </head>
-<body>
+<body data-spider="de4cti31">
 
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
@@ -29,7 +29,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
           ga('create', 'UA-78448705-7', 'auto');
           ga('send', 'pageview');
-
+<?=BI_SCRIPT?>
       </script>
 </body>
 </html>
