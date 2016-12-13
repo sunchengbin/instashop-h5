@@ -116,48 +116,87 @@
     </div>
 </section>
 <section class="buy-box">
-    {if $INDEX_DATA.item.shop.line_url} {if $INDEX_DATA.item.shop.phone}
-    <a href="javascript:;" data-type="all" class="j_show_contact ser-box fl">
-        <i class="icon iconfont icon-news-font"></i>
-        <p>Kontak</p>
-    </a>
-    {if $INDEX_DATA.item.stock le 0}
-    <div class="clearfix buy-btns no-buy have-contact">
+    {if $INDEX_DATA.item.shop.line_url} 
+        {if $INDEX_DATA.item.shop.phone}
+        <a href="javascript:;" data-type="all" class="j_show_contact ser-box fl">
+            <i class="icon iconfont icon-news-font"></i>
+            <p>Kontak</p>
+        </a>
+        {if $INDEX_DATA.item.stock le 0}
+            <div class="clearfix buy-btns no-buy have-contact">
         {else}
-        <div class="clearfix buy-btns have-contact">
-            {/if} {else}
-            <a href="{$INDEX_DATA.item.shop.line_url}" class="ser-box fl">
+            {if $INDEX_DATA.item.status eq 2}
+                <div class="clearfix buy-btns no-buy have-contact">
+            {else}
+                <div class="clearfix buy-btns have-contact">
+            {/if}
+        {/if} 
+    {else}
+        <a href="javascript:;" class="ser-box fl block j_goto_line">
+            <i class="icon iconfont icon-news-font"></i>
+            <p>Kontak</p>
+        </a>
+        {if $INDEX_DATA.item.stock le 0}
+            <div class="clearfix buy-btns no-buy have-contact">
+        {else}
+            {if $INDEX_DATA.item.status eq 2}
+                <div class="clearfix buy-btns no-buy have-contact">
+            {else}
+                <div class="clearfix buy-btns have-contact">
+            {/if}
+        {/if} 
+    {/if}
+    {else} 
+        {if $INDEX_DATA.item.shop.phone}
+            <a href="javascript:;" data-type="tel" class="j_show_contact ser-box fl">
                 <i class="icon iconfont icon-news-font"></i>
                 <p>Kontak</p>
             </a>
-            {if $INDEX_DATA.item.stock le 0}
-            <div class="clearfix buy-btns no-buy have-contact">
-                {else}
-                <div class="clearfix buy-btns have-contact">
-                    {/if} {/if} {else} {if $INDEX_DATA.item.shop.phone}
-                    <a href="javascript:;" data-type="tel" class="j_show_contact ser-box fl">
-                        <i class="icon iconfont icon-news-font"></i>
-                        <p>Kontak</p>
-                    </a>
-                    {if $INDEX_DATA.item.stock le 0}
+            {if $INDEX_DATA.item.stock le 0 || $INDEX_DATA.item.status eq 2}
+                <div class="clearfix buy-btns no-buy have-contact">
+            {else}
+                {if $INDEX_DATA.item.status eq 2}
                     <div class="clearfix buy-btns no-buy have-contact">
-                        {else}
-                        <div class="clearfix buy-btns have-contact">
-                            {/if} {else} {if $INDEX_DATA.item.stock le 0}
-                            <div class="clearfix buy-btns no-buy">
-                                {else}
-                                <div class="clearfix buy-btns">
-                                    {/if} {/if} {/if} {if $INDEX_DATA.item.stock le 0}
-                                    <a class="add-cart j_add_cart disable-addnow disable-btn" data-id="{$INDEX_DATA.item.id}" href="javascript:;">
-                        Stok Kurang
-                    </a> {else}
-                                    <a class="add-cart j_add_cart" data-id="{$INDEX_DATA.item.id}" href="javascript:;">
-                        Masuk keranjang
-                    </a>
-                                    <a href="javascript:;" class="buy-now j_buy_btn">
-                        Beli sekarang
-                    </a> {/if}
-                                </div>
+                {else}
+                    <div class="clearfix buy-btns have-contact">
+                {/if}
+            {/if} 
+        {else} 
+            {if $INDEX_DATA.item.stock le 0}
+                <div class="clearfix buy-btns no-buy">
+            {else}
+                {if $INDEX_DATA.item.status eq 2}
+                    <div class="clearfix buy-btns no-buy">
+                {else}
+                    <div class="clearfix buy-btns">
+                {/if}
+            {/if} 
+        {/if} 
+    {/if}
+    {if $INDEX_DATA.item.stock le 0}
+        <a class="add-cart j_add_cart disable-addnow disable-btn" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="已售完" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}">
+            {if $INDEX_DATA.item.status eq 2}
+                Sudah Digudangkan
+            {else}
+                Stok Kurang
+            {/if}
+        </a> 
+    {else}
+        {if $INDEX_DATA.item.status eq 2}
+        <a class="add-cart j_add_cart disable-addnow disable-btn" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="已下架" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}">
+            Sudah Digudangkan
+        </a> 
+        {else}
+            <a class="add-cart j_add_cart" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="添加购物车" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
+            Masuk keranjang
+            </a>
+            <a href="javascript:;" class="buy-now j_buy_btn" spm-auto="立即购买" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
+            Beli sekarang
+            </a> 
+            {/if}
+
+        {/if}
+</div>
 </section>
 {/if} {/if}
 <script>var init_data = {$INDEX_DATA_STR};</script> {include file="footer.tpl"}
