@@ -293,7 +293,7 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
         }
         for(var item in carts){
             var _item = carts[item];
-            _htm += '<li><a class="item-info j_item_info" data-url="'+_item.h5_url+'" href="javascript:;"><div class="lazy" data-img="'+_item.img+'">';
+            _htm += '<li><a class="item-info j_item_info" data-url="'+_item.h5_url+'" href="javascript:;"><div class="lazy" data-img="'+Base.others.cutImg(_item.img)+'">';
             if(_item.is_discount && _item.discounting){
                 _htm +='<span class="">-'+_item.discount.value+'%</span>';
             }
