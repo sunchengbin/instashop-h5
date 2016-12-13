@@ -61,9 +61,13 @@ function get_init_php_data($path, $params){
 		$browser_id = $_COOKIE[$cookie_name];
 	}
     $params['client_uuid'] = $browser_id;
-	if (!C_RUNTIME_ONLINE && $_GET['_debug_env'])
+
+	if (!C_RUNTIME_ONLINE )
 	{
-		$params['_debug_env'] = $_GET['_debug_env'];
+        $params['_debug_env'] = 'dev';
+        if($_GET['_debug_env']){
+            $params['_debug_env'] = $_GET['_debug_env'];
+        }
 	}
 
     $api = $host.$path.'?param='.json_encode([ 'edata' => $params  ]);

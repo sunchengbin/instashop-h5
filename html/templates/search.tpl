@@ -21,7 +21,7 @@
                 <ul class="items-list clearfix j_hot_list">
                     {foreach $SEARCH_DATA.item_list.list as $item}
                     <li>
-                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$item.seller_id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$item.seller_id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
@@ -58,7 +58,7 @@
                 <ul class="three-items-list clearfix j_hot_list">
                     {foreach $SEARCH_DATA.item_list.list as $item}
                     <li>
-                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url}" href="javascript:;">
+                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
