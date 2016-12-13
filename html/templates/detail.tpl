@@ -126,7 +126,7 @@
         {else}
         <div class="clearfix buy-btns have-contact">
             {/if} {else}
-            <a href="{$INDEX_DATA.item.shop.line_url}" class="ser-box fl">
+            <a href="javascript:;" class="ser-box fl j_goto_line">
                 <i class="icon iconfont icon-news-font"></i>
                 <p>Kontak</p>
             </a>

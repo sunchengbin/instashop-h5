@@ -293,7 +293,7 @@
                 Kontak
             </a>
             {else}
-            <a spm-auto="查看联系方式" spm-click="查看联系方式" class="contact-services" href="{$INDEX_DATA.shop.line_url}">
+            <a class="contact-services j_goto_line" href="javascript:;">
                 <i class="icon iconfont icon-i-news-font"></i>
                 Kontak
             </a>
