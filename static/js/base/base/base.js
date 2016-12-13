@@ -285,18 +285,13 @@ define(function(){
                 }
                 return false;
             };
-            var _this = this;
-            //return enable && isWebpSupported() && _this.webpLog()? url.replace('.jpg', '.jpg.webp') : url;
             return url;
         },
         //替换图片url进行裁图
         cutImg : function(url,width,bg){
             var _ww = width?width:$(window).width(),
                 _this = this;
-            //_ww+=100;
-            //_ww = _ww > 640?640:_ww;
             _ww = 640;
-            var _protocol = location.protocol;
             url = url.replace(/http\:/,'https:');
             if(!bg){
                 if(/w\=\d+/g.test(url)){
