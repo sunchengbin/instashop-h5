@@ -27,9 +27,11 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                 seller_id: Common.getQueryParam("seller_id"),
                 wduss: encodeURIComponent(Common.getQueryParam("wduss"))
             };
+            _this.initStatus();
+            // _this.StatusCheck.isDemand = false;
             Insjs.judgeVersion("3.5", function () {
                     //初始化状态监控
-                    _this.initStatus();
+                    // _this.initStatus();
                     _this.initData();
                     _this.handleFn();
                     Insjs.WebOnReady(function (bridge) {
@@ -38,6 +40,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
                         _this.versionTipDialog();
                     });
                 }, function () {
+                    _this.StatusCheck.isDemand = false;
                     _paq.push(['trackEvent', '低于3.5版本提示', 'autotip', '']);
                     Dialog.alert({
                         body_txt: 'Silakan update ke versi terbaru untuk mengikuti promo ini'
