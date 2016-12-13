@@ -103,6 +103,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                         });
                         return;
                     }
+                    _paq.push(['trackEvent', '下单', 'click', '下单']);
                     //alert(JSON.stringify(_data));
                     Ajax.postJsonp({
                         url: Config.actions.orderConfirm,

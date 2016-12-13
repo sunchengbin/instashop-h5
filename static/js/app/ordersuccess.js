@@ -95,6 +95,7 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','co
                     _tag_name = _dom.attr('data-tag'),
                     _banksInfo = JSON.parse(localStorage.getItem('BankInfo')),
                     _num = _this.countBankNum(_banksInfo);
+                _paq.push(['trackEvent', '切换银行信息tag', 'click', _tag_name]);
                 if(_num == 3){
                     if(_tag_name == 'mandiri'){
                         $('.pay-info ul').addClass('three_info_center');

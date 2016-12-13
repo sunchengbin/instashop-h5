@@ -68,13 +68,14 @@ require(['hbs','text!views/app/refund.hbs','config','lang','fastclick','dialog',
                                 +'<p class="dialog-body-p">'+Lang.H5_SUB_BRANCH+' : '+_items.b_branch+'</p>'
                                 +'<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NAME+' : '+_items.c_name+'</p>'
                                 +'<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NUMBER+' : '+_items.c_number+'</p>';
-
+                    _paq.push(['trackEvent', '提交退款账号', 'click', '提交退款账号']);
                     Dialog.confirm({
                         top_txt : Lang.H5_CONFIRM_SUBMIT,
                         show_top : true,
                         body_txt : _body,
                         cf_fn : function(){
                             //验证单品详情页的
+                            _paq.push(['trackEvent', '确认无误提交', 'click', '确认无误提交']);
                             _this.saveData({
                                 data : {
                                     edata: {
@@ -94,6 +95,7 @@ require(['hbs','text!views/app/refund.hbs','config','lang','fastclick','dialog',
                         c_fn : function(){
                             _that.cancelDisable();
                             _that.setBtnTxt(dom,Lang.H5_CONFIRM);
+                            _paq.push(['trackEvent', '取消提交', 'click', '取消提交']);
                             return null;
                         }
                     });

@@ -107,6 +107,7 @@ require(['hbs','text!views/app/uploadprove.hbs','config','lang','fastclick','dia
                         return null;
                     }
                     //验证单品详情页的
+                    _paq.push(['trackEvent', '提交支付证明', 'click', '提交支付证明']);
                     _this.saveData({
                         data : {
                             edata: {

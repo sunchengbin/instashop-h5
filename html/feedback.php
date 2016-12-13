@@ -180,7 +180,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             padding: 1.5rem;
             outline: none;
             color: #999999;
-            font-size:1.5rem;
+            font-size:14px;
 
         }
 
@@ -207,7 +207,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
         .f-submit-box input {
             width: 88%;
-            font-size: 1.6rem;
+            font-size: 14px;
             background-color: #43CB9C;
             color: #fff;
             border-radius: 2px;
@@ -231,7 +231,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         }
 
         .insta-btn {
-            padding: 12px 0;
+            height:3rem;
+            line-height:3rem;
+            padding:0;
         }
 
         .contact-us {
@@ -257,6 +259,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
         .contact-us ul > li {
             list-style: none;
+            font-size:14px;
         }
 
         .dialog-wraper {
