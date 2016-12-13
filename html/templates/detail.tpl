@@ -125,7 +125,11 @@
         {if $INDEX_DATA.item.stock le 0}
             <div class="clearfix buy-btns no-buy have-contact">
         {else}
-            <div class="clearfix buy-btns have-contact">
+            {if $INDEX_DATA.item.status eq 2}
+                <div class="clearfix buy-btns no-buy have-contact">
+            {else}
+                <div class="clearfix buy-btns have-contact">
+            {/if}
         {/if} 
     {else}
         <a href="javascript:;" class="ser-box fl block j_goto_line">
@@ -135,7 +139,11 @@
         {if $INDEX_DATA.item.stock le 0}
             <div class="clearfix buy-btns no-buy have-contact">
         {else}
-            <div class="clearfix buy-btns have-contact">
+            {if $INDEX_DATA.item.status eq 2}
+                <div class="clearfix buy-btns no-buy have-contact">
+            {else}
+                <div class="clearfix buy-btns have-contact">
+            {/if}
         {/if} 
     {/if}
     {else} 
@@ -162,7 +170,6 @@
                 {else}
                     <div class="clearfix buy-btns">
                 {/if}
-                
             {/if} 
         {/if} 
     {/if}
