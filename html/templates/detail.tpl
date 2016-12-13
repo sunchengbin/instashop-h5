@@ -147,13 +147,22 @@
             {if $INDEX_DATA.item.stock le 0 || $INDEX_DATA.item.status eq 2}
                 <div class="clearfix buy-btns no-buy have-contact">
             {else}
-                <div class="clearfix buy-btns have-contact">
+                {if $INDEX_DATA.item.status eq 2}
+                    <div class="clearfix buy-btns no-buy have-contact">
+                {else}
+                    <div class="clearfix buy-btns have-contact">
+                {/if}
             {/if} 
         {else} 
             {if $INDEX_DATA.item.stock le 0}
                 <div class="clearfix buy-btns no-buy">
             {else}
-                <div class="clearfix buy-btns">
+                {if $INDEX_DATA.item.status eq 2}
+                    <div class="clearfix buy-btns no-buy">
+                {else}
+                    <div class="clearfix buy-btns">
+                {/if}
+                
             {/if} 
         {/if} 
     {/if}
@@ -167,7 +176,7 @@
         </a> 
     {else}
         {if $INDEX_DATA.item.status eq 2}
-        <a class="add-cart j_add_cart disable-addnow disable-btn" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="已售完" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}">
+        <a class="add-cart j_add_cart disable-addnow disable-btn" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="已下架" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}">
             Sudah Digudangkan
         </a> 
         {else}
