@@ -23,7 +23,7 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base',
             });
             _this.searching = false;
             $('body').on('click','.j_search_btn',function(){
-                var _key = $.trim($(this).val());
+                var _key = $.trim($('.j_key').val());
                 if(!_key)return;
                 if(_this.searching)return;
                 _this.getSearchValue(_key);
@@ -93,6 +93,7 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base',
                     }
                 },
                 function(error){
+                    _this.searching = false;
                     _this._loading.remove();
                 }
             );
