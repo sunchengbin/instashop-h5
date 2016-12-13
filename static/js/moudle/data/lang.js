@@ -184,7 +184,8 @@ define(['base'],function(Base){
             H5_VALIDATOR_DIS:"请填写区",
             H5_VALIDATOR_STREET:"请填写详细地址",
             H5_IS_SOLDOUTTRUE:"已下架",
-            H5_IS_HAVESHEFL:"有商品已下架"
+            H5_IS_HAVESHEFL:"有商品已下架",
+            H5_NO_SEARCH_VAL:"没有找到相关商品"
         },
 
         id : {
@@ -492,7 +493,9 @@ define(['base'],function(Base){
             //已下架
             'H5_IS_SOLDOUTTRUE':"Sudah Digudangkan",
             //有商品已下架
-            'H5_IS_HAVESHEFL':"Ada produk yang sudah digudangkan!"
+            'H5_IS_HAVESHEFL':"Ada produk yang sudah digudangkan!",
+            //没有找到相关商品
+            H5_NO_SEARCH_VAL:"Produk tidak ditemukan"
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );

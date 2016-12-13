@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 2016/12/7.
  */
-require(['config','ajax','common','item','fastclick','dialog','lazyload','base'],function(Config,Ajax,Common,Item,Fastclick,Dialog,Lazyload,Base){
+require(['config','ajax','common','item','fastclick','dialog','lazyload','base','lang'],function(Config,Ajax,Common,Item,Fastclick,Dialog,Lazyload,Base,Lang){
     var Search = {
         init : function(){
             var _this = this;
@@ -57,6 +57,10 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base']
                 _s_id = _shop_data?JSON.parse(_shop_data).ShopInfo.id:null;
             _this.searching = true;
             if(!_s_id){return;}
+            _this._loading = Dialog.loading({
+                width: 100,
+                is_cover: true
+            });
             var _data = {
                 edata:{
                     action : 'digital',
@@ -68,13 +72,17 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base']
                 Config.host.actionUrl+Config.actions.search+'?param='+JSON.stringify(_data),
                 function(obj){
                     _this.searching = false;
+                    _this._loading.remove();
                     if(obj.code == 200){
-                        var _list_type = Common.getItemListType(obj.template),
-                            _html = Item.addItem(obj.item_list.list,_list_type);
-                        if(_list_type == 3){
-                            _html = '<ul class="three-items-list clearfix j_default_item_list">'+_html+'</ul>';
-                        }else{
-                            _html = '<ul class="items-list clearfix j_item_list">'+_html+'</ul>';
+                        var _html = '<div class="no-search-val"><img src="'+Config.host.imgUrl+'/app/404.png"/><p>'+Lang.H5_NO_SEARCH_VAL+'</p></div>';
+                        if(obj.item_list.list.length){
+                            var _list_type = Common.getItemListType(obj.template);
+                                _html = Item.addItem(obj.item_list.list,_list_type);
+                            if(_list_type == 3){
+                                _html = '<ul class="three-items-list clearfix j_default_item_list">'+_html+'</ul>';
+                            }else{
+                                _html = '<ul class="items-list clearfix j_item_list">'+_html+'</ul>';
+                            }
                         }
                         $('.j_item_box').html(_html);
                         Lazyload();
@@ -85,7 +93,7 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base']
                     }
                 },
                 function(error){
-
+                    _this._loading.remove();
                 }
             );
         }
