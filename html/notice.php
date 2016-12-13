@@ -79,12 +79,16 @@ if(preg_match('/^https?\:\/\/[^\s]+$/i',$content)){
   <?php
           echo '<title>'.$json['notice']['title'].'</title>';
           echo '</head>';
-          echo '<body>';
+          echo '<body data-spider="w4lu897y">';
           echo '<section>'.$json['notice']['content'].'</section>';
       ?>
 
 
   <script>
+      var _content = document.querySelectorAll('img');
+      Array.prototype.forEach.call(_content, function(img) {
+          img.src = img.src.replace(/http\:/,'https:');
+      });
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -92,7 +96,7 @@ if(preg_match('/^https?\:\/\/[^\s]+$/i',$content)){
 
       ga('create', 'UA-78448705-7', 'auto');
       ga('send', 'pageview');
-
+<?=BI_SCRIPT?>
   </script>
 </body>
 </html>
