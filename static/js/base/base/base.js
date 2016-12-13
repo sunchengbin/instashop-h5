@@ -298,6 +298,7 @@ define(function(){
             _ww = 640;
             var _protocol = location.protocol;
             url = url.replace(/http\:/,'https:');
+            console.log(url);
             if(!bg){
                 if(/w\=\d+/g.test(url)){
                     url = url.replace(/w\=\d+/g,'w='+_ww);
