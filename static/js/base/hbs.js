@@ -440,6 +440,9 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
     HBS.registerHelper('transimgurl', function(url) {
         return Base.others.cutImg(url);
     });
+    HBS.registerHelper('transbannerimgurl', function(url) {
+        return url.replace(/http\:/,'https:');
+    });
     HBS.registerHelper('transshopbgimgurl', function(url) {
         return Base.others.cutImg(url,null,'bg');
     });
