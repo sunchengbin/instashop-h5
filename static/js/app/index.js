@@ -256,6 +256,11 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                     }).toShow();
                 });
             }
+             //修正因标签属性href有值的问题导致被追加spider参数 line中user not find的问题
+                $('body').on('click','.j_goto_line',function(){
+                    _paq.push(['trackEvent', '联系卖家line', 'click', '']);
+                    location.href = init_data.shop.line_url;
+                });
 
         },
         showSortPrompt : function(){
