@@ -144,10 +144,10 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                         lang: Lang
                     }).toShow();
                 });
-                $('body').on('click','.j_goto_line',function(){
+            }
+            $('body').on('click','.j_goto_line',function(){
                     location.href = init_data.item.shop.line_url;
                 })
-            }
         },
         transUrl: function (url) {
             if (/\?/g.test(url)) {

@@ -293,7 +293,7 @@
                 Kontak
             </a>
             {else}
-            <a class="contact-services j_goto_line" href="javascript:;">
+            <a class="contact-services block j_goto_line" href="javascript:;">
                 <i class="icon iconfont icon-i-news-font"></i>
                 Kontak
             </a>

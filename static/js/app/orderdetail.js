@@ -51,7 +51,12 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact','base'
                         lang:Lang
                     }).toShow();
                 });
+                
             }
+            //修正因标签属性href有值的问题导致被追加spider参数 line中user not find的问题
+                $('body').on('click','.j_goto_line',function(){
+                    location.href = init_data.order.shop_info.line_url;
+                });
         }
 
     };
