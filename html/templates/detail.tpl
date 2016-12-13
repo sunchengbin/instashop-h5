@@ -161,12 +161,19 @@
                         {/if}
 
                     </a> {else}
-                                    <a class="add-cart j_add_cart" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="添加购物车" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
+
+                    {if $INDEX_DATA.item.status eq 2}
+                            Sudah Digudangkan
+                        {else}
+                             <a class="add-cart j_add_cart" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="添加购物车" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
                         Masuk keranjang
                     </a>
                                     <a href="javascript:;" class="buy-now j_buy_btn" spm-auto="立即购买" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
                         Beli sekarang
-                    </a> {/if}
+                    </a> 
+                        {/if}
+
+                    {/if}
                                 </div>
 </section>
 {/if} {/if}
