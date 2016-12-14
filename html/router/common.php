@@ -80,10 +80,10 @@ $js = <<<JS
           return _items;
     }
     function getSellerID() {
-        var _shop_data = localStorage.getItem('ShopData');
-        var _s_id = _shop_data?JSON.parse(_shop_data).ShopInfo.id:-1;
-        if(getUrlPrem('seller_id')){
-            _s_id = -1;
+        var _s_id = -1;
+        if (/Instashop/g.test(navigator.userAgent)) {
+            //内嵌浏览器在cookie中和统计参数中加入seller_id
+            _s_id = getUrlPrem('seller_id') || -1;
         }
         var _WD_s_id = _s_id;
         //获取当前时间
