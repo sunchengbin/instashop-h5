@@ -9,6 +9,9 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base',
         },
         handleFn : function(){
             var _this = this;
+            if($('[data-time]').length){
+                Item.changeTime();
+            }
             Fastclick.attach(document.body);
             if(Base.others.getUrlPrem('key') && Base.others.getUrlPrem('seller_id')){
                 Lazyload();
@@ -85,6 +88,9 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base',
                             }
                         }
                         $('.j_item_box').html(_html);
+                        if($('[data-time]').length){
+                            Item.changeTime();
+                        }
                         Lazyload();
                     }else{
                         Dialog.tip({
