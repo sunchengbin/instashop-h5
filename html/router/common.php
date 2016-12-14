@@ -108,7 +108,7 @@ $js = <<<JS
           g.type='text/javascript';
           g.defer=true;
           g.async=true;
-          g.src=is_https ? 'https://di.instashop.co.id/piwik-spm.js' : 'http://di.instashop.co.id/piwik-spm.js';
+          g.src=is_https ? '../../static/js/base/piwik-spm.js' : '../../static/js/base/piwik-spm.js';
           s.parentNode.insertBefore(g,s);
       })();
 JS;
