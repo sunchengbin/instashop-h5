@@ -111,6 +111,12 @@ $js = <<<JS
           g.src=is_https ? 'https://static.instashop.co.id/js/base/piwik-spm.js' : 'http://static.instashop.co.id/js/base/piwik-spm.js';
           s.parentNode.insertBefore(g,s);
       })();
+    function PaqPush(e_c,e_n){
+        try{
+           _paq.push(['trackEvent',e_c,'click', e_c]);
+        }catch(e){
+        }
+    }
 JS;
 return $js;
 }

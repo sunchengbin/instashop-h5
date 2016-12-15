@@ -70,7 +70,7 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                     reqData = {
                         edata : {
                             action : 'tag',
-                            page_size : 10,
+                            page_size : 18,
                             tag_id : _tag_id,
                             last_id : _last_id,
                             havestock : 1
@@ -91,7 +91,7 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                                 reqData = {
                                     edata : {
                                         action : 'tag',
-                                        page_size : 10,
+                                        page_size : 18,
                                         tag_id : _tag_id,
                                         last_id : _last_id,
                                         havestock : 1
@@ -139,11 +139,9 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                 _l_top = 0;
             }
             if(_this.t){
-                console.log(1)
                 clearTimeout(_this.t);
             }
             _this.t = setTimeout(function(){
-                console.log(_this.t)
                 $(window).scrollTop(_l_top);
                 if ($(document).height() < _l_top) {
                     _this.goScroll();
