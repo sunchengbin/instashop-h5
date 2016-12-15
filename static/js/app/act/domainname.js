@@ -451,7 +451,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             for (var i = 0, inviter; inviter = inviters[i++];) {
                 var _curTr = "";
                 // var _curTr = '<tr><td>' + inviter.shop_name + '</td><td>' + inviter.telephone + '</td></tr>';
-                if(inviter.ins_item_count_full&&inviter.followed_by_count_full&&inviter.prev_ins_count_full){
+                if(inviter.ins_item_count_full&&inviter.followed_by_count_full&&inviter.is_import_ins){
                     _curTr = '<tr><td>' + inviter.shop_name + '</br>' + inviter.telephone + '</td><td style="text-align:left">Sudah memenuhi syarat</td></tr>';
                 }else{
                     for(var j=0,_curCheckStatus;_curCheckStatus=_error_status_map[j++];){
