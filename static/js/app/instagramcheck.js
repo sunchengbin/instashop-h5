@@ -1,30 +1,36 @@
 /**
  * Created by lanchenghao on 16/11/14.
  */
-require(['config', 'base', 'lang', 'common','dialog'], function (Config, Base, Lang, Common,Dialog) {
+require(['config', 'base', 'lang', 'common', 'dialog'], function (Config, Base, Lang, Common, Dialog) {
     var Instagramcheck = {
         init: function () {
             var ctx = this;
             ctx.deleteAllCookies();
-            localStorage&&localStorage.clear();
+            localStorage && localStorage.clear();
             ctx.main();
         },
-        main:function(){
+        main: function () {
             var ctx = this;
-            $("body").on("click",".j_submit_btn",function(){
+            $("body").on("click", ".j_submit_btn", function () {
                 ctx.subData();
             });
             var insflag = Common.getQueryParam("oauth");
-            if(insflag=='fail'){
+            var error_message = Common.getQueryParam("error_message");
+            if (insflag == 'fail') {
+                if (!!error_message) {
+                    Dialog.tip({
+                        body_txt: 'Otorisasi akun Instagram tidak berhasil, silakan coba kembali beberapa saat lagi'
+                    })
+                }
                 $(".ins-wraper").show();
-            }else{
+            } else {
                 $(".ins-wraper").hide();
                 ctx.subData();
             }
         },
-        deleteAllCookies:function() {
+        deleteAllCookies: function () {
             var cookies = document.cookie.split(";");
-            for (var i = 0;i < cookies.length; i++) {
+            for (var i = 0; i < cookies.length; i++) {
                 var cookie = cookies[i];
                 var eqPos = cookie.indexOf("=");
                 var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
@@ -38,14 +44,14 @@ require(['config', 'base', 'lang', 'common','dialog'], function (Config, Base, L
                 seller_id: _seller_info.seller_id,
                 action: "instagram"
             };
-            var reqUrl = Config.host.phpHost + Config.actions.instagramcheck + "?param=" + JSON.stringify(_reqData)+"&timestamp="+new Date().getTime();
-             Dialog.confirm({
+            var reqUrl = Config.host.phpHost + Config.actions.instagramcheck + "?param=" + JSON.stringify(_reqData) + "&timestamp=" + new Date().getTime();
+            Dialog.confirm({
                 body_txt: 'Pastikan akun Instagrammu tidak diprivate',
-                cf_fn:function(){
+                cf_fn: function () {
                     window.location.href = reqUrl;
                 },
-                c_fn:function(){
-                    window.location.href = window.location.href+"&oauth=fail";
+                c_fn: function () {
+                    window.location.href = window.location.href + "&oauth=fail";
                 }
             })
         }
