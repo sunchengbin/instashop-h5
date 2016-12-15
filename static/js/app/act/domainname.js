@@ -439,7 +439,10 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             },{//10件
                 rule:"ins_item_count_full",
                 txt:"Sudah menambahkan produk dari Instagram, tetapi produk yang diupload kurang dari 10",
-            },];
+            },{//被邀请者必须使用自己instagram账号搬家，如果使用和别人一样的账号，则视为无效
+                rule:"prev_ins_count_full",
+                txt:"Akun IG yang digunakan sudah pernah didaftarkan oleh toko lain",
+            }];
             var _table_head = '<tr>' +
                 '                            <td class="t-header">' +
                 '                                Teman Yang Diundang' +
@@ -451,7 +454,7 @@ require(['config', 'insjs', 'ajax', 'dialog', 'fastclick', 'common', 'lang'], fu
             for (var i = 0, inviter; inviter = inviters[i++];) {
                 var _curTr = "";
                 // var _curTr = '<tr><td>' + inviter.shop_name + '</td><td>' + inviter.telephone + '</td></tr>';
-                if(inviter.ins_item_count_full&&inviter.followed_by_count_full&&inviter.is_import_ins){
+                if(inviter.ins_item_count_full&&inviter.followed_by_count_full&&inviter.is_import_ins&&inviter.prev_ins_count_full){
                     _curTr = '<tr><td>' + inviter.shop_name + '</br>' + inviter.telephone + '</td><td style="text-align:left">Sudah memenuhi syarat</td></tr>';
                 }else{
                     for(var j=0,_curCheckStatus;_curCheckStatus=_error_status_map[j++];){
