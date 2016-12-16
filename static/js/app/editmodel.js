@@ -295,7 +295,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             var _seller_info = Common.getUrlSellerInfo();
             var _req_data = {
                 edata : {
-                    content : _this.model_data,
+                    content : _this.tranfansModelData(_this.model_data),
                     seller_id : _seller_info.seller_id,
                     wduss : _seller_info.wduss
                 }
