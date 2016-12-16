@@ -14,7 +14,6 @@
     $smarty->assign('STATIC_HOST',STATIC_HOST);
     $smarty->assign('BI_SCRIPT',BI_SCRIPT);
 
-
     /*获取搜索列表页面*/
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     include_once( dirname(__FILE__).'/../html/router/base.php');
@@ -35,6 +34,9 @@
         $itemtype = getItemListType($json["template"]);
         $smarty->assign('ITEMTYPE',$itemtype);
         $smarty->assign('KEY',$key);
+        $index_title = '<title>Cari</title>';
+        $smarty->assign('INDEX_TITLE',$index_title);
+
     }
 
     /*基础的js,css文件名*/

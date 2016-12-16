@@ -131,11 +131,12 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                             param:{
                                 index : _index,
                                 type : _type,
-                                title : _data&&_data.title?_data.title:'',
-                                data : _data&&_data.data?_data.data:[]
+                                title : _data&&_data.title?Common.decodeSingleQuotes(_data.title):'',
+                                data : _data&&_data.data?_this.tranfansModelData(_data.data):[]
                             }
                         }
                     };
+                    //console.log(_param);
                     bridge.callHandler('insSocket',_param, function(response) {
                         return null;
                     });
@@ -209,6 +210,10 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 });
             });
         },
+        tranfansModelData : function(data){
+            return JSON.parse(Common.decodeSingleQuotes(JSON.stringify(data)));
+        },
+
         setDefaultItemType : function(type){//设置默认列表样式type
             var _this = this,
                 _item_box = $('.j_default_item_box');
@@ -290,7 +295,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             var _seller_info = Common.getUrlSellerInfo();
             var _req_data = {
                 edata : {
-                    content : _this.model_data,
+                    content : _this.tranfansModelData(_this.model_data),
                     seller_id : _seller_info.seller_id,
                     wduss : _seller_info.wduss
                 }

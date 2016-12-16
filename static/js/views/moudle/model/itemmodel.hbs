@@ -7,7 +7,7 @@
         {{/if}}
             {{{btns}}}
             {{#if data.title}}
-            <p class="item-title b-bottom"><span></span>{{data.title}}</p>
+            <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
             {{/if}}
         {{#if listtype}}
             {{#eq listtype 2}}
@@ -30,7 +30,7 @@
         <section class="one-item-box j_model_box" data-spider="big-item">
             {{{btns}}}
             {{#if data.title}}
-                <p class="item-title b-bottom"><span></span>{{data.title}}</p>
+                <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
             {{/if}}
             <ul class="items-list clearfix j_item_list">
                 {{#tagItemList data.data}}{{/tagItemList}}
@@ -41,7 +41,7 @@
         <section class="item-list-box j_model_box" data-spider="list-item">
             {{{btns}}}
             {{#if data.title}}
-                <p class="item-title b-bottom"><span></span>{{data.title}}</p>
+                <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
             {{/if}}
             <ul class="">
                 {{#itemlist data.data}}{{/itemlist}}
