@@ -34,11 +34,9 @@
         $itemtype = getItemListType($json["template"]);
         $smarty->assign('ITEMTYPE',$itemtype);
         $smarty->assign('KEY',$key);
-        $index_title = '<title>Cari</title>';
-        $smarty->assign('INDEX_TITLE',$index_title);
-
     }
-
+    $index_title = '<title>Cari</title>';
+    $smarty->assign('INDEX_TITLE',$index_title);
     /*基础的js,css文件名*/
     $smarty->assign('INDEX_JS_NAME','search');
     $smarty->assign('INDEX_CSS_NAME','search');
