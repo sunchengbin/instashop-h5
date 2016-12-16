@@ -101,7 +101,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 var _dom = $(this),
                     _index = $('.j_edit_model').index(_dom),
                     _type = _dom.attr('data-type'),
-                    _data = _this.model_data[_index]?_this.model_data[_index]:null;
+                    _data = _this.model_data[_index]?_this.tranfansModelData(_this.model_data[_index]):null;
                 _paq.push(['trackEvent', '编辑模板', 'click', _type]);
                 if(_type == 'item_list_type'){//选择
                     var _sel_htm = '<div>';
@@ -131,7 +131,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                             param:{
                                 index : _index,
                                 type : _type,
-                                title : _data&&_data.title?_data.title:'',
+                                title : _data&&_data.title?Common.decodeSingleQuotes(_data.title):'',
                                 data : _data&&_data.data?_data.data:[]
                             }
                         }
@@ -208,6 +208,12 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     return null;
                 });
             });
+        },
+        tranfansModelData : function(data){
+            for(var i in data){
+                data[i] = Common.decodeSingleQuotes(data[i]);
+            }
+            return data;
         },
         setDefaultItemType : function(type){//设置默认列表样式type
             var _this = this,

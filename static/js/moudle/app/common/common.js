@@ -192,6 +192,9 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                     callback && callback();
                 }
             });
+        },
+        decodeSingleQuotes : function(str){
+            return str.replace("&apos;","'");
         }
     };
 
