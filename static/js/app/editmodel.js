@@ -102,7 +102,6 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     _index = $('.j_edit_model').index(_dom),
                     _type = _dom.attr('data-type'),
                     _data = _this.model_data[_index]?_this.model_data[_index]:null;
-                alert(JSON.stringify(_data))
                 _paq.push(['trackEvent', '编辑模板', 'click', _type]);
                 if(_type == 'item_list_type'){//选择
                     var _sel_htm = '<div>';
@@ -137,7 +136,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                             }
                         }
                     };
-                    alert(_param);
+                    //console.log(_param);
                     bridge.callHandler('insSocket',_param, function(response) {
                         return null;
                     });
@@ -212,19 +211,9 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             });
         },
         tranfansModelData : function(data){
-            var _result = [];
-            for(var i in data){
-                if(typeof data[i] == 'string'){
-                    data[i] = Common.decodeSingleQuotes(data[i]);
-                }else{
-                    for(var item in  data[i]){
-                        data[i][item] = Common.decodeSingleQuotes(data[i][item]);
-                    }
-                }
-            }
-            _result.push(data);
-            return _result;
+            return JSON.parse(Common.decodeSingleQuotes(JSON.stringify(data)));
         },
+
         setDefaultItemType : function(type){//设置默认列表样式type
             var _this = this,
                 _item_box = $('.j_default_item_box');
