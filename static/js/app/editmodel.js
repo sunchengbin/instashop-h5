@@ -101,7 +101,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 var _dom = $(this),
                     _index = $('.j_edit_model').index(_dom),
                     _type = _dom.attr('data-type'),
-                    _data = _this.model_data[_index]?_this.tranfansModelData(_this.model_data[_index][0]):null;
+                    _data = _this.model_data[_index]?_this.model_data[_index]:null;
                 _paq.push(['trackEvent', '编辑模板', 'click', _type]);
                 if(_type == 'item_list_type'){//选择
                     var _sel_htm = '<div>';
@@ -132,10 +132,11 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                                 index : _index,
                                 type : _type,
                                 title : _data&&_data.title?Common.decodeSingleQuotes(_data.title):'',
-                                data : _data&&_data.data?_data.data:[]
+                                data : _data&&_data.data?_this.tranfansModelData(_data.data[0]):[]
                             }
                         }
                     };
+                    console.log(_param)
                     bridge.callHandler('insSocket',_param, function(response) {
                         return null;
                     });
@@ -210,10 +211,12 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             });
         },
         tranfansModelData : function(data){
+            var _result = [];
             for(var i in data){
                 data[i] = Common.decodeSingleQuotes(data[i]);
             }
-            return data;
+            _result.push(data);
+            return _result;
         },
         setDefaultItemType : function(type){//设置默认列表样式type
             var _this = this,
