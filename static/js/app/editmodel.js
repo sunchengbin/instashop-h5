@@ -133,7 +133,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                                 index : _index,
                                 type : _type,
                                 title : _data&&_data.title?Common.decodeSingleQuotes(_data.title):'',
-                                data : _data&&_data.data?_this.tranfansModelData(_data.data[0]):[]
+                                data : _data&&_data.data?_this.tranfansModelData(_data.data):[]
                             }
                         }
                     };
@@ -214,7 +214,13 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         tranfansModelData : function(data){
             var _result = [];
             for(var i in data){
-                data[i] = Common.decodeSingleQuotes(data[i]);
+                if(typeof data[i] == 'string'){
+                    data[i] = Common.decodeSingleQuotes(data[i]);
+                }else{
+                    for(var item in  data[i]){
+                        data[i][item] = Common.decodeSingleQuotes(data[i][item]);
+                    }
+                }
             }
             _result.push(data);
             return _result;
