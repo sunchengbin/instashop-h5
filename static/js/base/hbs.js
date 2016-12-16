@@ -236,29 +236,31 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
         if(!carts){
             return '<li class="empty-cart">'+Lang.H5_SHOPING_NO_GOODS+'</li>';
         }
-        if(!Base.others.testObject(carts)){
-            for(var item in carts){
-                var _id = (carts[item].sku?carts[item].sku.id:carts[item].item.id);
-                _htm += '<li class="clearfix cart-item j_cart_item" data-id="'+_id+'">'
-                    +'<i class="icon iconfont j_del_cart icon-delete-font" data-id="'+_id+'"></i>'
-                    +'<img src="'+carts[item].item.img+'">'
-                    +'<div class="">'
-                    +'<p class="name">'+carts[item].item.item_name+'</p>'
-                    +(carts[item].sku?'<p class="type">'+Lang.H5_SKU+': '+carts[item].sku.title+'</p>':'')
-                    +'<p class="num">'+Lang.H5_QUANTITY+': '+carts[item].num+'</p>';
-                    if(carts[item].item.is_discount && carts[item].item.discounting){
-                        _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
-                    }else{
-                        var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].item.price;
-                        _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_price)+'</p>';
+        // if(!Base.others.testObject(carts)){
+        //     for(var item in carts){
+        //         var _id = (carts[item].sku?carts[item].sku.id:carts[item].item.id);
+        //         _htm += '<li class="clearfix cart-item j_cart_item" data-id="'+_id+'">'
+        //             +'<i class="icon iconfont j_del_cart icon-delete-font" data-id="'+_id+'"></i>'
+        //             +'<img src="'+carts[item].item.img+'">'
+        //             +'<div class="">'
+        //             +'<p class="name">'+carts[item].item.item_name+'</p>'
+        //             +(carts[item].sku?'<p class="type">'+Lang.H5_SKU+': '+carts[item].sku.title+'</p>':'')
+        //             +'<p class="num">'+Lang.H5_QUANTITY+': '+carts[item].num+'</p>';
+        //             if(carts[item].item.is_discount && carts[item].item.discounting){
+        //                 _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
+        //             }else{
+        //                 var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].item.price;
+        //                 _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_price)+'</p>';
 
-                    }
-                _htm +='</div>'
-                    +'</li>';
-            }
-        }else{
-            _htm = '<li class="empty-cart">'+Lang.H5_SHOPING_NO_GOODS+'</li>'
-        }
+        //             }
+        //         _htm +='</div>'
+        //             +'</li>';
+        //     }
+        // }else{
+        //     _htm = '<li class="empty-cart">'+Lang.H5_SHOPING_NO_GOODS+'</li>'
+        // }
+
+        //多种渠道
         return _htm;
     });
     HBS.registerHelper('itemlist', function(carts) {
