@@ -52,26 +52,26 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         },
         handelFn : function(bridge){
             var _this = this;
-            if(!bridge){
-                alert('not find bridge');
-                return;
-            }
-            //提供给native设置回退锁,为了回退的时候
-            (function(bridge){
-                var _param = {
-                    param:{
-                        type : 'go_back',
-                        param : {
-                            type : 'loaded',
-                            result : _this.is_edit
-                        }
-                    }
-                };
-                bridge.callHandler('insSocket',_param, function(response) {
-                    return null;
-                });
-            })(bridge);
-            _this.registerFn(bridge);
+            //if(!bridge){
+            //    alert('not find bridge');
+            //    return;
+            //}
+            ////提供给native设置回退锁,为了回退的时候
+            //(function(bridge){
+            //    var _param = {
+            //        param:{
+            //            type : 'go_back',
+            //            param : {
+            //                type : 'loaded',
+            //                result : _this.is_edit
+            //            }
+            //        }
+            //    };
+            //    bridge.callHandler('insSocket',_param, function(response) {
+            //        return null;
+            //    });
+            //})(bridge);
+            //_this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
                 _paq.push(['trackEvent', '插入模块', 'click', '插入模块']);
@@ -101,7 +101,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 var _dom = $(this),
                     _index = $('.j_edit_model').index(_dom),
                     _type = _dom.attr('data-type'),
-                    _data = _this.model_data[_index]?_this.tranfansModelData(_this.model_data[_index]):null;
+                    _data = _this.model_data[_index]?_this.tranfansModelData(_this.model_data[_index][0]):null;
                 _paq.push(['trackEvent', '编辑模板', 'click', _type]);
                 if(_type == 'item_list_type'){//选择
                     var _sel_htm = '<div>';
