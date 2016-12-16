@@ -250,8 +250,9 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
                         _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(carts[item].item.discount.price)+'</p>';
                     }else{
                         var _price = (carts[item].sku&&carts[item].sku.id)?carts[item].sku.price:carts[item].item.price;
-                        _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_price)+'</p>';
-
+                        if(_price >= 0){
+                            _htm +='<p class="price">'+Lang.H5_PRICE+': Rp '+Base.others.priceFormat(_price)+'</p>';
+                        }
                     }
                 _htm +='</div>'
                     +'</li>';
@@ -279,7 +280,9 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
                 _htm +='<p class="soon-time">'+transDate(_item.discount.start_time)+'-'+transDate(_item.discount.end_time)+'WIB</p>';
             }else{
                 var _price = (_item.sku&&_item.sku.id)?_item.sku.price:_item.price;
-                _htm +='<p class="price">Rp '+Base.others.priceFormat(_price)+'</p>';
+                if(_price >= 0){
+                    _htm +='<p class="price">Rp '+Base.others.priceFormat(_price)+'</p>';
+                }
             }
             _htm +='</div></a>'
                  +'</li>';

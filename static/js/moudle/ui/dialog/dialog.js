@@ -119,7 +119,7 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
         createDialog : function(){
             var _this = this,
                 _wraper_class =_this.opts.wraper_class?_this.opts.wraper_class:'',
-                _htm = '<div class="dialog-wraper j_dialog_wraper '+_wraper_class+'">'
+                _htm = '<div class="dialog-wraper j_dialog_wraper '+_wraper_class+'" data-spider="dialog-wraper">'
                     +_this.createTop()
                     +_this.createBody()
                     +_this.createFooter()
