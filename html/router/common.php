@@ -114,7 +114,7 @@ $js = <<<JS
 
     function PaqPush(e_c,e_n,type){
         try{
-           _paq.push(['trackEvent',e_c,(type||'click'), e_c]);
+           _paq.push(['trackEvent',e_c,(type||'click'), e_n]);
         }catch(e){
         }
     }

@@ -96,6 +96,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 _item_num.val((--_num > 0)?_num:1);
             });
             $(_config.wraper).on('click','.j_plug_submit',function(){
+                PaqPush && PaqPush('确定加入购物车','');
                 var _item_num = $('.j_item_num'),
                     _num = Number(_item_num.val()),
                     _has_sku = $('.j_type li').length,
