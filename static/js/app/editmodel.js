@@ -102,6 +102,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     _index = $('.j_edit_model').index(_dom),
                     _type = _dom.attr('data-type'),
                     _data = _this.model_data[_index]?_this.model_data[_index]:null;
+                alert(JSON.stringify(_data))
                 _paq.push(['trackEvent', '编辑模板', 'click', _type]);
                 if(_type == 'item_list_type'){//选择
                     var _sel_htm = '<div>';
@@ -136,7 +137,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                             }
                         }
                     };
-                    console.log(_param)
+                    alert(_param);
                     bridge.callHandler('insSocket',_param, function(response) {
                         return null;
                     });
