@@ -22,6 +22,7 @@ require(['base','hbs','text!views/app/modeltype.hbs','insjs','fastclick','config
             $('body').on('click','.j_model_type',function(){
                 var _type = $(this).attr('data-type'),
                     _index = Base.others.getUrlPrem('index');
+                PaqPush && PaqPush('选择模块类型',_type);
                 try{
                     goUrlStatistics(_type);
                 }catch(error){

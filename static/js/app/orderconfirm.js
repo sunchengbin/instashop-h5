@@ -103,7 +103,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                         });
                         return;
                     }
-                    _paq.push(['trackEvent', '下单', 'click', '下单']);
+                    PaqPush && PaqPush('下单','');
+                    //_paq.push(['trackEvent', '下单', 'click', '下单']);
                     //alert(JSON.stringify(_data));
                     Ajax.postJsonp({
                         url: Config.actions.orderConfirm,
@@ -215,7 +216,10 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 }
             });
             $('body').on('click', '.j_go_back', function () {
-                location.href = Config.host.hrefUrl + 'cart.php';
+                PaqPush && PaqPush('返回','');
+                setTimeout(function(){
+                    location.href = Config.host.hrefUrl + 'cart.php';
+                },1);
             });
             $('body').on('click', '.j_address_wraper', function () {
                 //Common.saveFromUrl(function(){

@@ -1,7 +1,7 @@
 <nav class="header-nav clearfix">
     {{lang.H5_ORDER}}
 </nav>
-<section class="order-state">
+<section class="order-state" data-spider="order-state">
     <div>
         {{#eq data.order.state 0}}
             {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
@@ -27,13 +27,13 @@
         {{/eq}}
     </div>
     <p data-spider="bank-info">
-        <a spm-auto="查看收款账号" spm-click="查看收款账号" href="{{hrefUrl}}ordersuccess.php?price={{data.order.total_price}}&detail=1" class="">
+        <a spm-auto="查看收款账号" spm-click="check-bankinfo" href="{{hrefUrl}}ordersuccess.php?price={{data.order.total_price}}&detail=1" class="">
             <i class="icon iconfont fr icon-go-font"></i>{{lang.H5_CHECK_ACCOUNT_RECEIVABLES}}
         </a>
     </p>
     {{#eq data.order.ship_status 1}}
         <div class="logistics-info">
-            <a spm-auto="查看物流详情" spm-click="查看物流详情" href="{{hrefUrl}}logistics.php?order_id={{data.order.id_hash}}&logistics_id={{data.order.express_info_id}}" class="clearfix">
+            <a spm-auto="查看物流详情" spm-click="check-logistics-info" href="{{hrefUrl}}logistics.php?order_id={{data.order.id_hash}}&logistics_id={{data.order.express_info_id}}" class="clearfix">
                 <i class="icon iconfont fr icon-go-font"></i>
                 <p>{{data.order.logistics_info.last_checkpoint.message}}{{#empty data.order.logistics_info.last_checkpoint.message}}{{lang.H5_NO_LOGISTICS_UPDATE}}{{/empty}}</p>
                 <p>{{data.order.logistics_info.express.title}} {{data.order.logistics_info.express.express_no}}</p>
@@ -104,7 +104,7 @@
         <p>{{data.order.shop_info.name}}</p>
     </div>
     <div class="href-box clearfix">
-        <a spm-auto="去首页" spm-click="去首页" href="{{shopUrl}}" class="go-home">
+        <a spm-auto="去首页" spm-click="go-home" href="{{shopUrl}}" class="go-home">
             <div class="clearfix">
                 <i class="icon iconfont icon-shop-font"></i>
                 {{lang.H5_ENTER_THE_SHOP}}
@@ -112,7 +112,7 @@
         </a>
         {{#if data.order.shop_info.line_url}}
             {{#if data.order.shop_info.phone}}
-                <a data-type="all" href="javascript:;" class="contact-user  j_show_contact fr">
+                <a data-type="all" href="javascript:;" spm-auto="查看联系方式" spm-click="check-contact" class="contact-user j_show_contact fr">
                     <div class="clearfix">
                         <i class="icon iconfont icon-i-news-font"></i>
                         {{lang.H5_CONNACT_SELLER}}
@@ -139,12 +139,12 @@
     </div>
     {{#if data.order.buyer_op.can_bindcard}}
         <div class="prove-btn">
-            <a spm-auto="退款" spm-click="退款" class="submit-btn btn confirm-btn" href="{{hrefUrl}}refund.php?order_id={{data.order.id}}">{{lang.H5_EDIT_REFUND_CARD}}</a>
+            <a spm-auto="退款" spm-click="refund" class="submit-btn btn confirm-btn" href="{{hrefUrl}}refund.php?order_id={{data.order.id}}">{{lang.H5_EDIT_REFUND_CARD}}</a>
         </div>
     {{/if}}
     {{#eq data.order.state 1}}
         <div class="prove-btn">
-            <a spm-auto="上传支付证明" spm-click="上传支付证明" class="submit-btn btn confirm-btn" href="{{hrefUrl}}uploadprove.php?order_id={{data.order.id}}&hash={{data.order.id_hash}}">Bukti Pembayaran</a>
+            <a spm-auto="上传支付证明" spm-click="upload-prove" class="submit-btn btn confirm-btn" href="{{hrefUrl}}uploadprove.php?order_id={{data.order.id}}&hash={{data.order.id_hash}}">Bukti Pembayaran</a>
         </div>
     {{/eq}}
 </section>

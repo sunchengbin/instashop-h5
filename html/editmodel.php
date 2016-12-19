@@ -34,7 +34,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body data-spider="yngoklm4">
     <div class="j_start_loading" style="color:#fff;">Memuat...</div>
-    <div class="edit-wraper-box">
+    <div class="edit-wraper-box" data-spider="edit-wraper-box">
     </div>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->

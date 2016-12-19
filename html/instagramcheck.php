@@ -185,12 +185,12 @@ height:600px;
 
     </style>
 </head>
-<body data-spider="8divulwy">
-<div class="address-wraper ins-wraper" data-spider="xbf2dazq">
+<body data-spider="xbf2dazq">
+<div class="address-wraper ins-wraper" data-spider="ins-wraper">
     <section class="address-form-box">
         <div class="index-btn-box" style="padding:0 2rem">
             <div class="btn j_submit_btn confirm-btn j_submit_check" style="margin-top:5rem">
-                <a style="color:#ffffff" href="javascript:void(0)">Login ke Instagram</a>
+                <a style="color:#ffffff" href="javascript:void(0)" spm-auto="登录instagram" spm-click="login-instagram">Login ke Instagram</a>
             </div>
         </div>
     </section>

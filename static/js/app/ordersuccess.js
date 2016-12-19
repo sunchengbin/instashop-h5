@@ -82,12 +82,15 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','co
                 _this =this;
             if(document.querySelector('.j_go_back')){
                 document.querySelector('.j_go_back').addEventListener('click',function(){
-                    if(!from){
-                        var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+data.ShopInfo.id;
-                        location.href = _url;
-                    }else{
-                        history.back();
-                    }
+                    PaqPush && PaqPush('完成','');
+                    setTimeout(function(){
+                        if(!from){
+                            var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+data.ShopInfo.id;
+                            location.href = _url;
+                        }else{
+                            history.back();
+                        }
+                    },1);
                 });
             }
             $('body').on('click','.j_tag_li',function(){
@@ -95,7 +98,8 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','co
                     _tag_name = _dom.attr('data-tag'),
                     _banksInfo = JSON.parse(localStorage.getItem('BankInfo')),
                     _num = _this.countBankNum(_banksInfo);
-                _paq.push(['trackEvent', '切换银行信息tag', 'click', _tag_name]);
+                PaqPush && PaqPush('切换银行信息tag',_tag_name);
+                //_paq.push(['trackEvent', '切换银行信息tag', 'click', _tag_name]);
                 if(_num == 3){
                     if(_tag_name == 'mandiri'){
                         $('.pay-info ul').addClass('three_info_center');
