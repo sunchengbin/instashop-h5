@@ -258,7 +258,7 @@
     <p>Kategori produk</p>
     <ul>
         {foreach $TAG_LIST as $tag}
-        <li class=""><a spm-auto="侧栏分类" spm-click="itemId={$tag.id}" class="j_item_info" href="javascript:;" data-url="{$HOST_NAME}/k/{$tag.id}" class=""><span></span>{$tag.name}</a></li>
+        <li class=""><a spm-auto="侧栏分类" spm-click="tagId={$tag.id}" class="j_item_info" href="javascript:;" data-url="{$HOST_NAME}/k/{$tag.id}" class=""><span></span>{$tag.name}</a></li>
         {/foreach}
     </ul>
 </section>
