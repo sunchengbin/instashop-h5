@@ -1,5 +1,6 @@
-{include file="header.tpl" title="My Page Title"} {if $INDEX_DATA.code eq 420402}
+{include file="header.tpl" title="My Page Title"}
 <body data-spider="h2suioqg">
+{if $INDEX_DATA.code eq 420402}
 <div class="no-exists">
     <img src="{$STATIC_HOST}/images/app/404.png" />
     <p>Produk tidak ditemukan!</p>
