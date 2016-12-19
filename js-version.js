@@ -37,16 +37,20 @@ var file = {
 if(FT.indexOf('.html') != -1){
     file.readFileData(FT);
 }else{
-    file.getFilesName({
-        path : FT,
-        callback : function(files,path){
-            for(var i = 0;i < files.length;i++){
-                if(files[i].indexOf('.php') != -1 || files[i].indexOf('.tpl') != -1){
-                    file.readFileData(path+'/'+files[i]);
+    if(FT.indexOf('.php') != -1 || FT.indexOf('.tpl') != -1){
+        file.readFileData(FT);
+    }else{
+        file.getFilesName({
+            path : FT,
+            callback : function(files,path){
+                for(var i = 0;i < files.length;i++){
+                    if(files[i].indexOf('.php') != -1 || files[i].indexOf('.tpl') != -1){
+                        file.readFileData(path+'/'+files[i]);
+                    }
                 }
             }
-        }
-    });
+        });
+    }
 }
 
 
