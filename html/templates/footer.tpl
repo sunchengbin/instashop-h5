@@ -13,6 +13,9 @@
                   'hitCallback': function(){document.location = url;}
               });
           }
+          function goUrlStatistics(type) {
+             ga('send', 'event', type, 'click');
+          }
           ga('create', 'UA-78448705-7', 'auto');
           ga('send', 'pageview');
     </script>

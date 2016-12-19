@@ -16,8 +16,6 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             ];
             _this.getItemListType();
             Lazyload();
-            $('.j_start_loading').remove();
-            _this.initHtml();
             _this.initRotateBanner();
             _this.setBodyHeight();
             Insjs.WebOnReady(function(bridge){
