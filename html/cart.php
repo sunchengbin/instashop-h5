@@ -12,7 +12,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/cart.css?v=1481869966319" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/app/cart.css?v=1481869966319" rel="stylesheet"/>
     <title>Keranjangku</title>
 </head>
 <body data-spider="a5fivmur">

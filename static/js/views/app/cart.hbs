@@ -2,22 +2,21 @@
     <i class="icon iconfont j_go_back icon-back-font"></i>
     {{lang.H5_SHOPPING_CART}}
 </nav>
-<section class="cart-list j_cart_list">
-    <ul class="">
+<section class="cart-list j_cart_list cart-supplier-list">
+    {{!--<ul class="">
         {{{carts cart}}}
     </ul>
     {{#if cart}}
         <button class="btn j_submit_btn confirm-btn">{{lang.H5_MAKE_ORDER}}</button>
         {{else}}
         <button class="btn j_go_shop confirm-btn">{{lang.H5_BROWSE_SHOP}}</button>
-    {{/if}}
-    {{for}}
+    {{/if}}--}}
     {{!--仓库card--}}
     <div class="cart-supplier-card">
-        <div>仓库title</div>
+        <div class="cart-supplier-header"><i class="iconfont icon-warehouse"></i>仓库title</div>
         <ul>
             <li class="clearfix cart-item j_cart_item">
-                <i class="icon iconfont j_del_cart icon-delete-font" data-id="'+_id+'"></i>
+                <i class="icon iconfont j_del_cart icon-delete-small" data-id="'+_id+'"></i>
                 <img src="'+carts[item].item.img+'">
                 <div class="">
                     <p class="name">hahaha1</p>
@@ -26,7 +25,7 @@
                 </div>
             </li>
             <li class="clearfix cart-item j_cart_item">
-                <i class="icon iconfont j_del_cart icon-delete-font" data-id="'+_id+'"></i>
+                <i class="icon iconfont j_del_cart icon-delete-small" data-id="'+_id+'"></i>
                 <img src="'+carts[item].item.img+'">
                 <div class="">
                     <p class="name">hahaha2</p>
@@ -35,7 +34,7 @@
                 </div>
             </li>
             <li class="clearfix cart-item j_cart_item">
-                <i class="icon iconfont j_del_cart icon-delete-font" data-id="'+_id+'"></i>
+                <i class="icon iconfont j_del_cart icon-delete-small" data-id="'+_id+'"></i>
                 <img src="'+carts[item].item.img+'">
                 <div class="">
                     <p class="name">hahaha3</p>
@@ -44,12 +43,13 @@
                 </div>
             </li>
         </ul>
+        <button class="btn j_submit_btn confirm-btn">{{lang.H5_MAKE_ORDER}}</button>
     </div>
     <div class="cart-supplier-card">
-        <div>仓库title</div>
+        <div class="cart-supplier-header"><i class="iconfont icon-warehouse"></i>仓库title</div>
         <ul>
             <li class="clearfix cart-item j_cart_item">
-                <i class="icon iconfont j_del_cart icon-delete-font" data-id="'+_id+'"></i>
+                <i class="icon iconfont j_del_cart icon-delete-small" data-id="'+_id+'"></i>
                 <img src="'+carts[item].item.img+'">
                 <div class="">
                     <p class="name">hahaha1</p>
@@ -58,12 +58,13 @@
                 </div>
             </li>
         </ul>
+        <button class="btn j_submit_btn confirm-btn">{{lang.H5_MAKE_ORDER}}</button>
     </div>
     <div class="cart-supplier-card">
-        <div>仓库title</div>
+        <div class="cart-supplier-header"><i class="iconfont icon-warehouse"></i>仓库title</div>
         <ul>
             <li class="clearfix cart-item j_cart_item">
-                <i class="icon iconfont j_del_cart icon-delete-font" data-id="'+_id+'"></i>
+                <i class="icon iconfont j_del_cart icon-delete-small" data-id="'+_id+'"></i>
                 <img src="'+carts[item].item.img+'">
                 <div class="">
                     <p class="name">hahaha1</p>
@@ -72,7 +73,7 @@
                 </div>
             </li>
             <li class="clearfix cart-item j_cart_item">
-                <i class="icon iconfont j_del_cart icon-delete-font" data-id="'+_id+'"></i>
+                <i class="icon iconfont j_del_cart icon-delete-small" data-id="'+_id+'"></i>
                 <img src="'+carts[item].item.img+'">
                 <div class="">
                     <p class="name">hahaha2</p>
@@ -81,6 +82,7 @@
                 </div>
             </li>
         </ul>
+        <button class="btn j_submit_btn confirm-btn">{{lang.H5_MAKE_ORDER}}</button>
     </div>
 
 </section>
