@@ -50,9 +50,9 @@
                     <ul class="item-banner static-banner clearfix">
                         {foreach $model.data as $banner}
                         {if $banner.link_url}
-                            <li class=""><a spm-auto="标准banner" spm-click="static-banner" class="block" href="{$banner.link_url|setHref}"><img data-img="{$banner.img}"/></a></li>
+                            <li class=""><a spm-auto="标准banner" spm-click="static-banner" class="block" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
                         {else}
-                            <li class=""><a spm-auto="标准banner" spm-click="static-banner" class="block no-cursor" href="{$banner.link_url|setHref}"><img data-img="{$banner.img}"/></a></li>
+                            <li class=""><a spm-auto="标准banner" spm-click="static-banner" class="block no-cursor" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
                         {/if}
                         {/foreach}
                     </ul>
@@ -73,9 +73,9 @@
                     <ul class="item-banner j_banner rotate-banner clearfix">
                         {foreach $model.data as $banner}
                         {if $banner.link_url}
-                            <li class=""><a spm-auto="轮播banner" spm-click="rotate-banner" class="block" href="{$banner.link_url|setHref}"><img data-img="{$banner.img}"/></a></li>
+                            <li class=""><a spm-auto="轮播banner" spm-click="rotate-banner" class="block" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
                         {else}
-                            <li class=""><a spm-auto="轮播banner" spm-click="rotate-banner" class="block no-cursor" href="{$banner.link_url|setHref}"><img data-img="{$banner.img}"/></a></li>
+                            <li class=""><a spm-auto="轮播banner" spm-click="rotate-banner" class="block no-cursor" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
                         {/if}
                         {/foreach}
                     </ul>
@@ -97,13 +97,13 @@
                     {foreach $model.data as $banner}
                     {if $banner.link_url}
                         <li>
-                            <a spm-auto="两列banner" spm-click="two-list-banner" class="block" href="{$banner.link_url|setHref}">
+                            <a spm-auto="两列banner" spm-click="two-list-banner" class="block" href="javascript:;">
                                 <div class="lazy" data-img="{$banner.img|list_img}"></div>
                             </a>
                         </li>
                     {else}
                         <li>
-                            <a spm-auto="两列banner" spm-click="two-list-banner" class="block no-cursor" href="{$banner.link_url|setHref}">
+                            <a spm-auto="两列banner" spm-click="two-list-banner" class="block no-cursor" href="javascript:;">
                                 <div class="lazy" data-img="{$banner.img|list_img}"></div>
                             </a>
                         </li>
