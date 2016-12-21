@@ -18,7 +18,7 @@ define(['base','config','lang'],function(Base,Config,Lang){
             return out;
         },
         threeList : function(item){
-           var _htm = '<li><a class="item-info j_item_info" data-url="'+item.h5_url+'" href="javascript:;"><div class="lazy" data-img="'+Base.others.cutImg(item.img)+'">';
+           var _htm = '<li><a class="item-info j_item_info" spm-auto="单品" spm-click="itemId='+item.id+',sellerId='+item.seller_id+'" data-url="'+item.h5_url+'" href="javascript:;"><div class="lazy" data-img="'+Base.others.cutImg(item.img)+'">';
                 if(item.is_discount && item.discounting){
                     _htm +='<span class="">-'+item.discount.value+'%</span>';
                 }
@@ -31,7 +31,7 @@ define(['base','config','lang'],function(Base,Config,Lang){
                 out = '';
             var _time = _this.discountTime(item.discount.now_time,item.discount.end_time),
                 _url = Base.others.isCustomHost()?Config.host.host+item.id:Config.host.host+'detail/'+item.id;
-            out += '<li><a class="item-info j_item_info" data-url="'+_url+'" href="javascript:;">'
+            out += '<li><a class="item-info j_item_info" spm-auto="单品" spm-click="itemId='+item.id+',sellerId='+item.seller_id+'" data-url="'+_url+'" href="javascript:;">'
                 +'<div class="lazy" data-img="'+Base.others.cutImg(item.img)+'">';
             if(item.is_discount){
                 out +='<span>-'+item.discount.value+'%</span>';

@@ -17,8 +17,22 @@
 <section class="items-box j_item_box" data-spider="search-val-list">
     {if $SEARCH_DATA}
         {if $SEARCH_DATA.item_list.list|@count}
-            {if $ITEMTYPE eq '2'}
-                <ul class="items-list clearfix j_hot_list">
+            {if $ITEMTYPE eq '3'}
+                <ul class="three-items-list clearfix j_default_item_list">
+                    {foreach $SEARCH_DATA.item_list.list as $item}
+                    <li>
+                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
+                            <div class="lazy" data-img="{$item.img|list_img}">
+                                {if $item.is_discount}
+                                <span>-{$item.discount.value}%</span>
+                                {/if}
+                            </div>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+            {else}
+                <ul class="items-list clearfix j_item_list">
                     {foreach $SEARCH_DATA.item_list.list as $item}
                     <li>
                         <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$item.seller_id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
@@ -50,20 +64,6 @@
                             {else}
                             <p class="discount-price"></p>
                             {/if}
-                        </a>
-                    </li>
-                    {/foreach}
-                </ul>
-            {else}
-                <ul class="three-items-list clearfix j_hot_list">
-                    {foreach $SEARCH_DATA.item_list.list as $item}
-                    <li>
-                        <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
-                            <div class="lazy" data-img="{$item.img|list_img}">
-                                {if $item.is_discount}
-                                <span>-{$item.discount.value}%</span>
-                                {/if}
-                            </div>
                         </a>
                     </li>
                     {/foreach}

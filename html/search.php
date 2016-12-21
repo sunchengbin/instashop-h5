@@ -23,7 +23,9 @@
         $params = [
             'action' => 'digital',
             'seller_id' => $seller_id,
-            'search' => $key
+            'search' => $key,
+            'page_size' => 18,
+            'page_num' => 0
         ];
         $path = 'v1/shopsItems/self';
         $ret = get_init_php_data($path, $params);
