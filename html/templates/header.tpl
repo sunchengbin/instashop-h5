@@ -11,5 +11,5 @@
   {$STATIC_ICO_CSS}
   {$STATIC_FONT_CSS}
   {$INDEX_TITLE}
-  <link href="{$STATIC_HOST}/css/dist/app/{$INDEX_CSS_NAME}.css?v=1482144967790" rel="stylesheet"/>
+  <link href="{$STATIC_HOST}/css/dist/app/{$INDEX_CSS_NAME}.css?v=1482301720376" rel="stylesheet"/>
 </head>
