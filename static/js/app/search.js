@@ -28,7 +28,7 @@ require(['config','ajax','common','item','fastclick','dialog','lazyload','base',
                 };
                 Lazyload();
             }
-            document.querySelector('.j_key').focus();
+            //document.querySelector('.j_key').focus();
             $('body').on('keyup',function(e){
                 if(e.keyCode == 13){
                     _this.hasData = true;
