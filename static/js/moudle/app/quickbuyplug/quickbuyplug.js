@@ -40,6 +40,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','la
                 if(_that.is('.disable')){
                     return false;
                 }
+                PaqPush && PaqPush('选择商品类型','skuId='+_that.attr('data-id'));
                 $('.j_all_stock').remove();
                 if(!_that.is('.act')){
                     $(_config.wraper).find('.act').removeClass('act');
@@ -93,6 +94,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','la
                 if($(this).is('.cancel-btn')){
                     return;
                 }
+                PaqPush && PaqPush('确定类型和数量','skuId='+_sku_id);
                 if($('.j_type_li').length && !$('.j_type .act').length){
                     Dialog.tip({
                         body_txt : Lang.H5_PLEASE_CHOOSE_SKU
