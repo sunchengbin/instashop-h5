@@ -186,7 +186,7 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
                 if(Number(item.price) > 0){
                     sku_price.push(Number(item.price));
                 }else{
-                    sku_price.push(0);
+                    //sku_price.push(0);
                 }
             });
             sku_price.sort(function(a,b){
@@ -211,7 +211,7 @@ define(['handlebars','base','config','lang','item'], function(HBS,Base,Config,La
         if(data.sku && data.sku.length){
             Base.others.each(data.sku,function(item,i){
                 //_htm += '<li class="j_type_li '+(item.stock==0?'disable':'')+'" data-price="'+(data.is_discount&&data.discounting?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
-                _htm += '<li class="j_type_li '+(item.stock==0?'disable':'')+'" data-price="'+(data.is_discount?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
+                _htm += '<li class="j_type_li '+(item.stock==0||item.stock>9999999||item.price<0?'disable':'')+'" data-price="'+(data.is_discount?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
             });
         }
         return _htm;
