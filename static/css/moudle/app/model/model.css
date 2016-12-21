@@ -54,7 +54,7 @@
     height: 85px;
 }
 .cart-item::after{
-    top: 0;
+    top: -1px;
 }
 /*导航类模板样式*/
 .navigation-box{
