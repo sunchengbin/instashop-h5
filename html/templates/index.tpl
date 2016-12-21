@@ -66,7 +66,7 @@
                 {/foreach}
             </p>
             <p class="reduc-expire">
-            {$INDEX_DATA.shop.shop_discount.start_time|dateFormat} - {$INDEX_DATA.shop.shop_discount.end_time|dateFormat} WIB
+            {$INDEX_DATA.shop.shop_discount.start_time|transDate} - {$INDEX_DATA.shop.shop_discount.end_time|transDate} WIB
             </p>
             </div>
 </div>

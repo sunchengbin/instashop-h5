@@ -39,7 +39,7 @@
             <section class="banner-wraper model-box j_model_box" data-spider="static_banner">
                 {if $smarty.foreach.foo.index eq 1}
                     <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
-                        <button class="edit-btn j_edit_model handle-btn" data-type="list_items">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
+                        <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
                     </div>
                 {else}
                     <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
@@ -62,7 +62,7 @@
             <section class="model-box j_model_box" data-spider="rotate_banner">
                 {if $smarty.foreach.foo.index eq 1}
                     <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
-                        <button class="edit-btn j_edit_model handle-btn" data-type="list_items">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
+                        <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
                     </div>
                 {else}
                     <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
@@ -86,7 +86,7 @@
             <section class="banner-wraper two-list-banner j_model_box" data-spider="two_list_banner">
                 {if $smarty.foreach.foo.index eq 1}
                     <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
-                        <button class="edit-btn j_edit_model handle-btn" data-type="list_items">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
+                        <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
                     </div>
                 {else}
                     <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
@@ -116,7 +116,7 @@
             <section class="navigation-box model-box j_model_box" data-spider="img_navigation">
                 {if $smarty.foreach.foo.index eq 1}
                     <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
-                        <button class="edit-btn j_edit_model handle-btn" data-type="list_items">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
+                        <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
                     </div>
                 {else}
                     <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
@@ -143,7 +143,7 @@
                 <section class="navigation-box model-box j_model_box" data-spider="text_navigation">
                 {if $smarty.foreach.foo.index eq 1}
                     <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
-                        <button class="edit-btn j_edit_model handle-btn" data-type="list_items">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
+                        <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
                     </div>
                 {else}
                     <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
@@ -168,7 +168,7 @@
             <section class="items-box model-box j_model_box" data-spider="two_li_items">
             {if $smarty.foreach.foo.index eq 1}
                 <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
-                    <button class="edit-btn j_edit_model handle-btn" data-type="list_items">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
+                    <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
                 </div>
             {else}
                 <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
@@ -219,7 +219,7 @@
             <section class="one-item-box model-box j_model_box" data-spider="big_img_item">
             {if $smarty.foreach.foo.index eq 1}
                 <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
-                    <button class="edit-btn j_edit_model handle-btn" data-type="list_items">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
+                    <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
                 </div>
             {else}
                 <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
@@ -270,7 +270,7 @@
             <section class="item-list-box model-box j_model_box" data-spider="list_items">
             {if $smarty.foreach.foo.index eq 1}
                 <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
-                    <button class="edit-btn j_edit_model handle-btn" data-type="list_items">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
+                    <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
                 </div>
             {else}
                 <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
