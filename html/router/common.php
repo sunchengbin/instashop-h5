@@ -109,6 +109,12 @@ $js = <<<JS
                 if(init_data.order){
                     return init_data.order.shop_info.id;
                 }
+                if(init_data.shop){
+                    return init_data.shop.id;
+                }
+                if(init_data.item){
+                    return init_data.item.shop.id;
+                }
             }catch(error){
 
             }
