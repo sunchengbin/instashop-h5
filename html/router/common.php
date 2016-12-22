@@ -102,7 +102,17 @@ $js = <<<JS
             _shop_id = getUrlPrem('seller_id') || -1;
         }else{
             var _shop_data = localStorage.getItem('ShopData')?JSON.parse(localStorage.getItem('ShopData')).ShopInfo:null;
-            _shop_id = _shop_data && _shop_data.id ?_shop_data.id:-1;
+            _shop_id = _shop_data && _shop_data.id ?_shop_data.id:getOrderShopId();
+        }
+        function getOrderShopId(){
+            try{
+                if(init_data.order){
+                    return init_data.order.shop_info.id;
+                }
+            }catch(error){
+
+            }
+            return -1;
         }
         return _shop_id;
     }
