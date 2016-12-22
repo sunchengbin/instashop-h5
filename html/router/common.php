@@ -93,14 +93,25 @@ $js = <<<JS
         date.setTime(date.getTime()+expireDays*24*3600*1000);
         //将WD_s_id cookie设置为10天后过期
         document.cookie="WD_s_id="+_WD_s_id+";expire="+date.toGMTString();
-        return _WD_s_id;
+        return _s_id;
+    }
+    function getShopId(){
+        var _shop_id = -1;
+        if (/Instashop/g.test(navigator.userAgent)) {
+            //内嵌浏览器在cookie中和统计参数中加入seller_id
+            _shop_id = getUrlPrem('seller_id') || -1;
+        }else{
+            var _shop_data = localStorage.getItem('ShopData')?JSON.parse(localStorage.getItem('ShopData')).ShopInfo:null;
+            _shop_id = _shop_data && _shop_data.id ?_shop_data.id:-1;
+        }
+        return _shop_id;
     }
     var _paq = _paq || [];
       _paq.push(['trackPageView']);
       (function(){
           var is_https = ("https:" === document.location.protocol) ? 1 : 0,
           u = (is_https ? "https" : "http") + "://di.instashop.co.id/";
-          _paq.push(['setTrackerUrl', u +'index.php'+ '?userID=-1&sellerID='+getSellerID()]);
+          _paq.push(['setTrackerUrl', u +'index.php'+ '?userID=-1&shopId='+getShopId()+'&sellerId='+getSellerID()]);
           _paq.push(['setSiteId', 1]);
           var d = document,
               g = d.createElement('script'),
