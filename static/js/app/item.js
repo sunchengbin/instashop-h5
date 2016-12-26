@@ -130,7 +130,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     for(var i=0,_reducItem;_reducItem=init_data.item.shop.shop_discount.info[i++];){
                         _htm+="<li><span></span>Minimal Pembelian Rp "+Base.others.priceFormat(_reducItem.condition_price)+" Potongan Rp "+ Base.others.priceFormat(_reducItem.discount_price)+"</li>"
                     }
-                    _htm +='<li><span></span>'+$(".reduc-expire").text()+'</li></ul>'
+                    _htm +='<li><span></span>'+$(".reduc-expire").text()+'</li></ul>';
                     // _htm = _htm.replace(/,$/gi,'') +"</br>"+ $(".reduc-expire").text();
                     Dialog.alert({
                         top_txt:"<p style='text-align:center'>"+Lang.H5_REDUC_TITLE+"</p>",

@@ -93,6 +93,11 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
         getFromUrl : function(){//获取返回上一页的url地址
             return localStorage.getItem('FromUrl');
         },
+        transFromUrl : function(url){
+            var _host_name = location.hostname;
+            url = url.replace(/\/\/[^\/]+\//,'//'+_host_name+'/');
+            return url;
+        },
         telVerify : function(tel,callback,ccallback){//手机号验证
             tel = Number(tel);
             if(/^\d{9,12}$/g.test(tel)){
@@ -174,7 +179,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                 wduss : encodeURIComponent(Base.others.getUrlPrem('wduss'))
             }
         },
-        getItemListType : function(template,callback){
+        getItemListType : function(template,callback){//获取商品列表展示样式
             var _type = 2;
             if(template.length){
                 $.each(template,function(i,item){
@@ -186,7 +191,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
             callback && callback(_type);
             return _type;
         },
-        isHaveListType : function(template,callback){
+        isHaveListType : function(template,callback){//存在商品列表展示样式
             $.each(template,function(i,item){
                 if(item && item.type == 'item_list_type'){
                     callback && callback();
