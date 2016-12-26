@@ -4,10 +4,13 @@
 require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick) {
     var CartIndex = {
         init: function () {
-            var _carts = Cart().getCarts(),
+            var _data = JSON.parse(localStorage.getItem('ShopData'));
+            var _carts = Cart().getCarts(),isGroup = this.isGroup=_data.SupplyShopInfo?true:false;
                 _htm = Hbs.compile(Carthtm)({
                     cart: _carts,
-                    lang: Lang
+                    groupCart:isGroup?_data.GroupCart[_data.ShopInfo.id]:null,
+                    lang: Lang,
+                    isGroup:isGroup
                 });
             this.carts = _carts;
             console.log("购物车");
@@ -59,8 +62,14 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                         Cart().removeItem(_this.attr('data-id'), function () {
                             var _htm = '<ul class=""><li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li></ul><button class="btn j_go_shop confirm-btn">' + Lang.H5_BROWSE_SHOP + '</button>';
                             $('.j_cart_list').html(_htm);
-                        });
+                        },_this.attr('group-id')||"");
                         $('.j_cart_item[data-id="' + _this.attr('data-id') + '"]').remove();
+                        if(_that.isGroup){
+                            var $curGroupChildren = $('.cart-supplier-card[group-id="'+_this.attr('group-id')+'"]>ul>li');
+                            if($curGroupChildren.length==0){
+                                $('.cart-supplier-card[group-id="'+_this.attr('group-id')+'"]').remove();
+                            }
+                        }
                         delete _that.carts[_this.attr('data-id')];
                     }
                 });

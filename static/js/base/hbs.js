@@ -231,12 +231,12 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
         return url.split('?')[0];
     }
 
-    function assembleCartItem(carts) {
+    function assembleCartItem(carts,groupid) {
         var _htm = "";
         for (var item in carts) {
             var _id = (carts[item].sku ? carts[item].sku.id : carts[item].item.id);
             _htm += '<li class="clearfix cart-item j_cart_item" data-id="' + _id + '">' +
-                '<i class="icon iconfont j_del_cart icon-delete-small" data-id="' + _id + '"></i>' +
+                '<i class="icon iconfont j_del_cart icon-delete-small" group-id="'+groupid+'" data-id="' + _id + '"></i>' +
                 '<img src="' + carts[item].item.img + '">' +
                 '<div class="">' +
                 '<p class="name">' + carts[item].item.item_name + '</p>' +
@@ -253,7 +253,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
             _htm += '</div>' +
                 '</li>';
         }
-        if(carts.length==0){
+        if(carts){
             _htm +='<button class="btn j_go_shop confirm-btn">'+Lang.H5_BROWSE_SHOP+'</button>'
         }else{
             _htm +='<button class="btn j_submit_btn confirm-btn">'+Lang.H5_MAKE_ORDER+'</button>'
@@ -261,63 +261,36 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
         return _htm;
     }
 
-    HBS.registerHelper('carts', function (carts) {
-        var _htm = '',
-            is_need_group = false;
-        //检查是否需要分组
-        for (var item in carts) {
-            console.log(carts[item].item);
-            if (carts[item].item.supply_type == 2) {
-                is_need_group = true;
-            }
-        }
-        if (!carts) {
+    HBS.registerHelper('groupcarts', function (cart) {
+        var _htm = '';
+        if (!cart) {
             return '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>';
         }
-        if (!Base.others.testObject(carts)) {
-            if (is_need_group) {
-                //分组
-                // console.log("购物车")
-                // console.log(carts)
-                var _group = {}; //以supply_shop.id为key
-                for (var item in carts) {
-                    var _curItemPackage = carts[item];
-                    var _curItem = _curItemPackage.item;
-                    var _id = (_curItem.sku ? _curItem.sku.id : _curItem.id);
-                    if (_curItem.supply_type == 2) {
-                        if (!!_group[_curItem.supply_shop.id]) {
-                            _group[_curItem.supply_shop.id].push(_curItemPackage);
-                        } else {
-                            _group[_curItem.supply_shop.id] = [];
-                            _group[_curItem.supply_shop.id].push(_curItemPackage);
-                        }
-                    } else {
-                        if (!!_group[_curItem.seller_id]) {
-                            _group[_curItem.seller_id].push(_curItemPackage);
-                        } else {
-                            _group[_curItem.seller_id] = [];
-                            _group[_curItem.seller_id].push(_curItemPackage);
-                        }
-                    }
-                }
-                //获取分组后
-                var _curIndex = 0;
-                $.each(_group, function (key, _groupItem) {
-                    _htm += '<div class="cart-supplier-card">' +
-                        '<div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>仓库' + (_curIndex++) + '</div>' +
-                        '<ul>'
-                    _htm+=assembleCartItem(_groupItem)
-                    _htm+='</ul></div>'
-                })
-            } else {
-                //不分组
-                _htm = assembleCartItem(carts)
-            }
+        if (!Base.others.testObject(cart)) {
+            var _curIndex = 1;
+            $.each(cart.group, function (key, _groupItem) {
+                _htm += '<div class="cart-supplier-card" group-id="'+key+'" >' +
+                    '<div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>仓库' + (_curIndex++) + '</div>' +
+                    '<ul>'
+                _htm+=assembleCartItem(_groupItem,key)
+                _htm+='</ul></div>'
+            })
         } else {
             _htm = '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>'
         }
         return _htm;
     });
+    HBS.registerHelper('carts', function (cart) {
+        var _htm = '';
+        if (!cart) {
+            return '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>';
+        }
+        if (!Base.others.testObject(cart)) {
+            _htm = assembleCartItem(cart)
+        }else{
+            _htm = '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>'
+        }
+    })
     HBS.registerHelper('itemlist', function (carts) {
         var _htm = '';
         if (!carts.length) {

@@ -3,7 +3,14 @@
     {{lang.H5_SHOPPING_CART}}
 </nav>
 <section class="cart-list j_cart_list cart-supplier-list">
-    <ul class="">
-        {{{carts cart}}}
-    </ul>
+    {{#if isGroup}}
+        <ul class="">
+            {{{groupcarts groupCart}}}
+        </ul>
+    {{else}}
+        <ul class="">
+            {{{carts cart}}}
+        </ul>
+    {{/if}}
+    
 </section>
