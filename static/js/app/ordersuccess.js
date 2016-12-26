@@ -17,15 +17,16 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','co
                     OrderInfo = JSON.parse(localStorage.getItem('OrderInfo')),
                     banksInfo = JSON.parse(localStorage.getItem('BankInfo')),
                     _detail = getUrlPrem('detail',location.href),
-                    _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/',
+                    _isCustomHost =Base.others.isCustomHost(),
+                    _url = _isCustomHost?Config.host.host+'s/':Config.host.host,
                     _o_url = OrderInfo?Config.host.host+'o/'+OrderInfo.id_hash:null,
                     _prompt = '';
                 if(_detail){
                     var _order_url = _detail==1?Common.replaceUrlPrompt(_o_url):Config.host.host+'o/'+getUrlPrem('order_id'),
-                        shopUrl = _detail==1?(Base.others.isCustomHost()?_url:_url+OrderInfo.shop_info.id):(Base.others.isCustomHost()?_url:_url+getUrlPrem('shop_id'));
+                        shopUrl = _detail==1?(_isCustomHost?_url+OrderInfo.shop_info.id:_url):(_isCustomHost?_url+getUrlPrem('shop_id'):_url);
                 }else{
                     var _order_url = Common.replaceUrlPrompt(_o_url),
-                        shopUrl = Base.others.isCustomHost()?_url:_url+OrderInfo.shop_info.id;
+                        shopUrl = _isCustomHost?_url+OrderInfo.shop_info.id:_url;
                 }
 
                 if(linkPrice){totalPrice = priceFormat(linkPrice);}
@@ -85,7 +86,7 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','co
                     PaqPush && PaqPush('完成','');
                     setTimeout(function(){
                         if(!from){
-                            var _url = Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+data.ShopInfo.id;
+                            var _url = Base.others.isCustomHost()?Config.host.host+'s/'+data.ShopInfo.id:Config.host.host;
                             location.href = _url;
                         }else{
                             history.back();
