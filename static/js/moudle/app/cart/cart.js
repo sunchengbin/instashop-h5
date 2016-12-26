@@ -31,6 +31,8 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                 _cart = _json_shop_data?_json_shop_data.Cart:null;
             this.data = _json_shop_data;
             this.cart = _cart;
+            console.log("init cart")
+            console.log(_cart)
         },
         addItem : function(opts){
             var _this = this;

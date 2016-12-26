@@ -10,10 +10,12 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     lang: Lang
                 });
             this.carts = _carts;
+            console.log("购物车");
             console.log(_carts);
             $('body').prepend(_htm);
             this.handleFn();
         },
+        // 对分库商品添加适配处理
         getItems: function () {
             var _carts = this.carts,
                 _arr = [];

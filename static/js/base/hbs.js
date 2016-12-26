@@ -253,6 +253,11 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
             _htm += '</div>' +
                 '</li>';
         }
+        if(carts.length==0){
+            _htm +='<button class="btn j_go_shop confirm-btn">'+Lang.H5_BROWSE_SHOP+'</button>'
+        }else{
+            _htm +='<button class="btn j_submit_btn confirm-btn">'+Lang.H5_MAKE_ORDER+'</button>'
+        }
         return _htm;
     }
 
@@ -272,8 +277,8 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
         if (!Base.others.testObject(carts)) {
             if (is_need_group) {
                 //分组
-                console.log("购物车")
-                console.log(carts)
+                // console.log("购物车")
+                // console.log(carts)
                 var _group = {}; //以supply_shop.id为key
                 for (var item in carts) {
                     var _curItemPackage = carts[item];
@@ -302,7 +307,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
                         '<div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>仓库' + (_curIndex++) + '</div>' +
                         '<ul>'
                     _htm+=assembleCartItem(_groupItem)
-                    _htm+='<button class="btn j_submit_btn confirm-btn">'+Lang.H5_MAKE_ORDER+'</button></ul></div>'
+                    _htm+='</ul></div>'
                 })
             } else {
                 //不分组
