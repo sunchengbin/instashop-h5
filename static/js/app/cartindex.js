@@ -68,7 +68,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                 PaqPush && PaqPush('返回','');
                 var _fromurl = localStorage.getItem('FromUrl');
                 if (!_fromurl) {
-                    var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
+                    var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
                     location.href = _url;
                 } else {
                     location.href = _fromurl;
@@ -77,7 +77,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
             $('body').on('click', '.j_go_shop', function () {
                 PaqPush && PaqPush('去逛逛','');
                 //_paq.push(['trackEvent', '去逛逛', 'click', '']);
-                var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
+                var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
                 location.href = _url;
             });
             $('body').on('click', '.j_submit_btn', function () {
