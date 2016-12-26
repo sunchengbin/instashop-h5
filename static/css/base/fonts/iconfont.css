@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1481711384013'); /* IE9*/
-  src: url('iconfont.eot?t=1481711384013#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1481711384013') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1481711384013') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1481711384013#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1482723213074'); /* IE9*/
+  src: url('iconfont.eot?t=1482723213074#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1482723213074') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1482723213074') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1482723213074#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -83,11 +83,15 @@
 
 .icon-share-whatsapp:before { content: "\e621"; }
 
-.icon-share-line:before { content: "\e622"; }
+.icon-share-ine:before { content: "\e622"; }
 
 .icon-share-instagram:before { content: "\e623"; }
 
 .icon-bugle:before { content: "\e624"; }
 
 .icon-search-font:before { content: "\e625"; }
+
+.icon-warehourse:before { content: "\e626"; }
+
+.icon-delete-small:before { content: "\e627"; }
 

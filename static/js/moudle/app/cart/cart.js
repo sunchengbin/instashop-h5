@@ -78,6 +78,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                     _this.cart[_shop_id] = {};
                 }
             }
+            console.log(opts.sku);
             if(opts.sku){//有规格的商品以规格id为key
                 var _discout_num = _this.getItemSkus(_shop_id)[_item_id]?(_this.getItemSkus(_shop_id)[_item_id]+opts.num):null,
                     _stock = (opts.item.is_discount && opts.item.discounting)?opts.item.discount.limit_count:opts.sku.stock;;
@@ -183,6 +184,10 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                 _this.cart[_shop_id][_item_id] = opts;
             }
             _this.data.Cart = _this.cart;
+            console.log(opts.item);
+            if(opts.item.supply_type=="2"){
+                _this.data.SupplyShopInfo = opts.item.supply_shop;
+            }
             _this.data.ShopInfo = opts.item.shop;
             localStorage.setItem('ShopData',JSON.stringify(_this.data));
             _this.addCartAnimate(function(){
@@ -234,7 +239,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
             localStorage.setItem('ShopData',JSON.stringify(_this.data));
         },
         getCarts:function(){
-            var _this = this;
+            var _this = this; 
             _this.initCart();
             if(!_this.cart){
                 return null;
@@ -269,6 +274,7 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                 _item = {};
             if(!_carts)return {};
             for(var item in _carts){
+                console.log(_carts[item].item);
                 if(_carts[item].item.is_discount && _carts[item].item.discounting){
                     if(_item[_carts[item].item.id]){
                         _item[_carts[item].item.id] += _carts[item].num?_carts[item].num:0;

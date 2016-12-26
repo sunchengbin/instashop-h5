@@ -10,6 +10,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     lang: Lang
                 });
             this.carts = _carts;
+            console.log(_carts);
             $('body').prepend(_htm);
             this.handleFn();
         },
