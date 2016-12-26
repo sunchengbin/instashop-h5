@@ -77,7 +77,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                                 if (/\?/g.test(_local_url)) {
                                     location.href = localStorage.getItem('FromUrl') + '&item=back';
                                 } else {
-                                    var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + init_data.item.shop.id;
+                                    var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
                                     location.href = _url + '?item=back';
                                 }
                             }
