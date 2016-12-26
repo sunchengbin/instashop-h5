@@ -30,7 +30,7 @@ define(['base','config','lang'],function(Base,Config,Lang){
                 _webplog = Base.others.webpLog(),
                 out = '';
             var _time = _this.discountTime(item.discount.now_time,item.discount.end_time),
-                _url = Base.others.isCustomHost()?Config.host.host+item.id:Config.host.host+'detail/'+item.id;
+                _url = !Base.others.isCustomHost()?Config.host.host+item.id:Config.host.host+'detail/'+item.id;
             out += '<li><a class="item-info j_item_info" spm-auto="单品" spm-click="itemId='+item.id+',sellerId='+item.seller_id+'" data-url="'+_url+'" href="javascript:;">'
                 +'<div class="lazy" data-img="'+Base.others.cutImg(item.img)+'">';
             if(item.is_discount){
