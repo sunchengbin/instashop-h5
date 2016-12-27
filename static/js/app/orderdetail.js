@@ -17,7 +17,7 @@ require(['lang','hbs','text!views/app/orderdetail.hbs','config','contact','base'
                     lang : Lang,
                     hrefUrl : Config.host.hrefUrl,
                     host:Config.host.host,
-                    shopUrl: Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.order.shop_info.id,
+                    shopUrl: !Base.others.isCustomHost()?Config.host.host:Config.host.host+'s/'+init_data.order.shop_info.id,
                     isHaveReduc:(function(){
                         if(!!init_data.order.shop_discount){
                             return (init_data.order.shop_discount.length!=0)

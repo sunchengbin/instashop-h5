@@ -146,11 +146,9 @@ function itemPrice($data){
             foreach($data['sku'] as $item){
                 if(intval($item['price']) > 0){
                     $sku_price[] = intval($item['price']);
-                }else{
-                    $sku_price[] = 0;
                 }
             };
-            usort($sku_price,'cmp');
+            sort($sku_price);
             if($sku_price[0] != $sku_price[(count($sku_price)-1)]){
                 return 'Rp '.priceFormat($sku_price[0]).'-'.priceFormat($sku_price[(count($sku_price)-1)]);
             }else{

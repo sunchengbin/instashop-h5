@@ -60,7 +60,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             });
             //item=back是为了让返回首页的时候滚动到指定的scrolltop高度
             $('body').on('click', '.j_go_back', function () {
-                _paq.push(['trackEvent', '返回', 'click', '']);
+                PaqPush && PaqPush('返回','');
+                //_paq.push(['trackEvent', '返回', 'click', '']);
                 var _local_url = localStorage.getItem('FromUrl'),
                     _host_url = location.href,
                     _key = Base.others.getUrlPrem('search'),
@@ -76,7 +77,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                                 if (/\?/g.test(_local_url)) {
                                     location.href = localStorage.getItem('FromUrl') + '&item=back';
                                 } else {
-                                    var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + init_data.item.shop.id;
+                                    var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
                                     location.href = _url + '?item=back';
                                 }
                             }
@@ -107,7 +108,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     }
                 } else {
                     Common.saveFromUrl(function () {
-                        var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + init_data.item.shop.id;
+                        var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + init_data.item.shop.id;
                         location.href = _url + '?item=back';
                     });
                 }
@@ -115,7 +116,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             $('body').on('click', '.j_cart_wraper', function () {
                 var _this = $(this),
                     _url = _this.attr('data-url');
-                    _paq.push(['trackEvent', '查看购物车', 'click', '']);
+                    PaqPush && PaqPush('查看购物车','');
                 Common.saveFromUrl(function () {
                     location.href = _url;
                 });
@@ -124,11 +125,12 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             $('body').on('click','.j_reduc_box',function(){
                 var _htm = '<ul class="reduc-rule-list">';
                 if(!!init_data.item.shop.shop_discount){
-                    _paq.push(['trackEvent', '查看满减活动公告', 'click', '']);
+                    PaqPush && PaqPush('查看满减活动公告','');
+                    //_paq.push(['trackEvent', '查看满减活动公告', 'click', '']);
                     for(var i=0,_reducItem;_reducItem=init_data.item.shop.shop_discount.info[i++];){
                         _htm+="<li><span></span>Minimal Pembelian Rp "+Base.others.priceFormat(_reducItem.condition_price)+" Potongan Rp "+ Base.others.priceFormat(_reducItem.discount_price)+"</li>"
                     }
-                    _htm +='<li><span></span>'+$(".reduc-expire").text()+'</li></ul>'
+                    _htm +='<li><span></span>'+$(".reduc-expire").text()+'</li></ul>';
                     // _htm = _htm.replace(/,$/gi,'') +"</br>"+ $(".reduc-expire").text();
                     Dialog.alert({
                         top_txt:"<p style='text-align:center'>"+Lang.H5_REDUC_TITLE+"</p>",

@@ -183,8 +183,8 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
             Base.others.each(data.sku, function (item, i) {
                 if (Number(item.price) > 0) {
                     sku_price.push(Number(item.price));
-                } else {
-                    sku_price.push(0);
+                }else{
+                    //sku_price.push(0);
                 }
             });
             sku_price.sort(function (a, b) {
@@ -209,7 +209,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
         if (data.sku && data.sku.length) {
             Base.others.each(data.sku, function (item, i) {
                 //_htm += '<li class="j_type_li '+(item.stock==0?'disable':'')+'" data-price="'+(data.is_discount&&data.discounting?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
-                _htm += '<li class="j_type_li ' + (item.stock == 0 ? 'disable' : '') + '" data-price="' + (data.is_discount ? data.discount.price : item.price) + '" data-stock="' + item.stock + '" data-id="' + item.id + '">' + item.title + '</li>';
+                _htm += '<li class="j_type_li '+(item.stock==0||item.price<0?'disable':'')+'" data-price="'+(data.is_discount?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
             });
         }
         return _htm;
@@ -300,19 +300,19 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
         }
         for (var item in carts) {
             var _item = carts[item],
-                _id = (_item.sku ? _item.sku.id : _item.id);
-            _htm += '<li class="cart-item j_cart_item" data-id="' + _id + '">' +
-                '<a class="block clearfix" href="javascript:;">' +
-                '<img src="' + Base.others.cutImg(_item.img) + '">';
-            _htm += '<div class="item-info-box">' +
-                '<p class="name">' + Base.others.transTxt(_item.item_comment) + '</p>';
-            if (_item.is_discount && _item.discounting) {
-                _htm += '<p class="price clearfix"><span class="fr">-' + _item.discount.value + '%</span>' + 'Rp ' + Base.others.priceFormat(_item.discount.price) + '</p>';
-                _htm += '<p class="soon-time">' + transDate(_item.discount.start_time) + '-' + transDate(_item.discount.end_time) + 'WIB</p>';
-            } else {
-                var _price = (_item.sku && _item.sku.id) ? _item.sku.price : _item.price;
-                if (_price >= 0) {
-                    _htm += '<p class="price">Rp ' + Base.others.priceFormat(_price) + '</p>';
+                _id = (_item.sku?_item.sku.id:_item.id);
+            _htm += '<li class="cart-item j_cart_item" data-id="'+_id+'">'
+                +'<a class="block clearfix" href="javascript:;">'
+                +'<img src="'+Base.others.cutImg(_item.img)+'">';
+            _htm +='<div class="item-info-box">'
+                +'<p class="name">'+Base.others.transTxt(_item.item_comment)+'</p>';
+            if(_item.is_discount && _item.discounting){
+                _htm +='<p class="price clearfix"><span class="fr">-'+_item.discount.value+'%</span>'+'Rp '+Base.others.priceFormat(_item.discount.price)+'</p>';
+                _htm +='<p class="soon-time">'+transDate(_item.discount.start_time)+'-'+transDate(_item.discount.end_time)+'WIB</p>';
+            }else{
+                var _price = (_item.sku&&_item.sku.id)?_item.sku.price:_item.price;
+                if(_price >= 0){
+                    _htm +='<p class="price">Rp '+Base.others.priceFormat(_price)+'</p>';
                 }
             }
             _htm += '</div></a>' +

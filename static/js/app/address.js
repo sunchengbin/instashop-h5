@@ -37,6 +37,7 @@ require(['hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastcli
             var _this = this;
             Fastclick.attach(document.body);
             $('body').on('click', '.j_go_back', function () {
+                PaqPush && PaqPush('返回','');
                 history.back();
                 //var _fromurl = localStorage.getItem('FromUrl');
                 //if(!_fromurl){
@@ -103,6 +104,7 @@ require(['hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastcli
                 }
             });
             $('body').on('click', '.j_save_address', function () {
+                PaqPush && PaqPush('保存','');
                 var _data = localStorage.getItem('ShopData'),
                     _data_json = _data ? JSON.parse(_data) : {},
                     _name = $.trim($('.j_name').val()),
@@ -169,6 +171,7 @@ require(['hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastcli
                     return;
                 }
                 if (Common.telVerify(_telephone, function () {
+                        PaqPush && PaqPush('直接保存','');
                         var _address = {
                             "name": _name,
                             "telephone": _telephone,
@@ -192,6 +195,7 @@ require(['hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastcli
                             location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&items=' + encodeURIComponent(_item_str);
                         }, 0);
                     })) {
+                    PaqPush && PaqPush('取消保存','');
                     var _address = {
                         "name": _name,
                         "telephone": _telephone,

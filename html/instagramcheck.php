@@ -12,7 +12,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/address.css?v=1481869966319" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/address.css?v=1482734600390" rel="stylesheet"/>
     <title>Tambah Produk dari Instagram</title>
     <style>
     .ins-wraper {
@@ -185,19 +185,19 @@ height:600px;
 
     </style>
 </head>
-<body data-spider="8divulwy">
-<div class="address-wraper ins-wraper" data-spider="xbf2dazq">
+<body data-spider="xbf2dazq">
+<div class="address-wraper ins-wraper" data-spider="ins-wraper">
     <section class="address-form-box">
         <div class="index-btn-box" style="padding:0 2rem">
             <div class="btn j_submit_btn confirm-btn j_submit_check" style="margin-top:5rem">
-                <a style="color:#ffffff" href="javascript:void(0)">Login ke Instagram</a>
+                <a style="color:#ffffff" href="javascript:void(0)" spm-auto="登录instagram" spm-click="login-instagram">Login ke Instagram</a>
             </div>
         </div>
     </section>
 </div>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/instagramcheck.js?v=1481869966319"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/instagramcheck.js?v=1482734600390"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

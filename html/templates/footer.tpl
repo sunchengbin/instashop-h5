@@ -1,6 +1,6 @@
 <script src="{$STATIC_HOST}/js/base/require-zepto.js"></script>
-<script src="{$STATIC_HOST}/js/base/require-config.js"></script>
-<script src="{$STATIC_HOST}/js/app/{$INDEX_JS_NAME}.js?v=1481869966415"></script>
+<!--<script src="{$STATIC_HOST}/js/base/require-config.js"></script>-->
+<script src="{$STATIC_HOST}/js/dist/app/{$INDEX_JS_NAME}.js?v=1482734600481"></script>
 {literal}
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -12,6 +12,9 @@
                   'transport': 'beacon',
                   'hitCallback': function(){document.location = url;}
               });
+          }
+          function goUrlStatistics(type) {
+             ga('send', 'event', type, 'click');
           }
           ga('create', 'UA-78448705-7', 'auto');
           ga('send', 'pageview');

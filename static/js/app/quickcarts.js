@@ -291,6 +291,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                             return;
                         }
                     }
+
                     _this.quickSubmit(_that, dom);
                 }
             });
@@ -345,6 +346,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                 _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
                 return;
             }
+            PaqPush && PaqPush('下单','submit-order');
             Ajax.postJsonp({
                 url: Config.actions.orderConfirm,
                 data: {
@@ -356,7 +358,8 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     //_that.cancelDisable();
                     //_that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                     if (obj.code == 200) {
-                        _paq.push(['trackEvent', '成功生成订单', 'orderId=' + obj.order.id + ',sellerId=' + init_data.shop.id, '']);
+                        PaqPush && PaqPush('成功生成订单','orderId=' + obj.order.id + ',sellerId=' + init_data.shop.id);
+                        //_paq.push(['trackEvent', '成功生成订单', 'orderId=' + obj.order.id + ',sellerId=' + init_data.shop.id, '']);
                         var _bank_info = JSON.stringify(obj.order.pay_info.banks),
                             _name = $.trim($('.j_name').val()),
                             _telephone = $.trim($('.j_tel').val());

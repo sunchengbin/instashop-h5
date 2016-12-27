@@ -173,8 +173,19 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
             $('body').on('click','.j_item_info',function(){
                 var _this = $(this),
                     _url = _this.attr('data-url'),
-                    _scroll_top = $(window).scrollTop();
+                    _scroll_top = $(window).scrollTop(),
+                    _host_name = location.hostname;
                 if(!_url){return;}
+                if(Base.others.isCustomHost()){
+                    if(/\/k\//g.test(_url)){
+                        _url = _url.replace(/\/\/[^\/]+\//,'//'+_host_name+'/');
+                    }else{
+                        _url = _url.replace(/\/\/[^\/]+\//,'//'+_host_name+'/detail/');
+                    }
+
+                }else{
+                    _url = Common.transFromUrl(_url);
+                }
                 localStorage.setItem('ScrollTop',_scroll_top);
                 Common.saveFromUrl(function(){
                     location.href = _url;

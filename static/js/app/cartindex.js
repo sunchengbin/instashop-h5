@@ -25,7 +25,8 @@ var GroupCart = this.GroupCart = isGroup ?((_data.GroupCart?_data.GroupCart:null
             Fastclick.attach(document.body);
             $('body').on('click', '.j_del_cart', function () {
                 var _this = $(this);
-                _paq.push(['trackEvent', '从购物车删除', 'itemId=' + _this.attr('data-id') + ',sellerId=' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id, '']);
+                PaqPush && PaqPush('从购物车删除','itemId='+_this.attr('data-id')+',sellerId='+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id);
+                //_paq.push(['trackEvent', '从购物车删除', 'itemId='+_this.attr('data-id')+',sellerId='+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id, '']);
                 Dialog.confirm({
                     cover_event: true,
                     cf_fn: function () {
@@ -46,22 +47,24 @@ var GroupCart = this.GroupCart = isGroup ?((_data.GroupCart?_data.GroupCart:null
             });
             $('body').on('click', '.j_go_back', function () {
                 //TODO 返回埋点
+                PaqPush && PaqPush('返回','');
                 var _fromurl = localStorage.getItem('FromUrl');
                 if (!_fromurl) {
-                    var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
+                    var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
                     location.href = _url;
                 } else {
                     location.href = _fromurl;
                 }
             });
             $('body').on('click', '.j_go_shop', function () {
-                _paq.push(['trackEvent', '去逛逛', 'click', '']);
-                var _url = Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
+                PaqPush && PaqPush('去逛逛','');
+                //_paq.push(['trackEvent', '去逛逛', 'click', '']);
+                var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
                 location.href = _url;
             });
             $('body').on('click', '.j_submit_btn', function () {
                 var _groupid = $(this).attr('group-id');
-                _paq.push(['trackEvent', '去结算', 'click', '']);
+                PaqPush && PaqPush('去结算','');
                 _that.subData(_groupid);
             });
             if (Base.others.getUrlPrem('error')) {

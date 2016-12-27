@@ -1,4 +1,6 @@
-{include file="header.tpl" title="My Page Title"} {if $INDEX_DATA.code eq 420402}
+{include file="header.tpl" title="My Page Title"}
+<body data-spider="h2suioqg">
+{if $INDEX_DATA.code eq 420402}
 <div class="no-exists">
     <img src="{$STATIC_HOST}/images/app/404.png" />
     <p>Produk tidak ditemukan!</p>
@@ -15,7 +17,7 @@
     <p>Produk tidak ditemukan!</p>
 </div>
 {else}
-<nav class="shop-header-nav clearfix">
+<nav class="shop-header-nav clearfix" data-spider="header-nav">
     <div class="fl">
         <button class="j_go_back">
                     <i class="icon iconfont icon-back-font"></i>
@@ -37,7 +39,7 @@
             {/foreach}
         </ul>
     </div>
-    <div class="info-box">
+    <div class="info-box" data-spider="shop-info-box">
         <p class="title">
             {$INDEX_DATA.item.item_comment|nl2br}
         </p>
@@ -67,7 +69,7 @@
         {/if} 
         {if $INDEX_DATA.item.shop.shop_discount}
         <section class="reduc-box-line">
-            <div class="reduc-box-wrap j_reduc_box">
+            <div class="reduc-box-wrap j_reduc_box" data-spider="reduc-box">
                 <i class="iconfont icon-go-font fr reduc-box-go"></i>
                 <div>
                     <p class="reduc-box-info">
@@ -87,7 +89,7 @@
             </div>
         </section>
         {/if}
-        <a href="javascript:;" data-url="{$INDEX_DATA.item.shop.url}" class="go-shop j_shop_info">
+        <a href="javascript:;" data-url="{$INDEX_DATA.item.shop.url}" spm-auto="去首页" spm-click="go-home" class="go-shop j_shop_info">
             <div class="clearfix shop-info">
                 <i class="icon iconfont fr icon-go-font"></i>
                 <img class="fl" src="{$INDEX_DATA.item.shop.logo}" />
@@ -109,16 +111,16 @@
     </div>
     <div class="index-btn-box">
         <!--新增3.5 功能点4需求-->
-        <div class="btn j_submit_btn confirm-btn">
+        <div class="btn j_submit_btn confirm-btn" data-spider="set-up-shop">
             <i class="iconfont icon-shop-font"></i>
-            <a href="http://www.instashop.co.id/" onclick="trackOutboundLink('http://www.instashop.co.id/'); return false;" target="_self">Buat webstore gratis sekarang!</a>
+            <a spm-auto="我也要开店" spm-click="go-home" href="http://www.instashop.co.id/" onclick="trackOutboundLink('http://www.instashop.co.id/'); return false;" target="_self">Buat webstore gratis sekarang!</a>
         </div>
     </div>
 </section>
-<section class="buy-box">
+<section class="buy-box" data-spider="foot-nav">
     {if $INDEX_DATA.item.shop.line_url} 
         {if $INDEX_DATA.item.shop.phone}
-        <a href="javascript:;" data-type="all" class="j_show_contact ser-box fl">
+        <a href="javascript:;" data-type="all" spm-auto="联系卖家" spm-click="get-contact" class="j_show_contact ser-box fl">
             <i class="icon iconfont icon-news-font"></i>
             <p>Kontak</p>
         </a>
@@ -132,7 +134,7 @@
             {/if}
         {/if} 
     {else}
-        <a href="javascript:;" class="ser-box fl block j_goto_line">
+        <a href="javascript:;" spm-auto="联系卖家" spm-click="get-line" class="ser-box fl block j_goto_line">
             <i class="icon iconfont icon-news-font"></i>
             <p>Kontak</p>
         </a>
@@ -148,7 +150,7 @@
     {/if}
     {else} 
         {if $INDEX_DATA.item.shop.phone}
-            <a href="javascript:;" data-type="tel" class="j_show_contact ser-box fl">
+            <a href="javascript:;" data-type="tel" spm-auto="联系卖家" spm-click="get-contact" class="j_show_contact ser-box fl">
                 <i class="icon iconfont icon-news-font"></i>
                 <p>Kontak</p>
             </a>

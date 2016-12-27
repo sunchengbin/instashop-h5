@@ -9,15 +9,15 @@
 {if $INDEX_DATA.shop.status eq '2'}
 <section class="shop-header">
     {if $INDEX_DATA.template|@count}
-        <img class="shop-header-bg" data-img="{$INDEX_DATA.template[0].data[0].front_cover}" src="">
+        <img class="shop-header-bg" data-img="{$INDEX_DATA.template[0].data[0].front_cover|bg_img}" src="">
     {else}
-        <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover}" src="">
+        <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
     {/if}
     <div class="clearfix shop-info">
         <div class="shop-img">
             <img data-img="{$INDEX_DATA.shop.logo}" src=""/>
         </div>
-        <p>{$INDEX_DATA.shop.name}}</p>
+        <p>{$INDEX_DATA.shop.name}</p>
     </div>
 </section>
 <section class="shop-delete">
@@ -66,7 +66,7 @@
                 {/foreach}
             </p>
             <p class="reduc-expire">
-            {$INDEX_DATA.shop.shop_discount.start_time|dateFormat} - {$INDEX_DATA.shop.shop_discount.end_time|dateFormat} WIB
+            {$INDEX_DATA.shop.shop_discount.start_time|transDate} - {$INDEX_DATA.shop.shop_discount.end_time|transDate} WIB
             </p>
             </div>
 </div>
@@ -258,7 +258,7 @@
     <p>Kategori produk</p>
     <ul>
         {foreach $TAG_LIST as $tag}
-        <li class=""><a spm-auto="侧栏分类" spm-click="itemId={$tag.id}" class="j_item_info" href="javascript:;" data-url="{$HOST_NAME}/k/{$tag.id}" class=""><span></span>{$tag.name}</a></li>
+        <li class=""><a spm-auto="侧栏分类" spm-click="tagId={$tag.id}" class="j_item_info" href="javascript:;" data-url="{$HOST_NAME}/k/{$tag.id}" class=""><span></span>{$tag.name}</a></li>
         {/foreach}
     </ul>
 </section>
