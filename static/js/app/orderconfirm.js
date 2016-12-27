@@ -4,9 +4,10 @@
 require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick) {
     var OrderConfirmHtm = {
         init: function () {
-            var _this = this,
-                _carts = Cart().getCarts(),
-                _data = localStorage.getItem('ShopData'),
+            var _this = this;
+            var _groupid = _this._groupid = Base.others.getUrlPrem("groupid",location.href);
+            var _data = localStorage.getItem('ShopData');
+            var _carts = _this.carts =  !!_groupid?JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid]:Cart().getCarts(),
                 _address = JSON.parse(_data).Address,
                 _htm = Hbs.compile(OrderConfirm)({
                     data: JSON.parse(_data),
@@ -89,6 +90,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                         return;
                     }
                     var _data = _this.getData();
+                    console.log("下单开始");
+                    console.log(_data);
                     if (!_data) {
                         _that.cancelDisable();
                         _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
@@ -177,7 +180,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                         } else {
                                             Dialog.confirm({
                                                 top_txt: '', //可以是html
-                                                body_txt: '<p class="dialog-body-p">' + obj.msg + '</p>',
+                                                body_txt: '<p class="dialog-body-p">' + obj.msg||obj.message + '</p>',
                                                 cf_fn: function () {
                                                     setTimeout(function () {
                                                         location.href = Config.host.hrefUrl + 'cart.php';
@@ -232,7 +235,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             //});
         },
         getItems: function () {
-            var _carts = Cart().getCarts(),
+            var _this = this;
+            var _carts = _this.carts,
                 _arr = [];
             if (!_carts) {
                 Dialog.tip({

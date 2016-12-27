@@ -253,10 +253,12 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
             _htm += '</div>' +
                 '</li>';
         }
+        console.log("判断按钮")
+        console.log(carts)
         if(carts){
-            _htm +='<button class="btn j_go_shop confirm-btn">'+Lang.H5_BROWSE_SHOP+'</button>'
+            _htm +='<button class="btn j_submit_btn confirm-btn" group-id="'+groupid+'">'+Lang.H5_MAKE_ORDER+'</button>'
         }else{
-            _htm +='<button class="btn j_submit_btn confirm-btn">'+Lang.H5_MAKE_ORDER+'</button>'
+            _htm +='<button class="btn j_go_shop confirm-btn" group-id="'+groupid+'" >'+Lang.H5_BROWSE_SHOP+'</button>'
         }
         return _htm;
     }

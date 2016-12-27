@@ -671,6 +671,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     'action': 'express_fee',
                     'shop_id': init_data.shop.id,
                     'items': _this.getAddressItems(),
+                    'supply_shop_id':(function(){var _supply_shop_id;for(var key in init_data.carts){_supply_shop_id=init_data.carts[key].item.supply_shop.id;return _supply_shop_id;}})()||"",
                     'receive_addr': encodeURIComponent(_addr)
                 }
             };

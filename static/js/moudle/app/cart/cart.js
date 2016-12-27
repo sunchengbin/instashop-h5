@@ -275,6 +275,7 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
             var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null;
             if (_json_shop_data) {
                 _json_shop_data.Cart = null;
+                _json_shop_data.GroupCart = null;
                 localStorage.setItem('ShopData', JSON.stringify(_json_shop_data));
             }
         },
@@ -284,18 +285,19 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
             if (!_this.cart) {
                 return null;
             }
-            if (!!_this.data.SupplyShopInfo) {
-                delete _this.data.GroupCart[_this.data.ShopInfo.id].group[groupid][id];
-                if($.isEmptyObject(_this.data.GroupCart[_this.data.ShopInfo.id].group[groupid])){
-                    delete _this.data.GroupCart[_this.data.ShopInfo.id].group[groupid];
-                }
-            }
             //同步删除原版的
             delete _this.cart[_this.data.ShopInfo.id][id];
             if (Base.others.testObject(_this.cart[_this.data.ShopInfo.id])) {
                 callback && callback();
             }
             _this.data.Cart = _this.cart;
+            if (!!_this.data.SupplyShopInfo) {
+                // delete _this.data.GroupCart[_this.data.ShopInfo.id].group[groupid][id];
+                // if($.isEmptyObject(_this.data.GroupCart[_this.data.ShopInfo.id].group[groupid])){
+                //     delete _this.data.GroupCart[_this.data.ShopInfo.id].group[groupid];
+                // }
+                _this.data.GroupCart = _this.convertGroup(_this.cart);
+            }
             localStorage.setItem('ShopData', JSON.stringify(_this.data));
         },
         getIsGroup: function () {

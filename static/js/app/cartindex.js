@@ -5,69 +5,39 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
     var CartIndex = {
         init: function () {
             var _data = JSON.parse(localStorage.getItem('ShopData'));
-            var _carts = Cart().getCarts(),isGroup = this.isGroup=_data.SupplyShopInfo?true:false;
-                _htm = Hbs.compile(Carthtm)({
-                    cart: _carts,
-                    groupCart:isGroup?_data.GroupCart[_data.ShopInfo.id]:null,
-                    lang: Lang,
-                    isGroup:isGroup
-                });
+            var _carts = Cart().getCarts(),
+                isGroup = this.isGroup = _data.SupplyShopInfo ? true : false;
+            var GroupCart = this.GroupCart = isGroup ? ((_data.GroupCart?_data.GroupCart:null))?_data.GroupCart[_data.ShopInfo.id] : null;
+            var _htm = Hbs.compile(Carthtm)({
+                cart: _carts,
+                groupCart: GroupCart,
+                lang: Lang,
+                isGroup: isGroup
+            });
             this.carts = _carts;
             console.log("购物车");
             console.log(_carts);
             $('body').prepend(_htm);
             this.handleFn();
         },
-        // 对分库商品添加适配处理
-        getItems: function () {
-            var _carts = this.carts,
-                _arr = [];
-            if (!_carts) {
-                Dialog.tip({
-                    top_txt: '', //可以是html
-                    body_txt: '<p class="dialog-body-p">' + Lang.H5_SHOPING_NO_GOODS + '?</p>'
-                });
-            } else {
-                var _items = _carts;
-                for (var item in _items) {
-                    if (_items[item].sku) {
-                        _arr.push({
-                            itemID: _items[item].item.id,
-                            itemName: _items[item].item.item_name,
-                            itemNum: _items[item].num,
-                            item_sku: _items[item].sku.id,
-                            discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                        });
-                    } else {
-                        _arr.push({
-                            itemID: _items[item].item.id,
-                            itemName: _items[item].item.item_name,
-                            itemNum: _items[item].num,
-                            discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                        });
-                    }
-                }
-            }
-            return _arr;
-        },
         handleFn: function () {
             var _that = this;
             Fastclick.attach(document.body);
             $('body').on('click', '.j_del_cart', function () {
                 var _this = $(this);
-                _paq.push(['trackEvent', '从购物车删除', 'itemId='+_this.attr('data-id')+',sellerId='+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id, '']);
+                _paq.push(['trackEvent', '从购物车删除', 'itemId=' + _this.attr('data-id') + ',sellerId=' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id, '']);
                 Dialog.confirm({
                     cover_event: true,
                     cf_fn: function () {
                         Cart().removeItem(_this.attr('data-id'), function () {
                             var _htm = '<ul class=""><li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li></ul><button class="btn j_go_shop confirm-btn">' + Lang.H5_BROWSE_SHOP + '</button>';
                             $('.j_cart_list').html(_htm);
-                        },_this.attr('group-id')||"");
+                        }, _this.attr('group-id') || "");
                         $('.j_cart_item[data-id="' + _this.attr('data-id') + '"]').remove();
-                        if(_that.isGroup){
-                            var $curGroupChildren = $('.cart-supplier-card[group-id="'+_this.attr('group-id')+'"]>ul>li');
-                            if($curGroupChildren.length==0){
-                                $('.cart-supplier-card[group-id="'+_this.attr('group-id')+'"]').remove();
+                        if (_that.isGroup) {
+                            var $curGroupChildren = $('.cart-supplier-card[group-id="' + _this.attr('group-id') + '"]>ul>li');
+                            if ($curGroupChildren.length == 0) {
+                                $('.cart-supplier-card[group-id="' + _this.attr('group-id') + '"]').remove();
                             }
                         }
                         delete _that.carts[_this.attr('data-id')];
@@ -90,15 +60,16 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                 location.href = _url;
             });
             $('body').on('click', '.j_submit_btn', function () {
+                var _groupid = $(this).attr('group-id');
                 _paq.push(['trackEvent', '去结算', 'click', '']);
-                _that.subData();
+                _that.subData(_groupid);
             });
             if (Base.others.getUrlPrem('error')) {
                 _that.subData();
             }
         },
-        getAddressItems: function () {
-            var _carts = Cart().getCarts(),
+        getAddressItems: function (groupid) {
+            var _carts = this.isGroup ? this.GroupCart : this.carts,
                 _arr = [];
             if (!_carts) {
                 Dialog.tip({
@@ -106,35 +77,119 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     body_txt: '<p class="dialog-body-p">' + Lang.H5_SHOPING_NO_GOODS + '?</p>'
                 });
             } else {
-                var _items = _carts;
-                for (var item in _items) {
-                    if (_items[item].sku) {
-                        _arr.push({
-                            itemID: _items[item].item.id,
-                            //itemName:_items[item].item.item_name,
-                            itemNum: _items[item].num,
-                            item_sku: _items[item].sku.id,
-                            discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                        });
-                    } else {
-                        _arr.push({
-                            itemID: _items[item].item.id,
-                            //itemName:_items[item].item.item_name,
-                            itemNum: _items[item].num,
-                            discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                        });
+                var _items;
+                if (this.isGroup) {
+                    _items = _carts.group[groupid];
+                    for (var item in _items) {
+                        if (_items[item].sku) {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                //itemName:_items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                item_sku: _items[item].sku.id,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        } else {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                //itemName:_items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        }
+                    }
+                } else {
+                    _items = _carts;
+                    for (var item in _items) {
+                        if (_items[item].sku) {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                //itemName:_items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                item_sku: _items[item].sku.id,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        } else {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                //itemName:_items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        }
                     }
                 }
+
             }
             return _arr;
         },
-        subData: function () {
+        // 对分库商品添加适配处理
+        getItems: function (groupid) {
+            var _carts = this.isGroup ? this.GroupCart : this.carts,
+                _arr = [];
+            if (!_carts) {
+                Dialog.tip({
+                    top_txt: '', //可以是html
+                    body_txt: '<p class="dialog-body-p">' + Lang.H5_SHOPING_NO_GOODS + '?</p>'
+                });
+            } else {
+                var _items;
+                if (this.isGroup) {
+                    _items = _carts.group[groupid];
+                    console.log("是否分组")
+                    console.log(_items)
+                    for (var item in _items) {
+                        if (_items[item].sku) {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                item_sku: _items[item].sku.id,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        } else {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        }
+                    }
+                } else {
+                    _items = _carts;
+                    for (var item in _items) {
+                        if (_items[item].sku) {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                item_sku: _items[item].sku.id,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        } else {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        }
+                    }
+                }
+            }
+            console.log("提交数据开始");
+            console.log(_arr);
+            return _arr;
+        },
+        subData: function (groupid) {
             var _that = this;
-            var data = localStorage.getItem('ShopData'),
-                _items = _that.getItems();
+            var data = localStorage.getItem('ShopData');
+            var _items = _that.getItems(groupid);
             if (!_items.length) {
                 return;
             }
+
             var reqData = {
                 edata: {
                     action: 'check',
@@ -174,8 +229,8 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                     var _address = JSON.parse(localStorage.getItem('ShopData')).Address.address,
                                         _addr = _address.country + ',' + _address.city + ',' + _address.province;
                                     setTimeout(function () {
-                                        var _item_str = JSON.stringify(_that.getAddressItems());
-                                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + reqData.edata.seller_id + '&addr=' + encodeURIComponent(_addr) + '&items=' + encodeURIComponent(_item_str);
+                                        var _item_str = JSON.stringify(_that.getAddressItems(groupid));
+                                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + reqData.edata.seller_id + '&addr=' + encodeURIComponent(_addr)+'&groupid='+groupid + '&items=' + encodeURIComponent(_item_str);
                                     }, 1);
                                 }
                             }
@@ -258,11 +313,11 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     $('.j_cart_item[data-id="' + _id + '"]').append('<p class="error-p">' + _msg + '</p>');
                 }
             });
-            // if (!_beal) {
-            //     Dialog.tip({
-            //         body_txt: '<p class="dialog-body-p">' + _error_msgs[0] + '</p>'
-            //     })
-            // }
+            if (!_beal) {
+                Dialog.tip({
+                    body_txt: '<p class="dialog-body-p">' + _error_msgs[0] + '</p>'
+                })
+            }
             return _beal;
         }
     };
