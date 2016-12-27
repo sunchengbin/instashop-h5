@@ -62,8 +62,8 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
             for (var item in _curShopCart) {
                 var _curItemPackage = _curShopCart[item];
                 var _curItem = _curItemPackage.item;
-                var _id = (_curItem.sku.length > 0 ? _curItem.sku.id : _curItem.id);
-                console.log("convertGroup:id"+_id)
+                var _id = (_curItem.sku.length > 0 ? _curItemPackage.sku.id : _curItem.id);
+                console.log("convertGroup:id" + _id)
                 if (_curItem.supply_type == 2) {
                     if (!!_curCartPackage.group[_curItem.supply_shop.id]) {
                         _curCartPackage.group[_curItem.supply_shop.id][_id] = _curItemPackage;
@@ -282,7 +282,7 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
                 localStorage.setItem('ShopData', JSON.stringify(_json_shop_data));
             }
         },
-        removeItem: function (id, callback,groupid) {
+        removeItem: function (id, callback, groupid) {
             var _this = this;
             _this.initCart();
             if (!_this.cart) {
@@ -304,7 +304,19 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
             localStorage.setItem('ShopData', JSON.stringify(_this.data));
         },
         getIsGroup: function () {
-            return !!_this.data.SupplyShopInfo;
+            var _this = this;
+            var _isGroup = false;
+            //每次去检查购物车
+            _isGroup = (function () {
+                for (var key in _this.data.Cart[_this.data.ShopInfo.id]) {
+                    var _cur = _this.data.Cart[_this.data.ShopInfo.id][key];
+                    if (_cur.item.supply_type == 2) {
+                        return true;
+                    }
+                }
+            })();
+            if(_isGroup==void(0))_isGroup=false;
+            return _isGroup;
         },
         getCarts: function () {
             var _this = this;

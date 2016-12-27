@@ -7,7 +7,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             var _this = this;
             var _groupid = _this._groupid = Base.others.getUrlPrem("groupid",location.href);
             var _data = localStorage.getItem('ShopData');
-            var _express_free = _this.getExpressFreeType(JSON.parse(_data));
+            var _express_free = _this.getExpressFreeType(JSON.parse(_data),_groupid);
             var _carts = _this.carts =  !!_groupid?JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid]:Cart().getCarts(),
                 _address = JSON.parse(_data).Address,
                 _htm = Hbs.compile(OrderConfirm)({
@@ -34,7 +34,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     })()
                 });
             $('body').prepend(_htm);
-            if (JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list)) {
+            if (_express_free == 0 && _this.testExpress(express_data.express_fee_list.list)) {
                 _this.logistics = Logistics({
                     data: express_data.express_fee_list.list,
                     sum: _this.countSum(_carts),
@@ -372,8 +372,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     "wduss": "",
                     "address_id": "0",
                     "note": "",
-                    "pay_way": "13",
-                    "pay_type": 0,
+                    "pay_way": Cart().getIsGroup()?"11":"13",
+                    "pay_type": Cart().getIsGroup()?1:0,
                     "seller_id": _seller_id,
                     "buyer_id": "0",
                     "buyer_note": _note,
