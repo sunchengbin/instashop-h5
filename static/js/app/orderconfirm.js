@@ -7,6 +7,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             var _this = this;
             var _groupid = _this._groupid = Base.others.getUrlPrem("groupid",location.href);
             var _data = localStorage.getItem('ShopData');
+            var _express_free = _this.getExpressFreeType(JSON.parse(_data));
             var _carts = _this.carts =  !!_groupid?JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid]:Cart().getCarts(),
                 _address = JSON.parse(_data).Address,
                 _htm = Hbs.compile(OrderConfirm)({
@@ -23,8 +24,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     address: _address,
                     lang: Lang,
                     host: Config.host,
-                    nofree: JSON.parse(_data).ShopInfo.express_free == 0,
-                    express: (JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list)),
+                    nofree: _express_free == 0,
+                    express: (_express_free == 0 && _this.testExpress(express_data.express_fee_list.list)),
                     isHaveReduc: (function () {
                         if (!!price_data.price_info.shop_discount) {
                             return (price_data.price_info.shop_discount.length != 0)
@@ -41,6 +42,19 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 });
             }
             _this.handleFn();
+        },
+        //1免邮 0付费
+        getExpressFreeType:function(data,groupid){
+            if(!!groupid){
+                return (function(){
+                    var _group = data.GroupCart[data.ShopInfo.id].group[groupid];
+                    for(var key in _group){
+                        return _group[key].item.supply_shop.express_free;
+                    }
+                })();
+            }else{
+                return data.shop_info.express_free;
+            }
         },
         testExpress: function (list) {
             var _bool = false;

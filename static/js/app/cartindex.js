@@ -7,7 +7,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
             var _data = JSON.parse(localStorage.getItem('ShopData'));
             var _carts = Cart().getCarts(),
                 isGroup = this.isGroup = _data.SupplyShopInfo ? true : false;
-            var GroupCart = this.GroupCart = isGroup ? ((_data.GroupCart?_data.GroupCart:null))?_data.GroupCart[_data.ShopInfo.id] : null;
+var GroupCart = this.GroupCart = isGroup ?((_data.GroupCart?_data.GroupCart:null)?_data.GroupCart[_data.ShopInfo.id]:null):null;
             var _htm = Hbs.compile(Carthtm)({
                 cart: _carts,
                 groupCart: GroupCart,

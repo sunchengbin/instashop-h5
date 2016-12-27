@@ -63,6 +63,7 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
                 var _curItemPackage = _curShopCart[item];
                 var _curItem = _curItemPackage.item;
                 var _id = (_curItem.sku.length > 0 ? _curItem.sku.id : _curItem.id);
+                console.log("convertGroup:id"+_id)
                 if (_curItem.supply_type == 2) {
                     if (!!_curCartPackage.group[_curItem.supply_shop.id]) {
                         _curCartPackage.group[_curItem.supply_shop.id][_id] = _curItemPackage;
@@ -181,6 +182,8 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
                         }
                     }
                 }
+                console.log("sku_id")
+                console.log(opts.sku.id)
                 _this.cart[_shop_id][opts.sku.id] = opts;
             } else { //没有规格的商品以商品id为key
                 var _discout_num = _this.getItemSkus(_shop_id)[_item_id] ? (_this.getItemSkus(_shop_id)[_item_id] + opts.num) : null,
