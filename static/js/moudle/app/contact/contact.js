@@ -98,7 +98,7 @@ define(['common','base','hbs','text!views/moudle/contact.hbs','btn','lang','fast
         toHide : function(plug_buy,height){
             var _this = this;
             _this.animate(plug_buy,height,true);
-            _this.cover.hide();
+            _this.cover && _this.cover.hide();
         }
     };
     return function(opts){

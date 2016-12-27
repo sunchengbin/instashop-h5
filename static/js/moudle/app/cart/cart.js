@@ -55,9 +55,14 @@ define(['base','lang','dialog'],function(Base,Lang,Dialog){
                 if((opts.sku && (opts.sku.stock >= 9999999)) || (!opts.sku && (opts.item.stock >= 9999999))){
                     Dialog.confirm({
                         top_txt : '',//可以是html
+                        cfb_txt : Lang.H5_IS_CONFIRM,//确定按钮文字
+                        cab_txt : Lang.H5_GO_CONTACT,//取消按钮的文字
                         body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_STOCK+'</p>',
                         cf_fn : function(){
                             _this.addToCart(opts);
+                        },
+                        c_fn : function(){
+                            opts.noStockCallback && opts.noStockCallback();
                         }
                     });
                 }else{
