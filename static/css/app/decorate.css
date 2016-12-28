@@ -1,5 +1,6 @@
 /*模版页样式表*/
 @import "../base/base.css";
+@import "../moudle/ui/dialog/dialog.css";
 
 html, body {
     font-family: Roboto-Regular;
