@@ -193,15 +193,15 @@ define([],function(){
 		testJudgeVersion : function(){
 			var _getCurVersion = "";
 			var _getCurVersionFloat = "";
+			_getCurVersion = WIN.navigator.userAgent.match(/Instashop\-(.+?)\-/)[1]||"";
+			_getCurVersionFloat = parseFloat(_getCurVersion.substr(0,3));//目前只支持取前两位'3.5.1'=>3.5 '3.5'=>3.5
+			targetVersion = parseFloat(targetVersion);
+			//比较 例:_getCurVersionFloat 3.5| targetVersion 3.4
+			//符合
+			alert(_getCurVersionFloat);
+			alert(targetVersion);
 			try {
-				//提取版本号 从Instashop-3.5.1/3.5-ios/Android
-				_getCurVersion = WIN.navigator.userAgent.match(/Instashop\-(.+?)\-/)[1]||"";
-				_getCurVersionFloat = parseFloat(_getCurVersion.substr(0,3));//目前只支持取前两位'3.5.1'=>3.5 '3.5'=>3.5
-				targetVersion = parseFloat(targetVersion);
-				//比较 例:_getCurVersionFloat 3.5| targetVersion 3.4
-				//符合
-				alert(_getCurVersionFloat);
-				alert(targetVersion);
+
 				if(_getCurVersionFloat>=targetVersion){
 					return true;
 				}else{//不符合
