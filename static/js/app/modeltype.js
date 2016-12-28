@@ -43,7 +43,7 @@ require(['base','hbs','text!views/app/modeltype.hbs','insjs','fastclick','config
                         return null;
                     });
                 },function(){
-                    PaqPush && PaqPush('版本低于3.9','version='+WIN.navigator.userAgent.match(/Instashop\-(.+?)\-/)[1]||"");
+                    PaqPush && PaqPush('版本低于3.9','version='+window.navigator.userAgent.match(/Instashop\-(.+?)\-/)[1]||"");
                     Dialog.alert({
                         body_txt: 'Silakan update ke 3.9 sebelum menggunakan fitur ini'
                     });
