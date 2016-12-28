@@ -104,6 +104,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 PaqPush && PaqPush('编辑模块',_type);
                 //_paq.push(['trackEvent', '编辑模板', 'click', _type]);
                 if(_type == 'three_li_items' && !Insjs.testJudgeVersion(3.9)){
+                    console.log('a')
                     PaqPush && PaqPush('版本低于3.9','version='+window.navigator.userAgent.match(/Instashop\-(.+?)\-/)[1]||"");
                     Dialog.alert({
                         body_txt: 'Silakan update ke 3.9 sebelum menggunakan fitur ini'
