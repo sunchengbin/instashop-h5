@@ -50,3 +50,6 @@ body {
 .icon-warehourse {
     font-size: 18px;
 }
+.hide {
+    display: none;
+}

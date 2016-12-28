@@ -277,6 +277,9 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
                 _htm+=assembleCartItem(_groupItem,key)
                 _htm+='</ul></div>'
             })
+            if(_curIndex==2){
+                _htm = _htm.replace("cart-supplier-header","cart-supplier-header hide");
+            }
         } else {
             _htm = '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>'
         }
