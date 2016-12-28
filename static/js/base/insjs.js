@@ -200,6 +200,8 @@ define([],function(){
 				targetVersion = parseFloat(targetVersion);
 				//比较 例:_getCurVersionFloat 3.5| targetVersion 3.4
 				//符合
+				alert(_getCurVersionFloat);
+				alert(targetVersion);
 				if(_getCurVersionFloat>=targetVersion){
 					return true;
 				}else{//不符合
