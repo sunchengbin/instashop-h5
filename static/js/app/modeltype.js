@@ -23,7 +23,33 @@ require(['base','hbs','text!views/app/modeltype.hbs','insjs','fastclick','config
                 var _type = $(this).attr('data-type'),
                     _index = Base.others.getUrlPrem('index');
                 PaqPush && PaqPush('选择模块类型',_type);
-                Insjs.judgeVersion('3.9',function(){
+                if(_type == 'three_li_items'){
+                    Insjs.judgeVersion('3.9',function(){
+                        try{
+                            goUrlStatistics(_type);
+                        }catch(error){
+                            console.log('error')
+                        }
+                        var _param = {
+                            param:{
+                                type:'edit_model',
+                                param:{
+                                    index : _index,
+                                    type: _type,
+                                    data: []
+                                }
+                            }
+                        };
+                        bridge.callHandler('insSocket',_param, function(response) {
+                            return null;
+                        });
+                    },function(){
+                        PaqPush && PaqPush('版本低于3.9','version='+window.navigator.userAgent.match(/Instashop\-(.+?)\-/)[1]||"");
+                        Dialog.alert({
+                            body_txt: 'Silakan update ke 3.9 sebelum menggunakan fitur ini'
+                        });
+                    })
+                }else{
                     try{
                         goUrlStatistics(_type);
                     }catch(error){
@@ -42,13 +68,7 @@ require(['base','hbs','text!views/app/modeltype.hbs','insjs','fastclick','config
                     bridge.callHandler('insSocket',_param, function(response) {
                         return null;
                     });
-                },function(){
-                    PaqPush && PaqPush('版本低于3.9','version='+window.navigator.userAgent.match(/Instashop\-(.+?)\-/)[1]||"");
-                    Dialog.alert({
-                        body_txt: 'Silakan update ke 3.9 sebelum menggunakan fitur ini'
-                    });
-                })
-
+                }
             });
             (function (win, dom) {
                 var SwitchTap = {
