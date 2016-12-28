@@ -447,3 +447,12 @@ html, body {
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
 }
+.recommended-4{
+    padding:1rem;
+}
+.recommended-4 li{
+    float:left;
+    width: 6rem;
+    height: 6rem;
+    background: #EEEEEE;
+}

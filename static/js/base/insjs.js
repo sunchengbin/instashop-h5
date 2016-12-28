@@ -149,7 +149,13 @@
 			title : '',
 			data : [后端item完整数据,]
 		},
-		{//所有商品列表的样式选择,3列还是2列
+		{//三列模块
+		    index : 0,
+			type : three_li_items,
+			title : '',
+			data : [后端item完整数据,]
+		},
+		{//所有非模块商品列表的样式选择,3列还是2列
 		    index : 0,
 			type : item_list_type,
 			title : '',

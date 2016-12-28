@@ -490,6 +490,12 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                                 notmove : _notmove
                             });
                             break;
+                        case 'three_li_items':
+                            _html+= _this.threeRowItems({
+                                data : _model_info,
+                                notmove : _notmove
+                            });
+                            break;
                         case 'item_list_type':
                             console.log('选择商品列表样式');
                             break;
@@ -604,7 +610,21 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 data : opts.data,
                 lang : Lang
             });
+        },
+        threeRowItems : function(opts){
+            var _this = this;
+            return _this.createInsertHtm()+Hbs.compile(Itemmodel)({
+                type : 'twoItem',
+                listtype:3,
+                btns : _this.createModelBtnHtm({
+                    type : 'three_li_items',
+                    notmove : opts.notmove
+                }),
+                data : opts.data,
+                lang : Lang
+            });
         }
+
     };
     EditModel.init();
 })

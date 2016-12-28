@@ -304,6 +304,34 @@
                 {/foreach}
                 </ul>
             </section>
+            {elseif $model.type eq 'three_li_items'}
+            <section class="item-list-box model-box j_model_box" data-spider="three_li_items">
+                {if $smarty.foreach.foo.index eq 1}
+                    <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
+                        <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
+                    </div>
+                {else}
+                    <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
+                        <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button><button class="move-btn j_moveup_model handle-btn">Pindah ke Atas</button>
+                    </div>
+                {/if}
+                {if $model.title}
+                    <p class="item-title b-bottom"><span></span>{$model.title}</p>
+                {/if}
+                <ul class="three-items-list clearfix">
+                    {foreach $model.data as $item}
+                    <li>
+                        <a class="item-info j_item_info" href="javascript:;">
+                            <div class="lazy" data-img="{$item.img|list_img}">
+                                {if $item.is_discount}
+                                <span>-{$item.discount.value}%</span>
+                                {/if}
+                            </div>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </section>
             {/if}
         {/foreach}
     {/if}

@@ -196,6 +196,25 @@
             {/foreach}
             </ul>
         </section>
+        {elseif $model.type eq 'three_li_items'}
+        <section class="item-list-box model-box j_model_box" data-spider="three_li_items">
+            {if $model.title}
+            <p class="item-title b-bottom"><span></span>{$model.title}</p>
+            {/if}
+            <ul class="three-items-list clearfix j_item_list">
+                {foreach $model.data as $item}
+                <li>
+                    <a spm-auto="三列单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
+                        <div class="lazy" data-img="{$item.img|list_img}">
+                            {if $item.is_discount}
+                            <span>-{$item.discount.value}%</span>
+                            {/if}
+                        </div>
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+        </section>
         {/if}
     {/foreach}
 {/if}
