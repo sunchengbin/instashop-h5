@@ -23,7 +23,7 @@ require(['base','hbs','text!views/app/modeltype.hbs','insjs','fastclick','config
                 var _type = $(this).attr('data-type'),
                     _index = Base.others.getUrlPrem('index');
                 PaqPush && PaqPush('选择模块类型',_type);
-                Insjs.judgeVersion(3.9,function(){
+                Insjs.judgeVersion('3.9',function(){
                     try{
                         goUrlStatistics(_type);
                     }catch(error){
