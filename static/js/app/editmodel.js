@@ -103,43 +103,50 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     _data = _this.model_data[_index]?_this.model_data[_index]:null;
                 PaqPush && PaqPush('编辑模块',_type);
                 //_paq.push(['trackEvent', '编辑模板', 'click', _type]);
-                if(_type == 'item_list_type'){//选择
-                    var _sel_htm = '<div>';
-                    if(_this.item_list_type == 2){
-                        _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn checked-btn icon-radioed-font" data-type="2"></i>'+Lang.H5_ITEM_LIST_TYPE_TWO+'</p>';
-                        _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn icon-radio-font" data-type="3"></i>'+Lang.H5_ITEM_LIST_TYPE_THREE+'</p>';
-                    }else{
-                        _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn icon-radio-font" data-type="2"></i>'+Lang.H5_ITEM_LIST_TYPE_TWO+'</p>';
-                        _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn checked-btn icon-radioed-font" data-type="3"></i>'+Lang.H5_ITEM_LIST_TYPE_THREE+'</p>';
-                    }
-                    _sel_htm += '</div>';
-                    Dialog.confirm({
-                        top_txt : '',//可以是html
-                        body_txt : _sel_htm,
-                        cf_fn : function(){
-                            var _type = Number($('.j_item_list_type .checked-btn').attr('data-type'));
-                            if(_type != _this.item_list_type){//列表类型被修改了
-                                _this.item_list_type = _type;
-                                _this.setDefaultItemType(_type);
-                            }
-                        }
+                if(_type == 'three_li_items' && !Insjs.testJudgeVersion(3.9)){
+                    PaqPush && PaqPush('版本低于3.9','version='+window.navigator.userAgent.match(/Instashop\-(.+?)\-/)[1]||"");
+                    Dialog.alert({
+                        body_txt: 'Silakan update ke 3.9 sebelum menggunakan fitur ini'
                     });
                 }else{
-                    var _param = {
-                        param:{
-                            type:'edit_model',
-                            param:{
-                                index : _index,
-                                type : _type,
-                                title : _data&&_data.title?Common.decodeSingleQuotes(_data.title):'',
-                                data : _data&&_data.data?_this.tranfansModelData(_data.data):[]
-                            }
+                    if(_type == 'item_list_type'){//选择
+                        var _sel_htm = '<div>';
+                        if(_this.item_list_type == 2){
+                            _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn checked-btn icon-radioed-font" data-type="2"></i>'+Lang.H5_ITEM_LIST_TYPE_TWO+'</p>';
+                            _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn icon-radio-font" data-type="3"></i>'+Lang.H5_ITEM_LIST_TYPE_THREE+'</p>';
+                        }else{
+                            _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn icon-radio-font" data-type="2"></i>'+Lang.H5_ITEM_LIST_TYPE_TWO+'</p>';
+                            _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn checked-btn icon-radioed-font" data-type="3"></i>'+Lang.H5_ITEM_LIST_TYPE_THREE+'</p>';
                         }
-                    };
-                    //console.log(_param);
-                    bridge.callHandler('insSocket',_param, function(response) {
-                        return null;
-                    });
+                        _sel_htm += '</div>';
+                        Dialog.confirm({
+                            top_txt : '',//可以是html
+                            body_txt : _sel_htm,
+                            cf_fn : function(){
+                                var _type = Number($('.j_item_list_type .checked-btn').attr('data-type'));
+                                if(_type != _this.item_list_type){//列表类型被修改了
+                                    _this.item_list_type = _type;
+                                    _this.setDefaultItemType(_type);
+                                }
+                            }
+                        });
+                    }else{
+                        var _param = {
+                            param:{
+                                type:'edit_model',
+                                param:{
+                                    index : _index,
+                                    type : _type,
+                                    title : _data&&_data.title?Common.decodeSingleQuotes(_data.title):'',
+                                    data : _data&&_data.data?_this.tranfansModelData(_data.data):[]
+                                }
+                            }
+                        };
+                        //console.log(_param);
+                        bridge.callHandler('insSocket',_param, function(response) {
+                            return null;
+                        });
+                    }
                 }
             });
             $('body').on('click','.j_item_list_type',function(){
