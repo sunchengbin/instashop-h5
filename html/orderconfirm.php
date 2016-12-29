@@ -55,7 +55,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
       </script>
 </head>
-<body data-spider="2cj9l5q4">
+<body data-spider="2cj9l5q4"></body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/orderconfirm.js?v=1482734600390"></script>
