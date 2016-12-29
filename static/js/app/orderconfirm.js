@@ -5,10 +5,11 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
     var OrderConfirmHtm = {
         init: function () {
             var _this = this;
-            var _groupid = _this._groupid = Base.others.getUrlPrem("groupid",location.href);
+            var _isGroup = _this.isGroup =  Cart().getIsGroup();
+            var _groupid = Base.others.getUrlPrem("groupid",location.href);
             var _data = localStorage.getItem('ShopData');
             var _express_free = _this.getExpressFreeType(JSON.parse(_data),_groupid);
-            var _carts = _this.carts =  !!_groupid?JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid]:Cart().getCarts(),
+            var _carts = _this.carts =  _isGroup?JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid]:Cart().getCarts(),
                 _address = JSON.parse(_data).Address,
                 _htm = Hbs.compile(OrderConfirm)({
                     data: JSON.parse(_data),
@@ -45,7 +46,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
         },
         //1免邮 0付费
         getExpressFreeType:function(data,groupid){
-            if(!!groupid){
+            var _this = this;
+            if(!!groupid&&_this.isGroup){
                 return (function(){
                     var _group = data.GroupCart[data.ShopInfo.id].group[groupid];
                     for(var key in _group){
@@ -53,7 +55,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     }
                 })();
             }else{
-                return data.shop_info.express_free;
+                return data.ShopInfo.express_free;
             }
         },
         testExpress: function (list) {
@@ -372,8 +374,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     "wduss": "",
                     "address_id": "0",
                     "note": "",
-                    "pay_way": Cart().getIsGroup()?"11":"13",
-                    "pay_type": Cart().getIsGroup()?1:0,
+                    "pay_way": 11,
+                    "pay_type": 1,
                     "seller_id": _seller_id,
                     "buyer_id": "0",
                     "buyer_note": _note,
