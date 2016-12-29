@@ -32,10 +32,10 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         var init_data = JSON.parse(<?php echo get_init_data($path, $params); ?>);
     </script>
 </head>
-<body data-spider="wqk2d63u">
+<body data-spider="wqk2d63u"></body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <script src="../js/base/require-config.js"></script>
-    <script src="<?=STATIC_HOST?>/js/app/orderdetail.js?v=1482734600390"></script>
+    <!--<script src="../js/base/require-config.js"></script>-->
+    <script src="<?=STATIC_HOST?>/js/dist/app/orderdetail.js?v=1482734600390"></script>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
