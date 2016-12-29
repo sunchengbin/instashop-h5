@@ -336,6 +336,9 @@
         {/foreach}
     {/if}
     {if $INDEX_DATA.item_list.list|@count}
+    <div class="insert-box j_insert_model">
+    <button class="handle-btn insert-btn">Sisipkan</button>
+    </div>
     <section class="items-box model-box j_default_item_box" data-spider="default-item">
         <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
             <button class="edit-btn j_edit_model handle-btn" data-type="item_list_type">Ubah</button>
