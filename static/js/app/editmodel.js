@@ -14,6 +14,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     data: [init_data.shop]
                 }
             ];
+            _this.clearNullData();
             _this.getItemListType();
             Lazyload();
             _this.initRotateBanner();
@@ -23,6 +24,16 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             },function(){
                 _this.handelFn();
             });
+        },
+        clearNullData:function(){
+            var _this =this,
+                _arr = [];
+            $.each(_this.model_data,function(i,item){
+                if(item != null){
+                    _arr.push(item);
+                }
+            });
+            _this.model_data = _arr;
         },
         setBodyHeight:function(){
             $('body').height($(window).height());
@@ -50,6 +61,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         },
         handelFn : function(bridge){
             var _this = this;
+            //console.log(_this.model_data);
             if(!bridge){
                 alert('not find bridge');
                 return;

@@ -3,11 +3,13 @@
 <div class="edit-wraper-box" data-spider="edit-wraper-box">
     {if $INDEX_DATA.template|@count}
         {foreach from=$INDEX_DATA.template item=model name=foo}
-            {if $smarty.foreach.foo.index gt 0}
-            <div class="insert-box j_insert_model">
-            <button class="handle-btn insert-btn">Sisipkan</button>
-            </div>
-            {/if}
+            {if $model && ($model.type != 'item_list_type')}
+                {if $smarty.foreach.foo.index gt 0}
+                    <div class="insert-box j_insert_model">
+                        <button class="handle-btn insert-btn">Sisipkan</button>
+                    </div>
+                {/if}
+             {/if}
             {if $model.type eq 'edit_signage'}
             <section class="shop-header" data-spider="edit-signage">
                 <button class="handle-btn j_edit_model" data-type="edit_signage">Ubah</button>
