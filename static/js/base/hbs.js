@@ -265,8 +265,10 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
 
     HBS.registerHelper('groupcarts', function (cart) {
         var _htm = '';
-        if (!cart) {
-            return '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>';
+        console.log("开始组装groupcarts")
+        if (!cart||cart.length==0) {
+            _htm += '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>';
+            return _htm +='<div class="no_goods_box"><button class="btn j_go_shop confirm-btn">'+Lang.H5_BROWSE_SHOP+'</button></div>'
         }
         if (!Base.others.testObject(cart)) {
             var _curIndex = 1;
@@ -287,8 +289,10 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
     });
     HBS.registerHelper('carts', function (cart) {
         var _htm = '';
-        if (!cart) {
-            return '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>';
+        console.log("开始组装carts"+cart.length)
+        if (!cart||cart.length==0) {
+            _htm += '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>';
+            return _htm +='<div class="no_goods_box"><button class="btn j_go_shop confirm-btn">'+Lang.H5_BROWSE_SHOP+'</button></div>'
         }
         if (!Base.others.testObject(cart)) {
             _htm = assembleCartItem(cart)

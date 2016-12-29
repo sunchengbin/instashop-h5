@@ -53,3 +53,6 @@ body {
 .hide {
     display: none;
 }
+.no_goods_box {
+    padding: 0 1rem;
+}
