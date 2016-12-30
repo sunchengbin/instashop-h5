@@ -299,6 +299,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
         }else{
             _htm = '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>'
         }
+        return _htm;
     })
     HBS.registerHelper('itemlist', function (carts) {
         var _htm = '';
