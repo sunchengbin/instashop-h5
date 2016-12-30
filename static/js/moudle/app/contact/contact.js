@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/8/30.
  * 联系卖家插件
  */
-define(['common','base','hbs','text!views/moudle/contact.hbs','btn','lang','fastclick'],function(Common,Base,Hbs,Contact,Btn,Lang,Fastclick){
+define(['common','base','btn','lang','fastclick'],function(Common,Base,Btn,Lang,Fastclick){
     var LogisticsPlug = function(opts){
         var _this = this;
         _this.config = $.extend({
@@ -65,10 +65,39 @@ define(['common','base','hbs','text!views/moudle/contact.hbs','btn','lang','fast
         },
         createHtm : function(info){
             if($('.j_logistics_plug').length)return this;
-            info.lang = Lang;
-            var PlugHtm= Hbs.compile(Contact)(info);
+            //info.lang = Lang;
+            //var PlugHtm= Hbs.compile(Contact)(info);
+            var PlugHtm= this.createPlugHtm(info.data);
             $('body').prepend(PlugHtm);
             return this;
+        },
+        createPlugHtm : function(data){
+            var _htm = '';
+            _htm += '<section class="logistics-plug j_logistics_plug">'
+            +'<div class="logistics-plug-top clearfix">'
+            +'<i class="icon iconfont j_close_logistics_btn fr icon-cancel-font"></i>'
+            +'<p class="title"></p>'
+            +'</div>'
+            +'<div class="logistics-plug-info" data-spider="contact-box">'
+            +'<ul class="logistics-list">';
+            if(data.line){
+                _htm += '<li class="j_logistics_li b-bottom">'
+                +'<a href="javascript:;" spm-auto="联系卖家line" spm-click="go-line" class="j_goto_line">'+Lang.H5_LINE_CONTACT_ME+'</a>'
+                +'</li>';
+            }
+            if(data.tel){
+                _htm +='<li class="j_logistics_li b-bottom">'
+                    +'<a spm-auto="给卖家打电话" spm-click="go-tel" href="tel:'+data.tel+'">'+Lang.H5_CALL_TELEPHONE+'</a>'
+                    +'</li>'
+                    +'<li class="j_logistics_li">'
+                    +'<a spm-auto="给卖家发短信" spm-click="go-sms" href="sms:'+data.tel+'">'+Lang.H5_SEND_SMS+'</a>'
+                    +'</li>';
+            }
+            _htm += '</ul>'
+                +'</div>'
+                +'</section>'
+                +'<section class="logistics_plug_cover j_logistics_plug_cover"></section>';
+            return _htm
         },
         toShow : function(){
             var _this = this,
