@@ -7,7 +7,8 @@ require(['base','hbs','text!views/app/modeltype.hbs','insjs','fastclick','config
         init : function(){
             var _this = this,
                 _htm= Hbs.compile(Modeltype)({
-                    lang:Lang
+                    lang:Lang,
+                    show:Insjs.testJudgeVersion(3.9)
                 });
             $('body').prepend(_htm);
             Insjs.WebOnReady(function(bridge){
