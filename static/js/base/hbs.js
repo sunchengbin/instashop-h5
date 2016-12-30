@@ -297,7 +297,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
         if (!Base.others.testObject(cart)) {
             _htm = assembleCartItem(cart)
         }else{
-            _htm = '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>'
+            _htm = '<li class="empty-cart no_goods_box">' + Lang.H5_SHOPING_NO_GOODS + '</li>'
         }
         return _htm;
     })
