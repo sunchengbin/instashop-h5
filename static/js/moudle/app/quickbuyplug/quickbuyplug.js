@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/8/16.
  * 快速添加到
  */
-define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','lang','config','fastclick'],function(Common,Base,Hbs,Buyplughtm,Btn,Dialog,Lang,Config,Fastclick){
+define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','lang','config','fastclick','contact'],function(Common,Base,Hbs,Buyplughtm,Btn,Dialog,Lang,Config,Fastclick,Contact){
     var QuickBuyPlug = function(opts){
         var _this = this;
         _this.config = $.extend({
@@ -130,16 +130,55 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','la
                                 }
                             });
                         }else{
-                            //正常操作
-                            _config.callback && _config.callback({
-                                id : _item.id,
-                                sku : _sku_title,
-                                stock : _stock,
-                                price : _sku_price,
-                                num : _num,
-                                sku_id: _sku_id
-                            });
-                            _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
+                            if(_stock >= 9999999){
+                                Dialog.confirm({
+                                    top_txt : '',//可以是html
+                                    cfb_txt : Lang.H5_IS_CONFIRM,//确定按钮文字
+                                    cab_txt : Lang.H5_GO_CONTACT,//取消按钮的文字
+                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_STOCK+'</p>',
+                                    cf_fn : function(){
+                                        //正常操作
+                                        _config.callback && _config.callback({
+                                            id : _item.id,
+                                            sku : _sku_title,
+                                            stock : '',
+                                            price : _sku_price,
+                                            num : _num,
+                                            sku_id: _sku_id
+                                        });
+                                        _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
+                                    },
+                                    c_fn : function(){
+                                        _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
+                                        _this.contact = Contact({
+                                            data : {
+                                                tel : !init_data.shop.line_url&&!init_data.shop.phone?'':init_data.shop.phone,
+                                                line : init_data.shop.line_url
+                                            },
+                                            lang:Lang
+                                        });
+                                        _this.contact.createHtm({
+                                            data : {
+                                                tel : !init_data.shop.line_url&&!init_data.shop.phone?'':init_data.shop.phone,
+                                                line : init_data.shop.line_url
+                                            },
+                                            lang:Lang
+                                        }).toShow();
+                                    }
+                                });
+                            }else{
+                                //正常操作
+                                _config.callback && _config.callback({
+                                    id : _item.id,
+                                    sku : _sku_title,
+                                    stock : _stock,
+                                    price : _sku_price,
+                                    num : _num,
+                                    sku_id: _sku_id
+                                });
+                                _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
+                            }
+
                         }
                     }
                 }

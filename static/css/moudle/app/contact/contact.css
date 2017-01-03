@@ -1,38 +1,38 @@
-.logistics-plug {
+.contact-plug {
     width: 100%;
     position: fixed;
     background-color: #fff;
     padding-top:1rem;
 }
-.logistics-plug-top,.logistics-list{
+.contact-plug-top,.contact-list{
     margin:0 1rem;
 }
-.logistics-list li{
+.contact-list li{
     padding: .5rem 0;
     color: #666;
     font-size: 1.4rem;
     line-height: 3rem;
     text-align: center;
 }
-.logistics-list li a{
+.contact-list li a{
     color: #52CDF0;
     display: block;
 }
-.logistics-list li span{
+.contact-list li span{
     color: #52CDF0;
 }
-.logistics-list .b-bottom:last-child::after{
+.contact-list .b-bottom:last-child::after{
     border: 0;
     display: none;
 }
-.logistics-list{
+.contact-list{
     padding-bottom: .5rem;
     position: relative;
 }
-.logistics-plug-info{
+.contact-plug-info{
 
 }
-.logistics-list::after{
+.contact-list::after{
     position: absolute;
     left:-50%;
     right: -50%;
@@ -43,10 +43,10 @@
     transform: scale(0.5);
     border-bottom: 1px solid #d8d8d8;
 }
-.logistics-list:last-child::after{
+.contact-list:last-child::after{
     border-bottom:none;
 }
-.logistics-list i{
+.contact-list i{
     font-size: 2rem;
     vertical-align: middle;
     margin-right: .5rem;
@@ -54,26 +54,26 @@
     height: 2rem;
     line-height: 1.8rem;
 }
-.logistics-plug-top{
+.contact-plug-top{
     position: absolute;
     right: 0;
     top: .5rem;
     z-index: 4000;
 }
-.logistics-plug-top i{
+.contact-plug-top i{
     font-size: 1.8rem;
     color: #999;
     width: 40px;
     text-align: right;
 }
-.logistics-plug-top p{
+.contact-plug-top p{
     font-size: 1.4rem;
     line-height: 3rem;
 }
 .btn{
     border-radius: 0;
 }
-.logistics_plug_cover{
+.contact-plug-cover{
     display: none;
     position: fixed;
     left: 0;

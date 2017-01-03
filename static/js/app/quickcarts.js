@@ -75,7 +75,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                 _price = _wraper.find('.price > span'),
                 _num = _wraper.find('.j_item_num');
             _type.html(Lang.H5_SKU + ': ' + opts.sku);
-            _stock.html(Lang.H5_STOCK + ': ' + opts.stock);
+            opts.stock && _stock.html(Lang.H5_STOCK + ': ' + opts.stock);
             _price.html(Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(opts.price));
             _num.val(opts.num).attr('data-price', opts.price);
             _this.resetCarts(opts);
@@ -106,9 +106,10 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     _num = Number(_item_num.val()),
                     _stock = $(this).attr('data-stock'),
                     _dataId = $(this).attr('data-id');
-                if (_this.isDetailQuick && _this.testDetailCarts()) {
+                if (_this.isDetailQuick && _this.testDetailCarts()) {//有sku的单品快速下单
                     _this.quickbuyplug.toShow();
                 } else {
+                    //console.log(_stock <= _num)
                     if (_stock && _stock <= _num) {
                         return;
                     }
