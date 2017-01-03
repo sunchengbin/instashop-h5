@@ -106,7 +106,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     _num = Number(_item_num.val()),
                     _stock = $(this).attr('data-stock'),
                     _dataId = $(this).attr('data-id');
-                if (_this.isDetailQuick && _this.testDetailCarts()) {//有sku的单品快速下单
+                if (_this.isDetailQuick && _this.testDetailCarts()) { //有sku的单品快速下单
                     _this.quickbuyplug.toShow();
                 } else {
                     //console.log(_stock <= _num)
@@ -347,7 +347,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                 _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
                 return;
             }
-            PaqPush && PaqPush('下单','submit-order');
+            PaqPush && PaqPush('下单', 'submit-order');
             Ajax.postJsonp({
                 url: Config.actions.orderConfirm,
                 data: {
@@ -359,7 +359,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     //_that.cancelDisable();
                     //_that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                     if (obj.code == 200) {
-                        PaqPush && PaqPush('成功生成订单','orderId=' + obj.order.id + ',sellerId=' + init_data.shop.id);
+                        PaqPush && PaqPush('成功生成订单', 'orderId=' + obj.order.id + ',sellerId=' + init_data.shop.id);
                         //_paq.push(['trackEvent', '成功生成订单', 'orderId=' + obj.order.id + ',sellerId=' + init_data.shop.id, '']);
                         var _bank_info = JSON.stringify(obj.order.pay_info.banks),
                             _name = $.trim($('.j_name').val()),
@@ -675,7 +675,14 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     'action': 'express_fee',
                     'shop_id': init_data.shop.id,
                     'items': _this.getAddressItems(),
-                    'supply_shop_id':(function(){var _supply_shop_id;for(var key in init_data.carts){_supply_shop_id=init_data.carts[key].item.supply_shop.id;return _supply_shop_id;}})()||"",
+                    'supply_shop_id': (function () {
+                        var _supply_shop_id;
+                        for (var key in init_data.carts) {
+                            console.log("key:"+key)
+                            _supply_shop_id = !!init_data.carts[key].item.supply_shop?init_data.carts[key].item.supply_shop.id:"";
+                            return _supply_shop_id;
+                        }
+                    })() || "",
                     'receive_addr': encodeURIComponent(_addr)
                 }
             };
