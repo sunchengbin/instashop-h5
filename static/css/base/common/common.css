@@ -22,7 +22,7 @@ html { font-size: 62.5%; }
     html { font-size: 62.5% !important; }
 }
 body, button, input, select,option,td, textarea /* for ie */ {
-    font: 1.2rem/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font: 12px/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 .fl{
     float:left;

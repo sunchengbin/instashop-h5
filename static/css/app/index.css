@@ -297,7 +297,7 @@ footer .btn i{
     left: 0;
     width: 100%;
     background-color: #fafafa;
-    z-index: 10;
+    z-index: 200;
 }
 .index-footer ul{
     display: -webkit-box;

@@ -133,6 +133,10 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                         num : _num,
                         price:_sku_price,
                         isbuynow:_is_buy_now,
+                        noStockCallback : function(){
+                            _this.config.noStockCallback && _this.config.noStockCallback();
+                            _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
+                        },
                         callback : function(){
                             _this.addSuccessFn(_is_buy_now,_w_h);
                         }
@@ -164,6 +168,10 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                                 },
                                 price:_sku_price,
                                 isbuynow:_is_buy_now,
+                                noStockCallback : function(){
+                                    _this.config.noStockCallback && _this.config.noStockCallback();
+                                    _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
+                                },
                                 num : _num,
                                 callback : function(){
                                     _this.addSuccessFn(_is_buy_now,_w_h);
@@ -228,7 +236,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
         toHide : function(plug_buy,height){
             var _this = this;
             _this.animate(plug_buy,height,'true');
-            _this.cover.hide();
+            _this.cover && _this.cover.hide();
         },
         resetInfo : function(){
             var _this = this;

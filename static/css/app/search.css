@@ -61,9 +61,9 @@ body{
 .search-box i{
     position: absolute;
     left: .3rem;
-    top: .2rem;
+    /*top: .2rem;*/
     color: #999;
-    font-size: 18px;
+    font-size: 22px;
 }
 .key-box{
     margin-right: 4rem;

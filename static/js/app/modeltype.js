@@ -2,12 +2,13 @@
  * Created by sunchengbin on 2016/11/11.
  * 选择模块类型
  */
-require(['base','hbs','text!views/app/modeltype.hbs','insjs','fastclick','config','lang'],function(Base,Hbs,Modeltype,Insjs,FastClick,Config,Lang){
+require(['base','hbs','text!views/app/modeltype.hbs','insjs','fastclick','config','lang','dialog'],function(Base,Hbs,Modeltype,Insjs,FastClick,Config,Lang,Dialog){
     var ModelType = {
         init : function(){
             var _this = this,
                 _htm= Hbs.compile(Modeltype)({
-                    lang:Lang
+                    lang:Lang,
+                    show:Insjs.testJudgeVersion(3.9)
                 });
             $('body').prepend(_htm);
             Insjs.WebOnReady(function(bridge){
@@ -23,24 +24,31 @@ require(['base','hbs','text!views/app/modeltype.hbs','insjs','fastclick','config
                 var _type = $(this).attr('data-type'),
                     _index = Base.others.getUrlPrem('index');
                 PaqPush && PaqPush('选择模块类型',_type);
-                try{
-                    goUrlStatistics(_type);
-                }catch(error){
-                    console.log('error')
-                }
-                var _param = {
-                    param:{
-                        type:'edit_model',
-                        param:{
-                            index : _index,
-                            type: _type,
-                            data: []
-                        }
+                if(_type == 'three_li_items' && !Insjs.testJudgeVersion(3.9)){
+                    PaqPush && PaqPush('版本低于3.9','version='+window.navigator.userAgent.match(/Instashop\-(.+?)\-/)[1]||"");
+                    Dialog.alert({
+                        body_txt: 'Silakan update ke 3.9 sebelum menggunakan fitur ini'
+                    });
+                }else{
+                    try{
+                        goUrlStatistics(_type);
+                    }catch(error){
+                        console.log('error')
                     }
-                };
-                bridge.callHandler('insSocket',_param, function(response) {
-                    return null;
-                });
+                    var _param = {
+                        param:{
+                            type:'edit_model',
+                            param:{
+                                index : _index,
+                                type: _type,
+                                data: []
+                            }
+                        }
+                    };
+                    bridge.callHandler('insSocket',_param, function(response) {
+                        return null;
+                    });
+                }
             });
             (function (win, dom) {
                 var SwitchTap = {

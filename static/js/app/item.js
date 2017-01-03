@@ -21,7 +21,27 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     auto: false
                 });
                 Buyplug({
-                    data: init_data
+                    data: init_data,
+                    noStockCallback : function(){
+                        if ($('.j_show_contact').length) {
+                            _this.contact = Contact({
+                                data: {
+                                    tel: init_data.item.shop.phone,
+                                    line: init_data.item.shop.line_url
+                                },
+                                lang: Lang
+                            });
+                            _this.contact.createHtm({
+                                data: {
+                                    tel: init_data.item.shop.phone,
+                                    line: init_data.item.shop.line_url
+                                },
+                                lang: Lang
+                            }).toShow();
+                        }else{
+                            location.href = init_data.item.shop.line_url;
+                        }
+                    }
                 });
                 Viewer({
                     btn: '.j_banner li',

@@ -87,6 +87,24 @@
         </section>
     </div>
     <div class="decorate-sample-panel" id="recommended">
+        {{#if show}}
+            <section>
+                <p><span>{{lang.H5_ITEM_LIST_TYPE_THREE}}</span></p>
+                <div class="recommended-4 decorate-sample-block j_model_type" data-type="three_li_items">
+                    <ul class="clearfix">
+                        <li class="">
+                            <div class="lazy"></div>
+                        </li>
+                        <li class="">
+                            <div class="lazy"></div>
+                        </li>
+                        <li class="">
+                            <div class="lazy"></div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        {{/if}}
         <section>
             <p><span>{{lang.H5_MODELTYPE_TYPE_TWOCOLUMN}}</span></p>
             <div class="decorate-sample-block recommended-1 j_model_type" data-type="two_li_items">
@@ -136,6 +154,5 @@
                 </ul>
             </div>
         </section>
-
     </div>
 </div>

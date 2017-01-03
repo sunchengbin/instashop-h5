@@ -1,5 +1,7 @@
 /*模版页样式表*/
 @import "../base/base.css";
+@import "../moudle/ui/dialog/dialog.css";
+@import "../moudle/app/common/common.css";
 
 html, body {
     font-family: Roboto-Regular;
@@ -446,4 +448,16 @@ html, body {
     content: '';
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
+}
+.recommended-4{
+    padding: 1rem 1rem 1rem .5rem;
+}
+.recommended-4 li{
+    float: left;
+    width: 33.33333%;
+    padding-left: .5rem;
+    box-sizing: border-box;
+}
+.recommended-4 li .lazy{
+    background-color: #eee;
 }

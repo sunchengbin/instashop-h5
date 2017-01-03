@@ -26,6 +26,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body>
     <button class="j_btn">get_seller_info</button>
+    <a href="http://line.naver.jp/R/msg/text/?http%3A%2F%2Fm-test.instashop.co.id%2Fs%2F40780">
+     <button>share-to-line</button>
+    </a>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
     <script>

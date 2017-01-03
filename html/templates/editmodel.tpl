@@ -3,11 +3,13 @@
 <div class="edit-wraper-box" data-spider="edit-wraper-box">
     {if $INDEX_DATA.template|@count}
         {foreach from=$INDEX_DATA.template item=model name=foo}
-            {if $smarty.foreach.foo.index gt 0}
-            <div class="insert-box j_insert_model">
-            <button class="handle-btn insert-btn">Sisipkan</button>
-            </div>
-            {/if}
+            {if $model && ($model.type != 'item_list_type')}
+                {if $smarty.foreach.foo.index gt 0}
+                    <div class="insert-box j_insert_model">
+                        <button class="handle-btn insert-btn">Sisipkan</button>
+                    </div>
+                {/if}
+             {/if}
             {if $model.type eq 'edit_signage'}
             <section class="shop-header" data-spider="edit-signage">
                 <button class="handle-btn j_edit_model" data-type="edit_signage">Ubah</button>
@@ -304,10 +306,41 @@
                 {/foreach}
                 </ul>
             </section>
+            {elseif $model.type eq 'three_li_items'}
+            <section class="item-list-box model-box j_model_box" data-spider="three_li_items">
+                {if $smarty.foreach.foo.index eq 1}
+                    <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
+                        <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button>
+                    </div>
+                {else}
+                    <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
+                        <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button><button class="move-btn j_moveup_model handle-btn">Pindah ke Atas</button>
+                    </div>
+                {/if}
+                {if $model.title}
+                    <p class="item-title b-bottom"><span></span>{$model.title}</p>
+                {/if}
+                <ul class="three-items-list clearfix">
+                    {foreach $model.data as $item}
+                    <li>
+                        <a class="item-info j_item_info" href="javascript:;">
+                            <div class="lazy" data-img="{$item.img|list_img}">
+                                {if $item.is_discount}
+                                <span>-{$item.discount.value}%</span>
+                                {/if}
+                            </div>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </section>
             {/if}
         {/foreach}
     {/if}
     {if $INDEX_DATA.item_list.list|@count}
+    <div class="insert-box j_insert_model">
+    <button class="handle-btn insert-btn">Sisipkan</button>
+    </div>
     <section class="items-box model-box j_default_item_box" data-spider="default-item">
         <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
             <button class="edit-btn j_edit_model handle-btn" data-type="item_list_type">Ubah</button>
