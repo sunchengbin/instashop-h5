@@ -290,13 +290,13 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                             }
                         }
                     } else { //多件商品快速下单
-                        if (!_this.testShopCarts(function () {
-                                _this.quickSubmit(_that, dom);
-                            })) {
+                        if (!_this.testShopCarts(
+                                function () {_this.quickSubmit(_that, dom);},
+                                function () {_that.cancelDisable();_that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);}
+                            )) {
                             return;
                         }
                     }
-
                     _this.quickSubmit(_that, dom);
                 }
             });
@@ -843,7 +843,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
             }
             return false;
         },
-        testShopCarts: function (callback) { //提交前验证快速购物车中是否有没有价格或者没设置库存的
+        testShopCarts: function (callback,cancelcallback) { //提交前验证快速购物车中是否有没有价格或者没设置库存的
             var _this = this,
                 _carts = _this.carts,
                 _beal = true;
@@ -863,6 +863,9 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                             body_txt: '<p class="dialog-body-p">' + Lang.H5_NO_STOCK + '</p>',
                             cf_fn: function () {
                                 callback && callback();
+                            },
+                            c_fn : function(){
+                                cancelcallback && cancelcallback();
                             }
                         });
                         _beal = false;

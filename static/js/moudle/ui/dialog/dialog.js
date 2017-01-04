@@ -46,16 +46,19 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
                 _wraper = _this.opts.wraper,
                 _e_type = _this.opts.event_type;
             _wraper.on(_e_type,'.j_c_btn',function(){
-                _this.opts.c_fn && _this.opts.c_fn.call(_this,$(this));
-                _this.remove();
+                _this.remove(function(){
+                    _this.opts.c_fn && _this.opts.c_fn.call(_this,$(this));
+                });
             });
             _wraper.on(_e_type,'.j_cf_btn',function(){
-                _this.opts.cf_fn && _this.opts.cf_fn.call(_this,$(this));
-                _this.remove();
+                _this.remove(function(){
+                    _this.opts.cf_fn && _this.opts.cf_fn.call(_this,$(this));
+                });
             });
             _wraper.on(_e_type,'.j_ca_btn',function(){
-                _this.opts.c_fn && _this.opts.c_fn.call(_this,$(this));
-                _this.remove();
+                _this.remove(function(){
+                    _this.opts.c_fn && _this.opts.c_fn.call(_this,$(this));
+                });
             });
             $('.j_dialog_cover').on(_e_type,function(){
                 if(!_this.opts.cover_event){
@@ -69,20 +72,28 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
             this.opts.wraper.show();
             this.opts.body_fn&&this.opts.body_fn.call(_this,$(this));
         },
-        remove : function(){
+        remove : function(callback){
+            var _this = this;
+            _this.removeCover();
+            callback && callback();
+            _this.removeDialog();
+        },
+        removeCover : function(){
+            $('.j_dialog_cover').remove();
+        },
+        removeDialog : function(){
             var _this = this,
                 animation_css = _this.opts.animation_css;
             if(animation_css){
                 this.opts.wraper.css(animation_css);
                 setTimeout(function(){
                     _this.opts.wraper.remove();
-                    $('.j_dialog_cover').remove();
+                    //$('.j_dialog_cover').remove();
                 },1000);
             }else{
                 this.opts.wraper.remove();
-                $('.j_dialog_cover').remove();
+                //$('.j_dialog_cover').remove();
             }
-
         },
         createTop : function(){
             var _this = this,
