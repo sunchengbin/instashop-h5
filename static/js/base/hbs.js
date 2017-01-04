@@ -279,6 +279,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
                 _htm+=assembleCartItem(_groupItem,key)
                 _htm+='</ul></div>'
             })
+            //TODO 用Cart().getGroupNum代替
             if(_curIndex==2){
                 _htm = _htm.replace("cart-supplier-header","cart-supplier-header hide");
             }

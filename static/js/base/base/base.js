@@ -5,16 +5,24 @@
  * 所有内部变量已下划线方式开头和分割例如（_this_dom）
  * function命名用驼峰式例如（getFrameContet）
  */
-define(function(){
+define(function () {
     /*
-    * dom属性是用于存储关于dom操作的小方法
-    * num属性用于存储数字方面的计算小方法
-    * arr属性用于存储数组的一些特殊方法
-    * str属性用于存储字符串的一些特殊方法
-    * reg属性存储正则表达式
-    * others存储其他一些需要的方法和内容
-    * */
-    var SUN = {version:'1.0',dom:{},num:{},arr:{},str:{},reg:{},others:{}};
+     * dom属性是用于存储关于dom操作的小方法
+     * num属性用于存储数字方面的计算小方法
+     * arr属性用于存储数组的一些特殊方法
+     * str属性用于存储字符串的一些特殊方法
+     * reg属性存储正则表达式
+     * others存储其他一些需要的方法和内容
+     * */
+    var SUN = {
+        version: '1.0',
+        dom: {},
+        num: {},
+        arr: {},
+        str: {},
+        reg: {},
+        others: {}
+    };
 
 
 
@@ -22,10 +30,10 @@ define(function(){
 
         /*获取特定iframe的内容，一般用于读取利用iframe实现的异步提交（例如上传图片后返回值的读取）*/
 
-        getFrameContent : function(frameid){
+        getFrameContent: function (frameid) {
             var _document = document,
                 _navigator = navigator;
-            return _navigator.userAgent.indexOf('MSIE') != -1?_document.frames[frameid].document.body.innerHTML:_document.getElementById(frameid).contentDocument.body.innerHTML;
+            return _navigator.userAgent.indexOf('MSIE') != -1 ? _document.frames[frameid].document.body.innerHTML : _document.getElementById(frameid).contentDocument.body.innerHTML;
         },
 
         /*给input添加验证事件*/
@@ -37,7 +45,7 @@ define(function(){
                     _val = $.trim(_this.val());
                 _old_num = (isNaN(_val) || Number(_val) < 0) ? _old_num : _val;
                 _this.val(_old_num);
-                callback && callback.call(_this,_old_num);
+                callback && callback.call(_this, _old_num);
             });
         }
     };
@@ -45,10 +53,10 @@ define(function(){
 
         /*计算字符串的字节长度*/
 
-        charLength : function(str){
+        charLength: function (str) {
             var _bytesCount = 0,
                 i = 0;
-            for ( ; i < str.length; i++) {
+            for (; i < str.length; i++) {
                 if (/^[\u0000-\u00ff]$/.test(str.charAt(i))) {
                     _bytesCount += 1;
                 } else {
@@ -62,13 +70,13 @@ define(function(){
 
         /*处理浮点型数字*/
 
-        transToFloat : function(num,exponent){
-            if(isNaN(num)){
+        transToFloat: function (num, exponent) {
+            if (isNaN(num)) {
                 alert('请传数字');
                 return;
             }
             num = Number(num);
-            return parseInt(num * Math.pow(10, exponent) + 0.5)/Math.pow(10,exponent);
+            return parseInt(num * Math.pow(10, exponent) + 0.5) / Math.pow(10, exponent);
         }
     };
 
@@ -76,8 +84,8 @@ define(function(){
 
         /*数组去重*/
 
-        unique : function(arr){
-            if(!SUN.others.isArray(arr)){
+        unique: function (arr) {
+            if (!SUN.others.isArray(arr)) {
                 alert('请传入数组');
                 return;
             }
@@ -101,14 +109,14 @@ define(function(){
          * 用于同一页面出现多个弹窗或者弹出块的zindex值
          */
 
-        zIndex : 2015,
+        zIndex: 2015,
 
         /*
          * json对象转化为字符串
          * 一般用于把json对象转换成字符串赋值给页面input的value中
          */
 
-        jsonToStr : function(o){
+        jsonToStr: function (o) {
             var _r = [];
             if (typeof o == "string") {
                 return "\"" + o.replace(/([\'\"\\])/g, "\\$1").replace(/(\n)/g, "\\n").replace(/(\r)/g, "\\r").replace(/(\t)/g, "\\t") + "\"";
@@ -133,25 +141,27 @@ define(function(){
         /*[{name:1},...]用于这种对象数组根据某一个属性的排序方法*/
         /*升序排列*/
 
-        ascFn : function(data,proname){
+        ascFn: function (data, proname) {
             return data.sort(asc);
-            function asc(a,b){
+
+            function asc(a, b) {
                 return a[proname] - b[proname];
             }
         },
 
         /*降序排列*/
 
-        descFn : function(data,proname){
+        descFn: function (data, proname) {
             return data.sort(desc);
-            function desc(a,b){
+
+            function desc(a, b) {
                 return b[proname] - a[proname];
             }
         },
 
         /*获取url中的特定参数值*/
 
-        getUrlPrem : function(key,url){
+        getUrlPrem: function (key, url) {
             var _search = url || document.location.search,
                 _pattern = new RegExp("[?&]" + key + "\=([^&]+)", "g"),
                 _matcher = _pattern.exec(_search),
@@ -171,62 +181,62 @@ define(function(){
         },
 
         /*setTimeout实现的轮询
-        *   fn方法有一个callback函数代表fn函数执行完之后需要执行的
-        *   base.others.setInterval(fn,1000);
-        *   var i = 0;
-        *   function fn(callback){
-        *       console.log(this)
-        *       callback(function(){
-        *       if(i == 4){
-        *           this.interval = false;
-        *       }
-        *       console.log(i++)
-        *   });
-        * */
+         *   fn方法有一个callback函数代表fn函数执行完之后需要执行的
+         *   base.others.setInterval(fn,1000);
+         *   var i = 0;
+         *   function fn(callback){
+         *       console.log(this)
+         *       callback(function(){
+         *       if(i == 4){
+         *           this.interval = false;
+         *       }
+         *       console.log(i++)
+         *   });
+         * */
 
-        setInterval : function(fn,time){
+        setInterval: function (fn, time) {
             var _this = this;
             _this.interval = true;
-            setTimeout(function(){
+            setTimeout(function () {
                 var _args = arguments;
-                fn.call(_this,function(callback){
+                fn.call(_this, function (callback) {
                     callback.call(_this);
-                    _this.interval && setTimeout(_args.callee,time);
+                    _this.interval && setTimeout(_args.callee, time);
                 });
 
-            },time);
+            }, time);
         },
 
         /*
-        * 克隆object对象
-        * 应用场景(通过原型继承实现的接口在调用时,为了防止重复功用统一个对象造成互相干扰.)
-        * */
+         * 克隆object对象
+         * 应用场景(通过原型继承实现的接口在调用时,为了防止重复功用统一个对象造成互相干扰.)
+         * */
 
-        clone : function(object){
-            var F = function(){};
+        clone: function (object) {
+            var F = function () {};
             F.prototype = object;
             return new F();
         },
 
         /*
-        * extend继承父类
-        * */
-        extend : function(father,chirld){
-            var F = function(){};
+         * extend继承父类
+         * */
+        extend: function (father, chirld) {
+            var F = function () {};
             F.prototype = chirld.prototype;
             father.prototype = new F();
             father.prototype.constructor = father;
             father.chirld = chirld.prototype;
-            if(chirld.prototype.constructor == Object.prototype.constructor){
+            if (chirld.prototype.constructor == Object.prototype.constructor) {
                 chirld.prototype.constructor = chirld;
             }
         },
         /*
-        *   判断浏览器
+         *   判断浏览器
          */
-        verifyBower : function(){
+        verifyBower: function () {
             var u = navigator.userAgent;
-            return {//移动终端浏览器版本信息
+            return { //移动终端浏览器版本信息
                 trident: u.indexOf('Trident') > -1, //IE内核
                 presto: u.indexOf('Presto') > -1, //opera内核
                 webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
@@ -240,7 +250,7 @@ define(function(){
             };
         },
         //根据
-        webpLog : function(){
+        webpLog: function () {
             //if(this.getUrlPrem('webpLog')){
             //    return true;
             //}
@@ -248,10 +258,10 @@ define(function(){
             return true;
         },
         /*
-        *   通过判断浏览器是否支持webp的图片优化,修改图片地址.进行图片优化.
+         *   通过判断浏览器是否支持webp的图片优化,修改图片地址.进行图片优化.
          */
-        getImageUrl : function (url, enable) {
-            var isWebpSupported = function(){
+        getImageUrl: function (url, enable) {
+            var isWebpSupported = function () {
                 var ua = navigator.userAgent;
                 var android = ua.match(/(android) ([\.\d]+)/i) || [];
                 var name = ua.match(/(ucweb|opera|chrome|mozilla|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
@@ -288,95 +298,95 @@ define(function(){
             return url;
         },
         //替换图片url进行裁图
-        cutImg : function(url,width,bg){
-            var _ww = width?width:$(window).width(),
+        cutImg: function (url, width, bg) {
+            var _ww = width ? width : $(window).width(),
                 _this = this;
             _ww = 640;
-            url = url.replace(/http\:/,'https:');
-            if(!bg){
-                if(/w\=\d+/g.test(url)){
-                    url = url.replace(/w\=\d+/g,'w='+_ww);
-                    url = url.replace(/h\=\d+/g,'h='+_ww);
-                }else{
-                    if(/\?/g.test(url)){
-                        url = url + '&w='+_ww+'&h='+_ww;
-                    }else{
-                        url = url + '?w='+_ww+'&h='+_ww;
+            url = url.replace(/http\:/, 'https:');
+            if (!bg) {
+                if (/w\=\d+/g.test(url)) {
+                    url = url.replace(/w\=\d+/g, 'w=' + _ww);
+                    url = url.replace(/h\=\d+/g, 'h=' + _ww);
+                } else {
+                    if (/\?/g.test(url)) {
+                        url = url + '&w=' + _ww + '&h=' + _ww;
+                    } else {
+                        url = url + '?w=' + _ww + '&h=' + _ww;
                     }
                 }
-                if(!/cp\=/g.test(url)){
+                if (!/cp\=/g.test(url)) {
                     url = url + '&cp=1';
                 }
-            }else{
-                url = url + '?w='+_ww;
+            } else {
+                url = url + '?w=' + _ww;
             }
-            return _this.getImageUrl(url,true);
+            return _this.getImageUrl(url, true);
         },
         /*
          *判断是不是数组
          */
-        isArray : function(arr){
+        isArray: function (arr) {
             if (typeof Array.isArray === "function") {
                 return Array.isArray(arr);
-            }else{
+            } else {
                 return Object.prototype.toString.call(arr) === "[object Array]";
             }
         },
         /*
          *循环遍历//array
          */
-        each : function(arr,callback){
+        each: function (arr, callback) {
             var i = 0,
                 _len = arr.length;
-            if(this.isArray(arr)){
-                for(i;i < _len;i++){
-                    callback && callback(arr[i],i);
+            if (this.isArray(arr)) {
+                for (i; i < _len; i++) {
+                    callback && callback(arr[i], i);
                 }
-            }else{
+            } else {
                 throw new Error('not Array');
             }
         },
         //for循环
-        forEach : function(arr,callback){
+        forEach: function (arr, callback) {
             var i = 0,
-            _len = arr.length;
-            for(i;i < _len;i++){
-                callback && callback(i,arr[i]);
+                _len = arr.length;
+            for (i; i < _len; i++) {
+                callback && callback(i, arr[i]);
             }
         },
         /*
          *将人民币格式化印尼货币格式
          */
-        priceFormat : function( price ) {
-            if(price<0){return 0;}
+        priceFormat: function (price) {
+            if (price < 0) {
+                return 0;
+            }
             // e.g. 100.00 => 100
             // e.g 1000.00 => 1.000
             // 去掉 "." 后面的所有数字，然后每隔 3 个数加一个点
             var price, result = [];
             price = '' + price;
-            price = price.split( '.' )[ 0 ];
-            price = price.split( '' ).reverse();
-            this.each( price, function( num, index ) {
-                if( index && ( index % 3 === 0 ) ) {
-                    result.push( '.' )
+            price = price.split('.')[0];
+            price = price.split('').reverse();
+            this.each(price, function (num, index) {
+                if (index && (index % 3 === 0)) {
+                    result.push('.')
                 }
-                result.push( num )
-            } );
-            result = result.reverse().join( '' );
+                result.push(num)
+            });
+            result = result.reverse().join('');
             return result;
         },
         // 验证是否为空{}
-        testObject : function(obj){
+        testObject: function (obj) {
             var _bool = true;
-            if(typeof obj == 'object'){
-                for(var name in obj)
-                {
-                    if(obj.hasOwnProperty(name))
-                    {
+            if (typeof obj == 'object') {
+                for (var name in obj) {
+                    if (obj.hasOwnProperty(name)) {
                         _bool = false;
                     }
                 }
-            }else{
+            } else {
                 console.log('请传object');
                 _bool = false;
             }
@@ -384,30 +394,78 @@ define(function(){
         },
 
         //获取cookie
-        getCookie : function( name ) {
-            var arr, reg = new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-            if( arr = document.cookie.match(reg)) {
+        getCookie: function (name) {
+            var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+            if (arr = document.cookie.match(reg)) {
                 return unescape(arr[2]);
             } else {
                 return null;
             }
         },
         //判断是自定义域名还是m.instashop.co.id
-        isCustomHost : function(){
+        isCustomHost: function () {
             var _host_name = location.hostname;
-            if(/^m\-test\.instashop\.co\.id/g.test(_host_name) || /^m\.instashop\.co\.id/g.test(_host_name)){
-                return true;//是自定义域名
+            if (/^m\-test\.instashop\.co\.id/g.test(_host_name) || /^m\.instashop\.co\.id/g.test(_host_name)) {
+                return true; //是自定义域名
             }
             return false;
         },
         //回车转换为<br>
-        transTxt : function(str){
-            return str.replace(/\n/g,"<br>");
+        transTxt: function (str) {
+            return str.replace(/\n/g, "<br>");
         },
         //判断是不是
-        isInsBrowser : function(){
+        isInsBrowser: function () {
             return /Instashop/g.test(navigator.userAgent);
         }
     };
+
+    // 垫片主要为了以防firefox
+    // Object.keys
+    if (!Object.keys) {
+        Object.keys = (function () {
+            'use strict';
+            var hasOwnProperty = Object.prototype.hasOwnProperty,
+                hasDontEnumBug = !({
+                    toString: null
+                }).propertyIsEnumerable('toString'),
+                dontEnums = [
+                    'toString',
+                    'toLocaleString',
+                    'valueOf',
+                    'hasOwnProperty',
+                    'isPrototypeOf',
+                    'propertyIsEnumerable',
+                    'constructor'
+                ],
+                dontEnumsLength = dontEnums.length;
+
+            return function (obj) {
+                if (typeof obj !== 'object' && (typeof obj !== 'function' || obj === null)) {
+                    throw new TypeError('Object.keys called on non-object');
+                }
+
+                var result = [],
+                    prop, i;
+
+                for (prop in obj) {
+                    if (hasOwnProperty.call(obj, prop)) {
+                        result.push(prop);
+                    }
+                }
+
+                if (hasDontEnumBug) {
+                    for (i = 0; i < dontEnumsLength; i++) {
+                        if (hasOwnProperty.call(obj, dontEnums[i])) {
+                            result.push(dontEnums[i]);
+                        }
+                    }
+                }
+                return result;
+            };
+        }());
+    }
+
+
     return SUN;
 })

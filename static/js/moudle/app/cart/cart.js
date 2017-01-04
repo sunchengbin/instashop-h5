@@ -349,6 +349,13 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
             }
             return _num;
         },
+        getGroupNum:function(){
+            var _this = this, _groupCart =_this.data.GroupCart;
+            if(!_groupCart){
+                return 0;
+            }
+            return Object.keys(_groupCart[_this.data.ShopInfo.id].group).length;
+        },
         verifyItem: function (num, stock) {
             if (num > stock) {
                 return false;
