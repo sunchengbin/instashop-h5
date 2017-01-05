@@ -8,15 +8,16 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             var _isGroup = _this.isGroup =  Cart().getIsGroup();
             var _groupid = Base.others.getUrlPrem("groupid",location.href);
             var _data = localStorage.getItem('ShopData');
-            var _express_free = _this.getExpressFreeType(JSON.parse(_data),_groupid);
             var _carts;
             if(_isGroup){
-                console.log("groupid"+_groupid);
                 _carts = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid];
             }else{
                 _carts = Cart().getCarts();
             }
+            var _express_free = _this.getExpressFreeType(_carts);
             _this.carts = _carts;
+            console.log("carts")
+            console.log(_carts)
             var _address = JSON.parse(_data).Address,
                 _htm = Hbs.compile(OrderConfirm)({
                     data: JSON.parse(_data),
@@ -52,17 +53,14 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             _this.handleFn();
         },
         //1免邮 0付费
-        getExpressFreeType:function(data,groupid){
+        getExpressFreeType:function(carts){
             var _this = this;
-            if(!!groupid&&_this.isGroup){
-                return (function(){
-                    var _group = data.GroupCart[data.ShopInfo.id].group[groupid];
-                    for(var key in _group){
-                        return _group[key].item.supply_shop.express_free;
-                    }
-                })();
-            }else{
-                return data.ShopInfo.express_free;
+            for(var key in carts){
+                if(!!carts[key].item.supply_shop){
+                    return carts[key].item.supply_shop.express_free;
+                }else{
+                    return carts[key].item.shop.express_free
+                }
             }
         },
         testExpress: function (list) {
