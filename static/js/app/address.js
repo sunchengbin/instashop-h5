@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastclick', 'dialog', 'cart', 'common','validator'], function (Hbs, Addresshtm, City, Config, Lang, Fastclick, Dialog, Cart, Common,Validator) {
+require(['base','hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastclick', 'dialog', 'cart', 'common','validator'], function (Base,Hbs, Addresshtm, City, Config, Lang, Fastclick, Dialog, Cart, Common,Validator) {
     var Address = {
         init: function () {
             var _this = this,
@@ -192,7 +192,8 @@ require(['hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastcli
                             var _data = JSON.parse(localStorage.getItem('ShopData')),
                                 _addr = _country + ',' + _city + ',' + _province;
                             var _item_str = JSON.stringify(_this.getAddressItems());
-                            location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&items=' + encodeURIComponent(_item_str);
+                            var _groupid = Base.others.getUrlPrem("groupid",location.href);
+                            location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid='+_groupid+ '&items=' + encodeURIComponent(_item_str);
                         }, 0);
                     })) {
                     PaqPush && PaqPush('取消保存','');

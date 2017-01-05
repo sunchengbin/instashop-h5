@@ -204,7 +204,6 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
             if (!_items.length) {
                 return;
             }
-
             var reqData = {
                 edata: {
                     action: 'check',
@@ -233,7 +232,11 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                             _shop_data.Cart[_shop_data.ShopInfo.id] = _that.carts;
                                             localStorage.setItem('ShopData', JSON.stringify(_shop_data));
                                             setTimeout(function () {
-                                                location.href = Config.host.hrefUrl + 'address.php';
+                                                if(!!groupid){
+                                                    location.href = Config.host.hrefUrl + 'address.php?groupid='+ groupid;
+                                                }else{
+                                                    location.href = Config.host.hrefUrl + 'address.php';
+                                                }
                                             }, 1);
                                         }
                                     });

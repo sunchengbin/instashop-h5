@@ -9,8 +9,14 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             var _groupid = Base.others.getUrlPrem("groupid",location.href);
             var _data = localStorage.getItem('ShopData');
             var _express_free = _this.getExpressFreeType(JSON.parse(_data),_groupid);
-            var _carts = _this.carts =  _isGroup?JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid]:Cart().getCarts(),
-                _address = JSON.parse(_data).Address,
+            var _carts;
+            if(_isGroup){
+                console.log("groupid"+_groupid);
+                _carts = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid];
+            }else{
+                _carts = Cart().getCarts();
+            }
+            var _address = JSON.parse(_data).Address,
                 _htm = Hbs.compile(OrderConfirm)({
                     data: JSON.parse(_data),
                     carts: _carts,
