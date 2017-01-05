@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/7/26.
  */
-require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator'], function (Hbs, QuickCarts, Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator) {
+require([ 'cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator'], function ( Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator) {
     var QuickCartsHtm = {
         init: function () {
             var _this = this,
@@ -9,7 +9,6 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                 _address = _data ? JSON.parse(_data).Address : null,
                 _address_id = _this.getAddressId(),
                 _is_detail = _address_id.length == 5 ? true : false;
-            //_is_detail = /\_/g.test(_address_id);
             //初始化本地数据
             if (!_address) {
                 //地址信息
@@ -20,9 +19,9 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     "country_code": "62",
                     "email": "",
                     "address": {
-                        "province": "", //省
-                        "city": "", //市
-                        "country": "", //街道
+                        "province": '', //省
+                        "city": '', //市
+                        "country": '', //街道
                         "street": "", //详细地址
                         "post": "" //邮编
                     }
@@ -48,18 +47,19 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                 }
             })();
             //页面初始化
-            var _hb_opts = {
-                carts: init_data.carts,
-                shop: init_data.shop,
-                address: _address,
-                name: '',
-                telephone: '',
-                host: Config.host,
-                lang: Lang
-            };
-            var _htm = Hbs.compile(QuickCarts)(_hb_opts);
-            $('.j_php_loding').remove();
-            $('body').prepend(_htm);
+            _this.initLocalStorage(_address);
+            //var _hb_opts = {
+            //    carts: init_data.carts,
+            //    shop: init_data.shop,
+            //    address: _address,
+            //    name: '',
+            //    telephone: '',
+            //    host: Config.host,
+            //    lang: Lang
+            //};
+            //var _htm = Hbs.compile(QuickCarts)(_hb_opts);
+            //$('.j_php_loding').remove();
+            //$('body').prepend(_htm);
             if (_this['province']) {
                 _this.getLogistics();
             }
@@ -74,6 +74,30 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
             }
             _this.getTotal();
             _this.handleFn();
+        },
+        initLocalStorage : function(address){//根据本地地址数据自动填写用户信息
+            address.name && $('.j_name').val(address.name);
+            address.telephone && $('.j_tel').val(address.telephone);
+            address.address.street && $('.j_street').val(address.address.street);
+            address.address.post && $('.j_post').val(address.address.post);
+            if(address.address.province){
+                $('.j_province').html(address.address.province);
+                $('[data-name="city"]').addClass('act');
+            }else{
+                $('.j_province').html(Lang.H5_PROVINCE);
+            }
+            if(address.address.city){
+                $('.j_city').html(address.address.city);
+                $('[data-name="city"]').addClass('act');
+                $('[data-name="country"]').addClass('act');
+            }else{
+                $('.j_city').html(Lang.H5_CITY);
+            }
+            if(address.address.country){
+                $('.j_country').html(address.address.country);
+            }else{
+                $('.j_country').html(Lang.H5_DISTRICT);
+            }
         },
         selectQuick: function (opts) {
             var _this = this,
@@ -677,9 +701,6 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
         },
         getLogistics: function (type) {
             var _this = this;
-            _this.loading = Dialog.loading({
-                width: 100
-            });
             var _province = $.trim($('.j_province').html()),
                 _city = $.trim($('.j_city').html()),
                 _country = $.trim($('.j_country').html()),
@@ -687,6 +708,9 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
             if (!_province || !_city || !_country) {
                 return;
             }
+            _this.loading = Dialog.loading({
+                width: 100
+            });
             var _data = {
                 edata: {
                     'action': 'express_fee',

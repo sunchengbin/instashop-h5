@@ -197,6 +197,9 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','la
             this.wraper = $('.j_buy_plug');
             return this;
         },
+        createBuyPlugHtm : function(){
+
+        },
         toShow : function(){
             var _this = this,
                 _wraper = $('.j_buy_plug'),
