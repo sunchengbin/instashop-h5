@@ -726,15 +726,19 @@ require([ 'cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', '
                     _this.loading.remove();
                     if (obj.code == 200) {
                         //检查是否为自营还是代理 如果是代理取supply_shop_info中的express_free
+                        console.log("dd")
+                        console.log(_this.supply_shop_info)
                         if (!!_this.supply_shop_info) {
                             //代理的
                             if (_this.supply_shop_info.express_free == 0) {
                                 if (_this.testExpress(obj.express_fee_list.list)) {
+                                    console.log("1")
                                     $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
                                     $('.j_logistics').show();
                                     $('.j_submit_buy').show();
                                     type && $('body').scrollTop(9999);
                                 } else {
+                                    console.log("2")
                                     var _li = '<li class="no-logistic">' + Lang.H5_NO_LOGISTICS_COMPANY + '</li>';
                                     $('.j_logistics ul').html(_li);
                                     $('.j_logistics').show();
@@ -786,6 +790,7 @@ require([ 'cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', '
                         '</li>';
                 }
             }
+            console.log(_htm)
             return _htm;
         },
         testCarts: function (carts, type) {

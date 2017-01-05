@@ -201,3 +201,9 @@ function getCartPrice($carts){
 function transCartPrice($carts){
     return priceFormat(getCartPrice($carts));
 }
+
+function isExistSupplyShop ($carts) {
+    foreach($carts as $cart){
+        return $cart['item']['supply_shop']?true:false;
+    }
+}

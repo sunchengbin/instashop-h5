@@ -55,13 +55,22 @@
                     <input class="j_post" maxlength="10" type="text" value="" placeholder="Kode Pos: Pilih, Sebaiknya diisi" />
                 </div>
             </div>
-            {if $INDEX_DATA.shop.express_free eq 0}
+            {if $INDEX_DATA.carts|isExistSupplyShop}
                 <div class="hiden j_logistics">
                     <p class="address-title">Pilih Jenis Paket Pengiriman</p>
                     <ul class="logistics-list j_logistics_info">
                     </ul>
                 </div>
+                {else}
+                {if $INDEX_DATA.shop.express_free eq 0}
+                    <div class="hiden j_logistics">
+                        <p class="address-title">Pilih Jenis Paket Pengiriman</p>
+                        <ul class="logistics-list j_logistics_info">
+                        </ul>
+                    </div>
+                {/if}
             {/if}
+            
             <div class="total-box">
                 {if $INDEX_DATA.shop.shop_discount}
                 <div class="reduc-info" style="display:none">
