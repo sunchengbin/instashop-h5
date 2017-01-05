@@ -1,31 +1,43 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick) {
+require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick','debug'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick,Debug) {
     var CartIndex = {
         init: function () {
             var _data = JSON.parse(localStorage.getItem('ShopData'));
             var _carts = Cart().getCarts(),
                 isGroup = this.isGroup = Cart().getIsGroup();
-var GroupCart = this.GroupCart = isGroup ?((_data.GroupCart?_data.GroupCart:null)?_data.GroupCart[_data.ShopInfo.id]:null):null;
+            var GroupCart = this.GroupCart = (function () {
+                if (!isGroup || !_data.GroupCart) return null;
+                return _data.GroupCart[_data.ShopInfo.id];
+            })()
             var _htm = Hbs.compile(Carthtm)({
                 cart: _carts,
                 groupCart: GroupCart,
                 lang: Lang,
-                isGroup: isGroup
+                isGroup: isGroup,
+                isDrop: _data.ShopInfo.drop
             });
             this.carts = _carts;
-            console.log("购物车");
-            console.log(_carts);
             $('body').prepend(_htm);
             this.handleFn();
+            var _cart_debug = {
+                "drop开关":_data.ShopInfo.drop,
+                "组购物车":GroupCart,
+                "组数量":Cart().getGroupNum(),
+                "原始购物车":_carts,
+            }
+            Debug.log({
+                title:"购物车分组信息",
+                data:_cart_debug
+            })
         },
         handleFn: function () {
             var _that = this;
             Fastclick.attach(document.body);
             $('body').on('click', '.j_del_cart', function () {
                 var _this = $(this);
-                PaqPush && PaqPush('从购物车删除','itemId='+_this.attr('data-id')+',sellerId='+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id);
+                PaqPush && PaqPush('从购物车删除', 'itemId=' + _this.attr('data-id') + ',sellerId=' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id);
                 //_paq.push(['trackEvent', '从购物车删除', 'itemId='+_this.attr('data-id')+',sellerId='+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id, '']);
                 Dialog.confirm({
                     cover_event: true,
@@ -34,20 +46,22 @@ var GroupCart = this.GroupCart = isGroup ?((_data.GroupCart?_data.GroupCart:null
                             var _htm = '<ul class=""><li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li></ul><button class="btn j_go_shop confirm-btn">' + Lang.H5_BROWSE_SHOP + '</button>';
                             $('.j_cart_list').html(_htm);
                         }, _this.attr('group-id') || "");
+                        delete _that.carts[_this.attr('data-id')];
                         $('.j_cart_item[data-id="' + _this.attr('data-id') + '"]').remove();
                         if (_that.isGroup) {
                             var $curGroupChildren = $('.cart-supplier-card[group-id="' + _this.attr('group-id') + '"]>ul>li');
                             if ($curGroupChildren.length == 0) {
                                 $('.cart-supplier-card[group-id="' + _this.attr('group-id') + '"]').remove();
+                                $('.j_cart_list').addClass("no_goods_box");
                             }
+                            _that.GroupCart = Cart().convertGroup(Cart().getCart())[JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id];
                         }
-                        delete _that.carts[_this.attr('data-id')];
                     }
                 });
             });
             $('body').on('click', '.j_go_back', function () {
                 //TODO 返回埋点
-                PaqPush && PaqPush('返回','');
+                PaqPush && PaqPush('返回', '');
                 var _fromurl = localStorage.getItem('FromUrl');
                 if (!_fromurl) {
                     var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
@@ -57,14 +71,14 @@ var GroupCart = this.GroupCart = isGroup ?((_data.GroupCart?_data.GroupCart:null
                 }
             });
             $('body').on('click', '.j_go_shop', function () {
-                PaqPush && PaqPush('去逛逛','');
+                PaqPush && PaqPush('去逛逛', '');
                 //_paq.push(['trackEvent', '去逛逛', 'click', '']);
                 var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
                 location.href = _url;
             });
             $('body').on('click', '.j_submit_btn', function () {
                 var _groupid = $(this).attr('group-id');
-                PaqPush && PaqPush('去结算','');
+                PaqPush && PaqPush('去结算', '');
                 _that.subData(_groupid);
             });
             if (Base.others.getUrlPrem('error')) {
@@ -181,8 +195,6 @@ var GroupCart = this.GroupCart = isGroup ?((_data.GroupCart?_data.GroupCart:null
                     }
                 }
             }
-            console.log("提交数据开始");
-            console.log(_arr);
             return _arr;
         },
         subData: function (groupid) {
@@ -233,7 +245,7 @@ var GroupCart = this.GroupCart = isGroup ?((_data.GroupCart?_data.GroupCart:null
                                         _addr = _address.country + ',' + _address.city + ',' + _address.province;
                                     setTimeout(function () {
                                         var _item_str = JSON.stringify(_that.getAddressItems(groupid));
-                                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + reqData.edata.seller_id + '&addr=' + encodeURIComponent(_addr)+'&groupid='+groupid + '&items=' + encodeURIComponent(_item_str);
+                                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + reqData.edata.seller_id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + groupid + '&items=' + encodeURIComponent(_item_str);
                                     }, 1);
                                 }
                             }

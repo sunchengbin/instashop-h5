@@ -295,18 +295,14 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
             }
             //同步删除原版的
             delete _this.cart[_this.data.ShopInfo.id][id];
+             _this.data.Cart = _this.cart;
+            // if (!!_this.data.SupplyShopInfo) {
+            _this.data.GroupCart = _this.convertGroup(_this.cart);
+            // }
+            localStorage.setItem('ShopData', JSON.stringify(_this.data));
             if (Base.others.testObject(_this.cart[_this.data.ShopInfo.id])) {
                 callback && callback();
             }
-            _this.data.Cart = _this.cart;
-            if (!!_this.data.SupplyShopInfo) {
-                // delete _this.data.GroupCart[_this.data.ShopInfo.id].group[groupid][id];
-                // if($.isEmptyObject(_this.data.GroupCart[_this.data.ShopInfo.id].group[groupid])){
-                //     delete _this.data.GroupCart[_this.data.ShopInfo.id].group[groupid];
-                // }
-                _this.data.GroupCart = _this.convertGroup(_this.cart);
-            }
-            localStorage.setItem('ShopData', JSON.stringify(_this.data));
         },
         getIsGroup: function () {
             var _this = this;
@@ -322,6 +318,14 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
             })();
             if(_isGroup==void(0))_isGroup=false;
             return _isGroup;
+        },
+        getCart:function(){
+            var _this = this;
+            _this.initCart();
+            if (!_this.cart) {
+                return null;
+            }
+            return _this.cart;
         },
         getCarts: function () {
             var _this = this;

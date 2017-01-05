@@ -39,6 +39,14 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
             }
             //本地cart
             _this.carts = init_data.carts;
+            //判断是否为供应商产品
+            _this.supply_shop_info = (function () {
+                var _supply_shop;
+                for (var key in init_data.carts) {
+                    _supply_shop = !!init_data.carts[key].item.supply_shop ? init_data.carts[key].item.supply_shop : null;
+                    return _supply_shop;
+                }
+            })();
             //页面初始化
             var _hb_opts = {
                 carts: init_data.carts,
@@ -75,9 +83,9 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                 _price = _wraper.find('.price > span'),
                 _num = _wraper.find('.j_item_num');
             _type.html(Lang.H5_SKU + ': ' + opts.sku);
-            if(opts.stock){
+            if (opts.stock) {
                 _stock.html(Lang.H5_STOCK + ': ' + opts.stock);
-            }else{
+            } else {
                 _stock.html('');
             }
             _price.html(Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(opts.price));
@@ -291,8 +299,13 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                         }
                     } else { //多件商品快速下单
                         if (!_this.testShopCarts(
-                                function () {_this.quickSubmit(_that, dom);},
-                                function () {_that.cancelDisable();_that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);}
+                                function () {
+                                    _this.quickSubmit(_that, dom);
+                                },
+                                function () {
+                                    _that.cancelDisable();
+                                    _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                                }
                             )) {
                             return;
                         }
@@ -679,35 +692,50 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     'action': 'express_fee',
                     'shop_id': init_data.shop.id,
                     'items': _this.getAddressItems(),
-                    'supply_shop_id': (function () {
-                        var _supply_shop_id;
-                        for (var key in init_data.carts) {
-                            console.log("key:"+key)
-                            _supply_shop_id = !!init_data.carts[key].item.supply_shop?init_data.carts[key].item.supply_shop.id:"";
-                            return _supply_shop_id;
-                        }
-                    })() || "",
+                    'supply_shop_id': !!_this.supply_shop_info ? _this.supply_shop_info.id : "",
                     'receive_addr': encodeURIComponent(_addr)
                 }
             };
+            console.log("supply_shop_id" + _data.edata.supply_shop_id);
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.expressesList + '?param=' + JSON.stringify(_data),
                 function (obj) {
                     _this.loading.remove();
                     if (obj.code == 200) {
-                        if (init_data.shop.express_free == 0) {
-                            if (_this.testExpress(obj.express_fee_list.list)) {
-                                $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
-                                $('.j_logistics').show();
-                                $('.j_submit_buy').show();
-                                type && $('body').scrollTop(9999);
-                            } else {
-                                var _li = '<li class="no-logistic">' + Lang.H5_NO_LOGISTICS_COMPANY + '</li>';
-                                $('.j_logistics ul').html(_li);
-                                $('.j_logistics').show();
-                                $('.j_submit_buy').hide();
-                                //不能提交订单
+                        //检查是否为自营还是代理 如果是代理取supply_shop_info中的express_free
+                        if (!!_this.supply_shop_info) {
+                            //代理的
+                            if (_this.supply_shop_info.express_free == 0) {
+                                if (_this.testExpress(obj.express_fee_list.list)) {
+                                    $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
+                                    $('.j_logistics').show();
+                                    $('.j_submit_buy').show();
+                                    type && $('body').scrollTop(9999);
+                                } else {
+                                    var _li = '<li class="no-logistic">' + Lang.H5_NO_LOGISTICS_COMPANY + '</li>';
+                                    $('.j_logistics ul').html(_li);
+                                    $('.j_logistics').show();
+                                    $('.j_submit_buy').hide();
+                                    //不能提交订单
+                                }
+                            }
+                        } else {
+                            //自营
+                            if (init_data.shop.express_free == 0) {
+                                if (_this.testExpress(obj.express_fee_list.list)) {
+                                    $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
+                                    $('.j_logistics').show();
+                                    $('.j_submit_buy').show();
+                                    type && $('body').scrollTop(9999);
+                                } else {
+                                    var _li = '<li class="no-logistic">' + Lang.H5_NO_LOGISTICS_COMPANY + '</li>';
+                                    $('.j_logistics ul').html(_li);
+                                    $('.j_logistics').show();
+                                    $('.j_submit_buy').hide();
+                                    //不能提交订单
+                                }
                             }
                         }
+
                     }
                 },
                 function (error) {
@@ -843,7 +871,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
             }
             return false;
         },
-        testShopCarts: function (callback,cancelcallback) { //提交前验证快速购物车中是否有没有价格或者没设置库存的
+        testShopCarts: function (callback, cancelcallback) { //提交前验证快速购物车中是否有没有价格或者没设置库存的
             var _this = this,
                 _carts = _this.carts,
                 _beal = true;
@@ -864,7 +892,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                             cf_fn: function () {
                                 callback && callback();
                             },
-                            c_fn : function(){
+                            c_fn: function () {
                                 cancelcallback && cancelcallback();
                             }
                         });
