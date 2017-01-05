@@ -38,14 +38,13 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
             $('body').on('click', '.j_del_cart', function () {
                 var _this = $(this);
                 PaqPush && PaqPush('从购物车删除', 'itemId=' + _this.attr('data-id') + ',sellerId=' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id);
-                //_paq.push(['trackEvent', '从购物车删除', 'itemId='+_this.attr('data-id')+',sellerId='+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id, '']);
                 Dialog.confirm({
                     cover_event: true,
                     cf_fn: function () {
                         Cart().removeItem(_this.attr('data-id'), function () {
                             var _htm = '<ul class=""><li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li></ul><button class="btn j_go_shop confirm-btn">' + Lang.H5_BROWSE_SHOP + '</button>';
                             $('.j_cart_list').html(_htm);
-                        }, _this.attr('group-id') || "");
+                        });
                         delete _that.carts[_this.attr('data-id')];
                         $('.j_cart_item[data-id="' + _this.attr('data-id') + '"]').remove();
                         if (_that.isGroup) {

@@ -279,7 +279,9 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
                 }, 300);
             }
         },
-        clearCarts: function () { //创建订单后清空购物车
+        //创建订单后清空购物车
+        //按分组清空
+        clearCarts: function () { 
             var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null;
             if (_json_shop_data) {
                 _json_shop_data.Cart = null;
@@ -287,7 +289,7 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
                 localStorage.setItem('ShopData', JSON.stringify(_json_shop_data));
             }
         },
-        removeItem: function (id, callback, groupid) {
+        removeItem: function (id, callback) {
             var _this = this;
             _this.initCart();
             if (!_this.cart) {

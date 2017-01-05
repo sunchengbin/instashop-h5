@@ -147,7 +147,14 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                 localStorage.setItem('OrderTotal', _total);
                                 localStorage.setItem('BankInfo', _bank_info);
                                 localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
-                                Cart().clearCarts();
+                                for(var index in _items){
+                                    if(!!_items[index].item_sku){
+                                        Cart().removeItem(_items[index].item_sku);
+                                    }else{
+                                        Cart().removeItem(_items[index].itemID);
+                                    }
+                                }
+                                // Cart().clearCarts();
                                 setTimeout(function () {
                                     location.href = Config.host.hrefUrl + 'ordersuccess.php?price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400);
                                 }, 100);
