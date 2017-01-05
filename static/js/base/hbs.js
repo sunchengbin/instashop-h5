@@ -406,8 +406,6 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
 
     HBS.registerHelper('cartsconfirm', function (carts) {
         var _htm = '';
-        console.log("测试")
-        console.log(carts)
         if (!Base.others.testObject(carts)) {
             for (var item in carts) {
                 var _id = (carts[item].sku ? carts[item].sku.id : carts[item].item.id);
