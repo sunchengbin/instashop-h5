@@ -16,6 +16,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             }else{
                 _carts = Cart().getCarts();
             }
+            _this.carts = _carts;
             var _address = JSON.parse(_data).Address,
                 _htm = Hbs.compile(OrderConfirm)({
                     data: JSON.parse(_data),
@@ -264,6 +265,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             var _this = this;
             var _carts = _this.carts,
                 _arr = [];
+                console.log("getItems:");
+                console.log(_carts);
             if (!_carts) {
                 Dialog.tip({
                     top_txt: '', //可以是html
