@@ -10,7 +10,6 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
         if (data) {
             var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null;
             if (_json_shop_data && data) {
-                alert("bug----ddd")
                 if (_json_shop_data.ShopInfo.id != data.item.shop.id) {
                     _json_shop_data['ShopInfo'] = data.item.shop;
                     _json_shop_data['ClientUuid'] = data.client_uuid;
@@ -25,8 +24,10 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
                     Address: null //不需要根据店铺切换而改变的本地数据
                 };
             }
+            alert("bug----ddd")
             localStorage.setItem('ShopData', JSON.stringify(_json_shop_data));
         }
+        alert("bug----eee")
         this.initCart();
     };
     Cart.prototype = {
