@@ -7,17 +7,12 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
         DROPSHIPER_FLAG: 2
     }
     var Cart = function (data) {
-
         if (data) {
             var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null;
             if (_json_shop_data && data) {
-                try {
-                    if (_json_shop_data.ShopInfo.id != data.item.shop.id) {
-                        _json_shop_data['ShopInfo'] = data.item.shop;
-                        _json_shop_data['ClientUuid'] = data.client_uuid;
-                    }
-                } catch (error) {
-                    alert(error)
+                if (_json_shop_data.ShopInfo.id != data.item.shop.id) {
+                    _json_shop_data['ShopInfo'] = data.item.shop;
+                    _json_shop_data['ClientUuid'] = data.client_uuid;
                 }
             } //存在且id不相等跳出
             else {
@@ -31,8 +26,6 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
             }
             localStorage.setItem('ShopData', JSON.stringify(_json_shop_data));
         }
-
-
         this.initCart();
     };
     Cart.prototype = {
