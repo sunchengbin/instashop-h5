@@ -7,11 +7,10 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
         DROPSHIPER_FLAG: 2
     }
     var Cart = function (data) {
-        alert("bug---cart---construct")
         if (data) {
-            alert("bug---cart---data")
             var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null;
             if (_json_shop_data && data) {
+                alert("bug----ddd")
                 if (_json_shop_data.ShopInfo.id != data.item.shop.id) {
                     _json_shop_data['ShopInfo'] = data.item.shop;
                     _json_shop_data['ClientUuid'] = data.client_uuid;
@@ -28,7 +27,6 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
             }
             localStorage.setItem('ShopData', JSON.stringify(_json_shop_data));
         }
-        alert("bug---cart---init")
         this.initCart();
     };
     Cart.prototype = {
