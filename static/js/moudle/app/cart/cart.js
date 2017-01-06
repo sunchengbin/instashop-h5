@@ -7,12 +7,17 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
         DROPSHIPER_FLAG: 2
     }
     var Cart = function (data) {
+
         if (data) {
             var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null;
             if (_json_shop_data && data) {
-                if (_json_shop_data.ShopInfo.id != data.item.shop.id) {
-                    _json_shop_data['ShopInfo'] = data.item.shop;
-                    _json_shop_data['ClientUuid'] = data.client_uuid;
+                try {
+                    if (_json_shop_data.ShopInfo.id != data.item.shop.id) {
+                        _json_shop_data['ShopInfo'] = data.item.shop;
+                        _json_shop_data['ClientUuid'] = data.client_uuid;
+                    }
+                } catch (error) {
+                    alert(error)
                 }
             } //存在且id不相等跳出
             else {
@@ -26,6 +31,8 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
             }
             localStorage.setItem('ShopData', JSON.stringify(_json_shop_data));
         }
+
+
         this.initCart();
     };
     Cart.prototype = {
@@ -46,7 +53,7 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
         //输入原始购物车数据包shop_id->good_id
         convertGroup: function (cart) {
             var _this = this,
-                _cart, _shopId, _curShopCart,_curCartPackag;
+                _cart, _shopId, _curShopCart, _curCartPackag;
             try {
                 _cart = _this.data.GroupCart || {};
                 _shopId = _this.data.ShopInfo.id;
@@ -310,7 +317,7 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
         getIsGroup: function () {
             var _this = this;
             var _isGroup = false;
-            if(!_this.data.Cart)return null;
+            if (!_this.data.Cart) return null;
             //每次去检查购物车
             _isGroup = (function () {
                 for (var key in _this.data.Cart[_this.data.ShopInfo.id]) {
