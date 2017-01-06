@@ -32,7 +32,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         var init_data = JSON.parse(<?php echo get_init_data($path, $params); ?>);
     </script>
 </head>
-<body data-spider="wqk2d63u">
+<body data-spider="wqk2d63u"></body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="../js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/orderdetail.js?v=1483091901483"></script>

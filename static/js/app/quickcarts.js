@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/7/26.
  */
-require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator'], function (Hbs, QuickCarts, Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator) {
+require([ 'cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator'], function ( Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator) {
     var QuickCartsHtm = {
         init: function () {
             var _this = this,
@@ -9,7 +9,6 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                 _address = _data ? JSON.parse(_data).Address : null,
                 _address_id = _this.getAddressId(),
                 _is_detail = _address_id.length == 5 ? true : false;
-            //_is_detail = /\_/g.test(_address_id);
             //初始化本地数据
             if (!_address) {
                 //地址信息
@@ -20,9 +19,9 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     "country_code": "62",
                     "email": "",
                     "address": {
-                        "province": "", //省
-                        "city": "", //市
-                        "country": "", //街道
+                        "province": '', //省
+                        "city": '', //市
+                        "country": '', //街道
                         "street": "", //详细地址
                         "post": "" //邮编
                     }
@@ -39,19 +38,28 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
             }
             //本地cart
             _this.carts = init_data.carts;
+            //判断是否为供应商产品
+            _this.supply_shop_info = (function () {
+                var _supply_shop;
+                for (var key in init_data.carts) {
+                    _supply_shop = !!init_data.carts[key].item.supply_shop ? init_data.carts[key].item.supply_shop : null;
+                    return _supply_shop;
+                }
+            })();
             //页面初始化
-            var _hb_opts = {
-                carts: init_data.carts,
-                shop: init_data.shop,
-                address: _address,
-                name: '',
-                telephone: '',
-                host: Config.host,
-                lang: Lang
-            };
-            var _htm = Hbs.compile(QuickCarts)(_hb_opts);
-            $('.j_php_loding').remove();
-            $('body').prepend(_htm);
+            _this.initLocalStorage(_address);
+            //var _hb_opts = {
+            //    carts: init_data.carts,
+            //    shop: init_data.shop,
+            //    address: _address,
+            //    name: '',
+            //    telephone: '',
+            //    host: Config.host,
+            //    lang: Lang
+            //};
+            //var _htm = Hbs.compile(QuickCarts)(_hb_opts);
+            //$('.j_php_loding').remove();
+            //$('body').prepend(_htm);
             if (_this['province']) {
                 _this.getLogistics();
             }
@@ -67,6 +75,30 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
             _this.getTotal();
             _this.handleFn();
         },
+        initLocalStorage : function(address){//根据本地地址数据自动填写用户信息
+            address.name && $('.j_name').val(address.name);
+            address.telephone && $('.j_tel').val(address.telephone);
+            address.address.street && $('.j_street').val(address.address.street);
+            address.address.post && $('.j_post').val(address.address.post);
+            if(address.address.province){
+                $('.j_province').html(address.address.province);
+                $('[data-name="city"]').addClass('act');
+            }else{
+                $('.j_province').html(Lang.H5_PROVINCE);
+            }
+            if(address.address.city){
+                $('.j_city').html(address.address.city);
+                $('[data-name="city"]').addClass('act');
+                $('[data-name="country"]').addClass('act');
+            }else{
+                $('.j_city').html(Lang.H5_CITY);
+            }
+            if(address.address.country){
+                $('.j_country').html(address.address.country);
+            }else{
+                $('.j_country').html(Lang.H5_DISTRICT);
+            }
+        },
         selectQuick: function (opts) {
             var _this = this,
                 _wraper = $('.j_cart_item[data-id="' + opts.id + '"]'),
@@ -75,9 +107,9 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                 _price = _wraper.find('.price > span'),
                 _num = _wraper.find('.j_item_num');
             _type.html(Lang.H5_SKU + ': ' + opts.sku);
-            if(opts.stock){
+            if (opts.stock) {
                 _stock.html(Lang.H5_STOCK + ': ' + opts.stock);
-            }else{
+            } else {
                 _stock.html('');
             }
             _price.html(Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(opts.price));
@@ -110,7 +142,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     _num = Number(_item_num.val()),
                     _stock = $(this).attr('data-stock'),
                     _dataId = $(this).attr('data-id');
-                if (_this.isDetailQuick && _this.testDetailCarts()) {//有sku的单品快速下单
+                if (_this.isDetailQuick && _this.testDetailCarts()) { //有sku的单品快速下单
                     _this.quickbuyplug.toShow();
                 } else {
                     //console.log(_stock <= _num)
@@ -291,8 +323,13 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                         }
                     } else { //多件商品快速下单
                         if (!_this.testShopCarts(
-                                function () {_this.quickSubmit(_that, dom);},
-                                function () {_that.cancelDisable();_that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);}
+                                function () {
+                                    _this.quickSubmit(_that, dom);
+                                },
+                                function () {
+                                    _that.cancelDisable();
+                                    _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                                }
                             )) {
                             return;
                         }
@@ -351,7 +388,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                 _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
                 return;
             }
-            PaqPush && PaqPush('下单','submit-order');
+            PaqPush && PaqPush('下单', 'submit-order');
             Ajax.postJsonp({
                 url: Config.actions.orderConfirm,
                 data: {
@@ -363,7 +400,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                     //_that.cancelDisable();
                     //_that.setBtnTxt(dom,Lang.H5_CREATE_ORDER);
                     if (obj.code == 200) {
-                        PaqPush && PaqPush('成功生成订单','orderId=' + obj.order.id + ',sellerId=' + init_data.shop.id);
+                        PaqPush && PaqPush('成功生成订单', 'orderId=' + obj.order.id + ',sellerId=' + init_data.shop.id);
                         //_paq.push(['trackEvent', '成功生成订单', 'orderId=' + obj.order.id + ',sellerId=' + init_data.shop.id, '']);
                         var _bank_info = JSON.stringify(obj.order.pay_info.banks),
                             _name = $.trim($('.j_name').val()),
@@ -664,9 +701,6 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
         },
         getLogistics: function (type) {
             var _this = this;
-            _this.loading = Dialog.loading({
-                width: 100
-            });
             var _province = $.trim($('.j_province').html()),
                 _city = $.trim($('.j_city').html()),
                 _country = $.trim($('.j_country').html()),
@@ -674,32 +708,62 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
             if (!_province || !_city || !_country) {
                 return;
             }
+            _this.loading = Dialog.loading({
+                width: 100
+            });
             var _data = {
                 edata: {
                     'action': 'express_fee',
                     'shop_id': init_data.shop.id,
                     'items': _this.getAddressItems(),
+                    'supply_shop_id': !!_this.supply_shop_info ? _this.supply_shop_info.id : "",
                     'receive_addr': encodeURIComponent(_addr)
                 }
             };
+            console.log("supply_shop_id" + _data.edata.supply_shop_id);
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.expressesList + '?param=' + JSON.stringify(_data),
                 function (obj) {
                     _this.loading.remove();
                     if (obj.code == 200) {
-                        if (init_data.shop.express_free == 0) {
-                            if (_this.testExpress(obj.express_fee_list.list)) {
-                                $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
-                                $('.j_logistics').show();
-                                $('.j_submit_buy').show();
-                                type && $('body').scrollTop(9999);
-                            } else {
-                                var _li = '<li class="no-logistic">' + Lang.H5_NO_LOGISTICS_COMPANY + '</li>';
-                                $('.j_logistics ul').html(_li);
-                                $('.j_logistics').show();
-                                $('.j_submit_buy').hide();
-                                //不能提交订单
+                        //检查是否为自营还是代理 如果是代理取supply_shop_info中的express_free
+                        console.log("dd")
+                        console.log(_this.supply_shop_info)
+                        if (!!_this.supply_shop_info) {
+                            //代理的
+                            if (_this.supply_shop_info.express_free == 0) {
+                                if (_this.testExpress(obj.express_fee_list.list)) {
+                                    console.log("1")
+                                    $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
+                                    $('.j_logistics').show();
+                                    $('.j_submit_buy').show();
+                                    type && $('body').scrollTop(9999);
+                                } else {
+                                    console.log("2")
+                                    var _li = '<li class="no-logistic">' + Lang.H5_NO_LOGISTICS_COMPANY + '</li>';
+                                    $('.j_logistics ul').html(_li);
+                                    $('.j_logistics').show();
+                                    $('.j_submit_buy').hide();
+                                    //不能提交订单
+                                }
+                            }
+                        } else {
+                            //自营
+                            if (init_data.shop.express_free == 0) {
+                                if (_this.testExpress(obj.express_fee_list.list)) {
+                                    $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
+                                    $('.j_logistics').show();
+                                    $('.j_submit_buy').show();
+                                    type && $('body').scrollTop(9999);
+                                } else {
+                                    var _li = '<li class="no-logistic">' + Lang.H5_NO_LOGISTICS_COMPANY + '</li>';
+                                    $('.j_logistics ul').html(_li);
+                                    $('.j_logistics').show();
+                                    $('.j_submit_buy').hide();
+                                    //不能提交订单
+                                }
                             }
                         }
+
                     }
                 },
                 function (error) {
@@ -726,6 +790,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                         '</li>';
                 }
             }
+            console.log(_htm)
             return _htm;
         },
         testCarts: function (carts, type) {
@@ -835,7 +900,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
             }
             return false;
         },
-        testShopCarts: function (callback,cancelcallback) { //提交前验证快速购物车中是否有没有价格或者没设置库存的
+        testShopCarts: function (callback, cancelcallback) { //提交前验证快速购物车中是否有没有价格或者没设置库存的
             var _this = this,
                 _carts = _this.carts,
                 _beal = true;
@@ -856,7 +921,7 @@ require(['hbs', 'text!views/app/quickcarts.hbs', 'cart', 'dialog', 'ajax', 'conf
                             cf_fn: function () {
                                 callback && callback();
                             },
-                            c_fn : function(){
+                            c_fn: function () {
                                 cancelcallback && cancelcallback();
                             }
                         });

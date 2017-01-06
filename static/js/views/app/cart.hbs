@@ -2,14 +2,15 @@
     <i class="icon iconfont j_go_back icon-back-font"></i>
     {{lang.H5_SHOPPING_CART}}
 </nav>
-<section class="cart-list j_cart_list" data-spider="btn-box">
-    <ul class="">
-        {{{carts cart}}}
-    </ul>
-    {{#if cart}}
-        <button class="btn j_submit_btn confirm-btn">{{lang.H5_MAKE_ORDER}}</button>
-        {{else}}
-        <button class="btn j_go_shop confirm-btn">{{lang.H5_BROWSE_SHOP}}</button>
+<section class="cart-list j_cart_list cart-supplier-list" data-spider="btn-box">
+    {{#if isGroup}}
+        <ul class="">
+            {{{groupcarts groupCart}}}
+        </ul>
+    {{else}}
+        <ul class="no_goods_box">
+            {{{carts cart}}}
+        </ul>
     {{/if}}
-
+    
 </section>

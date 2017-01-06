@@ -174,3 +174,36 @@ function getItemListType($template){
 function dateFormat($datetime){
     return date('d/m H:i',strtotime($datetime));
 }
+function getCartId($carts){
+    if($carts['sku'] && $carts['sku']['id']){
+        return $carts['sku']['id'];
+    }else{
+        return $carts['item']['id'];
+    }
+}
+function getCartStock($carts){
+    if($carts['sku'] && $carts['sku']['stock']){
+        $stock = $carts['sku']['stock'];
+    }else{
+        $stock = $carts['item']['stock'];
+    }
+    if($stock < 0){
+        $stock = 0;
+    }
+    return $stock;
+}
+function getDiscountStock($carts){
+    return $carts['item']['discount']['limit_count'] == 0 ? $carts['item']['stock'] : $carts['item']['discount']['limit_count'];
+}
+function getCartPrice($carts){
+    return ($carts['sku'] && $carts['sku']['id']) ? $carts['sku']['price'] : $carts['item']['price'];
+}
+function transCartPrice($carts){
+    return priceFormat(getCartPrice($carts));
+}
+
+function isExistSupplyShop ($carts) {
+    foreach($carts as $cart){
+        return $cart['item']['supply_shop']?true:false;
+    }
+}

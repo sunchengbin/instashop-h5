@@ -22,6 +22,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         ini_set('display_errors', 0);
 
         $seller_id = $_REQUEST['seller_id'];
+        $supply_shop_id = $_REQUEST['groupid'];
+        $addr = $_REQUEST['addr'];
         $addr = $_REQUEST['addr'];
         $items = json_decode($_REQUEST['items'],true);
         $new_addr = $_REQUEST['new_addr'];
@@ -32,6 +34,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             'action' => 'express_fee',
             'shop_id' => $seller_id,
             'items' => $items,
+            'supply_shop_id'=>$supply_shop_id,
             'receive_addr' => urlencode($addr)
         ];
         $path = 'v1/expresses';
@@ -52,7 +55,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
       </script>
 </head>
-<body data-spider="2cj9l5q4">
+<body data-spider="2cj9l5q4"></body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
     <script src="<?=STATIC_HOST?>/js/dist/app/orderconfirm.js?v=1483091901483"></script>

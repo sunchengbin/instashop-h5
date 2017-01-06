@@ -4,10 +4,21 @@
 require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick) {
     var OrderConfirmHtm = {
         init: function () {
-            var _this = this,
-                _carts = Cart().getCarts(),
-                _data = localStorage.getItem('ShopData'),
-                _address = JSON.parse(_data).Address,
+            var _this = this;
+            var _isGroup = _this.isGroup =  Cart().getIsGroup();
+            var _groupid = Base.others.getUrlPrem("groupid",location.href);
+            var _data = localStorage.getItem('ShopData');
+            var _carts;
+            if(_isGroup){
+                _carts = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid];
+            }else{
+                _carts = Cart().getCarts();
+            }
+            var _express_free = _this.getExpressFreeType(_carts);
+            _this.carts = _carts;
+            console.log("carts")
+            console.log(_carts)
+            var _address = JSON.parse(_data).Address,
                 _htm = Hbs.compile(OrderConfirm)({
                     data: JSON.parse(_data),
                     carts: _carts,
@@ -22,8 +33,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     address: _address,
                     lang: Lang,
                     host: Config.host,
-                    nofree: JSON.parse(_data).ShopInfo.express_free == 0,
-                    express: (JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list)),
+                    nofree: _express_free == 0,
+                    express: (_express_free == 0 && _this.testExpress(express_data.express_fee_list.list)),
                     isHaveReduc: (function () {
                         if (!!price_data.price_info.shop_discount) {
                             return (price_data.price_info.shop_discount.length != 0)
@@ -32,7 +43,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     })()
                 });
             $('body').prepend(_htm);
-            if (JSON.parse(_data).ShopInfo.express_free == 0 && _this.testExpress(express_data.express_fee_list.list)) {
+            if (_express_free == 0 && _this.testExpress(express_data.express_fee_list.list)) {
                 _this.logistics = Logistics({
                     data: express_data.express_fee_list.list,
                     sum: _this.countSum(_carts),
@@ -40,6 +51,17 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 });
             }
             _this.handleFn();
+        },
+        //1免邮 0付费
+        getExpressFreeType:function(carts){
+            var _this = this;
+            for(var key in carts){
+                if(!!carts[key].item.supply_shop){
+                    return carts[key].item.supply_shop.express_free;
+                }else{
+                    return carts[key].item.shop.express_free
+                }
+            }
         },
         testExpress: function (list) {
             var _bool = false;
@@ -89,6 +111,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                         return;
                     }
                     var _data = _this.getData();
+                    console.log("下单开始");
+                    console.log(_data);
                     if (!_data) {
                         _that.cancelDisable();
                         _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
@@ -123,7 +147,14 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                 localStorage.setItem('OrderTotal', _total);
                                 localStorage.setItem('BankInfo', _bank_info);
                                 localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
-                                Cart().clearCarts();
+                                for(var index in _items){
+                                    if(!!_items[index].item_sku){
+                                        Cart().removeItem(_items[index].item_sku);
+                                    }else{
+                                        Cart().removeItem(_items[index].itemID);
+                                    }
+                                }
+                                // Cart().clearCarts();
                                 setTimeout(function () {
                                     location.href = Config.host.hrefUrl + 'ordersuccess.php?price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400);
                                 }, 100);
@@ -178,7 +209,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                         } else {
                                             Dialog.confirm({
                                                 top_txt: '', //可以是html
-                                                body_txt: '<p class="dialog-body-p">' + obj.msg + '</p>',
+                                                body_txt: '<p class="dialog-body-p">' + obj.msg||obj.message + '</p>',
                                                 cf_fn: function () {
                                                     setTimeout(function () {
                                                         location.href = Config.host.hrefUrl + 'cart.php';
@@ -236,8 +267,11 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             //});
         },
         getItems: function () {
-            var _carts = Cart().getCarts(),
+            var _this = this;
+            var _carts = _this.carts,
                 _arr = [];
+                console.log("getItems:");
+                console.log(_carts);
             if (!_carts) {
                 Dialog.tip({
                     top_txt: '', //可以是html
@@ -354,8 +388,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     "wduss": "",
                     "address_id": "0",
                     "note": "",
-                    "pay_way": "13",
-                    "pay_type": 0,
+                    "pay_way": 11,
+                    "pay_type": 1,
                     "seller_id": _seller_id,
                     "buyer_id": "0",
                     "buyer_note": _note,
