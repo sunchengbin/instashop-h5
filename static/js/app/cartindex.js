@@ -22,6 +22,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
             $('body').prepend(_htm);
             this.handleFn();
             var _cart_debug = {
+                "isGroup":isGroup,
                 "drop开关":_data.ShopInfo.drop,
                 "组购物车":GroupCart,
                 "组数量":Cart().getGroupNum(),
