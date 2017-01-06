@@ -259,7 +259,6 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     }else{
                         location.href = Config.host.hrefUrl + 'address.php';
                     }
-                
                 //});
             });
             Common.listenAndroidKeyboardToggle(function () {
