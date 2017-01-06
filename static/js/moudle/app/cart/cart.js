@@ -7,27 +7,30 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
         DROPSHIPER_FLAG: 2
     }
     var Cart = function (data) {
-        if (data) {
-            var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null;
-            if (_json_shop_data && data) {
-                if (_json_shop_data.ShopInfo.id != data.item.shop.id) {
-                    _json_shop_data['ShopInfo'] = data.item.shop;
-                    _json_shop_data['ClientUuid'] = data.client_uuid;
+        try {
+            if (data) {
+                var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null;
+                if (_json_shop_data && data) {
+                    if (_json_shop_data.ShopInfo.id != data.item.shop.id) {
+                        _json_shop_data['ShopInfo'] = data.item.shop;
+                        _json_shop_data['ClientUuid'] = data.client_uuid;
+                    }
+                } //存在且id不相等跳出
+                else {
+                    _json_shop_data = {
+                        Cart: null, //购物车数据不需要跟着店铺变化而变化的本地数据
+                        Items: null, //根据店铺而变化
+                        ShopInfo: data.item.shop, //根据店铺id变化而变化
+                        ClientUuid: data.client_uuid || null, //根据店铺而重置
+                        Address: null //不需要根据店铺切换而改变的本地数据
+                    };
                 }
-            } //存在且id不相等跳出
-            else {
-                _json_shop_data = {
-                    Cart: null, //购物车数据不需要跟着店铺变化而变化的本地数据
-                    Items: null, //根据店铺而变化
-                    ShopInfo: data.item.shop, //根据店铺id变化而变化
-                    ClientUuid: data.client_uuid || null, //根据店铺而重置
-                    Address: null //不需要根据店铺切换而改变的本地数据
-                };
+                localStorage.setItem('ShopData', JSON.stringify(_json_shop_data));
             }
-            alert("bug----ddd")
-            localStorage.setItem('ShopData', JSON.stringify(_json_shop_data));
+        } catch (error) {
+            alert(error)
         }
-        alert("bug----eee")
+
         this.initCart();
     };
     Cart.prototype = {
@@ -48,7 +51,7 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
         //输入原始购物车数据包shop_id->good_id
         convertGroup: function (cart) {
             var _this = this,
-                _cart, _shopId, _curShopCart,_curCartPackag;
+                _cart, _shopId, _curShopCart, _curCartPackag;
             try {
                 _cart = _this.data.GroupCart || {};
                 _shopId = _this.data.ShopInfo.id;
@@ -312,7 +315,7 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
         getIsGroup: function () {
             var _this = this;
             var _isGroup = false;
-            if(!_this.data.Cart)return null;
+            if (!_this.data.Cart) return null;
             //每次去检查购物车
             _isGroup = (function () {
                 for (var key in _this.data.Cart[_this.data.ShopInfo.id]) {
