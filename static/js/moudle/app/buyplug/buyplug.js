@@ -134,12 +134,10 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                         price:_sku_price,
                         isbuynow:_is_buy_now,
                         noStockCallback : function(){
-                            alert("bug---sku---noStockCallback")
                             _this.config.noStockCallback && _this.config.noStockCallback();
                             _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
                         },
                         callback : function(){
-                            alert("bug---sku---callback")
                             _this.addSuccessFn(_is_buy_now,_w_h);
                         }
                     });
