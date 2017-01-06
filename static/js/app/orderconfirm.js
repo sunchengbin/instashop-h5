@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/13.
  */
-require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick) {
+require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick','debug'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick,Debug) {
     var OrderConfirmHtm = {
         init: function () {
             var _this = this;
@@ -16,8 +16,13 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             }
             var _express_free = _this.getExpressFreeType(_carts);
             _this.carts = _carts;
-            console.log("carts")
-            console.log(_carts)
+            Debug.log({
+                title:"orderconfim init",
+                data:{
+                    _express_free:_express_free,
+                    carts:_carts
+                }
+            })
             var _address = JSON.parse(_data).Address,
                 _htm = Hbs.compile(OrderConfirm)({
                     data: JSON.parse(_data),
@@ -75,13 +80,6 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
         handleFn: function () {
             var _this = this;
             Fastclick.attach(document.body);
-            //$('body').on('click',function(e){
-            //    console.log($(e.target))
-            //    if(!$(e.target).is('textarea')){
-            //        //alert('s')
-            //        $('textarea').blur();
-            //    }
-            //});
 
             $('body').on('click', '.j_check_box', function (e) {
                 if ($(this).is('.icon-checked-font')) {
@@ -111,8 +109,10 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                         return;
                     }
                     var _data = _this.getData();
-                    console.log("下单开始");
-                    console.log(_data);
+                    Debug.log({
+                        title:"下单开始-orderconfirm-j_submit_buy",
+                        data:_data
+                    })
                     if (!_data) {
                         _that.cancelDisable();
                         _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
@@ -439,7 +439,6 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             var _this = this;
             var _items_price = price_data.price_info.items_price;
             var _last_price = price_data.price_info.total_price;
-            console.log(_items_price - _last_price);
             return _items_price - _last_price;
         }
     };
