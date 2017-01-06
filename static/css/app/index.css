@@ -207,7 +207,7 @@ footer .btn i{
 /*分类侧栏弹窗*/
 .sort-list-wraper{
     position: fixed;
-    z-index: 104;
+    z-index: 210;
     left: 0;
     top: 0;
     bottom: 0;
@@ -270,7 +270,7 @@ footer .btn i{
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 102;
+    z-index: 209;
     background: rgba(0,0,0,.8);
 }
 .sort-list-cover i{

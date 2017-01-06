@@ -90,6 +90,13 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                 callback && callback();
             },100);
         },
+        saveCartFromUrl : function(callback){
+            var _form_url =  location.href;
+            localStorage.setItem('CartFromUrl',_form_url);
+            setTimeout(function(){
+                callback && callback();
+            },100);
+        },
         getFromUrl : function(){//获取返回上一页的url地址
             return localStorage.getItem('FromUrl');
         },
