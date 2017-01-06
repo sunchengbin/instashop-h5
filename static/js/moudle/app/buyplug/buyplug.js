@@ -110,7 +110,6 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     return;
                 }
                 PaqPush && PaqPush('确定加入购物车','skuId='+_sku_id);
-                alert("bug---")
                 if($('.j_type_li').length && !$('.j_type .act').length){
                     Dialog.tip({
                         body_txt : Lang.H5_PLEASE_CHOOSE_SKU
@@ -128,22 +127,23 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     }
                 }
                 if(!_has_sku){
-                    alert("bug---sku")
+                    
                     Cart(init_data).addItem({
                         item : init_data.item,
                         num : _num,
                         price:_sku_price,
                         isbuynow:_is_buy_now,
                         noStockCallback : function(){
+                            alert("bug---sku---noStockCallback")
                             _this.config.noStockCallback && _this.config.noStockCallback();
                             _this.toHide(document.querySelector('.j_buy_plug'),_w_h);
                         },
                         callback : function(){
+                            alert("bug---sku---callback")
                             _this.addSuccessFn(_is_buy_now,_w_h);
                         }
                     });
                 }else{
-                    alert("bug---sku---else")
                     if(!_stock){
                         Dialog.tip({
                             body_txt : Lang.H5_LOW_STOCK,
