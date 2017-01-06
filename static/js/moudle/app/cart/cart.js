@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 添加购物车相关
  */
-define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
+define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug) {
     var Constant = {
         DROPSHIPER_FLAG: 2
     }
@@ -10,9 +10,13 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
         if (data) {
             var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null;
             if (_json_shop_data && data) {
-                if (_json_shop_data.ShopInfo.id != data.item.shop.id) {
-                    _json_shop_data['ShopInfo'] = data.item.shop;
-                    _json_shop_data['ClientUuid'] = data.client_uuid;
+                try {
+                    if (_json_shop_data.ShopInfo.id != data.item.shop.id) {
+                        _json_shop_data['ShopInfo'] = data.item.shop;
+                        _json_shop_data['ClientUuid'] = data.client_uuid;
+                    }
+                } catch (error) {
+                    alert(error)
                 }
             } //存在且id不相等跳出
             else {
@@ -40,20 +44,22 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
                 _cart = null;
             }
             this.cart = _cart;
+            if (!!_cart) this.data.GroupCart = this.convertGroup(_cart);
+
         },
         //输入原始购物车数据包shop_id->good_id
         convertGroup: function (cart) {
-            var _this = this;
-            var _cart = {};
-            var _shopId = _this.data.ShopInfo.id;
-            var _curShopCart = cart[_shopId];
+            var _this = this,
+                _cart, _shopId, _curShopCart, _curCartPackag;
+            _cart = _this.data.GroupCart || {};
+            _shopId = _this.data.ShopInfo.id;
+            _curShopCart = cart[_shopId];
             _cart[_this.data.ShopInfo.id] = {
                 isGroup: false, //是否分库标志
                 group: {} //分库后的购物车数据包 
             }
-            var _curCartPackage = _cart[_this.data.ShopInfo.id];
+            _curCartPackage = _cart[_this.data.ShopInfo.id];
             for (var item in _curShopCart) {
-                console.log(_curShopCart[item].item);
                 if (_curShopCart[item].item.supply_type == Constant.DROPSHIPER_FLAG) {
                     _curCartPackage.isGroup = true;
                 }
@@ -63,7 +69,6 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
                 var _curItemPackage = _curShopCart[item];
                 var _curItem = _curItemPackage.item;
                 var _id = (_curItem.sku.length > 0 ? _curItemPackage.sku.id : _curItem.id);
-                console.log("convertGroup:id" + _id)
                 if (_curItem.supply_type == 2) {
                     if (!!_curCartPackage.group[_curItem.supply_shop.id]) {
                         _curCartPackage.group[_curItem.supply_shop.id][_id] = _curItemPackage;
@@ -80,7 +85,6 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
                     }
                 }
             }
-            console.log(_cart)
             return _cart;
         },
         addItem: function (opts) {
@@ -105,14 +109,14 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
             } else {
                 if ((opts.sku && (opts.sku.stock >= 9999999)) || (!opts.sku && (opts.item.stock >= 9999999))) {
                     Dialog.confirm({
-                        top_txt : '',//可以是html
-                        cfb_txt : Lang.H5_IS_CONFIRM,//确定按钮文字
-                        cab_txt : Lang.H5_GO_CONTACT,//取消按钮的文字
-                        body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_STOCK+'</p>',
-                        cf_fn : function(){
+                        top_txt: '', //可以是html
+                        cfb_txt: Lang.H5_IS_CONFIRM, //确定按钮文字
+                        cab_txt: Lang.H5_GO_CONTACT, //取消按钮的文字
+                        body_txt: '<p class="dialog-body-p">' + Lang.H5_NO_STOCK + '</p>',
+                        cf_fn: function () {
                             _this.addToCart(opts);
                         },
-                        c_fn : function(){
+                        c_fn: function () {
                             opts.noStockCallback && opts.noStockCallback();
                         }
                     });
@@ -187,8 +191,6 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
                         }
                     }
                 }
-                console.log("sku_id")
-                console.log(opts.sku.id)
                 _this.cart[_shop_id][opts.sku.id] = opts;
             } else { //没有规格的商品以商品id为key
                 var _discout_num = _this.getItemSkus(_shop_id)[_item_id] ? (_this.getItemSkus(_shop_id)[_item_id] + opts.num) : null,
@@ -244,7 +246,6 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
             }
             _this.data.Cart = _this.cart;
             _this.data.GroupCart = _this.convertGroup(_this.cart)
-            console.log(opts.item);
             if (opts.item.supply_type == "2") {
                 _this.data.SupplyShopInfo = opts.item.supply_shop;
             }
@@ -281,7 +282,7 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
         },
         //创建订单后清空购物车
         //按分组清空
-        clearCarts: function () { 
+        clearCarts: function () {
             var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null;
             if (_json_shop_data) {
                 _json_shop_data.Cart = null;
@@ -297,7 +298,7 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
             }
             //同步删除原版的
             delete _this.cart[_this.data.ShopInfo.id][id];
-             _this.data.Cart = _this.cart;
+            _this.data.Cart = _this.cart;
             // if (!!_this.data.SupplyShopInfo) {
             _this.data.GroupCart = _this.convertGroup(_this.cart);
             // }
@@ -309,6 +310,7 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
         getIsGroup: function () {
             var _this = this;
             var _isGroup = false;
+            if (!_this.data.Cart) return null;
             //每次去检查购物车
             _isGroup = (function () {
                 for (var key in _this.data.Cart[_this.data.ShopInfo.id]) {
@@ -318,10 +320,10 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
                     }
                 }
             })();
-            if(_isGroup==void(0))_isGroup=false;
+            if (_isGroup == void(0)) _isGroup = false;
             return _isGroup;
         },
-        getCart:function(){
+        getCart: function () {
             var _this = this;
             _this.initCart();
             if (!_this.cart) {
@@ -355,9 +357,10 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
             }
             return _num;
         },
-        getGroupNum:function(){
-            var _this = this, _groupCart =_this.data.GroupCart;
-            if(!_groupCart){
+        getGroupNum: function () {
+            var _this = this,
+                _groupCart = _this.data.GroupCart;
+            if (!_groupCart) {
                 return 0;
             }
             return Object.keys(_groupCart[_this.data.ShopInfo.id].group).length;

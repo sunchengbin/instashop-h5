@@ -97,7 +97,6 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 _item_num.val((--_num > 0)?_num:1);
             });
             $(_config.wraper).on('click','.j_plug_submit',function(){
-
                 var _item_num = $('.j_item_num'),
                     _num = Number(_item_num.val()),
                     _has_sku = $('.j_type li').length,
@@ -128,6 +127,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     }
                 }
                 if(!_has_sku){
+                    
                     Cart(init_data).addItem({
                         item : init_data.item,
                         num : _num,

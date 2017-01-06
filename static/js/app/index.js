@@ -194,7 +194,7 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
             $('body').on('click','.j_cart_wraper',function(){
                 var _this = $(this),
                     _url = _this.attr('data-url');
-                Common.saveFromUrl(function(){
+                Common.saveCartFromUrl(function(){
                     location.href = _url;
                 });
             });

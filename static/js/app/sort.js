@@ -30,17 +30,16 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
             $('body').on('click','.j_go_back',function(){
                 var _local_url = localStorage.getItem('FromUrl'),
                     _url = Base.others.isCustomHost()?Config.host.host+'s/'+init_data.tag.seller_id:Config.host.host;
-                if(_local_url){
-                    location.href = _local_url+'?item=back';
-                }else{
+                //if(_local_url){
+                //    location.href = _local_url+'?item=back';
+                //}else{
                     location.href = _url+'?item=back';
-                }
-
+                //}
             });
             $('body').on('click','.j_cart_wraper',function(){
                 var _this = $(this),
                     _url = _this.attr('data-url');
-                Common.saveFromUrl(function(){
+                Common.saveCartFromUrl(function(){
                     location.href = _url;
                 });
             });

@@ -29,12 +29,15 @@ body {
 .cart-supplier-card button {
     margin: 0 auto;
     margin-top: 1rem;
-    width: 28rem;
+    width: 100%;
 }
 .cart-supplier-card ul {
     padding:0 1rem;
 }
 .cart-supplier-card .j_del_cart {
+    color: #FF5722;
+}
+.cart-supplier-list .j_del_cart {
     color: #FF5722;
 }
 .cart-supplier-header {

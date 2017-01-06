@@ -22,6 +22,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
             $('body').prepend(_htm);
             this.handleFn();
             var _cart_debug = {
+                "isGroup":isGroup,
                 "drop开关":_data.ShopInfo.drop,
                 "组购物车":GroupCart,
                 "组数量":Cart().getGroupNum(),
@@ -54,19 +55,31 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                 $('.j_cart_list').addClass("no_goods_box");
                             }
                             _that.GroupCart = Cart().convertGroup(Cart().getCart())[JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id];
+                        }else{
+                            //被删空了
+                            if($.isEmptyObject(_that.carts)){
+                                $('.j_cart_list').addClass("no_goods_box");
+                            }
                         }
+                        
                     }
                 });
             });
             $('body').on('click', '.j_go_back', function () {
                 //TODO 返回埋点
                 PaqPush && PaqPush('返回', '');
-                var _fromurl = localStorage.getItem('FromUrl');
+                var _fromurl = localStorage.getItem('CartFromUrl');
                 if (!_fromurl) {
                     var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
-                    location.href = _url;
+                    localStorage.removeItem('CartFromUrl');
+                    setTimeout(function(){
+                        location.href = _url;
+                    },1);
                 } else {
-                    location.href = _fromurl;
+                    localStorage.removeItem('CartFromUrl');
+                    setTimeout(function(){
+                        location.href = _fromurl;
+                    },1);
                 }
             });
             $('body').on('click', '.j_go_shop', function () {
