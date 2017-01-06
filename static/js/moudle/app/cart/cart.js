@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 添加购物车相关
  */
-define(['base', 'lang', 'dialog','debug'], function (Base, Lang, Dialog,Debug) {
+define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug) {
     var Constant = {
         DROPSHIPER_FLAG: 2
     }
@@ -40,49 +40,51 @@ define(['base', 'lang', 'dialog','debug'], function (Base, Lang, Dialog,Debug) {
                 _cart = null;
             }
             this.cart = _cart;
-            if(!!_cart)this.data.GroupCart = this.convertGroup(_cart);
-            
+            if (!!_cart) this.data.GroupCart = this.convertGroup(_cart);
+
         },
         //输入原始购物车数据包shop_id->good_id
         convertGroup: function (cart) {
-            var _this = this;
-            var _cart = _this.data.GroupCart||{};
-            var _shopId = _this.data.ShopInfo.id;
-            var _curShopCart = cart[_shopId];
-            _cart[_this.data.ShopInfo.id] = {
-                isGroup: false, //是否分库标志
-                group: {} //分库后的购物车数据包 
-            }
-            var _curCartPackage = _cart[_this.data.ShopInfo.id];
-            for (var item in _curShopCart) {
-                console.log(_curShopCart[item].item);
-                if (_curShopCart[item].item.supply_type == Constant.DROPSHIPER_FLAG) {
-                    _curCartPackage.isGroup = true;
+            var _this = this,
+                _cart, _shopId, _curShopCart,_curCartPackag;
+            try {
+                _cart = _this.data.GroupCart || {};
+                _shopId = _this.data.ShopInfo.id;
+                _curShopCart = cart[_shopId];
+                _cart[_this.data.ShopInfo.id] = {
+                    isGroup: false, //是否分库标志
+                    group: {} //分库后的购物车数据包 
                 }
-            }
-            //分组
-            for (var item in _curShopCart) {
-                var _curItemPackage = _curShopCart[item];
-                var _curItem = _curItemPackage.item;
-                var _id = (_curItem.sku.length > 0 ? _curItemPackage.sku.id : _curItem.id);
-                console.log("convertGroup:id" + _id)
-                if (_curItem.supply_type == 2) {
-                    if (!!_curCartPackage.group[_curItem.supply_shop.id]) {
-                        _curCartPackage.group[_curItem.supply_shop.id][_id] = _curItemPackage;
-                    } else {
-                        _curCartPackage.group[_curItem.supply_shop.id] = {};
-                        _curCartPackage.group[_curItem.supply_shop.id][_id] = _curItemPackage;
-                    }
-                } else {
-                    if (!!_curCartPackage.group[_curItem.seller_id]) {
-                        _curCartPackage.group[_curItem.seller_id][_id] = _curItemPackage;
-                    } else {
-                        _curCartPackage.group[_curItem.seller_id] = {};
-                        _curCartPackage.group[_curItem.seller_id][_id] = _curItemPackage;
+                _curCartPackage = _cart[_this.data.ShopInfo.id];
+                for (var item in _curShopCart) {
+                    if (_curShopCart[item].item.supply_type == Constant.DROPSHIPER_FLAG) {
+                        _curCartPackage.isGroup = true;
                     }
                 }
+                //分组
+                for (var item in _curShopCart) {
+                    var _curItemPackage = _curShopCart[item];
+                    var _curItem = _curItemPackage.item;
+                    var _id = (_curItem.sku.length > 0 ? _curItemPackage.sku.id : _curItem.id);
+                    if (_curItem.supply_type == 2) {
+                        if (!!_curCartPackage.group[_curItem.supply_shop.id]) {
+                            _curCartPackage.group[_curItem.supply_shop.id][_id] = _curItemPackage;
+                        } else {
+                            _curCartPackage.group[_curItem.supply_shop.id] = {};
+                            _curCartPackage.group[_curItem.supply_shop.id][_id] = _curItemPackage;
+                        }
+                    } else {
+                        if (!!_curCartPackage.group[_curItem.seller_id]) {
+                            _curCartPackage.group[_curItem.seller_id][_id] = _curItemPackage;
+                        } else {
+                            _curCartPackage.group[_curItem.seller_id] = {};
+                            _curCartPackage.group[_curItem.seller_id][_id] = _curItemPackage;
+                        }
+                    }
+                }
+            } catch (error) {
+                alert(error);
             }
-            console.log(_cart)
             return _cart;
         },
         addItem: function (opts) {
@@ -107,14 +109,14 @@ define(['base', 'lang', 'dialog','debug'], function (Base, Lang, Dialog,Debug) {
             } else {
                 if ((opts.sku && (opts.sku.stock >= 9999999)) || (!opts.sku && (opts.item.stock >= 9999999))) {
                     Dialog.confirm({
-                        top_txt : '',//可以是html
-                        cfb_txt : Lang.H5_IS_CONFIRM,//确定按钮文字
-                        cab_txt : Lang.H5_GO_CONTACT,//取消按钮的文字
-                        body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_STOCK+'</p>',
-                        cf_fn : function(){
+                        top_txt: '', //可以是html
+                        cfb_txt: Lang.H5_IS_CONFIRM, //确定按钮文字
+                        cab_txt: Lang.H5_GO_CONTACT, //取消按钮的文字
+                        body_txt: '<p class="dialog-body-p">' + Lang.H5_NO_STOCK + '</p>',
+                        cf_fn: function () {
                             _this.addToCart(opts);
                         },
-                        c_fn : function(){
+                        c_fn: function () {
                             opts.noStockCallback && opts.noStockCallback();
                         }
                     });
@@ -189,8 +191,6 @@ define(['base', 'lang', 'dialog','debug'], function (Base, Lang, Dialog,Debug) {
                         }
                     }
                 }
-                console.log("sku_id")
-                console.log(opts.sku.id)
                 _this.cart[_shop_id][opts.sku.id] = opts;
             } else { //没有规格的商品以商品id为key
                 var _discout_num = _this.getItemSkus(_shop_id)[_item_id] ? (_this.getItemSkus(_shop_id)[_item_id] + opts.num) : null,
@@ -246,7 +246,6 @@ define(['base', 'lang', 'dialog','debug'], function (Base, Lang, Dialog,Debug) {
             }
             _this.data.Cart = _this.cart;
             _this.data.GroupCart = _this.convertGroup(_this.cart)
-            console.log(opts.item);
             if (opts.item.supply_type == "2") {
                 _this.data.SupplyShopInfo = opts.item.supply_shop;
             }
@@ -283,7 +282,7 @@ define(['base', 'lang', 'dialog','debug'], function (Base, Lang, Dialog,Debug) {
         },
         //创建订单后清空购物车
         //按分组清空
-        clearCarts: function () { 
+        clearCarts: function () {
             var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null;
             if (_json_shop_data) {
                 _json_shop_data.Cart = null;
@@ -299,7 +298,7 @@ define(['base', 'lang', 'dialog','debug'], function (Base, Lang, Dialog,Debug) {
             }
             //同步删除原版的
             delete _this.cart[_this.data.ShopInfo.id][id];
-             _this.data.Cart = _this.cart;
+            _this.data.Cart = _this.cart;
             // if (!!_this.data.SupplyShopInfo) {
             _this.data.GroupCart = _this.convertGroup(_this.cart);
             // }
@@ -320,10 +319,10 @@ define(['base', 'lang', 'dialog','debug'], function (Base, Lang, Dialog,Debug) {
                     }
                 }
             })();
-            if(_isGroup==void(0))_isGroup=false;
+            if (_isGroup == void(0)) _isGroup = false;
             return _isGroup;
         },
-        getCart:function(){
+        getCart: function () {
             var _this = this;
             _this.initCart();
             if (!_this.cart) {
@@ -357,9 +356,10 @@ define(['base', 'lang', 'dialog','debug'], function (Base, Lang, Dialog,Debug) {
             }
             return _num;
         },
-        getGroupNum:function(){
-            var _this = this, _groupCart =_this.data.GroupCart;
-            if(!_groupCart){
+        getGroupNum: function () {
+            var _this = this,
+                _groupCart = _this.data.GroupCart;
+            if (!_groupCart) {
                 return 0;
             }
             return Object.keys(_groupCart[_this.data.ShopInfo.id].group).length;
