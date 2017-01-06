@@ -97,7 +97,6 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                 _item_num.val((--_num > 0)?_num:1);
             });
             $(_config.wraper).on('click','.j_plug_submit',function(){
-                alert("bug---")
                 var _item_num = $('.j_item_num'),
                     _num = Number(_item_num.val()),
                     _has_sku = $('.j_type li').length,
@@ -111,6 +110,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     return;
                 }
                 PaqPush && PaqPush('确定加入购物车','skuId='+_sku_id);
+                alert("bug---")
                 if($('.j_type_li').length && !$('.j_type .act').length){
                     Dialog.tip({
                         body_txt : Lang.H5_PLEASE_CHOOSE_SKU
@@ -128,6 +128,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                     }
                 }
                 if(!_has_sku){
+                    alert("bug---sku")
                     Cart(init_data).addItem({
                         item : init_data.item,
                         num : _num,
@@ -142,6 +143,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
                         }
                     });
                 }else{
+                    alert("bug---sku---else")
                     if(!_stock){
                         Dialog.tip({
                             body_txt : Lang.H5_LOW_STOCK,
