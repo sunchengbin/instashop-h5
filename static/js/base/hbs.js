@@ -1,4 +1,4 @@
-define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Config, Lang, Item) {
+define(['handlebars', 'base', 'config', 'lang', 'item','debug'], function (HBS, Base, Config, Lang, Item,Debug) {
     function isEmpty(val) {
         var x = false;
         switch (typeof val) {
@@ -292,6 +292,10 @@ define(['handlebars', 'base', 'config', 'lang', 'item'], function (HBS, Base, Co
     });
     HBS.registerHelper('carts', function (cart) {
         var _htm = '';
+        Debug.log({
+            title:"hbs.js carts",
+            data:cart
+        })
         if (!cart||cart.length==0) {
             _htm += '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>';
             return _htm +='<div class="no_goods_box"><button class="btn j_go_shop confirm-btn">'+Lang.H5_BROWSE_SHOP+'</button></div>'
