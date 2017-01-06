@@ -37,6 +37,9 @@ body {
 .cart-supplier-card .j_del_cart {
     color: #FF5722;
 }
+.cart-supplier-list .j_del_cart {
+    color: #FF5722;
+}
 .cart-supplier-header {
     background: #fff;
     height: 4rem;

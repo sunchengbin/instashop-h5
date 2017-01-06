@@ -55,7 +55,13 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                 $('.j_cart_list').addClass("no_goods_box");
                             }
                             _that.GroupCart = Cart().convertGroup(Cart().getCart())[JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id];
+                        }else{
+                            //被删空了
+                            if($.isEmptyObject(_that.carts)){
+                                $('.j_cart_list').addClass("no_goods_box");
+                            }
                         }
+                        
                     }
                 });
             });
