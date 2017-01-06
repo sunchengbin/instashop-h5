@@ -130,7 +130,6 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
                 _shop_id = opts.item.shop.id, //商铺id
                 _item_id = opts.item.id; //商品id
             var _groupCart = {};
-            alert("bug---")
             _this.initCart();
             if (!_this.cart) { //cart不存在
                 _this.cart = {};
