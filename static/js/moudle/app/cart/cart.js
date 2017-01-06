@@ -10,9 +10,13 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
         if (data) {
             var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null;
             if (_json_shop_data && data) {
-                if (_json_shop_data.ShopInfo.id != data.item.shop.id) {
-                    _json_shop_data['ShopInfo'] = data.item.shop;
-                    _json_shop_data['ClientUuid'] = data.client_uuid;
+                try {
+                    if (_json_shop_data.ShopInfo.id != data.item.shop.id) {
+                        _json_shop_data['ShopInfo'] = data.item.shop;
+                        _json_shop_data['ClientUuid'] = data.client_uuid;
+                    }
+                } catch (error) {
+                    alert(error)
                 }
             } //存在且id不相等跳出
             else {
@@ -47,43 +51,39 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
         convertGroup: function (cart) {
             var _this = this,
                 _cart, _shopId, _curShopCart, _curCartPackag;
-            try {
-                _cart = _this.data.GroupCart || {};
-                _shopId = _this.data.ShopInfo.id;
-                _curShopCart = cart[_shopId];
-                _cart[_this.data.ShopInfo.id] = {
-                    isGroup: false, //是否分库标志
-                    group: {} //分库后的购物车数据包 
+            _cart = _this.data.GroupCart || {};
+            _shopId = _this.data.ShopInfo.id;
+            _curShopCart = cart[_shopId];
+            _cart[_this.data.ShopInfo.id] = {
+                isGroup: false, //是否分库标志
+                group: {} //分库后的购物车数据包 
+            }
+            _curCartPackage = _cart[_this.data.ShopInfo.id];
+            for (var item in _curShopCart) {
+                if (_curShopCart[item].item.supply_type == Constant.DROPSHIPER_FLAG) {
+                    _curCartPackage.isGroup = true;
                 }
-                _curCartPackage = _cart[_this.data.ShopInfo.id];
-                for (var item in _curShopCart) {
-                    if (_curShopCart[item].item.supply_type == Constant.DROPSHIPER_FLAG) {
-                        _curCartPackage.isGroup = true;
-                    }
-                }
-                //分组
-                for (var item in _curShopCart) {
-                    var _curItemPackage = _curShopCart[item];
-                    var _curItem = _curItemPackage.item;
-                    var _id = (_curItem.sku.length > 0 ? _curItemPackage.sku.id : _curItem.id);
-                    if (_curItem.supply_type == 2) {
-                        if (!!_curCartPackage.group[_curItem.supply_shop.id]) {
-                            _curCartPackage.group[_curItem.supply_shop.id][_id] = _curItemPackage;
-                        } else {
-                            _curCartPackage.group[_curItem.supply_shop.id] = {};
-                            _curCartPackage.group[_curItem.supply_shop.id][_id] = _curItemPackage;
-                        }
+            }
+            //分组
+            for (var item in _curShopCart) {
+                var _curItemPackage = _curShopCart[item];
+                var _curItem = _curItemPackage.item;
+                var _id = (_curItem.sku.length > 0 ? _curItemPackage.sku.id : _curItem.id);
+                if (_curItem.supply_type == 2) {
+                    if (!!_curCartPackage.group[_curItem.supply_shop.id]) {
+                        _curCartPackage.group[_curItem.supply_shop.id][_id] = _curItemPackage;
                     } else {
-                        if (!!_curCartPackage.group[_curItem.seller_id]) {
-                            _curCartPackage.group[_curItem.seller_id][_id] = _curItemPackage;
-                        } else {
-                            _curCartPackage.group[_curItem.seller_id] = {};
-                            _curCartPackage.group[_curItem.seller_id][_id] = _curItemPackage;
-                        }
+                        _curCartPackage.group[_curItem.supply_shop.id] = {};
+                        _curCartPackage.group[_curItem.supply_shop.id][_id] = _curItemPackage;
+                    }
+                } else {
+                    if (!!_curCartPackage.group[_curItem.seller_id]) {
+                        _curCartPackage.group[_curItem.seller_id][_id] = _curItemPackage;
+                    } else {
+                        _curCartPackage.group[_curItem.seller_id] = {};
+                        _curCartPackage.group[_curItem.seller_id][_id] = _curItemPackage;
                     }
                 }
-            } catch (error) {
-                alert(error);
             }
             return _cart;
         },
