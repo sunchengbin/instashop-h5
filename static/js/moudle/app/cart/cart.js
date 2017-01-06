@@ -310,6 +310,7 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
         getIsGroup: function () {
             var _this = this;
             var _isGroup = false;
+            if(!_this.data.Cart)return null;
             //每次去检查购物车
             _isGroup = (function () {
                 for (var key in _this.data.Cart[_this.data.ShopInfo.id]) {

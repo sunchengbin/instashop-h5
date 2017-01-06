@@ -6,7 +6,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
         init: function () {
             var _this = this;
             var _isGroup = _this.isGroup =  Cart().getIsGroup();
-            var _groupid = Base.others.getUrlPrem("groupid",location.href);
+            var _groupid = this._groupid = Base.others.getUrlPrem("groupid",location.href);
             var _data = localStorage.getItem('ShopData');
             var _carts;
             if(_isGroup){
@@ -254,7 +254,12 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             });
             $('body').on('click', '.j_address_wraper', function () {
                 //Common.saveFromUrl(function(){
-                location.href = Config.host.hrefUrl + 'address.php';
+                    if(_this._groupid){
+                        location.href = Config.host.hrefUrl + 'address.php?groupid='+_this._groupid;
+                    }else{
+                        location.href = Config.host.hrefUrl + 'address.php';
+                    }
+                
                 //});
             });
             Common.listenAndroidKeyboardToggle(function () {
