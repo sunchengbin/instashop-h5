@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 添加购物车相关
  */
-define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
+define(['base', 'lang', 'dialog','debug'], function (Base, Lang, Dialog,Debug) {
     var Constant = {
         DROPSHIPER_FLAG: 2
     }
@@ -40,11 +40,13 @@ define(['base', 'lang', 'dialog'], function (Base, Lang, Dialog) {
                 _cart = null;
             }
             this.cart = _cart;
+            if(!!_cart)this.data.GroupCart = this.convertGroup(_cart);
+            
         },
         //输入原始购物车数据包shop_id->good_id
         convertGroup: function (cart) {
             var _this = this;
-            var _cart = {};
+            var _cart = _this.data.GroupCart||{};
             var _shopId = _this.data.ShopInfo.id;
             var _curShopCart = cart[_shopId];
             _cart[_this.data.ShopInfo.id] = {
