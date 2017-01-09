@@ -185,7 +185,7 @@ define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','ca
         addSuccessFn:function(is_buy_now,wh){
             var _this = this;
             if(is_buy_now == 'true'){
-                Common.saveFromUrl(function(){
+                Common.saveCartFromUrl(function(){
                     location.href = Config.host.hrefUrl+'cart.php';
                 });
             }else{
