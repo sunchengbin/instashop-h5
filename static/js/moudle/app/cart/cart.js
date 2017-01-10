@@ -37,6 +37,12 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
             var _this = this;
             var _json_shop_data = localStorage.getItem('ShopData') ? JSON.parse(localStorage.getItem('ShopData')) : null,
                 _cart;
+            Debug.log({
+                title: "cart.js-initCart",
+                data: {
+                    shopdata: _json_shop_data
+                }
+            })
             this.data = _json_shop_data;
             if (_json_shop_data) {
                 _cart = _json_shop_data.Cart;
@@ -338,14 +344,32 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
                 return null;
             }
             if (Base.others.testObject(_this.cart[_this.data.ShopInfo.id])) {
+                Debug.log({
+                    title: "cart.js-getCarts-路径",
+                    data: "Base.others.testObject(_this.cart[_this.data.ShopInfo.id])"
+                })
                 return [];
             }
+            Debug.log({
+                title: "cart.js-getCarts",
+                data: {
+                    title: "cart.js-getCarts-return",
+                    carts: _this.data.Cart[_this.data.ShopInfo.id],
+                    shopid: _this.data.ShopInfo.id
+                }
+            })
             return _this.data.Cart[_this.data.ShopInfo.id];
         },
         getCartNum: function () {
             var _num = 0,
                 _this = this,
                 carts = _this.getCarts();
+            Debug.log({
+                title: "cart.js-getCartNum",
+                data: {
+                    carts: carts
+                }
+            })
             if (!carts) {
                 return 0;
             }

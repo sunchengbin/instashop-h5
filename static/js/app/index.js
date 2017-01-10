@@ -9,10 +9,10 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
             var _this = this;
             _this.item_type = Common.getItemListType(init_data.template);
             _this.sortTimes = 0;
-            var _cart_num = Cart().getCartNum();
             if(init_data){
                 Common.initShopInfo(init_data);
-                if(_cart_num > 0){
+                var _cart_num = Cart().getCartNum();
+                if(_cart_num != 0){
                     $('.j_cart_wraper').append('<span class="cart-num">'+_cart_num+'</span>');
                 }
                 _this.initRotateBanner();

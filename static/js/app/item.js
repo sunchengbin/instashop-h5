@@ -11,7 +11,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             var _this = this,
                 _cart_num = Cart().getCartNum();
             if (init_data && init_data.code == 200) {
-                if (_cart_num > 0) {
+                if (_cart_num != 0) {
                     $('.j_cart_wraper').append('<span class="cart-num">' + _cart_num + '</span>');
                 }
                 try {
