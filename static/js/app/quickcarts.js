@@ -481,8 +481,12 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                                         top_txt: '', //可以是html
                                         cfb_txt: Lang.H5_FRESHEN,
                                         body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
-                                        cf_fn: function () {
-                                            location.reload();
+                                        after_fn: function () {
+                                            var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
+                                            location.href = _url + '?item=back';
+                                            setTimeout(function () {
+                                                location.href = _url;
+                                            }, 2000);
                                         }
                                     });
                                 }
