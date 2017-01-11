@@ -496,7 +496,11 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                                 top_txt: '', //可以是html
                                 body_txt: '<p class="dialog-body-p">' + obj.message + '</p>',
                                 after_fn: function () {
-                                    location.reload();
+                                    var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
+                                    location.href = _url + '?item=back';
+                                    setTimeout(function () {
+                                        location.href = _url;
+                                    }, 2000);
                                 }
                             });
                         }
