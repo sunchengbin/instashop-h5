@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/7/26.
  */
-require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator'], function (Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator) {
+require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator','favorable'], function (Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator,Favorable) {
     var QuickCartsHtm = {
         init: function () {
             var _this = this,
@@ -72,6 +72,12 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                     }
                 });
             }
+
+            //优惠券
+            _this.favorablePlugin = Favorable({
+                el:".total-ps"
+            });
+
             _this.getTotal();
             _this.handleFn();
         },

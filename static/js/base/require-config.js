@@ -50,7 +50,8 @@ require.config({
         history:'moudle/app/im/history',
         message:'moudle/app/im/message',
         validator:'moudle/ui/validator/validator',
-        debug:'moudle/app/debug/debug'
+        debug:'moudle/app/debug/debug',
+        favorable:'moudle/app/favorable/favorable'
     },
     packages: []
 });
