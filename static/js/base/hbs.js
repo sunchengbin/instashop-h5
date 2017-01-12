@@ -276,7 +276,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item','debug'], function (HBS, 
             var _curIndex = 1;
             $.each(cart.group, function (key, _groupItem) {
                 _htm += '<div class="cart-supplier-card" group-id="'+key+'" >' +
-                    '<div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>仓库' + (_curIndex++) + '</div>' +
+                    '<div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>'+Lang.H5_CART_GROUP_TITLE + (_curIndex++) + '</div>' +
                     '<ul>'
                 _htm+=assembleCartItem(_groupItem,key)
                 _htm+='</ul></div>'

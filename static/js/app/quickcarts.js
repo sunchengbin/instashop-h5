@@ -279,7 +279,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                             Dialog.tip({
                                 top_txt: '', //可以是html
                                 body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_ERROR) + '</p>',
-                                auto_fn: function () {
+                                after_fn: function () {
                                     var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
                                     location.href = _url + '?item=back';
                                     setTimeout(function () {
@@ -414,90 +414,103 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                             location.href = Config.host.hrefUrl + 'ordersuccess.php?price=' + obj.order.total_price + '&detail=2&shop_id=' + init_data.shop.id + '&order_id=' + obj.order.id_hash + '&bname=' + _name + '&bphone=' + _telephone + '&sname=' + init_data.shop.name + '&time=' + (init_data.shop.cancel_coutdown / 86400);
                         }, 100);
                     } else {
-                        Dialog.tip({
-                            top_txt: '', //可以是html
-                            body_txt: '<p class="dialog-body-p">' + obj.message + '</p>',
-                            auto_fn: function () {
-                                _that.cancelDisable();
-                                _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-                                var _telephone = $.trim($('.j_tel').val());
-                                var reqData = {
-                                    edata: {
-                                        action: 'check',
-                                        items: _this.getItems(),
-                                        telephone: _telephone,
-                                        seller_id: init_data.shop.id,
-                                        wduss: ''
-                                    }
-                                };
-                                Ajax.postJsonp({
-                                    url: Config.actions.testCart,
-                                    data: {
-                                        param: JSON.stringify(reqData)
-                                    },
-                                    type: 'POST',
-                                    success: function (obj) {
-                                        if (obj.code == 200) {
-                                            if (obj.carts) {
-                                                if (_this.testCarts(obj.carts)) {
-                                                    Dialog.tip({
-                                                        top_txt: '', //可以是html
-                                                        body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_ERROR) + '</p>',
-                                                        auto_fn: function () {
-                                                            var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
-                                                            location.href = _url + '?item=back';
-                                                            setTimeout(function () {
-                                                                location.href = _url;
-                                                            }, 2000);
-                                                        }
-                                                    });
-                                                } else {
-                                                    Dialog.tip({
-                                                        top_txt: '', //可以是html
-                                                        body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_ERROR) + '</p>',
-                                                        auto_fn: function () {
-                                                            setTimeout(function () {
-                                                                location.reload();
-                                                            }, 2000);
-                                                        }
-                                                    });
-                                                }
+
+                        if ("server error" == obj.message) {
+                            _that.cancelDisable();
+                            _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                            var _telephone = $.trim($('.j_tel').val());
+                            var reqData = {
+                                edata: {
+                                    action: 'check',
+                                    items: _this.getItems(),
+                                    telephone: _telephone,
+                                    seller_id: init_data.shop.id,
+                                    wduss: ''
+                                }
+                            };
+                            Ajax.postJsonp({
+                                url: Config.actions.testCart,
+                                data: {
+                                    param: JSON.stringify(reqData)
+                                },
+                                type: 'POST',
+                                success: function (obj) {
+                                    if (obj.code == 200) {
+                                        if (obj.carts) {
+                                            if (_this.testCarts(obj.carts)) {
+                                                Dialog.tip({
+                                                    top_txt: '', //可以是html
+                                                    body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_ERROR) + '</p>',
+                                                    after_fn: function () {
+                                                        var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
+                                                        location.href = _url + '?item=back';
+                                                        setTimeout(function () {
+                                                            location.href = _url;
+                                                        }, 2000);
+                                                    }
+                                                });
+                                            } else {
+                                                Dialog.tip({
+                                                    top_txt: '', //可以是html
+                                                    body_txt: '<p class="dialog-body-p">' + (_this.msg ? _this.msg : Lang.H5_ERROR) + '</p>',
+                                                    after_fn: function () {
+                                                        setTimeout(function () {
+                                                            location.reload();
+                                                        }, 2000);
+                                                    }
+                                                });
                                             }
-                                        } else {
-                                            var _msg = _this.msg || obj.message || Lang.H5_ERROR;
-                                            Dialog.tip({
-                                                top_txt: '', //可以是html
-                                                body_txt: '<p class="dialog-body-p">' + _msg + '</p>',
-                                                auto_fn: function () {
-                                                    var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
-                                                    location.href = _url + '?item=back';
-                                                    setTimeout(function () {
-                                                        location.href = _url;
-                                                    }, 2000);
-                                                }
-                                            });
                                         }
-                                    },
-                                    error: function (error) {
-                                        Dialog.alert({
+                                    } else {
+                                        var _msg = _this.msg || obj.message || Lang.H5_ERROR;
+                                        Dialog.tip({
                                             top_txt: '', //可以是html
-                                            cfb_txt: Lang.H5_FRESHEN,
-                                            body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
-                                            cf_fn: function () {
-                                                location.reload();
+                                            body_txt: '<p class="dialog-body-p">' + _msg + '</p>',
+                                            after_fn: function () {
+                                                var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
+                                                location.href = _url + '?item=back';
+                                                setTimeout(function () {
+                                                    location.href = _url;
+                                                }, 2000);
                                             }
                                         });
                                     }
-                                });
-                            }
-                        });
+                                },
+                                error: function (error) {
+                                    Dialog.alert({
+                                        top_txt: '', //可以是html
+                                        cfb_txt: Lang.H5_FRESHEN,
+                                        body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
+                                        after_fn: function () {
+                                            var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
+                                            location.href = _url + '?item=back';
+                                            setTimeout(function () {
+                                                location.href = _url;
+                                            }, 2000);
+                                        }
+                                    });
+                                }
+                            });
+                        } else {
+                            Dialog.tip({
+                                top_txt: '', //可以是html
+                                body_txt: '<p class="dialog-body-p">' + obj.message + '</p>',
+                                after_fn: function () {
+                                    var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
+                                    location.href = _url + '?item=back';
+                                    setTimeout(function () {
+                                        location.href = _url;
+                                    }, 2000);
+                                }
+                            });
+                        }
                     }
                 },
                 error: function (error) {
                     Dialog.tip({
                         top_txt: '', //可以是html
                         body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
-                        auto_fn: function () {
+                        after_fn: function () {
                             this.remove();
                             _that.cancelDisable();
                             _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
@@ -601,7 +614,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 _fee_id = _logistics_info.length ? _logistics_info.attr('data-id') : '',
                 _seller_id = init_data.shop.id,
                 _note = _buyer_note;
-            if (_logistics_info.length && !_company) { //没选择物流信息
+            if (_logistics_info.children().length && !_company) { //没选择物流信息
                 Dialog.tip({
                     top_txt: '', //可以是html
                     body_txt: '<p class="dialog-body-p">' + Lang.H5_SELECT_ONE_LOGISTICS_COMPANY + '</p>'
@@ -852,7 +865,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                             Dialog.tip({
                                 top_txt: '', //可以是html
                                 body_txt: '<p class="dialog-body-p">' + _msg + '</p>',
-                                auto_fn: function () {
+                                after_fn: function () {
                                     var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
                                     location.href = _url + '?item=back';
                                     setTimeout(function () {

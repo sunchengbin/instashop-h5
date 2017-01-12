@@ -187,7 +187,8 @@ define(['base'],function(Base){
             H5_IS_HAVESHEFL:"有商品已下架",
             H5_NO_SEARCH_VAL:"没有找到相关商品",
             H5_IS_CONFIRM:'已确认',
-            H5_GO_CONTACT:'去联系'
+            H5_GO_CONTACT:'去联系',
+            H5_CART_GROUP_TITLE:"仓库"
         },
 
         id : {
@@ -499,7 +500,8 @@ define(['base'],function(Base){
             //没有找到相关商品
             H5_NO_SEARCH_VAL:"Produk tidak ditemukan",
             H5_IS_CONFIRM:'Nanti Saja',
-            H5_GO_CONTACT:'Kontak Penjual'
+            H5_GO_CONTACT:'Kontak Penjual',
+            H5_CART_GROUP_TITLE:"Gudang"
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );

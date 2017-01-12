@@ -2,155 +2,161 @@
  * Created by sunchengbin1 on 2015/6/18.
  * 弹窗模块
  */
-define(['base','lang','fastclick'],function(base,Lang,Fastclick){
-    var dialog = function(opts){
+define(['base', 'lang', 'fastclick'], function (base, Lang, Fastclick) {
+    var dialog = function (opts) {
         var _this = this;
         _this.opts = $.extend({
-            wraper_class : null,
-            top_txt : '<span class="dialog-top-t"></span>',//可以是html
-            show_top : true,//是否显示头部
-            width : 300,//弹窗宽度
-            height : null,//弹窗特定高度
-            body_txt : '<p class="dialog-body-p">'+Lang.H5_DELETE_CONFIRM+'</p>',//弹窗内容区字段
-            body_fn : null,//插入的body的fn
-            c_fn : null,//close按钮点击关闭的回调函数
-            cf_fn : null,//点击确定的回调函数
-            show_footer : true,//是否显示底部
-            cfb_txt : Lang.H5_CONFIRM,//确定按钮文字
-            cab_txt : Lang.H5_CANCEL,//取消按钮的文字
-            can_exist : false,//是否可一同时存在两个dialog,默认不能你存在
-            is_confirm : false,//是否是confirm
-            is_cover : true,//是否有遮罩层
-            event_type : 'click',//所有弹窗按钮的事件type
+            wraper_class: null,
+            top_txt: '<span class="dialog-top-t"></span>', //可以是html
+            show_top: true, //是否显示头部
+            width: 300, //弹窗宽度
+            height: null, //弹窗特定高度
+            body_txt: '<p class="dialog-body-p">' + Lang.H5_DELETE_CONFIRM + '</p>', //弹窗内容区字段
+            body_fn: null, //插入的body的fn
+            c_fn: null, //close按钮点击关闭的回调函数
+            cf_fn: null, //点击确定的回调函数
+            show_footer: true, //是否显示底部
+            cfb_txt: Lang.H5_CONFIRM, //确定按钮文字
+            cab_txt: Lang.H5_CANCEL, //取消按钮的文字
+            can_exist: false, //是否可一同时存在两个dialog,默认不能你存在
+            is_confirm: false, //是否是confirm
+            is_cover: true, //是否有遮罩层
+            event_type: 'click', //所有弹窗按钮的事件type
             //隐藏项在创建了wraper后就会创建,弹窗层的dom对象
-            wraper_css : null,
-            coverdom : null,//只需要cover浮层时
-            animation_css:null,//动画
-            cover_css : null,//遮罩层自定义样式
-            auto_fn : null,//自动执行
-            cover_event:null//是否点击cover隐藏dialog
-        },opts);
+            wraper_css: null,
+            coverdom: null, //只需要cover浮层时
+            animation_css: null, //动画
+            cover_css: null, //遮罩层自定义样式
+            auto_fn: null, //自动执行
+            after_fn: null, //tip关闭后执行
+            cover_event: null //是否点击cover隐藏dialog
+        }, opts);
         _this.init();
         return _this;
     };
     dialog.prototype = {
-        init : function(){
+        init: function () {
             Fastclick.attach(document.body);
             var _this = this;
             _this.createDialog();
             _this.handleFn().show();
             _this.opts.auto_fn && _this.opts.auto_fn.apply(this);
         },
-        handleFn : function(){
+        handleFn: function () {
             var _this = this,
                 _wraper = _this.opts.wraper,
                 _e_type = _this.opts.event_type;
-            _wraper.on(_e_type,'.j_c_btn',function(){
-                _this.remove(function(){
-                    _this.opts.c_fn && _this.opts.c_fn.call(_this,$(this));
+            _wraper.on(_e_type, '.j_c_btn', function () {
+                _this.remove(function () {
+                    _this.opts.c_fn && _this.opts.c_fn.call(_this, $(this));
                 });
             });
-            _wraper.on(_e_type,'.j_cf_btn',function(){
-                _this.remove(function(){
-                    _this.opts.cf_fn && _this.opts.cf_fn.call(_this,$(this));
+            _wraper.on(_e_type, '.j_cf_btn', function () {
+                _this.remove(function () {
+                    _this.opts.cf_fn && _this.opts.cf_fn.call(_this, $(this));
                 });
             });
-            _wraper.on(_e_type,'.j_ca_btn',function(){
-                _this.remove(function(){
-                    _this.opts.c_fn && _this.opts.c_fn.call(_this,$(this));
+            _wraper.on(_e_type, '.j_ca_btn', function () {
+                _this.remove(function () {
+                    _this.opts.c_fn && _this.opts.c_fn.call(_this, $(this));
                 });
             });
-            $('.j_dialog_cover').on(_e_type,function(){
-                if(!_this.opts.cover_event){
+            $('.j_dialog_cover').on(_e_type, function () {
+                if (!_this.opts.cover_event) {
                     _this.remove();
                 }
             });
             return _this;
         },
-        show : function(){
+        show: function () {
             var _this = this;
             this.opts.wraper.show();
-            this.opts.body_fn&&this.opts.body_fn.call(_this,$(this));
+            this.opts.body_fn && this.opts.body_fn.call(_this, $(this));
         },
-        remove : function(callback){
+        remove: function (callback) {
             var _this = this;
             _this.removeCover();
             callback && callback();
             _this.removeDialog();
+            _this.opts.after_fn&&_this.opts.after_fn();
         },
-        removeCover : function(){
+        removeCover: function () {
             $('.j_dialog_cover').remove();
         },
-        removeDialog : function(){
+        removeDialog: function () {
             var _this = this,
                 animation_css = _this.opts.animation_css;
-            if(animation_css){
+            if (animation_css) {
                 this.opts.wraper.css(animation_css);
-                setTimeout(function(){
+                setTimeout(function () {
                     _this.opts.wraper.remove();
                     //$('.j_dialog_cover').remove();
-                },1000);
-            }else{
+                }, 1000);
+            } else {
                 this.opts.wraper.remove();
                 //$('.j_dialog_cover').remove();
             }
         },
-        createTop : function(){
+        createTop: function () {
             var _this = this,
                 _htm = '';
-            if(!_this.opts.show_top) return '';
-            _htm = '<div class="dialog-top j_d_top">'
-                +_this.opts.top_txt
-                +'<a href="javascript:;" class="j_c_btn fr"><i class="icon iconfont icon-cancel-font"></i></a>'
-                +'</div>';
+            if (!_this.opts.show_top) return '';
+            _htm = '<div class="dialog-top j_d_top">' +
+                _this.opts.top_txt +
+                '<a href="javascript:;" class="j_c_btn fr"><i class="icon iconfont icon-cancel-font"></i></a>' +
+                '</div>';
             return _htm;
 
         },
-        createBody : function(){
+        createBody: function () {
             var _this = this,
                 _htm = '';
-            _htm = '<div class="dialog-body j_d_body">'+_this.opts.body_txt+'</div>';
+            _htm = '<div class="dialog-body j_d_body">' + _this.opts.body_txt + '</div>';
             return _htm;
 
         },
-        createFooter : function(){
+        createFooter: function () {
             var _this = this,
                 _htm = '';
-            if(!_this.opts.show_footer) return '';
+            if (!_this.opts.show_footer) return '';
             _htm = '<div class="dialog-footer j_d_footer">';
-            if(_this.opts.is_confirm){
-                _htm += '<a href="javascript:;" class="j_ca_btn ca-btn">'+_this.opts.cab_txt+'</a>';
+            if (_this.opts.is_confirm) {
+                _htm += '<a href="javascript:;" class="j_ca_btn ca-btn">' + _this.opts.cab_txt + '</a>';
             }
-            _htm += '<a href="javascript:;" class="j_cf_btn cf-btn">'+_this.opts.cfb_txt+'</a>';
+            _htm += '<a href="javascript:;" class="j_cf_btn cf-btn">' + _this.opts.cfb_txt + '</a>';
 
             _htm += '</div>';
             return _htm;
 
         },
-        createDialog : function(){
+        createDialog: function () {
             var _this = this,
-                _wraper_class =_this.opts.wraper_class?_this.opts.wraper_class:'',
-                _htm = '<div class="dialog-wraper j_dialog_wraper '+_wraper_class+'" data-spider="dialog-wraper">'
-                    +_this.createTop()
-                    +_this.createBody()
-                    +_this.createFooter()
-                    +'</div>';
+                _wraper_class = _this.opts.wraper_class ? _this.opts.wraper_class : '',
+                _htm = '<div class="dialog-wraper j_dialog_wraper ' + _wraper_class + '" data-spider="dialog-wraper">' +
+                _this.createTop() +
+                _this.createBody() +
+                _this.createFooter() +
+                '</div>';
 
-            if(!_this.opts.can_exist && $('.j_dialog_wraper').length){
+            if (!_this.opts.can_exist && $('.j_dialog_wraper').length) {
                 $('.j_dialog_wraper').remove();
             }
-            if(_this.opts.coverdom){
+            if (_this.opts.coverdom) {
                 _htm = _this.opts.body_txt;
             }
             var _dh = $(document).height(),
                 _wh = $(window).height(),
-                _ch = _dh > _wh?_dh:_wh,
-                _cover_css = _this.opts.cover_css?$.extend({'height':_ch},_this.opts.cover_css):{'height':_ch};
+                _ch = _dh > _wh ? _dh : _wh,
+                _cover_css = _this.opts.cover_css ? $.extend({
+                    'height': _ch
+                }, _this.opts.cover_css) : {
+                    'height': _ch
+                };
 
-            if(_this.opts.is_cover && !$('.j_dialog_cover').length){
+            if (_this.opts.is_cover && !$('.j_dialog_cover').length) {
                 var _cover = $('<div class="dialog-cover j_dialog_cover"></div>'),
                     _zindex = base.others.zIndex++;
-                _cover.css('zIndex',_zindex);
+                _cover.css('zIndex', _zindex);
                 $('body').append(_cover);
                 $('.j_dialog_cover').css(_cover_css);
             }
@@ -161,16 +167,16 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
 
             return _this;
         },
-        setPosition : function(){
+        setPosition: function () {
             var _this = this,
                 _zindex = base.others.zIndex++,
                 _wraper_css = _this.opts.wraper_css,
                 _count_position = _this.countPosition();
             console.log(_count_position);
-            if(_this.opts.wraper_class){
+            if (_this.opts.wraper_class) {
                 _count_position.top = 10;
             }
-            if(_wraper_css){
+            if (_wraper_css) {
                 _wraper_css.top = _count_position.top;
                 _wraper_css.left = _count_position.left;
                 _wraper_css.width = _this.opts.width;
@@ -179,94 +185,131 @@ define(['base','lang','fastclick'],function(base,Lang,Fastclick){
                 return _wraper_css;
             }
             return {
-                top : _count_position.top,
-                left : _count_position.left,
-                width : _this.opts.width,
-                zIndex : _zindex
+                top: _count_position.top,
+                left: _count_position.left,
+                width: _this.opts.width,
+                zIndex: _zindex
             };
 
         },
-        countPosition : function(){
+        countPosition: function () {
             var _this = this,
                 _wraper_css = _this.opts.wraper_css,
                 _sco_top = $(window).scrollTop(),
                 _sco_left = $(window).scrollLeft(),
                 _win_w = $(window).width(),
                 _win_h = $(window).height(),
-                _d_w = (_wraper_css&&_wraper_css.width)?_wraper_css.width:_this.opts.width,
+                _d_w = (_wraper_css && _wraper_css.width) ? _wraper_css.width : _this.opts.width,
                 _wraper = _this.opts.wraper,
-                _d_h = (_wraper_css&&_wraper_css.height)?_wraper_css.height:(_this.opts.height?_this.opts.height:_wraper.height()),
-                _d_top_h = _this.opts.show_top?_wraper.find('.j_d_top').height():0,
-                _d_footer_h = _this.opts.show_footer?_wraper.find('.j_d_footer').height():0,
+                _d_h = (_wraper_css && _wraper_css.height) ? _wraper_css.height : (_this.opts.height ? _this.opts.height : _wraper.height()),
+                _d_top_h = _this.opts.show_top ? _wraper.find('.j_d_top').height() : 0,
+                _d_footer_h = _this.opts.show_footer ? _wraper.find('.j_d_footer').height() : 0,
                 _top = 0,
                 _left = 0;
-            if(_d_h >= _win_h){
-                _wraper.find('.j_d_body').css('maxHeight',(_win_h - _d_top_h - _d_footer_h));
+            if (_d_h >= _win_h) {
+                _wraper.find('.j_d_body').css('maxHeight', (_win_h - _d_top_h - _d_footer_h));
                 _top = 20 + _sco_top;
-            }else{
+            } else {
                 _top = (_win_h - _d_h) / 2 + _sco_top;
             }
-            if(_d_w >= _win_w){
-                _wraper.find('.j_d_body').css('maxWidth',_d_w);
+            if (_d_w >= _win_w) {
+                _wraper.find('.j_d_body').css('maxWidth', _d_w);
                 _left = 10 + _sco_left;
-            }else{
+            } else {
                 _left = (_win_w - _d_w) / 2 + _sco_left;
             }
             return {
-                top : _top,
-                left : _left
+                top: _top,
+                left: _left
             }
         }
 
 
     };
-    function loadHTM(){
-        var _htm = '<div class="load">'
-            +'<div class="spinner">'
-            +'<div class="spinner-container container1">'
-            +'<div class="circle1"></div>'
-            +'<div class="circle2"></div>'
-            +'<div class="circle3"></div>'
-            +'<div class="circle4"></div>'
-            +'</div>'
-            +'<div class="spinner-container container2">'
-            +'<div class="circle1"></div>'
-            +'<div class="circle2"></div>'
-            +'<div class="circle3"></div>'
-            +'<div class="circle4"></div>'
-            +'</div>'
-            +'<div class="spinner-container container3">'
-            +'<div class="circle1"></div>'
-            +'<div class="circle2"></div>'
-            +'<div class="circle3"></div>'
-            +'<div class="circle4"></div>'
-            +'</div>'
-            +'</div>'
-            +'</div>';
+
+    function loadHTM() {
+        var _htm = '<div class="load">' +
+            '<div class="spinner">' +
+            '<div class="spinner-container container1">' +
+            '<div class="circle1"></div>' +
+            '<div class="circle2"></div>' +
+            '<div class="circle3"></div>' +
+            '<div class="circle4"></div>' +
+            '</div>' +
+            '<div class="spinner-container container2">' +
+            '<div class="circle1"></div>' +
+            '<div class="circle2"></div>' +
+            '<div class="circle3"></div>' +
+            '<div class="circle4"></div>' +
+            '</div>' +
+            '<div class="spinner-container container3">' +
+            '<div class="circle1"></div>' +
+            '<div class="circle2"></div>' +
+            '<div class="circle3"></div>' +
+            '<div class="circle4"></div>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
         return _htm;
     }
     return {
-        dialog : function(opts) {
+        dialog: function (opts) {
             return new dialog(opts);
         },
-        alert : function(opts) {
-            opts = $.extend({show_top:false},opts);
+        alert: function (opts) {
+            opts = $.extend({
+                show_top: false
+            }, opts);
             return new dialog(opts);
         },
-        confirm : function(opts) {
-            opts = $.extend({is_confirm:true,show_top:false},opts);
+        confirm: function (opts) {
+            opts = $.extend({
+                is_confirm: true,
+                show_top: false
+            }, opts);
             return new dialog(opts);
         },
-        tip : function(opts){
-            opts = $.extend({show_footer:false,show_top:false,cover_css : {'background-color':'rgba(255,255,255,.1)'},wraper_css:{'background-color':'rgba(0,0,0,.5)',color:'#fff','text-align':'center'},animation_css:{'opacity':'1'},auto_fn:function(){var _this = this;setTimeout(function(){_this.remove()},1000)}},opts);
+        tip: function (opts) {
+            opts = $.extend({
+                show_footer: false,
+                show_top: false,
+                cover_css: {
+                    'background-color': 'rgba(255,255,255,.1)'
+                },
+                wraper_css: {
+                    'background-color': 'rgba(0,0,0,.5)',
+                    color: '#fff',
+                    'text-align': 'center'
+                },
+                animation_css: {
+                    'opacity': '1'
+                },
+                auto_fn: function () {
+                    var _this = this;
+                    setTimeout(function () {
+                        _this.remove()
+                    }, 1000)
+                }
+            }, opts);
             return new dialog(opts);
         },
-        loading : function(opts){
-            opts = $.extend({show_footer:false,show_top:false,width:0,cover_event:true,body_txt:loadHTM(),wraper_css:{'background-color':'transparent'}},opts);
+        loading: function (opts) {
+            opts = $.extend({
+                show_footer: false,
+                show_top: false,
+                width: 0,
+                cover_event: true,
+                body_txt: loadHTM(),
+                wraper_css: {
+                    'background-color': 'transparent'
+                }
+            }, opts);
             return new dialog(opts);
         },
-        cover : function(opts){
-            opts = $.extend({coverdom:true},opts);
+        cover: function (opts) {
+            opts = $.extend({
+                coverdom: true
+            }, opts);
             return new dialog(opts);
         }
     }
