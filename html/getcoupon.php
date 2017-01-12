@@ -14,7 +14,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/app/coupon.css?v=1483091901483" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/app/getcoupon.css?v=1483091901483" rel="stylesheet"/>
 </head>
 <body data-spider="23anxvhr">
     <section class="coupon-info">
@@ -28,24 +28,15 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             Selamat, Anda ambil kupon, pergi belanja sekarang!
         </div>
         <div class="coupon-box">
-            <div class="coupon-box-wraper clearfix">
-                <div class="coupon-box-left">
-                    <p class="price">Rp 500.000</p>
-                    <p class="condition">—Min.Pembelian Rp 300.000—</p>
-                    <p class="use-time">02/12 16.50-28/12 16.50 WIB</p>
-                </div>
-                <div class="coupon-box-right">
-                    <p>code:</p>
-                    <p class="code-box">lakjflka</p>
-                </div>
+            <div class="get-coupon-box clearfix">
+                Rp 500.000
             </div>
         </div>
-        <p class="cart-explain">Memesan masukan kode untuk Penawaran</p>
     </section>
     <section class="coupon-operate">
-        <p>Selamat, Anda menerima sukses!</p>
-        <a href="" class="block go-home">segera</a>
-        <a href="" class="block share-coupon">Share membuat merah</a>
+        <div class="telphone-box"><input type="tel" class="telphone" placeholder="jlakjdflak"/></div>
+        <div class="explain">Selamat, Anda menerima sukses!</div>
+        <a href="javascript:;" class="block go-home">segera</a>
     </section>
     <section class="coupon-introduce">
         <p>Selamat, Anda menerima sukses!</p>
@@ -66,7 +57,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     </section>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
-    <script src="<?=STATIC_HOST?>/js/app/coupon.js?v=1483091901483"></script>
+    <script src="<?=STATIC_HOST?>/js/app/getcoupon.js?v=1483091901483"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
