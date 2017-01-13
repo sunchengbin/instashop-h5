@@ -81,7 +81,7 @@
     <section class="items-box j_hot_box j_box">
         {if $RECOMMEND_ITEM|@count}
         <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>
-            {if $ITEMTYPE eq '2'}
+            {if $ITEMTYPE neq '3'}
                 <ul class="items-list clearfix j_hot_list">
                     {foreach $RECOMMEND_ITEM as $item}
                     <li>
@@ -139,7 +139,7 @@
     <section class="items-box j_box" data-tagid="{$tag_list.id}">
         {if $tag_list|@count}
         <p class="item-title b-bottom clearfix"><a spm-auto="商品所属分类" spm-click="{$tag_list.id}" class="fr j_item_info" href="javascript:;" data-url="{$HOST_NAME}/k/{$tag_list.id}">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>{$tag_list.name}</em></p>
-            {if $ITEMTYPE eq '2'}
+            {if $ITEMTYPE neq '3'}
                 <ul class="items-list j_item_list clearfix">
                     {foreach $tag_list.tag_data as $item}
                     <li>
@@ -198,7 +198,7 @@
     <section class="items-box j_item_box j_box">
         {if $HOT_ITEM|@count}
         <p class="item-title b-bottom"><span></span>Hot Item</p>
-            {if $ITEMTYPE eq '2'}
+            {if $ITEMTYPE neq '3'}
             <ul class="items-list j_item_list clearfix">
                 {foreach $HOT_ITEM as $item}
                 <li>

@@ -62,26 +62,26 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         handelFn : function(bridge){
             var _this = this;
             //console.log(_this.model_data);
-            if(!bridge){
-                alert('not find bridge');
-                return;
-            }
-            //提供给native设置回退锁,为了回退的时候
-            (function(bridge){
-                var _param = {
-                    param:{
-                        type : 'go_back',
-                        param : {
-                            type : 'loaded',
-                            result : _this.is_edit
-                        }
-                    }
-                };
-                bridge.callHandler('insSocket',_param, function(response) {
-                    return null;
-                });
-            })(bridge);
-            _this.registerFn(bridge);
+            //if(!bridge){
+            //    alert('not find bridge');
+            //    return;
+            //}
+            ////提供给native设置回退锁,为了回退的时候
+            //(function(bridge){
+            //    var _param = {
+            //        param:{
+            //            type : 'go_back',
+            //            param : {
+            //                type : 'loaded',
+            //                result : _this.is_edit
+            //            }
+            //        }
+            //    };
+            //    bridge.callHandler('insSocket',_param, function(response) {
+            //        return null;
+            //    });
+            //})(bridge);
+            //_this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
                 PaqPush && PaqPush('插入模块','insert-model');
@@ -123,7 +123,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 }else{
                     if(_type == 'item_list_type'){//选择
                         var _sel_htm = '<div>';
-                        if(_this.item_list_type == 2){
+                        if(_this.item_list_type != 3){
                             _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn checked-btn icon-radioed-font" data-type="2"></i>'+Lang.H5_ITEM_LIST_TYPE_TWO+'</p>';
                             _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn icon-radio-font" data-type="3"></i>'+Lang.H5_ITEM_LIST_TYPE_THREE+'</p>';
                         }else{
@@ -250,7 +250,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : null
                 }),
                 data : {
-                    data : type == 2?init_data.item_list.list.slice(0,2):init_data.item_list.list,
+                    data : type != 3?init_data.item_list.list.slice(0,2):init_data.item_list.list,
                     title : Lang.H5_EDIT_SHOW_ITEM
                 },
                 lang : Lang
