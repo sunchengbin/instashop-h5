@@ -16,7 +16,7 @@ require(['lang','ajax','config','fastclick','dialog'],function(Lang,Ajax,Config,
                 _this.getCoupon(_tel);
             });
         },
-        getCouponId : function(){
+        getCouponId : function(){//获取url
             var _href = location.href,
                 _coupon_id = _href.split('/').slice(-1);
             if(/\_/g.test(_coupon_id)){
@@ -27,7 +27,7 @@ require(['lang','ajax','config','fastclick','dialog'],function(Lang,Ajax,Config,
                 coupon_id : _coupon_id
             };
         },
-        saveCouponCode : function(href_id,code){
+        saveCouponCode : function(href_id,code){//根据页面url存储领取的code,避免用户同页面url重复领取code
             var _local_coupon = localStorage.getItem('CouponList');
             if(_local_coupon){
                 _local_coupon = JSON.parse(_local_coupon);
@@ -40,7 +40,7 @@ require(['lang','ajax','config','fastclick','dialog'],function(Lang,Ajax,Config,
             }
            localStorage.setItem('CouponList',JSON.stringify(_local_coupon));
         },
-        getCoupon : function(tel){
+        getCoupon : function(tel){//获取优惠券code
             var _this = this;
             if(!tel)return;
             Ajax.postJsonp({
