@@ -123,7 +123,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 }else{
                     if(_type == 'item_list_type'){//选择
                         var _sel_htm = '<div>';
-                        if(_this.item_list_type == 2){
+                        if(_this.item_list_type != 3){
                             _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn checked-btn icon-radioed-font" data-type="2"></i>'+Lang.H5_ITEM_LIST_TYPE_TWO+'</p>';
                             _sel_htm += '<p class="j_item_list_type"><i class="icon iconfont check-btn icon-radio-font" data-type="3"></i>'+Lang.H5_ITEM_LIST_TYPE_THREE+'</p>';
                         }else{
@@ -250,7 +250,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : null
                 }),
                 data : {
-                    data : type == 2?init_data.item_list.list.slice(0,2):init_data.item_list.list,
+                    data : type != 3?init_data.item_list.list.slice(0,2):init_data.item_list.list,
                     title : Lang.H5_EDIT_SHOW_ITEM
                 },
                 lang : Lang
