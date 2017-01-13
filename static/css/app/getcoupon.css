@@ -1,5 +1,4 @@
 @import "coupon.css";
-@import "../moudle/app/sharecoupon/sharecoupon.css";
 .get-coupon-box{
     background: url(../../images/app/coupon-price.png) no-repeat center;
     background-size: contain;

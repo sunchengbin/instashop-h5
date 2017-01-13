@@ -34,3 +34,10 @@
 .icon-share-bbm {
     color: #38A6D7;
 }
+.dialog-body{
+    padding:1rem 0;
+}
+.dialog-top{
+    text-align: center;
+    font-size: 18px;
+}

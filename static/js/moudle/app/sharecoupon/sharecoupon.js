@@ -5,9 +5,9 @@ define(['dialog'],function(Dialog){
     var ShareCoupon = function(opts){
         var _this = this;
         _this.config = $.extend({
-            title : '',
-            content : '',
-            coupon_url: 'javascript:;'
+            title : 'Menerima kupon gratis',
+            content : 'Aku benar-benar seperti toko untuk mengirim kupon gratis, datang ambil itu, sejumlah pertama datang pertama mendapatkan!',
+            coupon_url: 'http://m-test.instashop.co.id/b/0001'
         },opts);
         _this.init();
     };
@@ -15,30 +15,33 @@ define(['dialog'],function(Dialog){
         init : function(){
             var _this = this;
             Dialog.dialog({
-
+                top_txt : _this.config.title,
+                body_txt : _this.createHtm(),
+                show_footer : false
             });
             _this.handleFn();
         },
         createHtm : function(){
             var _this = this,
+                _share_content = _this.config.content+_this.urlArithmetic(_this.config.coupon_url),
                 _htm = '';
+            _this.share_content = _share_content;
             _htm +='<div class="share-dialog-box">'
-                +'<p class="title">sdfsdf</p>'
-                +'<div class="share-info">sfsdfsdf'
+                +'<div class="share-info">'+_share_content
                 +'</div>'
-                +'<div class="share-explain">sdfsfadsfadf'
+                +'<div class="share-explain">Tekan lama untuk berbagi garis konten, whatsapp, bbm dan media sosial lainnya, Anda bisa mendapatkan kupon melalui link.'
                 +'</div>'
                 +'<div class="share-operate clearfix">'
-                +'<a href="javascript:;">'
-                +'<i class="iconfont icon-share-line j_share_action" data-url=""></i>'
+                +'<a href="javascript:;" class="j_share_action" data-url="http://line.naver.jp/R/msg/text/?">'
+                +'<i class="iconfont icon-share-line" ></i>'
                 +'<p>LINE</p>'
                 +'</a>'
-                +'<a href="javascript:;">'
-                +'<i class="iconfont icon-share-whatsapp j_share_action" data-url=""></i>'
+                +'<a href="javascript:;" class="j_share_action" data-url="whatsapp://send?text=">'
+                +'<i class="iconfont icon-share-whatsapp" ></i>'
                 +'<p>WhatsApp</p>'
                 +'</a>'
-                +'<a href="javascript:;">'
-                +'<i class="iconfont icon-share-bbm j_share_action" data-url=""></i>'
+                +'<a href="javascript:;" class="j_share_action" data-url="bbmi://api/share?message=">'
+                +'<i class="iconfont icon-share-bbm " ></i>'
                 +'<p>BBM</p>'
                 +'</a>'
                 +'</div>'
@@ -46,8 +49,17 @@ define(['dialog'],function(Dialog){
             return _htm;
         },
         handleFn : function(){
-
+            var _this = this;
+            $('body').on('click','.j_share_action',function(){
+                console.log($(this).attr('data-url') + _this.share_content);
+                location.href = $(this).attr('data-url') + _this.share_content;
+            });
+        },
+        urlArithmetic : function(url){//分享url算法
+            return url + '_' + Math.round(Math.random() * 10000);
         }
     };
-    return ShareCoupon;
+    return function (opts) {
+        return new ShareCoupon(opts);
+    };
 })

@@ -1,6 +1,8 @@
 @import "../base/base.css";
 @import "../moudle/app/header/header.css";
 @import "../moudle/app/common/common.css";
+@import "../moudle/ui/dialog/dialog.css";
+@import "../moudle/app/sharecoupon/sharecoupon.css";
 .coupon-info{
     padding:1rem;
     color: #fff;
