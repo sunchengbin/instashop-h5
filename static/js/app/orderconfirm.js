@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/13.
  */
-require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug) {
+require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug','favorable'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug,Favorable) {
     var OrderConfirmHtm = {
         init: function () {
             var _this = this;
@@ -23,11 +23,12 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     carts: _carts
                 }
             })
+            var _sum = _this.countSum(_carts);
             var _address = JSON.parse(_data).Address,
                 _htm = Hbs.compile(OrderConfirm)({
                     data: JSON.parse(_data),
                     carts: _carts,
-                    sum: _this.countSum(_carts),
+                    sum: _sum,
                     favorable: (function () {
                         //有就返回优惠额 没有返回0
                         if (!!price_data.price_info.shop_discount) {
@@ -55,6 +56,18 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     lang: Lang
                 });
             }
+
+            //添加对优惠券处理 -lanchenghao@weidian.com
+            _this.favorablePlugin = Favorable({
+                el:".order-info",
+                price:_sum,
+                usehandle:function(favorablePrice,favorableCode){
+                    var _postPrice = $(".j_post").attr("data-price")||0;
+                    _this.favorableCode = favorableCode;
+                    $(".j_sum").text('Rp '+Base.others.priceFormat(_sum - Number(favorablePrice) + Number(_postPrice)));
+                }
+            });
+
             _this.handleFn();
         },
         //1免邮 0付费
@@ -413,6 +426,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     "frm": 2
                 }
             };
+            if(!!_this.favorableCode)_data.edata.code=_this.favorableCode;
             return _data;
         },
         //满减

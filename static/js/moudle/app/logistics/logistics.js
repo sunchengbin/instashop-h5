@@ -50,7 +50,10 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang','fa
                         'data-price' : Number(_check.attr('data-price'))
                     });
                     _this.toHide(document.querySelector('.j_logistics_plug'),_w_h);
-                    var _sum = Number(_config.sum)+Number(_check.attr('data-price'));
+                    //添加对优惠券存在时的处理 -lanchenghao@weidian.com
+                    var _favorablePrice = $(".j_favorable_price").attr('data-price')||0;
+                    var _sum = Number(_config.sum)+Number(_check.attr('data-price'))-Number(_favorablePrice);
+                    $('.j_post').attr("data-price",_check.attr('data-price'));
                     $('.j_post').html('Rp '+Base.others.priceFormat(_check.attr('data-price')));
                     $('.j_sum').html('Rp '+Base.others.priceFormat(_sum));
                 }
