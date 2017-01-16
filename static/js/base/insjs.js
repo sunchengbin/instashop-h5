@@ -57,6 +57,10 @@
  * bridge.callHandler('insSocket', {param:{type:'close_model',param:{code:(保持和后台接口返回code值一样,判断是否提交成功),message:}, function(response) {
  *      return null;
  * })
+ * close_loading//关闭native loading
+ * bridge.callHandler('insSocket', {param:{type:'close_loading',param:{}, function(response) {
+ *      return null;
+ * })
  * get_seller_info//获取用户seller_id和wduss
  * bridge.callHandler('insSocket', {param:{type:'get_seller_info',param:null, function(response) {
  *      return null;

@@ -28,6 +28,7 @@
         "contact":"moudle/app/contact/contact",
         "fastclick":"moudle/ui/fastclick/fastclick",
         "viewer":"moudle/ui/viewer/viewer",
+        "sharecoupon":"moudle/app/sharecoupon/sharecoupon",
         "jsbn":"moudle/decode/jsbn",
         "xxtea":"moudle/decode/xxtea",
         "rsa":"moudle/decode/rsa",

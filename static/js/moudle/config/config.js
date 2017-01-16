@@ -49,7 +49,7 @@ define(['base'],function(Base){
             selfCheckDomain:'v1/domain',//第二期自定义域名活动接口
             shopsDiscount:'v1/shopsDiscount',//满减验证接口
             search:'v1/shopsItems/self',//商品搜索
-            coupon:'v1/coupon'//商品搜索
+            getCoupon:'v1/coupon'//领取优惠券
         }
     };
     function isTestHost(){

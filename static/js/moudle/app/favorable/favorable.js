@@ -85,7 +85,7 @@ define([
                 }
             }
             //TODO ajax 不可用提示 可用关闭dialog 回填favorable-price
-            Ajax.getJsonp(Config.host.actionUrl + Config.actions.coupon + '/?param=' + JSON.stringify(_reqData), function (obj) {
+            Ajax.getJsonp(Config.host.actionUrl + Config.actions.getCoupon + '/?param=' + JSON.stringify(_reqData), function (obj) {
                 if (obj.code && obj.code == 200) {
                     _this.fillDialog.remove(_this.checkAfterAction({
                         code: obj.coupon.code,

@@ -26,13 +26,13 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body>
     <button class="j_btn">get_seller_info</button>
-    <a href="http://line.naver.jp/R/msg/text/?http%3A%2F%2Fm-test.instashop.co.id%2Fs%2F40780">
+    <a href="http://line.naver.jp/R/msg/text/?http//m-test.instashop.co.id/s/40780">
      <button>share-to-line</button>
     </a>
-    <a href="whatsapp://send?text=http%3A%2F%2Fm-test.instashop.co.id%2Fs%2F40780 ''">
+    <a href="whatsapp://send?text=http//m-test.instashop.co.id/s/40780">
      <button>share-to-whatapp</button>
     </a>
-     <a href="bbmi://api/share?message=http%3A%2F%2Fm-test.instashop.co.id%2Fs%2F40780 ''">
+     <a href="bbmi://api/share?message=http//m-test.instashop.co.id/s/40780">
      <button>share-to-bbm</button>
     </a>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
