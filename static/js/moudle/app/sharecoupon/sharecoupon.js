@@ -26,21 +26,21 @@ define(['dialog'],function(Dialog){
                 _share_content = _this.config.content+'<br>'+_this.urlArithmetic(_this.config.coupon_url),
                 _htm = '';
             _this.share_content = _this.config.content+_this.urlArithmetic(_this.config.coupon_url);
-            _htm +='<div class="share-dialog-box">'
+            _htm +='<div class="share-dialog-box" data-spider="coupon_share_box">'
                 +'<div class="share-info">'+_share_content
                 +'</div>'
                 +'<div class="share-explain">Tekan lama untuk berbagi garis konten, whatsapp, bbm dan media sosial lainnya, Anda bisa mendapatkan kupon melalui link.'
                 +'</div>'
                 +'<div class="share-operate clearfix">'
-                +'<a href="javascript:;" class="j_share_action" data-url="http://line.naver.jp/R/msg/text/?">'
+                +'<a href="javascript:;" class="j_share_action"  data-type="line" data-url="http://line.naver.jp/R/msg/text/?">'
                 +'<i class="iconfont icon-share-line" ></i>'
                 +'<p>LINE</p>'
                 +'</a>'
-                +'<a href="javascript:;" class="j_share_action" data-url="whatsapp://send?text=">'
+                +'<a href="javascript:;" class="j_share_action"  data-type="whatsapp" data-url="whatsapp://send?text=">'
                 +'<i class="iconfont icon-share-whatsapp" ></i>'
                 +'<p>WhatsApp</p>'
                 +'</a>'
-                +'<a href="javascript:;" class="j_share_action" data-url="bbmi://api/share?message=">'
+                +'<a href="javascript:;" class="j_share_action" data-type="bbm" data-url="bbmi://api/share?message=">'
                 +'<i class="iconfont icon-share-bbm " ></i>'
                 +'<p>BBM</p>'
                 +'</a>'
@@ -51,7 +51,8 @@ define(['dialog'],function(Dialog){
         handleFn : function(){
             var _this = this;
             $('body').on('click','.j_share_action',function(){
-                console.log($(this).attr('data-url') + _this.share_content);
+                //console.log($(this).attr('data-url') + _this.share_content);
+                PaqPush && PaqPush('分享到'+$(this).attr('data-type')+'获取优惠券', '');
                 location.href = $(this).attr('data-url') + _this.share_content;
             });
         },

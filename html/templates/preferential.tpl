@@ -1,5 +1,5 @@
 {if $INDEX_DATA.shop.shop_discount}
-    <section class="reduc-box">
+    <section class="reduc-box" data-spider="reduc_box">
         <div class="reduc-box-wrap j_reduc_box">
             <i class="iconfont icon-go-font fr reduc-box-go"></i>
             <div>
@@ -21,7 +21,7 @@
     </section>
 {/if}
 {if $INDEX_DATA.shop.coupon}
-    <section class="reduc-box">
+    <section class="reduc-box" data-spider="coupon_box">
         <div class="reduc-box-wrap j_share_btn" data-couponid="{$INDEX_DATA.shop.coupon.id}">
             <i class="iconfont icon-go-font fr reduc-box-go"></i>
         <div>
