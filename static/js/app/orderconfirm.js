@@ -23,11 +23,12 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     carts: _carts
                 }
             })
+            var _sum = _this.countSum(_carts);
             var _address = JSON.parse(_data).Address,
                 _htm = Hbs.compile(OrderConfirm)({
                     data: JSON.parse(_data),
                     carts: _carts,
-                    sum: _this.countSum(_carts),
+                    sum: _sum,
                     favorable: (function () {
                         //有就返回优惠额 没有返回0
                         if (!!price_data.price_info.shop_discount) {
@@ -56,9 +57,10 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 });
             }
 
-            //优惠券
+            //添加对优惠券处理 -lanchenghao@weidian.com
             _this.favorablePlugin = Favorable({
-                el:".order-info"
+                el:".order-info",
+                price:_sum
             });
 
             _this.handleFn();
