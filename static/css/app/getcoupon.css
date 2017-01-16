@@ -10,6 +10,9 @@
     color: #F6A623;
     font-size: 40px;
 }
+.coupon-operate a{
+    background-color: #F6A623;
+}
 .coupon-operate div{
     text-align: left;
 }

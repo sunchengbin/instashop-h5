@@ -15,7 +15,7 @@ define(['dialog'],function(Dialog){
         init : function(){
             var _this = this;
             Dialog.dialog({
-                top_txt : _this.config.title,
+                top_txt : '<p class="share-dialog-title">'+_this.config.title+'</p>',
                 body_txt : _this.createHtm(),
                 show_footer : false
             });
@@ -23,9 +23,9 @@ define(['dialog'],function(Dialog){
         },
         createHtm : function(){
             var _this = this,
-                _share_content = _this.config.content+_this.urlArithmetic(_this.config.coupon_url),
+                _share_content = _this.config.content+'<br>'+_this.urlArithmetic(_this.config.coupon_url),
                 _htm = '';
-            _this.share_content = _share_content;
+            _this.share_content = _this.config.content+_this.urlArithmetic(_this.config.coupon_url);
             _htm +='<div class="share-dialog-box">'
                 +'<div class="share-info">'+_share_content
                 +'</div>'

@@ -86,6 +86,7 @@
 .condition{
     font-size:12px;
     color: #aaa;
+    min-height: 20px;
 }
 .use-time{
     font-size:12px;

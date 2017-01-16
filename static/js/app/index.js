@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/6.
  * 首页
  */
-require(['lang','lazyload','ajax','config','base','common','cart','fastclick','contact','slide','item','dialog'],function(Lang,Lazyload,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item,Dialog){
+require(['lang','lazyload','ajax','config','base','common','cart','fastclick','contact','slide','item','dialog','sharecoupon'],function(Lang,Lazyload,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item,Dialog,Sharecoupon){
     var I = {
         init : function(init_data){
             Lazyload();
@@ -98,6 +98,12 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                     }
                 });
             }
+            $('body').on('click','.j_share_btn',function(){
+                var _coupon_id = $(this).attr('data-couponid');
+                Sharecoupon({
+                    coupon_url : Config.host.host+'b/'+_coupon_id
+                });
+            });
             $(document).on('scroll', function(e) {
                 var moz = /Gecko\//i.test(navigator.userAgent);
                 var body=document[moz?'documentElement':'body'];

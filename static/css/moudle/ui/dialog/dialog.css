@@ -11,8 +11,14 @@
 .dialog-body,.dialog-top,.dialog-footer{
     padding:10px;
 }
+.dialog-top{
+    position: relative;
+}
 .dialog-top a{
     color: #666;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
 }
 .dialog-body{
     overflow:auto;

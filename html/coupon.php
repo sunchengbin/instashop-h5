@@ -15,13 +15,15 @@
 
     /*获取index页面的数据*/
     include_once( dirname(__FILE__).'/../html/router/util.php' );
-    $params = [
-        'action' => 'index'
-    ];
-    $coupon_id = $_REQUEST['coupon_id'];
 
-    $smarty->assign('INDEX_DATA',$coupon_id);
-    $smarty->assign('INDEX_DATA_STR','http://m-test.instashop.co.id/b/0002');
+    $coupon_id = $_REQUEST['coupon_id'];
+    $path = 'v1/coupon/'.$coupon_id;
+    $ret = get_init_php_data($path, []);
+    $json = json_decode($ret, true);
+
+    $smarty->assign('INDEX_DATA',$json);
+    $smarty->assign('INDEX_DATA_CODE',$_REQUEST['code']);
+    $smarty->assign('INDEX_DATA_STR',$json["coupon"]["coupon"]["url"]);
 
     include_once( dirname(__FILE__).'/../html/router/base.php');
 

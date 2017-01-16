@@ -5,6 +5,7 @@
 @import "../moudle/app/model/model.css";
 @import "../moudle/ui/dialog/dialog.css";
 @import "./reduc.css";
+@import "../moudle/app/sharecoupon/sharecoupon.css";
 body{
     color: #666;
     background-color: #ececec;

@@ -3,21 +3,21 @@
     <section class="coupon-info">
         <div class="shop-info clearfix">
             <div class="shop-img">
-                <img data-img="" src="http://imghk0.geilicdn.com/194294-1464071651.png?w=110&h=110&cp=1"/>
+                <img data-img="" src="{$INDEX_DATA.coupon.logo}"/>
             </div>
-            <p>alkjdflakjdfl</p>
+            <p>{$INDEX_DATA.coupon.name}</p>
         </div>
         <div class="coupon-info-box">
             Selamat, Anda ambil kupon, pergi belanja sekarang!
         </div>
         <div class="coupon-box">
             <div class="get-coupon-box clearfix">
-                Rp 500.000
+                Rp {$INDEX_DATA.coupon.coupon.amount|priceFormat}
             </div>
         </div>
     </section>
     <section class="coupon-operate">
-        <div class="telphone-box"><input type="tel" class="telphone j_tel" placeholder="jlakjdflak"/></div>
+        <div class="telphone-box"><input type="tel" class="telphone j_tel" placeholder="No.Hp"/></div>
         <div class="explain">Selamat, Anda menerima sukses!</div>
         <a href="javascript:;" class="block j_get_coupon_btn">segera</a>
     </section>

@@ -50,30 +50,8 @@
         <p><i class="icon iconfont j_down_btn down-btn"></i></p>
     </div>
 </section>
-{if $INDEX_DATA.shop.shop_discount}
-<section class="reduc-box">
-<div class="reduc-box-wrap j_reduc_box">
-<i class="iconfont icon-go-font fr reduc-box-go"></i>
-<div>
-<p class="reduc-box-info">
-            <i class="iconfont icon-bugle"></i>
-                {foreach $INDEX_DATA.shop.shop_discount.info as $keyvar=>$item}
-                    {if $keyvar eq 0}
-                    Minimal Pembelian Rp {$item.condition_price|priceFormat} Potongan Rp {$item.discount_price|priceFormat}
-                    {else}
-                    , Minimal Pembelian Rp {$item.condition_price|priceFormat} Potongan Rp {$item.discount_price|priceFormat}
-                    {/if}
-                {/foreach}
-            </p>
-            <p class="reduc-expire">
-            {$INDEX_DATA.shop.shop_discount.start_time|transDate} - {$INDEX_DATA.shop.shop_discount.end_time|transDate} WIB
-            </p>
-            </div>
-</div>
-</section>
-{/if}
-
-{include file="model.tpl" title="my template model"}
+{include file="preferential.tpl"}
+{include file="model.tpl"}
 <div data-spider="item-list" class="item-list-wraper">
     {if !$INDEX_DATA.item_list.list|@count}
     <section class="no_item">Belum ada produk</section>
