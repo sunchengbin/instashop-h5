@@ -10,8 +10,9 @@ define([
     'hbs',
     'ajax',
     'config',
+    'validator',
     'text!views/app/favorable.hbs'
-], function (Base, Dialog, Lang, Hbs, Ajax, Config, FavorableHtml) {
+], function (Base, Dialog, Lang, Hbs, Ajax, Config, Validator, FavorableHtml) {
     var Favorable = function (opts) {
         var _this = this;
         _this.init(opts);
@@ -61,8 +62,19 @@ define([
             var _this = this;
             //本地校验
             var _code = $(".j_favorable_code").val() || "";
-            if (!_code) {
-                alert("请输入")
+
+            Validator.add(_code, [{
+                strategy: 'isNonEmpty',
+                errorMsg: 'ddddd'
+            }])
+            try {
+                Validator.start();
+            } catch (error) {
+                Dialog.tip({
+                    top_txt: '', //可以是html
+                    body_txt: '<p class="dialog-body-p">' + error.message + '</p>'
+                });
+                return;
             }
             var _reqData = {
                 edata: {
@@ -99,8 +111,7 @@ define([
                 .css("color", "#F5A623")
             //渲染订单金额
             //判断是否有邮费
-            var _postPrice = $(".j_post").attr("data-price")||0;
-            $(".j_sum").text('Rp '+Base.others.priceFormat(_this.price - Number(favorableInfo.price) + Number(_postPrice)));
+            _this.opts.usehandle && _this.opts.usehandle(favorableInfo.price, favorableInfo.code);
         },
         getFavorable: function () {
             //TODO 格式处理

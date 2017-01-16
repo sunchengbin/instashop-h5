@@ -60,7 +60,12 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             //添加对优惠券处理 -lanchenghao@weidian.com
             _this.favorablePlugin = Favorable({
                 el:".order-info",
-                price:_sum
+                price:_sum,
+                usehandle:function(favorablePrice,favorableCode){
+                    var _postPrice = $(".j_post").attr("data-price")||0;
+                    _this.favorableCode = favorableCode;
+                    $(".j_sum").text('Rp '+Base.others.priceFormat(_sum - Number(favorablePrice) + Number(_postPrice)));
+                }
             });
 
             _this.handleFn();
@@ -421,6 +426,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     "frm": 2
                 }
             };
+            if(!!_this.favorableCode)_data.edata.code=_this.favorableCode;
             return _data;
         },
         //满减
