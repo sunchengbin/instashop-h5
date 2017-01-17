@@ -34,13 +34,14 @@ define([
         handleEvent: function () {
             var _this = this;
             $(_this.opts.wraper).on('click', _this.opts.btn, function () {
+                PaqPush && PaqPush('弹出输入优惠券弹窗', '');
                 // 显示弹窗
                 _this.fillDialog = Dialog.dialog({
                     body_txt: _this.createFillCodeHtm(),
                     show_footer: false,
                     show_top: false,
                     c_fn: function () {
-                        console.log("关闭")
+                        PaqPush && PaqPush('优惠券弹窗关闭', '');
                     }
                 })
             });
@@ -84,14 +85,15 @@ define([
                     _debug_env: "4.0"
                 }
             }
-            //TODO ajax 不可用提示 可用关闭dialog 回填favorable-price
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.getCoupon + '/?param=' + JSON.stringify(_reqData), function (obj) {
                 if (obj.code && obj.code == 200) {
+                    PaqPush && PaqPush('优惠券可用:金额为'+obj.coupon.price, '');
                     _this.fillDialog.remove(_this.checkAfterAction({
                         code: obj.coupon.code,
                         price: obj.coupon.price
                     }));
                 } else {
+                    PaqPush && PaqPush('优惠券不可用:原因为'+obj.message, '');
                     Dialog.tip({
                         top_txt: '', //可以是html
                         body_txt: '<p class="dialog-body-p">' + obj.message + '</p>'
@@ -109,12 +111,7 @@ define([
                 .attr("data-code", favorableInfo.code)
                 .attr("data-price", Number(favorableInfo.price))
                 .css("color", "#F5A623")
-            //渲染订单金额
-            //判断是否有邮费
             _this.opts.usehandle && _this.opts.usehandle(favorableInfo.price, favorableInfo.code);
-        },
-        getFavorable: function () {
-            //TODO 格式处理
         }
     }
     return function (opts) {
