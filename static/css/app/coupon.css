@@ -51,22 +51,27 @@
     left: 2.6rem;
 }
 .coupon-box{
-    padding:1rem 1.5rem 0;
+    padding:1rem .5rem 0;
+}
+@media only screen and (min-width: 641px) {
+    .coupon-box{
+        padding: 1rem 8rem .5rem;
+    }
 }
 .coupon-box-wraper{
     background: url(../../images/app/coupon-card.png) no-repeat center;
     background-size: contain;
-    min-height: 9.5rem;
+    min-height: 12rem;
     margin:0 auto;
 }
 .coupon-box-left{
-    width: 65%;
+    width: 62%;
     float:left;
     text-align: center;
 }
 .coupon-box-right{
-    margin-left: 65%;
-    padding-top: 3rem;
+    margin-left: 62%;
+    padding-top: 4.5rem;
     text-align: center;
 }
 .coupon-box-right p{
@@ -81,7 +86,7 @@
     line-height: 3rem;
     color: #F6A623;
     font-size: 22px;
-    margin-top: 1rem;
+    margin-top: 2.5rem;
 }
 .condition{
     font-size:12px;

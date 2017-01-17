@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 2017/1/11.
  */
-require(['lang','ajax','config','fastclick','dialog'],function(Lang,Ajax,Config,Fastclick,Dialog) {
+require(['lang','ajax','config','fastclick','dialog','common'],function(Lang,Ajax,Config,Fastclick,Dialog,Common) {
     "use strict";
     var GetCounpon = {
         init : function(){
@@ -25,7 +25,9 @@ require(['lang','ajax','config','fastclick','dialog'],function(Lang,Ajax,Config,
             Fastclick.attach(document.body);
             $('body').on('click','.j_get_coupon_btn',function(){
                  var _tel = $.trim($('.j_tel').val());
-                _this.getCoupon(_tel);
+                Common.telVerify(_tel,function(){
+                    _this.getCoupon(_tel);
+                });
             });
         },
         gettedCoupon : function(){//进入页面要判断是否领过优惠券

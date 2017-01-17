@@ -17,7 +17,7 @@
         </div>
     </section>
     <section class="coupon-operate">
-        <div class="telphone-box"><input type="tel" class="telphone j_tel" placeholder="No.Hp"/></div>
+        <div class="telphone-box"><input type="tel" maxlength="20" class="telphone j_tel" placeholder="No.Hp"/></div>
         <div class="explain">Selamat, Anda menerima sukses!</div>
         <a href="javascript:;" spm-auto="领取优惠券" class="block j_get_coupon_btn">segera</a>
     </section>

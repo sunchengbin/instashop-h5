@@ -64,6 +64,12 @@ function handle()
 		$_REQUEST['sort_id'] = $sort_id;
 		require( dirname(__FILE__).'/../html/sort.php');
 	}
+	else if (preg_match('/^\/b\/([\_\d]+)(\?.*)?$/i', $uri, $coupon_matches))
+    	{
+    		$coupon_id = $coupon_matches[1];
+    		$_REQUEST['coupon_id'] = $coupon_id;
+    		require( dirname(__FILE__).'/../html/getcoupon.php');
+    	}
 	else if (preg_match('/^\/html\/(.*?)(\?.*)?$/i', $uri, $f_matches))
 	{
 		require( dirname(__FILE__)."/../html/".$f_matches[1]);
