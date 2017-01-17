@@ -64,19 +64,19 @@ define([
             //本地校验
             var _code = $(".j_favorable_code").val() || "";
 
-            Validator.add(_code, [{
-                strategy: 'isNonEmpty',
-                errorMsg: 'ddddd'
-            }])
-            try {
-                Validator.start();
-            } catch (error) {
-                Dialog.tip({
-                    top_txt: '', //可以是html
-                    body_txt: '<p class="dialog-body-p">' + error.message + '</p>'
-                });
-                return;
-            }
+            // Validator.add(_code, [{
+            //     strategy: 'isNonEmpty',
+            //     errorMsg: 'ddddd'
+            // }])
+            // try {
+            //     // Validator.start();
+            // } catch (error) {
+            //     Dialog.tip({
+            //         top_txt: '', //可以是html
+            //         body_txt: '<p class="dialog-body-p">' + error.message + '</p>'
+            //     });
+            //     return;
+            // }
             var _reqData = {
                 edata: {
                     action: "check",
