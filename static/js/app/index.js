@@ -99,6 +99,7 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                 });
             }
             $('body').on('click','.j_share_btn',function(){
+                PaqPush && PaqPush('分享获取优惠券', '');
                 var _coupon_id = $(this).attr('data-couponid');
                 Sharecoupon({
                     coupon_url : Config.host.host+'b/'+_coupon_id
@@ -227,6 +228,7 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
             });
             //满减 lanchenghao
             $('body').on('click','.j_reduc_box',function(){
+                PaqPush && PaqPush('查看满减公告', '');
                 var _htm = '<ul class="reduc-rule-list">';
                 if(!!init_data.shop.shop_discount){
                     for(var i=0,_reducItem;_reducItem=init_data.shop.shop_discount.info[i++];){

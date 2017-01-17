@@ -89,6 +89,7 @@ require(['lang','ajax','config','fastclick','dialog'],function(Lang,Ajax,Config,
                 timeout: 30000,
                 success: function (obj) {
                     if (obj.code == 200) {
+                        PaqPush && PaqPush('领取成功', 'tel:'+tel);
                         var _code = obj.coupon.code;
                         _this.saveCouponCode(_coupon_id.href_id,_code);
                         Dialog.tip({
@@ -96,7 +97,7 @@ require(['lang','ajax','config','fastclick','dialog'],function(Lang,Ajax,Config,
                             body_txt: '<p class="dialog-body-p">领取成功</p>',
                             after_fn: function () {
                                 setTimeout(function () {
-                                    //location.href = Config.host.hrefUrl + 'coupon.php?coupon_id='+_coupon_id.coupon_id+'&code='+_code;
+                                    location.href = Config.host.hrefUrl + 'coupon.php?coupon_id='+_coupon_id.coupon_id+'&code='+_code;
                                 }, 2000);
                             }
                         });
