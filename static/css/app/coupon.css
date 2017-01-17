@@ -51,7 +51,7 @@
     left: 2.6rem;
 }
 .coupon-box{
-    padding:1rem 1.5rem 0;
+    padding:1rem 1rem 0;
 }
 .coupon-box-wraper{
     background: url(../../images/app/coupon-card.png) no-repeat center;
@@ -60,12 +60,12 @@
     margin:0 auto;
 }
 .coupon-box-left{
-    width: 65%;
+    width: 62%;
     float:left;
     text-align: center;
 }
 .coupon-box-right{
-    margin-left: 65%;
+    margin-left: 62%;
     padding-top: 3rem;
     text-align: center;
 }
