@@ -51,7 +51,7 @@
     left: 2.6rem;
 }
 .coupon-box{
-    padding:1rem 1rem 0;
+    padding:1rem .5rem 0;
 }
 .coupon-box-wraper{
     background: url(../../images/app/coupon-card.png) no-repeat center;
