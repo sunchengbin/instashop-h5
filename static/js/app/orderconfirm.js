@@ -296,8 +296,6 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             var _this = this;
             var _carts = _this.carts,
                 _arr = [];
-            console.log("getItems:");
-            console.log(_carts);
             if (!_carts) {
                 Dialog.tip({
                     top_txt: '', //可以是html

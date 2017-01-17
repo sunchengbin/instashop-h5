@@ -188,7 +188,8 @@ define(['base'],function(Base){
             H5_NO_SEARCH_VAL:"没有找到相关商品",
             H5_IS_CONFIRM:'已确认',
             H5_GO_CONTACT:'去联系',
-            H5_CART_GROUP_TITLE:"仓库"
+            H5_CART_GROUP_TITLE:"仓库",
+            H5_FAVORABLE_TIP_NONE:"优惠券不存在"
         },
 
         id : {
@@ -501,7 +502,8 @@ define(['base'],function(Base){
             H5_NO_SEARCH_VAL:"Produk tidak ditemukan",
             H5_IS_CONFIRM:'Nanti Saja',
             H5_GO_CONTACT:'Kontak Penjual',
-            H5_CART_GROUP_TITLE:"Gudang"
+            H5_CART_GROUP_TITLE:"Gudang",
+            H5_FAVORABLE_TIP_NONE:"Voucher tidak ditemukan"
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );
