@@ -64,7 +64,7 @@ function handle()
 		$_REQUEST['sort_id'] = $sort_id;
 		require( dirname(__FILE__).'/../html/sort.php');
 	}
-	else if (preg_match('/^\/b\/(\d+\_\d+)(\?.*)?$/i', $uri, $coupon_matches))
+	else if (preg_match('/^\/b\/([\_\d]+)(\?.*)?$/i', $uri, $coupon_matches))
     	{
     		$coupon_id = $coupon_matches[1];
     		$_REQUEST['coupon_id'] = $coupon_id;
