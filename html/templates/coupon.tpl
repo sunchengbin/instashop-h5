@@ -29,10 +29,10 @@
         </div>
         <p class="cart-explain">Memesan masukan kode untuk Penawaran</p>
     </section>
-    <section class="coupon-operate">
+    <section class="coupon-operate" data-spider="coupon_operate_box">
         <p>Selamat, Anda menerima sukses!</p>
-        <a href="{$INDEX_DATA.coupon.url}" class="block go-home">segera</a>
-        <a href="javascript:;" class="block share-coupon j_share_btn">Share membuat merah</a>
+        <a href="{$INDEX_DATA.coupon.url}" spm-auto="立即使用" class="block go-home">segera</a>
+        <a href="javascript:;" spm-auto="分享获取优惠券" class="block share-coupon j_share_btn">Share membuat merah</a>
     </section>
     <section class="coupon-introduce">
         <p>Selamat, Anda menerima sukses!</p>
