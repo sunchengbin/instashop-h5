@@ -160,6 +160,29 @@ function transUrl($url){
     }
     return $url;
 }
+function isDebug(){
+    $is_debug = false;
+    $debug = $_REQUEST['static_debug'];
+    if($debug){
+        $is_debug = true;
+    }
+    return $is_debug;
+}
+function smartyCommon(){
+    require_once(__DIR__.'/../lib/libs/Smarty.class.php');
+    $smarty = new Smarty();
+    $smarty->setTemplateDir(__DIR__.'/../templates/');
+    $smarty->setCompileDir(__DIR__.'/../templates_c/');
+    $smarty->setConfigDir(__DIR__.'/../configs/');
+    $smarty->setCacheDir(__DIR__.'/../cache/');
+    $smarty->assign('STATIC_DNS',STATIC_DNS);
+    $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
+    $smarty->assign('STATIC_FONT_CSS',STATIC_FONT_CSS);
+    $smarty->assign('STATIC_HOST',STATIC_HOST);
+    $smarty->assign('BI_SCRIPT',BI_SCRIPT);
+    $smarty->assign('IS_DEBUG',IS_DEBUG);
+    return $smarty;
+}
 spl_autoload_register('loadClass');
 $prompt = is_https() ? 'https:' : 'http:';
 $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
@@ -174,3 +197,4 @@ define('STATIC_ICO_CSS', $static_ico_css);
 define('STATIC_HOST', $static_host);
 define('HOST_NAME', $host_name);
 define('BI_SCRIPT', $bi_js);
+define('IS_DEBUG', isDebug());

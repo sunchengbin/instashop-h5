@@ -11,5 +11,9 @@
   {$STATIC_ICO_CSS}
   {$STATIC_FONT_CSS}
   {$INDEX_TITLE}
-  <link href="{$STATIC_HOST}/css/dist/app/{$INDEX_CSS_NAME}.css?v=1483091901589" rel="stylesheet"/>
+  {if $IS_DEBUG}
+    <link href="{$STATIC_HOST}/css/app/{$INDEX_CSS_NAME}.css?v=1483091901589" rel="stylesheet"/>
+  {else}
+    <link href="{$STATIC_HOST}/css/dist/app/{$INDEX_CSS_NAME}.css?v=1483091901589" rel="stylesheet"/>
+  {/if}
 </head>
