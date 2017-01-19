@@ -17,7 +17,7 @@ echo '开始commit代码'
 
 git commit -a -m $1
 
-echo '开始push代码'
+echo 'push'
 if [ $3 ]
 then
     git push origin $3
@@ -25,8 +25,8 @@ else
     git push origin master
 fi
 
-echo '开始创建tag'
+echo 'create tag'
 git tag $2
 
-echo '开始push tag'
+echo 'push tag'
 git push origin $2
