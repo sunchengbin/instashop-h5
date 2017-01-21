@@ -254,14 +254,13 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                 });
             } else {
                 var _items;
-                var _groupid = Base.others.getUrlPrem("groupid", location.href)
                 //如果是分销 lanchenghao@weidian.com
-                if (!!_groupid) {
-                    var _data = localStorage.getItem('ShopData');
-                    _items = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid];;//groupdata
+                if (!!Base.others.getUrlPrem("groupid", location.href)) {
+
                 } else {
-                    _items = _carts;
+
                 }
+                var _items = _carts;
                 for (var item in _items) {
                     if (_items[item].sku) {
                         _arr.push({

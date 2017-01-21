@@ -254,9 +254,8 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                 });
             } else {
                 var _items;
-                var _groupid = Base.others.getUrlPrem("groupid", location.href)
                 //如果是分销 lanchenghao@weidian.com
-                if (!!_groupid) {
+                if (!!Base.others.getUrlPrem("groupid", location.href)) {
                     var _data = localStorage.getItem('ShopData');
                     _items = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid];;//groupdata
                 } else {

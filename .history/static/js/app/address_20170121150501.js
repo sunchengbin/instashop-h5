@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastclick', 'dialog', 'cart', 'common', 'validator'], function (Base, Hbs, Addresshtm, City, Config, Lang, Fastclick, Dialog, Cart, Common, Validator) {
+require(['base','hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastclick', 'dialog', 'cart', 'common','validator'], function (Base,Hbs, Addresshtm, City, Config, Lang, Fastclick, Dialog, Cart, Common,Validator) {
     var Address = {
         init: function () {
             var _this = this,
@@ -37,7 +37,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
             var _this = this;
             Fastclick.attach(document.body);
             $('body').on('click', '.j_go_back', function () {
-                PaqPush && PaqPush('返回', '');
+                PaqPush && PaqPush('返回','');
                 history.back();
                 //var _fromurl = localStorage.getItem('FromUrl');
                 //if(!_fromurl){
@@ -104,7 +104,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                 }
             });
             $('body').on('click', '.j_save_address', function () {
-                PaqPush && PaqPush('保存', '');
+                PaqPush && PaqPush('保存','');
                 var _data = localStorage.getItem('ShopData'),
                     _data_json = _data ? JSON.parse(_data) : {},
                     _name = $.trim($('.j_name').val()),
@@ -171,7 +171,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                     return;
                 }
                 if (Common.telVerify(_telephone, function () {
-                        PaqPush && PaqPush('直接保存', '');
+                        PaqPush && PaqPush('直接保存','');
                         var _address = {
                             "name": _name,
                             "telephone": _telephone,
@@ -192,11 +192,11 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                             var _data = JSON.parse(localStorage.getItem('ShopData')),
                                 _addr = _country + ',' + _city + ',' + _province;
                             var _item_str = JSON.stringify(_this.getAddressItems());
-                            var _groupid = Base.others.getUrlPrem("groupid", location.href);
-                            location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + _groupid + '&items=' + encodeURIComponent(_item_str);
+                            var _groupid = Base.others.getUrlPrem("groupid",location.href);
+                            location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid='+_groupid+ '&items=' + encodeURIComponent(_item_str);
                         }, 0);
                     })) {
-                    PaqPush && PaqPush('取消保存', '');
+                    PaqPush && PaqPush('取消保存','');
                     var _address = {
                         "name": _name,
                         "telephone": _telephone,
@@ -217,8 +217,8 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                         var _data = JSON.parse(localStorage.getItem('ShopData')),
                             _addr = _country + ',' + _city + ',' + _province;
                         var _item_str = JSON.stringify(_this.getAddressItems());
-                        var _groupid = Base.others.getUrlPrem("groupid", location.href);
-                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + _groupid + '&items=' + encodeURIComponent(_item_str);
+                        var _groupid = Base.others.getUrlPrem("groupid",location.href);
+                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid='+_groupid+ '&items=' + encodeURIComponent(_item_str);
                     }, 0);
                 }
 
@@ -253,15 +253,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                     body_txt: '<p class="dialog-body-p">' + Lang.H5_SHOPING_NO_GOODS + '?</p>'
                 });
             } else {
-                var _items;
-                var _groupid = Base.others.getUrlPrem("groupid", location.href)
-                //如果是分销 lanchenghao@weidian.com
-                if (!!_groupid) {
-                    var _data = localStorage.getItem('ShopData');
-                    _items = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid];;//groupdata
-                } else {
-                    _items = _carts;
-                }
+                var _items = _carts;
                 for (var item in _items) {
                     if (_items[item].sku) {
                         _arr.push({
