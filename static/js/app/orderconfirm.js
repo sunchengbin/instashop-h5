@@ -443,7 +443,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 if (carts[cart].item.is_discount && carts[cart].item.discounting) {
                     _sum += carts[cart].num * carts[cart].item.discount.price;
                 } else {
-                    _sum += carts[cart].num * carts[cart].item.price;
+                    _sum += carts[cart].num * carts[cart].price;
                 }
 
             }
