@@ -12,7 +12,7 @@ echo 'pull代码'
 git pull
 
 echo '开始构建'
-#./build.sh
+./build.sh
 
 if [ $2 ]
 then
@@ -33,7 +33,7 @@ else
 fi
 
 echo 'create tag'
-#git tag $1
+git tag $1
 
 echo 'push tag'
-#git push origin $1
+git push origin $1
