@@ -1,6 +1,5 @@
 #! /bin/bash
 
-
 if [ $3 ]
 then
     echo '切换到'$3
@@ -9,25 +8,32 @@ else
     echo '切换到master'
     git checkout master
 fi
+echo 'pull代码'
 git pull
 
 echo '开始构建'
-./build.sh
+#./build.sh
 
 echo '开始commit代码'
 
-git commit -a -m $1
+if [ $2 ]
+then
+    git commit -a -m $2
+else
+    git commit -a -m 'tag'$1'上线'
+fi
 
-echo 'push'
 if [ $3 ]
 then
-    git push origin $3
+echo '开始push代码'$3
+#    git push origin $3
 else
-    git push origin master
+echo '开始push代码master'
+#    git push origin master
 fi
 
 echo 'create tag'
-git tag $2
+git tag $1
 
 echo 'push tag'
-git push origin $2
+git push origin $1
