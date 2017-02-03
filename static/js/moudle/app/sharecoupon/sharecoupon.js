@@ -51,8 +51,9 @@ define(['dialog'],function(Dialog){
         handleFn : function(){
             var _this = this;
             $('body').on('click','.j_share_action',function(){
+                var _dom = $(this);
                 setTimeout(function(){
-                    location.href = $(this).attr('data-url') + _this.share_content;
+                    location.href = _dom.attr('data-url') + _this.share_content;
                 },100);
             });
         },
