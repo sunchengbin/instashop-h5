@@ -53,8 +53,7 @@ function curl_post($url,$data)
     }
     return $result;
 }
-
-if(strpos($_SERVER['HTTP_HOST'],'test')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
+if (strpos($_SERVER['HTTP_HOST'],'-test.')!==false || strpos($_SERVER['HTTP_HOST'],'.test.')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
     $host = 'https://apip-test.instashop.co.id/instashop/';   // 测试
 }else{
     $host = 'https://apip.instashop.co.id/instashop/';
