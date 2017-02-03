@@ -51,11 +51,11 @@ define([
         },
         createFillCodeHtm: function () {
             var _htm = '<div class="favorable-fill-box">' +
-                '<div class="favorable-fill-header">Kupon code kupon</div>' +
+                '<div class="favorable-fill-header">'+Lang.H5_FAVORABLE_TITLE+'</div>' +
                 '<div class="favorable-fill-input">' +
-                '<input class="j_favorable_code" type="text" value="aaaaa" placeholder="code:"/>' +
+                '<input class="j_favorable_code" type="text" value="" placeholder="code:"/>' +
                 '</div>' +
-                '<div class="favorable-fill-btn j_favorable_check">menentukan</div>' +
+                '<div class="favorable-fill-btn j_favorable_check">'+Lang.H5_CONFIRM+'</div>' +
                 '</div>'
             return _htm;
         },
