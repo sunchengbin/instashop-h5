@@ -25,9 +25,11 @@ require(['lang','ajax','config','fastclick','dialog','common'],function(Lang,Aja
             Fastclick.attach(document.body);
             $('body').on('click','.j_get_coupon_btn',function(){
                  var _tel = $.trim($('.j_tel').val());
-                Common.telVerify(_tel,function(){
+                if(Common.telVerify(_tel,function(){
                     _this.getCoupon(_tel);
-                });
+                })){
+                    _this.getCoupon(_tel);
+                }
             });
         },
         gettedCoupon : function(){//进入页面要判断是否领过优惠券
