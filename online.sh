@@ -14,12 +14,12 @@ git pull
 echo '开始构建'
 #./build.sh
 
-echo '开始commit代码'
-
 if [ $2 ]
 then
+    echo '开始commit代码'$2
     git commit -a -m $2
 else
+    echo '开始commit代码,tag'$1'上线'
     git commit -a -m 'tag'$1'上线'
 fi
 
