@@ -25,15 +25,15 @@ fi
 
 if [ $3 ]
 then
-echo '开始push代码'$3
-#    git push origin $3
+    echo '开始push代码'$3
+    git push origin $3
 else
-echo '开始push代码master'
-#    git push origin master
+    echo '开始push代码master'
+    git push origin master
 fi
 
 echo 'create tag'
-git tag $1
+#git tag $1
 
 echo 'push tag'
-git push origin $1
+#git push origin $1
