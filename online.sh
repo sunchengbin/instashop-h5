@@ -1,11 +1,12 @@
 #! /bin/bash
 
-echo '切换到master'
 
 if [ $3 ]
 then
+    echo '切换到'$3
     git checkout $3
 else
+    echo '切换到master'
     git checkout master
 fi
 git pull
