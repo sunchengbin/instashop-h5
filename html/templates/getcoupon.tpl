@@ -22,7 +22,6 @@
         <a href="javascript:;" spm-auto="领取优惠券" class="block j_get_coupon_btn">segera</a>
     </section>
     <section class="coupon-introduce">
-        <p>Silakan screenshot juga halaman ini untuk menyimpan kode voucher</p>
         <ul>
             <li class="clearfix">
                 <div>1. </div>

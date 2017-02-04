@@ -27,15 +27,13 @@
                 </div>
             </div>
         </div>
-        <p class="cart-explain">Memesan masukan kode untuk Penawaran</p>
+        <p class="cart-explain">Silakan screenshot juga halaman ini untuk menyimpan kode voucher</p>
     </section>
     <section class="coupon-operate" data-spider="coupon_operate_box">
-        <p>Selamat, Anda menerima sukses!</p>
         <a href="{$INDEX_DATA.coupon.url}" spm-auto="立即使用" class="block go-home">Gunakan Sekarang</a>
         <a href="javascript:;" spm-auto="分享获取优惠券" class="block share-coupon j_share_btn">Bagikan Promo Voucher</a>
     </section>
     <section class="coupon-introduce">
-        <p>Silakan screenshot juga halaman ini untuk menyimpan kode voucher</p>
         <ul>
             <li class="clearfix">
                 <div>1. </div>
