@@ -8,7 +8,7 @@
             <p>{$INDEX_DATA.coupon.name}</p>
         </div>
         <div class="coupon-info-box">
-            Selamat, Anda ambil kupon, pergi belanja sekarang!
+            Selamat, kode voucher berhasil diambil. Yuk segera dibelanjakan!
         </div>
         <div class="coupon-box">
             <div class="coupon-box-wraper clearfix">
@@ -31,23 +31,23 @@
     </section>
     <section class="coupon-operate" data-spider="coupon_operate_box">
         <p>Selamat, Anda menerima sukses!</p>
-        <a href="{$INDEX_DATA.coupon.url}" spm-auto="立即使用" class="block go-home">segera</a>
-        <a href="javascript:;" spm-auto="分享获取优惠券" class="block share-coupon j_share_btn">Share membuat merah</a>
+        <a href="{$INDEX_DATA.coupon.url}" spm-auto="立即使用" class="block go-home">Gunakan Sekarang</a>
+        <a href="javascript:;" spm-auto="分享获取优惠券" class="block share-coupon j_share_btn">Bagikan Promo Voucher</a>
     </section>
     <section class="coupon-introduce">
-        <p>Selamat, Anda menerima sukses!</p>
+        <p>Silakan screenshot juga halaman ini untuk menyimpan kode voucher</p>
         <ul>
             <li class="clearfix">
                 <div>1. </div>
-                <div>Silakan simpan halaman screenshot, masukkan kode kode ketika memesan Kirim</div>
+                <div>Ketika mengajukan pesanan, masukkan kode voucher untuk mendapatkan harga diskon</div>
             </li>
             <li class="clearfix">
                 <div>2. </div>
-                <div>Gunakan kupon di acara validitas</div>
+                <div>Gunakan kode voucher sebelum kadaluwarsa</div>
             </li>
             <li class="clearfix">
                 <div>3. </div>
-                <div>Kegiatan interpretasi xxx shop semua</div>
+                <div>3.Keputusan{$INDEX_DATA.coupon.name} bersifat mutlak dan tidak dapat diganggu gugat</div>
             </li>
         </ul>
     </section>

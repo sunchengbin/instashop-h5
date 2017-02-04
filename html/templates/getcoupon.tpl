@@ -8,7 +8,7 @@
             <p>{$INDEX_DATA.coupon.name}</p>
         </div>
         <div class="coupon-info-box">
-            Selamat, Anda ambil kupon, pergi belanja sekarang!
+            Selamat, kamu memiliki satu voucher yang belum diambil. Yuk ambil sekarang!
         </div>
         <div class="coupon-box">
             <div class="get-coupon-box clearfix">
@@ -18,23 +18,23 @@
     </section>
     <section class="coupon-operate">
         <div class="telphone-box"><input type="tel" maxlength="20" class="telphone j_tel" placeholder="No.Hp"/></div>
-        <div class="explain">Selamat, Anda menerima sukses!</div>
+        <div class="explain">Kode Voucher akan dikirimkan ke nomor ini, pastikan nomor ponselmu sudah diisi dengan benar</div>
         <a href="javascript:;" spm-auto="领取优惠券" class="block j_get_coupon_btn">segera</a>
     </section>
     <section class="coupon-introduce">
-        <p>Selamat, Anda menerima sukses!</p>
+        <p>Silakan screenshot juga halaman ini untuk menyimpan kode voucher</p>
         <ul>
             <li class="clearfix">
                 <div>1. </div>
-                <div>Silakan simpan halaman screenshot, masukkan kode kode ketika memesan Kirim</div>
+                <div>Ketika mengajukan pesanan, masukkan kode voucher untuk mendapatkan harga diskon</div>
             </li>
             <li class="clearfix">
                 <div>2. </div>
-                <div>Gunakan kupon di acara validitas</div>
+                <div>Gunakan kode voucher sebelum kadaluwarsa</div>
             </li>
             <li class="clearfix">
                 <div>3. </div>
-                <div>Kegiatan interpretasi xxx shop semua</div>
+                <div>3.Keputusan{$INDEX_DATA.coupon.name} bersifat mutlak dan tidak dapat diganggu gugat</div>
             </li>
         </ul>
     </section>

@@ -1,12 +1,12 @@
 /**
  * Created by sunchengbin on 2017/1/11.
  */
-define(['dialog'],function(Dialog){
+define(['dialog','lang'],function(Dialog,Lang){
     var ShareCoupon = function(opts){
         var _this = this;
         _this.config = $.extend({
-            title : 'Menerima kupon gratis',
-            content : 'Aku benar-benar seperti toko untuk mengirim kupon gratis, datang ambil itu, sejumlah pertama datang pertama mendapatkan!',
+            title : Lang.H5_SHARE_TITLE,
+            content : Lang.H5_SHARE_COUPON_TXT,
             coupon_url: 'http://m-test.instashop.co.id/b/0001'
         },opts);
         _this.init();
@@ -29,7 +29,7 @@ define(['dialog'],function(Dialog){
             _htm +='<div class="share-dialog-box" data-spider="coupon_share_box">'
                 +'<div class="share-info">'+_share_content
                 +'</div>'
-                +'<div class="share-explain">Tekan lama untuk berbagi garis konten, whatsapp, bbm dan media sosial lainnya, Anda bisa mendapatkan kupon melalui link.'
+                +'<div class="share-explain">'+Lang.H5_SHARE_COUPON_RULE
                 +'</div>'
                 +'<div class="share-operate clearfix">'
                 +'<a href="javascript:;" class="j_share_action" spm-auto="优惠券分享到line" spm-click="" data-url="http://line.naver.jp/R/msg/text/?">'

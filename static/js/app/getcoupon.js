@@ -98,7 +98,7 @@ require(['lang','ajax','config','fastclick','dialog','common'],function(Lang,Aja
                         _this.saveCouponCode(_coupon_id.href_id,_code);
                         Dialog.tip({
                             top_txt: '', //可以是html
-                            body_txt: '<p class="dialog-body-p">领取成功</p>',
+                            body_txt: '<p class="dialog-body-p">'+Lang.H5_GET_COUPON_SUCCESS+'</p>',
                             after_fn: function () {
                                 setTimeout(function () {
                                     location.href = Config.host.hrefUrl + 'coupon.php?coupon_id='+_coupon_id.coupon_id+'&code='+_code;
