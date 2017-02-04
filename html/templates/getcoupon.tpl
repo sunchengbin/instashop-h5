@@ -34,7 +34,7 @@
             </li>
             <li class="clearfix">
                 <div>3. </div>
-                <div>3.Keputusan{$INDEX_DATA.coupon.name} bersifat mutlak dan tidak dapat diganggu gugat</div>
+                <div>Keputusan{$INDEX_DATA.coupon.name} bersifat mutlak dan tidak dapat diganggu gugat</div>
             </li>
         </ul>
     </section>
