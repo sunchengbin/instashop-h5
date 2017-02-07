@@ -64,7 +64,7 @@ define([
             var _this = this;
             //本地校验
             var _code = $(".j_favorable_code").val() || "";
-
+            
             Validator.add(_code, [{
                 strategy: 'isNonEmpty',
                 errorMsg: Lang.H5_FAVORABLE_TIP_NONE
@@ -81,7 +81,7 @@ define([
             var _reqData = {
                 edata: {
                     action: "check",
-                    price: _this.price,
+                    price: _this.price||$(".j_total").attr("data-price"),
                     code: _code,
                     _debug_env: "4.0"
                 }
