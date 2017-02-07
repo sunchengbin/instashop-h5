@@ -68,6 +68,15 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             }
             //提供给native设置回退锁,为了回退的时候
             (function(bridge){
+                var _close_param = {
+                    param:{
+                        type : 'close_loading',
+                        param : null
+                    }
+                };
+                bridge.callHandler('insSocket',_close_param, function(response) {
+                    return null;
+                });
                 var _param = {
                     param:{
                         type : 'go_back',
