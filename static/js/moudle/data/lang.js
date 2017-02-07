@@ -523,7 +523,7 @@ define(['base'],function(Base){
             H5_SHARE_TITLE:'Bagikan Promo Voucher',
             H5_GET_COUPON_SUCCESS:'Voucher Berhasil Diambil!',
             H5_GETTED:'Voucher Sudah Pernah Diambil',
-            H5_GET:'segera'
+            H5_GET:'Segera'
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );

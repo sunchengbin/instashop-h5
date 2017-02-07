@@ -22,7 +22,7 @@
         {if $INDEX_DATA.coupon.coupon.status eq 0 || $INDEX_DATA.coupon.coupon.status eq 1}
             <div class="telphone-box"><input type="tel" maxlength="20" class="telphone j_tel" placeholder="No.Hp"/></div>
             <div class="explain">Kode Voucher akan dikirimkan ke nomor ini, pastikan nomor ponselmu sudah diisi dengan benar</div>
-            <a href="javascript:;" spm-auto="领取优惠券" class="block j_get_coupon_btn">segera</a>
+            <a href="javascript:;" spm-auto="领取优惠券" class="block j_get_coupon_btn">Segera</a>
         {else}
             <div class="past-explain">Voucher sudah kadaluwarsa</div>
             <a href="{$INDEX_DATA.coupon.url|transUrl}" spm-auto="去逛逛" class="block">Beli Lagi</a>
