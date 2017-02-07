@@ -192,7 +192,12 @@ define(['base'],function(Base){
             H5_FAVORABLE_TIP_NONE:"优惠券不存在",
             H5_FAVORABLE_TITLE:"优惠券",
             H5_FAVORABLE_FILL_CODE:"填写code",
-            H5_FAVORABLE_TITLE_PRICE:"优惠"
+            H5_FAVORABLE_TITLE_PRICE:"优惠",
+            H5_COUPON:'优惠券：',
+            H5_SHARE_COUPON_TXT:'我非常喜欢的店铺限时送优惠券了，领取：',
+            H5_SHARE_COUPON_RULE:'分享到line、BBM、WA就能通过链接领取',
+            H5_SHARE_TITLE:'分享赚优惠券',
+            H5_GET_COUPON_SUCCESS:'领取成功'
         },
 
         id : {
@@ -509,7 +514,12 @@ define(['base'],function(Base){
             H5_FAVORABLE_TIP_NONE:"Voucher tidak ditemukan",
             H5_FAVORABLE_TITLE:"Voucher",
             H5_FAVORABLE_FILL_CODE:"Tulis Kode",
-            H5_FAVORABLE_TITLE_PRICE:"Diskon"
+            H5_FAVORABLE_TITLE_PRICE:"Diskon",
+            H5_COUPON:'Voucher: ',
+            H5_SHARE_COUPON_TXT:'Olshop favoritku lagi bagi-bagi kode voucher nih, klik untuk dapatkan kode voucher: ',
+            H5_SHARE_COUPON_RULE:'Bagikan ke LINE/WhatsApp/BBM, lalu klik link ini untuk mendapatkan kode voucher',
+            H5_SHARE_TITLE:'Bagikan Promo Voucher',
+            H5_GET_COUPON_SUCCESS:'Voucher Berhasil Diambil!'
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );

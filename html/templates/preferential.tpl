@@ -27,7 +27,7 @@
         <div>
         <p class="reduc-box-info">
             <i class="iconfont icon-bugle"></i>
-                优惠券: Rp {$INDEX_DATA.shop.coupon.amount|priceFormat}
+                Voucher: Rp {$INDEX_DATA.shop.coupon.amount|priceFormat}
             </p>
             <p class="reduc-expire">
                 {$INDEX_DATA.shop.coupon.start_time|transDate} - {$INDEX_DATA.shop.coupon.end_time|transDate} WIB
