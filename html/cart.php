@@ -14,9 +14,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_FONT_CSS?>
     <?php
         if(isDebug()){
-            echo '<link href="'.STATIC_HOST.'/css/app/cart.css?v=1486102596111" rel="stylesheet"/>';
+            echo '<link href="'.STATIC_HOST.'/css/app/cart.css?v=1486463195237" rel="stylesheet"/>';
         }else{
-            echo '<link href="'.STATIC_HOST.'/css/dist/app/cart.css?v=1486102596111" rel="stylesheet"/>';
+            echo '<link href="'.STATIC_HOST.'/css/dist/app/cart.css?v=1486463195237" rel="stylesheet"/>';
         }
      ?>
     <title>Keranjangku</title>
@@ -24,13 +24,13 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 <body data-spider="a5fivmur">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <!--<script src="<?=STATIC_HOST?>/js/dist/app/cartindex.js?v=1486102596111"></script>-->
+    <!--<script src="<?=STATIC_HOST?>/js/dist/app/cartindex.js?v=1486463195237"></script>-->
     <?php
         if(isDebug()){
             echo '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script>';
-            echo '<script src="'.STATIC_HOST.'/js/app/cartindex.js?v=1486102596111"></script>';
+            echo '<script src="'.STATIC_HOST.'/js/app/cartindex.js?v=1486463195237"></script>';
         }else{
-            echo '<script src="'.STATIC_HOST.'/js/dist/app/cartindex.js?v=1486102596111"></script>';
+            echo '<script src="'.STATIC_HOST.'/js/dist/app/cartindex.js?v=1486463195237"></script>';
         }
      ?>
     <script>
