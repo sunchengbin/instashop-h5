@@ -23,6 +23,7 @@
     $url = str_replace("h=110", "h=140", $url);
 
     $smarty->assign('INDEX_DATA',$json);
+    $smarty->assign('INDEX_DATA_SHOP',$json['item']);
     $smarty->assign('INDEX_DATA_STR',$ret);
 
     /*item页面支持app分享的数据*/

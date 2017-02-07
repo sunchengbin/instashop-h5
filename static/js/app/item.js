@@ -5,7 +5,7 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog','debug'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog,Debug) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog','debug','sharecoupon'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog,Debug,Sharecoupon) {
     var ITEM = {
         init: function () {
             var _this = this,
@@ -172,7 +172,14 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                         }
                     })
                 }
-            })
+            });
+            $('body').on('click','.j_share_btn',function(){
+                PaqPush && PaqPush('分享获取优惠券', '');
+                var _coupon_id = $(this).attr('data-couponid');
+                Sharecoupon({
+                    coupon_url : Config.host.host+'b/'+_coupon_id
+                });
+            });
             var _this = this;
             if ($('.j_show_contact').length) {
                 _this.contact = Contact({

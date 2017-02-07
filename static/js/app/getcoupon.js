@@ -10,7 +10,7 @@ require(['lang','ajax','config','fastclick','dialog','common'],function(Lang,Aja
             if(_code){
                 Dialog.tip({
                     top_txt: '', //可以是html
-                    body_txt: '<p class="dialog-body-p">已经领取过了</p>',
+                    body_txt: '<p class="dialog-body-p">'+Lang.H5_GETTED+'</p>',
                     after_fn: function () {
                         setTimeout(function () {
                             location.href = Config.host.hrefUrl + 'coupon.php?coupon_id='+_this.getCouponId().coupon_id+'&code='+_code;

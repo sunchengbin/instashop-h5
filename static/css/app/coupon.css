@@ -144,3 +144,10 @@
 .coupon-introduce li div:last-child{
     margin-left: 1.5rem;
 }
+.past-explain{
+    padding-left:1rem;
+    color: #666;
+    font-size: 14px;
+    margin-top: 1rem;
+    text-align: center;
+}

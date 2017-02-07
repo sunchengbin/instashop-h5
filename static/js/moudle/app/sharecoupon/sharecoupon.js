@@ -23,9 +23,10 @@ define(['dialog','lang'],function(Dialog,Lang){
         },
         createHtm : function(){
             var _this = this,
-                _share_content = _this.config.content+'<br>'+_this.urlArithmetic(_this.config.coupon_url),
+                _share_url = _this.urlArithmetic(_this.config.coupon_url),
+                _share_content = _this.config.content+'<br>'+_share_url,
                 _htm = '';
-            _this.share_content = _this.config.content+_this.urlArithmetic(_this.config.coupon_url);
+            _this.share_content = _this.config.content+_share_url;
             _htm +='<div class="share-dialog-box" data-spider="coupon_share_box">'
                 +'<div class="share-info">'+_share_content
                 +'</div>'
