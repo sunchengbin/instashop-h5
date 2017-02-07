@@ -23,6 +23,21 @@ require(['lang','ajax','config','fastclick','dialog','common'],function(Lang,Aja
         handleFn : function(){
             var _this = this;
             Fastclick.attach(document.body);
+            //Btn({
+            //    wraper: 'body',
+            //    target: '.j_submit_buy',
+            //    event_type: 'click',
+            //    loading_txt: Lang.H5_SUBMITTING_ORDER,
+            //    callback: function (dom) {
+            //        var _that = this,
+            //            _items = _this.getItems();
+            //        if (dom.is('.disable-btn')) {
+            //            _that.cancelDisable();
+            //            _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+            //            return;
+            //        }
+            //    }
+            //});
             $('body').on('click','.j_get_coupon_btn',function(){
                  var _tel = $.trim($('.j_tel').val());
                 if(Common.telVerify(_tel,function(){
