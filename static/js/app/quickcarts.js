@@ -83,6 +83,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             _this.favorablePlugin = Favorable({
                 el: ".total-ps",
                 price: $('.j_total').attr('data-price'),
+                seller_id:init_data.shop.id,
                 usehandle: function (favorablePrice) {
                     var _totalPrice = $(".j_total").attr("data-price");
                     // var _postPrice = $(".j_post").attr("data-price") || 0;

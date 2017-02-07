@@ -28,6 +28,7 @@ define([
                 lang: Lang
             });
             _this.price = opts.price;
+            _this.seller_id = opts.seller_id;
             $(opts.el).before(_htm);
             _this.handleEvent();
         },
@@ -64,7 +65,7 @@ define([
             var _this = this;
             //本地校验
             var _code = $(".j_favorable_code").val() || "";
-            
+
             Validator.add(_code, [{
                 strategy: 'isNonEmpty',
                 errorMsg: Lang.H5_FAVORABLE_TIP_NONE
@@ -83,7 +84,7 @@ define([
                     action: "check",
                     price: _this.price||$(".j_total").attr("data-price"),
                     code: _code,
-                    _debug_env: "4.0"
+                    seller_id:_this.seller_id
                 }
             }
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.getCoupon + '/?param=' + JSON.stringify(_reqData), function (obj) {

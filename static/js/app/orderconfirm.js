@@ -61,6 +61,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             _this.favorablePlugin = Favorable({
                 el:".order-info",
                 price:_sum,
+                seller_id:JSON.parse(_data).ShopInfo.id,
                 usehandle:function(favorablePrice,favorableCode){
                     var _postPrice = $(".j_post").attr("data-price")||0;
                     _this.favorableCode = favorableCode;
