@@ -197,7 +197,8 @@ define(['base'],function(Base){
             H5_SHARE_COUPON_TXT:'我非常喜欢的店铺限时送优惠券了，领取：',
             H5_SHARE_COUPON_RULE:'分享到line、BBM、WA就能通过链接领取',
             H5_SHARE_TITLE:'分享赚优惠券',
-            H5_GET_COUPON_SUCCESS:'领取成功'
+            H5_GET_COUPON_SUCCESS:'领取成功',
+            H5_GETTED:'已经领取过了'
         },
 
         id : {
@@ -519,7 +520,8 @@ define(['base'],function(Base){
             H5_SHARE_COUPON_TXT:'Olshop favoritku lagi bagi-bagi kode voucher nih, klik untuk dapatkan kode voucher: ',
             H5_SHARE_COUPON_RULE:'Bagikan ke LINE/WhatsApp/BBM, lalu klik link ini untuk mendapatkan kode voucher',
             H5_SHARE_TITLE:'Bagikan Promo Voucher',
-            H5_GET_COUPON_SUCCESS:'Voucher Berhasil Diambil!'
+            H5_GET_COUPON_SUCCESS:'Voucher Berhasil Diambil!',
+            H5_GETTED:'Voucher Sudah Pernah Diambil'
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );

@@ -49,9 +49,14 @@
     line-height: 2rem;
     font-size: 14px;
 }
-.explain{
+.explain,.past-explain{
     padding-left:1rem;
     color: #666;
     font-size: 14px;
     margin-top: 1rem;
 }
+.coupon-operate div.past-explain{
+    margin-top: 2rem;
+    text-align: center;
+}
+

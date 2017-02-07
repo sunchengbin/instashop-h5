@@ -3,7 +3,9 @@
     <section class="coupon-info">
         <div class="shop-info clearfix">
             <div class="shop-img">
-                <img data-img="" src="{$INDEX_DATA.coupon.logo}"/>
+                <a class="block" href="{$INDEX_DATA.coupon.url|transUrl}">
+                    <img data-img="" src="{$INDEX_DATA.coupon.logo}"/>
+                </a>
             </div>
             <p>{$INDEX_DATA.coupon.name}</p>
         </div>
@@ -29,9 +31,14 @@
         </div>
         <p class="cart-explain">Silakan screenshot juga halaman ini untuk menyimpan kode voucher</p>
     </section>
-    <section class="coupon-operate" data-spider="coupon_operate_box">
-        <a href="{$INDEX_DATA.coupon.url}" spm-auto="立即使用" class="block go-home">Gunakan Sekarang</a>
-        <a href="javascript:;" spm-auto="分享获取优惠券" class="block share-coupon j_share_btn">Bagikan Promo Voucher</a>
+    <section class="coupon-operate" data-spider="coupon_operate_box" data="{$INDEX_DATA.coupon.coupon.status}">
+        {if $INDEX_DATA.coupon.coupon.status neq 0}
+            <div class="past-explain">Voucher sudah kadaluwarsa</div>
+            <a href="{$INDEX_DATA.coupon.url|transUrl}" spm-auto="去逛逛" class="block">Beli Lagi</a>
+        {else}
+            <a href="{$INDEX_DATA.coupon.url}" spm-auto="立即使用" class="block go-home">Gunakan Sekarang</a>
+            <a href="javascript:;" spm-auto="分享获取优惠券" class="block share-coupon j_share_btn">Bagikan Promo Voucher</a>
+        {/if}
     </section>
     <section class="coupon-introduce">
         <ul>

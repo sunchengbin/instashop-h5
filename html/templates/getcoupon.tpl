@@ -3,7 +3,9 @@
     <section class="coupon-info">
         <div class="shop-info clearfix">
             <div class="shop-img">
-                <img data-img="" src="{$INDEX_DATA.coupon.logo}"/>
+                <a class="block" href="{$INDEX_DATA.coupon.url|transUrl}">
+                    <img data-img="" src="{$INDEX_DATA.coupon.logo}"/>
+                </a>
             </div>
             <p>{$INDEX_DATA.coupon.name}</p>
         </div>
@@ -17,9 +19,15 @@
         </div>
     </section>
     <section class="coupon-operate">
-        <div class="telphone-box"><input type="tel" maxlength="20" class="telphone j_tel" placeholder="No.Hp"/></div>
-        <div class="explain">Kode Voucher akan dikirimkan ke nomor ini, pastikan nomor ponselmu sudah diisi dengan benar</div>
-        <a href="javascript:;" spm-auto="领取优惠券" class="block j_get_coupon_btn">segera</a>
+        {if $INDEX_DATA.coupon.coupon.status neq 0}
+            <div class="past-explain">Voucher sudah kadaluwarsa</div>
+            <a href="{$INDEX_DATA.coupon.url|transUrl}" spm-auto="去逛逛" class="block">Beli Lagi</a>
+        {else}
+            <div class="telphone-box"><input type="tel" maxlength="20" class="telphone j_tel" placeholder="No.Hp"/></div>
+            <div class="explain">Kode Voucher akan dikirimkan ke nomor ini, pastikan nomor ponselmu sudah diisi dengan benar</div>
+            <a href="javascript:;" spm-auto="领取优惠券" class="block j_get_coupon_btn">segera</a>
+        {/if}
+
     </section>
     <section class="coupon-introduce">
         <ul>
