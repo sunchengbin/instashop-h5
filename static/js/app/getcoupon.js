@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 2017/1/11.
  */
-require(['lang','ajax','config','fastclick','dialog','common'],function(Lang,Ajax,Config,Fastclick,Dialog,Common) {
+require(['lang','ajax','config','fastclick','dialog','common','btn'],function(Lang,Ajax,Config,Fastclick,Dialog,Common,Btn) {
     "use strict";
     var GetCounpon = {
         init : function(){
@@ -23,29 +23,47 @@ require(['lang','ajax','config','fastclick','dialog','common'],function(Lang,Aja
         handleFn : function(){
             var _this = this;
             Fastclick.attach(document.body);
-            //Btn({
-            //    wraper: 'body',
-            //    target: '.j_submit_buy',
-            //    event_type: 'click',
-            //    loading_txt: Lang.H5_SUBMITTING_ORDER,
-            //    callback: function (dom) {
-            //        var _that = this,
-            //            _items = _this.getItems();
-            //        if (dom.is('.disable-btn')) {
-            //            _that.cancelDisable();
-            //            _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-            //            return;
-            //        }
-            //    }
-            //});
-            $('body').on('click','.j_get_coupon_btn',function(){
-                 var _tel = $.trim($('.j_tel').val());
-                if(Common.telVerify(_tel,function(){
-                    _this.getCoupon(_tel);
-                })){
-                    _this.getCoupon(_tel);
+            Btn({
+                wraper: 'body',
+                target: '.j_get_coupon_btn',
+                event_type: 'click',
+                loading_txt: Lang.H5_SUNMITING,
+                callback: function (dom) {
+                    var _that = this;
+                    var _tel = $.trim($('.j_tel').val());
+                    if(!_tel){
+                        _that.cancelDisable();
+                        _that.setBtnTxt(dom, Lang.H5_GET);
+                        return;
+                    }
+                    if(Common.telVerify(_tel,function(){
+                            _this.getCoupon(_tel,function(){
+                                _that.cancelDisable();
+                                _that.setBtnTxt(dom, Lang.H5_GET);
+                            });
+                        },function(){
+                            _that.cancelDisable();
+                            _that.setBtnTxt(dom, Lang.H5_GET);
+                        })){
+                        _this.getCoupon(_tel,function(){
+                            _that.cancelDisable();
+                            _that.setBtnTxt(dom, Lang.H5_GET);
+                        });
+                    }
                 }
             });
+            //$('body').on('click','.j_get_coupon_btn',function(){
+            //     var _tel = $.trim($('.j_tel').val());
+            //    if(Common.telVerify(_tel,function(){
+            //        _this.getCoupon(_tel,function(){
+            //
+            //        });
+            //    })){
+            //        _this.getCoupon(_tel,function(){
+            //
+            //        });
+            //    }
+            //});
         },
         gettedCoupon : function(){//进入页面要判断是否领过优惠券
             var _this = this,
@@ -92,10 +110,13 @@ require(['lang','ajax','config','fastclick','dialog','common'],function(Lang,Aja
             }
            localStorage.setItem('CouponList',JSON.stringify(_local_coupon));
         },
-        getCoupon : function(tel){//获取优惠券code
+        getCoupon : function(tel,callback){//获取优惠券code
             var _this = this,
                 _coupon_id = _this.getCouponId();
-            if(!tel)return;
+            if(!tel){
+                callback && callback();
+                return;
+            }
             Ajax.postJsonp({
                 url: Config.actions.getCoupon,
                 data: {
@@ -107,6 +128,7 @@ require(['lang','ajax','config','fastclick','dialog','common'],function(Lang,Aja
                 type: 'PUT',
                 timeout: 30000,
                 success: function (obj) {
+                    callback && callback();
                     if (obj.code == 200) {
                         PaqPush && PaqPush('领取成功', 'tel:'+tel);
                         var _code = obj.coupon.code;
