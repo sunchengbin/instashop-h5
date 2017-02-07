@@ -37,9 +37,10 @@ define([
                 PaqPush && PaqPush('弹出输入优惠券弹窗', '');
                 // 显示弹窗
                 _this.fillDialog = Dialog.dialog({
+                    top_txt:'<div class="favorable-fill-header">'+Lang.H5_FAVORABLE_TITLE+'</div>',
                     body_txt: _this.createFillCodeHtm(),
                     show_footer: false,
-                    show_top: false,
+                    show_top: true,
                     c_fn: function () {
                         PaqPush && PaqPush('优惠券弹窗关闭', '');
                     }
@@ -51,7 +52,7 @@ define([
         },
         createFillCodeHtm: function () {
             var _htm = '<div class="favorable-fill-box">' +
-                '<div class="favorable-fill-header">'+Lang.H5_FAVORABLE_TITLE+'</div>' +
+                // '<div class="favorable-fill-header">'+Lang.H5_FAVORABLE_TITLE+'</div>' +
                 '<div class="favorable-fill-input">' +
                 '<input class="j_favorable_code" type="text" value="" placeholder="code:"/>' +
                 '</div>' +
