@@ -191,7 +191,8 @@ define(['base'],function(Base){
             H5_CART_GROUP_TITLE:"仓库",
             H5_FAVORABLE_TIP_NONE:"优惠券不存在",
             H5_FAVORABLE_TITLE:"优惠券",
-            H5_FAVORABLE_FILL_CODE:"填写code"
+            H5_FAVORABLE_FILL_CODE:"填写code",
+            H5_FAVORABLE_TITLE_PRICE:"优惠"
         },
 
         id : {
@@ -507,7 +508,8 @@ define(['base'],function(Base){
             H5_CART_GROUP_TITLE:"Gudang",
             H5_FAVORABLE_TIP_NONE:"Voucher tidak ditemukan",
             H5_FAVORABLE_TITLE:"Voucher",
-            H5_FAVORABLE_FILL_CODE:"Tulis Kode"
+            H5_FAVORABLE_FILL_CODE:"Tulis Kode",
+            H5_FAVORABLE_TITLE_PRICE:"Diskon"
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );
