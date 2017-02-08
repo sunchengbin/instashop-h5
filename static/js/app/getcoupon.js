@@ -32,6 +32,10 @@ require(['lang','ajax','config','fastclick','dialog','common','btn'],function(La
                     var _that = this;
                     var _tel = $.trim($('.j_tel').val());
                     if(!_tel){
+                        Dialog.tip({
+                            top_txt: '', //可以是html
+                            body_txt: '<p class="dialog-body-p">' + Lang.H5_VALIDATOR_TEL + '</p>'
+                        });
                         _that.cancelDisable();
                         _that.setBtnTxt(dom, Lang.H5_GET);
                         return;

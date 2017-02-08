@@ -178,7 +178,7 @@ define(['base'],function(Base){
             H5_ITEM_LIST_TYPE_TWO:'一行2个',
             H5_ITEM_LIST_TYPE_THREE:'一行3个',
             H5_VALIDATOR_NAME:"请填写姓名",
-            H5_VALIDATOR_TEL:"请填写电话",
+            H5_VALIDATOR_TEL:"请填写手机号",
             H5_VALIDATOR_PROVINCE:"请填写省",
             H5_VALIDATOR_CITY:"请填写市",
             H5_VALIDATOR_DIS:"请填写区",
@@ -199,7 +199,7 @@ define(['base'],function(Base){
             H5_SHARE_TITLE:'分享赚优惠券',
             H5_GET_COUPON_SUCCESS:'领取成功',
             H5_GETTED:'已经领取过了',
-            H5_GET:'领取',
+            H5_GET:'立即领取',
             H5_GETING:'领取中...'
         },
 
@@ -498,7 +498,7 @@ define(['base'],function(Base){
             //请填写姓名
             'H5_VALIDATOR_NAME':"Silakan tulis nama",
             //请填写电话
-            'H5_VALIDATOR_TEL':"Silakan tulis nomor telepon",
+            'H5_VALIDATOR_TEL':"Silakan masukkan nomor ponselmu",
             //请填写省
             'H5_VALIDATOR_PROVINCE':"Silakan pilih provinsi",
             //请填写市
