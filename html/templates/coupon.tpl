@@ -37,7 +37,7 @@
             <a href="javascript:;" spm-auto="分享获取优惠券" class="block share-coupon j_share_btn">Bagikan Promo Voucher</a>
         {else}
             <div class="past-explain">Promo ini sudah berakhir</div>
-            <a href="{$INDEX_DATA.coupon.url|transUrl}" spm-auto="去逛逛" class="block">Beli Lagi</a>
+            <a href="{$INDEX_DATA.coupon.url|transUrl}" spm-auto="去逛逛" class="block">Masuk ke toko</a>
         {/if}
     </section>
     <section class="coupon-introduce">

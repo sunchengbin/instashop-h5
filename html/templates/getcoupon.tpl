@@ -25,7 +25,7 @@
             <a href="javascript:;" spm-auto="领取优惠券" class="block j_get_coupon_btn">Ambil Sekarang</a>
         {else}
             <div class="past-explain">Promo ini sudah berakhir</div>
-            <a href="{$INDEX_DATA.coupon.url|transUrl}" spm-auto="去逛逛" class="block">Beli Lagi</a>
+            <a href="{$INDEX_DATA.coupon.url|transUrl}" spm-auto="去逛逛" class="block">Masuk ke toko</a>
         {/if}
 
     </section>
