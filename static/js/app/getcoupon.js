@@ -14,7 +14,7 @@ require(['lang','ajax','config','fastclick','dialog','common','btn'],function(La
                     after_fn: function () {
                         setTimeout(function () {
                             location.href = Config.host.hrefUrl + 'coupon.php?coupon_id='+_this.getCouponId().coupon_id+'&code='+_code;
-                        }, 2000);
+                        }, 100);
                     }
                 });
             }
