@@ -199,7 +199,8 @@ define(['base'],function(Base){
             H5_SHARE_TITLE:'分享赚优惠券',
             H5_GET_COUPON_SUCCESS:'领取成功',
             H5_GETTED:'已经领取过了',
-            H5_GET:'领取'
+            H5_GET:'领取',
+            H5_GETING:'领取中...'
         },
 
         id : {
@@ -523,7 +524,8 @@ define(['base'],function(Base){
             H5_SHARE_TITLE:'Bagikan Promo Voucher',
             H5_GET_COUPON_SUCCESS:'Voucher Berhasil Diambil!',
             H5_GETTED:'Voucher Sudah Pernah Diambil',
-            H5_GET:'Segera'
+            H5_GET:'Ambil Sekarang',
+            H5_GETING:'Sedang Diproses...'
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );

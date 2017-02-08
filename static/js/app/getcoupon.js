@@ -27,7 +27,7 @@ require(['lang','ajax','config','fastclick','dialog','common','btn'],function(La
                 wraper: 'body',
                 target: '.j_get_coupon_btn',
                 event_type: 'click',
-                loading_txt: Lang.H5_SUNMITING,
+                loading_txt: Lang.H5_GETING,
                 callback: function (dom) {
                     var _that = this;
                     var _tel = $.trim($('.j_tel').val());

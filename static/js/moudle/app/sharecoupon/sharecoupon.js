@@ -28,9 +28,9 @@ define(['dialog','lang'],function(Dialog,Lang){
                 _htm = '';
             _this.share_content = _this.config.content+_share_url;
             _htm +='<div class="share-dialog-box" data-spider="coupon_share_box">'
-                +'<div class="share-info">'+_share_content
-                +'</div>'
                 +'<div class="share-explain">'+Lang.H5_SHARE_COUPON_RULE
+                +'</div>'
+                +'<div class="share-info">'+_share_content
                 +'</div>'
                 +'<div class="share-operate clearfix">'
                 +'<a href="javascript:;" class="j_share_action" spm-auto="优惠券分享到line" spm-click="" data-url="http://line.naver.jp/R/msg/text/?">'
