@@ -116,7 +116,7 @@
     width: 80%;
     font-size: 16px;
     color: #fff;
-    margin: 2rem auto 1rem;
+    margin: 1rem auto;
     border-radius: 2px;
 }
 .go-home{
@@ -124,7 +124,6 @@
 }
 .coupon-operate a.go-homeed{
     background-color: #F6A623;
-    margin-bottom: 2rem;
 }
 .share-coupon{
     background-color: #FF810B;
@@ -152,6 +151,5 @@
     padding: 1rem 1rem 0;
     color: #666;
     font-size: 14px;
-    margin-top: 1rem;
     text-align: center;
 }
