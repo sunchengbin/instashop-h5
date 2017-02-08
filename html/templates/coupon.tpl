@@ -36,7 +36,7 @@
             <a href="{$INDEX_DATA.coupon.url}" spm-auto="立即使用" class="block go-home">Gunakan Sekarang</a>
             <a href="javascript:;" spm-auto="分享获取优惠券" class="block share-coupon j_share_btn">Bagikan Promo Voucher</a>
         {else}
-            <a href="{$INDEX_DATA.coupon.url|transUrl}" spm-auto="去逛逛" class="block">Masuk ke toko</a>
+            <a href="{$INDEX_DATA.coupon.url|transUrl}" spm-auto="去逛逛" class="block go-home">Masuk ke toko</a>
         {/if}
     </section>
     <section class="coupon-introduce">
