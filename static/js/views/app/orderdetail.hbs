@@ -92,6 +92,11 @@
             <p class="clearfix"><span class="fr j_reduc_price">-Rp {{transprice data.order.shop_discount.discount_price}}</span>{{lang.H5_REDUC_PAVORABLE}}: </p>
         </div>
         {{/if}}
+        {{#if data.order.coupon}}
+        <div class="reduc-info b-bottom">
+            <p class="clearfix"><span class="fr">-Rp {{transprice data.order.coupon.amount}}</span>{{lang.H5_FAVORABLE_TITLE_PRICE}}: </p>
+        </div>
+        {{/if}}
         <div class="order-info">
             <p class="clearfix"><span class="fr">Rp {{transprice data.order.express_fee}}</span>{{lang.H5_SHIPPING_COST}}: </p>
             <p class="clearfix"><span class="fr">Rp {{transprice data.order.total_price}}</span>{{lang.H5_ORDER_TOTAL_PRICE}}: </p>

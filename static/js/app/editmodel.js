@@ -66,8 +66,17 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 alert('not find bridge');
                 return;
             }
-            //提供给native设置回退锁,为了回退的时候
             (function(bridge){
+                var _close_param = {
+                    param:{
+                        type : 'close_loading',
+                        param : null
+                    }
+                };
+                //关闭webview的loading动画
+                bridge.callHandler('insSocket',_close_param, function(response) {
+                    return null;
+                });
                 var _param = {
                     param:{
                         type : 'go_back',
@@ -77,6 +86,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                         }
                     }
                 };
+                //提供给native设置回退锁,为了回退的时候
                 bridge.callHandler('insSocket',_param, function(response) {
                     return null;
                 });

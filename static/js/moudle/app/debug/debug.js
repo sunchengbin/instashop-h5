@@ -3,8 +3,8 @@ define([
 ], function (Base) {
     var Debug = {
         default:{
-            prefixTemplate:"======{title}:begin ======",
-            endTemmplate:"======{title}:end ======"
+            prefixTemplate:"%c======%c{title}:begin %c======",
+            endTemmplate:"%c======%c{title}:end %c======"
         },
         switch:(function(){
             var _isdebug = Boolean(Base.others.getUrlPrem("debug"));
@@ -12,9 +12,9 @@ define([
         })(),
         log:function(debug){
             if(this.switch){
-                console.log(Base.others.fillTemplate(this.default.prefixTemplate,{title:debug.title}))
+                console.log(Base.others.fillTemplate(this.default.prefixTemplate,{title:debug.title}),"color:#43CB9C","color:red","color:#43CB9C")
                 console.log(debug.data)
-                console.log(Base.others.fillTemplate(this.default.endTemmplate,{title:debug.title}))
+                console.log(Base.others.fillTemplate(this.default.endTemmplate,{title:debug.title}),"color:#43CB9C","color:red","color:#43CB9C")
             }
         }
     }

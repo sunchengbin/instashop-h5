@@ -20,6 +20,17 @@ require(['base','hbs','text!views/app/modeltype.hbs','insjs','fastclick','config
         handelFn : function(bridge){
             var _this = this;
             FastClick.attach(document.body);
+            (function(bridge){//关闭webview的loading动画
+                var _close_param = {
+                    param:{
+                        type : 'close_loading',
+                        param : null
+                    }
+                };
+                bridge.callHandler('insSocket',_close_param, function(response) {
+                    return null;
+                });
+            })(bridge);
             $('body').on('click','.j_model_type',function(){
                 var _type = $(this).attr('data-type'),
                     _index = Base.others.getUrlPrem('index');

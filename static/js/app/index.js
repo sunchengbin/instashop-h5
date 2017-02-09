@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/6.
  * 首页
  */
-require(['lang','lazyload','ajax','config','base','common','cart','fastclick','contact','slide','item','dialog'],function(Lang,Lazyload,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item,Dialog){
+require(['lang','lazyload','ajax','config','base','common','cart','fastclick','contact','slide','item','dialog','sharecoupon'],function(Lang,Lazyload,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item,Dialog,Sharecoupon){
     var I = {
         init : function(init_data){
             Lazyload();
@@ -98,6 +98,13 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                     }
                 });
             }
+            $('body').on('click','.j_share_btn',function(){
+                PaqPush && PaqPush('分享获取优惠券', '');
+                var _coupon_id = $(this).attr('data-couponid');
+                Sharecoupon({
+                    coupon_url : Config.host.host+'b/'+_coupon_id
+                });
+            });
             $(document).on('scroll', function(e) {
                 var moz = /Gecko\//i.test(navigator.userAgent);
                 var body=document[moz?'documentElement':'body'];
@@ -221,6 +228,7 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
             });
             //满减 lanchenghao
             $('body').on('click','.j_reduc_box',function(){
+                PaqPush && PaqPush('查看满减公告', '');
                 var _htm = '<ul class="reduc-rule-list">';
                 if(!!init_data.shop.shop_discount){
                     for(var i=0,_reducItem;_reducItem=init_data.shop.shop_discount.info[i++];){

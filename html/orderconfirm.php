@@ -13,7 +13,13 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/orderconfirm.css?v=1486181137361" rel="stylesheet"/>
+    <?php
+        if(isDebug()){
+            echo '<link href="'.STATIC_HOST.'/css/app/orderconfirm.css?v=1486534746054" rel="stylesheet"/>';
+        }else{
+            echo '<link href="'.STATIC_HOST.'/css/dist/app/orderconfirm.css?v=1486534746054" rel="stylesheet"/>';
+        }
+     ?>
     <title>Order</title>
     <script>
         <?php
@@ -57,8 +63,14 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body data-spider="2cj9l5q4"></body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/orderconfirm.js?v=1486181137361"></script>
+    <?php
+        if(isDebug()){
+            echo '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script>';
+            echo '<script src="'.STATIC_HOST.'/js/app/orderconfirm.js?v=1486534746054"></script>';
+        }else{
+            echo '<script src="'.STATIC_HOST.'/js/dist/app/orderconfirm.js?v=1486534746054"></script>';
+        }
+     ?>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

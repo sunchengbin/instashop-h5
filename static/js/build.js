@@ -28,6 +28,7 @@
         "contact":"moudle/app/contact/contact",
         "fastclick":"moudle/ui/fastclick/fastclick",
         "viewer":"moudle/ui/viewer/viewer",
+        "sharecoupon":"moudle/app/sharecoupon/sharecoupon",
         "jsbn":"moudle/decode/jsbn",
         "xxtea":"moudle/decode/xxtea",
         "rsa":"moudle/decode/rsa",
@@ -39,7 +40,8 @@
         "history":"moudle/app/im/history",
         "message":"moudle/app/im/message",
         "validator":"moudle/ui/validator/validator",
-        "debug":"moudle/app/debug/debug"
+        "debug":"moudle/app/debug/debug",
+        "favorable":"moudle/app/favorable/favorable"
     },
     "fileExclusionRegExp": "/.hbs$/",
     "keepBuildDir": true,

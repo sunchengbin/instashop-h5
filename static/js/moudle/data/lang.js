@@ -68,7 +68,7 @@ define(['base'],function(Base){
             'H5_DONE' : '完成',
             'H5_X_PCS_LEFT' : '仅剩',
             'H5_PCS' : '件',
-            'H5_LOADING': '加载中',
+            'H5_LOADING': '加载中...',
             'H5_SEND_PAY_INFO_TO_BUYER' : '将收款信息发送给买家',
             'H5_ATM_TRANSFER_GUID' : '转账说明',
             'H5_PAY_STATE' : '支付状态',
@@ -178,7 +178,7 @@ define(['base'],function(Base){
             H5_ITEM_LIST_TYPE_TWO:'一行2个',
             H5_ITEM_LIST_TYPE_THREE:'一行3个',
             H5_VALIDATOR_NAME:"请填写姓名",
-            H5_VALIDATOR_TEL:"请填写电话",
+            H5_VALIDATOR_TEL:"请填写手机号",
             H5_VALIDATOR_PROVINCE:"请填写省",
             H5_VALIDATOR_CITY:"请填写市",
             H5_VALIDATOR_DIS:"请填写区",
@@ -188,7 +188,19 @@ define(['base'],function(Base){
             H5_NO_SEARCH_VAL:"没有找到相关商品",
             H5_IS_CONFIRM:'已确认',
             H5_GO_CONTACT:'去联系',
-            H5_CART_GROUP_TITLE:"仓库"
+            H5_CART_GROUP_TITLE:"仓库",
+            H5_FAVORABLE_TIP_NONE:"优惠券不存在",
+            H5_FAVORABLE_TITLE:"优惠券",
+            H5_FAVORABLE_FILL_CODE:"填写code",
+            H5_FAVORABLE_TITLE_PRICE:"优惠",
+            H5_COUPON:'优惠券',
+            H5_SHARE_COUPON_TXT:'我非常喜欢的店铺限时送优惠券了，领取：',
+            H5_SHARE_COUPON_RULE:'分享到line、BBM、WA就能通过链接领取',
+            H5_SHARE_TITLE:'分享赚优惠券',
+            H5_GET_COUPON_SUCCESS:'领取成功',
+            H5_GETTED:'已经领取过了',
+            H5_GET:'立即领取',
+            H5_GETING:'领取中...'
         },
 
         id : {
@@ -395,7 +407,7 @@ define(['base'],function(Base){
             'H5_CHECKOUT' : 'Pembayaran',
             'H5_X_PCS_LEFT' : 'Hanya tersisa sebanyak',
             'H5_PCS' : 'pcs',
-            'H5_LOADING': 'Memuat',
+            'H5_LOADING': 'Memuat...',
             'H5_SEND_PAY_INFO_TO_BUYER' : 'Bagikan informasi rekening ke pembeli',
             'H5_ATM_TRANSFER_GUID' : 'ATM Transfer Guide',
             'H5_PAY_STATE' : 'Payment Status',
@@ -486,7 +498,7 @@ define(['base'],function(Base){
             //请填写姓名
             'H5_VALIDATOR_NAME':"Silakan tulis nama",
             //请填写电话
-            'H5_VALIDATOR_TEL':"Silakan tulis nomor telepon",
+            'H5_VALIDATOR_TEL':"Silakan masukkan nomor ponselmu",
             //请填写省
             'H5_VALIDATOR_PROVINCE':"Silakan pilih provinsi",
             //请填写市
@@ -501,7 +513,19 @@ define(['base'],function(Base){
             H5_NO_SEARCH_VAL:"Produk tidak ditemukan",
             H5_IS_CONFIRM:'Nanti Saja',
             H5_GO_CONTACT:'Kontak Penjual',
-            H5_CART_GROUP_TITLE:"Gudang"
+            H5_CART_GROUP_TITLE:"Gudang",
+            H5_FAVORABLE_TIP_NONE:"Voucher tidak ditemukan",
+            H5_FAVORABLE_TITLE:"Voucher",
+            H5_FAVORABLE_FILL_CODE:"Tulis Kode",
+            H5_FAVORABLE_TITLE_PRICE:"Diskon",
+            H5_COUPON:'Voucher',
+            H5_SHARE_COUPON_TXT:'Olshop favoritku lagi bagi-bagi kode voucher nih, klik untuk dapatkan kode voucher: ',
+            H5_SHARE_COUPON_RULE:'Bagikan ke LINE/WhatsApp/BBM, lalu klik link di chatroom kamu untuk mendapatkan kode voucher',
+            H5_SHARE_TITLE:'Bagikan Promo Voucher',
+            H5_GET_COUPON_SUCCESS:'Voucher Berhasil Diambil!',
+            H5_GETTED:'Voucher Sudah Pernah Diambil',
+            H5_GET:'Ambil Sekarang',
+            H5_GETING:'Sedang Diproses...'
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );

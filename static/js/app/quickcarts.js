@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/7/26.
  */
-require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator'], function (Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator) {
+require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator', 'favorable', 'debug'], function (Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator, Favorable, Debug) {
     var QuickCartsHtm = {
         init: function () {
             var _this = this,
@@ -9,6 +9,10 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 _address = _data ? JSON.parse(_data).Address : null,
                 _address_id = _this.getAddressId(),
                 _is_detail = _address_id.length == 5 ? true : false;
+            Debug.log({
+                title: "页面初始化数据",
+                data: JSON.parse(localStorage.getItem('ShopData'))
+            })
             //初始化本地数据
             if (!_address) {
                 //地址信息
@@ -72,8 +76,20 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                     }
                 });
             }
+
             _this.getTotal();
             _this.handleFn();
+            //优惠券
+            _this.favorablePlugin = Favorable({
+                el: ".total-ps",
+                price: $('.j_total').attr('data-price'),
+                seller_id:init_data.shop.id,
+                usehandle: function (favorablePrice) {
+                    var _totalPrice = $(".j_total").attr("data-price");
+                    // var _postPrice = $(".j_post").attr("data-price") || 0;
+                    $(".j_total").html('Rp ' + Base.others.priceFormat(Number(_totalPrice) - Number(favorablePrice)));
+                }
+            });
         },
         initLocalStorage: function (address) { //根据本地地址数据自动填写用户信息
             address.name && $('.j_name').val(address.name);
@@ -116,7 +132,6 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             _num.val(opts.num).attr('data-price', opts.price);
             _this.resetCarts(opts);
             _this.getTotal();
-            console.log(_this.carts)
         },
         resetCarts: function (opts) {
             var _this = this,
@@ -145,7 +160,6 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 if (_this.isDetailQuick && _this.testDetailCarts()) { //有sku的单品快速下单
                     _this.quickbuyplug.toShow();
                 } else {
-                    //console.log(_stock <= _num)
                     if (_stock && _stock <= _num) {
                         return;
                     }
@@ -745,25 +759,26 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                     'receive_addr': encodeURIComponent(_addr)
                 }
             };
-            console.log("supply_shop_id" + _data.edata.supply_shop_id);
+            Debug.log({
+                title: "getLogistics-supply_shop_id",
+                data: {
+                    supply_shop_id: _data.edata.supply_shop_id
+                }
+            })
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.expressesList + '?param=' + JSON.stringify(_data),
                 function (obj) {
                     _this.loading.remove();
                     if (obj.code == 200) {
                         //检查是否为自营还是代理 如果是代理取supply_shop_info中的express_free
-                        console.log("dd")
-                        console.log(_this.supply_shop_info)
                         if (!!_this.supply_shop_info) {
                             //代理的
                             if (_this.supply_shop_info.express_free == 0) {
                                 if (_this.testExpress(obj.express_fee_list.list)) {
-                                    console.log("1")
                                     $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
                                     $('.j_logistics').show();
                                     $('.j_submit_buy').show();
                                     type && $('body').scrollTop(9999);
                                 } else {
-                                    console.log("2")
                                     var _li = '<li class="no-logistic">' + Lang.H5_NO_LOGISTICS_COMPANY + '</li>';
                                     $('.j_logistics ul').html(_li);
                                     $('.j_logistics').show();
@@ -815,7 +830,6 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                         '</li>';
                 }
             }
-            console.log(_htm)
             return _htm;
         },
         testCarts: function (carts, type) {
@@ -974,13 +988,29 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 _freight = 0;
             $('.j_item_num').each(function (i, item) {
                 var _num = Number($(item).val()),
-                    _price = Number($(item).attr('data-price'));
+                    _price = Number($(item).attr('data-price') || 0);
+                Debug.log({
+                    title: "each:j_item_num-_num-_price",
+                    data: {
+                        _num: _num,
+                        _price: _price
+                    }
+                })
                 _sum += _num * _price;
             });
             if ($('.icon-radioed-font').length) {
                 _freight = Number($('.icon-radioed-font').attr('data-price'));
             }
-            $('.j_total').html('Rp ' + Base.others.priceFormat((_sum + _freight)));
+            Debug.log({
+                title: "getTotalNoReduc-_sum-_freight",
+                data: {
+                    _sum: _sum,
+                    _freight: _freight,
+                    result: 'Rp ' + Base.others.priceFormat((_sum + _freight))
+                }
+            })
+            var _favorablePrice = $(".j_favorable_price").attr('data-price') || 0;
+            $('.j_total').attr('data-price', Number(_sum + _freight - _favorablePrice)).html('Rp ' + Base.others.priceFormat((_sum + _freight - _favorablePrice)));
             $('.j_freight').html('Rp ' + Base.others.priceFormat(_freight));
         },
         //满减
@@ -1026,7 +1056,8 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                         _freight = Number($('.icon-radioed-font').attr('data-price'));
                     }
                     $('.j_freight').html('Rp ' + Base.others.priceFormat(_freight));
-                    $('.j_total').html('Rp ' + Base.others.priceFormat(_res.price_info.total_price + _freight));
+                    var _favorablePrice = $(".j_favorable_price").attr('data-price') || 0;
+                    $('.j_total').attr('data-price', Number(_res.price_info.total_price + _freight - _favorablePrice)).html('Rp ' + Base.others.priceFormat(_res.price_info.total_price + _freight - _favorablePrice));
                 }
             }, function () {
                 Dialog.alert({

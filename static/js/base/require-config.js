@@ -27,6 +27,7 @@ require.config({
         contact:"moudle/app/contact/contact",
         fastclick:"moudle/ui/fastclick/fastclick",
         viewer:"moudle/ui/viewer/viewer",
+        sharecoupon:"moudle/app/sharecoupon/sharecoupon",
         //h5配置
         config:'moudle/config/config',
         //数据存储js
@@ -50,7 +51,8 @@ require.config({
         history:'moudle/app/im/history',
         message:'moudle/app/im/message',
         validator:'moudle/ui/validator/validator',
-        debug:'moudle/app/debug/debug'
+        debug:'moudle/app/debug/debug',
+        favorable:'moudle/app/favorable/favorable'
     },
     packages: []
 });

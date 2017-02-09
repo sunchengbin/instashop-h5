@@ -1,0 +1,62 @@
+@import "coupon.css";
+.get-coupon-box{
+    background: url(../../images/app/coupon-price.png) no-repeat center;
+    background-size: contain;
+    min-height: 12rem;
+    line-height: 12rem;
+    margin:0 auto;
+    text-align: center;
+    box-sizing: border-box;
+    /*padding-top:2.5rem;*/
+    color: #F6A623;
+    font-size: 40px;
+}
+.coupon-operate a{
+    background-color: #F6A623;
+}
+.coupon-operate div{
+    text-align: left;
+}
+.telphone-box{
+    padding: 1rem 0 1rem 3rem;
+    position: relative;
+    margin:0 1rem;
+}
+.telphone-box::after{
+    content: '+62';
+    font-size: 14px;
+    position: absolute;
+    display: inline-block;
+    height: 2rem;
+    line-height: 2rem;
+    left: 0;
+    top:1rem;
+}
+.telphone-box::before{
+    content: '';
+    position: absolute;
+    height: 1px;
+    border-bottom:1px solid #d8d8d8;
+    left: -50%;
+    right:-50%;
+    bottom:-1px;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+}
+.telphone{
+    width: 100%;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 14px;
+}
+.explain,.past-explain{
+    padding-left:1rem;
+    color: #666;
+    font-size: 14px;
+    margin-top: 1rem;
+}
+.coupon-operate div.past-explain{
+    margin-top: 2rem;
+    text-align: center;
+}
+
