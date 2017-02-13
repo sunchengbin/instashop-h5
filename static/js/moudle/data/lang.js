@@ -200,7 +200,8 @@ define(['base'],function(Base){
             H5_GET_COUPON_SUCCESS:'领取成功',
             H5_GETTED:'已经领取过了',
             H5_GET:'立即领取',
-            H5_GETING:'领取中...'
+            H5_GETING:'领取中...',
+            H5_GOOD_COST:'商品总价'
         },
 
         id : {
@@ -525,7 +526,8 @@ define(['base'],function(Base){
             H5_GET_COUPON_SUCCESS:'Voucher Berhasil Diambil!',
             H5_GETTED:'Voucher Sudah Pernah Diambil',
             H5_GET:'Ambil Sekarang',
-            H5_GETING:'Sedang Diproses...'
+            H5_GETING:'Sedang Diproses...',
+            H5_GOOD_COST:'Harga Total Produk'
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );
