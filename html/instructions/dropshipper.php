@@ -136,6 +136,13 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
   	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">1. </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><span style="font-family:Arial;">Klik menu </span><b><span style="font-family:Arial;">“Supplierku dan Dropshipperku”</span></b><span style="font-family:Arial;">, klik </span><b><span style="font-family:Arial;">“Tambah Supplier”</span></b><span style="font-family:Arial;">, lalu masukkan nomor ponsel suppliermu. </span><u><span style="font-family:Arial;">Pastikan suppliermu sudah meregistrasikan tokonya di Instashop juga ya!</span></u></span>
   </p>
+  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.2;text-align:justify;">
+    <br>
+  </p>
+  <br>
+  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
+    <span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">下载并注册Instashop </span>
+  </p>
   <div class=" clearfix pc-download-app" data-spider="pc端下载app">
           <a target="_blank" spm-auto="android-down" data-spider="dandroid-down" href="https://play.google.com/store/apps/details?id=com.instashop" class="pc-down-android"></a>
           <a target="_blank" spm-auto="ios-down" data-spider="dios-down" href="https://itunes.apple.com/us/app/instashop-buat-webstore-gratis/id1105365362?l=zh&ls=1&mt=8" class="pc-down-ios"></a>
