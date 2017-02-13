@@ -81,7 +81,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
       color: #43CB9C;
       font-size: 20px;
       float: left;
-          margin-bottom: 20px;
+         margin-top: 50px;
   }
   .pc-down-android{
         background: url(images/gp.png) no-repeat;
@@ -111,7 +111,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
       text-align: center;
       background: #F5A623;
       border-radius: 4px;
-      margin: 0 auto 25px;
+      margin: 50px auto 0;
       font-weight: bold;
   }
   </style>
@@ -135,6 +135,13 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
   	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">1. Klik menu <b>Pengaturan Produk</b>, pilih produk yang ingin dinyalakan dropshipnya. </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">Klik tombol </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-style:italic;vertical-align:baseline;white-space:pre-wrap;"><b>dropship</b></span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"> di bagian bawah halaman untuk mengaktifkan fitur Dropship bagi produk ini. </span>
   </p>
+  <div class=" clearfix pc-download-app" data-spider="pc端下载app">
+        <a target="_blank" spm-auto="android-down" data-spider="dandroid-down" href="https://play.google.com/store/apps/details?id=com.instashop" class="pc-down-android"></a>
+        <a target="_blank" spm-auto="ios-down" data-spider="dios-down" href="https://itunes.apple.com/us/app/instashop-buat-webstore-gratis/id1105365362?l=zh&ls=1&mt=8" class="pc-down-ios"></a>
+    </div>
+    <div class="mobile-download-app clearfix " data-spider="移动端下载app">
+          <div class="j_down_url mb-down-load">Download Gratis！</div>
+    </div>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
   	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
   </span>
@@ -293,13 +300,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   </span>
   </p>
   </span>
-  <div class=" clearfix pc-download-app" data-spider="pc端下载app">
-      <a target="_blank" spm-auto="android-down" data-spider="dandroid-down" href="https://play.google.com/store/apps/details?id=com.instashop" class="pc-down-android"></a>
-      <a target="_blank" spm-auto="ios-down" data-spider="dios-down" href="https://itunes.apple.com/us/app/instashop-buat-webstore-gratis/id1105365362?l=zh&ls=1&mt=8" class="pc-down-ios"></a>
-  </div>
-  <div class="mobile-download-app clearfix " data-spider="移动端下载app">
-        <div class="j_down_url mb-down-load">Download Gratis！</div>
-  </div>
+
   </section>
   <script>
     function bowser(){
