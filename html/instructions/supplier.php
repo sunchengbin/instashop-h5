@@ -84,12 +84,12 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
          margin-top: 50px;
   }
   .pc-down-android{
-        background: url(images/gp.png) no-repeat;
+        background: url(<?=HOST_URL?>/html/instructions/images/gp.png) no-repeat;
         background-size: contain;
             margin-left: 100px;
   }
   .pc-down-ios{
-      background: url(images/as.png) no-repeat;
+      background: url(<?=HOST_URL?>/html/instructions/images/as.png) no-repeat;
       background-size: contain;
   }
   .clearfix:after {
