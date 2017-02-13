@@ -61,6 +61,12 @@ function getSellerInfo(){
 }
 function biJs(){
 $js = <<<JS
+    (function(){
+        var ua = navigator.userAgent;
+        if(ua.indexOf('Opera Mini')!=-1)(
+           alert('此浏览器不支持展示本页面，请使用其他浏览器打开此页面')
+        )
+    })()
     function getUrlPrem(key,url){
           var _search = url || document.location.search,
               _pattern = new RegExp("[?&]" + key + "\=([^&]+)", "g"),
