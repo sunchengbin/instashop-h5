@@ -38,7 +38,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
       html { font-size: 62.5% !important; }
   }
   body {
-      font: 1.2rem/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font: 12px/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       color:#333;
       max-width:640px;
       margin:0 auto;
@@ -129,32 +129,33 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   	<span style="font-size:16px;font-family:Arial;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">STEP 1: AKTIFKAN FITUR DROPSHIP </span>
   </p>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.2;text-align:justify;">
+      	<br>
+      </p>
+      <br>
+    <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
+      	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">1. Download Instashop </span>
+      </p>
+    <div class=" clearfix pc-download-app" data-spider="pc端下载app">
+          <a target="_blank" spm-auto="android-down" data-spider="dandroid-down" href="https://play.google.com/store/apps/details?id=com.instashop" class="pc-down-android"></a>
+          <a target="_blank" spm-auto="ios-down" data-spider="dios-down" href="https://itunes.apple.com/us/app/instashop-buat-webstore-gratis/id1105365362?l=zh&ls=1&mt=8" class="pc-down-ios"></a>
+      </div>
+      <div class="mobile-download-app clearfix " data-spider="移动端下载app">
+            <div class="j_down_url mb-down-load">Download Gratis！</div>
+      </div>
+  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.2;text-align:justify;">
   	<br>
   </p>
   <br>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">1. Klik menu <b>Pengaturan Produk</b>, pilih produk yang ingin dinyalakan dropshipnya. </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">Klik tombol </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-style:italic;vertical-align:baseline;white-space:pre-wrap;"><b>dropship</b></span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"> di bagian bawah halaman untuk mengaktifkan fitur Dropship bagi produk ini. </span>
+  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">2. Klik menu <b>Pengaturan Produk</b>, pilih produk yang ingin dinyalakan dropshipnya. </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">Klik tombol </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-style:italic;vertical-align:baseline;white-space:pre-wrap;"><b>dropship</b></span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"> di bagian bawah halaman untuk mengaktifkan fitur Dropship bagi produk ini. </span>
   </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.2;text-align:justify;">
-    	<br>
-    </p>
-    <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-    	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">下载并注册Instashop </span>
-    </p>
-  <div class=" clearfix pc-download-app" data-spider="pc端下载app">
-        <a target="_blank" spm-auto="android-down" data-spider="dandroid-down" href="https://play.google.com/store/apps/details?id=com.instashop" class="pc-down-android"></a>
-        <a target="_blank" spm-auto="ios-down" data-spider="dios-down" href="https://itunes.apple.com/us/app/instashop-buat-webstore-gratis/id1105365362?l=zh&ls=1&mt=8" class="pc-down-ios"></a>
-    </div>
-    <div class="mobile-download-app clearfix " data-spider="移动端下载app">
-          <div class="j_down_url mb-down-load">Download Gratis！</div>
-    </div>
+
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
   	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
   </span>
   </p>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="http://imghk0.geilicdn.com/instashop2775-1485409636677-1unadjust.png" alt=""><br>
+  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/1.png" alt=""><br>
   </span>
   </p>
   <br>
@@ -166,7 +167,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   </span>
   </p>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:13.3333px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="http://imghk0.geilicdn.com/instashop8212-1485409665261-1unadjust.png" alt=""><br>
+  	<span style="font-size:13.3333px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/2.png" alt=""><br>
   </span>
   </p>
   <br>
@@ -193,7 +194,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   </span>
   </p>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;background-color:#FFFFFF;font-family:Arial;white-space:pre-wrap;"><img src="http://imghk0.geilicdn.com/instashop3558-1485409777117-1unadjust.png" alt=""><br>
+  	<span style="font-size:14.6667px;background-color:#FFFFFF;font-family:Arial;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/3.png" alt=""><br>
   </span>
   </p>
   <br>
@@ -205,7 +206,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   </span>
   </p>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="http://imghk0.geilicdn.com/instashop7142-1485409825620-1unadjust.png" alt=""><br>
+  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/4.png" alt=""><br>
   </span>
   </p>
   <br>
@@ -232,7 +233,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   </span>
   </p>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="http://imghk0.geilicdn.com/instashop9012-1485409933051-1unadjust.png" alt=""><br>
+  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/5.png" alt=""><br>
   </span>
   </p>
   <br>
@@ -244,7 +245,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   </span>
   </p>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="http://imghk0.geilicdn.com/instashop8297-1485409962026-1unadjust.png" alt=""><br>
+  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/6.png" alt=""><br>
   </span>
   </p>
   <br>
@@ -256,7 +257,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   	<br>
   </p>
   <p style="white-space:normal;">
-  	<img src="http://imghk0.geilicdn.com/instashop4279-1485410024425-1unadjust.png" alt="">
+  	<img src="<?=HOST_URL?>/html/instructions/images/7.png" alt="">
   </p>
   <span style="white-space:normal;">
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
@@ -264,7 +265,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   </span>
   </p>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="http://imghk0.geilicdn.com/instashop6264-1485410084792-1unadjust.png" alt=""><br>
+  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/8.png" alt=""><br>
   </span>
   </p>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
@@ -287,7 +288,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   </span>
   </p>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="http://imghk0.geilicdn.com/instashop7454-1485410173734-1unadjust.png" alt=""><br>
+  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/9.png" alt=""><br>
   </span>
   </p>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
@@ -303,7 +304,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   </span>
   </p>
   <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="http://imghk0.geilicdn.com/instashop7083-1485410203760-1unadjust.png" alt=""><br>
+  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/10.png" alt=""><br>
   </span>
   </p>
   </span>
