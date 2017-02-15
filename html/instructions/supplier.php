@@ -13,42 +13,42 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
   <?=STATIC_ICO_CSS?>
   <style>
-  *{
+    *{
     padding:0;
     margin:0;
     word-break: break-word;
-  }
-  html { font-size: 62.5%; }
-  @media only screen and (min-width: 374px) {
+    }
+    html { font-size: 62.5%; }
+    @media only screen and (min-width: 374px) {
       html { font-size: 72%!important }
-  }
-  @media only screen and (min-width: 413px) {
+    }
+    @media only screen and (min-width: 413px) {
       html { font-size: 80%!important }
-  }
-  @media only screen and (min-width: 481px) {
+    }
+    @media only screen and (min-width: 481px) {
       html { font-size: 94%!important }
-  }
-  @media only screen and (min-width: 561px) {
+    }
+    @media only screen and (min-width: 561px) {
       html { font-size: 109%!important }
-  }
-  @media only screen and (min-width: 641px) {
+    }
+    @media only screen and (min-width: 641px) {
       html { font-size: 125%!important }
-  }
-  @media(orientation: landscape) and (min-width: 481px) {
+    }
+    @media(orientation: landscape) and (min-width: 481px) {
       html { font-size: 62.5% !important; }
-  }
-  body {
+    }
+    body {
       font: 12px/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      color:#333;
+      color:#666;
       max-width:640px;
       margin:0 auto;
-  }
-  section{
-    font-size:1.4rem;
+    }
+    section{
+    font-size:16px;
     color:#666;
     padding: 1rem 2rem;
-  }
-  .header-nav{
+    }
+    .header-nav{
       text-align:center;
       padding: 0 1rem;
       height: 4.6rem;
@@ -56,22 +56,22 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
       background-color: #43CB9C;
       font-size: 1.6rem;
       color: #fff;
-  }
-  img{
+    }
+    img{
     width:100%;
-  }
-  .pc-download-app{
+    }
+    .pc-download-app{
       display:none;
-  }
-  @media only screen and (min-width: 1200px) {
+    }
+    @media only screen and (min-width: 1200px) {
       .pc-download-app{
         display:block;
       }
       .mobile-download-app{
         display:none;
       }
-  }
-  .pc-down-android, .pc-down-ios {
+    }
+    .pc-down-android, .pc-down-ios {
       display: inline-block;
       width: 200px;
       height: 60px;
@@ -81,27 +81,27 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
       color: #43CB9C;
       font-size: 20px;
       float: left;
-         margin-top: 50px;
-  }
-  .pc-down-android{
+      margin-bottom: 20px;
+    }
+    .pc-down-android{
         background: url(<?=HOST_URL?>/html/instructions/images/gp.png) no-repeat;
         background-size: contain;
             margin-left: 100px;
-  }
-  .pc-down-ios{
+    }
+    .pc-down-ios{
       background: url(<?=HOST_URL?>/html/instructions/images/as.png) no-repeat;
       background-size: contain;
-  }
-  .clearfix:after {
+    }
+    .clearfix:after {
       content: '\20';
       display: block;
       height: 0;
       clear: both;
-  }
-  .mobile-download-app{
-  text-align:center;
-  }
-  .mb-down-load {
+    }
+    .mobile-download-app{
+    text-align:center;
+    }
+    .mb-down-load {
       display: inline-block;
       color: #fff;
       font-size: 16px;
@@ -111,204 +111,77 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
       text-align: center;
       background: #F5A623;
       border-radius: 4px;
-      margin: 50px auto 0;
+      margin: 0 auto 20px;
       font-weight: bold;
-  }
+    }
+    h1{
+      font-size:18px;
+      text-align:justify;
+    }
+    h2{
+      font-size:16px;
+      text-align:justify;
+    }
+    em{
+      font-style:normal;
+      text-decoration: underline;
+    }
+    p strong{
+      text-align:justify;
+    }
+    p,img,h1,h2{
+      margin-bottom:20px;
+    }
+    strong.italic{
+      font-style: italic;
+    }
   </style>
   <title>[UNTUK SUPPLIER] PANDUAN DROPSHIP</title>
   <body data-spider="8pzm16nd">
-  <section><span id="docs-internal-guid-cedc9a88-d94f-a57c-6f6d-0705d786809e" style="white-space:normal;">
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.2;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">PANDUAN SISTEM DROPSHIP DARI SISI SUPPLIER</span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.2;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;font-weight:700;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.2;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">STEP 1: AKTIFKAN FITUR DROPSHIP </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.2;text-align:justify;">
-      	<br>
-      </p>
-      <br>
-    <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-      	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">1. Download Instashop </span>
-      </p>
+  <section>
+    <h1>PANDUAN SISTEM DROPSHIP DARI SISI SUPPLIER</h1>
+    <h2>STEP 1: AKTIFKAN FITUR DROPSHIP</h2>
+    <p>
+      1. Download Instashop
+    </p>
     <div class=" clearfix pc-download-app" data-spider="pc端下载app">
-          <a target="_blank" spm-auto="android-down" data-spider="dandroid-down" href="https://play.google.com/store/apps/details?id=com.instashop" class="pc-down-android"></a>
-          <a target="_blank" spm-auto="ios-down" data-spider="dios-down" href="https://itunes.apple.com/us/app/instashop-buat-webstore-gratis/id1105365362?l=zh&ls=1&mt=8" class="pc-down-ios"></a>
-      </div>
-      <div class="mobile-download-app clearfix " data-spider="移动端下载app">
-            <div class="j_down_url mb-down-load">Download Gratis！</div>
-      </div>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.2;text-align:justify;">
-  	<br>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">2. Klik menu <b>Pengaturan Produk</b>, pilih produk yang ingin dinyalakan dropshipnya. </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">Klik tombol </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-style:italic;vertical-align:baseline;white-space:pre-wrap;"><b>dropship</b></span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"> di bagian bawah halaman untuk mengaktifkan fitur Dropship bagi produk ini. </span>
-  </p>
-
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/1.png" alt=""><br>
-  </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">2. &nbsp;Isi Harga Dropship. Klik centang jika selesai. Produkmu sudah siap didropship!</span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:13.3333px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:13.3333px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/2.png" alt=""><br>
-  </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:13.3333px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">STEP 2： AJAK DROPSHIPPERMU BERGABUNG DI INSTASHOP!</span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">1. &nbsp;Ajak Dropshippermu download dan registrasi di Instashop</span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;background-color:#FFFFFF;font-family:Arial;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;background-color:#FFFFFF;font-family:Arial;white-space:pre-wrap;">2. Setelah selesai registrasi, minta dropshippermu untuk mendaftarkan diri dengan klik menu <b>“Supplierku dan Dropshipperku”</b>, pilih tab <b>Supplier</b>, klik <b>"Tambah Supplier" </b>dan isi nomor teleponmu </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;background-color:#FFFFFF;font-family:Arial;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;background-color:#FFFFFF;font-family:Arial;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/3.png" alt=""><br>
-  </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">3. Terima pendaftaran dari dropshippermu di menu <b>“Supplierku dan Dropshipperku”</b> - <b>tab Dropship</b></span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/4.png" alt=""><br>
-  </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">4. Selesai! Dropshippermu sudah menjadi bagian jaringan tokomu. Seluruh produk yang kamu aktifkan fitur dropshipnya akan <b>muncul</b> di menu <i>“Produk Supplier”</i> di aplikasi Instashop dropshippermu.</span>
-  </p>
-  </span><span style="white-space:normal;"></span>
-  <p style="white-space:normal;">
-  	<br>
-  </p>
-  <p style="white-space:normal;">
-  	<br>
-  </p>
-  <span style="white-space:normal;">
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">STEP 3. KELOLA PESANAN UNTUK DROPSHIPPERMU</span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">1. Ketika ada pembeli berbelanja melalui toko dropshippermu, kamu akan menerima notifikasi pesanan baru.</span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/5.png" alt=""><br>
-  </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">2. Jika pesanan tersebut sudah dibayar, pesanan itu akan berpindah ke menu “Perlu Dikirim” di Pengaturan Pesananmu</span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/6.png" alt=""><br>
-  </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">3. Kirim pesanan tersebut <b>menggunakan nama dropshippermu</b>. </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">Setelah dikirim, klik menu “Kirim” dan isi nomor resi logistik</span>
-  </p>
-  </span><span style="white-space:normal;"></span>
-  <p style="white-space:normal;">
-  	<br>
-  </p>
-  <p style="white-space:normal;">
-  	<img src="<?=HOST_URL?>/html/instructions/images/7.png" alt="">
-  </p>
-  <span style="white-space:normal;">
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/8.png" alt=""><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">4. Pesananmu telah selesai dikirim dan sudah berpindah ke menu "Selesai"</span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/9.png" alt=""><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">5. Kamu bisa langsung menarik saldo <b>harga produk dan ongkos kirimmu</b> di menu penghasilan</span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/10.png" alt=""><br>
-  </span>
-  </p>
-  </span>
-
+    <a target="_blank" spm-auto="android-down" data-spider="dandroid-down" href="https://play.google.com/store/apps/details?id=com.instashop" class="pc-down-android"></a>
+    <a target="_blank" spm-auto="ios-down" data-spider="dios-down" href="https://itunes.apple.com/us/app/instashop-buat-webstore-gratis/id1105365362?l=zh&ls=1&mt=8" class="pc-down-ios"></a>
+    </div>
+    <div class="mobile-download-app clearfix " data-spider="移动端下载app">
+    <div class="j_down_url mb-down-load">Download Gratis！</div>
+    </div>
+    <p>
+      2. Klik menu <strong>Pengaturan Produk</strong>, pilih produk yang ingin dinyalakan dropshipnya. Klik tombol <strong class="italic">dropship</strong> di bagian bawah halaman untuk mengaktifkan fitur Dropship bagi produk ini.
+    </p>
+    <img src="<?=HOST_URL?>/html/instructions/images/1.png" alt="">
+    <p>
+      3.  Isi Harga Dropship. Klik centang jika selesai. Produkmu sudah siap didropship!
+    </p>
+    <img src="<?=HOST_URL?>/html/instructions/images/2.png" alt="">
+    <h2>STEP 2： AJAK DROPSHIPPERMU BERGABUNG DI INSTASHOP!</h2>
+    <p>1.  Ajak Dropshippermu download dan registrasi di Instashop</p>
+    <p>2. Setelah selesai registrasi, minta dropshippermu untuk mendaftarkan diri dengan klik menu “<strong>Supplierku dan Dropshipperku</strong>”, pilih tab <strong>Supplier</strong>, klik "<strong>Tambah Supplier</strong>" dan isi nomor teleponmu </p>
+    <img src="<?=HOST_URL?>/html/instructions/images/3.png" alt="">
+    <p>
+        3. Terima pendaftaran dari dropshippermu di menu “<strong>Supplierku dan Dropshipperku</strong>” - <strong>tab Dropship</strong>
+    </p>
+    <img src="<?=HOST_URL?>/html/instructions/images/4.png" alt="">
+    <p>
+        4. Selesai! Dropshippermu sudah menjadi bagian jaringan tokomu. Seluruh produk yang kamu aktifkan fitur dropshipnya akan muncul di menu “<strong class="italic">Produk Supplier</strong>” di aplikasi Instashop dropshippermu.
+    </p>
+    <h2>STEP 3. KELOLA PESANAN UNTUK DROPSHIPPERMU</h2>
+    <p>1. Ketika ada pembeli berbelanja melalui toko dropshippermu, kamu akan menerima notifikasi pesanan baru.</p>
+    <img src="<?=HOST_URL?>/html/instructions/images/5.png" alt="">
+    <p>2. Jika pesanan tersebut sudah dibayar, pesanan itu akan berpindah ke menu “Perlu Dikirim” di Pengaturan Pesananmu</p>
+    <img src="<?=HOST_URL?>/html/instructions/images/6.png" alt="">
+    <p>3. Kirim pesanan tersebut <strong>menggunakan nama dropshippermu</strong>. Setelah dikirim, klik menu “Kirim” dan isi nomor resi logistik</p>
+    <img src="<?=HOST_URL?>/html/instructions/images/9.png" alt="">
+    <img src="<?=HOST_URL?>/html/instructions/images/8.png" alt="">
+    <p>4. Pesananmu telah selesai dikirim dan sudah berpindah ke menu "Selesai"</p>
+    <img src="<?=HOST_URL?>/html/instructions/images/7.png" alt="">
+    <p>5. Kamu bisa langsung menarik saldo <strong>harga produk dan ongkos kirimmu</strong> di menu penghasilan</p>
+    <img src="<?=HOST_URL?>/html/instructions/images/10.png" alt="">
   </section>
   <script>
     function bowser(){

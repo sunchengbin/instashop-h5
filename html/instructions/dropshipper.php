@@ -39,12 +39,12 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     }
     body {
         font: 12px/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        color:#333;
+        color:#666;
         max-width:640px;
         margin:0 auto;
     }
     section{
-      font-size:1.4rem;
+      font-size:16px;
       color:#666;
       padding: 1rem 2rem;
     }
@@ -81,7 +81,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
         color: #43CB9C;
         font-size: 20px;
         float: left;
-            margin-top: 50px;
+        margin-bottom: 20px;
     }
     .pc-down-android{
           background: url(<?=HOST_URL?>/html/instructions/images/gp.png) no-repeat;
@@ -111,252 +111,104 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
         text-align: center;
         background: #F5A623;
         border-radius: 4px;
-        margin: 50px auto 0;
+        margin: 0 auto 20px;
         font-weight: bold;
+    }
+    h1{
+        font-size:18px;
+        text-align:justify;
+    }
+    h2{
+        font-size:16px;
+        text-align:justify;
+    }
+    em{
+        font-style:normal;
+        text-decoration: underline;
+    }
+    p strong{
+        text-align:justify;
+    }
+    p,img,h1,h2{
+        margin-bottom:20px;
     }
   </style>
   <title>[UNTUK DROPSHIPPER] PANDUAN DROPSHIP</title>
   <body data-spider="s9xynf1c">
-  <section><span id="docs-internal-guid-cedc9a88-d963-830c-cce6-6492e2532d4f" style="white-space:normal;">
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:18px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">PANDUAN DROPSHIP DARI SISI DROPSHIPPER</span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:18px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">STEP 1. &nbsp;REGISTRASI, UPLOAD PRODUK, ATUR TOKO</span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.2;text-align:justify;">
-      <br>
-    </p>
-    <br>
-    <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-      <span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">1. Download Instashop</span>
+  <section>
+    <h1>PANDUAN DROPSHIP DARI SISI DROPSHIPPER</h1>
+    <h2>STEP 1.  REGISTRASI, UPLOAD PRODUK, ATUR TOKO</h2>
+    <p>
+        1. Download Instashop
     </p>
     <div class=" clearfix pc-download-app" data-spider="pc端下载app">
     <a target="_blank" spm-auto="android-down" data-spider="dandroid-down" href="https://play.google.com/store/apps/details?id=com.instashop" class="pc-down-android"></a>
     <a target="_blank" spm-auto="ios-down" data-spider="dios-down" href="https://itunes.apple.com/us/app/instashop-buat-webstore-gratis/id1105365362?l=zh&ls=1&mt=8" class="pc-down-ios"></a>
     </div>
     <div class="mobile-download-app clearfix " data-spider="移动端下载app">
-      <div class="j_down_url mb-down-load">Download Gratis！</div>
+    <div class="j_down_url mb-down-load">Download Gratis！</div>
     </div>
-    <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-    <span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-    </span>
+    <p>
+    2. Klik menu “<strong>Supplierku dan Dropshipperku</strong>”, klik “<strong>Tambah Supplier</strong>”, lalu masukkan nomor ponsel suppliermu. <em>Pastikan suppliermu sudah meregistrasikan tokonya di Instashop juga ya!</em>
     </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">2. </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><span style="font-family:Arial;">Klik menu </span><b><span style="font-family:Arial;">“Supplierku dan Dropshipperku”</span></b><span style="font-family:Arial;">, klik </span><b><span style="font-family:Arial;">“Tambah Supplier”</span></b><span style="font-family:Arial;">, lalu masukkan nomor ponsel suppliermu. </span><u><span style="font-family:Arial;">Pastikan suppliermu sudah meregistrasikan tokonya di Instashop juga ya!</span></u></span>
-  </p>
-
-<p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/11.png" alt=""><br>
-  </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><span style="font-family:Arial;">2. Kamu akan menerima notifikasi jika pengajuan dropshipmu sudah diterima supplier. Masuk ke menu </span><b><span style="font-family:Arial;">“Produk Supplier”</span></b><span style="font-family:Arial;">, lalu centang produk yang ingin kamu dropship dan klik tombol </span><b><span style="font-family:Arial;">“Atur Harga Jual Massal”</span></b></span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/12.png" alt=""><br>
-  </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">3. Isi Harga Jual Kembalimu untuk masing-masing produk</span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"> </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/13.png" alt=""><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><span style="font-family:Arial;">4. Jika produk supplier memiliki banyak varian, klik tombol </span><b><span style="font-family:Arial;">“Bedakan Harga Per Varian” </span></b><span style="font-family:Arial;">untuk mengisi harga masing-masing varian</span></span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/14.png" alt=""><br>
-  </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><span style="font-family:Arial;">5. Selesai! Kini produk dari supplier sudah otomatis tampil di menu pengaturan produk dan </span><b><span style="font-family:Arial;">halaman web kamu. </span></b><span style="font-family:Arial;">Pembelimu bisa langsung berbelanja di halaman webmu.</span></span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/15.png" alt=""><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/16.png" alt=""><br>
-  </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">NOTE: </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">1. Customer </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">TIDAK AKAN</span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"> melihat harga modal dan nama toko / web supplier di web kamu. Yang dilihat customer hanya </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">harga jual kamu, foto &amp; keterangan produk</span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">. Kalau ingin tahu tampilan yang dilihat customer, klik link web kamu yang ada di halaman depan aplikasi ya :)</span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">2. Harga modal supplier yang tertera di aplikasi </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">BELUM TERMASUK</span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"> harga ongkos kirim ya. Tapi tidak perlu khawatir, ketika pembeli berbelanja, nanti harga ongkos kirim akan langsung terhitung otomatis sesuai dengan jasa logistik yang didukung oleh supplier. </span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">3. Khusus dropshipper, di menu </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">“Atur Toko”</span><span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"> </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">HANYA PERLU</span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"> mengisi:</span>
-  </p>
-  <ul style="margin-top:0pt;margin-bottom:0pt;">
-  	<li dir="ltr" style="list-style-type:disc;font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;">
-  		<p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  			<span style="font-size:16px;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;">Nama Toko</span>
-  		</p>
-  	</li>
-  	<li dir="ltr" style="list-style-type:disc;font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;">
-  		<p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  			<span style="font-size:16px;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;">Deskripsi Tokonya sendiri</span>
-  		</p>
-  	</li>
-  	<li dir="ltr" style="list-style-type:disc;font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;">
-  		<p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  			<span style="font-size:16px;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;">Link Toko (supaya link webnya tidak berupa angka)</span>
-  		</p>
-  	</li>
-  	<li dir="ltr" style="list-style-type:disc;font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;">
-  		<p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  			<span style="font-size:16px;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;">Kontak (untuk menambahkan kontak LINE dan Nomor HP yang muncul di web supaya customer bisa kontak kamu) </span>
-  		</p>
-  	</li>
-  	<li dir="ltr" style="list-style-type:disc;font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;">
-  		<p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  			<span style="font-size:16px;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;">Admin Lainnya (jika ingin menambahkan admin untuk bantu atur toko)</span>
-  		</p>
-  	</li>
-  	<li dir="ltr" style="list-style-type:disc;font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;">
-  		<p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  			<span style="font-size:16px;font-weight:700;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;">PENGATURAN LAIN YANG TERKAIT PESANAN</span><span style="font-size:16px;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;"> DI MENU ATUR TOKO, seperti Berat Produk Standar, Pengaturan Ongkos Kirim &amp; Batas Waktu Pembayaran </span><span style="font-size:16px;font-weight:700;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;">TIDAK PERLU DIISI</span><span style="font-size:16px;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;"> karena sudah </span><span style="font-size:16px;font-weight:700;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;">OTOMATIS</span><span style="font-size:16px;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;"> sesuai dengan settingan dari supplier. </span><span style="font-size:16px;font-weight:700;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;">Kecuali </span><span style="font-size:16px;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;">dropshipper juga ingin menjual produknya sendiri (bukan produk dropship), maka pengaturan terkait pesanan di atas juga perlu diisi. Nantinya, pengaturan ini berlaku </span><span style="font-size:16px;font-weight:700;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;">HANYA</span><span style="font-size:16px;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;"> untuk produk-produk yang kamu upload sendiri (</span><span style="font-size:16px;font-weight:700;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;">BUKAN</span><span style="font-size:16px;vertical-align:baseline;white-space:pre-wrap;font-family:Arial;"> produk dari supplier yang ada di menu Produk Supplier). Seperti pada umumnya pesanan non dropship, pesanan untuk produkmu sendiri harus kamu kirim dan masukkan nomor resinya untuk mencairkan saldo penghasilan. </span>
-  		</p>
-  	</li>
-  </ul>
-  <p style="text-align:justify;">
-  	<span style="font-family:Arial;"><span style="font-size:14.6667px;white-space:pre-wrap;"><br>
-  </span></span>
-  </p>
-  <p style="text-align:justify;">
-  	<span style="font-family:Arial;"><span style="font-size:14.6667px;white-space:pre-wrap;"><span id="docs-internal-guid-cedc9a88-d966-ae95-f7f6-8b5b228981e0"> </span></span></span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">STEP 2. &nbsp;KELOLA PESANAN</span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">1. Jika pembeli berbelanja di webstoremu, kamu akan menerima notifikasi pesanan baru.</span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:13.3333px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:13.3333px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/17.png" alt=""><br>
-  </span>
-  </p>
-  <p style="text-align:justify;">
-  	<span style="font-family:Arial;"><span style="font-size:14.6667px;white-space:pre-wrap;"><br>
-  </span></span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><span style="font-family:Arial;">2. Jika pesanan tersebut sudah dibayar pembeli, pesanan akan berpindah ke menu </span><b><span style="font-family:Arial;">“Perlu Dikirim”</span></b><span style="font-family:Arial;"> di Pengaturan Pesanan</span></span>
-  </p>
-  <p style="text-align:justify;">
-  	<span style="font-family:Arial;"><span style="font-size:14.6667px;white-space:pre-wrap;"><br>
-  </span></span>
-  </p>
-  <p style="text-align:justify;">
-  	<span style="font-family:Arial;"><span style="font-size:14.6667px;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/18.png" alt=""><br>
-  </span></span>
-  </p>
-  <br>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">3. Jika produk sudah dikirim suppliermu, pesanan tersebut akan otomatis berpindah ke menu “Selesai”</span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/19.png" alt=""><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;vertical-align:baseline;white-space:pre-wrap;">4. Kamu dapat menarik saldo bagian keuntunganmu di menu penghasilan. </span><span style="font-size:16px;font-family:Arial;background-color:#FFFFFF;font-style:italic;vertical-align:baseline;white-space:pre-wrap;">Dana modal dan ongkos kirim akan langsung masuk ke saldo supplier</span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;font-style:italic;vertical-align:baseline;white-space:pre-wrap;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="background-color:#FFFFFF;"><span style="font-size:16px;font-family:Arial;">NOTE: Proses pencairan saldo membutuhkan pendaftaran rekening bank terlebih dahulu. Silakan daftarkan rekening bank kamu di menu </span><b><span style="font-size:16px;font-family:Arial;">Penghasilan</span></b><span style="font-size:16px;font-family:Arial;">. Demi kelancaran proses pencairan saldo, pastikan nomor rekening dan nama pemilik rekening yang diisi PERSIS SAMA &nbsp;(termasuk tanda titik, tanda koma dan huruf besar) dengan nama di buku tabunganmu.</span></span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="background-color:#FFFFFF;"><br>
-  </span>
-  </p>
-  <p dir="ltr" style="margin-top:0pt;margin-bottom:0pt;line-height:1.38;text-align:justify;">
-  	<span style="font-size:14.6667px;font-family:Arial;background-color:#FFFFFF;font-style:italic;vertical-align:baseline;white-space:pre-wrap;"><img src="<?=HOST_URL?>/html/instructions/images/20.png" alt=""><br>
-  </span>
-  </p>
+    <img src="<?=HOST_URL?>/html/instructions/images/11.png" alt="">
+    <p>
+    3. Kamu akan menerima notifikasi jika pengajuan dropshipmu sudah diterima supplier. Masuk ke menu “<strong>Produk Supplier</strong>”, lalu centang produk yang ingin kamu dropship dan klik tombol “<strong>Atur Harga Jual Massal</strong>”
+    </p>
+    <img src="<?=HOST_URL?>/html/instructions/images/12.png" alt="">
+    <p>
+    4. Isi Harga Jual Kembalimu untuk masing-masing produk
+    </p>
+    <img src="<?=HOST_URL?>/html/instructions/images/13.png" alt="">
+    <p>
+    5. Jika produk supplier memiliki banyak varian, klik tombol “<strong>Bedakan Harga Per Varian</strong>” untuk mengisi harga masing-masing varian
+    </p>
+    <img src="<?=HOST_URL?>/html/instructions/images/14.png" alt="">
+    <p>
+    6. Selesai! Kini produk dari supplier sudah otomatis tampil di menu pengaturan produk dan <strong>halaman web kamu.</strong> Pembelimu bisa langsung berbelanja di halaman webmu.
+    </p>
+    <img src="<?=HOST_URL?>/html/instructions/images/15.png" alt="">
+    <img src="<?=HOST_URL?>/html/instructions/images/16.png" alt="">
+    <h2>NOTE:</h2>
+    <p>
+    1. Customer <strong>TIDAK AKAN</strong> melihat harga modal dan nama toko / web supplier di web kamu. Yang dilihat customer hanya harga jual kamu, <strong>foto & keterangan produk</strong>. Kalau ingin tahu tampilan yang dilihat customer, klik link web kamu yang ada di halaman depan aplikasi ya :)
+    </p>
+    <p>
+    2. Harga modal supplier yang tertera di aplikasi <strong>BELUM TERMASUK</strong> harga ongkos kirim ya. Tapi tidak perlu khawatir, ketika pembeli berbelanja, nanti harga ongkos kirim akan langsung terhitung otomatis sesuai dengan jasa logistik yang didukung oleh supplier.
+    </p>
+    <p>
+    3. Khusus dropshipper, di menu <strong>“Atur Toko” HANYA PERLU</strong> mengisi:
+    </p>
+    <ul>
+        <li>
+        Nama Toko
+        </li>
+        <li>
+        Deskripsi Tokonya sendiri
+        </li>
+        <li>
+        Link Toko (supaya link webnya tidak berupa angka)
+        </li>
+        <li>
+        Kontak (untuk menambahkan kontak LINE dan Nomor HP yang muncul di web supaya customer bisa kontak kamu)
+        </li>
+        <li>
+        Admin Lainnya (jika ingin menambahkan admin untuk bantu atur toko)
+        </li>
+        <li>
+        <strong>PENGATURAN LAIN YANG TERKAIT PESANAN</strong> DI MENU ATUR TOKO, seperti Berat Produk Standar, Pengaturan Ongkos Kirim & Batas Waktu Pembayaran <strong>TIDAK PERLU DIISI</strong> karena sudah <strong>OTOMATIS</strong> sesuai dengan settingan dari supplier. <strong>Kecuali</strong> dropshipper juga ingin menjual produknya sendiri (bukan produk dropship), maka pengaturan terkait pesanan di atas juga perlu diisi. Nantinya, pengaturan ini berlaku <strong>HANYA</strong> untuk produk-produk yang kamu upload sendiri (<strong>BUKAN</strong> produk dari supplier yang ada di menu Produk Supplier). Seperti pada umumnya pesanan non dropship, pesanan untuk produkmu sendiri harus kamu kirim dan masukkan nomor resinya untuk mencairkan saldo penghasilan.
+        </li>
+    </ul>
+    <h2>STEP 2.  KELOLA PESANAN</h2>
+    <p>1. Jika pembeli berbelanja di webstoremu, kamu akan menerima notifikasi pesanan baru.</p>
+    <img src="<?=HOST_URL?>/html/instructions/images/17.png" alt="">
+    <p>2. Jika pesanan tersebut sudah dibayar pembeli, pesanan akan berpindah ke menu “<strong>Perlu Dikirim</strong>” di Pengaturan Pesanan</p>
+    <img src="<?=HOST_URL?>/html/instructions/images/18.png" alt="">
+    <p>3. Jika produk sudah dikirim suppliermu, pesanan tersebut akan otomatis berpindah ke menu “Selesai”</p>
+    <img src="<?=HOST_URL?>/html/instructions/images/19.png" alt="">
+    <p>4. Kamu dapat menarik saldo bagian keuntunganmu di menu penghasilan. Dana modal dan ongkos kirim akan langsung masuk ke saldo supplier</p>
+    <p>NOTE: Proses pencairan saldo membutuhkan pendaftaran rekening bank terlebih dahulu. Silakan daftarkan rekening bank kamu di menu <strong>Penghasilan</strong>. Demi kelancaran proses pencairan saldo, pastikan nomor rekening dan nama pemilik rekening yang diisi PERSIS SAMA  (termasuk tanda titik, tanda koma dan huruf besar) dengan nama di buku tabunganmu.</p>
+    <img src="<?=HOST_URL?>/html/instructions/images/20.png" alt="">
   </section>
   <script>
         function bowser(){
