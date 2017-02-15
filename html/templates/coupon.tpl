@@ -2,8 +2,8 @@
 <body data-spider="23anxvhr">
     <section class="coupon-info">
         <div class="shop-info clearfix">
-            <div class="shop-img">
-                <a class="block" href="{$INDEX_DATA.coupon.url|transUrl}">
+            <div class="shop-img" data-spider="header-box">
+                <a class="block" spm-auto="go-home" href="{$INDEX_DATA.coupon.url|transUrl}">
                     <img data-img="" src="{$INDEX_DATA.coupon.logo}"/>
                 </a>
             </div>

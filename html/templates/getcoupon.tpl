@@ -2,8 +2,8 @@
 <body data-spider="ymknfo25">
     <section class="coupon-info">
         <div class="shop-info clearfix">
-            <div class="shop-img">
-                <a class="block" href="{$INDEX_DATA.coupon.url|transUrl}">
+            <div class="shop-img" data-spider="header-box">
+                <a class="block" spm-auto="go-home" href="{$INDEX_DATA.coupon.url|transUrl}">
                     <img data-img="" src="{$INDEX_DATA.coupon.logo}"/>
                 </a>
             </div>
@@ -18,7 +18,7 @@
             </div>
         </div>
     </section>
-    <section class="coupon-operate">
+    <section class="coupon-operate" data-spider="coupon_operate_box">
         {if $INDEX_DATA.coupon.coupon.status eq 0 || $INDEX_DATA.coupon.coupon.status eq 1}
             <div class="telphone-box"><input type="tel" maxlength="20" class="telphone j_tel" placeholder="No.Hp"/></div>
             <div class="explain">Kode Voucher akan dikirimkan ke nomor ini, pastikan nomor ponselmu sudah diisi dengan benar</div>
