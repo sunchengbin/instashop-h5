@@ -141,11 +141,11 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     <p>
         1. Download Instashop
     </p>
-    <div class=" clearfix pc-download-app" data-spider="pc端下载app">
+    <div class=" clearfix pc-download-app" data-spider="pc-download-box">
     <a target="_blank" spm-auto="android-down" data-spider="dandroid-down" href="https://play.google.com/store/apps/details?id=com.instashop" class="pc-down-android"></a>
     <a target="_blank" spm-auto="ios-down" data-spider="dios-down" href="https://itunes.apple.com/us/app/instashop-buat-webstore-gratis/id1105365362?l=zh&ls=1&mt=8" class="pc-down-ios"></a>
     </div>
-    <div class="mobile-download-app clearfix " data-spider="移动端下载app">
+    <div class="mobile-download-app clearfix " data-spider="mobile-download-box">
     <div class="j_down_url mb-down-load">Download Gratis！</div>
     </div>
     <p>
