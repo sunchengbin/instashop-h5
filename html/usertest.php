@@ -132,7 +132,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $path = 'v1/shops/'.$seller_id;
         $ret = get_init_php_data($path, $params);
         $json = json_decode($ret, true);
-        echo '<header>'.$json["code"].'</header>';
+        echo '<header>'.$json["shop"]["name"].'</header>';
+        echo '<section><p>code:'.$json["code"].'</p></section>';
     ?>
     <section class="j_img_info">
         <p></p>
@@ -144,7 +145,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         <p>loading...</p>
     </section>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
-    <script src="<?=STATIC_HOST?>/js/app/usertest.js?v=1486622410152"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/usertest.js?v=1486622410152"></script>
 </body>
 </html>
