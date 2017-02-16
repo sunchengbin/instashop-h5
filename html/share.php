@@ -59,9 +59,10 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <button class="j_no_img" data-type="share_to_copy_detail">share_to_copy_detail</button>
     <button class="j_no_img" data-type="share_to_save">share_to_save</button>
 
+    <button class="j_share_to_bbm" data-type="share_to_save">h5_share_to_save</button>
+
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
-    <script src="<?=STATIC_HOST?>/js/app/share.js?v=1487234271603"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/share.js?v=1487234271644"></script>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
