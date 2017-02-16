@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 2017/1/11.
  */
-define(['dialog','lang'],function(Dialog,Lang){
+define(['dialog','lang','base'],function(Dialog,Lang,Base){
     var ShareCoupon = function(opts){
         var _this = this;
         _this.config = $.extend({
@@ -33,15 +33,15 @@ define(['dialog','lang'],function(Dialog,Lang){
                 +'<div class="share-info">'+_share_content
                 +'</div>'
                 +'<div class="share-operate clearfix">'
-                +'<a href="javascript:;" class="j_share_action" spm-auto="优惠券分享到line" spm-click="" data-url="http://line.naver.jp/R/msg/text/?">'
+                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="优惠券分享到line" spm-click="" data-url="http://line.naver.jp/R/msg/text/?">'
                 +'<i class="iconfont icon-share-line" ></i>'
                 +'<p>LINE</p>'
                 +'</a>'
-                +'<a href="javascript:;" class="j_share_action" spm-auto="优惠券分享到whatsapp" spm-click="" data-url="whatsapp://send?text=">'
+                +'<a href="javascript:;" class="j_share_action" data-type="whatsapp" spm-auto="优惠券分享到whatsapp" spm-click="" data-url="whatsapp://send?text=">'
                 +'<i class="iconfont icon-share-whatsapp" ></i>'
                 +'<p>WhatsApp</p>'
                 +'</a>'
-                +'<a href="javascript:;" class="j_share_action" spm-auto="优惠券分享到bbm" spm-click="" data-url="bbmi://api/share?message=">'
+                +'<a href="javascript:;" class="j_share_action" data-type="bbm" spm-auto="优惠券分享到bbm" spm-click="" data-url="bbmi://api/share?message=">'
                 +'<i class="iconfont icon-share-bbm " ></i>'
                 +'<p>BBM</p>'
                 +'</a>'
@@ -52,9 +52,10 @@ define(['dialog','lang'],function(Dialog,Lang){
         handleFn : function(){
             var _this = this;
             $('body').on('click','.j_share_action',function(){
-                var _dom = $(this);
+                var _dom = $(this),
+                    _type = _dom.attr('data-type');
                 setTimeout(function(){
-                    location.href = _dom.attr('data-url') + _this.share_content;
+                    location.href = _dom.attr('data-url') + (_type=='bbm'&&Base.others.verifyBower().ios?Lang.H5_SHARE_TO_BBM_COUPON_TXT+_this.urlArithmetic(_this.config.coupon_url):_this.share_content);
                 },100);
             });
         },

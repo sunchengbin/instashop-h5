@@ -15,9 +15,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_FONT_CSS?>
     <?php
         if(isDebug()){
-            echo '<link href="'.STATIC_HOST.'/css/app/orderconfirm.css?v=1487234271602" rel="stylesheet"/>';
+            echo '<link href="'.STATIC_HOST.'/css/app/orderconfirm.css?v=1487237161812" rel="stylesheet"/>';
         }else{
-            echo '<link href="'.STATIC_HOST.'/css/dist/app/orderconfirm.css?v=1487234271602" rel="stylesheet"/>';
+            echo '<link href="'.STATIC_HOST.'/css/dist/app/orderconfirm.css?v=1487237161812" rel="stylesheet"/>';
         }
      ?>
     <title>Order</title>
@@ -66,9 +66,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?php
         if(isDebug()){
             echo '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script>';
-            echo '<script src="'.STATIC_HOST.'/js/app/orderconfirm.js?v=1487234271602"></script>';
+            echo '<script src="'.STATIC_HOST.'/js/app/orderconfirm.js?v=1487237161812"></script>';
         }else{
-            echo '<script src="'.STATIC_HOST.'/js/dist/app/orderconfirm.js?v=1487234271602"></script>';
+            echo '<script src="'.STATIC_HOST.'/js/dist/app/orderconfirm.js?v=1487237161812"></script>';
         }
      ?>
     <script>
