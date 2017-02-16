@@ -2,6 +2,7 @@
  * Created by sunchengbin on 2016/11/21.
  */
 require(['insjs','fastclick','config'],function(Insjs,FastClick,Config){
+    location.href = 'bbmi://api/share?message='+encodeURIComponent('Olshop favoritku lagi bagi-bagi kode voucher nih, klik untuk dapatkan kode voucher: ')+'http://badelong7.test.instashop.co.id/1161354';
     var Share = {
         init : function(){
             var _this = this;
