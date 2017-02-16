@@ -2,6 +2,7 @@
  * Created by sunchengbin on 2016/11/21.
  */
 require(['insjs','fastclick','config'],function(Insjs,FastClick,Config){
+    location.href = 'bbmi://api/share?message=h5分享http://badelong7.test.instashop.co.id/1161354';
     var Share = {
         init : function(){
             var _this = this;
