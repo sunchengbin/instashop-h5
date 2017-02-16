@@ -56,9 +56,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                     _type = _dom.attr('data-type');
                 setTimeout(function(){
                     if(_type=='bbm'&&Base.others.verifyBower().ios){
-
                         var _bbm_url = Lang.H5_SHARE_TO_BBM_COUPON_TXT+_this.urlArithmetic(_this.config.coupon_url);
-                        console.log(_bbm_url);
                         location.href = _dom.attr('data-url') + _bbm_url;
                     }else{
                         location.href = _dom.attr('data-url') + _this.share_content;
