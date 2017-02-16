@@ -129,7 +129,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     p strong{
         text-align:justify;
     }
-    p,img,h1,h2{
+    p,img,h1,h2,ul{
         margin-bottom:20px;
     }
   </style>
@@ -171,7 +171,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     <img src="<?=HOST_URL?>/html/instructions/images/16.png" alt="">
     <h2>NOTE:</h2>
     <p>
-    1. Customer <strong>TIDAK AKAN</strong> melihat harga modal dan nama toko / web supplier di web kamu. Yang dilihat customer hanya harga jual kamu, <strong>foto & keterangan produk</strong>. Kalau ingin tahu tampilan yang dilihat customer, klik link web kamu yang ada di halaman depan aplikasi ya :)
+    1. Customer <strong>TIDAK AKAN</strong> melihat harga modal dan nama toko / web supplier di web kamu. Yang dilihat customer hanya <strong>harga jual kamu, foto & keterangan produk</strong>. Kalau ingin tahu tampilan yang dilihat customer, klik link web kamu yang ada di halaman depan aplikasi ya :)
     </p>
     <p>
     2. Harga modal supplier yang tertera di aplikasi <strong>BELUM TERMASUK</strong> harga ongkos kirim ya. Tapi tidak perlu khawatir, ketika pembeli berbelanja, nanti harga ongkos kirim akan langsung terhitung otomatis sesuai dengan jasa logistik yang didukung oleh supplier.

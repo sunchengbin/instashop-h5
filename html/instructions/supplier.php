@@ -168,7 +168,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     </p>
     <img src="<?=HOST_URL?>/html/instructions/images/4.png" alt="">
     <p>
-        4. Selesai! Dropshippermu sudah menjadi bagian jaringan tokomu. Seluruh produk yang kamu aktifkan fitur dropshipnya akan muncul di menu “<strong class="italic">Produk Supplier</strong>” di aplikasi Instashop dropshippermu.
+        4. Selesai! Dropshippermu sudah menjadi bagian jaringan tokomu. Seluruh produk yang kamu aktifkan fitur dropshipnya akan <strong>muncul</strong> di menu “<strong class="italic">Produk Supplier</strong>” di aplikasi Instashop dropshippermu.
     </p>
     <h2>STEP 3. KELOLA PESANAN UNTUK DROPSHIPPERMU</h2>
     <p>1. Ketika ada pembeli berbelanja melalui toko dropshippermu, kamu akan menerima notifikasi pesanan baru.</p>
