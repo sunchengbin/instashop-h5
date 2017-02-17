@@ -195,12 +195,14 @@ define(['base'],function(Base){
             H5_FAVORABLE_TITLE_PRICE:"优惠",
             H5_COUPON:'优惠券',
             H5_SHARE_COUPON_TXT:'我非常喜欢的店铺限时送优惠券了，领取：',
+            H5_SHARE_TO_BBM_COUPON_TXT:'我非常喜欢的店铺限时送优惠券了，领取：',
             H5_SHARE_COUPON_RULE:'分享到line、BBM、WA就能通过链接领取',
             H5_SHARE_TITLE:'分享赚优惠券',
             H5_GET_COUPON_SUCCESS:'领取成功',
             H5_GETTED:'已经领取过了',
             H5_GET:'立即领取',
-            H5_GETING:'领取中...'
+            H5_GETING:'领取中...',
+            H5_GOOD_COST:'商品总价'
         },
 
         id : {
@@ -520,12 +522,14 @@ define(['base'],function(Base){
             H5_FAVORABLE_TITLE_PRICE:"Diskon",
             H5_COUPON:'Voucher',
             H5_SHARE_COUPON_TXT:'Olshop favoritku lagi bagi-bagi kode voucher nih, klik untuk dapatkan kode voucher: ',
+            H5_SHARE_TO_BBM_COUPON_TXT:'Olshop-favoritku-lagi-bagi-bagi-kode-voucher-nih-klik-untuk-dapatkan-kode-voucher!',
             H5_SHARE_COUPON_RULE:'Bagikan ke LINE/WhatsApp/BBM, lalu klik link di chatroom kamu untuk mendapatkan kode voucher',
             H5_SHARE_TITLE:'Bagikan Promo Voucher',
             H5_GET_COUPON_SUCCESS:'Voucher Berhasil Diambil!',
             H5_GETTED:'Voucher Sudah Pernah Diambil',
             H5_GET:'Ambil Sekarang',
-            H5_GETING:'Sedang Diproses...'
+            H5_GETING:'Sedang Diproses...',
+            H5_GOOD_COST:'Harga Total Produk'
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[ navigator.language.toLowerCase() ] || Lang.id );

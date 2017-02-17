@@ -81,7 +81,9 @@ define(['base', 'lang', 'fastclick'], function (base, Lang, Fastclick) {
             _this.opts.after_fn&&_this.opts.after_fn();
         },
         removeCover: function () {
-            $('.j_dialog_cover').remove();
+            if(!this.opts.can_exist){
+                $('.j_dialog_cover').remove();
+            }
         },
         removeDialog: function () {
             var _this = this,

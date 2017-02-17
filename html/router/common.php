@@ -34,7 +34,7 @@ function loadClass($strClassName)
     }
 }
 function getFontCss($url){
-    return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1486622410731") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1486622410731#iconfont") format("svg");}</style>';
+    return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1487237162398") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1487237162398#iconfont") format("svg");}</style>';
 }
 function getIco($url){
     return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';
@@ -195,11 +195,13 @@ $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
 $static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
 $static_font_css =C_RUNTIME_ONLINE?getFontCss($host_name.'/static'):getFontCss($host_name.'/static');
 $static_ico_css =C_RUNTIME_ONLINE?getIco($prompt.'//m.instashop.co.id'):getIco($prompt.'//m-test.instashop.co.id');
+$host_url =C_RUNTIME_ONLINE?$prompt.'//m.instashop.co.id':$prompt.'//m-test.instashop.co.id';
 $static_dns = '<meta name="spider-id" content="orju7v"><link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';
 $bi_js = biJs();
 define('STATIC_DNS', $static_dns);
 define('STATIC_FONT_CSS', $static_font_css);
 define('STATIC_ICO_CSS', $static_ico_css);
+define('HOST_URL', $host_url);
 define('STATIC_HOST', $static_host);
 define('HOST_NAME', $host_name);
 define('BI_SCRIPT', $bi_js);

@@ -25,16 +25,24 @@
     </script>
     <script>
         require(['dialog'],function(dialog){
-            window.dialog = dialog.loading({
-                width:100
-            });
-
-//            dialog.tip({
-//                body_txt : '<p style="">sfsdfsfs</p><p style="">sfsdfsfs</p>',
-//                c_fn : function(dom){
-//                    console.log(dom);
-//                }
+//            window.dialog = dialog.loading({
+//                width:100
 //            });
+            dialog.alert({
+                body_txt : '<p style="">sfsdfsfs</p><p style="">sfsdfsfs</p>',
+                c_fn : function(dom){
+                    console.log(dom);
+                }
+            });
+            setTimeout(function(){
+                dialog.tip({
+                    body_txt : '<p style="">sfsdfsfs</p><p style="">sfsdfsfs</p>',
+                    can_exist : true,
+                    c_fn : function(dom){
+                        console.log(dom);
+                    }
+                });
+            },3000)
         });
 
     </script>

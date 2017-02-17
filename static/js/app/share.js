@@ -33,6 +33,10 @@ require(['insjs','fastclick','config'],function(Insjs,FastClick,Config){
                     return null;
                 });
             });
+            $('body').on('click','.j_share_to_bbm',function(){
+                alert('bbmi://api/share?message='+encodeURIComponent('Olshop_favoritku_lagi_bagi-bagi_kode_voucher_nih, klik_untuk_dapatkan_kode_voucher:_')+'http://badelong7.test.instashop.co.id/1161354');
+                location.href = 'bbmi://api/share?message='+encodeURIComponent('Olshop_favoritku_lagi_bagi-bagi_kode_voucher_nih, klik_untuk_dapatkan_kode_voucher:_')+'http://badelong7.test.instashop.co.id/1161354';
+            });
             $('body').on('click','.j_no_img',function(){
                 var _dom = $(this),
                     _type = _dom.attr('data-type');
