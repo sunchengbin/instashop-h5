@@ -510,7 +510,7 @@ define(['base'],function(Base){
             //已下架
             'H5_IS_SOLDOUTTRUE':"Sudah Digudangkan",
             //有商品已下架
-            'H5_IS_HAVESHEFL':"Ada produk yang sudah digudangkan!",
+            'H5_IS_HAVESHEFL':"Produk ini sudah habis terjual, silakan hapus dari keranjangmu",
             //没有找到相关商品
             H5_NO_SEARCH_VAL:"Produk tidak ditemukan",
             H5_IS_CONFIRM:'Nanti Saja',
