@@ -154,9 +154,9 @@
             <a spm-auto="退款" spm-click="refund" class="submit-btn btn confirm-btn" href="{{hrefUrl}}refund.php?order_id={{data.order.id}}">{{lang.H5_EDIT_REFUND_CARD}}</a>
         </div>
     {{/if}}
-    {{#eq data.order.state 1}}
+    {{#neq data.order.order_status 3}}
         <div class="prove-btn">
-            <a spm-auto="上传支付证明" spm-click="upload-prove" class="submit-btn btn confirm-btn" href="{{hrefUrl}}uploadprove.php?order_id={{data.order.id}}&hash={{data.order.id_hash}}">Bukti Pembayaran</a>
+            <a spm-auto="上传支付证明" spm-click="upload-prove" class="submit-btn btn confirm-btn" href="{{hrefUrl}}uploadprove.php?order_id={{data.order.id}}&hash={{data.order.id_hash}}">{{lang.H5_PAY_WARRANT}}</a>
         </div>
-    {{/eq}}
+    {{/neq}}
 </section>
