@@ -8,6 +8,7 @@ require(['lang','ajax','config','fastclick','dialog','common','btn'],function(La
             var _this = this,
                 _code = _this.gettedCoupon().code;
             if(_code){
+                PaqPush && PaqPush('已经领取过了','');
                 Dialog.tip({
                     top_txt: '', //可以是html
                     body_txt: '<p class="dialog-body-p">'+Lang.H5_LOADING+'</p>',
@@ -32,6 +33,7 @@ require(['lang','ajax','config','fastclick','dialog','common','btn'],function(La
                     var _that = this;
                     var _tel = $.trim($('.j_tel').val());
                     if(!_tel){
+                        PaqPush && PaqPush('请填写手机号','');
                         Dialog.tip({
                             top_txt: '', //可以是html
                             body_txt: '<p class="dialog-body-p">' + Lang.H5_VALIDATOR_TEL + '</p>'
@@ -41,14 +43,17 @@ require(['lang','ajax','config','fastclick','dialog','common','btn'],function(La
                         return;
                     }
                     if(Common.telVerify(_tel,function(){
+                            PaqPush && PaqPush('手机号错误继续领取','');
                             _this.getCoupon(_tel,function(){
                                 _that.cancelDisable();
                                 _that.setBtnTxt(dom, Lang.H5_GET);
                             });
                         },function(){
+                            PaqPush && PaqPush('手机号错误取消领取','');
                             _that.cancelDisable();
                             _that.setBtnTxt(dom, Lang.H5_GET);
-                        })){
+                    })){
+                        PaqPush && PaqPush('手机号正确开始领取','');
                         _this.getCoupon(_tel,function(){
                             _that.cancelDisable();
                             _that.setBtnTxt(dom, Lang.H5_GET);
@@ -56,18 +61,6 @@ require(['lang','ajax','config','fastclick','dialog','common','btn'],function(La
                     }
                 }
             });
-            //$('body').on('click','.j_get_coupon_btn',function(){
-            //     var _tel = $.trim($('.j_tel').val());
-            //    if(Common.telVerify(_tel,function(){
-            //        _this.getCoupon(_tel,function(){
-            //
-            //        });
-            //    })){
-            //        _this.getCoupon(_tel,function(){
-            //
-            //        });
-            //    }
-            //});
         },
         gettedCoupon : function(){//进入页面要判断是否领过优惠券
             var _this = this,
@@ -147,6 +140,7 @@ require(['lang','ajax','config','fastclick','dialog','common','btn'],function(La
                             }
                         });
                     } else {
+                        PaqPush && PaqPush('领取失败msg:'+obj.message,'');
                         Dialog.tip({
                             top_txt: '', //可以是html
                             body_txt: '<p class="dialog-body-p">' + obj.message + '</p>'
@@ -154,6 +148,7 @@ require(['lang','ajax','config','fastclick','dialog','common','btn'],function(La
                     }
                 },
                 error: function () {
+                    PaqPush && PaqPush('领取优惠券请求超时','');
                     Dialog.tip({
                         top_txt: '', //可以是html
                         body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>'
