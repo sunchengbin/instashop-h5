@@ -116,18 +116,16 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     }
     h1{
         font-size:18px;
-        text-align:justify;
     }
     h2{
         font-size:16px;
-        text-align:justify;
     }
     em{
         font-style:normal;
         text-decoration: underline;
     }
     p strong{
-        text-align:justify;
+
     }
     p,img,h1,h2,ul{
         margin-bottom:20px;
@@ -137,7 +135,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   <body data-spider="s9xynf1c">
   <section>
     <h1>PANDUAN DROPSHIP DARI SISI DROPSHIPPER</h1>
-    <h2>STEP 1.  REGISTRASI, UPLOAD PRODUK, ATUR TOKO</h2>
+    <h2>STEP 1:&nbsp;&nbsp;  REGISTRASI, UPLOAD PRODUK, ATUR TOKO</h2>
     <p>
         1. Download Instashop
     </p>
@@ -199,7 +197,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
         <strong>PENGATURAN LAIN YANG TERKAIT PESANAN</strong> DI MENU ATUR TOKO, seperti Berat Produk Standar, Pengaturan Ongkos Kirim & Batas Waktu Pembayaran <strong>TIDAK PERLU DIISI</strong> karena sudah <strong>OTOMATIS</strong> sesuai dengan settingan dari supplier. <strong>Kecuali</strong> dropshipper juga ingin menjual produknya sendiri (bukan produk dropship), maka pengaturan terkait pesanan di atas juga perlu diisi. Nantinya, pengaturan ini berlaku <strong>HANYA</strong> untuk produk-produk yang kamu upload sendiri (<strong>BUKAN</strong> produk dari supplier yang ada di menu Produk Supplier). Seperti pada umumnya pesanan non dropship, pesanan untuk produkmu sendiri harus kamu kirim dan masukkan nomor resinya untuk mencairkan saldo penghasilan.
         </li>
     </ul>
-    <h2>STEP 2.  KELOLA PESANAN</h2>
+    <h2>STEP 2:&nbsp;&nbsp;  KELOLA PESANAN</h2>
     <p>1. Jika pembeli berbelanja di webstoremu, kamu akan menerima notifikasi pesanan baru.</p>
     <img src="<?=HOST_URL?>/html/instructions/images/17.png" alt="">
     <p>2. Jika pesanan tersebut sudah dibayar pembeli, pesanan akan berpindah ke menu “<strong>Perlu Dikirim</strong>” di Pengaturan Pesanan</p>
