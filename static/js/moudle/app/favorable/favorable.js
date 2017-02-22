@@ -82,7 +82,7 @@ define([
             var _reqData = {
                 edata: {
                     action: "check",
-                    price: _this.price||$(".j_total").attr("data-price"),
+                    price: $(".j_total").length?$(".j_total").attr("data-price"):_this.price,
                     code: _code,
                     seller_id:_this.seller_id
                 }
