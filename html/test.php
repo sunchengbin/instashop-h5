@@ -14,7 +14,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
 
-    <title>Kreasikan Tokomu</titl
+    <title>Kreasikan Tokomu</title>
     <style>
         button{
             background-color: #333;
@@ -23,16 +23,17 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             padding:10px 20px;
         }
         .box{
+            margin-top:100px;
             background-color:#fff;
         }
     </style>
 </head>
 <body>
-<div class="box">
-    adfkljadlkfjalksdf
-    alkfdjlkajdsflkasd
-    lkajdsflkajsdlfkja
-</div>
+    <div class="box">
+        adfkljadlkfjalksdf
+        alkfdjlkajdsflkasd
+        lkajdsflkajsdlfkja
+    </div>
     <button class="j_btn">get_seller_info</button>
     <a href="http://line.naver.jp/R/msg/text/?http//m-test.instashop.co.id/s/40780">
      <button>share-to-line</button>
