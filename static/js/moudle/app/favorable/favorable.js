@@ -89,7 +89,7 @@ define([
             }
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.getCoupon + '/?param=' + JSON.stringify(_reqData), function (obj) {
                 if (obj.code && obj.code == 200) {
-                    PaqPush && PaqPush('优惠券可用:金额为'+obj.coupon.price, '');
+                    PaqPush && PaqPush('优惠券可用:金额为'+obj.coupon.price.split('.')[0], '');
                     _this.fillDialog.remove(_this.checkAfterAction({
                         code: obj.coupon.code,
                         price: obj.coupon.price
