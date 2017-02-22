@@ -24,7 +24,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         }
         .box{
             margin-top:100px;
-            background-color:#fff;
+            background-color:red;
         }
     </style>
 </head>
