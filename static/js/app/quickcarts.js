@@ -85,9 +85,11 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 price: $('.j_total').attr('data-price'),
                 seller_id:init_data.shop.id,
                 usehandle: function (favorablePrice) {
-                    var _totalPrice = $(".j_total").attr("data-price");
-                    // var _postPrice = $(".j_post").attr("data-price") || 0;
-                    $(".j_total").html('Rp ' + Base.others.priceFormat(Number(_totalPrice) - Number(favorablePrice)));
+                    var _totalPrice = $(".j_total").attr("data-price"),
+                        _price = Number(_totalPrice) - Number(favorablePrice);
+                    _price = _price < 0 ? 0 : _price;
+
+                    $(".j_total").html('Rp ' + Base.others.priceFormat(_price));
                 }
             });
         },

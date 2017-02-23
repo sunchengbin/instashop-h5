@@ -116,18 +116,17 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     }
     h1{
       font-size:18px;
-      text-align:justify;
     }
     h2{
       font-size:16px;
-      text-align:justify;
+
     }
     em{
       font-style:normal;
       text-decoration: underline;
     }
     p strong{
-      text-align:justify;
+
     }
     p,img,h1,h2{
       margin-bottom:20px;
@@ -140,7 +139,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   <body data-spider="8pzm16nd">
   <section>
     <h1>PANDUAN SISTEM DROPSHIP DARI SISI SUPPLIER</h1>
-    <h2>STEP 1: AKTIFKAN FITUR DROPSHIP</h2>
+    <h2>STEP 1:&nbsp;&nbsp;  AKTIFKAN FITUR DROPSHIP</h2>
     <p>
       1. Download Instashop
     </p>
@@ -159,7 +158,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
       3.  Isi Harga Dropship. Klik centang jika selesai. Produkmu sudah siap didropship!
     </p>
     <img src="<?=HOST_URL?>/html/instructions/images/2.png" alt="">
-    <h2>STEP 2： AJAK DROPSHIPPERMU BERGABUNG DI INSTASHOP!</h2>
+    <h2>STEP 2:&nbsp;&nbsp; AJAK DROPSHIPPERMU BERGABUNG DI INSTASHOP!</h2>
     <p>1.  Ajak Dropshippermu download dan registrasi di Instashop</p>
     <p>2. Setelah selesai registrasi, minta dropshippermu untuk mendaftarkan diri dengan klik menu “<strong>Supplierku dan Dropshipperku</strong>”, pilih tab <strong>Supplier</strong>, klik "<strong>Tambah Supplier</strong>" dan isi nomor teleponmu </p>
     <img src="<?=HOST_URL?>/html/instructions/images/3.png" alt="">
@@ -170,7 +169,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     <p>
         4. Selesai! Dropshippermu sudah menjadi bagian jaringan tokomu. Seluruh produk yang kamu aktifkan fitur dropshipnya akan <strong>muncul</strong> di menu “<strong class="italic">Produk Supplier</strong>” di aplikasi Instashop dropshippermu.
     </p>
-    <h2>STEP 3. KELOLA PESANAN UNTUK DROPSHIPPERMU</h2>
+    <h2>STEP 3:&nbsp;&nbsp; KELOLA PESANAN UNTUK DROPSHIPPERMU</h2>
     <p>1. Ketika ada pembeli berbelanja melalui toko dropshippermu, kamu akan menerima notifikasi pesanan baru.</p>
     <img src="<?=HOST_URL?>/html/instructions/images/5.png" alt="">
     <p>2. Jika pesanan tersebut sudah dibayar, pesanan itu akan berpindah ke menu “Perlu Dikirim” di Pengaturan Pesananmu</p>

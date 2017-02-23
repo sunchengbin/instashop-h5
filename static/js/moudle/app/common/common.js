@@ -115,6 +115,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                     top_txt : '',//可以是html
                     body_txt : '<p class="dialog-body-p">Nomor ponsel ini tidak diawali angka 8, yakin nomor ini sudah benar? </p>',
                     cfb_txt : Lang.H5_GO_CONFIRM,//确定按钮文字
+                    cover_event : true,
                     c_fn : function(){
                         callback && callback();
                     },
@@ -136,6 +137,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
                             top_txt : '',//可以是html
                             body_txt : '<p class="dialog-body-p">'+Lang.H5_TEL_GO_CONFIRM+'</p>',
                             cfb_txt : Lang.H5_GO_CONFIRM,//确定按钮文字
+                            cover_event : true,
                             c_fn : function(){
                                 callback && callback();
                             },

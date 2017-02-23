@@ -82,14 +82,14 @@ define([
             var _reqData = {
                 edata: {
                     action: "check",
-                    price: _this.price||$(".j_total").attr("data-price"),
+                    price: $(".j_total").length?$(".j_total").attr("data-price"):_this.price,
                     code: _code,
                     seller_id:_this.seller_id
                 }
             }
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.getCoupon + '/?param=' + JSON.stringify(_reqData), function (obj) {
                 if (obj.code && obj.code == 200) {
-                    PaqPush && PaqPush('优惠券可用:金额为'+obj.coupon.price, '');
+                    PaqPush && PaqPush('优惠券可用:金额为'+obj.coupon.price.split('.')[0], '');
                     _this.fillDialog.remove(_this.checkAfterAction({
                         code: obj.coupon.code,
                         price: obj.coupon.price
