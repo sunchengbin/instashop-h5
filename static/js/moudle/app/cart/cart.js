@@ -223,7 +223,9 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
                     }
                     _this.cart[_shop_id][_item_id] = {};
                 } else {
-                    var _test_num = opts.num + _this.cart[_shop_id][_item_id].num;
+                    var _test_num = parseInt(opts.num) + parseInt(_this.cart[_shop_id][_item_id].num);
+                    console.log("总数")
+                    console.log(_test_num)
                     if (_discout_num) {
                         _test_num = _discout_num;
                     }
@@ -245,6 +247,20 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
                                 });
                             }
                             return;
+                        }
+                    }
+
+                    if (_stock == 0) {
+                        //选择数 同 购物车中数 相加 同 stock想比
+                        if (!_this.verifyItem(_test_num, opts.item.stock)) {
+                            Dialog.tip({
+                                top_txt: '', //可以是html
+                                body_txt: '<p class="dialog-body-p">' + Lang.H5_OVER_INVENTORY + '</p>'
+                            });
+                            //64 32
+                            opts.num = opts.item.stock;
+                        } else {
+                            opts.num = _test_num;
                         }
                     }
                 }
