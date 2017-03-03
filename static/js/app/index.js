@@ -183,16 +183,16 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                     _scroll_top = $(window).scrollTop(),
                     _host_name = location.hostname;
                 if(!_url){return;}
-                if(Base.others.isCustomHost()){
-                    if(/\/k\//g.test(_url) || /\/detail\//g.test(_url)){
-                        _url = _url.replace(/\/\/[^\/]+\//,'//'+_host_name+'/');
-                    }else{
-                        _url = _url.replace(/\/\/[^\/]+\//,'//'+_host_name+'/detail/');
-                    }
-
-                }else{
-                    _url = Common.transFromUrl(_url);
-                }
+                //if(Base.others.isCustomHost()){
+                //    if(/\/k\//g.test(_url) || /\/detail\//g.test(_url)){
+                //        _url = _url.replace(/\/\/[^\/]+\//,'//'+_host_name+'/');
+                //    }else{
+                //        _url = _url.replace(/\/\/[^\/]+\//,'//'+_host_name+'/detail/');
+                //    }
+                //
+                //}else{
+                //    _url = Common.transFromUrl(_url);
+                //}
                 localStorage.setItem('ScrollTop',_scroll_top);
                 Common.saveFromUrl(function(){
                     location.href = _url;

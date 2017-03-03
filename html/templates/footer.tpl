@@ -1,9 +1,9 @@
 <script src="{$STATIC_HOST}/js/base/require-zepto.js"></script>
 {if $IS_DEBUG}
     <script src="{$STATIC_HOST}/js/base/require-config.js"></script>
-    <script src="{$STATIC_HOST}/js/app/{$INDEX_JS_NAME}.js?v=1488422685486"></script>
+    <script src="{$STATIC_HOST}/js/app/{$INDEX_JS_NAME}.js?v=1488537499606"></script>
 {else}
-    <script src="{$STATIC_HOST}/js/dist/app/{$INDEX_JS_NAME}.js?v=1488422685486"></script>
+    <script src="{$STATIC_HOST}/js/dist/app/{$INDEX_JS_NAME}.js?v=1488537499606"></script>
 {/if}
 {literal}
     <script>
