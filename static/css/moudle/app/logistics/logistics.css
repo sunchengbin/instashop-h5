@@ -18,7 +18,9 @@
     position: relative;
 }
 .logistics-plug-info{
-
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 .logistics-list::after{
     position: absolute;
