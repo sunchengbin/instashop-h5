@@ -5,10 +5,11 @@
     /*获取index页面的数据*/
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     $params = [
-        'action' => 'index',
-        'page_size' => 10,
-        'last_id' => '',
-        'json' => '0'
+        'action' => 'index_template',
+        'platform' => 'web'
+        // 'page_size' => 10,
+        // 'last_id' => '',
+        // 'json' => '0'
     ];
     $seller_id = $_REQUEST['seller_id'];
     if (!$seller_id) {
@@ -27,18 +28,20 @@
     $url = str_replace("w=110", "w=140", $url);
     $url = str_replace("h=110", "h=140", $url);
 
+    // 调试
+
     $smarty->assign('INDEX_DATA',$json);
     $smarty->assign('INDEX_DATA_SHOP',$json);
     $smarty->assign('INDEX_DATA_STR',$ret);
 
     include_once( dirname(__FILE__).'/../html/router/base.php');
-    $items = transItems($json["item_list"]["list"]);
+    // $items = transItems($json["item_list"]["list"]);
     $itemtype = getItemListType($json["template"]);
     $smarty->assign('ITEMTYPE',$itemtype);
-    $smarty->assign('RECOMMEND_ITEM',$items["hot"]);
-    $smarty->assign('TAGS_ITEM',$items["tags"]);
-    $smarty->assign('HOT_ITEM',$items["item"]);
-    $smarty->assign('TAG_LIST',$json["tag_list"]);
+    $smarty->assign('RECOMMEND_ITEM',$json["item_list"]["list"]);
+    // $smarty->assign('TAGS_ITEM',$items["tags"]);
+    // $smarty->assign('HOT_ITEM',$items["item"]);
+    // $smarty->assign('TAG_LIST',$json["tag_list"]);
 
     $hostname=$_SERVER['SERVER_NAME'];
     $smarty->assign('HOST_NAME',HOST_NAME);

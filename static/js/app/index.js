@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/6.
  * 首页
  */
-require(['lang','lazyload','ajax','config','base','common','cart','fastclick','contact','slide','item','dialog','sharecoupon'],function(Lang,Lazyload,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item,Dialog,Sharecoupon){
+require(['lang','lazyload','ajax','config','base','common','cart','fastclick','contact','slide','item','dialog','sharecoupon','tab'],function(Lang,Lazyload,Ajax,Config,Base,Common,Cart,Fastclick,Contact,Slide,Item,Dialog,Sharecoupon,Tab){
     var I = {
         init : function(init_data){
             Lazyload();
@@ -21,6 +21,16 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
             if($('.txt-hide').height() > 44){
                 $('.down-btn').show();
             }
+
+
+            //改版
+            Tab({
+                switchFn:function(switchInfo){
+                    console.log(switchInfo);
+                }
+            })
+
+
             _this.handleFn();
         },
         initRotateBanner : function(){
@@ -38,47 +48,47 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                 }
             }
         },
-        getTags : function(list){
-            if(!list.length)return null;
-            var _data = {},
-                _list = [],
-                _sort = [],
-                _result = [],
-                i = 0,
-                j = 0;
-            for(i;i < list.length;i++){
-                if(list[i].index_type == 'tags'){
-                    if(_data[list[i].tag_id]){
-                        //_data[list[i].tag_id].item[list[i].id] = list[i];
-                        _data[list[i].tag_id].item.push(list[i]);
-                    }else{
-                        _sort.push(list[i].tag_id);
-                        _data[list[i].tag_id]= {
-                            id : list[i].tag_id,
-                            name : encodeURIComponent(list[i].tag_name)
-                        };
-                        _data[list[i].tag_id].item = [];
-                        //_data[list[i].tag_id].item[list[i].id] = list[i];
-                        _data[list[i].tag_id].item.push(list[i]);
-                    }
+        // getTags : function(list){
+        //     if(!list.length)return null;
+        //     var _data = {},
+        //         _list = [],
+        //         _sort = [],
+        //         _result = [],
+        //         i = 0,
+        //         j = 0;
+        //     for(i;i < list.length;i++){
+        //         if(list[i].index_type == 'tags'){
+        //             if(_data[list[i].tag_id]){
+        //                 //_data[list[i].tag_id].item[list[i].id] = list[i];
+        //                 _data[list[i].tag_id].item.push(list[i]);
+        //             }else{
+        //                 _sort.push(list[i].tag_id);
+        //                 _data[list[i].tag_id]= {
+        //                     id : list[i].tag_id,
+        //                     name : encodeURIComponent(list[i].tag_name)
+        //                 };
+        //                 _data[list[i].tag_id].item = [];
+        //                 //_data[list[i].tag_id].item[list[i].id] = list[i];
+        //                 _data[list[i].tag_id].item.push(list[i]);
+        //             }
 
-                }
-            }
-            for(j;j < _sort.length;j++){
-                _result.push(_data[_sort[j]]);
-            }
-            return {
-                tags : _result,
-                sort : _sort
-            };
-        },
+        //         }
+        //     }
+        //     for(j;j < _sort.length;j++){
+        //         _result.push(_data[_sort[j]]);
+        //     }
+        //     return {
+        //         tags : _result,
+        //         sort : _sort
+        //     };
+        // },
         handleFn : function(){
             var page_num = 2,
                 _this = this,
                 getData = true,
                 reqData = {
                     edata : {
-                        action: 'index',
+                        action: 'index_template',
                         page_size: 10,
                         page_num: page_num
                     }
@@ -120,7 +130,7 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                         if(obj.code == 200){
                             reqData = {
                                 edata : {
-                                    action: 'index',
+                                    action: 'index_template',//首页
                                     page_size: 10,
                                     page_num: ++page_num
                                 }
@@ -134,33 +144,33 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                                     }
                                     $('.j_item_box ul').append(Item.addItem(_list_data.item,_this.item_type));
                                 }
-                                if(_list_data.hot.length){
-                                    if(!$('.j_hot_list').length){
-                                        var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_HOT+'</p><ul class="'+(_this.item_type!=3?'items-list':'three-items-list')+' j_hot_list clearfix"></ul>';
-                                        $('.j_hot_list').html(_htm);
-                                    }
-                                    $('.j_hot_list').append(Item.addItem(_list_data.hot,_this.item_type));
-                                }
-                                if(_list_data.tags.length){
-                                    var _tags = _list_data.tags;
-                                    for(var tagid in _tags){
-                                        if($('[data-tagid="'+_tags[tagid].id+'"]').length){
-                                            $('[data-tagid="'+_tags[tagid].id+'"] ul').append(Item.addItem(_list_data.tags[tagid].item,_this.item_type));
-                                        }else{
-                                            var _htm = '<section class="items-box" data-tagid="'+_tags[tagid].id+'">'
-                                                +'<p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.host+'k/'+_tags[tagid].id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>';
-                                            if(_this.item_type != 3){
-                                                _htm +='<ul class="items-list j_item_list clearfix">';
-                                            }else{
-                                                _htm +='<ul class="three-items-list j_item_list clearfix">';
-                                            }
-                                            _htm += Item.addItem(_list_data.tags[tagid].item,_this.item_type)
-                                                +'</ul>'
-                                                +'</section>';
-                                            $('.j_box').eq(($('.j_box').length-1)).before(_htm);
-                                        }
-                                    }
-                                }
+                                // if(_list_data.hot.length){
+                                //     if(!$('.j_hot_list').length){
+                                //         var _htm = '<p class="item-title"><span></span>'+Lang.H5_GOODS_HOT+'</p><ul class="'+(_this.item_type!=3?'items-list':'three-items-list')+' j_hot_list clearfix"></ul>';
+                                //         $('.j_hot_list').html(_htm);
+                                //     }
+                                //     $('.j_hot_list').append(Item.addItem(_list_data.hot,_this.item_type));
+                                // }
+                                // if(_list_data.tags.length){
+                                //     var _tags = _list_data.tags;
+                                //     for(var tagid in _tags){
+                                //         if($('[data-tagid="'+_tags[tagid].id+'"]').length){
+                                //             $('[data-tagid="'+_tags[tagid].id+'"] ul').append(Item.addItem(_list_data.tags[tagid].item,_this.item_type));
+                                //         }else{
+                                //             var _htm = '<section class="items-box" data-tagid="'+_tags[tagid].id+'">'
+                                //                 +'<p class="item-title b-bottom clearfix"><a class="fr j_item_info" href="javascript:;" data-url="'+Config.host.host+'k/'+_tags[tagid].id+'">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>'+decodeURIComponent(_list_data.tags[tagid].name)+'</em></p>';
+                                //             if(_this.item_type != 3){
+                                //                 _htm +='<ul class="items-list j_item_list clearfix">';
+                                //             }else{
+                                //                 _htm +='<ul class="three-items-list j_item_list clearfix">';
+                                //             }
+                                //             _htm += Item.addItem(_list_data.tags[tagid].item,_this.item_type)
+                                //                 +'</ul>'
+                                //                 +'</section>';
+                                //             $('.j_box').eq(($('.j_box').length-1)).before(_htm);
+                                //         }
+                                //     }
+                                // }
                                 if($('[data-time]').length){
                                     Item.changeTime();
                                 }
@@ -318,18 +328,18 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
                 _hot = [],
                 _item = [],
                 _this = this;
-            for (i; i < items.length;i++) {
-                if(items[i].index_type == 'top') {
-                    _hot.push(items[i]);
-                }
-                if(items[i].index_type == 'no_tag'){
-                    _item.push(items[i]);
-                }
-            }
+            // for (i; i < items.length;i++) {
+            //     if(items[i].index_type == 'top') {
+            //         _hot.push(items[i]);
+            //     }
+            //     if(items[i].index_type == 'no_tag'){
+            //         _item.push(items[i]);
+            //     }
+            // }
             return {
-                hot : _hot,
-                item : _item,
-                tags : _this.getTags(items).tags
+                // hot : items
+                item : items
+                // tags : _this.getTags(items).tags
             };
         }
     };

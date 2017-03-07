@@ -1,0 +1,90 @@
+/*店铺首页模块1样式*/
+
+.shop-info {
+    position: absolute;
+    width: 100%;
+    height: 7rem;
+    left: 0;
+    bottom: 0rem;
+    z-index: 2;
+}
+
+.shop-info img {
+    width: 7rem;
+    height: 7rem;
+    /* border-radius:50%; */
+}
+
+.shop-img {
+    border: .2rem solid #fff;
+    margin: 0 0.5rem 0 1rem;
+    float: left;
+    width: 7rem;
+    height: 7rem;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.shop-info p {
+    font-size: 16px;
+    color: #444;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 0.5rem;
+}
+
+.shop-info span {
+    width: 6rem;
+    height: 1.5rem;
+    background: #F6A623;
+    display: inline-block;
+    border-radius: 100px;
+    color: #ffffff;
+    margin-top: 1rem;
+    line-height: 1.5rem;
+    padding: 0 .5rem;
+}
+
+.shop-info span i {
+    margin-right: .2rem;
+}
+
+.tabs {
+    width: 100%;
+    height: 6rem;
+    background: #ffffff;
+    text-align: center;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.tabitem div {
+    height: 6rem;
+    padding-top: 1rem;
+    box-sizing: border-box;
+    color: #666666;
+    position: relative;
+}
+
+.tabitem span {
+    display: block;
+}
+
+.tabitem i {
+    font-size: 20px;
+}
+
+.tab-active div {
+    color: #F6A623;
+}
+
+.tab-active div:after {
+    content: " ";
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    background: #F6A623;
+}
