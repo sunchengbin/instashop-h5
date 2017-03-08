@@ -14,7 +14,7 @@
             </div>
         </section>
         <div class="tabs">
-            <ul class="tablist ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
+            <ul class="tablist tab-index ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
                 <li class="tabitem tab-active">
                     <div>
                         <i class="icon iconfont icon-empty-font"></i>
@@ -30,7 +30,7 @@
                 </li>
             </ul>
         </div>
-        <div class="tab-content">
+        <div class="tab-content tab-index-content">
             <div class="tabpanel tabpanel-active">
                 {include file="preferential.tpl"} 
                 {include file="model.tpl"} 

@@ -58,9 +58,25 @@
     border-bottom: 1px solid #d8d8d8;
 }
 
-.tabitem div {
+.tab-index .tabitem div {
     height: 6rem;
     padding-top: 1rem;
+    box-sizing: border-box;
+    color: #666666;
+    position: relative;
+}
+
+.tab-items {
+    width: 100%;
+    height: 4rem;
+    background: #ffffff;
+    text-align: center;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.tab-items .tabitem div {
+    height: 6rem;
+    line-height: 6rem;
     box-sizing: border-box;
     color: #666666;
     position: relative;
@@ -70,7 +86,7 @@
     display: block;
 }
 
-.tabitem i {
+.tab-index .tabitem i {
     font-size: 20px;
 }
 
@@ -78,7 +94,7 @@
     color: #F6A623;
 }
 
-.tab-active div:after {
+.tab-index .tab-active div:after {
     content: " ";
     height: 2px;
     position: absolute;

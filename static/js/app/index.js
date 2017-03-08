@@ -25,6 +25,9 @@ require(['lang','lazyload','ajax','config','base','common','cart','fastclick','c
 
             //改版
             Tab({
+                $header:$(".tab-index"),
+                $content:$(".tab-index-content"),
+                defaultTab:0,
                 switchFn:function(switchInfo){
                     console.log(switchInfo);
                 }

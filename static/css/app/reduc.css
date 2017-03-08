@@ -96,6 +96,7 @@ reduc-box-line i {
 .reduc-expire {
     font-size: 14px;
     margin-top: 3px;
+    color:#999999;
 }
 
 .reduc-rule-list {

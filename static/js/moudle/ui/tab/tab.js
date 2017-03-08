@@ -27,8 +27,8 @@ define([
             _this.opts = $.extend(opts);
             //tab选项卡
             _this.tabs = {};
-            var _tabPanels = $(".tabpanel");
-            var _tabRoles = $(".tabitem");
+            var _tabPanels = _this._tabPanels = _this.opts.$content.find(".tabpanel");
+            var _tabRoles = _this._tabRoles = _this.opts.$header.find(".tabitem"); 
             if(_tabRoles.length!=_tabPanels.length){
                 console.log("tab init error:msg:no match tagrole and tagpanel");
                 return;
@@ -68,8 +68,9 @@ define([
             $(_this.tabs[_tabrole].tabEl).addClass(defaultOpts.activeItemClass);
         },
         restoreActiveStatus:function(){
-            $(".tabpanel").removeClass(defaultOpts.activePanelClass);
-            $(".tabitem").removeClass(defaultOpts.activeItemClass);
+            var _this = this;
+            _this._tabPanels.removeClass(defaultOpts.activePanelClass);
+            _this._tabRoles.removeClass(defaultOpts.activeItemClass);
         }
     }
     return function(opts){
