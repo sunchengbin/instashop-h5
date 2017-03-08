@@ -3,18 +3,57 @@
         <ul class="tablist tab-items ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
             <li class="tabitem tab-active">
                 <div>
-                    <span>综合</span>
+                    <span>Paling Sesuai</span>
                 </div>
             </li>
             <li class="tabitem">
-                <div><span>时间</span></div>
+                <div><span>Terbaru</span></div>
             </li>
             <li class="tabitem">
-                <div><span>价格</span></div>
+                <div><span>Harga</span></div>
             </li>
         </ul>
     </div>
-    <div class="all-items-wrap">
-
+    <div data-spider="item-list" class="all-items-wrap">
+        {if !$ALL_ITEM_DATA.item_list.list|@count}
+        <section class="no_item">Belum ada produk</section>
+        {/if}
+        <section class="items-box ins-m-t-0 j_box">
+            <ul class="items-list clearfix">
+                {foreach $ALL_ITEMS as $item}
+                <li>
+                    <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}"
+                        href="javascript:;">
+                        <div class="lazy" data-img="{$item.img|list_img}">
+                            {if $item.is_discount}
+                            <span>-{$item.discount.value}%</span> {if $item.discounting}
+                            <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span>
+                            </p>
+                            {else}
+                            <p>Coming Soon</p>
+                            {/if} {/if}
+                        </div>
+                        <p class="title">{$item.item_comment|nl2br}</p>
+                        {if $item.price lt 0}
+                        <p class="price"></p>
+                        {elseif $item.is_discount}
+                        <p class="price cost-price">Rp {$item.price|priceFormat}</p>
+                        {else}
+                        <p class="price">Rp {$item.price|priceFormat}</p>
+                        {/if} {if $item.is_discount} {if $item.discounting}
+                        <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                        {else}
+                        <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                        {/if} {else}
+                        <p class="discount-price"></p>
+                        {/if}
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+        </section>
     </div>
 </div>
+<script>
+    var all_item_data = {$ALL_ITEM_DATA_STR}
+</script>

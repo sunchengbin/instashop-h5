@@ -6,10 +6,8 @@
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     $params = [
         'action' => 'index_template',
-        'platform' => 'web'
-        // 'page_size' => 10,
-        // 'last_id' => '',
-        // 'json' => '0'
+        'platform' => 'web',
+        'page_num' => 1
     ];
     $seller_id = $_REQUEST['seller_id'];
     if (!$seller_id) {
@@ -39,10 +37,23 @@
     $itemtype = getItemListType($json["template"]);
     $smarty->assign('ITEMTYPE',$itemtype);
     $smarty->assign('RECOMMEND_ITEM',$json["item_list"]["list"]);
-    // $smarty->assign('TAGS_ITEM',$items["tags"]);
-    // $smarty->assign('HOT_ITEM',$items["item"]);
-    // $smarty->assign('TAG_LIST',$json["tag_list"]);
 
+    // 获取首次渲染的全部商品数据
+    $params = [
+        'action' => 'index_allitems',
+        'platform' => 'web',
+        'page_num' => 1
+    ];
+    $ret = get_init_php_data($path, $params);
+    $json = json_decode($ret, true);
+    $smarty->assign('ALL_ITEM_DATA_STR',$ret);
+    $smarty->assign('ALL_ITEM_DATA',$json);
+    $smarty->assign('ALL_ITEMS',$json["item_list"]["list"]);
+
+    
+    
+    
+    
     $hostname=$_SERVER['SERVER_NAME'];
     $smarty->assign('HOST_NAME',HOST_NAME);
 

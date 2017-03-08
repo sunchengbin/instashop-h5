@@ -18,15 +18,15 @@
                 <li class="tabitem tab-active">
                     <div>
                         <i class="icon iconfont icon-empty-font"></i>
-                        <span>店铺首页</span>
+                        <span>Home</span>
                     </div>
                 </li>
                 <li class="tabitem">
 
-                    <div><i class="icon iconfont icon-empty-font"></i><span>全部商品</span></div>
+                    <div><i class="icon iconfont icon-empty-font"></i><span>Produk</span></div>
                 </li>
                 <li class="tabitem">
-                    <div><i class="icon iconfont icon-empty-font"></i><span>店铺简介</span></div>
+                    <div><i class="icon iconfont icon-empty-font"></i><span>Informasi Toko</span></div>
                 </li>
             </ul>
         </div>
