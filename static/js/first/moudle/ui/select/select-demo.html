@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expect" content="0">
+    <title>select-demo</title>
+    <link href="../../../../css/moudle/ui/select/select.css" rel="stylesheet"/>
+    <script src="../../../base/require-zepto.js"></script>
+    <script src="../../../base/require-config.js"></script>
+
+    <style>
+        .test,.test1{
+            width:100px;
+            margin:100px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="test">
+    <!--<div class="select-wraper">
+        <p class="select-value">sdfsd</p>
+        <ul class="select-options">
+            <li data-val="">请选择</li>
+            <li>请选择</li>
+            <li>请选择</li>
+            <li>请选择</li>
+            <li>请选择</li>
+        </ul>
+    </div>-->
+</div>
+<div class="test1">
+    <!--<div class="select-wraper">
+        <p class="select-value">sdfsd</p>
+        <ul class="select-options">
+            <li data-val="">请选择</li>
+            <li>请选择</li>
+            <li>请选择</li>
+            <li>请选择</li>
+            <li>请选择</li>
+        </ul>
+    </div>-->
+</div>
+<div style="margin-top:100px;">
+    <select>
+        <option>sss</option>
+        <option>sss</option>
+        <option>sss</option>
+        <option>sss</option>
+        <option>sss</option>
+    </select>
+    ssss
+</div>
+<script>
+    require(['select'],function(select){
+        var sel = select({
+            container : '.test',
+            options : [{name : '请选择',val : ''},{name : '北京',val : 'bj'},{name : '上海',val : 'sh'}],
+            value : 'bj',
+            value_name : '北京',
+            change_fn : function(){
+                console.log(this.getValue())
+
+            }
+        });
+        var sel1 = select({
+            container : '.test1',
+            options : [{name : '请选择',val : ''},{name : '北京',val : 'bj'},{name : '上海',val : 'sh'}],
+            value : 'bj',
+            value_name : '北京'
+        });
+        console.log(sel.getValue());
+        console.log(sel1.getValue());
+    });
+</script>
+</body>
+</html>

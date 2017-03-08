@@ -1,0 +1,68 @@
+<nav class="header-nav clearfix " data-spider="header-nav">
+    <i class="icon iconfont j_go_back icon-back-font"></i>
+    {{lang.H5_BUY_LIST}}
+</nav>
+<section class="">
+    <div class="address-box j_address_wraper">
+        <div class="clearfix user-info">
+            <span class="fr">{{address.telephone}}</span>
+            <i class="icon iconfont fr icon-phone-font"></i>
+            <i class="icon iconfont fl icon-address-font"></i>
+            <span class="fl">{{address.name}}</span>
+        </div>
+        <div class="user-address-info">
+            <i class="icon iconfont fr icon-go-font"></i>
+            <div class="address-info">
+                {{address.address.street}}, {{address.address.country}}, {{address.address.city}} {{address.address.post }}, {{address.address.province}}
+            </div>
+        </div>
+    </div>
+    {{#if nofree}}
+        {{#if express}}
+            <div class="logistics-box j_sel_logistics clearfix">
+                {{lang.H5_SELECT_LOGISTICS_COMPANY}}
+                <div class="fr">
+                    <i class="icon iconfont fr icon-go-font"></i>
+                    <span class="j_logistics_info"></span>
+                </div>
+            </div>
+        {{else}}
+            <div class="logistics-box clearfix">
+                {{lang.H5_NO_LOGISTICS_COMPANY}}
+            </div>
+        {{/if}}
+    {{/if}}
+    <div class="list-box" data-spider="list-box">
+        <div class="shop-info clearfix">
+            <img src="{{data.ShopInfo.logo}}">
+            <p>{{data.ShopInfo.name}}</p>
+        </div>
+        <ul class="order-items">
+            {{{cartsconfirm carts}}}
+        </ul>
+        <p class="clearfix buyer-note-p">
+            <span>{{lang.H5_BUYER_NOTE}}: </span>
+            <input maxlength="500" type="text" placeholder="{{lang.H5_BUYER_NOTE_TOO_LONG}}" class="j_buyer_note"/>
+        </p>
+        {{#if isHaveReduc}}
+        <div class="reduc-info b-bottom" style="color:#999999">
+            <p class="clearfix"><span class="fr j_reduc_price">-Rp {{transprice favorable}}</span>{{lang.H5_REDUC_PAVORABLE}}: </p>
+        </div>
+        {{/if}}
+        <div class="order-info">
+            <p class="clearfix"><span class="fr j_post">Rp 0</span>{{lang.H5_SHIPPING_COST}}: </p>
+            <p class="clearfix"><span class="fr j_sum">Rp {{transprice sum}}</span>{{lang.H5_ORDER_TOTAL_PRICE}}: </p>
+        </div>
+        {{#if nofree}}
+            {{#if express}}
+                <button class="btn confirm-btn j_submit_buy">{{lang.H5_CREATE_ORDER}}</button>
+            {{/if}}
+        {{else}}
+            <button class="btn confirm-btn j_submit_buy">{{lang.H5_CREATE_ORDER}}</button>
+        {{/if}}
+        <div class="agree-info clearfix">
+            <i class="icon iconfont fl icon-checked-font j_check_box"></i>
+            <p>{{lang.H5_USE_AGREE_title}}<a href="{{host.host}}html/agreeinfo.php">{{lang.H5_USE_AGREE}}</a></p>
+        </div>
+    </div>
+</section>

@@ -33,12 +33,7 @@ function loadClass($strClassName)
         }
     }
 }
-function getFontCss($url){
-    return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1488795292974") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1488795292974#iconfont") format("svg");}</style>';
-}
-function getIco($url){
-    return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';
-}
+
 function is_https()
 {
 	if (!isset($_SERVER['HTTP_X_FORWARDED_PROTO']))
@@ -174,15 +169,28 @@ function isDebug(){
     }
     return $is_debug;
 }
+function getFontCss($url,$folder_name){
+    if($folder_name){
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1488795292974") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1488795292974#iconfont") format("svg");}</style>';
+    }else{
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1488795292974") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1488795292974#iconfont") format("svg");}</style>';
+    }
+}
+function getIco($url){
+    return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';
+}
 function smartyCommon($folder_name){
     require_once(__DIR__.'/../lib/libs/Smarty.class.php');
     $smarty = new Smarty();
+    setStaticConfig($folder_name);
     if($folder_name){
-        $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name+'/');
-        $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name+'/');
+        $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
+        $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
+        $smarty->assign('TEMP_FOLDER',$folder_name.'/');
     }else{
         $smarty->setTemplateDir(__DIR__.'/../templates/');
         $smarty->setCompileDir(__DIR__.'/../templates_c/');
+        $smarty->assign('TEMP_FOLDER','');
     }
     $smarty->assign('STATIC_DNS',STATIC_DNS);
     $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
@@ -192,11 +200,11 @@ function smartyCommon($folder_name){
     $smarty->assign('IS_DEBUG',IS_DEBUG);
     return $smarty;
 }
-function setStaticConfig(){
+function setStaticConfig($folder_name){
     $prompt = is_https() ? 'https:' : 'http:';
     $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
     $static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
-    $static_font_css =C_RUNTIME_ONLINE?getFontCss($host_name.'/static'):getFontCss($host_name.'/static');
+    $static_font_css =C_RUNTIME_ONLINE?getFontCss($host_name.'/static',$folder_name):getFontCss($host_name.'/static',$folder_name);
     $static_ico_css =C_RUNTIME_ONLINE?getIco($prompt.'//m.instashop.co.id'):getIco($prompt.'//m-test.instashop.co.id');
     $host_url =C_RUNTIME_ONLINE?$prompt.'//m.instashop.co.id':$prompt.'//m-test.instashop.co.id';
     $static_dns = '<meta name="spider-id" content="orju7v"><link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';

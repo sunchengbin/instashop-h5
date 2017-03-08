@@ -1,0 +1,122 @@
+{{#eq data.shop.status '2'}}
+    <section class="shop-header">
+        <img class="shop-header-bg" data-img="{{transshopbgimgurl data.shop.front_cover}}" src="">
+        <div class="clearfix shop-info">
+            <div class="shop-img">
+                <img data-img="{{transimgurl data.shop.logo}}" src=""/>
+            </div>
+            <p>{{data.shop.name}}</p>
+        </div>
+    </section>
+    <section class="shop-delete">
+        <i class="icon iconfont icon-error-font"></i>
+        <p>{{{lang.H5_SHOP_DELETE}}}</p>
+    </section>
+{{else}}
+    <section class="shop-header">
+        <img class="shop-header-bg" data-img="{{transshopbgimgurl data.shop.front_cover}}" src="">
+        <div class="clearfix shop-info">
+            <div class="shop-img">
+                <img data-img="{{transimgurl data.shop.logo}}" src=""/>
+            </div>
+            <p>{{data.shop.name}}</p>
+        </div>
+    </section>
+    <section class="shop-explain j_down_box">
+        <div>
+            <span class="top-angle"></span>
+            <div class="txt">
+                {{{transtxt data.shop.note}}}
+            </div>
+            <div class="txt-hide">
+                {{{transtxt data.shop.note}}}
+            </div>
+            <p><i class="icon iconfont j_down_btn down-btn"></i></p>
+        </div>
+    </section>
+    <section class="items-box j_hot_box j_box">
+        {{#havehot data.item_list.list}}
+            <p class="item-title"><span></span>{{lang.H5_GOODS_HOT}}</p>
+            <ul class="items-list clearfix j_hot_list">
+                {{#hotItemList data.item_list.list}}{{/hotItemList}}
+            </ul>
+        {{/havehot}}
+    </section>
+    {{#each tags_item}}
+        <section class="items-box j_box" data-tagid="{{this.id}}">
+            <p class="item-title clearfix"><a class="fr j_item_info" href="javascript:;" data-url="{{../host}}k/{{this.id}}">more<i class="icon iconfont icon-go-font"></i></a><span></span><em>{{decode this.name}}</em></p>
+            <ul class="items-list j_item_list clearfix">
+                {{#tagItemList this.item}}{{/tagItemList}}
+            </ul>
+        </section>
+    {{/each}}
+    <section class="items-box j_item_box j_box">
+        {{#haveitem data.item_list.list}}
+            <p class="item-title"><span></span>{{lang.H5_GOODS_ORTHER}}</p>
+            <ul class="items-list j_item_list clearfix">
+                {{#itemList data.item_list.list}}{{/itemList}}
+            </ul>
+        {{/haveitem}}
+    </section>
+    <section class="sort-list-wraper j_sort_box">
+        <p>{{lang.H5_GOOD_SORT}}</p>
+        <ul>
+            {{#each data.tag_list}}
+                <li class=""><a class="j_item_info" href="javascript:;" data-url="{{../../host}}k/{{id}}" class=""><span></span>{{name}}</a></li>
+            {{/each}}
+        </ul>
+    </section>
+    <div class="sort-list-cover j_sort_cover">
+        <i class="icon iconfont icon-fold-font"></i>
+    </div>
+    <!--<footer class="clearfix">-->
+        <!--<a href="javascript:;" class="btn fl j_category"><i class="icon iconfont icon-sort-font"></i>{{lang.H5_GOOD_SORT}}</a>-->
+    <!--</footer>-->
+    <section class="index-footer">
+        <ul class="b-top">
+            {{#if data.tag_list}}
+                <li class="j_category b-right">
+                    <i class="icon iconfont icon-tag-font"></i>
+                    Kategori
+                </li>
+            {{/if}}
+            <li class="j_cart_wraper b-right" data-url="{{hrefUrl}}cart.php">
+                {{#if num}}
+                    <span class="cart-num">{{num}}</span>
+                {{/if}}
+                <i class="icon iconfont icon-i-shop-font"></i>
+                Keranjangku
+            </li>
+            <li>
+                {{#if data.shop.line_url}}
+                    {{#if data.shop.phone}}
+                        <a class="contact-services j_show_contact" data-type="all" href="javascript:;">
+                            <!--<span class="im-num j_im_num"></span>-->
+                            <i class="icon iconfont icon-i-news-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </a>
+                    {{else}}
+                        <a class="contact-services j_goto_line" href="javascript:;">
+                            <!--<span class="im-num j_im_num"></span>-->
+                            <i class="icon iconfont icon-i-news-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </a>
+                    {{/if}}
+                {{else}}
+                    {{#if data.shop.phone}}
+                        <a class="contact-services j_show_contact" data-type="tel" href="javascript:;">
+                            <!--<span class="im-num j_im_num"></span>-->
+                            <i class="icon iconfont icon-i-news-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </a>
+                    {{/if}}
+                {{/if}}
+            </li>
+        </ul>
+    </section>
+
+{{/eq}}
+
+
+
+

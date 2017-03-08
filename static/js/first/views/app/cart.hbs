@@ -1,0 +1,16 @@
+<nav class="header-nav clearfix " data-spider="header-nav">
+    <i class="icon iconfont j_go_back icon-back-font"></i>
+    {{lang.H5_SHOPPING_CART}}
+</nav>
+<section class="cart-list j_cart_list cart-supplier-list" data-spider="btn-box">
+    {{#if isGroup}}
+        <ul class="">
+            {{{groupcarts groupCart}}}
+        </ul>
+    {{else}}
+        <ul class="no_goods_box">
+            {{{carts cart}}}
+        </ul>
+    {{/if}}
+    
+</section>

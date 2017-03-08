@@ -1,0 +1,11 @@
+<div class="model-btns clearfix j_model_btns" data-spider="btn-box">
+    {{#eq type 'item_list_type'}}
+        <button class="edit-btn j_edit_model handle-btn" data-type="{{type}}">{{lang.H5_EDIT}}</button>
+    {{else}}
+        {{#if notmove}}
+            <button class="edit-btn j_edit_model handle-btn" data-type="{{type}}">{{lang.H5_EDIT}}</button><button class="del-btn j_del_model handle-btn">{{lang.H5_DELETE}}</button>
+        {{else}}
+            <button class="edit-btn j_edit_model handle-btn" data-type="{{type}}">{{lang.H5_EDIT}}</button><button class="del-btn j_del_model handle-btn">{{lang.H5_DELETE}}</button><button class="move-btn j_moveup_model handle-btn">{{lang.H5_MOVE_UP}}</button>
+        {{/if}}
+    {{/eq}}
+</div>

@@ -1,0 +1,31 @@
+<section class="shop-header" data-spider="edit-signage">
+    <button class="handle-btn j_edit_model" data-type="edit_signage">{{lang.H5_EDIT}}</button>
+    <img class="shop-header-bg j_shop_bg" data-img="{{transshopbgimgurl data.front_cover}}" src="">
+    <div class="clearfix shop-info">
+        <div class="shop-img">
+            <img data-img="{{transimgurl shop.logo}}" src=""/>
+        </div>
+        <p>{{{shop.name}}}</p>
+    </div>
+</section>
+<section class="shop-explain j_down_box">
+    <div>
+        <span class="top-angle"></span>
+        <div class="txt">
+            {{#if shop.note}}
+                {{{transtxt shop.note}}}
+            {{else}}
+                Selamat datang di mini websiteku
+            {{/if}}
+
+        </div>
+        <div class="txt-hide">
+            {{#if shop.note}}
+                {{{transtxt shop.note}}}
+            {{else}}
+                Selamat datang di mini websiteku
+            {{/if}}
+        </div>
+        <p><i class="icon iconfont j_down_btn down-btn"></i></p>
+    </div>
+</section>
