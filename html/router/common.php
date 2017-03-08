@@ -174,13 +174,16 @@ function isDebug(){
     }
     return $is_debug;
 }
-function smartyCommon(){
+function smartyCommon($folder_name){
     require_once(__DIR__.'/../lib/libs/Smarty.class.php');
     $smarty = new Smarty();
-    $smarty->setTemplateDir(__DIR__.'/../templates/');
-    $smarty->setCompileDir(__DIR__.'/../templates_c/');
-    $smarty->setConfigDir(__DIR__.'/../configs/');
-    $smarty->setCacheDir(__DIR__.'/../cache/');
+    if($folder_name){
+        $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name+'/');
+        $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name+'/');
+    }else{
+        $smarty->setTemplateDir(__DIR__.'/../templates/');
+        $smarty->setCompileDir(__DIR__.'/../templates_c/');
+    }
     $smarty->assign('STATIC_DNS',STATIC_DNS);
     $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
     $smarty->assign('STATIC_FONT_CSS',STATIC_FONT_CSS);
@@ -189,20 +192,23 @@ function smartyCommon(){
     $smarty->assign('IS_DEBUG',IS_DEBUG);
     return $smarty;
 }
+function setStaticConfig(){
+    $prompt = is_https() ? 'https:' : 'http:';
+    $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
+    $static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
+    $static_font_css =C_RUNTIME_ONLINE?getFontCss($host_name.'/static'):getFontCss($host_name.'/static');
+    $static_ico_css =C_RUNTIME_ONLINE?getIco($prompt.'//m.instashop.co.id'):getIco($prompt.'//m-test.instashop.co.id');
+    $host_url =C_RUNTIME_ONLINE?$prompt.'//m.instashop.co.id':$prompt.'//m-test.instashop.co.id';
+    $static_dns = '<meta name="spider-id" content="orju7v"><link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';
+    $bi_js = biJs();
+    define('STATIC_DNS', $static_dns);
+    define('STATIC_FONT_CSS', $static_font_css);
+    define('STATIC_ICO_CSS', $static_ico_css);
+    define('HOST_URL', $host_url);
+    define('STATIC_HOST', $static_host);
+    define('HOST_NAME', $host_name);
+    define('BI_SCRIPT', $bi_js);
+    define('IS_DEBUG', isDebug());
+}
 spl_autoload_register('loadClass');
-$prompt = is_https() ? 'https:' : 'http:';
-$host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
-$static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
-$static_font_css =C_RUNTIME_ONLINE?getFontCss($host_name.'/static'):getFontCss($host_name.'/static');
-$static_ico_css =C_RUNTIME_ONLINE?getIco($prompt.'//m.instashop.co.id'):getIco($prompt.'//m-test.instashop.co.id');
-$host_url =C_RUNTIME_ONLINE?$prompt.'//m.instashop.co.id':$prompt.'//m-test.instashop.co.id';
-$static_dns = '<meta name="spider-id" content="orju7v"><link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';
-$bi_js = biJs();
-define('STATIC_DNS', $static_dns);
-define('STATIC_FONT_CSS', $static_font_css);
-define('STATIC_ICO_CSS', $static_ico_css);
-define('HOST_URL', $host_url);
-define('STATIC_HOST', $static_host);
-define('HOST_NAME', $host_name);
-define('BI_SCRIPT', $bi_js);
-define('IS_DEBUG', isDebug());
+
