@@ -1,7 +1,6 @@
 {if $INDEX_DATA.template|@count}
     {foreach $INDEX_DATA.template as $model}
         {if $model.type eq 'edit_signage'}
-        {*这里会展示店铺装修的模块和推荐商品，请设置*}
         {elseif $model.type eq 'static_banner'}
         <section class="banner-wraper model-box j_model_box" data-spider="static_banner">
             <div class="banner-box">
