@@ -65,7 +65,7 @@
     height: 6rem;
     padding-top: 1rem;
     box-sizing: border-box;
-    color: #666666;
+    /*color: #666666;*/
     position: relative;
 }
 
@@ -74,14 +74,14 @@
     height: 4rem;
     background: #ffffff;
     text-align: center;
-    border-bottom: 1px solid #d8d8d8;
+    /*border-bottom: 1px solid #d8d8d8;*/
 }
 
 .tab-items .tabitem div {
-    height: 6rem;
-    line-height: 6rem;
+    height: 4rem;
+    line-height: 4rem;
     box-sizing: border-box;
-    color: #666666;
+    /*color: #666666;*/
     position: relative;
 }
 
@@ -107,4 +107,8 @@
     bottom: 0px;
     background: #F6A623;
 }
+.all-items-wrap .items-box{
+    margin-top: 0px;
+}
 /*首页tab业务样式 end*/
+

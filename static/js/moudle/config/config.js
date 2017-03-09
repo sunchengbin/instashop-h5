@@ -50,6 +50,14 @@ define(['base'],function(Base){
             shopsDiscount:'v1/shopsDiscount',//满减验证接口
             search:'v1/shopsItems/self',//商品搜索
             getCoupon:'v1/coupon'//领取优惠券
+        },
+        businessCodes:{
+            ORDER_BY_DEFAULT:0,
+            ORDER_BY_ADDTIME:1,
+            ORDER_BY_PRICE_L2H:2,
+            ORDER_BY_PRICE_H2L:3,
+            FILTER_ALL:0,
+            FILTER_TOP:1
         }
     };
     function isTestHost(){
