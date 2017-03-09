@@ -8,10 +8,10 @@
 </head>
 <body>
 <div>
-    loading
+
 </div>
 <div id="map">
-
+loading
 </div>
 <script type="text/javascript">
     function getUrlPrem(key, url){
@@ -32,12 +32,19 @@
         }
         return _items;
     }
-    var map;
     function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: Number(getUrlPrem('lat')), lng: Number(getUrlPrem('lng'))},
-            zoom: 8
+        var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+        var mapOptions = {
+            zoom: 4,
+            center: myLatlng
+        };
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            title:"Hello World!"
         });
+        marker.setMap(map);
     }
 
 </script>

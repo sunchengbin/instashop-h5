@@ -75,8 +75,7 @@
             Alamat：Jiuxianqiao Road Branch Membangun Blok Bintang 2009
         </div>
         <div class="shopinfo-map-content">
-            <iframe src="" frameborder="0">
-            </iframe>
+            <iframe src="{$HOST_URL}/html/googlemap.html?lat=-34.397&lng=150.644" frameborder="0"></iframe>
         </div>
     </div>
     <div class="ins-typo ins-p-1">
