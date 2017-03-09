@@ -16,7 +16,8 @@ define(['base'],function(Base){
             actionUrl : 'https://apip.instashop.co.id/instashop/',
             imHost : 'http://218.213.86.206',
             phpHost : 'http://api.instashop.co.id/instashop/',
-            imUserNameHost : 'http://218.213.86.206:2040/'//存储im用户名字
+            imUserNameHost : 'http://218.213.86.206:2040/',//存储im用户名字
+            maphost : 'http://m.instashop.co.id/'//存储im用户名字
         },
         TEST_HOST = {//测试环境
             hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
@@ -27,7 +28,8 @@ define(['base'],function(Base){
             actionUrl : 'https://apip-test.instashop.co.id/instashop/',
             imHost : 'http://10.5.15.10:2000',
             imUserNameHost : 'http://10.5.15.10:2040/',//存储im用户名字
-            phpHost : 'http://api-test.instashop.co.id/instashop/'
+            phpHost : 'http://api-test.instashop.co.id/instashop/',
+            maphost : 'http://m-test.instashop.co.id/'//存储im用户名字
         };
     var CONFIG = {
         host : isTestHost(),

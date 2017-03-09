@@ -95,6 +95,9 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 },
                 switchFn: function (switchInfo) {
                     _this.tagInfo.curTab = switchInfo.tabalias
+                    if("index_shopinfo"==_this.tagInfo.curTab){
+                        _this.createMapIframe("._shopinfo-map-el");
+                    }
                     Debug.log("切换信息:", switchInfo)
                 }
             })
@@ -171,6 +174,11 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             }).init();
 
             _this.handleFn();
+        },
+        createMapIframe:function(el){
+            var _this = this;
+            var $iframe = $('<iframe src="'+Config.host.maphost+'/html/googlemap.html?lat=-34.397&lng=150.644" frameborder="0"></iframe>')
+            $(el).append($iframe);
         },
         getRecommendItem: function (paginationOpt) {
             //默认加载已经请求了第一页 所以从第二页开始

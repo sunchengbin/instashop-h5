@@ -96,7 +96,7 @@
         <div class="shopinfo-card-header">
            <i class="icon iconfont icon-address-font"></i> Alamat：Jiuxianqiao Road Branch Membangun Blok Bintang 2009
         </div>
-        <div class="shopinfo-map-content">
+        <div class="shopinfo-map-content _shopinfo-map-el">
             {*<iframe src="{$HOST_URL}/html/googlemap.html?lat=-34.397&lng=150.644" frameborder="0"></iframe>*}
         </div>
     </div>
