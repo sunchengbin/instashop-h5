@@ -1,6 +1,8 @@
 /*店铺首页模块1样式*/
 
+
 /*店铺头样式 begin*/
+
 .shop-info {
     position: absolute;
     width: 100%;
@@ -50,9 +52,24 @@
 .shop-info span i {
     margin-right: .2rem;
 }
+
+.shop-header {
+    background: #000000;
+    position: relative;
+}
+
+.shop-header-bg {
+    background: #000000;
+    opacity: 0.8;
+    z-index: -1;
+}
+
+
 /*店铺头样式 end*/
 
+
 /*首页tab业务样式 begin*/
+
 .tabs {
     width: 100%;
     height: 6rem;
@@ -107,8 +124,35 @@
     bottom: 0px;
     background: #F6A623;
 }
-.all-items-wrap .items-box{
+
+.all-items-wrap .items-box {
     margin-top: 0px;
 }
+
+
 /*首页tab业务样式 end*/
 
+.sort-price {
+    line-height: 0!important;
+    display: inline-block!important;
+    height: inherit!important;
+    /*color:#999999!important;*/
+}
+
+.sort-price-off {
+    color: #999999!important;
+}
+
+.sort-price-l2h {
+    position: absolute;
+    top: -8px;
+}
+
+.sort-price-h2l {
+    position: absolute;
+    bottom: -2px;
+}
+
+.item-tabs {
+    color: #999999;
+}

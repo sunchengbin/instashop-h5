@@ -2,7 +2,7 @@
 
 <body data-spider="615lnd28">
     {if $INDEX_DATA}
-    <div>
+    <div >
         <section class="shop-header">
             <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
             <div class="clearfix shop-info">
@@ -15,23 +15,23 @@
         </section>
         <div class="tabs">
             <ul class="tablist tab-index ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
-                <li class="tabitem tab-active">
+                <li class="tabitem">
                     <div>
-                        <i class="icon iconfont icon-empty-font"></i>
+                        <i class="icon iconfont icon-newhome"></i>
                         <span>Home</span>
                     </div>
                 </li>
                 <li class="tabitem">
 
-                    <div><i class="icon iconfont icon-empty-font"></i><span>Produk</span></div>
+                    <div><i class="icon iconfont icon-allitem"></i><span>Produk</span></div>
                 </li>
                 <li class="tabitem">
-                    <div><i class="icon iconfont icon-empty-font"></i><span>Informasi Toko</span></div>
+                    <div><i class="icon iconfont icon-shopinfo"></i><span>Informasi Toko</span></div>
                 </li>
             </ul>
         </div>
         <div class="tab-content tab-index-content">
-            <div class="tabpanel tabpanel-active">
+            <div class="tabpanel">
                 {include file="preferential.tpl"} 
                 {include file="model.tpl"} 
                 {*推荐商品*}
@@ -139,6 +139,9 @@
 </body>
 <script>
     var init_data = {$INDEX_DATA_STR};
+</script>
+<script>
+ var route_pt={$PT};var route_ct={$CT};var route_page_num={$PAGE_NUM};var route_page_size={$PAGE_SIZE};
 </script>
 
 {include file="footer.tpl"}

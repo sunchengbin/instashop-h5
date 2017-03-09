@@ -19,6 +19,9 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
         tagInfo: {
             curTab: "index_template"
         },
+        route_info:{
+
+        },
         init: function (init_data) {
             Lazyload();
             var _this = this;
@@ -38,12 +41,52 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             }
 
 
+            //获取url信息
+            _this.route_info.route_pt = route_pt||1;
+            _this.route_info.route_ct = route_ct||0;
+            _this.route_info.route_page_num = route_page_num||2;
+            _this.route_info.route_page_size = route_page_size||10;
+
+            Debug.log("路由信息",_this.route_info)
+            
+            var _allItemsDefaultTab = 1;
+            if(_this.route_info.route_pt==1){
+                _this.tagInfo.curTab = "index_template"
+                _this.indexItemsPagination.page_num = _this.route_info.route_page_num+1
+            }
+            if(_this.route_info.route_pt==2){
+                _this.tagInfo.curTab = "index_allitems"
+                _this.allItemsPagination.page_num = _this.route_info.route_page_num+1
+                if(_this.route_info.route_ct){
+                    switch(_this.route_info.route_ct){
+                        case 0:
+                            _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_DEFAULT;
+                            break;
+                        case 1:
+                            _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_ADDTIME;
+                            _allItemsDefaultTab = 2;
+                            break;
+                        case 2:
+                            _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_PRICE_L2H;
+                            _allItemsDefaultTab = 3; //低到高
+                            break;
+                        case 3:
+                            _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_PRICE_H2L; 
+                            _allItemsDefaultTab = 3;//高到低
+                            break;
+                        default:
+                            _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_DEFAULT;
+                            break;
+                    }
+                }
+            }
+
             //首页模块tab
             Tab({
                 $header: ".tab-index",
                 $content: ".tab-index-content",
                 alias: ["index_template", "index_allitems", "index_shopinfo"],
-                defaultTab: 0,
+                defaultTab: _this.route_info.route_pt,
                 defaultFn: function () {
 
                 },
@@ -57,11 +100,26 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             var allItemTab = Tab({
                 $header: ".tab-items",
                 alias: ["bycomplex", "bydate", "byprice"],
-                defaultTab: 0,
+                defaultTab: _allItemsDefaultTab,
                 switchFn: function (switchInfo) {
                     Debug.log("切换信息:", switchInfo)
                     _this.tagInfo.curTab = switchInfo.tabalias
-
+                    //检查是否有切换状态
+                    var _tab_status = switchInfo.el.attr("data-status")||"";
+                    if(_tab_status){
+                        if("bypricel2h"==_tab_status){
+                            //改为从高到低
+                            _this.tagInfo.curTab = "bypriceh2l"
+                            switchInfo.el.attr("data-status","bypriceh2l")
+                            $(".sort-price-l2h").addClass("sort-price-off");
+                            $(".sort-price-h2l").removeClass("sort-price-off");
+                        }else{
+                            _this.tagInfo.curTab = "bypricel2h"
+                            switchInfo.el.attr("data-status","bypricel2h");
+                            $(".sort-price-h2l").addClass("sort-price-off");
+                            $(".sort-price-l2h").removeClass("sort-price-off");
+                        }
+                    }
                     switch (_this.tagInfo.curTab) {
                         case "bycomplex":
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_DEFAULT;
@@ -69,11 +127,14 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                         case "bydate":
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_ADDTIME;
                             break;
-                        case "byprice":
+                        case "bypricel2h":
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_PRICE_L2H; //低到高
                             break;
-                        default:
+                        case "bypriceh2l":
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_PRICE_H2L; //高到低
+                            break;
+                        default:
+                            _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_DEFAULT;
                             break;
                     }
                     //清空掉当前排序列表
@@ -206,26 +267,26 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 case "bycomplex":
                     _routeInfo.pt = 1; //index_template 
                     _routeInfo.ct = Config.businessCodes.ORDER_BY_DEFAULT; //综合
-                    _routeInfo.page_num = _this.indexItemsPagination.page_num;
-                    _routeInfo.page_size = _this.indexItemsPagination.page_size;
+                    _routeInfo.page_num = _this.allItemsPagination.page_num;
+                    _routeInfo.page_size = _this.allItemsPagination.page_size;
                     break;
                 case "bydate":
                     _routeInfo.pt = 1; //index_template 
                     _routeInfo.ct = Config.businessCodes.ORDER_BY_ADDTIME; //时间
-                    _routeInfo.page_num = _this.indexItemsPagination.page_num;
-                    _routeInfo.page_size = _this.indexItemsPagination.page_size;
+                    _routeInfo.page_num = _this.allItemsPagination.page_num;
+                    _routeInfo.page_size = _this.allItemsPagination.page_size;
                     break;
                 case "bypricel2h":
                     _routeInfo.pt = 1; //index_template 
                     _routeInfo.ct = Config.businessCodes.ORDER_BY_PRICE_L2H; //由低到高
-                    _routeInfo.page_num = _this.indexItemsPagination.page_num;
-                    _routeInfo.page_size = _this.indexItemsPagination.page_size;
+                    _routeInfo.page_num = _this.allItemsPagination.page_num;
+                    _routeInfo.page_size = _this.allItemsPagination.page_size;
                     break;
                 case "bypriceh2l":
                     _routeInfo.pt = 1; //index_template 
                     _routeInfo.ct = Config.businessCodes.ORDER_BY_PRICE_H2L; //由高到低
-                    _routeInfo.page_num = _this.indexItemsPagination.page_num;
-                    _routeInfo.page_size = _this.indexItemsPagination.page_size;
+                    _routeInfo.page_num = _this.allItemsPagination.page_num;
+                    _routeInfo.page_size = _this.allItemsPagination.page_size;
                     break;
                 default:
                     _routeInfo.pt = 0; //index_template 
