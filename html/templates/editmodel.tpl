@@ -404,7 +404,6 @@
         {/if}
     </section>
     {/if}
-    <iframe src="http://m-test.instashop.co.id/html/googlemap.html"></iframe>
     <button class="j_submit_btn sub-btn b-top">Gunakan ke Tokomu</button>
 </div>
 <script>var init_data = {$INDEX_DATA_STR};</script>
