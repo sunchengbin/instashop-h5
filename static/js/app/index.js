@@ -24,6 +24,9 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
         },
         init: function (init_data) {
             Lazyload();
+            if(!Base.others.getUrlPrem('pt')){
+               localStorage.removeItem('index_route_info');
+            }
             var _this = this;
             _this.item_type = Common.getItemListType(init_data.template);
             _this.sortTimes = 0;
@@ -327,6 +330,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
         handleFn: function () {
             var page_num = 2,
                 _this = this,
+                _that = this,
                 getData = true,
                 reqData = {
                     edata: {
@@ -418,7 +422,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     _url = Common.transFromUrl(_url);
                 }
                 localStorage.setItem('ScrollTop', _scroll_top);
-                _this.setRouteInfo();
+                _that.setRouteInfo();
                 Common.saveFromUrl(function () {
                     location.href = _url;
                 });
