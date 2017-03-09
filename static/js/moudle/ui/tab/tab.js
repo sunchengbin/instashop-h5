@@ -65,6 +65,11 @@ define([
 
             // this.switchTab(this.tabs.tab_1);
             _this.handleEvent();
+            if(_this.opts.defaultTab!=void(0)){
+                _this.restoreActiveStatus();
+                $(_this.tabs[defaultOpts.tabPrefix+_this.opts.defaultTab].tabEl).addClass(defaultOpts.activeItemClass);
+                $(_this.tabs[defaultOpts.tabPrefix+_this.opts.defaultTab].tabPanel).addClass(defaultOpts.activePanelClass);
+            }
         },
         handleEvent: function () {
             var _this = this;

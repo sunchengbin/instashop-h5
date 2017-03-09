@@ -111,4 +111,24 @@
     margin-top: 0px;
 }
 /*首页tab业务样式 end*/
+.sort-price {
+    line-height: 0!important;
+    display: inline-block!important;
+    height: inherit!important;
+    /*color:#999999!important;*/
+}
+.sort-price-off {
+    color:#999999!important;
+}
+.sort-price-l2h {
+    position: absolute;
+    top: -8px;
+}
 
+.sort-price-h2l {
+    position: absolute;
+    bottom: -2px;
+}
+.item-tabs {
+    color:#999999;
+}

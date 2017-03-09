@@ -9,8 +9,15 @@
             <li class="tabitem">
                 <div><span>Terbaru</span></div>
             </li>
-            <li class="tabitem">
-                <div><span>Harga</span></div>
+            <li class="tabitem tabitem-sortprice" data-status="bypricel2h">
+                <div>
+                    <span>Harga
+                        <div class="sort-price">
+                            <i class="icon iconfont icon-arrow-fill-up sort-price-l2h {if $CT eq 3}sort-price-off{/if}"></i>
+                            <i class="icon iconfont icon-arrow-fill-down sort-price-h2l {if $CT eq 2}sort-price-off{/if}"></i>
+                        </div>
+                    </span>
+                </div>
             </li>
         </ul>
     </div>

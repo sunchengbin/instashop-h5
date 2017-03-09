@@ -49,6 +49,9 @@
     .shopinfo-note p:last-child {
         color:#999999;
     }
+    .shopinfo-map .shopinfo-card-header i {
+        color: #70CAFE;
+    }
 </style>
 <div>
     {* 店铺基本信息 *}
@@ -72,7 +75,7 @@
     {* 店铺地址google map *}
     <div class="shopinfo-card shopinfo-map">
         <div class="shopinfo-card-header">
-            Alamat：Jiuxianqiao Road Branch Membangun Blok Bintang 2009
+           <i class="icon iconfont icon-address-font"></i> Alamat：Jiuxianqiao Road Branch Membangun Blok Bintang 2009
         </div>
         <div class="shopinfo-map-content">
             <iframe src="" frameborder="0">
