@@ -22,7 +22,7 @@
         </ul>
     </div>
     <div data-spider="item-list" class="all-items-wrap">
-        {if !$INDEX_DATA.item_list.list|@count}
+        {if !$ALL_ITEMS|@count}
         <section class="no_item">Belum ada produk</section>
         {/if}
         <section class="items-box j_hot_box j_box">
