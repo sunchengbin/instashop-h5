@@ -90,6 +90,7 @@
             Foto toko
         </div>
         <div class="shopinfo-card-content">
+        
         </div>
     </div>
     {*简介*}

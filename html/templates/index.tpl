@@ -2,7 +2,7 @@
 
 <body data-spider="615lnd28">
     {if $INDEX_DATA}
-    <div>
+    <div >
         <section class="shop-header">
             <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
             <div class="clearfix shop-info">
