@@ -11,6 +11,9 @@
   {$STATIC_ICO_CSS}
   {$STATIC_FONT_CSS}
   {$INDEX_TITLE}
+  <script>
+  {$FLEXIBLE}
+  </script>
   {if $IS_DEBUG}
     <link href="{$STATIC_HOST}/css/{$TEMP_FOLDER}app/{$INDEX_CSS_NAME}.css?v=1488795292840" rel="stylesheet"/>
   {else}
