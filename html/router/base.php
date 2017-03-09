@@ -207,3 +207,6 @@ function isExistSupplyShop ($carts) {
         return $cart['item']['supply_shop']?true:false;
     }
 }
+function conuntImgNavWidth($data){
+    return 8.5*count($data).'rem';
+}
