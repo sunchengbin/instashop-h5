@@ -24,8 +24,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
         },
         init: function (init_data) {
             Lazyload();
-            if(!Base.others.getUrlPrem('pt')){
-               localStorage.removeItem('index_route_info');
+            if (!Base.others.getUrlPrem('pt')) {
+                localStorage.removeItem('index_route_info');
             }
             var _this = this;
             _this.item_type = Common.getItemListType(init_data.template);
@@ -275,8 +275,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             var _this = this,
                 _route_info_str = "";
             var _routeInfo = _this.getRouteInfo();
-            _route_info_str = "&pt="+_routeInfo.pt+"&ct="+_routeInfo.ct+"&page_num="+_routeInfo.page_num+"&page_size="+_routeInfo.page_size;
-            localStorage.setItem("index_route_info",_route_info_str);
+            _route_info_str = "&pt=" + _routeInfo.pt + "&ct=" + _routeInfo.ct + "&page_num=" + _routeInfo.page_num + "&page_size=" + _routeInfo.page_size;
+            localStorage.setItem("index_route_info", _route_info_str);
         },
         getRouteInfo: function () {
             var _this = this;
@@ -287,6 +287,12 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     _routeInfo.ct = Config.businessCodes.ORDER_BY_DEFAULT; //综合
                     _routeInfo.page_num = _this.indexItemsPagination.page_num;
                     _routeInfo.page_size = _this.indexItemsPagination.page_size;
+                    break;
+                case "index_allitems":
+                    _routeInfo.pt = 2; //index_template 
+                    _routeInfo.ct = Config.businessCodes.ORDER_BY_DEFAULT; //综合
+                    _routeInfo.page_num = _this.allItemsPagination.page_num;
+                    _routeInfo.page_size = _this.allItemsPagination.page_size;
                     break;
                 case "bycomplex":
                     _routeInfo.pt = 2; //index_template 
