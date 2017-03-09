@@ -92,7 +92,6 @@
     {*简介*}
     <div class="shopinfo-card shopinfo-note">
         <div class="shopinfo-map-content">
-            <p>sdfdsf</p>
             <p>sdfdsfsdfsdfsdfsfsf</p>
         </div>
     </div>
