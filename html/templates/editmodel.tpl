@@ -26,16 +26,16 @@
                 <ul class="tablist tab-index ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
                     <li class="tabitem tab-active">
                         <div>
-                            <i class="icon iconfont icon-empty-font"></i>
-                            <span>店铺首页</span>
+                            <i class="icon iconfont icon-newhome"></i>
+                            <span>Home</span>
                         </div>
                     </li>
                     <li class="tabitem">
 
-                        <div><i class="icon iconfont icon-empty-font"></i><span>全部商品</span></div>
+                        <div><i class="icon iconfont icon-allitem"></i><span>Produk</span></div>
                     </li>
                     <li class="tabitem">
-                        <div><i class="icon iconfont icon-empty-font"></i><span>店铺简介</span></div>
+                        <div><i class="icon iconfont icon-shopinfo"></i><span>Informasi Toko</span></div>
                     </li>
                 </ul>
             </div>

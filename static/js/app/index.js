@@ -48,7 +48,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             _this.route_info.route_page_size = route_page_size||10;
 
             Debug.log("路由信息",_this.route_info)
-            
+
             var _allItemsDefaultTab = 1;
             if(_this.route_info.route_pt==1){
                 _this.tagInfo.curTab = "index_template"
@@ -71,7 +71,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                             _allItemsDefaultTab = 3; //低到高
                             break;
                         case 3:
-                            _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_PRICE_H2L; 
+                            _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_PRICE_H2L;
                             _allItemsDefaultTab = 3;//高到低
                             break;
                         default:
@@ -241,7 +241,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             });
         },
         initRotateBanner: function () {
-            Common.slideImgNav();
+            //Common.slideImgNav();
             var _banners = document.querySelectorAll('.j_banner'),
                 _len = _banners.length;
             if (_len) {
