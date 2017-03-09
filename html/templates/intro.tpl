@@ -112,22 +112,22 @@
                 <ul class="j_store_banner clearfix">
                     <li class="">
                         <ul class="shopinfo-store-banner ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
-                            <li>
+                            <li data-src="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768">
                             <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
-                            <li>
-                            <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
-                            <li>
-                            <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
+                            <li data-src="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768">
+                            <img data-src="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768" data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
+                            <li data-src="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768">
+                            <img data-src="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768" data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
                         </ul>
                     </li>
                     <li class="">
                         <ul class="shopinfo-store-banner ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
-                            <li>
-                            <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
-                            <li>
-                            <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
-                            <li>
-                            <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
+                            <li data-src="https://imghk0.geilicdn.com/test_instashop40780-1475996747811.jpg?w=1024&h=768">
+                            <img data-src="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768" data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
+                            <li data-src="https://imghk0.geilicdn.com/test_instashop40780-1475996747811.jpg?w=1024&h=768">
+                            <img data-src="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768" data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
+                            <li data-src="https://imghk0.geilicdn.com/test_instashop40780-1475996747811.jpg?w=1024&h=768">
+                            <img data-src="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768" data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
                         </ul>
                     </li>
                 </ul>

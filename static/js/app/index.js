@@ -51,12 +51,12 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
 
             var _allItemsDefaultTab = 1;
             if (_this.route_info.route_pt == 1) {
-                _this.tagInfo.curTab = "index_template"
-                _this.indexItemsPagination.page_num = _this.route_info.route_page_num + 1
+                _this.tagInfo.curTab = "index_template";
+                _this.indexItemsPagination.page_num = _this.route_info.route_page_num + 1;
             }
             if (_this.route_info.route_pt == 2) {
-                _this.tagInfo.curTab = "index_allitems"
-                _this.allItemsPagination.page_num = _this.route_info.route_page_num + 1
+                _this.tagInfo.curTab = "index_allitems";
+                _this.allItemsPagination.page_num = _this.route_info.route_page_num + 1;
                 if (_this.route_info.route_ct) {
                     switch (_this.route_info.route_ct) {
                         case 0:
@@ -155,11 +155,16 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             Slide.createNew({
                 dom: document.querySelector(".j_store_banner"),
                 needTab: true,
-                auto: false
+                auto: false,
+                switchFn: function () {
+                    //拿到当前是第几组图片
+                    Debug.log("更新images")
+                    _this.shopStorePicViewer && (_this.shopStorePicViewer.config.images = ["https://imghk0.geilicdn.com/test_instashop40780-1475996747811.jpg?w=1024&h=768", "https://imghk0.geilicdn.com/test_instashop40780-1475996747811.jpg?w=1024&h=768", "https://imghk0.geilicdn.com/test_instashop40780-1475996747811.jpg?w=1024&h=768"])
+                }
             });
-            Viewer({
-                btn: '.j_store_banner li',
-                images: shop_info_data.shop.realinfo.imgs
+            _this.shopStorePicViewer = Viewer({
+                btn: '.shopinfo-store-banner li',
+                images: ["http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768", "https://imghk0.geilicdn.com/test_instashop40780-1475996747811.jpg?w=1024&h=768", "http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"] //shop_info_data.shop.realinfo.imgs
             }).init();
 
             _this.handleFn();
@@ -263,41 +268,56 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 }
             }
         },
+        setRouteInfo: function () {
+            var _this = this,
+                _route_info_str = "";
+            var _routeInfo = _this.getRouteInfo();
+            _route_info_str = "&pt="+_routeInfo.pt+"&ct="+_routeInfo.ct+"&page_num="+_routeInfo.page_num+"&page_size="+_routeInfo.page_size;
+            localStorage.setItem("index_route_info",_route_info_str);
+        },
         getRouteInfo: function () {
             var _this = this;
             var _routeInfo = {};
             switch (_this.tagInfo.curTab) {
                 case "index_template":
-                    _routeInfo.pt = 0; //index_template 
+                    _routeInfo.pt = 1; //index_template 
+                    _routeInfo.ct = Config.businessCodes.ORDER_BY_DEFAULT; //综合
                     _routeInfo.page_num = _this.indexItemsPagination.page_num;
                     _routeInfo.page_size = _this.indexItemsPagination.page_size;
                     break;
                 case "bycomplex":
-                    _routeInfo.pt = 1; //index_template 
+                    _routeInfo.pt = 2; //index_template 
                     _routeInfo.ct = Config.businessCodes.ORDER_BY_DEFAULT; //综合
                     _routeInfo.page_num = _this.allItemsPagination.page_num;
                     _routeInfo.page_size = _this.allItemsPagination.page_size;
                     break;
                 case "bydate":
-                    _routeInfo.pt = 1; //index_template 
+                    _routeInfo.pt = 2; //index_template 
                     _routeInfo.ct = Config.businessCodes.ORDER_BY_ADDTIME; //时间
                     _routeInfo.page_num = _this.allItemsPagination.page_num;
                     _routeInfo.page_size = _this.allItemsPagination.page_size;
                     break;
                 case "bypricel2h":
-                    _routeInfo.pt = 1; //index_template 
+                    _routeInfo.pt = 2; //index_template 
                     _routeInfo.ct = Config.businessCodes.ORDER_BY_PRICE_L2H; //由低到高
                     _routeInfo.page_num = _this.allItemsPagination.page_num;
                     _routeInfo.page_size = _this.allItemsPagination.page_size;
                     break;
                 case "bypriceh2l":
-                    _routeInfo.pt = 1; //index_template 
+                    _routeInfo.pt = 2; //index_template 
                     _routeInfo.ct = Config.businessCodes.ORDER_BY_PRICE_H2L; //由高到低
                     _routeInfo.page_num = _this.allItemsPagination.page_num;
                     _routeInfo.page_size = _this.allItemsPagination.page_size;
                     break;
+                case "index_shopinfo":
+                    _routeInfo.pt = 3; //
+                    _routeInfo.ct = 0; //
+                    _routeInfo.page_num = 1;
+                    _routeInfo.page_size = 10;
+                    break;
                 default:
-                    _routeInfo.pt = 0; //index_template 
+                    _routeInfo.pt = 1; //index_template 
+                    _routeInfo.ct = Config.businessCodes.ORDER_BY_DEFAULT; //综合
                     _routeInfo.page_num = _this.indexItemsPagination.page_num;
                     _routeInfo.page_size = _this.indexItemsPagination.page_size;
                     break;
@@ -398,6 +418,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     _url = Common.transFromUrl(_url);
                 }
                 localStorage.setItem('ScrollTop', _scroll_top);
+                _this.setRouteInfo();
                 Common.saveFromUrl(function () {
                     location.href = _url;
                 });

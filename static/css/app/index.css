@@ -8,6 +8,8 @@
 @import "../moudle/app/sharecoupon/sharecoupon.css";
 @import "../moudle/ui/tab/tab.css";
 @import "./shop_index.css";
+@import "../moudle/ui/viewer/viewer.css";
+@import "../moudle/ui/arrowslide/arrowbanner.css";
 
 body{
     color: #666;

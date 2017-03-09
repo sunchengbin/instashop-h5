@@ -5,7 +5,7 @@
  * @requires
  * @author Leo
  */
-define(["dialog",'base'],function (Dialog,Base) {
+define(["dialog",'base','debug'],function (Dialog,Base,Debug) {
     var SlideBanner = {
         hasPrototype: false,
         whichPlatform: (function (win) {
@@ -98,6 +98,7 @@ define(["dialog",'base'],function (Dialog,Base) {
 
             _this.tabCurrentClass = param.tabCurrentClass || 'cur';
 
+            _this.switchFn = param.switchFn||undefined;
             // 有更多才整理DOM、绑定事件、轮播执行
             if (_this.bannerCount > 1) {
                 if (!_this.formated) {
@@ -367,6 +368,7 @@ define(["dialog",'base'],function (Dialog,Base) {
                 _this.curPage = _this.bannerCount;
                 _this.setTranslate((-(_this.boxWidth * (_this.bannerCount + 1))) + offsetX);
             }
+            _this.switchFn&&_this.switchFn();
         },
         toPage: function () {
             var _this = this,
