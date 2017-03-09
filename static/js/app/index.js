@@ -400,7 +400,11 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                             Debug.log("请求全部商品", _this.allItemsPagination)
                             _this.getAllItem(_this.allItemsPagination);
                             break;
-                        case "byprice":
+                        case "bypricel2h":
+                            Debug.log("请求全部商品", _this.allItemsPagination)
+                            _this.getAllItem(_this.allItemsPagination);
+                            break;
+                        case "bypriceh2l":
                             Debug.log("请求全部商品", _this.allItemsPagination)
                             _this.getAllItem(_this.allItemsPagination);
                             break;
