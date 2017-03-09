@@ -52,6 +52,14 @@
     .shopinfo-map .shopinfo-card-header i {
         color: #70CAFE;
     }
+    .shopinfo-store-banner li{
+        padding:0.125rem;
+        box-sizing: border-box;
+    }
+    .shopinfo-store-banner img{
+        max-height:9rem;
+    }
+
 </style>
 <div>
     {* 店铺基本信息 *}
@@ -78,7 +86,7 @@
            <i class="icon iconfont icon-address-font"></i> Alamat：Jiuxianqiao Road Branch Membangun Blok Bintang 2009
         </div>
         <div class="shopinfo-map-content">
-            <iframe src="{$HOST_URL}/html/googlemap.html?lat=-34.397&lng=150.644" frameborder="0"></iframe>
+            {*<iframe src="{$HOST_URL}/html/googlemap.html?lat=-34.397&lng=150.644" frameborder="0"></iframe>*}
         </div>
     </div>
     <div class="ins-typo ins-p-1">
@@ -89,7 +97,30 @@
             Foto toko
         </div>
         <div class="shopinfo-card-content">
-        
+            <div class="banner-box">
+                <ul class="j_store_banner clearfix">
+                    <li class="item-banner">
+                        <ul class="shopinfo-store-banner ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
+                            <li>
+                            <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
+                            <li>
+                            <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
+                            <li>
+                            <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
+                        </ul>
+                    </li>
+                    <li class="item-banner">
+                        <ul class="shopinfo-store-banner ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
+                            <li>
+                            <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
+                            <li>
+                            <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
+                            <li>
+                            <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     {*简介*}

@@ -19,7 +19,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
         tagInfo: {
             curTab: "index_template"
         },
-        route_info:{
+        route_info: {
 
         },
         init: function (init_data) {
@@ -42,23 +42,23 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
 
 
             //获取url信息
-            _this.route_info.route_pt = route_pt||1;
-            _this.route_info.route_ct = route_ct||0;
-            _this.route_info.route_page_num = route_page_num||2;
-            _this.route_info.route_page_size = route_page_size||10;
+            _this.route_info.route_pt = route_pt || 1;
+            _this.route_info.route_ct = route_ct || 0;
+            _this.route_info.route_page_num = route_page_num || 2;
+            _this.route_info.route_page_size = route_page_size || 10;
 
-            Debug.log("路由信息",_this.route_info)
-            
+            Debug.log("路由信息", _this.route_info)
+
             var _allItemsDefaultTab = 1;
-            if(_this.route_info.route_pt==1){
+            if (_this.route_info.route_pt == 1) {
                 _this.tagInfo.curTab = "index_template"
-                _this.indexItemsPagination.page_num = _this.route_info.route_page_num+1
+                _this.indexItemsPagination.page_num = _this.route_info.route_page_num + 1
             }
-            if(_this.route_info.route_pt==2){
+            if (_this.route_info.route_pt == 2) {
                 _this.tagInfo.curTab = "index_allitems"
-                _this.allItemsPagination.page_num = _this.route_info.route_page_num+1
-                if(_this.route_info.route_ct){
-                    switch(_this.route_info.route_ct){
+                _this.allItemsPagination.page_num = _this.route_info.route_page_num + 1
+                if (_this.route_info.route_ct) {
+                    switch (_this.route_info.route_ct) {
                         case 0:
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_DEFAULT;
                             break;
@@ -71,8 +71,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                             _allItemsDefaultTab = 3; //低到高
                             break;
                         case 3:
-                            _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_PRICE_H2L; 
-                            _allItemsDefaultTab = 3;//高到低
+                            _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_PRICE_H2L;
+                            _allItemsDefaultTab = 3; //高到低
                             break;
                         default:
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_DEFAULT;
@@ -105,17 +105,17 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     Debug.log("切换信息:", switchInfo)
                     _this.tagInfo.curTab = switchInfo.tabalias
                     //检查是否有切换状态
-                    var _tab_status = switchInfo.el.attr("data-status")||"";
-                    if(_tab_status){
-                        if("bypricel2h"==_tab_status){
+                    var _tab_status = switchInfo.el.attr("data-status") || "";
+                    if (_tab_status) {
+                        if ("bypricel2h" == _tab_status) {
                             //改为从高到低
                             _this.tagInfo.curTab = "bypriceh2l"
-                            switchInfo.el.attr("data-status","bypriceh2l")
+                            switchInfo.el.attr("data-status", "bypriceh2l")
                             $(".sort-price-l2h").addClass("sort-price-off");
                             $(".sort-price-h2l").removeClass("sort-price-off");
-                        }else{
+                        } else {
                             _this.tagInfo.curTab = "bypricel2h"
-                            switchInfo.el.attr("data-status","bypricel2h");
+                            switchInfo.el.attr("data-status", "bypricel2h");
                             $(".sort-price-h2l").addClass("sort-price-off");
                             $(".sort-price-l2h").removeClass("sort-price-off");
                         }
@@ -152,7 +152,11 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
 
                 }
             })
-
+            Slide.createNew({
+                dom: document.querySelector(".j_store_banner"),
+                needTab: true,
+                auto: false
+            });
 
             _this.handleFn();
         },
