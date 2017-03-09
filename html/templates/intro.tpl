@@ -59,6 +59,17 @@
     .shopinfo-store-banner img{
         max-height:9rem;
     }
+    .j_store_banner>li {
+        float:left;
+    }
+    .shopinfo-banner-box{
+        min-height: 10rem;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        margin-top:.5rem;
+        z-index: 1;
+    }
 
 </style>
 <div>
@@ -97,9 +108,9 @@
             Foto toko
         </div>
         <div class="shopinfo-card-content">
-            <div class="banner-box">
+            <div class="shopinfo-banner-box">
                 <ul class="j_store_banner clearfix">
-                    <li class="item-banner">
+                    <li class="">
                         <ul class="shopinfo-store-banner ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
                             <li>
                             <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
@@ -109,7 +120,7 @@
                             <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>
                         </ul>
                     </li>
-                    <li class="item-banner">
+                    <li class="">
                         <ul class="shopinfo-store-banner ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
                             <li>
                             <img data-img="http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"/></li>

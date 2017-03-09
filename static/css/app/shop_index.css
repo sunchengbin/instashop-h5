@@ -30,7 +30,7 @@
 
 .shop-info p {
     font-size: 16px;
-    color: #444;
+    color: #ffffff;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -38,7 +38,7 @@
 }
 
 .shop-info span {
-    width: 6rem;
+    width: auto;
     height: 1.5rem;
     background: #F6A623;
     display: inline-block;

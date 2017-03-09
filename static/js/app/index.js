@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/6.
  * 首页
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer) {
     var I = {
         indexItemsPagination: {
             page_size: 10,
@@ -47,7 +47,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             _this.route_info.route_page_num = route_page_num || 2;
             _this.route_info.route_page_size = route_page_size || 10;
 
-            Debug.log("路由信息",_this.route_info)
+            Debug.log("路由信息", _this.route_info)
 
             var _allItemsDefaultTab = 1;
             if (_this.route_info.route_pt == 1) {
@@ -72,7 +72,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                             break;
                         case 3:
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_PRICE_H2L;
-                            _allItemsDefaultTab = 3;//高到低
+                            _allItemsDefaultTab = 3; //高到低
                             break;
                         default:
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_DEFAULT;
@@ -157,6 +157,10 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 needTab: true,
                 auto: false
             });
+            Viewer({
+                btn: '.j_store_banner li',
+                images: shop_info_data.shop.realinfo.imgs
+            }).init();
 
             _this.handleFn();
         },
