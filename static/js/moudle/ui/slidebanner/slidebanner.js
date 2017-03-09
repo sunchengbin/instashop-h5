@@ -53,7 +53,9 @@ define(["dialog",'base'],function (Dialog,Base) {
 
             // 容器宽度
             this.boxWidth = this.parentDom.clientWidth;
-            //_this.boxWidth = window.innerWidth;
+            if(this.boxWidth == 0){
+                _this.boxWidth = window.innerWidth;
+            }
             _this.boxHeight = _this.parentDom.clientHeight;
 
             // 手指开始位置
