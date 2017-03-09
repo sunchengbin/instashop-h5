@@ -15,11 +15,13 @@
         </ul>
     </div>
     <div data-spider="item-list" class="all-items-wrap">
-        {if !$ALL_ITEM_DATA.item_list.list|@count}
+        {if !$INDEX_DATA.item_list.list|@count}
         <section class="no_item">Belum ada produk</section>
         {/if}
-        <section class="items-box ins-m-t-0 j_box">
-            <ul class="items-list clearfix">
+        <section class="items-box j_hot_box j_box">
+            {if $ALL_ITEMS|@count}
+            {if $ITEMTYPE neq '3'}
+            <ul class="items-list clearfix j_hot_list">
                 {foreach $ALL_ITEMS as $item}
                 <li>
                     <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}"
@@ -51,7 +53,21 @@
                 </li>
                 {/foreach}
             </ul>
-        </section>
+            {else}
+            <ul class="three-items-list clearfix j_hot_list">
+                {foreach $ALL_ITEMS as $item}
+                <li>
+                    <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}"
+                        href="javascript:;">
+                        <div class="lazy" data-img="{$item.img|list_img}">
+                            {if $item.is_discount}
+                            <span>-{$item.discount.value}%</span> {/if}
+                        </div>
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+            {/if} {/if}
     </div>
 </div>
 <script>

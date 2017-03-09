@@ -50,7 +50,15 @@
     $smarty->assign('ALL_ITEM_DATA',$json);
     $smarty->assign('ALL_ITEMS',$json["item_list"]["list"]);
 
-    
+    // 获取店铺信息
+    $params = [
+        'action' => 'index_shopinfo',
+        'platform' => 'web'
+    ];
+    $ret = get_init_php_data($path, $params);
+    $json = json_decode($ret, true);
+    $smarty->assign('SHOP_INFO_DATA_STR',$ret);
+    $smarty->assign('SHOP_INFO_DATA',$json["shop"]);
     
     
     
