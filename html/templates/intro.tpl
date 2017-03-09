@@ -105,7 +105,7 @@
     {*店铺实景*}
     <div class="shopinfo-card shopinfo-scene">
         <div class="shopinfo-card-header">
-            Foto toko
+            Foto Outlet
         </div>
         <div class="shopinfo-card-content">
             <div class="shopinfo-banner-box">

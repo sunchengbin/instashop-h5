@@ -10,7 +10,7 @@
                     <img data-img="{$INDEX_DATA.shop.logo}" src="" />
                 </div>
                 <p>{$INDEX_DATA.shop.name}</p>
-                <span><i class="icon iconfont icon-shop-font"></i>Toko fisik</span>
+                <span><i class="icon iconfont icon-shop-font"></i>Toko</span>
             </div>
         </section>
         <div class="tabs">
