@@ -39,16 +39,33 @@
         height:20rem;
         background:#d8d8d8;
     }
+    .shopinfo-note .shopinfo-map-content {
+        background: #F8F8F8;
+        padding:1rem;
+    }
+    .shopinfo-note p:first-child {
+        color:#666666;
+    }
+    .shopinfo-note p:last-child {
+        color:#999999;
+    }
 </style>
 <div>
     {* 店铺基本信息 *}
     <div class="shopinfo-card shopinfo-base">
         <div class="shopinfo-card-header">
-            Menyimpan informasi toko：
+            Informasi Toko:
         </div>
         <p></p>
-        <p>Waktu：Setiap pagi 8.00 - 09:00 WIB</p>
-        <p>Telepon:<span><i class="icon iconfont icon-phone-font"></i>1324872987429</span></p>
+        {*营业时间 has为开关*}
+        {*{if $SHOP_INFO_DATA.realinfo.opentime.has}*}
+        <p>Jam Operasional Toko: {$SHOP_INFO_DATA.realinfo.opentime.from} - {$SHOP_INFO_DATA.realinfo.opentime.to} WIB</p>
+        {*{/if}*}
+        {*电话不为空时*}
+        {*{if $SHOP_INFO_DATA.realinfo.telephone neq ''}*}
+        {*{$SHOP_INFO_DATA.realinfo.telephone}*}
+        <p>Telepon:<span> <i class="icon iconfont icon-phone-font"></i> 18601363531</span></p>
+        {*{/if}*}
     </div>
     <div class="ins-typo ins-p-1">
     </div>
@@ -73,9 +90,10 @@
         </div>
     </div>
     {*简介*}
-    <div class="shopinfo-card shopinfo-sign">
-        <div class="shopinfo-map-header"></div>
+    <div class="shopinfo-card shopinfo-note">
         <div class="shopinfo-map-content">
+            <p>sdfdsf</p>
+            <p>sdfdsfsdfsdfsdfsfsf</p>
         </div>
     </div>
 </div>

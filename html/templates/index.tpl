@@ -92,7 +92,17 @@
                         {/if} {/if}
                     </section>
                 </div>
-                <section class="index-footer" data-spider="foot-nav">
+            </div>
+            <div class="tabpanel">
+                {*全部商品*} {include file="items.tpl"}
+
+            </div>
+            {*店铺简介*}
+            <div class="tabpanel">
+                {include file="intro.tpl"}
+            </div>
+        </div>
+        <section class="index-footer" data-spider="foot-nav">
                     <div class="search-box" data-spider="go-search">
                         <a href="{$HOST_NAME}/html/search.php" class="search-btn block" spm-auto="搜索商品" spm-click="search-items">
                             <i class="iconfont icon-search-font"></i>
@@ -124,16 +134,6 @@
                         </li>
                     </ul>
                 </section>
-            </div>
-            <div class="tabpanel">
-                {*全部商品*} {include file="items.tpl"}
-
-            </div>
-            {*店铺简介*}
-            <div class="tabpanel">
-                {include file="intro.tpl"}
-            </div>
-        </div>
     </div>
     {/if}
 </body>
