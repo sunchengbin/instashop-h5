@@ -127,6 +127,7 @@
     // $items = transItems($json["item_list"]["list"]);
     $itemtype = getItemListType($json["template"]);
     $smarty->assign('ITEMTYPE',$itemtype);
+    $smarty->assign('TAG_LIST',$json["tag_list"]);
     $smarty->assign('RECOMMEND_ITEM',$json["item_list"]["list"]);
 
     //请求第二个tab数据
