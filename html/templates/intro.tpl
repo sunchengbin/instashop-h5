@@ -5,6 +5,10 @@
         box-sizing: border-box;
         {*border-bottom: 1px solid #d8d8d8;*}
     }
+
+    .shopinfo-card-allp {
+        padding: 1rem 1rem 1rem;
+    }
     
     .shopinfo-card-header {
         padding: 1rem 0;
@@ -144,7 +148,7 @@
     
     {*简介*}
     {if $SHOP_INFO_DATA.note neq ''}
-    <div class="shopinfo-card shopinfo-note">
+    <div class="shopinfo-card shopinfo-note {if $SHOP_INFO_DATA.realinfo.imgs|@count && $SHOP_INFO_DATA.realinfo.location.vicinity neq '' && $SHOP_INFO_DATA.realinfo.opentime.has && $SHOP_INFO_DATA.realinfo.telephone neq ''}{else}shopinfo-card-allp ins-m-t-2{/if}">
         <div class="shopinfo-map-content">
             <p>{$SHOP_INFO_DATA.note}</p>
         </div>
