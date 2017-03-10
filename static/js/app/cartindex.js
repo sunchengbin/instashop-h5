@@ -77,8 +77,14 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     },1);
                 } else {
                     localStorage.removeItem('CartFromUrl');
+                    var _scroll_url = localStorage.getItem('index_route_info')?localStorage.getItem('index_route_info'):'';
                     setTimeout(function(){
-                        location.href = _fromurl;
+                        if(/pt/g.test(_fromurl)){
+                            location.href = _fromurl;
+                        }else{
+                            location.href = _fromurl+'?item=back'+_scroll_url;
+                        }
+
                     },1);
                 }
             });
