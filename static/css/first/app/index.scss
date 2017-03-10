@@ -1,0 +1,31 @@
+@import "../base/base.scss";
+body{
+  color: #666;
+  background-color: #ececec;
+  padding-bottom: 4rem;
+}
+section{
+  background-color: #fff;
+}
+.shop-header{
+  position: relative;
+}
+.shop-header-bg{
+  min-height: 100px;
+}
+.shop-info{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom:0;
+  z-index: 2;
+}
+.shop-img{
+  display: inline-block;
+  border:solid #fff;
+  @include remCalc(border-width,0.07);
+}
+.shop-info img{
+  @include remCalc(width,2);
+  @include remCalc(height,2);
+}
