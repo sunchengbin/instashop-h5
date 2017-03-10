@@ -42,8 +42,18 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             if ($('.txt-hide').height() > 44) {
                 $('.down-btn').show();
             }
+            //todo测试
+            // shop_info_data.shop.realinfo.imgs = [
+            //     "http://olmd8d3fq.bkt.clouddn.com/01a1d0c2-810b-4371-a1ee-0861a978d0fc",
+            //     "http://olmd8d3fq.bkt.clouddn.com/0900f66e-4593-43e8-8b3b-7dec08f17748",
+            //     "http://olmd8d3fq.bkt.clouddn.com/0b55a5a1-5e4c-4c03-ac16-1a3cbb7ac7ae",
+            //     "http://olmd8d3fq.bkt.clouddn.com/237f2977-e6d0-4a68-a05a-b3c55fd3f80c"
+            //     ];
 
-
+            //初始化实体店铺图
+            if (shop_info_data.shop.realinfo && shop_info_data.shop.realinfo.imgs.length > 0) {
+                _this.initShopInfoImgSlideBanner();
+            }
             //获取url信息
             _this.route_info.route_pt = route_pt || 1;
             _this.route_info.route_ct = route_ct || 0;
@@ -84,6 +94,13 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 }
             }
 
+            if (_this.route_info.route_pt == 3) {
+                _this.tagInfo.curTab = "index_shopinfo";
+                if (shop_info_data.shop.realinfo && !!shop_info_data.shop.realinfo.location.vicinity) {
+                    _this.createMapIframe("._shopinfo-map-el");
+                }
+            }
+
             //首页模块tab
             Tab({
                 $header: ".tab-index",
@@ -95,9 +112,12 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 },
                 switchFn: function (switchInfo) {
                     _this.tagInfo.curTab = switchInfo.tabalias
-                    if("index_shopinfo"==_this.tagInfo.curTab){
-                        _this.createMapIframe("._shopinfo-map-el");
+                    if ("index_shopinfo" == _this.tagInfo.curTab) {
+                        if (shop_info_data.shop.realinfo && !!shop_info_data.shop.realinfo.location.vicinity) {
+                            _this.createMapIframe("._shopinfo-map-el");
+                        }
                     }
+                    PaqPush && PaqPush('首页父级导航tab-' + _this.tagInfo.curTab, '');
                     Debug.log("切换信息:", switchInfo)
                 }
             })
@@ -126,6 +146,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                             $(".sort-price-l2h").removeClass("sort-price-off");
                         }
                     }
+                    PaqPush && PaqPush('首页全部商品二级导航tab-' + _this.tagInfo.curTab, '');
                     switch (_this.tagInfo.curTab) {
                         case "bycomplex":
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_DEFAULT;
@@ -158,26 +179,58 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
 
                 }
             })
+            _this.handleFn();
+        },
+        initShopInfoImgSlideBanner: function () {
+            var _this = this;
+            var _shopInfoImgs = shop_info_data.shop.realinfo.imgs;
+            _this._groupImgs = [];
+            _this.groupArrayByNumber(_shopInfoImgs, 3, _this._groupImgs);
+            _this.createShopInfoSlierDom();
             Slide.createNew({
                 dom: document.querySelector(".j_store_banner"),
                 needTab: true,
                 auto: false,
-                switchFn: function () {
-                    //拿到当前是第几组图片
-                    Debug.log("更新images")
-                    _this.shopStorePicViewer && (_this.shopStorePicViewer.config.images = ["https://imghk0.geilicdn.com/test_instashop40780-1475996747811.jpg?w=1024&h=768", "https://imghk0.geilicdn.com/test_instashop40780-1475996747811.jpg?w=1024&h=768", "https://imghk0.geilicdn.com/test_instashop40780-1475996747811.jpg?w=1024&h=768"])
+                switchFn: function (curPage) {
+                    Debug.log("当前slidepage",curPage);
+                    _this.shopStorePicViewer && (_this.shopStorePicViewer.config.images = _this._groupImgs[curPage-1])
                 }
             });
             _this.shopStorePicViewer = Viewer({
                 btn: '.shopinfo-store-banner li',
-                images: ["http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768", "https://imghk0.geilicdn.com/test_instashop40780-1475996747811.jpg?w=1024&h=768", "http://imghk0.geilicdn.com//test_instashop40733-1481165121864-7447549unadjust.jpg?w=1024&h=768"] //shop_info_data.shop.realinfo.imgs
+                images: _this._groupImgs[0] //shop_info_data.shop.realinfo.imgs
             }).init();
-
-            _this.handleFn();
         },
-        createMapIframe:function(el){
+        createShopInfoSlierDom: function () {
+            var _this = this,
+                $store_banner = $(".j_store_banner");
+            for (var i = 0; i < _this._groupImgs.length; i++) {
+                //组
+                var _curGroup = _this._groupImgs[i];
+                var _curLi = $("<li></li>");
+                var _curUl = $('<ul class="shopinfo-store-banner ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3"></ul>');
+                _curLi.appendTo($store_banner);
+                _curLi.append(_curUl);
+                for (var j = 0; j < _curGroup.length; j++) {
+                    var _curImg = _curGroup[j];
+                    _curUl.append($('<li data-num="'+j+'" data-src="' + _curImg + '"><img data-img="' + _curImg + '"/></li>'));
+                }
+            }
+        },
+        groupArrayByNumber: function (array, number, receiveArray) {
             var _this = this;
-            var $iframe = $('<iframe src="'+Config.host.maphost+'/html/googlemap.html?lat=-34.397&lng=150.644" frameborder="0"></iframe>')
+            if (array.length == 0) return receiveArray;
+            var _array = [];
+            for (var i = 0; i < number; i++) {
+                if (array.length == 0) break;
+                _array.push(array.shift());
+            }
+            receiveArray.push(_array);
+            if (array.length > 0) _this.groupArrayByNumber(array, number, receiveArray);
+        },
+        createMapIframe: function (el) {
+            var _this = this;
+            var $iframe = $('<iframe src="' + Config.host.maphost + '/html/googlemap.html?lat=' + shop_info_data.shop.realinfo.location.lat || 0 + '&lng=' + shop_info_data.shop.realinfo.location.lng || 0 + '" frameborder="0"></iframe>')
             $(el).append($iframe);
         },
         getRecommendItem: function (paginationOpt) {

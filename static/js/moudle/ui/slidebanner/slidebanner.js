@@ -368,7 +368,7 @@ define(["dialog",'base','debug'],function (Dialog,Base,Debug) {
                 _this.curPage = _this.bannerCount;
                 _this.setTranslate((-(_this.boxWidth * (_this.bannerCount + 1))) + offsetX);
             }
-            _this.switchFn&&_this.switchFn();
+            _this.switchFn&&_this.switchFn(_this.curPage);
         },
         toPage: function () {
             var _this = this,

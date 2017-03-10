@@ -13,7 +13,7 @@
                 <span><i class="icon iconfont icon-shop-font"></i>Toko</span>
             </div>
         </section>
-        <div class="tabs">
+        <div class="tabs" data-spider="index-parent-tab">
             <ul class="tablist tab-index ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
                 <li class="tabitem">
                     <div>

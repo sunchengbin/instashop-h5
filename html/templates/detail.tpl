@@ -73,6 +73,7 @@
                 <i class="icon iconfont fr icon-go-font"></i>
                 <img class="fl" src="{$INDEX_DATA.item.shop.logo}" />
                 <p>{$INDEX_DATA.item.shop.name}</p>
+                <span><i class="icon iconfont icon-shop-font"></i>Toko</span>
             </div>
         </a>
     </div>
