@@ -45,6 +45,15 @@ loading
             title:"Hello World!"
         });
         marker.setMap(map);
+        var _init_num = 0;
+        map.addListener('bounds_changed', function() {
+            _init_num ++;
+            var _parent = window.parent;
+            if(_init_num != 1){
+                _parent.PaqPush && _parent.PaqPush('查看地图', '');
+            }
+        });
+
     }
 
 </script>
