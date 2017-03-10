@@ -168,6 +168,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     $('.all-items-wrap .items-list').html("")
                     //重置分页计数
                     _this.allItemsPagination.page_num = 1;
+                    _this.allItemsPagination.getData = true;
                     _this.getAllItem({
                         page_size: _this.allItemsPagination.page_size,
                         page_num: _this.allItemsPagination.page_num, //子tab切换默认第一页
