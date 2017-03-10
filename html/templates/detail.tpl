@@ -73,7 +73,9 @@
                 <i class="icon iconfont fr icon-go-font"></i>
                 <img class="fl" src="{$INDEX_DATA.item.shop.logo}" />
                 <p>{$INDEX_DATA.item.shop.name}</p>
+                {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
                 <span><i class="icon iconfont icon-shop-font"></i>Toko</span>
+                {/if}
             </div>
         </a>
     </div>
@@ -181,4 +183,7 @@
 </div>
 </section>
 {/if} {/if}
-<script>var init_data = {$INDEX_DATA_STR};</script> {include file="footer.tpl"}
+<script>
+var init_data = {$INDEX_DATA_STR};
+var shop_info_data = {$SHOP_INFO_DATA_STR};
+</script> {include file="footer.tpl"}

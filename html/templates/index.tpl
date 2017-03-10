@@ -10,7 +10,9 @@
                     <img data-img="{$INDEX_DATA.shop.logo}" src="" />
                 </div>
                 <p>{$INDEX_DATA.shop.name}</p>
+                {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
                 <span><i class="icon iconfont icon-shop-font"></i>Toko</span>
+                {/if}
             </div>
         </section>
         <div class="tabs" data-spider="index-parent-tab">
