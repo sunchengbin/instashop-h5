@@ -501,6 +501,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             $('body').on('click', '.j_cart_wraper', function () {
                 var _this = $(this),
                     _url = _this.attr('data-url');
+                _that.setRouteInfo();
                 Common.saveCartFromUrl(function () {
                     location.href = _url;
                 });
