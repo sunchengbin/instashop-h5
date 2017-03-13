@@ -230,8 +230,13 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             if (array.length > 0) _this.groupArrayByNumber(array, number, receiveArray);
         },
         createMapIframe: function (el) {
+            $(el).empty();
             var _this = this;
-            var $iframe = $('<iframe src="' + Config.host.maphost + '/html/googlemap.html?lat=' + shop_info_data.shop.realinfo.location.lat || 0 + '&lng=' + shop_info_data.shop.realinfo.location.lng || 0 + '" frameborder="0"></iframe>')
+            var _urlHead = Config.host.maphost+'/html/googlemap.html?';
+            var _lat = shop_info_data.shop.realinfo.location.lat||0;
+            var _lng = shop_info_data.shop.realinfo.location.lng||0;
+            var _googleMap$Dom = '<iframe src="' + _urlHead + 'lat=' + _lat + '&lng=' + _lng + '" frameborder="0"></iframe>';
+            var $iframe = $(_googleMap$Dom);
             $(el).append($iframe);
         },
         getRecommendItem: function (paginationOpt) {

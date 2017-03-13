@@ -428,3 +428,7 @@ img{
 .ins-m-t-2 {
   margin-top: 1rem;
 }
+
+.ins-text-left {
+  text-align: left!important;
+}
