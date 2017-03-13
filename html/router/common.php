@@ -193,10 +193,12 @@ function smartyCommon($folder_name){
         $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
         $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
         $smarty->assign('TEMP_FOLDER',$folder_name.'/');
+        $smarty->assign('CSS_DEBUG','.debug');
     }else{
         $smarty->setTemplateDir(__DIR__.'/../templates/');
         $smarty->setCompileDir(__DIR__.'/../templates_c/');
         $smarty->assign('TEMP_FOLDER','');
+        $smarty->assign('CSS_DEBUG','');
     }
     $smarty->assign('STATIC_DNS',STATIC_DNS);
     $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);

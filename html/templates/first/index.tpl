@@ -5,7 +5,7 @@
         <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
         <div class="clearfix shop-info">
             <div class="shop-img">
-                <img data-img="{$INDEX_DATA.shop.logo}" src=""/>
+                <img src="{$INDEX_DATA.shop.logo}"/>
             </div>
             <div class="shop-seller-info">
                 <p>Kikyo</p>

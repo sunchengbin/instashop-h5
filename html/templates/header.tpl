@@ -15,8 +15,8 @@
   {$FLEXIBLE}
   </script>
   {if $IS_DEBUG}
-    <link href="{$STATIC_HOST}/css/{$TEMP_FOLDER}app/{$INDEX_CSS_NAME}.css?v=1488795292840" rel="stylesheet"/>
+    <link href="{$STATIC_HOST}/css/{$TEMP_FOLDER}app/{$INDEX_CSS_NAME}{$CSS_DEBUG}.css?v=1488795292840" rel="stylesheet"/>
   {else}
-    <link href="{$STATIC_HOST}/css/dist/{$TEMP_FOLDER}app/{$INDEX_CSS_NAME}.css?v=1488795292840" rel="stylesheet"/>
+    <link href="{$STATIC_HOST}/css/dist/{$TEMP_FOLDER}app/{$INDEX_CSS_NAME}{$CSS_DEBUG}.css?v=1488795292840" rel="stylesheet"/>
   {/if}
 </head>
