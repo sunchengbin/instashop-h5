@@ -7,8 +7,13 @@
             <div class="shop-img">
                 <img data-img="{$INDEX_DATA.shop.logo}" src=""/>
             </div>
-
+            <div class="shop-seller-info">
+                <p>Kikyo</p>
+            </div>
         </div>
+    </section>
+    <section class="coupon-box">
+        Minimal Pembelian Rp 150.000 Potongan  Rp 10.000
     </section>
 {else}
     <section class="no_item">Belum ada produk</section>
