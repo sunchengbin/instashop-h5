@@ -83,13 +83,13 @@ define([
             // $el.addClass(defaultOpts.activeItemClass);
             var _tabrole = $el.attr("role");
             _this.restoreActiveStatus();
+            if (_this._tabPanels) $(_this.tabs[_tabrole].tabPanel).addClass(defaultOpts.activePanelClass);
             _this.opts.switchFn && _this.opts.switchFn.call(_this, {
                 el: $el,
                 tabalias:_this.opts.alias[_tabrole.split("_")[1]-1],
                 tabRole: _tabrole,
                 tabPanel: _this._tabPanels ? $(_this.tabs[_tabrole].tabPanel) : null
             });
-            if (_this._tabPanels) $(_this.tabs[_tabrole].tabPanel).addClass(defaultOpts.activePanelClass);
             $(_this.tabs[_tabrole].tabEl).addClass(defaultOpts.activeItemClass);
         },
         restoreActiveStatus: function () {

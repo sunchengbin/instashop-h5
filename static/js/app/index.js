@@ -23,7 +23,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
 
         },
         init: function (init_data) {
-            Lazyload();
+            this.lazyload = Lazyload();
             if (!Base.others.getUrlPrem('pt')) {
                 localStorage.removeItem('index_route_info');
             }
@@ -48,7 +48,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             //     "http://olmd8d3fq.bkt.clouddn.com/0900f66e-4593-43e8-8b3b-7dec08f17748",
             //     "http://olmd8d3fq.bkt.clouddn.com/0b55a5a1-5e4c-4c03-ac16-1a3cbb7ac7ae",
             //     "http://olmd8d3fq.bkt.clouddn.com/237f2977-e6d0-4a68-a05a-b3c55fd3f80c"
-            //     ];
+            // ];
 
             //初始化实体店铺图
             if (shop_info_data.shop.realinfo && shop_info_data.shop.realinfo.imgs.length > 0) {
@@ -94,13 +94,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 }
             }
 
-            if (_this.route_info.route_pt == 3) {
-                _this.tagInfo.curTab = "index_shopinfo";
-                if (shop_info_data.shop.realinfo && !!shop_info_data.shop.realinfo.location.vicinity) {
-                    _this.createMapIframe("._shopinfo-map-el");
-                }
-            }
-
             //首页模块tab
             Tab({
                 $header: ".tab-index",
@@ -116,11 +109,21 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                         if (shop_info_data.shop.realinfo && !!shop_info_data.shop.realinfo.location.vicinity) {
                             _this.createMapIframe("._shopinfo-map-el");
                         }
+                        $(".shopinfo-store-banner").width($(".shopinfo-banner-box").width());
                     }
                     PaqPush && PaqPush('首页父级导航tab-' + _this.tagInfo.curTab, '');
                     Debug.log("切换信息:", switchInfo)
                 }
             })
+
+            if (_this.route_info.route_pt == 3) {
+                _this.tagInfo.curTab = "index_shopinfo";
+                if (shop_info_data.shop.realinfo && !!shop_info_data.shop.realinfo.location.vicinity) {
+                    _this.createMapIframe("._shopinfo-map-el");
+                }
+                $(".shopinfo-store-banner").width($(".shopinfo-banner-box").width());
+            }
+
 
             //全部商品子TAB
             var allItemTab = Tab({
@@ -193,8 +196,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 needTab: true,
                 auto: false,
                 switchFn: function (curPage) {
-                    Debug.log("当前slidepage",curPage);
-                    _this.shopStorePicViewer && (_this.shopStorePicViewer.config.images = _this._groupImgs[curPage-1])
+                    Debug.log("当前slidepage", curPage);
+                    _this.shopStorePicViewer && (_this.shopStorePicViewer.config.images = _this._groupImgs[curPage - 1])
                 }
             });
             _this.shopStorePicViewer = Viewer({
@@ -209,12 +212,14 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 //组
                 var _curGroup = _this._groupImgs[i];
                 var _curLi = $("<li></li>");
-                var _curUl = $('<ul class="shopinfo-store-banner ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3"></ul>');
+                // var _curUl = $('<ul class="shopinfo-store-banner ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3"></ul>');
+                var _curUl = $('<ul class="shopinfo-store-banner three-items-list"></ul>');
                 _curLi.appendTo($store_banner);
                 _curLi.append(_curUl);
                 for (var j = 0; j < _curGroup.length; j++) {
                     var _curImg = _curGroup[j];
-                    _curUl.append($('<li data-num="'+j+'" data-src="' + _curImg + '"><img data-img="' + _curImg + '"/></li>'));
+                    // _curUl.append($('<li data-num="'+j+'" data-src="' + _curImg + '"><img data-img="' + _curImg + '"/></li>'));
+                    _curUl.append($('<li data-num="' + j + '" data-src="' + _curImg + '"><div class="lazy" style="background-image:url(' + _curImg + ')"></div></li>'));
                 }
             }
         },
@@ -232,9 +237,9 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
         createMapIframe: function (el) {
             $(el).empty();
             var _this = this;
-            var _urlHead = Config.host.maphost+'/html/googlemap.html?';
-            var _lat = shop_info_data.shop.realinfo.location.lat||0;
-            var _lng = shop_info_data.shop.realinfo.location.lng||0;
+            var _urlHead = Config.host.maphost + '/html/googlemap.html?';
+            var _lat = shop_info_data.shop.realinfo.location.lat || 0;
+            var _lng = shop_info_data.shop.realinfo.location.lng || 0;
             var _googleMap$Dom = '<iframe src="' + _urlHead + 'lat=' + _lat + '&lng=' + _lng + '" frameborder="0"></iframe>';
             var $iframe = $(_googleMap$Dom);
             $(el).append($iframe);
@@ -296,31 +301,38 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     filter: paginationOpt.fitler || Config.businessCodes.FILTER_ALL //全部商品
                 }
             };
+            _this._loading = Dialog.loading({
+                width: 100,
+                is_cover: true
+            });
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.shopList + init_data.shop.id + '?param=' + JSON.stringify(reqData), function (obj) {
                 if (obj.code == 200) {
-                    _this.allItemsPagination.page_num++
-                        if (obj.item_list.list.length > 0) {
-                            var _list_data = obj.item_list.list;
-                            if (_list_data.length) {
-                                // if (!$('.all-items-wrap .j_item_list').length) {
-                                //     var _htm = '<p class="item-title"><span></span>' + Lang.H5_GOODS_ORTHER + '</p><ul class="' + (_this.item_type != 3 ? 'items-list' : 'three-items-list') + ' j_item_list clearfix"></ul>';
-                                //     $('.j_item_box').html(_htm);
-                                // }
+                    _this.allItemsPagination.page_num++;
+                    if (obj.item_list.list.length > 0) {
+                        var _list_data = obj.item_list.list;
+                        if (_list_data.length) {
+                            // if (!$('.all-items-wrap .j_item_list').length) {
+                            //     var _htm = '<p class="item-title"><span></span>' + Lang.H5_GOODS_ORTHER + '</p><ul class="' + (_this.item_type != 3 ? 'items-list' : 'three-items-list') + ' j_item_list clearfix"></ul>';
+                            //     $('.j_item_box').html(_htm);
+                            // }
 
-                                $('.all-items-wrap .items-list').append(Item.addItem(_list_data, _this.item_type));
-                            }
-                            if ($('[data-time]').length) {
-                                Item.changeTime();
-                            }
-                            _this.allItemsPagination.getData = true;
-                        } else {
-                            _this.allItemsPagination.getData = false;
+                            $('.all-items-wrap .items-list').append(Item.addItem(_list_data, _this.item_type));
                         }
+                        if ($('[data-time]').length) {
+                            Item.changeTime();
+                        }
+                        _this.allItemsPagination.getData = true;
+                    } else {
+                        _this.allItemsPagination.getData = false;
+                    }
+                    _this.lazyload.lazyLoadImage();
                 } else {
                     _this.allItemsPagination.getData = true;
                 }
+                _this._loading.remove()
             }, function (error) {
                 _this.allItemsPagination.getData = true;
+                _this._loading.remove()
             });
         },
         initRotateBanner: function () {
