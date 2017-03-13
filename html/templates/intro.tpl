@@ -79,7 +79,7 @@
 <div>
     {* 店铺基本信息 *}
 
-    {if $SHOP_INFO_DATA.realinfo.opentime.has && $SHOP_INFO_DATA.realinfo.telephone neq ''}
+    {if $SHOP_INFO_DATA.realinfo.opentime.has || $SHOP_INFO_DATA.realinfo.telephone neq ''}
     <div class="shopinfo-card shopinfo-base">
         <div class="shopinfo-card-header">
             Informasi Toko:
