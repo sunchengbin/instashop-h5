@@ -5,12 +5,12 @@
 require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer) {
     var I = {
         indexItemsPagination: {
-            page_size: 10,
+            page_size: 18,
             page_num: 2,
             getData: true
         },
         allItemsPagination: {
-            page_size: 10,
+            page_size: 18,
             page_num: 2,
             getData: true,
             orderby: 0,
