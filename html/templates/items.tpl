@@ -28,7 +28,7 @@
         <section class="items-box j_hot_box j_box">
             {if $ALL_ITEMS|@count}
             {if $ITEMTYPE neq '3'}
-            <ul class="items-list clearfix j_hot_list">
+            <ul class="items-list clearfix j_all_list">
                 {foreach $ALL_ITEMS as $item}
                 <li>
                     <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}"
@@ -61,7 +61,7 @@
                 {/foreach}
             </ul>
             {else}
-            <ul class="three-items-list clearfix j_hot_list">
+            <ul class="three-items-list clearfix j_all_list">
                 {foreach $ALL_ITEMS as $item}
                 <li>
                     <a spm-auto="单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}"

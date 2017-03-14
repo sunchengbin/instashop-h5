@@ -168,7 +168,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                             break;
                     }
                     //清空掉当前排序列表
-                    $('.all-items-wrap .items-list').html("")
+                    $('.all-items-wrap .j_all_list').html("");
                     //重置分页计数
                     _this.allItemsPagination.page_num = 1;
                     _this.allItemsPagination.getData = true;
@@ -177,6 +177,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                         page_num: _this.allItemsPagination.page_num, //子tab切换默认第一页
                         orderby: _this.allItemsPagination.orderby,
                         filter: _this.allItemsPagination.filter
+                    },function(){
+                        _this.continueLoad = true;
                     });
                 },
                 defaultFn: function () {
@@ -244,7 +246,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             var $iframe = $(_googleMap$Dom);
             $(el).append($iframe);
         },
-        getRecommendItem: function (paginationOpt) {
+        getRecommendItem: function (paginationOpt,callback) {
             //默认加载已经请求了第一页 所以从第二页开始
             var _this = this;
             if (!_this.indexItemsPagination.getData) return;
@@ -282,15 +284,17 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     _this.indexItemsPagination.getData = true;
                 }
                 _this._loading.remove();
+                callback && callback();
             }, function (error) {
                 _this._loading.remove();
+                callback && callback();
                 _this.indexItemsPagination.getData = true;
             });
         },
         /**
          * 全部商品tab初始化时加载函数
          */
-        getAllItem: function (paginationOpt) {
+        getAllItem: function (paginationOpt,callback) {
             var _this = this;
             if (!_this.allItemsPagination.getData) return;
             _this.allItemsPagination.getData = false;
@@ -313,12 +317,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     if (obj.item_list.list.length > 0) {
                         var _list_data = obj.item_list.list;
                         if (_list_data.length) {
-                            // if (!$('.all-items-wrap .j_item_list').length) {
-                            //     var _htm = '<p class="item-title"><span></span>' + Lang.H5_GOODS_ORTHER + '</p><ul class="' + (_this.item_type != 3 ? 'items-list' : 'three-items-list') + ' j_item_list clearfix"></ul>';
-                            //     $('.j_item_box').html(_htm);
-                            // }
-
-                            $('.all-items-wrap .items-list').append(Item.addItem(_list_data, _this.item_type));
+                            $('.all-items-wrap .j_all_list').append(Item.addItem(_list_data, _this.item_type));
                         }
                         if ($('[data-time]').length) {
                             Item.changeTime();
@@ -331,10 +330,12 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 } else {
                     _this.allItemsPagination.getData = true;
                 }
-                _this._loading.remove()
+                _this._loading.remove();
+                callback && callback();
             }, function (error) {
                 _this.allItemsPagination.getData = true;
-                _this._loading.remove()
+                _this._loading.remove();
+                callback && callback();
             });
         },
         initRotateBanner: function () {
@@ -452,7 +453,10 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     coupon_url: Config.host.host + 'b/' + _coupon_id
                 });
             });
+            _that.continueLoad = true;
             $(document).on('scroll', function (e) {
+                //if(!_that.continueLoad)return;
+                //_that.continueLoad = false;
                 var moz = /Gecko\//i.test(navigator.userAgent);
                 var body = document[moz ? 'documentElement' : 'body'];
                 var _st = body.scrollTop, //firefox下body无scrollTop
@@ -467,27 +471,39 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     switch (_this.tagInfo.curTab) {
                         case "index_template":
                             Debug.log("请求推荐商品分页信息", _this.indexItemsPagination)
-                            _this.getRecommendItem(_this.indexItemsPagination);
+                            _this.getRecommendItem(_this.indexItemsPagination,function(){
+                                _that.continueLoad = true;
+                            });
                             break;
                         case "index_allitems":
                             Debug.log("请求全部商品", _this.allItemsPagination)
-                            _this.getAllItem(_this.allItemsPagination);
+                            _this.getAllItem(_this.allItemsPagination,function(){
+                                _that.continueLoad = true;
+                            });
                             break;
                         case "bycomplex":
                             Debug.log("请求全部商品", _this.allItemsPagination)
-                            _this.getAllItem(_this.allItemsPagination);
+                            _this.getAllItem(_this.allItemsPagination,function(){
+                                _that.continueLoad = true;
+                            });
                             break;
                         case "bydate":
                             Debug.log("请求全部商品", _this.allItemsPagination)
-                            _this.getAllItem(_this.allItemsPagination);
+                            _this.getAllItem(_this.allItemsPagination,function(){
+                                _that.continueLoad = true;
+                            });
                             break;
                         case "bypricel2h":
                             Debug.log("请求全部商品", _this.allItemsPagination)
-                            _this.getAllItem(_this.allItemsPagination);
+                            _this.getAllItem(_this.allItemsPagination,function(){
+                                _that.continueLoad = true;
+                            });
                             break;
                         case "bypriceh2l":
                             Debug.log("请求全部商品", _this.allItemsPagination)
-                            _this.getAllItem(_this.allItemsPagination);
+                            _this.getAllItem(_this.allItemsPagination,function(){
+                                _that.continueLoad = true;
+                            });
                             break;
                         default:
                             break;
