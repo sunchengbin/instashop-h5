@@ -510,6 +510,7 @@ footer .btn i{
 .shopinfo-note p:last-child {
     color:#999999;
     word-wrap: break-word;
+    font-size: 14px;
 }
 .shopinfo-map .shopinfo-card-header i {
     color: #70CAFE;
