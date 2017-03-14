@@ -65,7 +65,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             var _allItemsDefaultTab = 1;
             if (_this.route_info.route_pt == 1) {
                 _this.tagInfo.curTab = "index_template";
-                _this.indexItemsPagination.page_num = _this.route_info.route_page_num + 1;
+                _this.indexItemsPagination.page_num = _this.route_info.route_page_num;
             }
             if (_this.route_info.route_pt == 2) {
                 _this.tagInfo.curTab = "index_allitems";
@@ -260,15 +260,11 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             };
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.shopList + init_data.shop.id + '?param=' + JSON.stringify(reqData), function (obj) {
                 if (obj.code == 200) {
-                    _this.indexItemsPagination.page_num++
+                    _this.indexItemsPagination.page_num++;
                         if (obj.item_list.list.length > 0) {
                             var _list_data = _this.transItems(obj.item_list.list);
                             if (_list_data.item.length) {
-                                if (!$('.j_item_box .j_item_list').length) {
-                                    var _htm = '<p class="item-title"><span></span>' + Lang.H5_GOODS_ORTHER + '</p><ul class="' + (_this.item_type != 3 ? 'items-list' : 'three-items-list') + ' j_item_list clearfix"></ul>';
-                                    $('.j_item_box').html(_htm);
-                                }
-                                $('.j_item_box ul').append(Item.addItem(_list_data.item));
+                                $('.j_hot_list').append(Item.addItem(_list_data.item));
                             }
                             if ($('[data-time]').length) {
                                 Item.changeTime();

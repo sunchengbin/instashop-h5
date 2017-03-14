@@ -235,6 +235,7 @@ body{
     font-size: 14px;
     max-height: 44px;
     overflow: hidden;
+    word-wrap: break-word;
 }
 .top-angle{
     position:absolute;
@@ -256,6 +257,7 @@ body{
     width: 100%;
     box-sizing: border-box;
     font-size: 14px;
+    word-break: break-word;
 }
 .up-btn,.down-btn{
     font-size: 12px;
@@ -317,4 +319,6 @@ body{
     border-bottom: 1px solid #d8d8d8;
     z-index: 1;
 }
-
+.reduc-box-wrap{
+    padding:1rem 0;
+}
