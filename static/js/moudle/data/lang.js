@@ -544,9 +544,9 @@ define(['base'], function (Base) {
             "INDEX_TAB_TEMPLATE": "Home",
             "INDEX_TAB_ALLITEM": "Produk",
             "INDEX_TAB_SHOPINTRO": "Informasi Toko",
-            "INDEX_ITEMS_COMPLEX": "Paling Sesuai",
+            "INDEX_ITEMS_COMPLEX": "Populer",
             "INDEX_ITEMS_DATE": "Terbaru",
-            "INDEX_ITEMS_PRICE": "Harga",
+            "INDEX_ITEMS_PRICE": "Harga"
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[navigator.language.toLowerCase()] || Lang.id);

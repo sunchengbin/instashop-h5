@@ -3,7 +3,7 @@
         <ul class="tablist tab-items ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
             <li class="tabitem tab-active">
                 <div>
-                    <span>Paling Sesuai</span>
+                    <span>Populer</span>
                 </div>
             </li>
             <li class="tabitem">
