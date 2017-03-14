@@ -495,6 +495,7 @@ footer .btn i{
     height:20rem;
     background:#d8d8d8;
 }
+
 .shopinfo-note .shopinfo-map-content {
     background: #F8F8F8;
     padding:1rem;
@@ -518,6 +519,10 @@ footer .btn i{
 }
 .j_store_banner>li {
     float:left;
+}
+.shopinfo-note{
+    padding:1rem;
+    margin-top:1rem;
 }
 .shopinfo-banner-box{
     min-height: 10rem;

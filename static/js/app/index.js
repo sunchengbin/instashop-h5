@@ -258,6 +258,10 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     filter: _this.allItemsPagination.filter
                 }
             };
+            _this._loading = Dialog.loading({
+                width: 100,
+                is_cover: true
+            });
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.shopList + init_data.shop.id + '?param=' + JSON.stringify(reqData), function (obj) {
                 if (obj.code == 200) {
                     _this.indexItemsPagination.page_num++;
@@ -277,7 +281,9 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 } else {
                     _this.indexItemsPagination.getData = true;
                 }
+                _this._loading.remove();
             }, function (error) {
+                _this._loading.remove();
                 _this.indexItemsPagination.getData = true;
             });
         },
