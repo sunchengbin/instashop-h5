@@ -12,7 +12,7 @@
         {/if}
         {*电话不为空时*}
         {if $SHOP_INFO_DATA.realinfo.telephone neq ''}
-        <p>Telepon:<span> <i class="icon iconfont icon-phone-font"></i>{$SHOP_INFO_DATA.realinfo.telephone}</span></p>
+        <p>Telepon:<a href="tel:{$SHOP_INFO_DATA.realinfo.telephone}"> <i class="icon iconfont icon-phone-font"></i>{$SHOP_INFO_DATA.realinfo.telephone}</a></p>
         {/if}
     </div>
     <div class="ins-typo ins-p-1">

@@ -219,7 +219,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 for (var j = 0; j < _curGroup.length; j++) {
                     var _curImg = _curGroup[j];
                     // _curUl.append($('<li data-num="'+j+'" data-src="' + _curImg + '"><img data-img="' + _curImg + '"/></li>'));
-                    _curUl.append($('<li data-num="' + j + '" data-src="' + _curImg + '"><div class="lazy" style="background-image:url(' + _curImg + ')"></div></li>'));
+                    _curUl.append($('<li data-num="' + j + '" data-src="' + _curImg + '"><div class="lazy" style="background-image:url(' + Base.others.cutImg(_curImg) + ')"></div></li>'));
                 }
             }
         },

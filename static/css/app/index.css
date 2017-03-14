@@ -475,8 +475,12 @@ footer .btn i{
     color: #999999;
     font-size: 12px;
 }
-.shopinfo-base p span {
+.shopinfo-base p a {
     color: #70CAFE;
+}
+.shopinfo-base p i{
+    font-size: 12px;
+    margin: 0 .5rem;
 }
 .ins-typo {
     position:relative;
