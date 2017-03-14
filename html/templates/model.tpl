@@ -1,6 +1,7 @@
 {if $INDEX_DATA.template|@count}
     {foreach $INDEX_DATA.template as $model}
         {if $model.type eq 'edit_signage'}
+        {*这里会展示店铺装修的模块和推荐商品，请设置*}
         {elseif $model.type eq 'static_banner'}
         <section class="banner-wraper model-box j_model_box" data-spider="static_banner">
             <div class="banner-box">
@@ -55,7 +56,7 @@
             <p class="item-title b-bottom"><span></span>{$model.title}</p>
             {/if}
             <div class="nav-img-box j_nav_img_box">
-                <ul class="nav-img-ul clearfix">
+                <ul class="nav-img-ul clearfix" style="width:{$model.data|conuntImgNavWidth};">
                     {foreach $model.data as $navigation}
                         <li class="">
                             <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url|transUrl}" href="javascript:;">

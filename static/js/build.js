@@ -41,7 +41,8 @@
         "message":"moudle/app/im/message",
         "validator":"moudle/ui/validator/validator",
         "debug":"moudle/app/debug/debug",
-        "favorable":"moudle/app/favorable/favorable"
+        "favorable":"moudle/app/favorable/favorable",
+        "tab":"moudle/ui/tab/tab"
     },
     "fileExclusionRegExp": "/.hbs$/",
     "keepBuildDir": true,

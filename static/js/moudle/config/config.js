@@ -16,7 +16,8 @@ define(['base'],function(Base){
             actionUrl : 'https://apip.instashop.co.id/instashop/',
             imHost : 'http://218.213.86.206',
             phpHost : 'http://api.instashop.co.id/instashop/',
-            imUserNameHost : 'http://218.213.86.206:2040/'//存储im用户名字
+            imUserNameHost : 'http://218.213.86.206:2040/',//存储im用户名字
+            maphost : 'http://m.instashop.co.id/'//存储im用户名字
         },
         TEST_HOST = {//测试环境
             hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
@@ -27,7 +28,8 @@ define(['base'],function(Base){
             actionUrl : 'https://apip-test.instashop.co.id/instashop/',
             imHost : 'http://10.5.15.10:2000',
             imUserNameHost : 'http://10.5.15.10:2040/',//存储im用户名字
-            phpHost : 'http://api-test.instashop.co.id/instashop/'
+            phpHost : 'http://api-test.instashop.co.id/instashop/',
+            maphost : 'http://m-test.instashop.co.id/'//存储im用户名字
         };
     var CONFIG = {
         host : isTestHost(),
@@ -50,6 +52,14 @@ define(['base'],function(Base){
             shopsDiscount:'v1/shopsDiscount',//满减验证接口
             search:'v1/shopsItems/self',//商品搜索
             getCoupon:'v1/coupon'//领取优惠券
+        },
+        businessCodes:{
+            ORDER_BY_DEFAULT:0,
+            ORDER_BY_ADDTIME:1,
+            ORDER_BY_PRICE_L2H:2,
+            ORDER_BY_PRICE_H2L:3,
+            FILTER_ALL:0,
+            FILTER_TOP:1
         }
     };
     function isTestHost(){

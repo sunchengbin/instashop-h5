@@ -34,6 +34,12 @@ function loadClass($strClassName)
     }
 }
 
+function getFontCss($url){
+    return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1489471091873") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1489471091873#iconfont") format("svg");}</style>';
+}
+function getIco($url){
+    return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';
+}
 function is_https()
 {
 	if (!isset($_SERVER['HTTP_X_FORWARDED_PROTO']))
@@ -204,6 +210,7 @@ function smartyCommon($folder_name){
     $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
     $smarty->assign('STATIC_FONT_CSS',STATIC_FONT_CSS);
     $smarty->assign('STATIC_HOST',STATIC_HOST);
+    $smarty->assign('HOST_URL',HOST_URL);
     $smarty->assign('BI_SCRIPT',BI_SCRIPT);
     $smarty->assign('IS_DEBUG',IS_DEBUG);
     $smarty->assign('FLEXIBLE',FLEXIBLE);

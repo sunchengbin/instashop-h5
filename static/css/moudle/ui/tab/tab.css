@@ -1,0 +1,21 @@
+/*tab样式集*/
+
+/*base*/
+
+.tablist li{
+    display: inline-block;
+    box-sizing: border-box;
+}
+.tablist span{
+    cursor: pointer;
+}
+
+.tabpanel {
+    display: none;
+}
+.tab-active {
+    display: block!important;
+}
+.tabpanel-active {
+    display: block!important;
+}
