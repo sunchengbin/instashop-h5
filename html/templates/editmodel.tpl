@@ -16,27 +16,29 @@
                 <img class="shop-header-bg j_shop_bg" data-img="{$INDEX_DATA.shop.front_cover}" src="">
                 <div class="clearfix shop-info">
                     <div class="shop-img">
-                        <img data-img="{$INDEX_DATA.shop.logo}" src=""/>
+                        <img data-img="{$INDEX_DATA.shop.logo}" src="" />
                     </div>
                     <p>{$INDEX_DATA.shop.name}</p>
+                    <span><i class="icon iconfont icon-shop-font"></i>Toko fisik</span>
                 </div>
             </section>
-            <section class="shop-explain j_down_box">
-                <div>
-                    <span class="top-angle"></span>
-                    <div class="txt">
-                        {if $INDEX_DATA.shop.note}
-                        {$INDEX_DATA.shop.note|nl2br}
-                        {else}
-                        Selamat datang di mini websiteku
-                        {/if}
-                    </div>
-                    <div class="txt-hide">
-                        {$INDEX_DATA.shop.note|nl2br}
-                    </div>
-                    <p><i class="icon iconfont j_down_btn down-btn"></i></p>
-                </div>
-            </section>
+            <div class="tabs">
+                <ul class="tablist tab-index ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
+                    <li class="tabitem tab-active">
+                        <div>
+                            <i class="icon iconfont icon-newhome"></i>
+                            <span>Home</span>
+                        </div>
+                    </li>
+                    <li class="tabitem">
+
+                        <div><i class="icon iconfont icon-allitem"></i><span>Produk</span></div>
+                    </li>
+                    <li class="tabitem">
+                        <div><i class="icon iconfont icon-shopinfo"></i><span>Informasi Toko</span></div>
+                    </li>
+                </ul>
+            </div>
             {elseif $model.type eq 'static_banner'}
             <section class="banner-wraper model-box j_model_box" data-spider="static_banner">
                 {if $smarty.foreach.foo.index eq 1}

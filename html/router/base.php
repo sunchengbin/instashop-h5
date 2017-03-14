@@ -171,6 +171,16 @@ function getItemListType($template){
     }
     return $type;
 }
+function noHaveTemplate($template){
+    $len = count($template);
+    $have = true;
+    for ($i=0; $i < $len;$i++) {
+        if($template[$i]['type'] != 'item_list_type' && $template[$i]['type'] != 'edit_signage'){
+            $have = false;
+        }
+    }
+    return $have;
+}
 function dateFormat($datetime){
     return date('d/m H:i',strtotime($datetime));
 }
@@ -206,4 +216,7 @@ function isExistSupplyShop ($carts) {
     foreach($carts as $cart){
         return $cart['item']['supply_shop']?true:false;
     }
+}
+function conuntImgNavWidth($data){
+    return 8.5*count($data).'rem';
 }

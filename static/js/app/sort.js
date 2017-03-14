@@ -33,7 +33,8 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                 //if(_local_url){
                 //    location.href = _local_url+'?item=back';
                 //}else{
-                    location.href = _url+'?item=back';
+                var _scroll_url = localStorage.getItem('index_route_info')?localStorage.getItem('index_route_info'):'';
+                    location.href = _url+'?item=back'+_scroll_url;
                 //}
             });
             $('body').on('click','.j_cart_wraper',function(){

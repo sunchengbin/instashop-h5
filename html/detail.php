@@ -22,6 +22,9 @@
     $url = str_replace("w=110", "w=140", $url);
     $url = str_replace("h=110", "h=140", $url);
 
+    
+
+
     $smarty->assign('INDEX_DATA',$json);
     $smarty->assign('INDEX_DATA_SHOP',$json['item']);
     $smarty->assign('INDEX_DATA_STR',$ret);
@@ -33,6 +36,21 @@
     /*基础的js,css文件名*/
     $smarty->assign('INDEX_JS_NAME','item');
     $smarty->assign('INDEX_CSS_NAME','item');
+
+    //请求第三个tab数据
+    // 获取店铺信息
+    $seller_id = $json['item']['shop']['id'];
+    $path = 'v1/shops/'.$seller_id;
+    $paramsForShopInfo = [
+        'action' => 'index_shopinfo',
+        'platform' => 'web'
+    ];
+    $ret = get_init_php_data($path, $paramsForShopInfo);
+    $json = json_decode($ret, true);
+    $smarty->assign('SHOP_INFO_DATA_STR',$ret);
+    $smarty->assign('SHOP_INFO_DATA',$json["shop"]);
+
+
     $smarty->display('detail.tpl');
 
 

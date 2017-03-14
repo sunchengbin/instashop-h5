@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        html, body { height: 100%; margin: 0; padding: 0; }
+        #map { height: 100%; }
+    </style>
+</head>
+<body>
+<div>
+
+</div>
+<div id="map">
+loading
+</div>
+<script type="text/javascript">
+    function getUrlPrem(key, url){
+        var _search = url || document.location.search,
+                _pattern = new RegExp("[?&]" + key + "\=([^&]+)", "g"),
+                _matcher = _pattern.exec(_search),
+                _items = null;
+        if (null != _matcher) {
+            try {
+                _items = decodeURIComponent(decodeURIComponent(_matcher[1]));
+            } catch (e) {
+                try {
+                    _items = decodeURIComponent(_matcher[1]);
+                } catch (e) {
+                    _items = _matcher[1];
+                }
+            }
+        }
+        return _items;
+    }
+    function initMap() {
+        var myLatlng = new google.maps.LatLng( Number(getUrlPrem('lat')),Number(getUrlPrem('lng')));
+        var mapOptions = {
+            zoom: 17,
+            center: myLatlng
+        };
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            title:""
+        });
+        marker.setMap(map);
+        var _init_num = 0;
+        map.addListener('bounds_changed', function() {
+            _init_num ++;
+            var _parent = window.parent;
+            if(_init_num != 1){
+                _parent.PaqPush && _parent.PaqPush('查看地图', '');
+            }
+        });
+
+    }
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAagzP4OPqKy8V2dHF3Vmzkh_wIveeY3IE&callback=initMap"></script>
+</body>
+</html>
