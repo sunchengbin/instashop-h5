@@ -154,14 +154,7 @@ $js = <<<JS
 JS;
 return $js;
 }
-function cdnLoadError(){
-$js = <<<JS
-    (function(){
-        var _cdn = new Image();
-    })()
-JS;
-return $js;
-}
+
 function setHref($link){
     if(!$link){
         $link = 'javascript:;';
@@ -215,3 +208,4 @@ define('STATIC_HOST', $static_host);
 define('HOST_NAME', $host_name);
 define('BI_SCRIPT', $bi_js);
 define('IS_DEBUG', isDebug());
+
