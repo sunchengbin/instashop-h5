@@ -52,7 +52,7 @@
     {if $SHOP_INFO_DATA.note neq ''}
     <div class="shopinfo-card shopinfo-note {if $SHOP_INFO_DATA.realinfo.imgs|@count && $SHOP_INFO_DATA.realinfo.location.vicinity neq '' && $SHOP_INFO_DATA.realinfo.opentime.has && $SHOP_INFO_DATA.realinfo.telephone neq ''}{else}shopinfo-card-allp ins-m-t-2{/if}">
         <div class="shopinfo-map-content">
-            <p>{$SHOP_INFO_DATA.note|nl2br}</p>
+            <p>{if $SHOP_INFO_DATA.note} {$SHOP_INFO_DATA.note|nl2br} {else} Selamat datang di mini websiteku {/if}</p>
         </div>
     </div>
     {/if}
