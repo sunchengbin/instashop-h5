@@ -39,7 +39,7 @@
                 {*推荐商品*}
                 <div data-spider="item-list" class="item-list-wraper">
                 {*既无装修模块 也没有推荐商品*}
-                    {if $INDEX_DATA.template|@count == 1 && !$INDEX_DATA.item_list.list|@count}
+                    {if $INDEX_DATA.template|@noHaveTemplate && !$INDEX_DATA.item_list.list|@count}
                         <section class="no_item ins-text-left">Hasil dari menu "Kreasikan Toko " & "Rekomendasi Produk " akan tampil di sini. Yuk buruan percantik webmu di menu "Kreasikan Toko "</section>
                     {/if}
                     <section class="items-box j_hot_box j_box">

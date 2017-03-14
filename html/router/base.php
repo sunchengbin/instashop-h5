@@ -171,6 +171,16 @@ function getItemListType($template){
     }
     return $type;
 }
+function noHaveTemplate($template){
+    $len = count($template);
+    $have = true;
+    for ($i=0; $i < $len;$i++) {
+        if($template[$i]['type'] != 'item_list_type' && $template[$i]['type'] != 'edit_signage'){
+            $have = false;
+        }
+    }
+    return $have;
+}
 function dateFormat($datetime){
     return date('d/m H:i',strtotime($datetime));
 }
