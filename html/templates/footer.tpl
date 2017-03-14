@@ -3,7 +3,7 @@
     <script src="{$STATIC_HOST}/js/base/require-config.js"></script>
     <script src="{$STATIC_HOST}/js/app/{$INDEX_JS_NAME}.js?v=1489475000985"></script>
 {else}
-    <script src="{$STATIC_HOST}/js/dist/app/{$INDEX_JS_NAME}.js?v=1489475000985"></script>
+    <script id="j_page_index_js" src="{$STATIC_HOST}/js/dist/app/{$INDEX_JS_NAME}.js?v=1489475000985"></script>
 {/if}
 {literal}
     <script>
@@ -30,6 +30,11 @@
                         return URL_HTTP_TYPE+'//static-test.instashop.co.id';
                     }
                     return URL_HTTP_TYPE+'//static.instashop.co.id';
+                }
+                function resetStaticUrl(){
+                    var _js_src = document.querySelector('#j_page_index_js').src,
+                        _css_src = document.querySelector('#j_page_index_css').src;
+
                 }
                 var _cdn = new Image();
                 _cdn.src = isTestHost()+'/js/app/cdnloads.js';
