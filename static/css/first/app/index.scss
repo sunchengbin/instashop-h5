@@ -1,0 +1,26 @@
+@import "../base/base.scss";
+.shop-header{
+  position: relative;
+}
+.shop-info{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.shop-img{
+  @include px2rem(width,142px);
+  @include px2rem(height,142px);
+  @include px2rem(margin-left,20px);
+  float:left;
+}
+.shop-seller-info{
+  @include px2rem(margin-left,178px);
+  color: #fff;
+  @include font-dpr(14px);
+}
+.coupon-box{
+  @include px2rem(padding,22px);
+  color:#666;
+
+}

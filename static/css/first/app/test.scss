@@ -1,0 +1,4 @@
+@import "../base/base.scss";
+div{
+  @include font-dpr(16px);
+}
