@@ -14,6 +14,6 @@
   {if $IS_DEBUG}
     <link href="{$STATIC_HOST}/css/app/{$INDEX_CSS_NAME}.css?v=1489493544387" rel="stylesheet"/>
   {else}
-    <link id="j_page_index_css" href="{$STATIC_HOST}/css/dist/app/{$INDEX_CSS_NAME}.css?v=1489493544387" rel="stylesheet"/>
+    <link id="j_page_index_css" data-url="/css/dist/app/{$INDEX_CSS_NAME}.css?v=1489493544387" href="{$STATIC_HOST}/css/dist/app/{$INDEX_CSS_NAME}.css?v=1489493544387" rel="stylesheet"/>
   {/if}
 </head>
