@@ -15,7 +15,7 @@
     $page_num = getUrlParam('page_num');
     $page_num = $page_num ? $page_num : 'undefined';
     $page_size = getUrlParam('page_size');
-    $page_size = $page_size ? $page_size : 10;
+    $page_size = $page_size ? $page_size : 18;
 
     $smarty->assign('PT',$pt);
     $smarty->assign('CT',$ct);

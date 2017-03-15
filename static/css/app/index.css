@@ -475,8 +475,12 @@ footer .btn i{
     color: #999999;
     font-size: 12px;
 }
-.shopinfo-base p span {
+.shopinfo-base p a {
     color: #70CAFE;
+}
+.shopinfo-base p i{
+    font-size: 12px;
+    margin: 0 .5rem;
 }
 .ins-typo {
     position:relative;
@@ -495,6 +499,7 @@ footer .btn i{
     height:20rem;
     background:#d8d8d8;
 }
+
 .shopinfo-note .shopinfo-map-content {
     background: #F8F8F8;
     padding:1rem;
@@ -504,6 +509,8 @@ footer .btn i{
 }
 .shopinfo-note p:last-child {
     color:#999999;
+    word-wrap: break-word;
+    font-size: 14px;
 }
 .shopinfo-map .shopinfo-card-header i {
     color: #70CAFE;
@@ -518,6 +525,10 @@ footer .btn i{
 .j_store_banner>li {
     float:left;
 }
+.shopinfo-note{
+    padding:1rem;
+    margin-top:1rem;
+}
 .shopinfo-banner-box{
     min-height: 10rem;
     position: relative;
@@ -525,4 +536,7 @@ footer .btn i{
     overflow: hidden;
     margin-top:.5rem;
     z-index: 1;
+}
+.all-items-wrap{
+    margin-top:1rem;
 }

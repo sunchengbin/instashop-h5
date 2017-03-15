@@ -12,7 +12,7 @@
         {/if}
         {*电话不为空时*}
         {if $SHOP_INFO_DATA.realinfo.telephone neq ''}
-        <p>Telepon:<span> <i class="icon iconfont icon-phone-font"></i>{$SHOP_INFO_DATA.realinfo.telephone}</span></p>
+        <p>Telepon:<a href="tel:{$SHOP_INFO_DATA.realinfo.telephone}"> <i class="icon iconfont icon-phone-font"></i>{$SHOP_INFO_DATA.realinfo.telephone}</a></p>
         {/if}
     </div>
     <div class="ins-typo ins-p-1">
@@ -52,7 +52,7 @@
     {if $SHOP_INFO_DATA.note neq ''}
     <div class="shopinfo-card shopinfo-note {if $SHOP_INFO_DATA.realinfo.imgs|@count && $SHOP_INFO_DATA.realinfo.location.vicinity neq '' && $SHOP_INFO_DATA.realinfo.opentime.has && $SHOP_INFO_DATA.realinfo.telephone neq ''}{else}shopinfo-card-allp ins-m-t-2{/if}">
         <div class="shopinfo-map-content">
-            <p>{$SHOP_INFO_DATA.note}</p>
+            <p>{if $SHOP_INFO_DATA.note} {$SHOP_INFO_DATA.note|nl2br} {else} Selamat datang di mini websiteku {/if}</p>
         </div>
     </div>
     {/if}

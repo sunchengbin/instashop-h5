@@ -11,7 +11,7 @@
                 </div>
                 <p>{$INDEX_DATA.shop.name}</p>
                 {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
-                <span><i class="icon iconfont icon-shop-font"></i>Toko</span>
+                <span><i class="icon iconfont icon-shop-font"></i>Ada Outlet</span>
                 {/if}
             </div>
         </section>

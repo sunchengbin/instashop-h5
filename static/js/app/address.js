@@ -7,6 +7,8 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
             var _this = this,
                 _data = localStorage.getItem('ShopData'),
                 _address = _data ? JSON.parse(_data).Address : null;
+            var _isGroup = _this.isGroup = Cart().getIsGroup();
+            var _groupid = _this._groupid = Base.others.getUrlPrem("groupid", location.href);
             if (!_address) {
                 _address = {
                     "name": "",
@@ -192,8 +194,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                             var _data = JSON.parse(localStorage.getItem('ShopData')),
                                 _addr = _country + ',' + _city + ',' + _province;
                             var _item_str = JSON.stringify(_this.getAddressItems());
-                            var _groupid = Base.others.getUrlPrem("groupid", location.href);
-                            location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + _groupid + '&items=' + encodeURIComponent(_item_str);
+                            location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + _this._groupid + '&items=' + encodeURIComponent(_item_str);
                         }, 0);
                     })) {
                     PaqPush && PaqPush('取消保存', '');
@@ -217,8 +218,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                         var _data = JSON.parse(localStorage.getItem('ShopData')),
                             _addr = _country + ',' + _city + ',' + _province;
                         var _item_str = JSON.stringify(_this.getAddressItems());
-                        var _groupid = Base.others.getUrlPrem("groupid", location.href);
-                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + _groupid + '&items=' + encodeURIComponent(_item_str);
+                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + _this._groupid + '&items=' + encodeURIComponent(_item_str);
                     }, 0);
                 }
 
@@ -245,7 +245,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
 
         },
         getAddressItems: function () {
-            var _carts = Cart().getCarts(),
+            var _this=this,_carts = Cart().getCarts(),
                 _arr = [];
             if (!_carts) {
                 Dialog.tip({
@@ -254,11 +254,10 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                 });
             } else {
                 var _items;
-                var _groupid = Base.others.getUrlPrem("groupid", location.href)
                 //如果是分销 lanchenghao@weidian.com
-                if (!!_groupid) {
+                if (!!_this.isGroup) {
                     var _data = localStorage.getItem('ShopData');
-                    _items = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid];;//groupdata
+                    _items = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_this._groupid];; //groupdata
                 } else {
                     _items = _carts;
                 }
