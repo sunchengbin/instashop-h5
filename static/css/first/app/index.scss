@@ -17,7 +17,7 @@
 .shop-seller-info{
   @include px2rem(margin-left,178px);
   color: #fff;
-  @include font-dpr(14px);
+  @include font-dpr(16px);
 }
 .coupon-box{
   @include px2rem(padding,22px);
