@@ -33,28 +33,35 @@
                 }
                 function resetStaticUrl(){
                     var _js_src = document.querySelector('#j_page_index_js').getAttribute('data-url'),
-                        _css_src = document.querySelector('#j_page_index_css').getAttribute('data-url');
+                        _css_src = document.querySelector('#j_page_index_css').getAttribute('data-url'),
+                        _require_js_src = '/js/base/require-zepto.js',
+                        _static_url = '';
                     var URL_HTTP_TYPE = location.protocol,
                         URL_HOST_NAME = location.hostname;
                     if(/test\.instashop/g.test(URL_HOST_NAME) || /test\./g.test(URL_HOST_NAME)){
-                        _js_src =  URL_HTTP_TYPE+'//m-test.instashop.co.id/static' + _js_src;
-                        _css_src =  URL_HTTP_TYPE+'//m-test.instashop.co.id/static'+_css_src;
+                        _static_url = URL_HTTP_TYPE+'//m-test.instashop.co.id/static';
                     }else{
-                        _js_src =  URL_HTTP_TYPE+'//m.instashop.co.id/static' + _js_src;
-                        _css_src =  URL_HTTP_TYPE+'//m.instashop.co.id/static'+_css_src;
+                        _static_url = URL_HTTP_TYPE+'//m.instashop.co.id/static';
                     }
+                    _js_src =  _static_url + _js_src;
+                    _css_src =  _static_url + _css_src;
+                    _require_js_src = _static_url + _require_js_src;
                     document.querySelector('#j_page_index_css').setAttribute('href',_css_src);
-                    var d = document,
-                      g = d.createElement('script'),
-                      s = d.getElementsByTagName('script')[0];
-                    g.type='text/javascript';
-                    g.defer=true;
-                    g.async=true;
-                    g.src=_js_src;
-                    s.parentNode.insertBefore(g,s);
+                    reloadScript(_require_js_src);
+                    reloadScript(_js_src);
+                    function reloadScript(src){
+                        var d = document,
+                          g = d.createElement('script'),
+                          s = d.getElementsByTagName('script')[0];
+                        g.type='text/javascript';
+                        g.defer=true;
+                        g.async=true;
+                        g.src=src;
+                        s.parentNode.insertBefore(g,s);
+                    }
                 }
                 var _cdn = new Image();
-                _cdn.src = isTestHost()+'/js/app/cdnload.js';
+                _cdn.src = isTestHost()+'/images/app/cdnload.png';
                 _cdn.onerror = function(){
                     console.log('cdn-load-error');
                     resetStaticUrl();
