@@ -1,0 +1,42 @@
+//button
+//border
+.b-top, .b-bottom, .b-right {
+  position: relative;
+}
+.b-top::before {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  top: -1px;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid #d8d8d8;
+  z-index: 1;
+}
+
+.b-right::before {
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  right: 0;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-right: 1px solid #d8d8d8;
+  z-index: 1;
+}
+
+.b-bottom::after {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: 0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid #d8d8d8;
+  z-index: 1;
+}
