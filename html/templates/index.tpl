@@ -1,8 +1,8 @@
-{include file="header.tpl" title="My Page Title"}
-
+{include file="header.tpl"}
 <body data-spider="615lnd28">
     {if $INDEX_DATA}
-    <div >
+    <div class="index-wrap-box">
+        {*店招头像*}
         <section class="shop-header">
             <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
             <div class="clearfix shop-info">
@@ -11,10 +11,12 @@
                 </div>
                 <p>{$INDEX_DATA.shop.name}</p>
                 {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
-                <span><i class="icon iconfont icon-shop-font"></i>Ada Outlet</span>
+                    {*是否有实体店标志*}
+                    <span><i class="icon iconfont icon-shop-font"></i>Ada Outlet</span>
                 {/if}
             </div>
         </section>
+        {*首页切换tab*}
         <div class="tabs" data-spider="index-parent-tab">
             <ul class="tablist tab-index ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
                 <li class="tabitem">
@@ -32,13 +34,16 @@
                 </li>
             </ul>
         </div>
+        {*tab内容盒子*}
         <div class="tab-content tab-index-content">
             <div class="tabpanel">
-                {include file="preferential.tpl"} 
+                {*满减优惠券*}
+                {include file="preferential.tpl"}
+                {*展示插入的模板*}
                 {include file="model.tpl"} 
                 {*推荐商品*}
                 <div data-spider="item-list" class="item-list-wraper">
-                {*既无装修模块 也没有推荐商品*}
+                    {*既无装修模块 也没有推荐商品*}
                     {if $INDEX_DATA.template|@noHaveTemplate && !$INDEX_DATA.item_list.list|@count}
                         <section class="no_item ins-text-left">Hasil dari menu "Kreasikan Toko " & "Rekomendasi Produk " akan tampil di sini. Yuk buruan percantik webmu di menu "Kreasikan Toko "</section>
                     {/if}
@@ -46,6 +51,7 @@
                         {if $RECOMMEND_ITEM|@count}
                         <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>
                         {if $ITEMTYPE neq '3'}
+                        {*一行两列展示商品*}
                         <ul class="items-list clearfix j_hot_list">
                             {foreach $RECOMMEND_ITEM as $item}
                             <li>
@@ -79,6 +85,7 @@
                             {/foreach}
                         </ul>
                         {else}
+                        {*一行三列展示商品*}
                         <ul class="three-items-list clearfix j_hot_list">
                             {foreach $RECOMMEND_ITEM as $item}
                             <li>
@@ -97,15 +104,16 @@
                 </div>
             </div>
             <div class="tabpanel">
-                {*全部商品*} {include file="items.tpl"}
-
+                {*全部商品*}
+                {include file="items.tpl"}
             </div>
-            {*店铺简介*}
             <div class="tabpanel">
+                {*店铺简介*}
                 {include file="intro.tpl"}
             </div>
         </div>
         <section class="sort-list-wraper j_sort_box" data-spider="sort-list">
+            {*分类列表*}
             <p>Kategori produk</p>
             <ul>
                 {foreach $TAG_LIST as $tag}
@@ -113,17 +121,20 @@
                 {/foreach}
             </ul>
         </section>
-        <!--新增3.5 功能点4需求-->
+        <div class="sort-list-cover j_sort_cover">
+            {*分类列表cover*}
+            <i class="icon iconfont icon-fold-font"></i>
+        </div>
         <div class="index-btn-box" data-spider="set-up-shop">
+            {*我也要开店按钮*}
             <div class="btn confirm-btn">
                 <i class="iconfont icon-shop-font"></i>
                 <a spm-auto="我也要开店" spm-click="go-home" href="http://www.instashop.co.id/" onclick="trackOutboundLink('http://www.instashop.co.id/'); return false;" target="_self">Buat webstore gratis sekarang!</a>
             </div>
         </div>
-        <div class="sort-list-cover j_sort_cover">
-            <i class="icon iconfont icon-fold-font"></i>
-        </div>
+
         <section class="index-footer" data-spider="foot-nav">
+            {*底部浮动导航*}
             <div class="search-box" data-spider="go-search">
                 <a href="{$HOST_NAME}/html/search.php" class="search-btn block" spm-auto="搜索商品" spm-click="search-items">
                     <i class="iconfont icon-search-font"></i>
@@ -139,19 +150,23 @@
                     <i class="icon iconfont icon-i-shop-font"></i> Troli
                 </li>
                 <li>
-                    {if $INDEX_DATA.shop.line_url} {if $INDEX_DATA.shop.phone}
-                    <a spm-auto="查看联系方式" spm-click="check-contact" class="contact-services j_show_contact" data-type="all" href="javascript:;">
-                        <i class="icon iconfont icon-i-news-font"></i> Kontak
-                    </a>
+                    {if $INDEX_DATA.shop.line_url}
+                        {if $INDEX_DATA.shop.phone}
+                            <a spm-auto="查看联系方式" spm-click="check-contact" class="contact-services j_show_contact" data-type="all" href="javascript:;">
+                                <i class="icon iconfont icon-i-news-font"></i> Kontak
+                            </a>
+                        {else}
+                            <a class="contact-services block j_goto_line" spm-auto="联系卖家line" spm-click="go-line" href="javascript:;">
+                                <i class="icon iconfont icon-i-news-font"></i> Kontak
+                            </a>
+                        {/if}
                     {else}
-                    <a class="contact-services block j_goto_line" spm-auto="联系卖家line" spm-click="go-line" href="javascript:;">
-                        <i class="icon iconfont icon-i-news-font"></i> Kontak
-                    </a>
-                    {/if} {else} {if $INDEX_DATA.shop.phone}
-                    <a spm-auto="查看联系方式" spm-click="check-contact" class="contact-services j_show_contact" data-type="tel" href="javascript:;">
-                        <i class="icon iconfont icon-i-news-font"></i> Kontak
-                    </a>
-                    {/if} {/if}
+                        {if $INDEX_DATA.shop.phone}
+                        <a spm-auto="查看联系方式" spm-click="check-contact" class="contact-services j_show_contact" data-type="tel" href="javascript:;">
+                            <i class="icon iconfont icon-i-news-font"></i> Kontak
+                        </a>
+                        {/if}
+                    {/if}
                 </li>
             </ul>
         </section>
@@ -159,10 +174,12 @@
     {/if}
 </body>
 <script>
+    {*首页数据*}
     var init_data = {$INDEX_DATA_STR};
 </script>
 <script>
- var route_pt={$PT};var route_ct={$CT};var route_page_num={$PAGE_NUM};var route_page_size={$PAGE_SIZE};
+    {*回退节点和翻页数据*}
+    var route_pt={$PT};var route_ct={$CT};var route_page_num={$PAGE_NUM};var route_page_size={$PAGE_SIZE};
 </script>
 
 {include file="footer.tpl"}

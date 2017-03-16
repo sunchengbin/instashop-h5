@@ -1,4 +1,5 @@
-<div>
+<div class="all-items-wrap-box">
+    {*全部商品排序tab*}
     <div class="item-tabs">
         <ul class="tablist tab-items ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
             <li class="tabitem tab-active">
@@ -9,7 +10,7 @@
             <li class="tabitem">
                 <div><span>Terbaru</span></div>
             </li>
-            <li class="tabitem tabitem-sortprice" data-status="bypricel2h">
+            <li class="tabitem tabitem-sortprice" data-status="{if $CT eq 'undefined'}bypricel2h{else}{if $CT eq 3}bypriceh2l{else}{if $CT eq 2}bypricel2h{else}bypricel2h{/if}{/if}{/if}">
                 <div>
                     <span>Harga
                         <div class="sort-price">
@@ -21,13 +22,16 @@
             </li>
         </ul>
     </div>
+    {*全部商品box*}
     <div data-spider="item-list" class="all-items-wrap">
         {if !$ALL_ITEMS|@count}
+        {*没有商品*}
         <section class="no_item">Belum ada produk</section>
         {/if}
         <section class="items-box j_hot_box j_box">
             {if $ALL_ITEMS|@count}
             {if $ITEMTYPE neq '3'}
+            {*一行两列商品*}
             <ul class="items-list clearfix j_all_list">
                 {foreach $ALL_ITEMS as $item}
                 <li>
@@ -61,6 +65,7 @@
                 {/foreach}
             </ul>
             {else}
+            {*一行三列商品*}
             <ul class="three-items-list clearfix j_all_list">
                 {foreach $ALL_ITEMS as $item}
                 <li>

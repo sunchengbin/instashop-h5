@@ -3,14 +3,15 @@
  * 首页
  */
 require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer) {
+    var Default_Page_Size = 18;
     var I = {
         indexItemsPagination: {
-            page_size: 18,
+            page_size: Default_Page_Size,
             page_num: 2,
             getData: true
         },
         allItemsPagination: {
-            page_size: 18,
+            page_size: Default_Page_Size,
             page_num: 2,
             getData: true,
             orderby: 0,
@@ -23,67 +24,69 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
 
         },
         init: function (init_data) {
-            this.lazyload = Lazyload();
+            var _this = this;
+            _this.lazyload = Lazyload();
             if (!Base.others.getUrlPrem('pt')) {
                 localStorage.removeItem('index_route_info');
             }
-            var _this = this;
             _this.item_type = Common.getItemListType(init_data.template);
             _this.sortTimes = 0;
             if (init_data) {
+                //初始化店铺数据到localStorage
                 Common.initShopInfo(init_data);
+                //显示购物车角标
                 var _cart_num = Cart().getCartNum();
                 if (_cart_num != 0) {
                     $('.j_cart_wraper').append('<span class="cart-num">' + _cart_num + '</span>');
                 }
+                //插入模板中的轮播图js初始化
                 _this.initRotateBanner();
             }
-            $('.j_php_loding').remove();
-            if ($('.txt-hide').height() > 44) {
-                $('.down-btn').show();
-            }
-            //todo测试
-            // shop_info_data.shop.realinfo.imgs = [
-            //     "http://olmd8d3fq.bkt.clouddn.com/01a1d0c2-810b-4371-a1ee-0861a978d0fc",
-            //     "http://olmd8d3fq.bkt.clouddn.com/0900f66e-4593-43e8-8b3b-7dec08f17748",
-            //     "http://olmd8d3fq.bkt.clouddn.com/0b55a5a1-5e4c-4c03-ac16-1a3cbb7ac7ae",
-            //     "http://olmd8d3fq.bkt.clouddn.com/237f2977-e6d0-4a68-a05a-b3c55fd3f80c"
-            // ];
-
             //初始化实体店铺图
             if (shop_info_data.shop.realinfo && shop_info_data.shop.realinfo.imgs.length > 0) {
                 _this.initShopInfoImgSlideBanner();
             }
-            //获取url信息
+            //获取url信息.index.tpl中有记录
             _this.route_info.route_pt = route_pt || 1;
             _this.route_info.route_ct = route_ct || 0;
             _this.route_info.route_page_num = route_page_num || 2;
             _this.route_info.route_page_size = route_page_size || 10;
 
-            Debug.log("路由信息", _this.route_info)
+            Debug.log("路由信息", _this.route_info);
 
-            var _allItemsDefaultTab = 1;
+            _this.initTab();
+            _this.handleFn();
+        },
+        initTab : function(){
+            var _this = this,
+                _allItemsDefaultTab = 1;
+            //首页tab
             if (_this.route_info.route_pt == 1) {
                 _this.tagInfo.curTab = "index_template";
                 _this.indexItemsPagination.page_num = _this.route_info.route_page_num;
             }
+            //全部商品
             if (_this.route_info.route_pt == 2) {
                 _this.tagInfo.curTab = "index_allitems";
                 _this.allItemsPagination.page_num = _this.route_info.route_page_num + 1;
                 if (_this.route_info.route_ct) {
                     switch (_this.route_info.route_ct) {
                         case 0:
+                            _this.tagInfo.curTab = "bycomplex";
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_DEFAULT;
                             break;
                         case 1:
+                            _this.tagInfo.curTab = "bydate";
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_ADDTIME;
                             _allItemsDefaultTab = 2;
                             break;
                         case 2:
+                            _this.tagInfo.curTab = "bypricel2h";
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_PRICE_L2H;
                             _allItemsDefaultTab = 3; //低到高
                             break;
                         case 3:
+                            _this.tagInfo.curTab = "bypriceh2l";
                             _this.allItemsPagination.orderby = Config.businessCodes.ORDER_BY_PRICE_H2L;
                             _allItemsDefaultTab = 3; //高到低
                             break;
@@ -93,7 +96,14 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     }
                 }
             }
-
+            //店铺信息tab下
+            if (_this.route_info.route_pt == 3) {
+                _this.tagInfo.curTab = "index_shopinfo";
+                if (shop_info_data.shop.realinfo && !!shop_info_data.shop.realinfo.location.vicinity) {
+                    _this.createMapIframe("._shopinfo-map-el");
+                }
+                $(".shopinfo-store-banner").width($(".shopinfo-banner-box").width());
+            }
             //首页模块tab
             Tab({
                 $header: ".tab-index",
@@ -104,7 +114,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
 
                 },
                 switchFn: function (switchInfo) {
-                    _this.tagInfo.curTab = switchInfo.tabalias
+                    _this.tagInfo.curTab = switchInfo.tabalias;
                     if ("index_shopinfo" == _this.tagInfo.curTab) {
                         if (shop_info_data.shop.realinfo && !!shop_info_data.shop.realinfo.location.vicinity) {
                             _this.createMapIframe("._shopinfo-map-el");
@@ -114,17 +124,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     PaqPush && PaqPush('首页父级导航tab-' + _this.tagInfo.curTab, '');
                     Debug.log("切换信息:", switchInfo)
                 }
-            })
-
-            if (_this.route_info.route_pt == 3) {
-                _this.tagInfo.curTab = "index_shopinfo";
-                if (shop_info_data.shop.realinfo && !!shop_info_data.shop.realinfo.location.vicinity) {
-                    _this.createMapIframe("._shopinfo-map-el");
-                }
-                $(".shopinfo-store-banner").width($(".shopinfo-banner-box").width());
-            }
-
-
+            });
             //全部商品子TAB
             var allItemTab = Tab({
                 $header: ".tab-items",
@@ -184,9 +184,9 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 defaultFn: function () {
 
                 }
-            })
-            _this.handleFn();
+            });
         },
+        //店铺详情banner
         initShopInfoImgSlideBanner: function () {
             var _this = this;
             var _shopInfoImgs = shop_info_data.shop.realinfo.imgs;
@@ -207,6 +207,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 images: _this._groupImgs[0] //shop_info_data.shop.realinfo.imgs
             }).init();
         },
+        //创建店铺详情实体店图片
         createShopInfoSlierDom: function () {
             var _this = this,
                 $store_banner = $(".j_store_banner");
@@ -225,6 +226,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 }
             }
         },
+        //实体店图片数组
         groupArrayByNumber: function (array, number, receiveArray) {
             var _this = this;
             if (array.length == 0) return receiveArray;
@@ -236,6 +238,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             receiveArray.push(_array);
             if (array.length > 0) _this.groupArrayByNumber(array, number, receiveArray);
         },
+        //创建实体店map
         createMapIframe: function (el) {
             $(el).empty();
             var _this = this;
@@ -246,6 +249,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             var $iframe = $(_googleMap$Dom);
             $(el).append($iframe);
         },
+        //获取首页数据
         getRecommendItem: function (paginationOpt,callback) {
             //默认加载已经请求了第一页 所以从第二页开始
             var _this = this;
@@ -260,14 +264,16 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     filter: _this.allItemsPagination.filter
                 }
             };
-            _this._loading = Dialog.loading({
-                width: 100,
-                is_cover: true
-            });
+            //if(init_data.item_list.length >= _this.indexItemsPagination.page_size){
+            //    _this._loading = Dialog.loading({
+            //        width: 100,
+            //        is_cover: true
+            //    });
+            //}
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.shopList + init_data.shop.id + '?param=' + JSON.stringify(reqData), function (obj) {
                 if (obj.code == 200) {
-                    _this.indexItemsPagination.page_num++;
                         if (obj.item_list.list.length > 0) {
+                            _this.indexItemsPagination.page_num++;
                             var _list_data = _this.transItems(obj.item_list.list);
                             if (_list_data.item.length) {
                                 $('.j_hot_list').append(Item.addItem(_list_data.item));
@@ -283,17 +289,15 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 } else {
                     _this.indexItemsPagination.getData = true;
                 }
-                _this._loading.remove();
+                //_this._loading.remove();
                 callback && callback();
             }, function (error) {
-                _this._loading.remove();
+                //_this._loading.remove();
                 callback && callback();
                 _this.indexItemsPagination.getData = true;
             });
         },
-        /**
-         * 全部商品tab初始化时加载函数
-         */
+        //获取全部商品
         getAllItem: function (paginationOpt,callback) {
             var _this = this;
             if (!_this.allItemsPagination.getData) return;
@@ -313,8 +317,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             });
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.shopList + init_data.shop.id + '?param=' + JSON.stringify(reqData), function (obj) {
                 if (obj.code == 200) {
-                    _this.allItemsPagination.page_num++;
                     if (obj.item_list.list.length > 0) {
+                        _this.allItemsPagination.page_num++;
                         var _list_data = obj.item_list.list;
                         if (_list_data.length) {
                             $('.all-items-wrap .j_all_list').append(Item.addItem(_list_data, _this.item_type));
@@ -338,6 +342,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 callback && callback();
             });
         },
+        //初始化模板中的轮播图
         initRotateBanner: function () {
             //Common.slideImgNav();
             var _banners = document.querySelectorAll('.j_banner'),
@@ -353,6 +358,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 }
             }
         },
+        //设置从购物车页面/商品详情页/分类页面,跳回首页的tab和页面翻页信息
         setRouteInfo: function () {
             var _this = this,
                 _route_info_str = "";
@@ -360,6 +366,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             _route_info_str = "&pt=" + _routeInfo.pt + "&ct=" + _routeInfo.ct + "&page_num=" + _routeInfo.page_num + "&page_size=" + _routeInfo.page_size;
             localStorage.setItem("index_route_info", _route_info_str);
         },
+        //获取本地的tab和翻页信息
         getRouteInfo: function () {
             var _this = this;
             var _routeInfo = {};
@@ -431,21 +438,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 Item.changeTime();
             }
             Fastclick.attach(document.body);
-            if ($('.txt-hide').height() > 44) {
-                $('body').on('click', '.j_down_box', function () {
-                    if ($('.j_down_btn').is('.down-btn')) {
-                        $('.j_down_btn').removeClass('down-btn').addClass('up-btn');
-                        $('.txt').css({
-                            'maxHeight': 'none'
-                        });
-                    } else {
-                        $('.j_down_btn').removeClass('up-btn').addClass('down-btn');
-                        $('.txt').css({
-                            'maxHeight': '44px'
-                        });
-                    }
-                });
-            }
             $('body').on('click', '.j_share_btn', function () {
                 PaqPush && PaqPush('分享获取优惠券', '');
                 var _coupon_id = $(this).attr('data-couponid');
@@ -455,8 +447,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             });
             _that.continueLoad = true;
             $(document).on('scroll', function (e) {
-                //if(!_that.continueLoad)return;
-                //_that.continueLoad = false;
                 var moz = /Gecko\//i.test(navigator.userAgent);
                 var body = document[moz ? 'documentElement' : 'body'];
                 var _st = body.scrollTop, //firefox下body无scrollTop
@@ -592,9 +582,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             });
             localStorage.removeItem('FromUrl');
             if (localStorage.getItem('ScrollTop') && Base.others.getUrlPrem('item')) { //存在scrollTop时页面下滚到记忆中的top值
-                //if(Base.others.verifyBower().ios){
                 _this.goScroll();
-                //}
             }
             if ($('.j_show_contact').length) {
                 _this.contact = Contact({
@@ -620,6 +608,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             });
 
         },
+
         showSortPrompt: function () {
             $('.j_sort_prompt_box .btn-cover').html(Lang.H5_GOOD_SORT);
             $('.j_sort_prompt_box').addClass('sort-prompt-box');

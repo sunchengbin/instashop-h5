@@ -14,17 +14,17 @@
     $ct = $ct ? $ct : 'undefined';
     $page_num = getUrlParam('page_num');
     $page_num = $page_num ? $page_num : 'undefined';
+    $default_page_size = 18;
     $page_size = getUrlParam('page_size');
-    $page_size = $page_size ? $page_size : 18;
+    $page_size = $page_size ? $page_size : $default_page_size;
 
     $smarty->assign('PT',$pt);
     $smarty->assign('CT',$ct);
     $smarty->assign('PAGE_NUM',$page_num);
     $smarty->assign('PAGE_SIZE',$page_size);
-    
 
     if($pt&&($pt!='undefined')){
-        $page_size = $page_num*$page_size;//
+        $page_size = $page_num*$page_size;
         if($pt==1){
             //tab1 数据
             $paramsForIndexTemplate = [
@@ -37,6 +37,7 @@
             $paramsForAllItems = [
                 'action' => 'index_allitems',
                 'platform' => 'web',
+                'page_size' => $default_page_size,
                 'page_num' => 1
             ];
         }
@@ -47,6 +48,7 @@
             $paramsForIndexTemplate = [
                 'action' => 'index_template',
                 'platform' => 'web',
+                'page_size' => $default_page_size,
                 'page_num' => 1
             ];
             //综合排序
@@ -64,6 +66,7 @@
             $paramsForIndexTemplate = [
                 'action' => 'index_template',
                 'platform' => 'web',
+                'page_size' => $page_size,
                 'page_num' => 1
             ];
             //综合排序
@@ -71,7 +74,7 @@
                 'action' => 'index_allitems',
                 'platform' => 'web',
                 'page_num' => 1,
-                'page_size' => 10,
+                'page_size' => $page_size,
                 'orderby'=> 0,
                 'filter' => 0
             ];
@@ -82,6 +85,7 @@
         $paramsForIndexTemplate = [
             'action' => 'index_template',
             'platform' => 'web',
+            'page_size' => $page_size,
             'page_num' => 1
         ];
         // 获取首次渲染的按综合排序的全部商品
@@ -89,14 +93,12 @@
             'action' => 'index_allitems',
             'platform' => 'web',
             'page_num' => 1,
-            'page_size' => 10,
+            'page_size' => $page_size,
             'orderby'=> 0,
             'filter' => 0
         ];
 
     }
-
-
 
     $seller_id = $_REQUEST['seller_id'];
     if (!$seller_id) {
