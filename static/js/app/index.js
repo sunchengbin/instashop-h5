@@ -518,7 +518,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 } else {
                     _url = Common.transFromUrl(_url);
                 }
-                localStorage.setItem('ScrollTop', _scroll_top);
+                localStorage.setItem('ScrollTop',_scroll_top);
                 _that.setRouteInfo();
                 Common.saveFromUrl(function () {
                     location.href = _url;
@@ -527,6 +527,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             $('body').on('click', '.j_cart_wraper', function () {
                 var _this = $(this),
                     _url = _this.attr('data-url');
+                localStorage.setItem('ScrollTop', $(window).scrollTop());
                 _that.setRouteInfo();
                 Common.saveCartFromUrl(function () {
                     location.href = _url;
