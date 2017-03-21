@@ -31,6 +31,7 @@ define(['base', 'slide', 'dialog'], function (Base, Slide, Dialog) {
     VIEWER.prototype = {
         init: function () {
             this.handleFn();
+            return this;
         },
         handleFn: function () {
             var _this = this,

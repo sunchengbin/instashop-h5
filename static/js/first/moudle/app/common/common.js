@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/7.
  */
-define(['base','dialog','lang'],function(Base,Dialog,Lang){
+define(['base','dialog','lang','debug'],function(Base,Dialog,Lang,Debug){
     var AppCommon = function(){
         return this;
     };
@@ -85,6 +85,7 @@ define(['base','dialog','lang'],function(Base,Dialog,Lang){
             if(Base.others.getUrlPrem('item',_form_url) == 'back' && !Base.others.getUrlPrem('sort_id')){
                 _form_url = _form_url.split('?')[0];
             }
+            Debug.log("上一页路径",_form_url);
             localStorage.setItem('FromUrl',_form_url);
             setTimeout(function(){
                 callback && callback();

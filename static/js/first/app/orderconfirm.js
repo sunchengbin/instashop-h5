@@ -6,7 +6,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
         init: function () {
             var _this = this;
             var _isGroup = _this.isGroup = Cart().getIsGroup();
-            var _groupid = this._groupid = Base.others.getUrlPrem("groupid", location.href);
+            var _groupid = _this._groupid = Base.others.getUrlPrem("groupid", location.href);
             var _data = localStorage.getItem('ShopData');
             var _carts;
             if (_isGroup) {
