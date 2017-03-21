@@ -10,4 +10,4 @@ build.shall.prj
 html/templates_c/*
 .vscode/
 *.css.map
-.sass-cache/
+.sass-cache

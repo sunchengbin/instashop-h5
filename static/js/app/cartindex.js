@@ -80,7 +80,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     var _scroll_url = localStorage.getItem('index_route_info')?localStorage.getItem('index_route_info'):'';
                     setTimeout(function(){
                         if(/pt/g.test(_fromurl)){
-                            location.href = _fromurl;
+                            location.href = _fromurl.split('?')[0]+'?item=back'+_scroll_url;
                         }else{
                             location.href = _fromurl+'?item=back'+_scroll_url;
                         }

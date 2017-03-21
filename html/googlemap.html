@@ -7,10 +7,7 @@
     </style>
 </head>
 <body>
-<div>
-
-</div>
-<div id="map">
+<div id="map" data-spider="map-wrap">
 loading
 </div>
 <script type="text/javascript">
@@ -32,6 +29,72 @@ loading
         }
         return _items;
     }
+    function getSellerID() {
+        var _s_id = -1;
+        if (/Instashop/g.test(navigator.userAgent)) {
+            //内嵌浏览器在cookie中和统计参数中加入seller_id
+            _s_id = getUrlPrem('seller_id') || -1;
+        }
+        var _WD_s_id = _s_id;
+        //获取当前时间
+        var date=new Date();
+        var expireDays=10;
+        //将date设置为10天以后的时间
+        date.setTime(date.getTime()+expireDays*24*3600*1000);
+        //将WD_s_id cookie设置为10天后过期
+        document.cookie="WD_s_id="+_WD_s_id+";expire="+date.toGMTString();
+        return _s_id;
+    }
+    function getShopId(){
+        var _shop_id = -1;
+        if (/Instashop/g.test(navigator.userAgent)) {
+            //内嵌浏览器在cookie中和统计参数中加入seller_id
+            _shop_id = getUrlPrem('seller_id') || -1;
+        }else{
+            var _shop_data = localStorage.getItem('ShopData')?JSON.parse(localStorage.getItem('ShopData')).ShopInfo:null;
+            _shop_id = _shop_data && _shop_data.id ?_shop_data.id:getOrderShopId();
+        }
+        function getOrderShopId(){
+            try{
+                if(init_data.order){
+                    return init_data.order.shop_info.id;
+                }
+                if(init_data.shop){
+                    return init_data.shop.id;
+                }
+                if(init_data.item){
+                    return init_data.item.shop.id;
+                }
+            }catch(error){
+
+            }
+            return -1;
+        }
+        return _shop_id;
+    }
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    (function(){
+        var is_https = ("https:" === document.location.protocol) ? 1 : 0,
+                u = (is_https ? "https" : "http") + "://di.instashop.co.id/";
+        _paq.push(['setTrackerUrl', u +'index.php'+ '?userID=-1&shopId='+getShopId()+'&sellerId='+getSellerID()]);
+        _paq.push(['setSiteId', 1]);
+        var d = document,
+                g = d.createElement('script'),
+                s = d.getElementsByTagName('script')[0];
+        g.type='text/javascript';
+        g.defer=true;
+        g.async=true;
+        g.src=is_https ? 'https://di.instashop.co.id/piwik-spm.js' : 'http://di.instashop.co.id/piwik-spm.js';
+        s.parentNode.insertBefore(g,s);
+    })();
+
+    function PaqPush(e_c,e_n,type){
+        try{
+            _paq.push(['trackEvent',e_c,(type||'click'), e_n]);
+        }catch(e){
+        }
+    }
     function initMap() {
         var myLatlng = new google.maps.LatLng( Number(getUrlPrem('lat')),Number(getUrlPrem('lng')));
         var mapOptions = {
@@ -49,7 +112,7 @@ loading
             _init_num ++;
             var _parent = window.parent;
             if(_init_num != 1){
-                _parent.PaqPush && _parent.PaqPush('查看地图', '');
+                PaqPush && PaqPush('查看地图', '');
             }
         });
 
