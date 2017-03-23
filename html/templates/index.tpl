@@ -79,11 +79,7 @@
                                     {if $item.is_discount} 
                                         {if $item.discounting}
                                             {if $item.discount.discount_type eq "percent"}
-                                                {if $item.discount.max_discount_price eq $item.discount.min_discount_price}
-                                                    <p class="discount-price">Rp {$item.discount.min_discount_price|priceFormat}</p>
-                                                {else}
-                                                    <p class="discount-price">Rp {$item.discount.min_discount_price|priceFormat}-{$item.discount.max_discount_price|priceFormat}</p>
-                                                {/if}
+                                                <p class="discount-price">Rp {$item.discount.min_discount_price|priceFormat}</p>
                                             {else}
                                                 <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
                                             {/if}

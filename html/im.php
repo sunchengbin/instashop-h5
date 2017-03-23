@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
     <title></title>
-    <link href="<?=STATIC_HOST?>/css/dist/app/im_index.css?v=1489730805389" rel="stylesheet">
+    <link href="<?=STATIC_HOST?>/css/dist/app/im_index.css?v=1490264421699" rel="stylesheet">
 </head>
 <body>
     <nav class="header ks-clear">

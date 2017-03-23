@@ -213,11 +213,23 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
     });
 
     HBS.registerHelper('itemtype', function (data) {
-        var _htm = '';
+        var _htm = '',
+            data_price = "";
+        //获取data-price lanchenghao 17.3.23 百分比折扣需求影响改动
         if (data.sku && data.sku.length) {
+
             Base.others.each(data.sku, function (item, i) {
-                //_htm += '<li class="j_type_li '+(item.stock==0?'disable':'')+'" data-price="'+(data.is_discount&&data.discounting?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
-                _htm += '<li class="j_type_li ' + (item.stock == 0 || item.price < 0 ? 'disable' : '') + '" data-price="' + (data.is_discount ? data.discount.price : item.price) + '" data-stock="' + item.stock + '" data-id="' + item.id + '">' + item.title + '</li>';
+                //有限时折扣活动 并且 活动有效
+                if (data.is_discount == 1 && data.discounting) {
+                    if (data.discount.discount_type == "percent") {
+                        data_price = item.discount.price;
+                    } else {
+                        data_price = data.discount.price;
+                    }
+                } else {
+                    data_price = item.price;
+                }
+                _htm += '<li class="j_type_li ' + (item.stock == 0 || item.price < 0 ? 'disable' : '') + '" data-price="' + data_price + '" data-stock="' + item.stock + '" data-id="' + item.id + '">' + item.title + '</li>';
             });
         }
         return _htm;
@@ -251,13 +263,14 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
                 (carts[item].sku ? '<p class="type">' + Lang.H5_SKU + ': ' + carts[item].sku.title + '</p>' : '') +
                 '<p class="num">' + Lang.H5_QUANTITY + ': ' + carts[item].num + '</p>';
             if (carts[item].item.is_discount && carts[item].item.discounting) {
-                if(carts[item].item.discount.discount_type=="percent"){
-                    if(carts[item].item.discount.min_discount_price==carts[item].item.discount.max_discount_price){
-                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.min_discount_price) + '</p>';
+                if (carts[item].item.discount.discount_type == "percent") {
+                    //区分sku
+                    if(carts[item].sku && carts[item].sku.id){
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.price) + '</p>';
                     }else{
-                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.min_discount_price) + '-' + Base.others.priceFormat(carts[item].item.discount.max_discount_price)+'</p>';
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
                     }
-                }else{
+                } else {
                     _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
                 }
             } else {
@@ -438,7 +451,16 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
                     (carts[item].sku ? '<p class="type">' + Lang.H5_SKU + ': ' + carts[item].sku.title + '</p>' : '') +
                     '<p class="num">' + Lang.H5_QUANTITY + ': ' + carts[item].num + '</p>';
                 if (carts[item].item.is_discount && carts[item].item.discounting) {
-                    _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
+                    if(carts[item].item.discount.discount_type=="percent"){
+                        //区分sku
+                        if(carts[item].sku&&carts[item].sku.id){
+                            _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.price) + '</p>';
+                        }else{
+                            _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
+                        }
+                    }else{
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
+                    }
                 } else {
                     var _price = (carts[item].sku && carts[item].sku.id) ? carts[item].sku.price : carts[item].item.price;
                     _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(_price) + '</p>';

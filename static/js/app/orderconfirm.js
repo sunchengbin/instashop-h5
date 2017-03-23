@@ -444,7 +444,12 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             var _sum = 0;
             for (var cart in carts) {
                 if (carts[cart].item.is_discount && carts[cart].item.discounting) {
-                    _sum += carts[cart].num * carts[cart].item.discount.price;
+                    //折扣区分sku
+                    if(carts[cart].sku && carts[cart].sku.id){
+                        _sum += carts[cart].num * carts[cart].sku.price;
+                    }else{
+                        _sum += carts[cart].num * carts[cart].item.discount.price;
+                    }
                 } else {
                     _sum += carts[cart].num * carts[cart].price;
                 }
