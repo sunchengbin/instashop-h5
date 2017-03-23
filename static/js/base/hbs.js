@@ -1,4 +1,4 @@
-define(['handlebars', 'base', 'config', 'lang', 'item','debug'], function (HBS, Base, Config, Lang, Item,Debug) {
+define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS, Base, Config, Lang, Item, Debug) {
     function isEmpty(val) {
         var x = false;
         switch (typeof val) {
@@ -164,12 +164,20 @@ define(['handlebars', 'base', 'config', 'lang', 'item','debug'], function (HBS, 
 
     HBS.registerHelper('itemprice', function (data) {
         if (data.is_discount) {
-            if (data.discount.price > 0) {
-                if (data.discounting) {
-                    return 'Rp ' + Base.others.priceFormat(data.discount.price);
+            if (data.discounting) {
+                if (data.discount.discount_type == "percent") {
+                    if (data.discount.min_discount_price == data.discount.max_discount_price) {
+                        return 'Rp ' + Base.others.priceFormat(data.discount.min_discount_price);
+                    } else {
+                        return 'Rp ' + Base.others.priceFormat(data.discount.min_discount_price) + "- " + Base.others.priceFormat(data.discount.max_discount_price);
+                    }
                 } else {
-                    return 'Rp ' + Base.others.priceFormat(data.discount.price);
+                    if (data.discount.price > 0) {
+                        return 'Rp ' + Base.others.priceFormat(data.discount.price);
+                    }
                 }
+            } else {
+                return 'Rp ' + Base.others.priceFormat(data.discount.price);
             }
             return '';
         }
@@ -183,7 +191,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item','debug'], function (HBS, 
             Base.others.each(data.sku, function (item, i) {
                 if (Number(item.price) > 0) {
                     sku_price.push(Number(item.price));
-                }else{
+                } else {
                     //sku_price.push(0);
                 }
             });
@@ -209,7 +217,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item','debug'], function (HBS, 
         if (data.sku && data.sku.length) {
             Base.others.each(data.sku, function (item, i) {
                 //_htm += '<li class="j_type_li '+(item.stock==0?'disable':'')+'" data-price="'+(data.is_discount&&data.discounting?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
-                _htm += '<li class="j_type_li '+(item.stock==0||item.price<0?'disable':'')+'" data-price="'+(data.is_discount?data.discount.price:item.price)+'" data-stock="'+item.stock+'" data-id="'+item.id+'">'+item.title+'</li>';
+                _htm += '<li class="j_type_li ' + (item.stock == 0 || item.price < 0 ? 'disable' : '') + '" data-price="' + (data.is_discount ? data.discount.price : item.price) + '" data-stock="' + item.stock + '" data-id="' + item.id + '">' + item.title + '</li>';
             });
         }
         return _htm;
@@ -231,19 +239,27 @@ define(['handlebars', 'base', 'config', 'lang', 'item','debug'], function (HBS, 
         return url.split('?')[0];
     }
 
-    function assembleCartItem(carts,groupid) {
+    function assembleCartItem(carts, groupid) {
         var _htm = "";
         for (var item in carts) {
             var _id = (carts[item].sku ? carts[item].sku.id : carts[item].item.id);
             _htm += '<li class="clearfix cart-item j_cart_item" data-id="' + _id + '">' +
-                '<i class="icon iconfont j_del_cart icon-delete-small" group-id="'+groupid+'" data-id="' + _id + '"></i>' +
+                '<i class="icon iconfont j_del_cart icon-delete-small" group-id="' + groupid + '" data-id="' + _id + '"></i>' +
                 '<img src="' + carts[item].item.img + '">' +
                 '<div class="">' +
                 '<p class="name">' + carts[item].item.item_name + '</p>' +
                 (carts[item].sku ? '<p class="type">' + Lang.H5_SKU + ': ' + carts[item].sku.title + '</p>' : '') +
                 '<p class="num">' + Lang.H5_QUANTITY + ': ' + carts[item].num + '</p>';
             if (carts[item].item.is_discount && carts[item].item.discounting) {
-                _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
+                if(carts[item].item.discount.discount_type=="percent"){
+                    if(carts[item].item.discount.min_discount_price==carts[item].item.discount.max_discount_price){
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.min_discount_price) + '</p>';
+                    }else{
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.min_discount_price) + '-' + Base.others.priceFormat(carts[item].item.discount.max_discount_price)+'</p>';
+                    }
+                }else{
+                    _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
+                }
             } else {
                 var _price = (carts[item].sku && carts[item].sku.id) ? carts[item].sku.price : carts[item].item.price;
                 if (_price >= 0) {
@@ -255,10 +271,10 @@ define(['handlebars', 'base', 'config', 'lang', 'item','debug'], function (HBS, 
         }
         console.log("判断按钮")
         console.log(carts)
-        if(carts){
-            _htm +='<button class="btn j_submit_btn confirm-btn" group-id="'+groupid+'">'+Lang.H5_MAKE_ORDER+'</button>'
-        }else{
-            _htm +='<button class="btn j_go_shop confirm-btn" group-id="'+groupid+'" >'+Lang.H5_BROWSE_SHOP+'</button>'
+        if (carts) {
+            _htm += '<button class="btn j_submit_btn confirm-btn" group-id="' + groupid + '">' + Lang.H5_MAKE_ORDER + '</button>'
+        } else {
+            _htm += '<button class="btn j_go_shop confirm-btn" group-id="' + groupid + '" >' + Lang.H5_BROWSE_SHOP + '</button>'
         }
         return _htm;
     }
@@ -267,23 +283,23 @@ define(['handlebars', 'base', 'config', 'lang', 'item','debug'], function (HBS, 
         var _htm = '';
         console.log("开始组装groupcarts")
         console.log(cart)
-        if (!cart||cart.length==0) {
+        if (!cart || cart.length == 0) {
             console.log("开始拼html")
             _htm += '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>';
-            return _htm +='<div class="no_goods_box"><button class="btn j_go_shop confirm-btn">'+Lang.H5_BROWSE_SHOP+'</button></div>'
+            return _htm += '<div class="no_goods_box"><button class="btn j_go_shop confirm-btn">' + Lang.H5_BROWSE_SHOP + '</button></div>'
         }
         if (!Base.others.testObject(cart)) {
             var _curIndex = 1;
             $.each(cart.group, function (key, _groupItem) {
-                _htm += '<div class="cart-supplier-card" group-id="'+key+'" >' +
-                    '<div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>'+Lang.H5_CART_GROUP_TITLE + (_curIndex++) + '</div>' +
+                _htm += '<div class="cart-supplier-card" group-id="' + key + '" >' +
+                    '<div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>' + Lang.H5_CART_GROUP_TITLE + (_curIndex++) + '</div>' +
                     '<ul>'
-                _htm+=assembleCartItem(_groupItem,key)
-                _htm+='</ul></div>'
+                _htm += assembleCartItem(_groupItem, key)
+                _htm += '</ul></div>'
             })
             //TODO 用Cart().getGroupNum代替
-            if(_curIndex==2){
-                _htm = _htm.replace("cart-supplier-header","cart-supplier-header hide");
+            if (_curIndex == 2) {
+                _htm = _htm.replace("cart-supplier-header", "cart-supplier-header hide");
             }
         } else {
             _htm = '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>'
@@ -293,16 +309,16 @@ define(['handlebars', 'base', 'config', 'lang', 'item','debug'], function (HBS, 
     HBS.registerHelper('carts', function (cart) {
         var _htm = '';
         Debug.log({
-            title:"hbs.js carts",
-            data:cart
+            title: "hbs.js carts",
+            data: cart
         })
-        if (!cart||cart.length==0) {
+        if (!cart || cart.length == 0) {
             _htm += '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>';
-            return _htm +='<div class="no_goods_box"><button class="btn j_go_shop confirm-btn">'+Lang.H5_BROWSE_SHOP+'</button></div>'
+            return _htm += '<div class="no_goods_box"><button class="btn j_go_shop confirm-btn">' + Lang.H5_BROWSE_SHOP + '</button></div>'
         }
         if (!Base.others.testObject(cart)) {
             _htm = assembleCartItem(cart)
-        }else{
+        } else {
             _htm = '<li class="empty-cart no_goods_box">' + Lang.H5_SHOPING_NO_GOODS + '</li>'
         }
         return _htm;
@@ -314,19 +330,19 @@ define(['handlebars', 'base', 'config', 'lang', 'item','debug'], function (HBS, 
         }
         for (var item in carts) {
             var _item = carts[item],
-                _id = (_item.sku?_item.sku.id:_item.id);
-            _htm += '<li class="cart-item j_cart_item" data-id="'+_id+'">'
-                +'<a class="block clearfix" href="javascript:;">'
-                +'<img src="'+Base.others.cutImg(_item.img)+'">';
-            _htm +='<div class="item-info-box">'
-                +'<p class="name">'+Base.others.transTxt(_item.item_comment)+'</p>';
-            if(_item.is_discount && _item.discounting){
-                _htm +='<p class="price clearfix"><span class="fr">-'+_item.discount.value+'%</span>'+'Rp '+Base.others.priceFormat(_item.discount.price)+'</p>';
-                _htm +='<p class="soon-time">'+transDate(_item.discount.start_time)+'-'+transDate(_item.discount.end_time)+'WIB</p>';
-            }else{
-                var _price = (_item.sku&&_item.sku.id)?_item.sku.price:_item.price;
-                if(_price >= 0){
-                    _htm +='<p class="price">Rp '+Base.others.priceFormat(_price)+'</p>';
+                _id = (_item.sku ? _item.sku.id : _item.id);
+            _htm += '<li class="cart-item j_cart_item" data-id="' + _id + '">' +
+                '<a class="block clearfix" href="javascript:;">' +
+                '<img src="' + Base.others.cutImg(_item.img) + '">';
+            _htm += '<div class="item-info-box">' +
+                '<p class="name">' + Base.others.transTxt(_item.item_comment) + '</p>';
+            if (_item.is_discount && _item.discounting) {
+                _htm += '<p class="price clearfix"><span class="fr">-' + _item.discount.value + '%</span>' + 'Rp ' + Base.others.priceFormat(_item.discount.price) + '</p>';
+                _htm += '<p class="soon-time">' + transDate(_item.discount.start_time) + '-' + transDate(_item.discount.end_time) + 'WIB</p>';
+            } else {
+                var _price = (_item.sku && _item.sku.id) ? _item.sku.price : _item.price;
+                if (_price >= 0) {
+                    _htm += '<p class="price">Rp ' + Base.others.priceFormat(_price) + '</p>';
                 }
             }
             _htm += '</div></a>' +

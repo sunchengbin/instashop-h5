@@ -43,29 +43,36 @@
         <p class="title">
             {$INDEX_DATA.item.item_comment|nl2br}
         </p>
-        {if $INDEX_DATA.item.is_discount} {if $INDEX_DATA.item.discounting}
-        <p class="price discount-price">
-            Rp {$INDEX_DATA.item.discount.price|priceFormat}
-        </p>
-        {else}
-        <p class="price discount-price">
-            Rp {$INDEX_DATA.item.discount.price|priceFormat}
-        </p>
-        {/if} {if $INDEX_DATA.item.discount.min_price eq $INDEX_DATA.item.discount.max_price}
-        <p class="price-lang">Rp {$INDEX_DATA.item.discount.min_price|priceFormat}</p>
-        {else}
-        <p class="price-lang">Rp {$INDEX_DATA.item.discount.min_price|priceFormat} - {$INDEX_DATA.item.discount.max_price|priceFormat}</p>
-        {/if}
-        <p class="discount-info">
-            <span>-{$INDEX_DATA.item.discount.value|abs}%</span>
+        {if $INDEX_DATA.item.is_discount} 
+            {if $INDEX_DATA.item.discounting}
+                {if $INDEX_DATA.item.discount.discount_type eq "percent"}
+                    {if $INDEX_DATA.item.discount.max_discount_price eq $INDEX_DATA.item.discount.min_discount_price}
+                        <p class="discount-price">Rp {$INDEX_DATA.item.discount.min_discount_price|priceFormat}</p>
+                    {else}
+                        <p class="discount-price">Rp {$INDEX_DATA.item.discount.min_discount_price|priceFormat}-{$INDEX_DATA.item.discount.max_discount_price|priceFormat}</p>
+                    {/if}
+                {else}
+                    <p class="discount-price">Rp {$INDEX_DATA.item.discount.price|priceFormat}</p>
+                {/if}
+            {else}
+                <p class="discount-price">Rp {$INDEX_DATA.item.discount.price|priceFormat}</p>
+            {/if} 
+            {if $INDEX_DATA.item.discount.min_price eq $INDEX_DATA.item.discount.max_price}
+                <p class="price-lang">Rp {$INDEX_DATA.item.discount.min_price|priceFormat}</p>
+            {else}
+                <p class="price-lang">Rp {$INDEX_DATA.item.discount.min_price|priceFormat} - {$INDEX_DATA.item.discount.max_price|priceFormat}</p>
+            {/if}
+            <p class="discount-info">
+                <span>-{$INDEX_DATA.item.discount.value|abs}%</span>
             {if $INDEX_DATA.item.discounting} Time remaining :
-            <span data-time="{$INDEX_DATA.item.discount.end_time|discountSecond}">{$INDEX_DATA.item.discount.end_time|discountTime}</span>
-           {else} Start time {$INDEX_DATA.item.discount.start_time|transDate} WIB {/if}
-        </p>
+                <span data-time="{$INDEX_DATA.item.discount.end_time|discountSecond}">{$INDEX_DATA.item.discount.end_time|discountTime}</span>
+            {else} Start time {$INDEX_DATA.item.discount.start_time|transDate} WIB 
+            {/if}
+            </p>
         {else}
-        <p class="price discount-price">
-            {$INDEX_DATA.item|itemPrice}
-        </p>
+            <p class="price discount-price">
+                {$INDEX_DATA.item|itemPrice}
+            </p>
         {/if} 
         {include file="preferential.tpl"}
         <a href="javascript:;" data-url="{$INDEX_DATA.item.shop.url}" spm-auto="去首页" spm-click="go-home" class="go-shop j_shop_info">
