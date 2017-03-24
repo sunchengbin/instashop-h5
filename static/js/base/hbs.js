@@ -265,9 +265,9 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
             if (carts[item].item.is_discount && carts[item].item.discounting) {
                 if (carts[item].item.discount.discount_type == "percent") {
                     //区分sku
-                    if(carts[item].sku && carts[item].sku.id){
+                    if (carts[item].sku && carts[item].sku.id) {
                         _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.price) + '</p>';
-                    }else{
+                    } else {
                         _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
                     }
                 } else {
@@ -402,21 +402,55 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
                 //}
                 if (carts[item].item.is_discount && carts[item].item.discounting) {
                     var _item_stock = carts[item].item.discount.limit_count == 0 ? carts[item].item.stock : carts[item].item.discount.limit_count;
-                    var _item_price = carts[item].item.discount.price;
-                    _htm += '<div class="price clearfix"><span>' + (_item_price < 0 ? '' : Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(_item_price)) +
-                        '</span><div class="item-num-box clearfix">' +
-                        '<span class="j_reduce_btn" data-id="' + _id + '">' +
-                        '<i class="icon iconfont icon-minus-font"></i>' +
-                        '</span>' +
-                        '<input class="fl j_item_num" type="text" data-price="' + carts[item].item.discount.price + '" value="' + carts[item].num + '" readonly="readonly"/>' +
-                        '<span class="j_add_btn" data-id="' + _id + '" data-stock="' + _item_stock + '">' +
-                        '<i class="icon iconfont icon-add-font"></i>' +
-                        '</span>' +
-                        '</div>' +
-                        '</div>';
+                    var _item_price;
+                    //折扣方式按百分比算 多sku情况
+                    if (carts[item].item.discount.discount_type == "percent") {
+                        if (carts[item].sku && carts[item].sku.id) {
+                            _item_price = carts[item].sku.discount.price;
+                            _htm += '<div class="price clearfix j-sku-discount"><span>' + (_item_price < 0 ? '' : Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(_item_price)) +
+                                '</span><div class="item-num-box clearfix">' +
+                                '<span class="j_reduce_btn" data-id="' + _id + '">' +
+                                '<i class="icon iconfont icon-minus-font"></i>' +
+                                '</span>' +
+                                '<input class="fl j_item_num" type="text" data-price="' + _item_price + '" value="' + carts[item].num + '" readonly="readonly"/>' +
+                                '<span class="j_add_btn" data-id="' + _id + '" data-stock="' + _item_stock + '">' +
+                                '<i class="icon iconfont icon-add-font"></i>' +
+                                '</span>' +
+                                '</div>' +
+                                '</div>';
+                        } else {
+                            _item_price = carts[item].item.discount.price;
+                            _htm += '<div class="price clearfix j-no-sku-discount"><span>' + (_item_price < 0 ? '' : Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(_item_price)) +
+                                '</span><div class="item-num-box clearfix">' +
+                                '<span class="j_reduce_btn" data-id="' + _id + '">' +
+                                '<i class="icon iconfont icon-minus-font"></i>' +
+                                '</span>' +
+                                '<input class="fl j_item_num" type="text" data-price="' + _item_price + '" value="' + carts[item].num + '" readonly="readonly"/>' +
+                                '<span class="j_add_btn" data-id="' + _id + '" data-stock="' + _item_stock + '">' +
+                                '<i class="icon iconfont icon-add-font"></i>' +
+                                '</span>' +
+                                '</div>' +
+                                '</div>';
+                        }
+                    } else {
+                        _item_price = carts[item].item.discount.price
+                        _htm += '<div class="price clearfix j-no-discount"><span>' + (_item_price < 0 ? '' : Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(_item_price)) +
+                            '</span><div class="item-num-box clearfix">' +
+                            '<span class="j_reduce_btn" data-id="' + _id + '">' +
+                            '<i class="icon iconfont icon-minus-font"></i>' +
+                            '</span>' +
+                            '<input class="fl j_item_num" type="text" data-price="' + _item_price + '" value="' + carts[item].num + '" readonly="readonly"/>' +
+                            '<span class="j_add_btn" data-id="' + _id + '" data-stock="' + _item_stock + '">' +
+                            '<i class="icon iconfont icon-add-font"></i>' +
+                            '</span>' +
+                            '</div>' +
+                            '</div>';
+                    }
+
+
                 } else {
                     var _price = (carts[item].sku && carts[item].sku.id) ? carts[item].sku.price : carts[item].item.price;
-                    _htm += '<div class="price clearfix"><span>' + (_price < 0 ? '' : Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(_price)) +
+                    _htm += '<div class="price clearfix j-no-discount"><span>' + (_price < 0 ? '' : Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(_price)) +
                         '</span><div class="item-num-box clearfix">' +
                         '<span class="j_reduce_btn" data-id="' + _id + '" >' +
                         '<i class="icon iconfont icon-minus-font"></i>' +
@@ -451,14 +485,14 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
                     (carts[item].sku ? '<p class="type">' + Lang.H5_SKU + ': ' + carts[item].sku.title + '</p>' : '') +
                     '<p class="num">' + Lang.H5_QUANTITY + ': ' + carts[item].num + '</p>';
                 if (carts[item].item.is_discount && carts[item].item.discounting) {
-                    if(carts[item].item.discount.discount_type=="percent"){
+                    if (carts[item].item.discount.discount_type == "percent") {
                         //区分sku
-                        if(carts[item].sku&&carts[item].sku.id){
+                        if (carts[item].sku && carts[item].sku.id) {
                             _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.price) + '</p>';
-                        }else{
+                        } else {
                             _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
                         }
-                    }else{
+                    } else {
                         _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
                     }
                 } else {
