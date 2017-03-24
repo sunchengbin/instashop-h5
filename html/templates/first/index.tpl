@@ -20,22 +20,22 @@
         </div>
     </section>
     <div class="tabs" data-spider="index-parent-tab">
-        <ul class="tablist tab-index ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
-            <li class="tabitem" flex="main:center cross:center">
+        <ul class="tablist tab-index-wrap tab-index ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
+            <li class="tabitem">
                 <div><i class="icon iconfont icon-newhome"></i><span>Home</span></div>
             </li>
-            <li class="tabitem">
+            <li class="tabitem" flex="main:center cross:center">
                 <div><i class="icon iconfont icon-allitem"></i><span>Produk</span></div>
             </li>
-            <li class="tabitem">
+            <li class="tabitem" flex="main:center cross:center">
                 <div><i class="icon iconfont icon-shopinfo"></i><span>Informasi Toko</span></div>
             </li>
         </ul>
     </div>
     <div class="tab-content tab-index-content">
-        <div class="tabpanel">
-            {include file="../preferential.tpl"}
-            {include file="../model.tpl"}
+        <div class="tabpanel {if $PT eq 1}tabpanel-active{/if}{if $PT eq 'undefined'}tabpanel-active{/if}">
+            {include file="preferential.tpl"}
+            {include file="model.tpl"}
             {*推荐商品*}
             <div data-spider="item-list" class="item-list-wraper">
             {*既无装修模块 也没有推荐商品*}
@@ -44,7 +44,7 @@
                 {/if}
                 <section class="items-box j_hot_box j_box">
                     {if $RECOMMEND_ITEM|@count}
-                    <p class="item-title b-bottom"><span></span>Rekomendasi Item</p>
+                    <p class="item-title b-bottom">Rekomendasi Item</p>
                     {if $ITEMTYPE neq '3'}
                     <ul class="items-list clearfix j_hot_list">
                         {foreach $RECOMMEND_ITEM as $item}
@@ -96,12 +96,12 @@
                 </section>
             </div>
         </div>
-        <div class="tabpanel">
+        <div class="tabpanel {if $PT eq 2}tabpanel-active{/if}">
             {*全部商品*} {include file="../items.tpl"}
 
         </div>
         {*店铺简介*}
-        <div class="tabpanel">
+        <div class="tabpanel {if $PT eq 3}tabpanel-active{/if}">
             {include file="../intro.tpl"}
         </div>
     </div>

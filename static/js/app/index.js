@@ -40,7 +40,9 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     $('.j_cart_wraper').append('<span class="cart-num">' + _cart_num + '</span>');
                 }
                 //插入模板中的轮播图js初始化
-                _this.initRotateBanner();
+                if(route_pt == 1 || route_pt == undefined){
+                    _this.initRotateBanner();
+                }
             }
             //初始化实体店铺图
             if (shop_info_data.shop.realinfo && shop_info_data.shop.realinfo.imgs.length > 0) {
@@ -123,6 +125,11 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     }
                     PaqPush && PaqPush('首页父级导航tab-' + _this.tagInfo.curTab, '');
                     Debug.log("切换信息:", switchInfo)
+                    if(route_pt != 1){
+                        if(_this.tagInfo.curTab == "index_template"){
+                            _this.initRotateBanner();
+                        }
+                    }
                 }
             });
             //全部商品子TAB
@@ -344,9 +351,14 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
         },
         //初始化模板中的轮播图
         initRotateBanner: function () {
-            //Common.slideImgNav();
             var _banners = document.querySelectorAll('.j_banner'),
-                _len = _banners.length;
+                _len = _banners.length,
+                _this = this;
+            console.log(_this.isInitBanner);
+            if(_this.isInitBanner){
+                return;
+            }
+            _this.isInitBanner = true;
             if (_len) {
                 for (var i = 0; i < _len; i++) {
                     var item = _banners[i];

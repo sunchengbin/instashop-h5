@@ -4,7 +4,7 @@
  */
 body, button, input, select,option,td, textarea /* for ie */ {
   font: 12px/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: $txtcolor;
+  color: $txt-color;
 }
 .fl{
   float:left;
@@ -39,7 +39,7 @@ img{
   body {
     max-width: 640px;
     margin: 0 auto;
-    background-color: $base-color;
+    background-color: #fff;
   }
   body .buy-box,body .logistics-plug,body .buy-plug,body .shop-header-nav,body footer,body .prove-btn,body .index-footer{
     max-width: 640px;

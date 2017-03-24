@@ -1,0 +1,51 @@
+//首页banner
+.item-banner li{
+  float: left;
+  width: 100%;
+  position: relative;
+}
+.item-banner li a{
+  display: block;
+  position: relative;
+}
+.static-banner li a{
+  width: 85%;
+}
+.static-banner-title{
+  position: absolute;
+  right: 0;
+  top:50%;
+  z-index: 2;
+  @include remCalc(margin-top,-69);
+  @include remCalc(width,225);
+  @include remCalc(height,138);
+}
+
+.banner-box{
+  position: relative;
+  box-sizing: border-box;
+  z-index: 1;
+}
+.two_li_banner_txt{
+  @include remCalc(margin,30);
+}
+.rotate-banner-box{
+  position: relative;
+  box-sizing: border-box;
+  z-index: 1;
+  @include remCalc(width,660);
+  @include remCalc(height,495);
+  @include remCalc(margin-top,72);
+  @include remCalc(border,5 solid #e6e6e6);
+  @include remCalc(padding,0 25);
+}
+@media only screen and (min-width: 641px) {
+  .rotate-banner-box{
+    width:595px;
+    height:446.25px;
+  }
+}
+.banner-box-wrap{
+  overflow: hidden;
+  @include remCalc(margin-top,-20);
+}

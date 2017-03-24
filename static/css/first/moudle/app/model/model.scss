@@ -37,65 +37,136 @@
   min-height: 120px;
   background-color: #f5f5f5;
 }
+.two-li-items-box{
+  position: relative;
+  @include remCalc(padding,0 20 40);
+}
+.two-li-items-box::after{
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left:-50%;
+  right:-50%;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border: 1px solid #666;
+  z-index: 1;
+}
 .cart-item {
-  padding:1rem;
-  min-height: 80px;
+  @include remCalc(min-height,200);
+  @include remCalc(padding-top,40);
+  position: relative;
+}
+.item-index{
+  position: absolute;
+  @include remCalc(left,15);
+  @include remCalc(top,24);
+  @include remCalc(width,50);
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  @include font-dpr(14px);
+  background-color: $base-color;
+  color: $white;
+  text-align: center;
+  z-index: 2;
 }
 .cart-item a .item-info-box{
-  margin: 0px 1rem 0 90px;
+  @include remCalc(margin,0 64 0 224);
+  color: $txt-color;
 }
 .cart-item p.soon-time{
-  font-size: 12px;
+  @include font-dpr(12px);
   margin-top: 0.8rem;
 }
 .cart-item img{
-  width: 85px;
-  height: 85px;
-}
-.cart-item::after{
-  top: -1px;
+  @include remCalc(width,200);
+  @include remCalc(height,200);
+  float: left;
 }
 /*导航类模板样式*/
 .navigation-box{
   position: relative;
   overflow: hidden;
 }
-.nav-text-ul{
-
-}
 .nav-text-ul li{
-  padding:0 2rem 0 1rem;
+  width: 33.33%;
+  float: left;
+  text-align: center;
+  box-sizing: border-box;
+  @include remCalc(margin-bottom,20);
 }
 .nav-text-ul a{
   color: #666;
-  height: 4rem;
-  line-height: 4rem;
+  @include remCalc(padding,10);
   overflow: hidden;
+  border: 2px dotted $base-color;
+  box-sizing: border-box;
 }
-.nav-text-ul i{
-  color: #999;
-  font-size: 12px;
+.nav-text-ul li:nth-child(3n+1){
+  @include remCalc(padding-right,20);
 }
-.nav-text-ul span{
-  display: inline-block;
-  max-width: 90%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 14px;
+.nav-text-ul li:nth-child(3n+3){
+  @include remCalc(padding-left,20);
+}
+.nav-text-ul li:nth-child(3n+2){
+  @include remCalc(padding,0 10);
 }
 .nav-img-box{
-  overflow-y: hidden;
-  overflow-x:scroll;
+  overflow: hidden;
+  position: relative;
+}
+.nav-img-box::after{
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left:-50%;
+  right:-50%;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border: 1px solid #666;
+  z-index: 1;
+}
+.nav-img-box ul{
+  width: 50%;
+  box-sizing: border-box;
+  float:left;
+}
+.nav-img-ul{
+  @include remCalc(padding,10 20);
 }
 .nav-img-ul li{
-  float: left;
-  width: 8.5rem;
+  @include remCalc(padding-right,25);
+  @include remCalc(height,54);
+  @include remCalc(line-height,54);
+  position: relative;
+}
+.nav-img-ul li.nav-img-titile{
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  @include remCalc(padding-right,56);
+  @include font-dpr(14px);
+  font-weight: bold;
+}
+.nav-img-ul li.nav-img-titile span{
+  display: inline-block;
+  vertical-align: middle;
+  @include remCalc(width,12);
+  @include remCalc(height,12);
+  @include remCalc(margin-right,20);
+  background-color: $base-color;
 }
 .nav-img-ul a{
   box-sizing: border-box;
-  padding: 0 1rem 1rem;
   color: #666;
+  word-break: break-word;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .nav-img-ul .lazy::after{
   display: block;
@@ -111,25 +182,26 @@
   border: 1px solid #d8d8d8;
   z-index: 1;
 }
-.nav-img-ul li p{
-  display: -webkit-box;
-  word-break: break-word;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  padding: .5rem 0 0;
-  text-align: center;
+.nav-img-wrap{
+  @include remCalc(padding,0 10 10 0);
+}
+.nav-img-wrap li{
+  float:left;
+  width: 50%;
+  box-sizing: border-box;
+  @include remCalc(padding-top,10);
+}
+.nav-img-wrap li:nth-child(odd){
+  @include remCalc(padding-right,5);
+}
+.nav-img-wrap li:nth-child(even){
+  @include remCalc(padding-left,5);
 }
 /*banner类模板样式*/
-.two-list-box{
-  padding-top:1rem;
-}
 .two-list-box li{
   width: 50%;
   box-sizing: border-box;
   float: left;
-  margin-bottom:1rem;
 }
 .two-list-box .lazy::after{
   display: block;
@@ -142,17 +214,18 @@
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border: 1px solid #d8d8d8;
+  border: 1px solid $border-color;
   z-index: 1;
 }
 .two-list-box li:nth-child(odd){
-  padding-right: .85rem;
+  @include remCalc(padding-right,10);
 }
 .two-list-box li:nth-child(even){
-  padding-left: .85rem;
+  @include remCalc(padding-right,10);
+  @include remCalc(margin-top,155);
 }
 .static-banner li:not(:first-child){
-  margin-top:1rem;
+  @include remCalc(margin-top,36);
 }
 .banner-wraper{
   background-color: transparent;

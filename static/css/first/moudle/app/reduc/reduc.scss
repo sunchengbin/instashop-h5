@@ -1,12 +1,12 @@
 /*满减活动*/
 
 .reduc-box {
-  color: #666666!important;
-  margin-top: 1rem;
+  color: $txt-color!important;
+  @include remCalc(margin-top,30);
 }
 
 .reduc-box-line {
-  color: #666666!important;
+  color: $txt-color!important;
   padding-top: 1.5rem;
   position: relative;
 }
@@ -21,9 +21,39 @@
 }
 
 .reduc-box-wrap {
-  padding: 1rem 1rem;
-  line-height: 2rem;
+  @include remCalc(height,110);
+  box-sizing:border-box;
   position: relative;
+  @include remCalc(border,5 solid #e6e6e6);
+  @include remCalc(padding,0 10 0 60);
+}
+.reduc-box-wrap > div{
+  @include remCalc(height,100);
+  position: relative;
+}
+.reduc-expire-coupon{
+  @include font-dpr(12px);
+  width:105px;
+  color: $reminder-color;
+}
+.reduc-box-info-coupon{
+  width: 75%;
+  overflow: hidden;
+}
+.reduc-box-info-coupon em,.reduc-box-info em{
+  @include remCalc(margin-left,10);
+  @include font-dpr(18px);
+  color: #515151;
+}
+.rp-bg{
+  position: absolute;
+  display: inline-block;
+  @include remCalc(left,0);
+  @include remCalc(top,0);
+  @include remCalc(width,56.2);
+  @include remCalc(height,58.9);
+  background: url(../../../../../images/first/rp_bg.png) no-repeat;
+  background-size: contain;
 }
 
 .reduc-box-line .reduc-box-wrap {
@@ -31,14 +61,9 @@
 }
 
 .reduc-box-info {
-  width: 90%;
-  word-break: break-all;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  width: 75%;
   overflow: hidden;
-  font-size: 14px;
+  line-height: 1;
 }
 
 .reduc-box-go {
@@ -59,7 +84,7 @@
 /*满减优惠*/
 
 .reduc-info {
-  color: #666666;
+  color: $txt-color;
   padding: 1rem 0;
   font-size: 14px;
   position: relative;
@@ -78,7 +103,7 @@
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid $border-color;
 }
 
 .total-box .reduc-info:before {
@@ -90,34 +115,11 @@
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid $border-color;
 }
 
 .reduc-expire {
-  font-size: 14px;
-  margin-top: 3px;
-  color:#999999;
-}
-
-.reduc-rule-list {
-  list-style: none;
-}
-
-.reduc-rule-list span {
-  width: .5rem;
-  height: .5rem;
-  background: #999999;
-  display: inline-block;
-  border-radius: 50%;
-  margin-right: .75rem;
-  line-height: .75rem;
-  margin-bottom: 2px;
-}
-
-.reduc-rule-list li:last-child {
-  margin-top: .75rem;
-}
-
-.reduc-rule-list li:last-child span {
-  background: #ffffff;
+  @include font-dpr(12px);
+  color:$reminder-color;
+  width: 105px;
 }
