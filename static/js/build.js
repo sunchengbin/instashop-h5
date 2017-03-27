@@ -42,7 +42,9 @@
         "validator":"moudle/ui/validator/validator",
         "debug":"moudle/app/debug/debug",
         "favorable":"moudle/app/favorable/favorable",
-        "tab":"moudle/ui/tab/tab"
+        "tab":"moudle/ui/tab/tab",
+        "oauth":"moudle/app/oauth/oauth",
+        "cache":"moudle/app/cache/cache"
     },
     "fileExclusionRegExp": "/.hbs$/",
     "keepBuildDir": true,

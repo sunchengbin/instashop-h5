@@ -397,7 +397,7 @@ define(function () {
         getCookie: function (name) {
             var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
             if (arr = document.cookie.match(reg)) {
-                return unescape(arr[2]);
+                return decodeURIComponent(arr[2]);
             } else {
                 return null;
             }
@@ -418,9 +418,10 @@ define(function () {
         isInsBrowser: function () {
             return /Instashop/g.test(navigator.userAgent);
         },
-        fillTemplate:function(template,data){
-            return template.replace(/\{([\w\.]*)\}/g, function(str, key) {
-                var keys = key.split("."), v = data[keys.shift()];
+        fillTemplate: function (template, data) {
+            return template.replace(/\{([\w\.]*)\}/g, function (str, key) {
+                var keys = key.split("."),
+                    v = data[keys.shift()];
                 for (var i = 0, l = keys.length; i < l; i++) v = v[keys[i]];
                 return (typeof v !== "undefined" && v !== null) ? v : "";
             });
@@ -472,7 +473,31 @@ define(function () {
             };
         }());
     }
+    // Object.create 垫片
+    if (typeof Object.create != 'function') {
+        Object.create = (function (undefined) {
+            var Temp = function () {};
+            return function (prototype, propertiesObject) {
+                if (prototype !== null && prototype !== Object(prototype)) {
+                    throw TypeError('Argument must be an object, or null');
+                }
+                Temp.prototype = prototype || {};
+                var result = new Temp();
+                Temp.prototype = null;
+                if (propertiesObject !== undefined) {
+                    Object.defineProperties(result, propertiesObject);
+                }
 
+                // to imitate the case of Object.create(null)
+                if (prototype === null) {
+                    result.__proto__ = null;
+                }
+                return result;
+            };
+        })();
+    }
+
+    
 
     return SUN;
 })

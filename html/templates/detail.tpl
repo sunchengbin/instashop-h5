@@ -193,4 +193,5 @@
 <script>
 var init_data = {$INDEX_DATA_STR};
 var shop_info_data = {$SHOP_INFO_DATA_STR};
-</script> {include file="footer.tpl"}
+</script> 
+{include file="footer.tpl"}
