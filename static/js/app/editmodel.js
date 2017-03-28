@@ -327,9 +327,9 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             }
             var _seller_info = Common.getUrlSellerInfo();
             var _skin_info = _this.getSkinInfo();
-            _this.model_data.push(_skin_info);
             var _req_data = {
                 edata : {
+                    skin : _skin_info,
                     content : _this.tranfansModelData(_this.model_data),
                     seller_id : _seller_info.seller_id,
                     wduss : _seller_info.wduss
@@ -348,15 +348,13 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             });
         },
         getSkinInfo : function(){
-            var _skin = Base.others.getUrlPrem('skin');
-            _skin = _skin ? _skin : 'default';
+            var _skin = Base.others.getUrlPrem('skin'),
+                _code = Base.others.getUrlPrem('skin_code');
+                _skin = _skin ? _skin : 'default';
+                _code = _code ? _code : 0;
             var _data = {
-                index: 0,
-                type: 'seller_skin',
-                data: {
-                    skin_code : 1,
-                    skin_name : _skin
-                }
+                skin_code : _code,
+                skin_name : _skin
             };
             return _data;
         },
