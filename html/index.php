@@ -1,10 +1,10 @@
 <?php
     include_once( dirname(__FILE__).'/../html/router/common.php');
+    include_once( dirname(__FILE__).'/../html/router/util.php' );
     $skin = getUrlParam('skin');
     $smarty = smartyCommon($skin);
 
     /*获取index页面的数据*/
-    include_once( dirname(__FILE__).'/../html/router/util.php' );
 
     // 获取url信息 拼接默认参数
     //首页tab 1-第一个首页模版 2-第二个全部商品 3-第三个店铺简介
