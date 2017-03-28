@@ -1,7 +1,8 @@
 <?php
     include_once( dirname(__FILE__).'/../html/router/common.php');
 
-    $smarty = smartyCommon('first');
+    $skin = getUrlParam('skin');
+    $smarty = smartyCommon($skin);
 
     /*HOST_NAME*/
     $hostname=$_SERVER['SERVER_NAME'];

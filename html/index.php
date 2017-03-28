@@ -1,6 +1,7 @@
 <?php
     include_once( dirname(__FILE__).'/../html/router/common.php');
-    $smarty = smartyCommon('first');
+    $skin = getUrlParam('skin');
+    $smarty = smartyCommon($skin);
 
     /*获取index页面的数据*/
     include_once( dirname(__FILE__).'/../html/router/util.php' );
