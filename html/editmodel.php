@@ -1,7 +1,6 @@
 <?php
     include_once( dirname(__FILE__).'/../html/router/common.php');
-    $smarty = smartyCommon();
-
+    $smarty = smartyCommon('first');
     /*获取model页面的数据*/
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     include_once( dirname(__FILE__).'/../html/router/base.php');

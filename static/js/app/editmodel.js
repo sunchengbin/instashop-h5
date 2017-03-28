@@ -231,8 +231,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             });
             $('body').on('click','.j_submit_btn',function(){
                 PaqPush && PaqPush('应用到店铺','save-model');
-                //_paq.push(['trackEvent', '应用到店铺', 'click', '应用到店铺']);
-                //_this.subModel();
+                _this.subModel();
                 var _param = {
                     param:{
                         type:'show_loading',
@@ -302,7 +301,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     }
                 });
             }
-            Common.slideImgNav();
+            //Common.slideImgNav();
         },
         verifySub : function(){//提交前验证
             if($('.static-banner').length > 5)return false;
@@ -327,6 +326,8 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 _this.have_list_type = true;
             }
             var _seller_info = Common.getUrlSellerInfo();
+            var _skin_info = _this.getSkinInfo();
+            _this.model_data.push(_skin_info);
             var _req_data = {
                 edata : {
                     content : _this.tranfansModelData(_this.model_data),
@@ -345,6 +346,19 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     _this.closeLoading(bridge,{code:500,message:Lang.H5_ORDER_TIMEOUT_ERROR});
                 }
             });
+        },
+        getSkinInfo : function(){
+            var _skin = Base.others.getUrlPrem('skin');
+            _skin = _skin ? _skin : 'default';
+            var _data = {
+                index: 0,
+                type: 'seller_skin',
+                data: {
+                    skin_code : 1,
+                    skin_name : _skin
+                }
+            };
+            return _data;
         },
         closeLoading : function(bridge,code){//关闭native的loading
             var _close_param = {

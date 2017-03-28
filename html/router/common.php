@@ -194,6 +194,7 @@ function smartyCommon($folder_name){
         $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
         $smarty->assign('TEMP_FOLDER',$folder_name.'/');
         $smarty->assign('CSS_DEBUG','.debug');
+        $smarty->assign('FLEXIBLE',FLEXIBLE);
     }else{
         $smarty->setTemplateDir(__DIR__.'/../templates/');
         $smarty->setCompileDir(__DIR__.'/../templates_c/');
@@ -207,7 +208,7 @@ function smartyCommon($folder_name){
     $smarty->assign('HOST_URL',HOST_URL);
     $smarty->assign('BI_SCRIPT',BI_SCRIPT);
     $smarty->assign('IS_DEBUG',IS_DEBUG);
-    $smarty->assign('FLEXIBLE',FLEXIBLE);
+
     return $smarty;
 }
 function setStaticConfig($folder_name){

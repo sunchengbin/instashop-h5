@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="../header.tpl"}
 <body data-spider="yngoklm4">
 <div class="edit-wraper-box" data-spider="edit-wraper-box">
     {if $INDEX_DATA.template|@count}
@@ -11,34 +11,37 @@
                 {/if}
              {/if}
             {if $model.type eq 'edit_signage'}
-            <section class="shop-header" data-spider="edit-signage">
-                <button class="handle-btn j_edit_model" data-type="edit_signage">Ubah</button>
-                <img class="shop-header-bg j_shop_bg" data-img="{$INDEX_DATA.shop.front_cover}" src="">
-                <div class="clearfix shop-info">
-                    <div class="shop-img">
-                        <img data-img="{$INDEX_DATA.shop.logo}" src="" />
-                    </div>
-                    <p>{$INDEX_DATA.shop.name}</p>
-                    <span><i class="icon iconfont icon-shop-font"></i>Toko fisik</span>
-                </div>
-            </section>
-            <div class="tabs">
-                <ul class="tablist tab-index ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
-                    <li class="tabitem tab-active">
-                        <div>
-                            <i class="icon iconfont icon-newhome"></i>
-                            <span>Home</span>
+                <section class="shop-header">
+                    <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
+                    <div class="shop-info-wrap" flex="main:center cross:center">
+                        <div class="shop-info">
+                            <div class="shop-img">
+                                <img src="{$INDEX_DATA.shop.logo}"/>
+                            </div>
+                            <div class="shop-seller-info">
+                                <p class="seller-name">{$INDEX_DATA.shop.name}</p>
+                                <p class="seller-sign">
+                                {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
+                                    <span><i class="icon iconfont icon-shop-font"></i>Ada Outlet</span>
+                                {/if}
+                                </p>
+                            </div>
                         </div>
-                    </li>
-                    <li class="tabitem">
-
-                        <div><i class="icon iconfont icon-allitem"></i><span>Produk</span></div>
-                    </li>
-                    <li class="tabitem">
-                        <div><i class="icon iconfont icon-shopinfo"></i><span>Informasi Toko</span></div>
-                    </li>
-                </ul>
-            </div>
+                    </div>
+                </section>
+                <div class="tabs" data-spider="index-parent-tab">
+                    <ul class="tablist tab-index-wrap tab-index ins-avg-sm-3 ins-avg-md-3 ins-avg-lg-3">
+                        <li class="tabitem tab-active">
+                            <div><i class="icon iconfont icon-newhome"></i><span>Home</span></div>
+                        </li>
+                        <li class="tabitem" flex="main:center cross:center">
+                            <div><i class="icon iconfont icon-allitem"></i><span>Produk</span></div>
+                        </li>
+                        <li class="tabitem" flex="main:center cross:center">
+                            <div><i class="icon iconfont icon-shopinfo"></i><span>Informasi Toko</span></div>
+                        </li>
+                    </ul>
+                </div>
             {elseif $model.type eq 'static_banner'}
             <section class="banner-wraper model-box j_model_box" data-spider="static_banner">
                 {if $smarty.foreach.foo.index eq 1}
@@ -52,11 +55,20 @@
                 {/if}
                 <div class="banner-box">
                     <ul class="item-banner static-banner clearfix">
-                        {foreach $model.data as $banner}
+                        {foreach from=$model.data item=banner name=banners}
                         {if $banner.link_url}
-                            <li class=""><a spm-auto="标准banner" spm-click="static-banner" class="block" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
+                            {if $smarty.foreach.banners.index eq 0}
+                                <li class=""><img class="static-banner-title" data-img="{$STATIC_HOST}/images/{$TEMP_FOLDER}/static_banner_title.png"/><a spm-auto="标准banner" spm-click="static-banner" class="block" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
+                            {else}
+                                <li class=""><a spm-auto="标准banner" spm-click="static-banner" class="block" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
+                            {/if}
+
                         {else}
-                            <li class=""><a spm-auto="标准banner" spm-click="static-banner" class="block no-cursor" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
+                            {if $smarty.foreach.banners.index eq 0}
+                                <li class=""><img class="static-banner-title" data-img="{$STATIC_HOST}/images/{$TEMP_FOLDER}/static_banner_title.png"/><a spm-auto="标准banner" spm-click="static-banner" class="block no-cursor" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
+                            {else}
+                                <li class=""><a spm-auto="标准banner" spm-click="static-banner" class="block no-cursor" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
+                            {/if}
                         {/if}
                         {/foreach}
                     </ul>
@@ -73,16 +85,18 @@
                         <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button><button class="move-btn j_moveup_model handle-btn">Pindah ke Atas</button>
                     </div>
                 {/if}
-                <div class="banner-box">
-                    <ul class="item-banner j_banner rotate-banner clearfix">
-                        {foreach $model.data as $banner}
-                        {if $banner.link_url}
-                            <li class=""><a spm-auto="轮播banner" spm-click="rotate-banner" class="block" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
-                        {else}
-                            <li class=""><a spm-auto="轮播banner" spm-click="rotate-banner" class="block no-cursor" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
-                        {/if}
-                        {/foreach}
-                    </ul>
+                <div class="rotate-banner-box">
+                    <div class="banner-box-wrap">
+                        <ul class="item-banner j_banner rotate-banner clearfix">
+                            {foreach $model.data as $banner}
+                            {if $banner.link_url}
+                                <li class=""><a spm-auto="轮播banner" spm-click="rotate-banner" class="block" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
+                            {else}
+                                <li class=""><a spm-auto="轮播banner" spm-click="rotate-banner" class="block no-cursor" href="javascript:;"><img data-img="{$banner.img}"/></a></li>
+                            {/if}
+                            {/foreach}
+                        </ul>
+                    <div>
                 </div>
             </section>
             {elseif $model.type eq 'two_list_banner'}
@@ -98,18 +112,28 @@
                     </div>
                 {/if}
                 <ul class="two-list-box clearfix">
-                    {foreach $model.data as $banner}
+                    {foreach from=$model.data item=banner name=banners}
                     {if $banner.link_url}
                         <li>
                             <a spm-auto="两列banner" spm-click="two-list-banner" class="block" href="javascript:;">
                                 <div class="lazy" data-img="{$banner.img|list_img}"></div>
                             </a>
+                            <div class="two_li_banner_txt">
+                            {if ($smarty.foreach.banners.index+1) % 2 != 0}
+                            <img src="{$STATIC_HOST}/images/{$TEMP_FOLDER}/two_li_banner_txt.png"/>
+                            {/if}
+                            </div>
                         </li>
                     {else}
                         <li>
                             <a spm-auto="两列banner" spm-click="two-list-banner" class="block no-cursor" href="javascript:;">
                                 <div class="lazy" data-img="{$banner.img|list_img}"></div>
                             </a>
+                            <div class="two_li_banner_txt">
+                            {if ($smarty.foreach.banners.index+1) % 2 != 0}
+                            <img src="{$STATIC_HOST}/images/{$TEMP_FOLDER}/two_li_banner_txt.png"/>
+                            {/if}
+                            </div>
                         </li>
                     {/if}
                     {/foreach}
@@ -127,20 +151,30 @@
                         <button class="edit-btn j_edit_model handle-btn" data-type="{$model.type}">Ubah</button><button class="del-btn j_del_model handle-btn">Hapus</button><button class="move-btn j_moveup_model handle-btn">Pindah ke Atas</button>
                     </div>
                 {/if}
-                {if $model.title}
-                <p class="item-title b-bottom"><span></span>{$model.title}</p>
-                {/if}
                 <div class="nav-img-box">
-                    <ul class="nav-img-ul clearfix" style="width:{$model.data|conuntImgNavWidth};">
-                        {foreach $model.data as $navigation}
-                            <li class="">
-                                <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url|transUrl}" href="javascript:;">
-                                    <div class="lazy" data-img="{$navigation.img|list_img}"></div>
-                                    <p class="">{$navigation.navigation_name}</p>
-                                </a>
-                            </li>
-                        {/foreach}
-                    </ul>
+                    <div class="clearfix">
+                        <ul class="nav-img-ul">
+                            {if $model.title}
+                                <li class="nav-img-titile b-bottom"><span></span>{$model.title}</li>
+                            {/if}
+                            {foreach $model.data as $navigation}
+                                <li class="b-bottom">
+                                    <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="javascript:;" href="javascript:;">
+                                        {$navigation.navigation_name}
+                                    </a>
+                                </li>
+                            {/foreach}
+                        </ul>
+                        <ul class="nav-img-wrap clearfix">
+                            {foreach $model.data as $navigation}
+                                <li class="nav-img-li">
+                                    <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="javascript:;" href="javascript:;">
+                                        <div class="lazy" data-img="{$navigation.img|list_img}"></div>
+                                    </a>
+                                </li>
+                            {/foreach}
+                        </ul>
+                    </div>
                 </div>
             </section>
             {elseif $model.type eq 'text_navigation'}
@@ -157,11 +191,10 @@
                 {if $model.title}
                 <p class="item-title b-bottom"><span></span>{$model.title}</p>
                 {/if}
-                <ul class="nav-text-ul">
+                <ul class="nav-text-ul clearfix">
                     {foreach $model.data as $navigation}
-                        <li class="b-top">
-                            <a spm-auto="文字导航" spm-click="text-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url|transUrl}" href="javascript:;">
-                                <i class="icon iconfont icon-go-font fr"></i>
+                        <li class="">
+                            <a spm-auto="文字导航" spm-click="text-navigation" class="block clearfix" data-url="" href="javascript:;">
                                 <span>{$navigation.navigation_name}</span>
                             </a>
                         </li>
@@ -284,29 +317,32 @@
                 {if $model.title}
                 <p class="item-title b-bottom"><span></span>{$model.title}</p>
                 {/if}
-                <ul class="">
-                {foreach $model.data as $item}
-                    <li class="clearfix cart-item">
-                        <a spm-auto="两列单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="block j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
-                            <img src="{$item.img|list_img}">
-                            <div class="item-info-box">
-                                <p class="name">
-                                    {$item.item_comment|nl2br}
-                                </p>
-                                {if $item.price lt 0}
-                                    <p class="price"></p>
-                                {elseif $item.is_discount}
-                                    <p class="discount-price price"><span class="fr">-{$item.discount.value}%</span>Rp {$item.discount.price|priceFormat}</p>
-                                    <p class="soon-time">{$item.discount.start_time|transDate}-{$item.discount.end_time|transDate} WIB</p>
-                                {else}
-                                    <p class="price">Rp {$item.price|priceFormat}</p>
-                                {/if}
+                <div class="two-li-items-box">
+                    <ul class="">
+                    {foreach from=$model.data item=item name=foo}
+                        <li class="clearfix cart-item">
+                            <a spm-auto="两列单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="block j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
+                                <img src="{$item.img|list_img}">
+                                <span class="item-index">{$smarty.foreach.foo.index + 1}</span>
+                                <div class="item-info-box">
+                                    <p class="name">
+                                        {$item.item_comment|nl2br}
+                                    </p>
+                                    {if $item.price lt 0}
+                                        <p class="price"></p>
+                                    {elseif $item.is_discount}
+                                        <p class="discount-price price"><span class="fr">-{$item.discount.value}%</span>Rp {$item.discount.price|priceFormat}</p>
+                                        <p class="soon-time">{$item.discount.start_time|transDate}-{$item.discount.end_time|transDate} WIB</p>
+                                    {else}
+                                        <p class="price">Rp {$item.price|priceFormat}</p>
+                                    {/if}
 
-                            </div>
-                        </a>
-                    </li>
-                {/foreach}
-                </ul>
+                                </div>
+                            </a>
+                        </li>
+                    {/foreach}
+                    </ul>
+                </div>
             </section>
             {elseif $model.type eq 'three_li_items'}
             <section class="item-list-box model-box j_model_box" data-spider="three_li_items">
@@ -407,4 +443,4 @@
     <button class="j_submit_btn sub-btn b-top">Gunakan ke Tokomu</button>
 </div>
 <script>var init_data = {$INDEX_DATA_STR};</script>
-{include file="footer.tpl"}
+{include file="../footer.tpl"}
