@@ -11,20 +11,20 @@
 .shopinfo-card-header {
   @include remCalc(padding,20 0 10);
   width: 100%;
-  @include font-dpr(14px);
+  @include fontDpr(14px);
   color: $info-color;
 }
 
 .shopinfo-base p {
   color: $gray-color;
-  @include font-dpr(12px);
+  @include fontDpr(12px);
   line-height: 2;
 }
 .shopinfo-base p a {
   color: #70CAFE;
 }
 .shopinfo-base p i{
-  @include font-dpr(12px);
+  @include fontDpr(12px);
   @include remCalc(margin,0 10);
 }
 .ins-typo {
@@ -62,7 +62,7 @@
 .shopinfo-note p:last-child {
   color:$gray-color;
   word-wrap: break-word;
-  @include font-dpr(14px);
+  @include fontDpr(14px);
 }
 .shopinfo-map .shopinfo-card-header i {
   color: #70CAFE;

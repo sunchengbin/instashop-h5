@@ -18,7 +18,7 @@
 //  z-index: 100;
 //}
 .item-title{
-  @include font-dpr(24px);
+  @include fontDpr(24px);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -59,7 +59,7 @@
   color: $base-color;
 }
 .item-title a i{
-  @include font-dpr(12px);
+  @include fontDpr(12px);
   //font-size: 12px;
 }
 .items-list li{
@@ -128,7 +128,7 @@
   padding:0;
 }
 .item-info > p{
-  @include font-dpr(14px);
+  @include fontDpr(14px);
   //font-size: 14px;
   line-height: 1.3;
   @include remCalc(padding,0 15);
@@ -144,7 +144,7 @@
   //color: #444;
   //margin:.3rem 0;
   @include remCalc(margin,10 0);
-  @include font-dpr(14px);
+  @include fontDpr(14px);
   //font-size: 14px;
   //@include remCalc(height,30);
   height: 35px;

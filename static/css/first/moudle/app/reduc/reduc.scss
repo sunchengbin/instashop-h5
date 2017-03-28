@@ -32,7 +32,7 @@
   position: relative;
 }
 .reduc-expire-coupon{
-  @include font-dpr(12px);
+  @include fontDpr(12px);
   width:105px;
   color: $reminder-color;
 }
@@ -42,7 +42,7 @@
 }
 .reduc-box-info-coupon em,.reduc-box-info em{
   @include remCalc(margin-left,10);
-  @include font-dpr(18px);
+  @include fontDpr(18px);
   color: #515151;
 }
 .rp-bg{
@@ -119,7 +119,7 @@
 }
 
 .reduc-expire {
-  @include font-dpr(12px);
+  @include fontDpr(12px);
   color:$reminder-color;
   width: 105px;
 }

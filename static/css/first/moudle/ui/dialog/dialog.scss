@@ -5,8 +5,9 @@
   position:absolute;
   background-color : $white;
   border-radius: 5px;
-  font-size: 14px;
-  color:#666;
+  @include fontDpr(14px);
+  //font-size: 14px;
+  //color:#666;
 }
 .dialog-body,.dialog-top,.dialog-footer{
   padding:10px;
@@ -15,10 +16,12 @@
   position: relative;
 }
 .dialog-top a{
-  color: #666;
+  color: $txt-color;
   position: absolute;
-  right: 1rem;
-  top: 1rem;
+  @include remCalc(right,30);
+  @include remCalc(top,20);
+  //right: 1rem;
+  //top: 1rem;
 }
 .dialog-body{
   overflow:auto;
@@ -32,10 +35,11 @@
   display: inline-block;
   padding: 2px 5px;
   border-radius: 3px;
-  color: #43CB9C;
+  color: $base-color;
 }
 .ca-btn{
-  margin-right:30px;
+  @include remCalc(margin-right,70);
+  //margin-right:30px;
 }
 .cf-btn{
 
@@ -58,7 +62,7 @@
 .container1 > div, .container2 > div, .container3 > div {
   width: 10px;
   height: 10px;
-  background-color: #fff;
+  background-color: $white;
   border-radius: 100%;
   position: absolute;
   -webkit-animation: bouncedelay 1.2s infinite ease-in-out;

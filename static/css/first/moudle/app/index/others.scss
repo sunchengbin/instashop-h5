@@ -17,7 +17,7 @@
   @include remCalc(padding,120 0 200);
   //padding: 4rem 0 30rem;
   text-align: center;
-  @include font-dpr(14px);
+  @include fontDpr(14px);
   //font-size: 14px;
 }
 .shop-delete i{
@@ -29,7 +29,7 @@
   @include remCalc(padding,150 30 150);
   //padding: 5rem 1rem 5rem;
   text-align: center;
-  @include font-dpr(16px);
+  @include fontDpr(16px);
   //font-size: 16px;
 }
 //搜索
@@ -51,7 +51,7 @@
 }
 .search-btn i{
   //font-size: 24px;
-  @include font-dpr(24px);
+  @include fontDpr(24px);
   color: #fff;
 }
 //推荐商品盒子

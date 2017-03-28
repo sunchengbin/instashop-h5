@@ -67,7 +67,7 @@
   @include remCalc(width,50);
   @include remCalc(height,50);
   @include remCalc(line-height,50);
-  @include font-dpr(14px);
+  @include fontDpr(14px);
   background-color: $base-color;
   color: $white;
   text-align: center;
@@ -78,7 +78,7 @@
   color: $txt-color;
 }
 .cart-item p.soon-time{
-  @include font-dpr(12px);
+  @include fontDpr(12px);
   margin-top: 0.8rem;
 }
 .cart-item img{
@@ -150,7 +150,7 @@
   @include remCalc(height,80);
   @include remCalc(line-height,80);
   @include remCalc(padding-right,56);
-  @include font-dpr(14px);
+  @include fontDpr(14px);
   font-weight: bold;
 }
 .nav-img-ul li.nav-img-titile span{

@@ -14,7 +14,7 @@
   background-color: $white;
 }
 .sort-list-wraper > p{
-  @include font-dpr(18px);
+  @include fontDpr(18px);
   color: $black-color;
 }
 .sort-list-wraper > ul{
@@ -22,7 +22,7 @@
   //padding-left:1rem;
 }
 .sort-list-wraper > ul li{
-  @include font-dpr(14px);
+  @include fontDpr(14px);
   //font-size: 14px;
   color: $gray-color;
   @include remCalc(height,100);
@@ -81,7 +81,7 @@
   right: 10%;
   top: 50%;
   color: #999;
-  @include font-dpr(30px);
+  @include fontDpr(30px);
   //font-size: 3rem;
   margin-top: -15px;
   transform: rotate(-180deg);

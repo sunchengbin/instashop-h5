@@ -1,6 +1,7 @@
 <?php
     include_once( dirname(__FILE__).'/../html/router/common.php');
-    $smarty = smartyCommon();
+
+    $smarty = smartyCommon('first');
 
     /*HOST_NAME*/
     $hostname=$_SERVER['SERVER_NAME'];
@@ -15,6 +16,7 @@
         $ss = split('\/', $_SERVER['REQUEST_URI']);
         $item_id = end($ss);
     }
+    $params["opt"] = 'H5_Detail';
     $path = 'v1/items/'.$item_id;
     $ret = get_init_php_data($path, $params);
     $json = json_decode($ret, true);
@@ -34,8 +36,8 @@
     $smarty->assign('INDEX_TITLE',$item_title);
 
     /*基础的js,css文件名*/
-    $smarty->assign('INDEX_JS_NAME','item');
-    $smarty->assign('INDEX_CSS_NAME','item');
+    $smarty->assign('INDEX_JS_NAME','detail');
+    $smarty->assign('INDEX_CSS_NAME','detail');
 
     //请求第三个tab数据
     // 获取店铺信息

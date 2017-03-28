@@ -14,7 +14,7 @@
   @include remCalc(padding,15 0);
   //padding: .5rem 0;
   //color: #666;
-  @include font-dpr(14px);
+  @include fontDpr(14px);
   //font-size: 1.4rem;
   //line-height: 3rem;
   text-align: center;
@@ -54,7 +54,7 @@
 }
 .contact-list i{
   //font-size: 2rem;
-  @include font-dpr(20px);
+  @include fontDpr(20px);
   vertical-align: middle;
   @include remCalc(margin-right,30);
   //margin-right: .5rem;
@@ -72,7 +72,7 @@
   z-index: 4000;
 }
 .contact-plug-top i{
-  @include font-dpr(18px);
+  @include fontDpr(18px);
   @include remCalc(top,15);
   //font-size: 1.8rem;
   color: $gray-color;
@@ -80,7 +80,7 @@
   text-align: right;
 }
 .contact-plug-top p{
-  @include font-dpr(14px);
+  @include fontDpr(14px);
   //font-size: 1.4rem;
   @include remCalc(line-height,72);
   //line-height: 3rem;

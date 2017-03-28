@@ -31,12 +31,12 @@
   box-sizing: border-box;
   //line-height: 4rem;
   text-align: center;
-  @include font-dpr(12px);
+  @include fontDpr(12px);
   //font-size: 14px;
   color: #fff;
 }
 .index-footer ul li i{
-  @include font-dpr(16px);
+  @include fontDpr(16px);
   vertical-align: middle;
 }
 .index-footer ul li a{
@@ -63,6 +63,6 @@
   //margin-left: -1.1rem;
   @include remCalc(top,15);
   //top: .6rem;
-  @include font-dpr(12px);
+  @include fontDpr(12px);
   //font-size: 12px;
 }

@@ -19,7 +19,7 @@
   @each $prop in $props {#{$prop}: $value}
 }
 //原稿字体转换
-@mixin font-dpr($font-size){
+@mixin fontDpr($font-size){
 
   font-size: $font-size;
 

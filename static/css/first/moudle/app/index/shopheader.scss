@@ -23,14 +23,14 @@
   @include remCalc(height,55);
   @include remCalc(line-height,55);
   @include remCalc(padding,0 50);
-  @include font-dpr(16px);
+  @include fontDpr(16px);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color:#fff;
 }
 .shop-seller-info p.seller-sign{
-  @include font-dpr(12px);
+  @include fontDpr(12px);
   height: auto;
   line-height: inherit;
 }
