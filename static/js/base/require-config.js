@@ -55,7 +55,8 @@ require.config({
         favorable:'moudle/app/favorable/favorable',
         "tab":"moudle/ui/tab/tab",
         "oauth":"moudle/app/oauth/oauth",
-        "cache":"moudle/app/cache/cache"
+        "cache":"moudle/app/cache/cache",
+        "sharebargain":"moudle/app/sharebargain/sharebargain"
     },
     packages: []
 });

@@ -428,7 +428,26 @@ img{
 .ins-m-t-2 {
   margin-top: 1rem;
 }
+.ins-m-b-2 {
+  margin-bottom:1rem!important;
+}
 
 .ins-text-left {
   text-align: left!important;
+}
+
+.ins-color-hightlight-blue {
+  color:#4990E2;
+}
+.ins-btn {
+  text-align: center;
+}
+.ins-btn-orange {
+  background:#F5A623;
+  color:#ffffff;
+  font-size: 16px;
+  height:4.2rem;
+  line-height: 4.2rem;
+  width:100%;
+  border-radius: 2px;
 }

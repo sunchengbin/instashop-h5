@@ -10,7 +10,7 @@
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     include_once( dirname(__FILE__).'/../html/router/base.php');
     $params = [
-        'opt' => 'H5_Detail'
+        'opt' => 'H5_Detail,bargain'
     ];
     $item_id = $_REQUEST['item_id'];
     if (!$item_id) {
@@ -31,13 +31,13 @@
     $smarty->assign('INDEX_DATA_SHOP',$json['item']);
     $smarty->assign('INDEX_DATA_STR',$ret);
 
-    /*item页面支持app分享的数据*/
-    $item_title = '<meta property="og:image" content="'.$url.'"><title>'.$json["item"]["item_name"].'</title>';
-    $smarty->assign('INDEX_TITLE',$item_title);
-
     /*基础的js,css文件名*/
     $smarty->assign('INDEX_JS_NAME','item');
     $smarty->assign('INDEX_CSS_NAME','item');
+
+    /*item页面支持app分享的数据*/
+    $item_title = '<meta property="og:image" content="'.$url.'"><title>'.$json["item"]["item_name"].'</title>';
+    $smarty->assign('INDEX_TITLE',$item_title);
 
     //请求第三个tab数据
     // 获取店铺信息
@@ -51,7 +51,6 @@
     $json = json_decode($ret, true);
     $smarty->assign('SHOP_INFO_DATA_STR',$ret);
     $smarty->assign('SHOP_INFO_DATA',$json["shop"]);
-
 
     $smarty->display('detail.tpl');
 

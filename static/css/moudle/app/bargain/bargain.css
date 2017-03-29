@@ -1,0 +1,33 @@
+.bargain-tip-txt-how {
+    font-size: 16px;
+    padding:.5rem 0;
+}
+.bargain-howprice-wrap {
+    text-align: center;
+}
+.bargain-howprice-wrap p img {
+    width: 5rem;
+    height: 5rem;
+}
+.j_bargain_tip_unlogin_price {
+    display: none;
+    color: #999999;
+    font-size:16px;
+    padding:1.2rem 0;
+}
+.j_dialog_login_line,.j_dialog_login_facebook {
+    width:90%;
+    height:3.9rem;
+    line-height: 3.9rem;
+    border-radius: 2px;
+    color:#ffffff;
+    font-size:16px;
+    text-align: center;
+    margin:0 auto;
+}
+.j_dialog_login_line {
+    background: #00B900;
+}
+.j_dialog_login_facebook {
+    background: #3B589C;
+}

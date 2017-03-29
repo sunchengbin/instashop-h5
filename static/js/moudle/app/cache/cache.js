@@ -120,7 +120,7 @@ define([
         this.type = opts.type || "memory";
 
         //扔到缓存池里
-        Cache.set(this.namespace, this)
+        Cache.setSpace(this.namespace, this)
     }
 
     //缓存池
@@ -131,10 +131,10 @@ define([
      * static 
      * @param  {} namespace 命名空间
      */
-    Cache.get = function (namespace) {
+    Cache.getSpace = function (namespace) {
         return Cache.pools[namespace] || undefined;
     }
-    Cache.set = function (namespace, cache) {
+    Cache.setSpace = function (namespace, cache) {
         Cache.pools[namespace] = cache;
     }
 
