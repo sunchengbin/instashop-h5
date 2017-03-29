@@ -242,6 +242,10 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     return null;
                 });
             });
+            $('body').on('click','.j_change_btn',function(){
+                //PaqPush && PaqPush('更换皮肤','save-model');
+                location.href += '&skin=first&skin_code=1';
+            });
         },
         tranfansModelData : function(data){
             return JSON.parse(Common.decodeSingleQuotes(JSON.stringify(data)));
@@ -353,8 +357,8 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 _skin = _skin ? _skin : 'default';
                 _code = _code ? _code : 0;
             var _data = {
-                skin_code : _code,
-                skin_name : _skin
+                code : _code,
+                name : _skin
             };
             return _data;
         },

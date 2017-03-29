@@ -1,5 +1,8 @@
 {include file="../header.tpl"}
 <body data-spider="yngoklm4">
+<div class="" style="background-color:#fff;text-align:center;height:30px;line-height:30px;">
+    <button class="j_change_btn " >更换</button>
+</div>
 <div class="edit-wraper-box" data-spider="edit-wraper-box">
     {if $INDEX_DATA.template|@count}
         {foreach from=$INDEX_DATA.template item=model name=foo}

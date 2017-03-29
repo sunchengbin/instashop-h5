@@ -1,8 +1,8 @@
 <?php
     include_once( dirname(__FILE__).'/../html/router/common.php');
     include_once( dirname(__FILE__).'/../html/router/util.php' );
-    $skin = getUrlParam('skin');
-    $smarty = smartyCommon($skin);
+
+    $smarty = smartyCommon();
 
     /*获取index页面的数据*/
 
@@ -111,7 +111,6 @@
             $seller_id = end($ss);
         }
     }
-
     //请求第一个tab数据
     $path = 'v1/shops/'.$seller_id;
     $ret = get_init_php_data($path, $paramsForIndexTemplate);
@@ -163,4 +162,6 @@
     $smarty->assign('INDEX_JS_NAME','index');
     $smarty->assign('INDEX_CSS_NAME','index');
     $smarty->display('index.tpl');
+
+
 ?>
