@@ -14,9 +14,13 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_FONT_CSS?>
     <?php
         if(isDebug()){
-            echo '<link href="'.STATIC_HOST.'/css/app/cart.css?v=1490070969974" rel="stylesheet"/>';
+            if(TEMP_FOLDER){
+                echo '<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/cart.css?v=1490070969974" rel="stylesheet"/>';
+            }else{
+                echo '<link href="'.STATIC_HOST.'/css/app/cart.css?v=1490070969974" rel="stylesheet"/>';
+            }
         }else{
-            echo '<link href="'.STATIC_HOST.'/css/dist/app/cart.css?v=1490070969974" rel="stylesheet"/>';
+            echo '<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/cart.css?v=1490070969974" rel="stylesheet"/>';
         }
      ?>
     <title>Keranjangku</title>

@@ -4,21 +4,8 @@
   z-index: 2;
   background-color: $white;
 }
-//.items-box::after{
-//  display: block;
-//  box-sizing: border-box;
-//  position: absolute;
-//  bottom:1px;
-//  left:-50%;
-//  right:-50%;
-//  content: '';
-//  -webkit-transform: scale(0.5);
-//  transform: scale(0.5);
-//  border-top: 1px solid $border-color;
-//  z-index: 100;
-//}
 .item-title{
-  @include fontDpr(24px);
+  @include fontDpr(20px);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

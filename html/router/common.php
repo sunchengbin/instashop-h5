@@ -190,7 +190,8 @@ function smartyCommon($folder){
     $smarty = new Smarty();
     $folder_name = getSkinInfo();
     $folder_name = $folder?$folder:$folder_name;
-    setStaticConfig($folder_name);
+    $static_font_css = setStaticFontCss($folder_name);
+    define('STATIC_FONT_CSS', $static_font_css);
     if($folder_name != 'default'){
         $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
         $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
@@ -212,18 +213,35 @@ function smartyCommon($folder){
     $smarty->assign('IS_DEBUG',IS_DEBUG);
     return $smarty;
 }
-function setStaticConfig($folder_name){
-    if($folder_name == 'default'){
+function setStaticFontCss($folder_name){
+    if($folder_name && $folder_name == 'default'){
         $folder_name = '';
     }
+    return C_RUNTIME_ONLINE?getFontCss($host_name.'/static',$folder_name):getFontCss($host_name.'/static',$folder_name);
+}
+function getSkinInfo(){
+    include_once( dirname(__FILE__).'/util.php');
+    $seller_id = $_REQUEST['seller_id'];
+    print_r('sss');
+    print_r($seller_id);
+    $skin_path = 'v1/shopsSkin/';
+    $skin_ret = json_decode(get_init_php_data($skin_path, ["seller_id" => $seller_id]), true);
+
+    if($skin_ret['code'] == 200){
+        return $skin_ret['shop_skin']['name'];
+    }else{
+        return 'default';
+    }
+}
+function setStaticConfig(){
     $prompt = is_https() ? 'https:' : 'http:';
     $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
     $static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
-    $static_font_css =C_RUNTIME_ONLINE?getFontCss($host_name.'/static',$folder_name):getFontCss($host_name.'/static',$folder_name);
     $static_ico_css =C_RUNTIME_ONLINE?getIco($prompt.'//m.instashop.co.id'):getIco($prompt.'//m-test.instashop.co.id');
     $host_url =C_RUNTIME_ONLINE?$prompt.'//m.instashop.co.id':$prompt.'//m-test.instashop.co.id';
     $static_dns = '<meta name="spider-id" content="orju7v"><link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';
     $bi_js = biJs();
+    $static_font_css = setStaticFontCss();
     define('STATIC_DNS', $static_dns);
     define('STATIC_FONT_CSS', $static_font_css);
     define('STATIC_ICO_CSS', $static_ico_css);
@@ -233,19 +251,15 @@ function setStaticConfig($folder_name){
     define('BI_SCRIPT', $bi_js);
     define('IS_DEBUG', isDebug());
     define('FLEXIBLE', flexible());
-}
-function getSkinInfo(){
-    include_once( dirname(__FILE__).'/../html/router/util.php' );
-    $seller_id = $_REQUEST['seller_id'];
-    $skin_path = 'v1/shopsSkin/';
-    $skin_ret = json_decode(get_init_php_data($skin_path, ["seller_id" => $seller_id]), true);
-    if($skin_ret['code'] == 200){
-        return $skin_ret['shop_skin']['name'];
+    $folder_name = getSkinInfo();
+
+    if($folder_name != 'default'){
+        define('TEMP_FOLDER', $folder_name.'/');
     }else{
-        return 'default';
+        define('TEMP_FOLDER', '');
     }
 }
 spl_autoload_register('loadClass');
-
+setStaticConfig();
 
 
