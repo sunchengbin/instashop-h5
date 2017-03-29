@@ -118,6 +118,10 @@ section{
 .one-item-box .items-list li a{
   @include remCalc(padding,30 30 0);
 }
+.one-item-icon{
+  @include remCalc(left,43);
+  @include remCalc(top,74);
+}
 .one-item-box{
   background-color: $white;
 }

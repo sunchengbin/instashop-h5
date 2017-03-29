@@ -113,33 +113,24 @@
 }
 .big-img-box li{
   padding:0;
+  position: relative;
 }
 .item-info > p{
   @include fontDpr(14px);
-  //font-size: 14px;
   line-height: 1.3;
   @include remCalc(padding,0 15);
-  //padding:0 .5rem;
 }
 .item-info > p.title{
   display: -webkit-box;
   word-break: break-word;
-  /*text-overflow: ellipsis;*/
   overflow : hidden;
-  /*-webkit-line-clamp: 2;*/
-  /*-webkit-box-orient: vertical;*/
-  //color: #444;
-  //margin:.3rem 0;
   @include remCalc(margin,10 0);
   @include fontDpr(14px);
-  //font-size: 14px;
-  //@include remCalc(height,30);
   height: 35px;
 }
 .price{
   color: $base-color;
   @include remCalc(height,50);
-  //height: 1.8rem;
 }
 .cost-price{
   color: $disable-color;
@@ -147,9 +138,7 @@
 }
 .discount-price{
   color: $base-color;
-  //height: 1.8rem;
   @include remCalc(height,50);
-  /*margin-bottom: .35rem;*/
 }
 .lazy{
   position: relative;
