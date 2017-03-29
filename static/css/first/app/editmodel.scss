@@ -41,39 +41,30 @@ section{
 .handle-btn{
   display: block;
   box-sizing: border-box;
-  @include remCalc(height,90);
-  @include remCalc(line-height,90);
-  //height: 3.5rem;
-  //line-height: 3.5rem;
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
   @include remCalc(padding,0 45);
-  //padding: 0 1.5rem;
   background-color: rgba(51,51,51,.98);
   color: $white;
   text-align: center;
   @include fontDpr(12px);
-  //font-size: 12px;
 }
 .insert-btn{
   border-radius: 2px;
   position: absolute;
   @include remCalc(right,-45);
-  @include remCalc(top,-30);
-  //right: -1.5rem;
+  @include remCalc(top,-25);
   z-index: 110;
-  //top: -1rem;
 }
 .insert-box{
   position: relative;
   @include remCalc(height,30);
-  //height: 1.5rem;
 }
 .model-btns{
   position: absolute;
   z-index: 110;
   @include remCalc(left,15);
   @include remCalc(top,15);
-  //left: .5rem;
-  //top: .5rem;
   border-radius: 2px;
   overflow: hidden;
 }
@@ -81,9 +72,7 @@ section{
   display: inline-block;
   position: relative;
   @include remCalc(min-width,120);
-  //min-width: 5rem;
   @include remCalc(padding,0 15);
-  //padding: 0 .5rem;
   float: left;
 }
 .model-btns :not(:first-child)::after{
@@ -101,7 +90,6 @@ section{
   z-index: 1;
 }
 .banner-box{
-  /*min-height: 240px;*/
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -113,11 +101,8 @@ section{
   width: 100%;
   @include remCalc(height,90);
   @include remCalc(line-height,90);
-  //height: 4rem;
-  //line-height: 4rem;
   text-align: center;
   @include fontDpr(16px);
-  //font-size: 16px;
   color: $base-color;
   background-color: rgba(255,255,255,.98);
   bottom: 0;
@@ -129,11 +114,9 @@ section{
 }
 .static-banner li:not(:first-child){
   @include remCalc(margin-top,45);
-  //margin-top:1.5rem;
 }
 .one-item-box .items-list li a{
   @include remCalc(padding,30 30 0);
-  //padding: 1rem 1rem 0;
 }
 .one-item-box{
   background-color: $white;
@@ -144,9 +127,7 @@ section{
 /*商品展示列*/
 .check-btn, .checked-btn{
   @include fontDpr(18px);
-  //font-size: 18px;
   @include remCalc(margin-right,20);
-  //margin-right: 10px;
   vertical-align: middle;
 }
 .checked-btn{

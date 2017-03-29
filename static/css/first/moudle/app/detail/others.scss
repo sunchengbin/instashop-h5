@@ -1,7 +1,6 @@
 body{
-  background-color: #f5f5f5;
+  background-color: $white;
   @include remCalc(padding-bottom,90);
-  //padding-bottom: 4rem;
   @include fontDpr(12px);
 }
 .item-info{
@@ -10,6 +9,20 @@ body{
 }
 .index-btn-box{
   @include remCalc(margin-bottom,50);
+}
+/*商品图片轮播*/
+.item-banner li{
+  float: left;
+  width: 100%;
+}
+.item-banner li img {
+  cursor: pointer;
+}
+.banner-box{
+  min-height: 320px;
+  position: relative;
+  max-width: 640px;
+  overflow: hidden;
 }
 /*商品下架*/
 .item-out-stock{

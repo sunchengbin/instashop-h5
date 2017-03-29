@@ -22,7 +22,7 @@
 }
 .discount-info span:first-child{
   display: inline-block;
-  @include remCalc(padding,10 30);
+  @include remCalc(padding,4 30);
   background-color: $base-color;
   color: $white;
   @include remCalc(border-radius,30);

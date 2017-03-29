@@ -30,9 +30,9 @@
 .cart-num{
   position: absolute;
   display: inline-block;
-  @include remCalc(width,30);
-  @include remCalc(height,30);
-  @include remCalc(line-height,30);
+  @include remCalc(width,36);
+  @include remCalc(height,36);
+  @include remCalc(line-height,36);
   border-radius: 50%;
   text-align: center;
   background-color: $footer-num-bg;
