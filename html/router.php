@@ -33,6 +33,7 @@ function handle()
 	{
 		$alias = get_seller_id_by_personal_host($host);
 	}
+	$_REQUEST['seller_id'] = $alias;
 
 	if (preg_match('/^(\/detail)?\/(\d+)(\?.*)?$/i', $uri, $item_matches))
 	{
@@ -76,7 +77,6 @@ function handle()
 	}
 	else if (preg_match('/^\/(\?.*)?$/i', $uri))
 	{
-		$_REQUEST['seller_id'] = $alias;
 		require( dirname(__FILE__).'/../html/index.php');
 	}
 	else

@@ -1,10 +1,11 @@
 <?php
     include_once( dirname(__FILE__).'/../html/router/common.php');
-    $smarty = smartyCommon();
-
-    /*获取model页面的数据*/
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     include_once( dirname(__FILE__).'/../html/router/base.php');
+    $skin = getUrlParam('skin');
+    $smarty = smartyCommon($skin);
+    /*获取model页面的数据*/
+
     $params = getSellerInfo();
     $path = 'v1/shopsTemplate';
     $ret = get_init_php_data($path, $params);

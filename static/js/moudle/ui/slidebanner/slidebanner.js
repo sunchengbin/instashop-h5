@@ -53,6 +53,8 @@ define(["dialog",'base','debug'],function (Dialog,Base,Debug) {
 
             // 容器宽度
             this.boxWidth = this.parentDom.clientWidth;
+            console.log(this.parentDom);
+            console.log(this.parentDom.clientWidth);
             if(this.boxWidth == 0){
                 if(window.innerWidth >= 640){
                     _this.boxWidth = 640;

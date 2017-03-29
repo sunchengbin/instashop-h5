@@ -1,0 +1,99 @@
+.contact-plug {
+  width: 100%;
+  max-width: 640px;
+  position: fixed;
+  background-color: #fff;
+  @include remCalc(padding-top,30);
+  //padding-top:1rem;
+}
+.contact-plug-top,.contact-list{
+  @include remCalc(margin,0 30);
+  //margin:0 1rem;
+}
+.contact-list li{
+  @include remCalc(padding,15 0);
+  //padding: .5rem 0;
+  //color: #666;
+  @include fontDpr(14px);
+  //font-size: 1.4rem;
+  //line-height: 3rem;
+  text-align: center;
+}
+.contact-list li a{
+  color: #52CDF0;
+  display: block;
+}
+.contact-list li span{
+  color: #52CDF0;
+}
+.contact-list .b-bottom:last-child::after{
+  border: 0;
+  display: none;
+}
+.contact-list{
+  @include remCalc(padding-bottom,15);
+  //padding-bottom: .5rem;
+  position: relative;
+}
+.contact-plug-info{
+
+}
+.contact-list::after{
+  position: absolute;
+  left:-50%;
+  right: -50%;
+  bottom:0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+}
+.contact-list:last-child::after{
+  border-bottom:none;
+}
+.contact-list i{
+  //font-size: 2rem;
+  @include fontDpr(20px);
+  vertical-align: middle;
+  @include remCalc(margin-right,30);
+  //margin-right: .5rem;
+  display: inline-block;
+  @include remCalc(height,72);
+  @include remCalc(line-height,72);
+  //height: 2rem;
+  //line-height: 1.5;
+}
+.contact-plug-top{
+  position: absolute;
+  right: 0;
+  @include remCalc(top,15);
+  //top: .5rem;
+  z-index: 4000;
+}
+.contact-plug-top i{
+  @include fontDpr(18px);
+  @include remCalc(top,15);
+  //font-size: 1.8rem;
+  color: $gray-color;
+  width: 40px;
+  text-align: right;
+}
+.contact-plug-top p{
+  @include fontDpr(14px);
+  //font-size: 1.4rem;
+  @include remCalc(line-height,72);
+  //line-height: 3rem;
+}
+.btn{
+  border-radius: 0;
+}
+.contact-plug-cover{
+  display: none;
+  position: fixed;
+  left: 0;
+  right:0;
+  top:0;
+  bottom:0;
+  background-color: rgba(0,0,0,.5);
+}

@@ -1,0 +1,101 @@
+//首页tabs
+.tabs {
+  width: 100%;
+  @include remCalc(height,120);
+  background: $white;
+  text-align: center;
+  border-bottom: 1px solid $border-color;
+}
+
+.tab-index .tabitem div {
+  @include remCalc(height,120);
+  @include remCalc(padding-top,20);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.tab-items {
+  width: 100%;
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  background: #fff;
+  text-align: center;
+}
+
+.tab-items .tabitem div {
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.tab-index-wrap .tabitem span{
+  @include remCalc(margin-top,-10);
+}
+.tabitem span {
+  display: block;
+
+}
+
+.tab-index .tabitem i {
+  @include remCalc(font-size,40);
+}
+
+.tab-active div {
+  color: $base-color;
+}
+
+.tab-index .tab-active div:after {
+  content: " ";
+  @include remCalc(height,5);
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $base-color;
+}
+
+.all-items-wrap .items-box {
+  margin-top: 0;
+}
+
+.sort-price {
+  line-height: 0!important;
+  display: inline-block!important;
+  height: inherit!important;
+}
+
+.sort-price-off {
+  color: $txt-color!important;
+}
+.sort-price-l2h {
+  position: absolute;
+  top: -8px;
+}
+
+.sort-price-h2l {
+  position: absolute;
+  @include remCalc(bottom,-5);
+}
+
+.item-tabs {
+  color: $txt-color;
+}
+.all-items-wrap-box .item-tabs{
+  @include remCalc(margin,0 -30);
+  position: relative;
+}
+.all-items-wrap-box .item-tabs::after{
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    bottom:1px;
+    left:-50%;
+    right:-50%;
+    content: '';
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    border-top: 1px solid $border-color;
+    z-index: 100;
+}

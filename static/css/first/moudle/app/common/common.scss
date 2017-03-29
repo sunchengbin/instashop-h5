@@ -1,0 +1,115 @@
+//button
+/*按钮类*/
+.btn {
+  display: block;
+  width: 100%;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 15px;
+  text-align: center;
+  color: #fff;
+  border-radius: 3px;
+  background-color: $base-color;
+}
+
+/*确定按钮*/
+.confirm-btn {
+  background-color: $base-color;
+}
+
+.confirm-btn:hover {
+  background-color: $base-color;
+}
+
+/*取消按钮*/
+.cancel-btn {
+  background-color: #eee;
+  color: #ff584c;
+}
+
+.cancel-btn:hover {
+  background-color: #ddd;
+  color: #ff584c;
+}
+
+/*退出按钮*/
+.exit-btn {
+  background-color: #fff;
+  color: #ff584c;
+}
+
+.exit-btn:hover {
+  background-color: #eee;
+}
+
+/*禁用按钮*/
+.disable-btn {
+  width: 20rem;
+  color: #999;
+  background-color: #eee;
+}
+
+/*不同大小btn类*/
+.b-btn {
+  width: 15rem;
+}
+
+.c-btn {
+  width: 10rem;
+}
+
+/*添加和购买按钮*/
+.add-shop, .buy-btn {
+
+}
+
+.buy-btn {
+
+}
+
+/*check-box*/
+.check-btn, .checked-btn {
+  font-size: 3rem;
+}
+
+//border
+.b-top, .b-bottom, .b-right {
+  position: relative;
+}
+.b-top::before {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  top: -1px;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid #d8d8d8;
+  z-index: 1;
+}
+
+.b-right::before {
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  right: 0;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-right: 1px solid #d8d8d8;
+  z-index: 1;
+}
+
+.b-bottom::after {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: 0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid #d8d8d8;
+  z-index: 1;
+}

@@ -130,8 +130,8 @@
                 {if $model.title}
                 <p class="item-title b-bottom"><span></span>{$model.title}</p>
                 {/if}
-                <div class="nav-img-box j_nav_img_box">
-                    <ul class="nav-img-ul clearfix">
+                <div class="nav-img-box">
+                    <ul class="nav-img-ul clearfix" style="width:{$model.data|conuntImgNavWidth};">
                         {foreach $model.data as $navigation}
                             <li class="">
                                 <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url|transUrl}" href="javascript:;">
