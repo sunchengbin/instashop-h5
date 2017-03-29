@@ -259,7 +259,25 @@ function setStaticConfig(){
         define('TEMP_FOLDER', '');
     }
 }
+
+function set_request_seller_id() {
+    include_once( dirname(__FILE__).'/util.php');
+	$host_preg = C_RUNTIME_ONLINE ? '/^(www\.)?(.*?)\.instashop\.co\.id$/i' : '/^(www\.)?(.*?)\.test\.instashop\.co\.id$/i';
+	$host = $_SERVER['HTTP_HOST'];
+	$h_match = preg_match($host_preg, $host, $matches);
+	if ($h_match)
+	{
+		$alias = $matches[2];
+	}
+	else
+	{
+		$alias = get_seller_id_by_personal_host($host);
+	}
+	$_REQUEST['seller_id'] = $alias;
+}
+
 spl_autoload_register('loadClass');
+set_request_seller_id();
 setStaticConfig();
 
 
