@@ -23,12 +23,25 @@
 .one-item-box .items-list li{
   width: 100%;
   padding:0;
+  position: relative;
 }
 .one-item-box .items-list li:not(:last-child){
   margin-bottom:1.5rem;
 }
 .one-item-box .items-list li a::after{
   display: none;
+}
+.one-item-icon{
+  @include remCalc(padding,10 30);
+  @include remCalc(border-radius,100);
+  @include fontDpr(12px);
+  display: inline-block;
+  background-color: $base-color;
+  color: $white;
+  position: absolute;
+  @include remCalc(left,13);
+  @include remCalc(top,44);
+  z-index: 10;
 }
 .rotate-banner li{
   float: left;
@@ -89,7 +102,6 @@
 /*导航类模板样式*/
 .navigation-box{
   position: relative;
-  overflow: hidden;
 }
 .nav-text-ul li{
   width: 33.33%;
@@ -115,7 +127,6 @@
   @include remCalc(padding,0 10);
 }
 .nav-img-box{
-  overflow: hidden;
   position: relative;
 }
 .nav-img-box::after{

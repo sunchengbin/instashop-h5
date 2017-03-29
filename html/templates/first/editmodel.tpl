@@ -272,6 +272,7 @@
                 <ul class="items-list clearfix">
                     {foreach $model.data as $item}
                         <li>
+                            <span class="one-item-icon">HOT</span>
                             <a spm-auto="大图单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
                                 <div class="lazy" data-img="{$item.img|list_img}">
                                     {if $item.is_discount}
