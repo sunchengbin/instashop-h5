@@ -341,7 +341,7 @@ define(["dialog",'base','debug'],function (Dialog,Base,Debug) {
             var ch = _this.parentDom.clientHeight;
             if (ch != 0) {
                 _this.boxWidth = _this.parentDom.clientWidth;
-                if(this.boxWidth == 0){
+                if(_this.boxWidth == 0){
                     if(window.innerWidth >= 640){
                         _this.boxWidth = 640;
                     }else{
