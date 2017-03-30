@@ -1,4 +1,14 @@
 <?php
+/**
+* 删除js不能处理的特殊字符
+**/
+if (!function_exists('deal_special_chars')) {
+    function deal_special_chars($str) {
+        $str = str_replace(" ", " ", $str);
+        return $str;
+    }
+}
+
 function check_api($path, $params){
     if (strpos($_SERVER['HTTP_HOST'],'-test.')!==false || strpos($_SERVER['HTTP_HOST'],'.test.')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
         $host = 'https://apip-test.instashop.co.id/instashop/';   // 测试
@@ -75,6 +85,7 @@ function get_init_php_data($path, $params){
 	Log::debug(['url'=>$api, 'headers'=>deal_headers()]);
     $ret = HttpProxy::getInstance(array('timeout'=>20000, 'conn_timeout'=>20000))->callInterfaceCommon($api, 'POST', [], deal_headers());
     //$ret = file_get_contents($api);
+    $ret = deal_special_chars($ret);
 
     $json = json_decode($ret, true);
     $browser_id = $json["client_uuid"];

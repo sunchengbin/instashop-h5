@@ -162,7 +162,7 @@
             {if $INDEX_DATA.item.status eq 2}
                 Sudah Digudangkan
             {else}
-                Stok Kurang
+                Stok Habis
             {/if}
         </a> 
     {else}
