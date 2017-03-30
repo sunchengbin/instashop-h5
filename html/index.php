@@ -149,13 +149,11 @@
     $json = json_decode($ret, true);
     $smarty->assign('SHOP_INFO_DATA_STR',$ret);
     $smarty->assign('SHOP_INFO_DATA',$json["shop"]);
-    
-    
-    
+
     $hostname=$_SERVER['SERVER_NAME'];
     $smarty->assign('HOST_NAME',HOST_NAME);
-
-    $share_content = '<meta name="description" content="'.$json["shop"]["note"].'"/>';
+    $shop_note = str_replace(">", "gt;", addslashes($json["shop"]["note"]));
+    $share_content = '<meta name="description" content="'.$shop_note.'"/>';
     $index_title = $share_content.'<meta property="og:image" content="'.$url.'">'.'<title>'.$json["shop"]["name"].'</title>';
     $smarty->assign('INDEX_TITLE',$index_title);
 
