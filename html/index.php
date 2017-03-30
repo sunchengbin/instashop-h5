@@ -155,7 +155,7 @@
     $hostname=$_SERVER['SERVER_NAME'];
     $smarty->assign('HOST_NAME',HOST_NAME);
 
-    $share_content = '<meta property="og:title" content="'.$json["shop"]["name"].'" />'.'<meta property="og:description" content="'.$json["shop"]["note"].'"/>';
+    $share_content = '<meta name="description" content="'.$json["shop"]["note"].'"/>';
     $index_title = $share_content.'<meta property="og:image" content="'.$url.'">'.'<title>'.$json["shop"]["name"].'</title>';
     $smarty->assign('INDEX_TITLE',$index_title);
 
