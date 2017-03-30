@@ -1,7 +1,6 @@
 .cart-item{
-  /*border-bottom: 1px solid #eee;*/
-  padding:1rem 0;
-  min-height: 6rem;
+  @include remCalc(padding,30 0);
+  @include remCalc(min-height,180);
   position: relative;
 }
 .cart-item::after{
@@ -13,62 +12,61 @@
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid $border-color;
 }
 .cart-item img{
   float: left;
-  width: 6rem;
-  height: 6rem;
+  @include remCalc(width,180);
+  @include remCalc(height,180);
 }
 .cart-item > div {
-  font-size: 14px;
-  margin:0 4rem 0 7rem;
+  @include fontDpr(14px);
+  @include remCalc(margin,0 80 0 200);
 }
 .cart-item p{
   line-height: 1.3;
   word-break: break-all;
-  color: #999;
-  font-size: 14px;
+  color: $gray-color;
+  @include fontDpr(14px);
 }
 .cart-item p.price{
-  color: #F5A623;
+  color: $base-color;
 }
 .cart-item p.price span,.cart-item p.discount-price span{
   display: inline-block;
-  padding: .2rem 1rem;
-  background-color: #F5A623;
-  color: #fff;
+  @include remCalc(padding,5 30);
+  //padding: .2rem 1rem;
+  background-color: $base-color;
+  color: $white;
   border-radius: 2rem;
-  font-size: 12px;
+  @include fontDpr(12px);
 }
 .cart-item p.name{
-  color: #666;
   display: -webkit-box;
   text-overflow: ellipsis;
   overflow: hidden;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 14px;
-  /*height: 40px;*/
+  @include fontDpr(14px);
   max-height: 40px;
-  margin-bottom:.5rem;
+  @include remCalc(margin-bottom,30);
 
 }
 .cart-item p.error-p{
-  padding: .5rem 0 0 7rem;
-  font-size: 14px;
-  color: #F5A623;
+  @include remCalc(padding,15 0 0 200);
+  @include fontDpr(14px);
+  color: $base-color;
 }
 .cart-item i{
   float: right;
-  font-size: 18px;
-  color: #aaa;
-  width: 2.4rem;
-  height: 8rem;
-  line-height: 8rem;
+  @include fontDpr(18px);
+  color: $i-color;
+  @include remCalc(width,100);
+  @include remCalc(height,240);
+  @include remCalc(line-height,240);
   text-align: center;
   position: absolute;
   right: 0;
   top: 50%;
-  margin-top: -4rem;
+  @include remCalc(margin-top,-120);
 }

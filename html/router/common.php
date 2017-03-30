@@ -219,11 +219,25 @@ function setStaticFontCss($folder_name){
     }
     return C_RUNTIME_ONLINE?getFontCss($host_name.'/static',$folder_name):getFontCss($host_name.'/static',$folder_name);
 }
+function set_request_seller_id() {
+    include_once( dirname(__FILE__).'/util.php');
+	$host_preg = C_RUNTIME_ONLINE ? '/^(www\.)?(.*?)\.instashop\.co\.id$/i' : '/^(www\.)?(.*?)\.test\.instashop\.co\.id$/i';
+	$host = $_SERVER['HTTP_HOST'];
+	$h_match = preg_match($host_preg, $host, $matches);
+	if ($h_match)
+	{
+		$alias = $matches[2];
+	}
+	else
+	{
+		$alias = get_seller_id_by_personal_host($host);
+	}
+	$_REQUEST['seller_id'] = $alias;
+}
 function getSkinInfo(){
+    set_request_seller_id();
     include_once( dirname(__FILE__).'/util.php');
     $seller_id = $_REQUEST['seller_id'];
-    print_r('sss');
-    print_r($seller_id);
     $skin_path = 'v1/shopsSkin/';
     $skin_ret = json_decode(get_init_php_data($skin_path, ["seller_id" => $seller_id]), true);
 
@@ -252,7 +266,6 @@ function setStaticConfig(){
     define('IS_DEBUG', isDebug());
     define('FLEXIBLE', flexible());
     $folder_name = getSkinInfo();
-
     if($folder_name != 'default'){
         define('TEMP_FOLDER', $folder_name.'/');
     }else{
@@ -260,24 +273,26 @@ function setStaticConfig(){
     }
 }
 
-function set_request_seller_id() {
-    include_once( dirname(__FILE__).'/util.php');
-	$host_preg = C_RUNTIME_ONLINE ? '/^(www\.)?(.*?)\.instashop\.co\.id$/i' : '/^(www\.)?(.*?)\.test\.instashop\.co\.id$/i';
-	$host = $_SERVER['HTTP_HOST'];
-	$h_match = preg_match($host_preg, $host, $matches);
-	if ($h_match)
-	{
-		$alias = $matches[2];
-	}
-	else
-	{
-		$alias = get_seller_id_by_personal_host($host);
-	}
-	$_REQUEST['seller_id'] = $alias;
-}
-
 spl_autoload_register('loadClass');
-set_request_seller_id();
 setStaticConfig();
+function initPhpJs($js_name){
+    if(isDebug()){
+        return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1490070969974"></script>';
+    }else{
+        return '<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1490070969974"></script>';
+    }
+}
+function initPhpCss($css_name){
+    $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS.'<script>'.FLEXIBLE.'</script>';
+    if(isDebug()){
+        if(TEMP_FOLDER){
+            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1490070969974" rel="stylesheet"/>';
+        }else{
+            return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1490070969974" rel="stylesheet"/>';
+        }
+    }else{
+        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1490070969974" rel="stylesheet"/>';
+    }
+}
 
 

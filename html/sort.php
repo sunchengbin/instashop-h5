@@ -10,10 +10,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-  <?=STATIC_DNS?>
-  <?=STATIC_ICO_CSS?>
-  <?=STATIC_FONT_CSS?>
-  <link href="<?=STATIC_HOST?>/css/dist/app/sort.css?v=1490070969976" rel="stylesheet"/>
+  <?=initPhpCss('sort')?>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );
         $sort_id = $_REQUEST['sort_id'];
@@ -40,8 +37,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body data-spider="v4ty5c2x">
   <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-  <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-  <script src="<?=STATIC_HOST?>/js/dist/app/sort.js?v=1490070969976"></script>
+  <?=initPhpJs('sort')?>
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -50,7 +46,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
       ga('create', 'UA-78448705-7', 'auto');
       ga('send', 'pageview');
-<?=BI_SCRIPT?>
+    <?=BI_SCRIPT?>
   </script>
 </body>
 </html>

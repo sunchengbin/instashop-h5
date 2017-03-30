@@ -6,13 +6,16 @@
   display: -webkit-box;
   word-break: break-word;
   overflow: hidden;
-  color: #444;
-  margin: .3rem 0;
-  font-size: 14px;
+  color: $info-color;
+  @include remCalc(margin,20 0);
+  @include fontDpr(14px);
   height: 35px;
 }
-.price{
-  font-size: 14px;
+.one-item-box .price{
+  height: 0;
+}
+.one-item-box .discount-price{
+  height: 0;
 }
 .one-item-box{
   background-color: transparent;
@@ -26,7 +29,7 @@
   position: relative;
 }
 .one-item-box .items-list li:not(:last-child){
-  margin-bottom:1.5rem;
+  @include remCalc(margin-bottom,45);
 }
 .one-item-box .items-list li a::after{
   display: none;
@@ -48,7 +51,7 @@
 }
 .rotate-banner li img{
   min-height: 200px;
-  background-color: #f5f5f5;
+  background-color: $base-color;
 }
 .two-li-items-box{
   position: relative;
@@ -65,7 +68,7 @@
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border: 1px solid #666;
+  border: 1px solid $border-color;
   z-index: -1;
 }
 .cart-item {
@@ -112,9 +115,10 @@
 }
 .nav-text-ul a{
   color: $txt-color;
-  @include remCalc(padding,10);
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
   overflow: hidden;
-  border: 2px dotted #979797;
+  border: 2px dotted $nav-text-border-color;
   box-sizing: border-box;
 }
 .nav-text-ul li:nth-child(3n+1){
@@ -140,7 +144,7 @@
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border: 1px solid #666;
+  border: 1px solid $border-color;
   z-index: -1;
 }
 .nav-img-box ul{
@@ -190,7 +194,7 @@
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border: 1px solid #d8d8d8;
+  border: 1px solid $border-color;
   z-index: 1;
 }
 .nav-img-wrap{

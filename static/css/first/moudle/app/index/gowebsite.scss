@@ -2,22 +2,15 @@
 .index-btn-box {
   @include remCalc(padding,0 50);
   @include remCalc(margin,50 0 150);
-  //padding:0 2.5rem;
-  //margin:1.5rem 0 2rem;
 }
 .index-btn-box .icon-shop-font {
   @include fontDpr(18px);
-  //font-size:17.5px;
 }
 .index-btn-box .btn {
-  //font-size:16px;
   @include fontDpr(16px);
   @include remCalc(border-radius,5);
   @include remCalc(height,80);
   @include remCalc(line-height,80);
-  //border-radius: 3px!important;
-  //height: 3.6rem;
-  //line-height: 3.6rem;
 }
 .index-btn-box a {
   color:$white;
