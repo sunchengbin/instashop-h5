@@ -59,6 +59,4 @@
     $smarty->assign('SHOP_INFO_DATA',$json["shop"]);
 
     $smarty->display('detail.tpl');
-
-
 ?>

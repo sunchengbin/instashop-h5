@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/13.
  */
-require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug','favorable'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug,Favorable) {
+require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug', 'favorable', 'cache'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug, Favorable, Cache) {
     var OrderConfirmHtm = {
         init: function () {
             var _this = this;
@@ -59,15 +59,15 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
 
             //添加对优惠券处理 -lanchenghao@weidian.com
             _this.favorablePlugin = Favorable({
-                el:".order-info",
-                price:_sum,
-                seller_id:JSON.parse(_data).ShopInfo.id,
-                usehandle:function(favorablePrice,favorableCode){
-                    var _postPrice = $(".j_post").attr("data-price")|| 0,
+                el: ".order-info",
+                price: _sum,
+                seller_id: JSON.parse(_data).ShopInfo.id,
+                usehandle: function (favorablePrice, favorableCode) {
+                    var _postPrice = $(".j_post").attr("data-price") || 0,
                         _price = _sum - Number(favorablePrice) + Number(_postPrice);
                     _this.favorableCode = favorableCode;
                     _price = _price < 0 ? 0 : _price;
-                    $(".j_sum").text('Rp '+Base.others.priceFormat(_price));
+                    $(".j_sum").text('Rp ' + Base.others.priceFormat(_price));
                 }
             });
 
@@ -266,7 +266,6 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                     _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
                                 }
                             });
-
                         }
                     });
                 }
@@ -410,15 +409,22 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 }).toShow();
                 return null;
             }
+            var buyer_id = "0",
+                wduss = "";
+                var _cacheLogin = Cache.getSpace("LoginCache","local");
+            if (_cacheLogin) {
+                buyer_id = _cacheLogin.find("loginInfo")?_cacheLogin.find("loginInfo").buyer_id:"0";
+                wduss = _cacheLogin.find("loginInfo")?_cacheLogin.find("loginInfo").wduss:"";
+            }
             var _data = {
                 "edata": {
-                    "wduss": "",
+                    "wduss": wduss,
                     "address_id": "0",
                     "note": "",
                     "pay_way": 11,
                     "pay_type": 1,
                     "seller_id": _seller_id,
-                    "buyer_id": "0",
+                    "buyer_id": buyer_id,
                     "buyer_note": _note,
                     "express_company": (_company ? _company : ''),
                     "express_fee_id": (_fee_id ? _fee_id : ''),
@@ -427,7 +433,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     "frm": 2
                 }
             };
-            if(!!_this.favorableCode)_data.edata.code=_this.favorableCode;
+            if (!!_this.favorableCode) _data.edata.code = _this.favorableCode;
             return _data;
         },
         //满减
@@ -445,9 +451,9 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             for (var cart in carts) {
                 if (carts[cart].item.is_discount && carts[cart].item.discounting) {
                     //折扣区分sku
-                    if(carts[cart].sku && carts[cart].sku.id){
+                    if (carts[cart].sku && carts[cart].sku.id) {
                         _sum += carts[cart].num * carts[cart].sku.price;
-                    }else{
+                    } else {
                         _sum += carts[cart].num * carts[cart].item.discount.price;
                     }
                 } else {

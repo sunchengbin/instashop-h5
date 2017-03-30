@@ -428,6 +428,9 @@ img{
 .ins-m-t-2 {
   margin-top: 1rem;
 }
+.ins-m-t-3 {
+  margin-top: 2rem!important;
+}
 .ins-m-b-2 {
   margin-bottom:1rem!important;
 }

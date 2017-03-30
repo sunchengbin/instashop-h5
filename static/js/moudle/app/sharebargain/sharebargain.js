@@ -7,7 +7,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
         _this.config = $.extend({
             title : Lang.H5_SHARE_TITLE,
             content : Lang.H5_SHARE_COUPON_TXT,
-            coupon_url: 'http://m-test.instashop.co.id/b/0001'
+            bargain_inv_url: 'http://m-test.instashop.co.id/b/0001'
         },opts);
         _this.init();
     };
@@ -17,22 +17,25 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
             Dialog.dialog({
                 top_txt : '<p class="share-dialog-title">'+_this.config.title+'</p>',
                 body_txt : _this.createHtm(),
-                show_footer : false
+                show_footer : false,
+                c_fn:_this.config.c_fn
             });
             _this.handleFn();
         },
         createHtm : function(){
             var _this = this,
-                _share_url = _this.urlArithmetic(_this.config.coupon_url),
+                _share_url = _this.urlArithmetic(_this.config.bargain_inv_url),
                 _share_content = _this.config.content+'<br>'+_share_url,
                 _htm = '';
             _this.share_content = _this.config.content+_share_url;
             _htm +='<div class="share-dialog-box" data-spider="coupon_share_box">'
-                +'<div class="share-explain">'+Lang.H5_SHARE_COUPON_RULE
-                +'</div>'
                 +'<div class="share-info">'+_share_content
                 +'</div>'
-                +'<div class="share-operate clearfix">'
+                +'<div class="share-operate bargain_inv_operate clearfix">'
+                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="优惠券分享到facebook" spm-click="" data-url="http://www.facebook.com/share.php?">'
+                +'<i class="iconfont icon-share-line" ></i>'
+                +'<p>FB</p>'
+                +'</a>'
                 +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="优惠券分享到line" spm-click="" data-url="http://line.naver.jp/R/msg/text/?">'
                 +'<i class="iconfont icon-share-line" ></i>'
                 +'<p>LINE</p>'
@@ -56,7 +59,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                     _type = _dom.attr('data-type');
                 setTimeout(function(){
                     if(_type=='bbm'&&Base.others.verifyBower().ios){
-                        var _bbm_url = Lang.H5_SHARE_TO_BBM_COUPON_TXT+_this.urlArithmetic(_this.config.coupon_url);
+                        var _bbm_url = Lang.H5_SHARE_TO_BBM_COUPON_TXT+_this.urlArithmetic(_this.config.bargain_inv_url);
                         location.href = _dom.attr('data-url') + _bbm_url;
                     }else{
                         location.href = _dom.attr('data-url') + _this.share_content;

@@ -132,8 +132,12 @@ define([
      * static 
      * @param  {} namespace 命名空间
      */
-    Cache.getSpace = function (namespace) {
-        return Cache.pools[namespace] || undefined;
+    Cache.getSpace = function (namespace,type) {
+        if("local"==type){
+            return Cache.pools[namespace] || new Cache({namespace:namespace,type:"local"});
+        }else{
+            return Cache.pools[namespace] || undefined;
+        }
     }
     Cache.setSpace = function (namespace, cache) {
         Cache.pools[namespace] = cache;

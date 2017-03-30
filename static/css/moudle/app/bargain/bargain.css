@@ -1,36 +1,114 @@
 .bargain-tip-txt-how {
     font-size: 16px;
-    padding:.5rem 0;
+    padding: .5rem 0;
 }
+
 .bargain-howprice-wrap {
     text-align: center;
 }
+
 .bargain-howprice-wrap p img {
     width: 5rem;
     height: 5rem;
 }
+
 .j_bargain_tip_unlogin_price {
     display: none;
     color: #999999;
-    font-size:16px;
-    padding:1.2rem 0;
+    font-size: 16px;
+    padding: 1.2rem 0;
 }
-.j_dialog_login_line,.j_dialog_login_facebook {
-    width:90%;
-    height:3.9rem;
+
+.j_dialog_login_line,
+.j_dialog_login_facebook {
+    width: 90%;
+    height: 3.9rem;
     line-height: 3.9rem;
     border-radius: 2px;
-    color:#ffffff;
-    font-size:16px;
+    color: #ffffff;
+    font-size: 16px;
     text-align: center;
-    margin:0 auto;
+    margin: 0 auto;
 }
+
 .j_dialog_login_line {
     background: #00B900;
 }
+
 .j_dialog_login_facebook {
     background: #3B589C;
 }
+
 .j_bargain_btn_continue {
     display: none;
+}
+
+.bargain_inv_operate a {
+    width: 25%;
+}
+
+.bargain-phone-input {
+    width: 100%;
+    height: 4rem;
+    line-height: 4rem;
+    background: #EDEDED;
+    border: 1px solid #D8D8D8;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 0 1rem;
+    color:#444444;
+}
+
+.bargain-phone-input span {}
+
+.bargain-phone-input input {
+    height: 100%;
+    line-height: 4rem;
+    border: 0px;
+    outline: none;
+    background: #EDEDED;
+    box-sizing: border-box;
+    width: 87%;
+    font-size: 16px;
+    margin-left: -5rem;
+    color:#444444;
+}
+
+.bargain-phone-button {
+    width:100%;
+    margin:0 auto;
+    height:4.5rem;
+    line-height: 4.5rem;
+    text-align: center;
+    margin-top:2rem;
+    color:#ffffff;
+    font-size:16px;
+    background: #40CB90;
+    border-radius: 2px;
+}
+.bargain-amplitude-price-tip {
+    font-size: 16px;
+    color:#444444;
+}
+.bargain-amplitude-price {
+    font-weight: 400;
+    font-size: 24px;
+    color:#444444;
+}
+.j_btn_confrim_bargain_price {
+    width:100%;
+    margin:0 auto;
+    height:4.5rem;
+    line-height: 4.5rem;
+    text-align: center;
+    margin-top:2rem;
+    color:#ffffff;
+    font-size:16px;
+    background:#F5A623;
+    border-radius: 2px;
+}
+.bargain-origin-price {
+    font-size: 14px;
+    opacity: 0.5;
+    vertical-align: middle;
 }
