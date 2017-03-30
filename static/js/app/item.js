@@ -5,7 +5,7 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog', 'debug', 'sharecoupon', 'oauth', 'cache','sharebargain'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog, Debug, Sharecoupon, Oauth, Cache,Sharebargain) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog', 'debug', 'sharecoupon', 'oauth', 'cache', 'sharebargain'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog, Debug, Sharecoupon, Oauth, Cache, Sharebargain) {
     var ITEM = {
         init: function () {
             var _this = this,
@@ -71,48 +71,54 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                         edata: {
                             "_debug_env": "4.5",
                             "action": "h5_detail",
-                            "buyer_id": _this.loginResultPackage.info.buyerid,
-                            "price": Cache.getSpace("BargainCache").find("bargain_price_self") || 0, //自砍一刀的价格，如果没有自砍，就传0
-                            "wduss": init_data.item.shop.wduss //?? wtf??
+                            "buyer_id": _this.loginResultPackage.info.buyer_id,
+                            "price": Cache.getSpace("BargainCache") ? Cache.getSpace("BargainCache").find("bargain_price_self") : 0, //自砍一刀的价格，如果没有自砍，就传0
+                            "wduss": _this.loginResultPackage.info.wduss
                         }
                     }
-                    var url = Config.host.phpHost + Config.actions.bargain +"/param=" + JSON.stringify(reqParams);
+                    var url = Config.host.actionUrl + Config.actions.bargain + "/25?param=" + JSON.stringify(reqParams);
                     Ajax.getJsonp(url, function (obj) {
-
+                        console.log(obj)
                     }, function () {
 
                     })
+                    $(".j_bargain_btn_continue").show();
+                    $(".j_bargain_btn_self").hide();
                     $(".j_bargain_tip_unlogin_price").hide();
                 } else {
+                    $(".j_bargain_btn_continue").hide();
+                    $(".j_bargain_btn_self").show();
                     $(".j_bargain_tip_unlogin_price").show();
                 }
             }
         },
+        /**
+         * 检查是否本地自己砍过价
+         */
+        checkIsBargainSelf: function () {
 
+        },
         /**
          * 获取url中用户信息 获取本地存储中的用户信息 如果两个值不同 设置页面为未登录状态
          */
         checkIsLogin: function () {
-            // 获取url中用户信息
-            var _curUrl = location.href;
-            var loginInfoFromUrl = {
-                buyerid: Base.others.getUrlPrem("buyerid", _curUrl), // 买家id
-                name: Base.others.getUrlPrem("name", _curUrl), // 买家姓名
-                pic: Base.others.getUrlPrem("pic", _curUrl) // 买家头像
-            }
+            // 获取回传的用户信息
+            var loginInfoFromCallBackPost = user_info;
             // 获取存储空间 登录
-            var loginInfoFromCache = Cache.getSpace("LoginCache") || new Cache({namespace:"LoginCache"});
-            // 如果url中有用户信息 则更新本地存储的
-            if (!!loginInfoFromUrl.buyerid && !!loginInfoFromUrl.name && !!loginInfoFromUrl.pic) {
-                loginInfoFromCache.set("loginInfo", {
-                    buyerid: loginInfoFromUrl.buyerid,
-                    name: loginInfoFromUrl.name,
-                    pic: loginInfoFromUrl.pic
-                });
+            var loginInfoFromCache = Cache.getSpace("LoginCache") || new Cache({
+                namespace: "LoginCache",
+                type: "local"
+            });
+            // 如果url中有用户信息 说明刚登录完成 更新ui 更新本地存储用户信息
+            if (!!loginInfoFromCallBackPost.buyer_id && !!loginInfoFromCallBackPost.name && !!loginInfoFromCallBackPost.pic) {
+                loginInfoFromCache.set("loginInfo", loginInfoFromCallBackPost);
+                return {
+                    result: true,
+                    info: loginInfoFromCallBackPost
+                }
             } else {
                 var loginInfo = loginInfoFromCache.find("loginInfo");
-
-                if (!loginInfo || !loginInfo.buyerid) {
+                if (!loginInfo || !loginInfo.buyer_id) {
                     // 本地存储没有 则返回false 未登录
                     return {
                         result: false
@@ -278,7 +284,10 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                         // 回填自砍一刀的
                         $(".j_bargain_amplitude_price").text(_amplitude.price_format);
                         //本地存储这一刀
-                        _this.bargainCache = new Cache({namespace:"BargainCache"});
+                        _this.bargainCache = new Cache({
+                            namespace: "BargainCache",
+                            type: "local"
+                        });
                         _this.bargainCache.set("bargain_price_self", _amplitude.price_origin);
                         // 确认砍价金额 刷新页面
                         $("body").on("click", ".j_btn_confrim_bargain_price", function () {
@@ -291,11 +300,25 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                 Oauth.openDialog();
             })
             $("body").on("click", ".j_bargain_btn_continue", function () {
-                Dialog.dialog({
+                // 判断是否登录 登录 弹出 分享 
+                if (_this.loginResultPackage.result) {
+                    Sharebargain({
+                        title: ""
+                    });
+                } else {
+                    Oauth.openDialog();
+                }
+                // 未登录 弹出 去登录 
 
-                })
+
+                // Dialog.dialog({
+                //     body_fn:function(){
+
+                //     }
+                // })
             })
         },
+        // TODO 模块化
         //创建砍了多少价弹窗
         createBargainPriceDialogHtm: function () {
             var _htm = "";
@@ -314,12 +337,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                 price_origin: _amplitude,
                 price_format: "Rp " + Base.others.priceFormat(_amplitude)
             };
-        },
-        // 创建砍价活动分享弹窗
-        createBargainShareHtm:function(){
-            var _htm = "";
-            _htm = '<div></div>';
-            return _htm;
         },
         transUrl: function (url, scroll_url) {
             if (/\?/g.test(url)) {

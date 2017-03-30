@@ -67,14 +67,15 @@ define([
 
     var _typeCacheHandler = {
         local: {
-            find: function (key) {
+            find: function (key,context) {
                 return _tool.getForLocalStorage(key);
             },
-            set: function (key, value) {
+            set: function (key, value,context) {
                 //取出来 
                 var _local = _tool.getForLocalStorage(key);
                 _local = value;
-                _tool.setForLocalStorage(key);
+                // 覆盖掉
+                _tool.setForLocalStorage(key,_local);
             },
             count: function () {
 
@@ -87,10 +88,10 @@ define([
             }
         },
         memory: {
-            find:function(context,key){
+            find:function(key,context){
                 return context.map[key];
             },
-            set:function(context,key,value){
+            set:function(key,value,context){
                 return context.map[key] = value;
             },
             count:function(context){
@@ -146,13 +147,13 @@ define([
         find: function (key) {
             var _context = this;
             var _contextForType = _typeCacheHandler[this.type];
-            return _contextForType.find.call(_contextForType, _context, key);
+            return _contextForType.find.call(_contextForType, key,_context);
         },
         // 设置cache
         set: function (key, value) {
             var _context = this;
             var _contextForType = _typeCacheHandler[this.type];
-            return _typeCacheHandler[this.type].set.call(_contextForType,_context, key, value);
+            return _typeCacheHandler[this.type].set.call(_contextForType, key, value,_context);
         },
         // 移除一个cache记录
         remove: function (key) {

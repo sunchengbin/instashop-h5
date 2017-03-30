@@ -9,6 +9,9 @@
     /*获取item页面的数据*/
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     include_once( dirname(__FILE__).'/../html/router/base.php');
+
+
+
     $params = [
         'opt' => 'H5_Detail,bargain'
     ];
@@ -34,6 +37,9 @@
     /*基础的js,css文件名*/
     $smarty->assign('INDEX_JS_NAME','item');
     $smarty->assign('INDEX_CSS_NAME','item');
+
+    $smarty->assign('INDEX_USER_INFO',json_encode($_POST));
+
 
     /*item页面支持app分享的数据*/
     $item_title = '<meta property="og:image" content="'.$url.'"><title>'.$json["item"]["item_name"].'</title>';

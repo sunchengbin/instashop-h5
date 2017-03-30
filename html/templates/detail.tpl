@@ -84,9 +84,12 @@
         <div class="ins-btn ins-btn-orange j_bargain_btn_self">
         Tawar Sekarang
         </div>
-        <div class="j_bargain_tip_unlogin_price">
-            Jika kamu sudah berpartisipasi dalam promo "Tawar Harga" ini, <span class="ins-color-hightlight-blue j_user_login">login</span> untuk melihat status terbaru
+        <div class="ins-btn ins-btn-orange j_bargain_btn_continue">
+        Tawar Lagi
         </div>
+        {*<div class="j_bargain_tip_unlogin_price">
+            Jika kamu sudah berpartisipasi dalam promo "Tawar Harga" ini, <span class="ins-color-hightlight-blue j_user_login">login</span> untuk melihat status terbaru
+        </div>*}
         <p class="bargain-tip-txt-how">
         Panduan Tawar Harga ?
         </p>
@@ -211,6 +214,6 @@
 <script>
 var init_data = {$INDEX_DATA_STR};
 var shop_info_data = {$SHOP_INFO_DATA_STR};
-var index_js_name = '{$INDEX_JS_NAME}';
+var user_info = {$INDEX_USER_INFO};
 </script> 
 {include file="footer.tpl"}
