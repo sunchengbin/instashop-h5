@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick','debug'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick,Debug) {
+require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick','debug','cache','oauth'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick,Debug,Cache,Oauth) {
     var CartIndex = {
         init: function () {
             var _data = JSON.parse(localStorage.getItem('ShopData'));
@@ -32,6 +32,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                 title:"购物车分组信息",
                 data:_cart_debug
             })
+            this.loginResultPackage = Oauth.checkIsLogin();
         },
         handleFn: function () {
             var _that = this;
@@ -250,10 +251,11 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                             _shop_data.Cart[_shop_data.ShopInfo.id] = _that.carts;
                                             localStorage.setItem('ShopData', JSON.stringify(_shop_data));
                                             setTimeout(function () {
+                                                var _buyer_id = _that.loginResultPackage.result?_that.loginResultPackage.info.buyer_id:"";
                                                 if(!!groupid){
-                                                    location.href = Config.host.hrefUrl + 'address.php?groupid='+ groupid;
+                                                    location.href = Config.host.hrefUrl + 'address.php?groupid='+ groupid+'&buyer_id='+_buyer_id;
                                                 }else{
-                                                    location.href = Config.host.hrefUrl + 'address.php';
+                                                    location.href = Config.host.hrefUrl + 'address.php'+'&buyer_id='+_buyer_id;
                                                 }
                                             }, 1);
                                         }
@@ -266,7 +268,8 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                         _addr = _address.country + ',' + _address.city + ',' + _address.province;
                                     setTimeout(function () {
                                         var _item_str = JSON.stringify(_that.getAddressItems(groupid));
-                                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + reqData.edata.seller_id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + groupid + '&items=' + encodeURIComponent(_item_str);
+                                        var _buyer_id = _that.loginResultPackage.result?_that.loginResultPackage.info.buyer_id:"";
+                                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + reqData.edata.seller_id + '&addr=' + encodeURIComponent(_addr) +'&buyer_id='+_buyer_id+ '&groupid=' + groupid + '&items=' + encodeURIComponent(_item_str);
                                     }, 1);
                                 }
                             }

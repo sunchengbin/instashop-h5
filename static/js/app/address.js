@@ -9,6 +9,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                 _address = _data ? JSON.parse(_data).Address : null;
             var _isGroup = _this.isGroup = Cart().getIsGroup();
             var _groupid = _this._groupid = Base.others.getUrlPrem("groupid", location.href);
+            var _buyer_id = _this._buyer_id = Base.others.getUrlPrem("buyer_id", location.href)||"";
             if (!_address) {
                 _address = {
                     "name": "",
@@ -194,7 +195,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                             var _data = JSON.parse(localStorage.getItem('ShopData')),
                                 _addr = _country + ',' + _city + ',' + _province;
                             var _item_str = JSON.stringify(_this.getAddressItems());
-                            location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + _this._groupid + '&items=' + encodeURIComponent(_item_str);
+                            location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + _this._groupid + '&buyer_id'+_this._buyer_id+'&items=' + encodeURIComponent(_item_str);
                         }, 0);
                     })) {
                     PaqPush && PaqPush('取消保存', '');
@@ -218,7 +219,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                         var _data = JSON.parse(localStorage.getItem('ShopData')),
                             _addr = _country + ',' + _city + ',' + _province;
                         var _item_str = JSON.stringify(_this.getAddressItems());
-                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + _this._groupid + '&items=' + encodeURIComponent(_item_str);
+                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + _this._groupid + '&buyer_id'+_this._buyer_id+ '&items=' + encodeURIComponent(_item_str);
                     }, 0);
                 }
 

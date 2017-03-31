@@ -110,5 +110,19 @@
 .bargain-origin-price {
     font-size: 14px;
     opacity: 0.5;
+    display: table-cell;
     vertical-align: middle;
+    text-decoration: line-through;
+}
+.bargain-origin-price-sku {
+    font-size: 14px;
+    opacity: 0.5;
+    vertical-align: middle;
+    text-decoration: line-through;
+}
+.icon-share-facebook {
+    color:#667EB9;
+}
+.bargain-price {
+    min-height: 1.8rem;
 }

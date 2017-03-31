@@ -48,7 +48,8 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $paramsPrice = [
             'action' => 'price',
             'seller_id' => $seller_id,
-            'items' => $items
+            'items' => $items,
+            'buyer_id' => $_REQUEST['buyer_id']
         ];
         $pathPrice = 'v1/shopsDiscount';
         ?>

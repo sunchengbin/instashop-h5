@@ -134,7 +134,7 @@
         vertical-align: initial;
     }
     
-    .bargain-list .content .item .price {
+    .bargain-list .content .item .friend-help-price {
         color: #F6A623;
     }
 </style>
@@ -143,66 +143,74 @@
     <!--邀请头-->
     <header>
         <div class="bargain-header-top">
-            <img src="./images/bargain-header.png" alt="">
+            <img src="{$STATIC_HOST}/images/app/bargain-header.png" alt="">
             <div class="bargain-header-avatar">
-                <img src="http://graph.facebook.com/732398890274398/picture" alt="">
+                <img src="{$BARGAIN_INVITE_DETAIL.buyer_info.pic}" alt="">
             </div>
         </div>
         <div class="bargain-header-desc">
-            Saya berpartisipasi dalam Rp100.000 ambil kegiatan iPhone, telah Kandao Rp180.000, Datang dan terus membantu saya memotongnya!
+            {*无法砍价 已经买了 bargain_left_num == 0 *}
+            {if $BARGAIN_INVITE_DETAIL.bargain_left_num eq 0 } 
+                Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa belanja hemat dengan harga Rp 100.000!
+            {else}
+                    {*无法砍价 已经砍到底价了 item.min_price - bargain_result == base_price *}
+                {if $BARGAIN_INVITE_DETAIL|confirmIsReachBasepirce}
+                    Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa belanja hemat dengan harga Rp 100.000!
+                {else}
+                    {*可以砍价 已经坎到了多少价*}
+                    Aku lagi ikutan promo tawar Iphone sampai Rp {$BARGAIN_INVITE_DETAIL.bargain_info.base_price|priceFormat} nih.
+                    Harga saat ini Rp 180.000. Yuk bantu aku tawar lagi! 
+                {/if}
+            {/if}
+            
         </div>
     </header>
     <!--商品信息-->
     <div class="bargain-good-detail">
         <!--商品图-->
         <div class="">
-
+            <img src="{$BARGAIN_INVITE_DETAIL.item_info.img}" alt="">
         </div>
         <!--描述-->
         <div class="desc">
             <p>
-                Tampaknya kode verifikasi membutuhkan waktu lebih lama, apakah kamu ingin mengirim ulang kode? Unofficially, they’re like
-                the antithetical third day of the acknowledged-by-the-Gregorian-calendar-we-know. Kirim kode verifikasi melalui
-                pesan suara Kirim melalui pesan suara Tampaknya pengiriman kode verifikasi membutuhkan waktu lebih lama,
-                apakah kamu ingin mengirim ulang kode?
+                {$BARGAIN_INVITE_DETAIL.item_info.item_comment}
             </p>
             <p class="price">
-                Rp 100.000 <span> Rp 200.000</span>
             </p>
             <div class="">
-                <button class="" type="">Bantuan chanue murah</button>
-                <button class="" type="">Saya harus membeli Rp100.000！</button>
+                {*显示*}
+                <button class="j_bargain_btn_invite_help" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
+                {*隐藏*}
+                <button class="j_bargain_btn_invite_self" type="">Mau Beli Juga</button>
             </div>
         </div>
     </div>
     <!--排行榜-->
+    {if $BARGAIN_INVITE_DETAIL.bargain_detail}
     <div class="bargain-list">
         <div class="title">
-            Teman daftar murah
+            砍价榜[文案还没给]
         </div>
         <div class="content">
             <ul>
+                {foreach $BARGAIN_INVITE_DETAIL.bargain_detail as $bargain_friend name=friends}
                 <li class="item">
-                    <span>1 </span>
+                    <span>{$smarty.foreach.friends.index+1} </span>
                     <div class="avatar">
-                        <img src="http://graph.facebook.com/732398890274398/picture" alt="">
+                        <img src="{$bargain_friend.buyer_info.pic}" alt="">
                     </div>
-                    <span>chenghaolan</span>
-                    <span class="price fr">- Rp 100.000</span>
+                    <span>{$bargain_friend.buyer_info.name}</span>
+                    <span class="friend-help-price fr">- Rp {$bargain_friend.bargain_price|priceFormat}</span>
                 </li>
-                <li class="item">
-                    <span>2 </span>
-                    <div class="avatar">
-                        <img src="http://graph.facebook.com/732398890274398/picture" alt="">
-                    </div>
-                    <span>vic</span>
-                    <span class="price fr">- Rp 100.000</span>
-                </li>
+                {/foreach}
             </ul>
         </div>
     </div>
+    {/if}
 </body>
 <script>
-    var init_data = {$INDEX_DATA_STR}
+    var init_data = {$INDEX_DATA_STR};
+    var user_info = {$INDEX_USER_INFO};
 </script>
 {include file="footer.tpl"}

@@ -74,9 +74,15 @@
             {/if}
             </p>
         {else}
-            <p class="price discount-price">
-                {$INDEX_DATA.item|itemPrice}
-            </p>
+            {if $INDEX_DATA.item.bargain}
+                <p class="price bargain-price">
+                    {$INDEX_DATA.item|itemPrice}
+                </p>
+            {else}
+                <p class="price discount-price">
+                    {$INDEX_DATA.item|itemPrice}
+                </p>
+            {/if}
         {/if} 
 
         {*砍价活动功能区begin*}

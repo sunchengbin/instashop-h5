@@ -33,7 +33,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                 +'</div>'
                 +'<div class="share-operate bargain_inv_operate clearfix">'
                 +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="优惠券分享到facebook" spm-click="" data-url="http://www.facebook.com/share.php?">'
-                +'<i class="iconfont icon-share-line" ></i>'
+                +'<i class="iconfont icon-share-facebook" ></i>'
                 +'<p>FB</p>'
                 +'</a>'
                 +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="优惠券分享到line" spm-click="" data-url="http://line.naver.jp/R/msg/text/?">'

@@ -9,6 +9,10 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             var _groupid = _this._groupid = Base.others.getUrlPrem("groupid", location.href);
             var _data = localStorage.getItem('ShopData');
             var _carts;
+            _this.bargainCache = Cache.getSpace("BargainCache") || new Cache({
+                namespace: "BargainCache",
+                type: "local"
+            });
             if (_isGroup) {
                 _carts = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid];
             } else {
@@ -70,7 +74,6 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     $(".j_sum").text('Rp ' + Base.others.priceFormat(_price));
                 }
             });
-
             _this.handleFn();
         },
         //1免邮 0付费
@@ -410,15 +413,15 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 return null;
             }
             var buyer_id = "0",
-                wduss = "";
-                var _cacheLogin = Cache.getSpace("LoginCache","local");
+                uss = "";
+            var _cacheLogin = Cache.getSpace("LoginCache", "local");
             if (_cacheLogin) {
-                buyer_id = _cacheLogin.find("loginInfo")?_cacheLogin.find("loginInfo").buyer_id:"0";
-                wduss = _cacheLogin.find("loginInfo")?_cacheLogin.find("loginInfo").wduss:"";
+                buyer_id = _cacheLogin.find("loginInfo") ? _cacheLogin.find("loginInfo").buyer_id : "0";
+                uss = _cacheLogin.find("loginInfo") ? _cacheLogin.find("loginInfo").uss : "";
             }
             var _data = {
                 "edata": {
-                    "wduss": wduss,
+                    "uss": uss,
                     "address_id": "0",
                     "note": "",
                     "pay_way": 11,
@@ -439,12 +442,17 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
         //满减
         countSum: function (carts) {
             var _this = this;
-            //判断是否参与满减 如果为0 则为不参加满减
-            if (price_data.price_info.shop_discount.length == 0) {
-                return _this.countSumNoReduc(carts);
-            } else {
+            if (_this.bargainCache.find("remote_bargain_detail")) {
                 return _this.countSumReduc();
+            } else {
+                //判断是否参与满减 如果为0 则为不参加满减
+                if (price_data.price_info.shop_discount.length == 0) {
+                    return _this.countSumNoReduc(carts);
+                } else {
+                    return _this.countSumReduc();
+                }
             }
+
         },
         countSumNoReduc: function (carts) {
             var _sum = 0;

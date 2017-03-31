@@ -1,8 +1,47 @@
 @import "../base/base.css";
 @import "../moudle/app/header/header.css";
 @import "../moudle/app/common/common.css";
+@import "../moudle/ui/dialog/dialog.css";
 
 .test {
     box-sizing: border-box;
     vertical-align: middle;
+}
+.j_dialog_login_line,
+.j_dialog_login_facebook {
+    width: 90%;
+    height: 3.9rem;
+    line-height: 3.9rem;
+    border-radius: 2px;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.j_dialog_login_line {
+    background: #00B900;
+}
+
+.j_dialog_login_facebook {
+    background: #3B589C;
+}
+.bargain-origin-price {
+    font-size: 14px;
+    opacity: 0.5;
+    display: table-cell;
+    vertical-align: middle;
+    text-decoration: line-through;
+}
+.bargain-origin-price-sku {
+    font-size: 14px;
+    opacity: 0.5;
+    vertical-align: middle;
+    text-decoration: line-through;
+}
+.icon-share-facebook {
+    color:#667EB9;
+}
+.bargain-price {
+    min-height: 1.8rem;
 }

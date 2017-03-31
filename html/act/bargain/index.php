@@ -6,12 +6,18 @@
     include_once( dirname(__FILE__).'/../../../html/router/util.php' );
     $ss = split('\/', $_SERVER['REQUEST_URI']);
     $invite_id = intval(end($ss));
-    $path = 'v1/bargain/'.$invite_id;
-    $ret = get_init_php_data($path, []);
+    $path = 'v1/bargain/';
+    $params = [
+        'action' => 'h5_invite',
+        'invite_id' => $invite_id
+    ];
+    $ret = get_init_php_data($path, $params);
     $json = json_decode($ret, true);
 
     $smarty->assign('INDEX_DATA',$json);
-    $smarty->assign('INDEX_DATA_STR',$json["bargain_invite_detail"]);
+    $smarty->assign('BARGAIN_INVITE_DETAIL',$json['bargain_invite_detail']);
+    $smarty->assign('INDEX_DATA_STR',$ret);
+    $smarty->assign('INDEX_USER_INFO',json_encode($_POST));
 
     include_once( dirname(__FILE__).'/../../../html/router/base.php');
 

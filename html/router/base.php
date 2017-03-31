@@ -220,3 +220,10 @@ function isExistSupplyShop ($carts) {
 function conuntImgNavWidth($data){
     return 8.5*count($data).'rem';
 }
+
+// 砍价活动新增
+// 判断是否砍到了底价
+
+function confirmIsReachBasepirce($data){
+    return (intval($data['item_info']['min_price']) - intval($data['bargain_result'])) == intval($data['bargain_info']['base_price']);
+}
