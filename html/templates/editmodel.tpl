@@ -412,5 +412,5 @@
     {/if}
     <button class="j_submit_btn sub-btn b-top">Gunakan ke Tokomu</button>
 </div>
-<script>var init_data = {$INDEX_DATA_STR};var shop = {$SHOP_INFO_DATA};</script>
+<script>var init_data = {$INDEX_DATA_STR};</script>
 {include file="footer.tpl"}

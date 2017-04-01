@@ -21,8 +21,10 @@
         'platform' => 'web'
     ];
     $ret_shop_info = get_init_php_data($path_shop_info, $paramsForShopInfo);
-    $shop_info = json_decode($ret, true);
-    $smarty->assign('SHOP_INFO_DATA',$ret_shop_info["shop"]);
+    $shop_info = json_decode($ret_shop_info, true);
+    $smarty->assign('SHOP_INFO_DATA_STR',$ret_shop_info);
+    $smarty->assign('SHOP_INFO_DATA',$shop_info["shop"]);
+
     $itemtype = getItemListType($json["template"]);
     $smarty->assign('ITEMTYPE',$itemtype);
 
