@@ -144,6 +144,7 @@ section{
   box-sizing: border-box;
   @include remCalc(padding,15 30);
   color:$info-color;
+  background-color: $white;
 }
 .change-skin-warp button{
   @include remCalc(height,50);
