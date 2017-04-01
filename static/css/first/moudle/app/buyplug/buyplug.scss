@@ -66,7 +66,7 @@
 }
 .item-info-title > div .price{
   color: $base-color;
-  @include fontDpr(16px);
+  @include fontDpr(14px);
   @include remCalc(margin-bottom,20);
 }
 .item-info-cont{

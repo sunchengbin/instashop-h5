@@ -20,11 +20,11 @@
   text-align: center;
 }
 .contact-list li a{
-  color: #52CDF0;
+  color: $base-color;
   display: block;
 }
 .contact-list li span{
-  color: #52CDF0;
+  color: $base-color;
 }
 .contact-list .b-bottom:last-child::after{
   border: 0;

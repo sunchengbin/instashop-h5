@@ -1,20 +1,18 @@
 .logistics-plug {
   width: 100%;
   position: fixed;
-  background-color: #fff;
-  padding-top:1rem;
+  background-color: $white;
 }
 .logistics-plug-top,.logistics-list{
-  margin:0 1rem;
+  @include remCalc(margin,30);
+  //margin:0 1rem;
 }
 .logistics-list li{
-  padding: .5rem 0;
-  color: #666;
-  font-size: 14px;
-  line-height: 2rem;
+  @include fontDpr(14px);
 }
 .logistics-list{
-  padding-bottom: .5rem;
+  padding:0;
+  margin-top:0;
   position: relative;
 }
 .logistics-plug-info{
@@ -31,26 +29,29 @@
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid $border-color;
 }
 .logistics-list:last-child::after{
   border-bottom:none;
 }
 .logistics-list i{
-  font-size: 20px;
+  //font-size: 20px;
+  @include fontDpr(20px);
+  @include remCalc(margin-right,15);
   vertical-align: middle;
-  margin-right: .5rem;
+  //margin-right: .5rem;
   display: inline-block;
-  height: 2rem;
-  line-height: 1.8rem;
+  @include remCalc(height,60);
+  //height: 2rem;
+  @include remCalc(line-height,60);
 }
 .logistics-plug-top i{
-  font-size: 14px;
-  color: #999;
+  @include fontDpr(14px);
+  color: $gray-color;
 }
 .logistics-plug-top p{
-  font-size: 14px;
-  line-height: 3rem;
+  @include fontDpr(16px);
+  @include remCalc(line-height,60);
 }
 .btn{
   border-radius: 0;

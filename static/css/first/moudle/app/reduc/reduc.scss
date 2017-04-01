@@ -5,30 +5,15 @@
   @include remCalc(margin-top,30);
 }
 
-.reduc-box-line {
-  color: $txt-color!important;
-  padding-top: 1.5rem;
-  position: relative;
-}
-
-.reduc-box i,
-.reduc-box-line i {
-  color: #F6A623;
-}
-
-.reduc-box-info i {
-  color: #F6A623;
-}
-
 .reduc-box-wrap {
-  @include remCalc(height,110);
+  @include remCalc(min-height,110);
   box-sizing:border-box;
   position: relative;
   @include remCalc(border,5 solid #e6e6e6);
   @include remCalc(padding,0 10 0 60);
 }
 .reduc-box-wrap > div{
-  @include remCalc(height,100);
+  @include remCalc(min-height,100);
   position: relative;
 }
 .reduc-expire-coupon{
@@ -64,6 +49,7 @@
   width: 75%;
   overflow: hidden;
   line-height: 1;
+  @include remCalc(padding,20 0);
 }
 
 .reduc-box-go {
@@ -85,13 +71,15 @@
 
 .reduc-info {
   color: $txt-color;
-  padding: 1rem 0;
-  font-size: 14px;
+
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
+  @include fontDpr(14px);
   position: relative;
 }
 
 .reduc-info p span {
-  color: #F5A623;
+  color: $base-btn-color;
 }
 
 .reduc-box-line:before {

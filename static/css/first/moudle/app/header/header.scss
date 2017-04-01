@@ -1,11 +1,11 @@
 .header-nav{
   position:relative;
-  @include remCalc(padding,0 25);
-  @include remCalc(height,90);
-  @include remCalc(line-height,90);
+  @include remCalc(padding,0 30);
+  @include remCalc(height,95);
+  @include remCalc(line-height,95);
   background-color: $header-bg-color;
   @include fontDpr(16px);
-  color: $txt-color;
+  color: $info-color;
 }
 /*风格统一需求*/
 .header-nav:after {
@@ -22,10 +22,10 @@
 }
 
 .header-nav .iconfont{
-  font-size: 16px;
+  @include fontDpr(16px);
   display: inline-block;
-  @include remCalc(height,90);
-  @include remCalc(line-height,90);
+  @include remCalc(height,95);
+  @include remCalc(line-height,95);
 }
 .cart-num{
   position: absolute;
@@ -43,16 +43,14 @@
 }
 .header-nav button{
   float: right;
-  height: 4rem;
-  line-height: 4rem;
-  font-size: 16px;
-  padding-left: 2rem;
-  color: #666;
+  @include remCalc(height,95);
+  @include remCalc(line-height,95);
+  @include remCalc(padding-left,30);
+  @include fontDpr(16px);
 }
 /*漂浮的后退按钮和购物车按钮*/
 .shop-header-nav{
   @include remCalc(padding,30 0 0);
-  //padding:.5rem 0 0;
   position: fixed;
   top: 0;
   left: 0;

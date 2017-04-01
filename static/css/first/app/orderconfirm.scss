@@ -6,38 +6,37 @@
 @import "../moudle/app/logistics/logistics.scss";
 @import "../moudle/app/reduc/reduc.scss";
 @import "../moudle/app/favorable/favorable.scss";
+@import "../moudle/app/agreeinfo/agreeinfo.scss";
 body{
   background-color: #f5f5f5;
 }
 .address-box,.logistics-box,.list-box{
   @include remCalc(padding,0 30);
-  //padding:0 1rem;
   background-color: $white;
-  /*border-top:1px solid #D8D8D8;*/
-  /*border-bottom:1px solid #D8D8D8;*/
-  @include remCalc(margin-bottom,40);
-  //margin-bottom: 1.2rem;
+  @include remCalc(margin-bottom,30);
+  color: $info-color;
 }
-
 .user-info{
   @include fontDpr(14px);
-  //font-size: 14px;
   color: $gray-color;
   @include remCalc(padding-right,30);
-  padding-right: 1rem;
-  line-height: 1.6rem;
-  padding-bottom:1rem;
 }
 .user-info i{
-  color: #43CB9C;
-  font-size: 18px;
-  margin-right: .2rem;
+  color: $base-btn-color;
+  @include fontDpr(14px);
+  @include remCalc(margin-right,5);
 }
 .user-info i.icon-phone-font{
-  font-size: 16px;
+  @include fontDpr(14px);
+}
+.user-info span.fr{
+  color: $base-btn-color;
+}
+.user-info span.fl{
+  color: $txt-color;
 }
 .address-box{
-  padding:1rem 1rem 1.2rem;
+  @include remCalc(padding,30);
   position: relative;
 }
 .address-box:after{
@@ -50,65 +49,70 @@ body{
   width: 100%;
   background: url(../../../../images/app/divider.png) repeat center center;
 }
+
 .address-info{
-  margin-right:3rem;
-  font-size: 14px;
+  @include remCalc(margin,0 100 0 30);
+  @include fontDpr(14px);
   word-break:break-all;
+  color: $gray-color;
+  line-height: 2;
 }
 .user-address-info{
-  color: #999;
-  line-height: 1.8rem;
+  color: $gray-color;
 }
 .cart-item:last-child::after{
   border-bottom: none;
 }
 .user-address-info i,.logistics-box i,.cart-item i{
-  font-size: 14px;
-  color: #999;
+  //font-size: 14px;
+  @include fontDpr(14px);
+  color: $gray-color;
+}
+.user-address-info i{
+  @include remCalc(margin-top,30);
 }
 .cart-item i{
   width: auto;
 }
 .logistics-box{
-  font-size: 14px;
-  height: 3rem;
-  line-height: 3rem;
-  padding: .5rem 1rem;
-  color: #999;
+  @include fontDpr(14px);
+  @include remCalc(height,95);
+  @include remCalc(line-height,95);
+  @include remCalc(padding,0 30);
 }
 .logistics-box div{
-  font-size: 16px;
+  @include fontDpr(16px);
+  //font-size: 16px;
   display: inline-block;
-  height: 3rem;
+  @include remCalc(height,95);
 }
 .logistics-box span{
   margin-right: .5rem;
   font-size: 14px;
   display: inline-block;
-  height: 3rem;
-  color: #666;
+  @include remCalc(height,95);
+  color: $txt-color;
   max-width: 85px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .order-info{
-  padding-bottom:1rem;
+  @include remCalc(padding-bottom,30);
 }
 .order-info p{
-  font-size: 14px;
-  color: #999;
-  padding-top: 1rem;
+  @include fontDpr(14px);
+  @include remCalc(padding-top,30);
 }
 .order-info p span{
-  color: #F5A623;
+  color: $base-btn-color;
 }
 .list-box{
-  padding-bottom: 2rem;
+  @include remCalc(padding-bottom,30);
+  margin-bottom:0;
 }
 .shop-info{
-  /*border-bottom: 1px solid #eee;*/
-  padding: 1rem 0;
+  @include remCalc(padding,20 0);
   position: relative;
 }
 .shop-info::after{
@@ -120,43 +124,37 @@ body{
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid $border-color;
 }
 .shop-info img{
-  width: 3rem;
-  height: 3rem;
+  @include remCalc(width,72);
+  @include remCalc(height,72);
   border-radius: 50%;
   float:left;
 }
 .shop-info p{
-  margin-left: 4rem;
-  height: 3rem;
-  line-height: 3rem;
-  font-size: 14px;
-  color: #666;
+  @include remCalc(margin-left,90);
+  @include remCalc(height,72);
+  @include remCalc(line-height,72);
+  @include fontDpr(14px);
+  color: $info-color;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 .empty-cart{
   text-align: center;
-  padding: 1rem;
-  font-size: 14px;
-  color: #999;
-  height: 3rem;
-  line-height: 3rem;
-}
-textarea{
-  width: 100%;
-  height: 6rem;
-  border:1px solid #D8D8D8;
-  padding: .5rem 1rem;
-  resize: none;
+  @include remCalc(padding,30);
+  @include fontDpr(14px);
+  color: $gray-color;
+  @include remCalc(height,90);
+  @include remCalc(line-height,90);
 }
 .buyer-note-p{
   position: relative;
-  padding: 1rem 0;
-  font-size: 14px;
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
+  @include fontDpr(14px);
   overflow: hidden;
 }
 .buyer-note-p::before{
@@ -168,7 +166,7 @@ textarea{
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid $border-color;
 }
 .buyer-note-p::after{
   position: absolute;
@@ -179,55 +177,34 @@ textarea{
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid $border-color;
 }
 .buyer-note-p span{
   position: absolute;
   display: inline-block;
-  height: 3rem;
-  line-height: 3rem;
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
   left: 0;
-  top: 1rem;
-  color: #999;
+  top:0;
 }
 .buyer-note-p input{
   display: -webkit-box;
   width: 100%;
-  padding: .5rem 0 .5rem 9rem;
-  height: 3rem;
-  line-height: 3rem;
-  font-size: 12px;
+  @include remCalc(padding,30 0 30 180);
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
+  @include fontDpr(12px);
 }
-.agree-info{
-  font-size: 14px;
-  padding: 2rem 0;
-  line-height: 2rem;
-}
-.agree-info p{
-  margin-left: 35px;
-  font-size: 12px;
-  word-break: break-all;
-  overflow: hidden;
-}
-.agree-info i{
-  font-size: 22px;
-  color: #43CB9B;
-  padding-right:1rem;
-  margin-top: 1rem;
-}
-.agree-info a{
-  /*margin-left: 1rem;*/
-  color: #748bcf;
-}
+
 .disable-btn{
   width: 100%;
 }
 .logistics-list li i{
-  color: #ccc;
+  color: $disable-color;
 }
 .logistics-list li i.checked-btn{
-  color: #43CB9C;
+  color: $base-btn-color;
 }
-.logistics-list{
-  padding:.5rem 0;
+.reduc-info p{
+  color: $info-color;
 }

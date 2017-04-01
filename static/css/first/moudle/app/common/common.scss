@@ -9,33 +9,33 @@
   text-align: center;
   color: $white;
   border-radius: 3px;
-  background-color: $base-color;
+  background-color: $btn-color;
 }
 
 /*确定按钮*/
 .confirm-btn {
-  background-color: $base-color;
+  background-color: $btn-color;
 }
 
 .confirm-btn:hover {
-  background-color: $base-color;
+  background-color: $btn-color;
 }
 
 /*取消按钮*/
 .cancel-btn {
   background-color: $btn-disable-color;
-  color: $base-color;
+  color: $btn-color;
 }
 
 .cancel-btn:hover {
   background-color: $cancel-btn-bg;
-  color: $base-color;
+  color: $btn-color;
 }
 
 /*退出按钮*/
 .exit-btn {
   background-color: $white;
-  color: $base-color;
+  color: $btn-color;
 }
 
 .exit-btn:hover {

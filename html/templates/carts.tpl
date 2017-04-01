@@ -25,7 +25,7 @@
                             <span>Harga: Rp {$carts.item.discount.price|priceFormat}</span>
                     {/if}
                             <div class="item-num-box clearfix">
-                                <span class="j_reduce_btn" data-id="{$carts|getCartId}">
+                                <span class="j_reduce_btn reduc-price" data-id="{$carts|getCartId}">
                                     <i class="icon iconfont icon-minus-font"></i>
                                 </span>
                                 <input class="fl j_item_num" type="text" data-price="{$carts.item.discount.price}" value="{$carts.num}" readonly="readonly"/>

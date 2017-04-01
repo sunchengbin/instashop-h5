@@ -283,7 +283,11 @@ function initPhpJs($js_name){
     }
 }
 function initPhpCss($css_name){
-    $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS.'<script>'.FLEXIBLE.'</script>';
+    if(TEMP_FOLDER){
+        $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS.'<script>'.FLEXIBLE.'</script>';
+    }else{
+        $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS;
+    }
     if(isDebug()){
         if(TEMP_FOLDER){
             return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1490070969974" rel="stylesheet"/>';

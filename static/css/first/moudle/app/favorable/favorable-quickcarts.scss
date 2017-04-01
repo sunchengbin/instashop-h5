@@ -6,11 +6,11 @@
   color: $info-color;
 }
 
-.favorable-box:after {
+.favorable-box::before {
   position: absolute;
   left: -50%;
   right: -50%;
-  bottom: 0;
+  top: 0;
   height: 1px;
   content: '';
   -webkit-transform: scale(0.5);
@@ -19,27 +19,26 @@
 }
 
 .favorable-box div {
+  @include fontDpr(16px);
   display: inline-block;
   @include remCalc(height,106);
-  @include remCalc(line-height,106);
 }
 
 .favorable-box span {
-  @include remCalc(margin-right,30);
+  @include remCalc(margin-right,15);
   @include fontDpr(14px);
   display: inline-block;
   @include remCalc(height,106);
-  @include remCalc(line-height,106);
+  color: $info-color;
 }
 .favorable-fill-box {
-  @include remCalc(padding-bottom,60);
+  @include remCalc(padding,20 0);
+  padding-top:0;
 }
-
 .favorable-fill-btn {
   text-align: center;
   background: $base-btn-color;
-  border-radius: 4px;
-  width: 80%;
+  border-radius: 5px;
   @include remCalc(height,80);
   @include remCalc(line-height,80);
   margin: 0 auto;
@@ -49,13 +48,10 @@
 
 .favorable-fill-header {
   @include remCalc(margin-bottom,30);
-  //margin-bottom: 1rem;
-  //font-size: 18px;
   @include fontDpr(18px);
 }
 .favorable-fill-input{
   @include remCalc(margin-bottom,60);
-  //margin-bottom:2rem;
 }
 .favorable-fill-header {
   text-align: center;
