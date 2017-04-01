@@ -19,6 +19,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             echo '<link href="'.STATIC_HOST.'/css/dist/app/cart.css?v=1491032744238" rel="stylesheet"/>';
         }
      ?>
+     <script>
+         var user_info = <?php echo json_encode($_POST); ?>;
+     </script>
     <title>Keranjangku</title>
 </head>
 <body data-spider="a5fivmur">
