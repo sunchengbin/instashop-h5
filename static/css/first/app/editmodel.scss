@@ -137,3 +137,26 @@ section{
 .checked-btn{
   color: $base-color;
 }
+//更换
+.change-skin-warp{
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  box-sizing: border-box;
+  @include remCalc(padding,15 30);
+  color:$info-color;
+  background-color: $white;
+}
+.change-skin-warp button{
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  border:1px solid $info-color;
+  text-align: center;
+  display: inline-block;
+  @include remCalc(padding,0 12);
+  border-radius: 2px;
+}
+.change-skin-warp p{
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  @include remCalc(margin-right,180);
+}

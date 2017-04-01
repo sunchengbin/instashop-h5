@@ -2,7 +2,7 @@
  * Created by sunchengbin on 2016/11/10.
  * 店铺装修首页
  */
-require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fastclick','config','hbs','text!views/moudle/model/signage.hbs','text!views/moudle/model/banner.hbs','text!views/moudle/model/itemmodel.hbs','text!views/moudle/model/editbtns.hbs','text!views/moudle/model/navigation.hbs'],function(Base,Dialog,Slide,Ajax,Lang,Common,Lazyload,Insjs,FastClick,Config,Hbs,SignageHtm,StaticBannerHtm,Itemmodel,ModelBtns,Navigation){
+require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fastclick','config','hbs','text!views/moudle/model/signage.hbs','text!views/moudle/model/banner.hbs','text!views/moudle/model/itemmodel.hbs','text!views/moudle/model/editbtns.hbs','text!views/moudle/model/navigation.hbs','btn'],function(Base,Dialog,Slide,Ajax,Lang,Common,Lazyload,Insjs,FastClick,Config,Hbs,SignageHtm,StaticBannerHtm,Itemmodel,ModelBtns,Navigation,Btn){
     var EditModel = {
         init : function(){
             var _this = this;
@@ -242,9 +242,14 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     return null;
                 });
             });
-            $('body').on('click','.j_change_btn',function(){
-                //PaqPush && PaqPush('更换皮肤','save-model');
-                location.href += '&skin=first&skin_code=1';
+            Btn({
+                wraper: 'body',
+                target: '.j_change_btn',
+                event_type: 'click',
+                loading_txt: Lang.CHANGE_SKIN,
+                callback: function (dom) {
+                    location.href += '&skin=first&skin_code=1';
+                }
             });
         },
         tranfansModelData : function(data){

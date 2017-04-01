@@ -11,8 +11,13 @@
   {$STATIC_ICO_CSS}
   {$STATIC_FONT_CSS}
   {$INDEX_TITLE}
+  {if $FLEXIBLE}
   <script>
   {$FLEXIBLE}
+  </script>
+  {/if}
+  <script>
+    var SKIN = "{$SKIN_INFO}";
   </script>
   {if $IS_DEBUG}
     {if $TEMP_FOLDER}

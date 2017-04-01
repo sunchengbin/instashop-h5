@@ -211,7 +211,8 @@ define(['base'], function (Base) {
             "INDEX_TAB_SHOPINTRO": "简介",
             "INDEX_ITEMS_COMPLEX": "综合",
             "INDEX_ITEMS_DATE": "时间",
-            "INDEX_ITEMS_PRICE": "价格"
+            "INDEX_ITEMS_PRICE": "价格",
+            "CHANGE_SKIN":"更换皮肤"
         },
 
         id: {
@@ -546,7 +547,8 @@ define(['base'], function (Base) {
             "INDEX_TAB_SHOPINTRO": "Informasi Toko",
             "INDEX_ITEMS_COMPLEX": "Populer",
             "INDEX_ITEMS_DATE": "Terbaru",
-            "INDEX_ITEMS_PRICE": "Harga"
+            "INDEX_ITEMS_PRICE": "Harga",
+            "CHANGE_SKIN":"更换皮肤"
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[navigator.language.toLowerCase()] || Lang.id);

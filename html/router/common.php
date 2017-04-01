@@ -46,6 +46,9 @@ function is_https()
 }
 function getSellerInfo(){
     $seller_id = $_REQUEST['seller_id'];
+    if (!$seller_id) {
+        $seller_id = getUrlParam('seller_id');
+    }
     $wduss = $_REQUEST['wduss'];
     $params = [
         'seller_id' => $seller_id,
@@ -211,6 +214,7 @@ function smartyCommon($folder){
     $smarty->assign('HOST_URL',HOST_URL);
     $smarty->assign('BI_SCRIPT',BI_SCRIPT);
     $smarty->assign('IS_DEBUG',IS_DEBUG);
+    $smarty->assign('SKIN_INFO',$folder_name);
     return $smarty;
 }
 function setStaticFontCss($folder_name){
@@ -242,6 +246,9 @@ function getSkinInfo(){
     set_request_seller_id();
     include_once( dirname(__FILE__).'/util.php');
     $seller_id = $_REQUEST['seller_id'];
+    if (!$seller_id) {
+        $seller_id = getUrlParam('seller_id');
+    }
     $skin_path = 'v1/shopsSkin/';
     $skin_ret = json_decode(get_init_php_data($skin_path, ["seller_id" => $seller_id]), true);
 
@@ -270,6 +277,7 @@ function setStaticConfig(){
     define('IS_DEBUG', isDebug());
     define('FLEXIBLE', flexible());
     $folder_name = getSkinInfo();
+    define('SKIN_INFO', $folder_name);
     if($folder_name != 'default'){
         define('TEMP_FOLDER', $folder_name.'/');
     }else{
@@ -280,10 +288,11 @@ function setStaticConfig(){
 spl_autoload_register('loadClass');
 setStaticConfig();
 function initPhpJs($js_name){
+    $skin_info = '<script>var SKIN="'.SKIN_INFO.'";</script>';
     if(isDebug()){
         return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1490070969974"></script>';
     }else{
-        return '<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1490070969974"></script>';
+        return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1490070969974"></script>';
     }
 }
 function initPhpCss($css_name){
