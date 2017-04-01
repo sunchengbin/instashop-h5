@@ -77,20 +77,30 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 amplitudePrice = _this.getBargainAmplitudePrice();
             }
             // 如果不是sku 
-            if (!init_data. bargain_invite_detail. item_info.sku.length > 0) {
-                var _after_bargain_price = Base.others.priceFormat(~~init_data. bargain_invite_detail. item_info.price - ~~amplitudePrice);
-                var _item_price = Base.others.priceFormat(~~init_data. bargain_invite_detail. item_info.price);
+            if (!init_data.bargain_invite_detail.item_info.sku.length > 0) {
+                var _after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.price - ~~amplitudePrice);
+                var _item_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.price);
                 _htm = "Rp " + _after_bargain_price + " <span class='bargain-origin-price'> Rp " + _item_price + "</span>";
             } else {
                 // 如果存在sku
-                var _min_after_bargain_price = Base.others.priceFormat(~~init_data. bargain_invite_detail. item_info.min_price - ~~amplitudePrice);
-                var _max_after_bargain_price = Base.others.priceFormat(~~init_data. bargain_invite_detail. item_info.max_price - ~~amplitudePrice);
-                var _min_price = Base.others.priceFormat(~~init_data. bargain_invite_detail. item_info.min_price);
-                var _max_price = Base.others.priceFormat(~~init_data. bargain_invite_detail. item_info.max_price);
+                var _min_after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.min_price - ~~amplitudePrice);
+                var _max_after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.max_price - ~~amplitudePrice);
+                var _min_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.min_price);
+                var _max_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.max_price);
                 _minPriceBargainHtm = "<p>Rp " + _min_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _min_price + "</span></p>";
                 _maxPriceBargainHtm = "<p>Rp " + _max_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _max_price + "</span></p>";
                 _htm = _minPriceBargainHtm + _maxPriceBargainHtm;
             }
+            return _htm;
+        },
+        createBargainPriceDialogHtm: function () {
+            var _htm = "";
+            _htm = '<div class="bargain-howprice-wrap">' +
+                '   <p><img src="' + Config.host.imgUrl + '/app/bargain.png" /></p>' +
+                '   <p class="bargain-amplitude-price-tip">Selamat, kamu telah menawar:</p>' +
+                '   <p class="bargain-amplitude-price j_bargain_amplitude_price"></p>' +
+                '   <div class="j_btn_confrim_bargain_price">Saya mengerti</div>' +
+                '</div>'
             return _htm;
         },
         handleFn: function () {
@@ -121,7 +131,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                     "action": "bargain", //这里要传action
                     "bargain_invite_id": _this.invite_params.invite_id,
                     "buyer_id": _this.loginResultPackage.info.buyer_id,
-                    "wduss": _this.loginResultPackage.info.wduss
+                    "uss": _this.loginResultPackage.info.uss
                 }
             }
             Debug.log({
@@ -138,6 +148,26 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 success: function (obj) {
                     if (200 == obj.code) {
                         console.log(obj)
+                        Dialog.dialog({
+                            body_txt: _this.createBargainPriceDialogHtm(),
+                            show_footer: false,
+                            body_fn: function () {
+                                // 回填自砍一刀的
+                                $(".j_bargain_amplitude_price").text(_amplitude.price_format);
+                            },
+                            c_fn: function () {
+                                location.reload();
+                            }
+                        })
+                    } else {
+                        Dialog.alert({
+                            top_txt: '', //可以是html
+                            cfb_txt: Lang.H5_FRESHEN,
+                            body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
+                            cf_fn: function () {
+                                location.reload();
+                            }
+                        });
                     }
                 }
             })

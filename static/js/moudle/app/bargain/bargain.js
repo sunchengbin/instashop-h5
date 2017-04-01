@@ -10,7 +10,7 @@ define([
     'lang',
     'oauth',
     'sharebargain',
-], function (Base, Config, Ajax, Cache, Dialog, Lang, Oauth,Sharebargain) {
+], function (Base, Config, Ajax, Cache, Dialog, Lang, Oauth, Sharebargain) {
     'use strict';
     var Bargain = function (opts) {
         var _this = this;
@@ -48,30 +48,35 @@ define([
                 if (_this.loginResultPackage.result) {
                     // 如果已登录 且有 砍价活动 则请求h5 砍价活动明细 并保存到明细中
                     var _self_bargain_price = _this.bargainCache.find("bargain_price_self");
-                    var reqParams = {
-                        edata: {
-                            "_debug_env": "4.5",
-                            "action": "h5_detail",
-                            "buyer_id": _this.loginResultPackage.info.buyer_id,
-                            "price": _self_bargain_price || 0, //自砍一刀的价格，如果没有自砍，就传0
-                            "uss": _this.loginResultPackage.info.uss
-                        }
-                    }
-                    var url = Config.host.actionUrl + Config.actions.bargain + "/" + _this.config.bargain.id + "?param=" + JSON.stringify(reqParams);
-                    Ajax.getJsonp(url, function (obj) {
-                        if (200 == obj.code) {
-                            _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
-                            //更新result价格
-                            $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
-                        }
-                    }, function () {
-
-                    })
+                    _this.updateRemoteBargainPrice(_self_bargain_price)
                 } else {
                     // 如果没有登录的话 先检查有没有本地砍价 有的话 显示继续砍价按钮 没有 显示我要砍价
                 }
             }
             _this.handleFn();
+        },
+        updateRemoteBargainPrice: function (_self_bargain_price) {
+            var _this = this;
+            var reqParams = {
+                edata: {
+                    "_debug_env": "4.5",
+                    "action": "h5_detail",
+                    "buyer_id": _this.loginResultPackage.info.buyer_id,
+                    "price": _self_bargain_price || 0, //自砍一刀的价格，如果没有自砍，就传0
+                    "uss": _this.loginResultPackage.info.uss
+                }
+            }
+            var url = Config.host.actionUrl + Config.actions.bargain + "/" + _this.config.bargain.id + "?param=" + JSON.stringify(reqParams);
+            Ajax.getJsonp(url, function (obj) {
+                if (200 == obj.code) {
+                    console.log(obj.bargain_invite_detail)
+                    _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
+                    //更新result价格
+                    $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
+                }
+            }, function () {
+
+            })
         },
         handleFn: function () {
             var _this = this;

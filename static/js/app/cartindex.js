@@ -102,6 +102,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     // 具备登录机制
                     if(Oauth.checkIsLogin().result){
                         // 登录的 去结算
+                        // 再请求一次活动明细
                         _that.goClear(_groupid);
                     }else{
                         Oauth.openDialog("cart");
@@ -111,6 +112,10 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     _that.goClear(_groupid);
                 }
             });
+            $('body').on('click','.j_cart_no_login',function(){
+                var _groupid = $(this).attr('group-id');
+                _that.goClear(_groupid);
+            })
             if (Base.others.getUrlPrem('error')) {
                 _that.subData();
             }
