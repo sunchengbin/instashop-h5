@@ -220,6 +220,10 @@ function setStaticFontCss($folder_name){
     return C_RUNTIME_ONLINE?getFontCss($host_name.'/static',$folder_name):getFontCss($host_name.'/static',$folder_name);
 }
 function set_request_seller_id() {
+	// 测试环境，便于h5调试
+	if (!C_RUNTIME_ONLINE && $_REQUEST['seller_id']) {
+		return;
+	}
     include_once( dirname(__FILE__).'/util.php');
 	$host_preg = C_RUNTIME_ONLINE ? '/^(www\.)?(.*?)\.instashop\.co\.id$/i' : '/^(www\.)?(.*?)\.test\.instashop\.co\.id$/i';
 	$host = $_SERVER['HTTP_HOST'];
