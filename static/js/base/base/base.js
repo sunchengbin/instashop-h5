@@ -179,7 +179,16 @@ define(function () {
             }
             return _items;
         },
-
+        //重设url中某个特定参数的值
+        resetUrlPrem : function(key,val,url){
+            var _search = url || document.location.search,
+                _pattern = new RegExp(key + "\=([^&]+)", "g");
+            if(_pattern.test(_search)){
+                _search = _search.replace(_pattern,key+'='+val);
+            }
+            return _search;
+        },
+        //
         /*setTimeout实现的轮询
          *   fn方法有一个callback函数代表fn函数执行完之后需要执行的
          *   base.others.setInterval(fn,1000);

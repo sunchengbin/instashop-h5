@@ -61,37 +61,36 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         },
         handelFn : function(bridge){
             var _this = this;
-            //console.log(_this.model_data);
-            if(!bridge){
-                alert('not find bridge');
-                return;
-            }
-            (function(bridge){
-                var _close_param = {
-                    param:{
-                        type : 'close_loading',
-                        param : null
-                    }
-                };
-                //关闭webview的loading动画
-                bridge.callHandler('insSocket',_close_param, function(response) {
-                    return null;
-                });
-                var _param = {
-                    param:{
-                        type : 'go_back',
-                        param : {
-                            type : 'loaded',
-                            result : _this.is_edit
-                        }
-                    }
-                };
-                //提供给native设置回退锁,为了回退的时候
-                bridge.callHandler('insSocket',_param, function(response) {
-                    return null;
-                });
-            })(bridge);
-            _this.registerFn(bridge);
+            //if(!bridge){
+            //    alert('not find bridge');
+            //    return;
+            //}
+            //(function(bridge){
+            //    var _close_param = {
+            //        param:{
+            //            type : 'close_loading',
+            //            param : null
+            //        }
+            //    };
+            //    //关闭webview的loading动画
+            //    bridge.callHandler('insSocket',_close_param, function(response) {
+            //        return null;
+            //    });
+            //    var _param = {
+            //        param:{
+            //            type : 'go_back',
+            //            param : {
+            //                type : 'loaded',
+            //                result : _this.is_edit
+            //            }
+            //        }
+            //    };
+            //    //提供给native设置回退锁,为了回退的时候
+            //    bridge.callHandler('insSocket',_param, function(response) {
+            //        return null;
+            //    });
+            //})(bridge);
+            //_this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
                 PaqPush && PaqPush('插入模块','insert-model');
@@ -248,9 +247,31 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 event_type: 'click',
                 loading_txt: Lang.CHANGE_SKIN,
                 callback: function (dom) {
-                    location.href += '&skin=first&skin_code=1';
+                    var _href = location.href;
+                    switch(SKIN){
+                        case 'first':
+                            location.href = _this.changeSkinUrlPram(_href,'default',0);
+                            break;
+                        case 'default':
+                            location.href = _this.changeSkinUrlPram(_href,'first',1);
+                            break;
+                        default :
+                            location.href = _this.changeSkinUrlPram(_href,'first',1);
+                            break;
+                    }
+
                 }
             });
+        },
+        changeSkinUrlPram : function(href,skin,skin_code){
+            var _href = href;
+            if(Base.others.getUrlPrem('skin')){
+                _href = Base.others.resetUrlPrem('skin',skin,_href);
+                _href = Base.others.resetUrlPrem('skin_code',skin_code,_href);
+            }else{
+                _href += '&skin='+skin+'&skin_code='+skin_code;
+            }
+            return _href;
         },
         tranfansModelData : function(data){
             return JSON.parse(Common.decodeSingleQuotes(JSON.stringify(data)));
