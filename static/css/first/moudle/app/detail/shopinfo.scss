@@ -44,21 +44,22 @@
   color: $gray-color;
 }
 
-.shop-info span i {
-  color: $white;
-}
+
 
 .shop-info span {
   width: auto;
   @include remCalc(height,40);
   @include remCalc(line-height,40);
-  background: $base-color;
+  border:1px solid $base-btn-color;
   display: inline-block;
   @include remCalc(border-radius,100);
-  color: $white;
+  color: $base-btn-color;
   @include remCalc(padding,0 15);
 }
-
+.shop-info span i {
+  color: $base-btn-color;
+  @include remCalc(margin-right,15);
+}
 .shop-explain{
   color: #aaa;
   @include remCalc(margin,10 30 0);
