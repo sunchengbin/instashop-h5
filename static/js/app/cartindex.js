@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick','debug','cache','oauth'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick,Debug,Cache,Oauth) {
+require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug', 'cache', 'oauth'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick, Debug, Cache, Oauth) {
     var CartIndex = {
         init: function () {
             var _data = JSON.parse(localStorage.getItem('ShopData'));
@@ -22,15 +22,15 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
             $('body').prepend(_htm);
             this.handleFn();
             var _cart_debug = {
-                "isGroup":isGroup,
-                "drop开关":_data.ShopInfo.drop,
-                "组购物车":GroupCart,
-                "组数量":Cart().getGroupNum(),
-                "原始购物车":_carts,
+                "isGroup": isGroup,
+                "drop开关": _data.ShopInfo.drop,
+                "组购物车": GroupCart,
+                "组数量": Cart().getGroupNum(),
+                "原始购物车": _carts,
             }
             Debug.log({
-                title:"购物车分组信息",
-                data:_cart_debug
+                title: "购物车分组信息",
+                data: _cart_debug
             })
             this.loginResultPackage = Oauth.checkIsLogin();
         },
@@ -56,13 +56,13 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                 $('.j_cart_list').addClass("no_goods_box");
                             }
                             _that.GroupCart = Cart().convertGroup(Cart().getCart())[JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id];
-                        }else{
+                        } else {
                             //被删空了
-                            if($.isEmptyObject(_that.carts)){
+                            if ($.isEmptyObject(_that.carts)) {
                                 $('.j_cart_list').addClass("no_goods_box");
                             }
                         }
-                        
+
                     }
                 });
             });
@@ -73,20 +73,20 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                 if (!_fromurl) {
                     var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
                     localStorage.removeItem('CartFromUrl');
-                    setTimeout(function(){
+                    setTimeout(function () {
                         location.href = _url;
-                    },1);
+                    }, 1);
                 } else {
                     localStorage.removeItem('CartFromUrl');
-                    var _scroll_url = localStorage.getItem('index_route_info')?localStorage.getItem('index_route_info'):'';
-                    setTimeout(function(){
-                        if(/pt/g.test(_fromurl)){
-                            location.href = _fromurl.split('?')[0]+'?item=back'+_scroll_url;
-                        }else{
-                            location.href = _fromurl+'?item=back'+_scroll_url;
+                    var _scroll_url = localStorage.getItem('index_route_info') ? localStorage.getItem('index_route_info') : '';
+                    setTimeout(function () {
+                        if (/pt/g.test(_fromurl)) {
+                            location.href = _fromurl.split('?')[0] + '?item=back' + _scroll_url;
+                        } else {
+                            location.href = _fromurl + '?item=back' + _scroll_url;
                         }
 
-                    },1);
+                    }, 1);
                 }
             });
             $('body').on('click', '.j_go_shop', function () {
@@ -97,11 +97,35 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
             });
             $('body').on('click', '.j_submit_btn', function () {
                 var _groupid = $(this).attr('group-id');
-                PaqPush && PaqPush('去结算', '');
-                _that.subData(_groupid);
+
+                if (_that.checkIsHasBargain()) {
+                    // 具备登录机制
+                    if(Oauth.checkIsLogin().result){
+                        // 登录的 去结算
+                        _that.goClear(_groupid);
+                    }else{
+                        Oauth.openDialog("cart");
+                    }
+                } else {
+                    // 不具备登录机制的 去结算
+                    _that.goClear(_groupid);
+                }
             });
             if (Base.others.getUrlPrem('error')) {
                 _that.subData();
+            }
+        },
+        goClear: function (groupid) {
+            var _that = this;
+            PaqPush && PaqPush('去结算', '');
+            _that.subData(groupid);
+        },
+        checkIsHasBargain: function () {
+            var _data = JSON.parse(localStorage.getItem('ShopData'));
+            if (_data.ShopInfo.bargain.count > 0) {
+                return true;
+            } else {
+                return false;
             }
         },
         getAddressItems: function (groupid) {
@@ -251,11 +275,11 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                             _shop_data.Cart[_shop_data.ShopInfo.id] = _that.carts;
                                             localStorage.setItem('ShopData', JSON.stringify(_shop_data));
                                             setTimeout(function () {
-                                                var _buyer_id = _that.loginResultPackage.result?_that.loginResultPackage.info.buyer_id:"";
-                                                if(!!groupid){
-                                                    location.href = Config.host.hrefUrl + 'address.php?groupid='+ groupid+'&buyer_id='+_buyer_id;
-                                                }else{
-                                                    location.href = Config.host.hrefUrl + 'address.php'+'&buyer_id='+_buyer_id;
+                                                var _buyer_id = _that.loginResultPackage.result ? _that.loginResultPackage.info.buyer_id : "";
+                                                if (!!groupid) {
+                                                    location.href = Config.host.hrefUrl + 'address.php?groupid=' + groupid + '&buyer_id=' + _buyer_id;
+                                                } else {
+                                                    location.href = Config.host.hrefUrl + 'address.php' + '&buyer_id=' + _buyer_id;
                                                 }
                                             }, 1);
                                         }
@@ -268,8 +292,8 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                         _addr = _address.country + ',' + _address.city + ',' + _address.province;
                                     setTimeout(function () {
                                         var _item_str = JSON.stringify(_that.getAddressItems(groupid));
-                                        var _buyer_id = _that.loginResultPackage.result?_that.loginResultPackage.info.buyer_id:"";
-                                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + reqData.edata.seller_id + '&addr=' + encodeURIComponent(_addr) +'&buyer_id='+_buyer_id+ '&groupid=' + groupid + '&items=' + encodeURIComponent(_item_str);
+                                        var _buyer_id = _that.loginResultPackage.result ? _that.loginResultPackage.info.buyer_id : "";
+                                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + reqData.edata.seller_id + '&addr=' + encodeURIComponent(_addr) + '&buyer_id=' + _buyer_id + '&groupid=' + groupid + '&items=' + encodeURIComponent(_item_str);
                                     }, 1);
                                 }
                             }

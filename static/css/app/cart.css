@@ -3,6 +3,7 @@
 @import "../moudle/app/common/common.css";
 @import "../moudle/ui/dialog/dialog.css";
 @import "../moudle/app/item/item.css";
+@import "../moudle/app/bargain/bargain.css";
 body {
     background: #FAFAFA;
 }

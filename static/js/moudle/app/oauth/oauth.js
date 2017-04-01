@@ -6,8 +6,9 @@ define([
     'config',
     'ajax',
     'cache',
-    'dialog'
-], function (Base, Config, Ajax, Cache, Dialog) {
+    'dialog',
+    'lang'
+], function (Base, Config, Ajax, Cache, Dialog,Lang) {
     'use strict';
     var Oauth = {
         login: function (type) {
@@ -29,9 +30,9 @@ define([
             var reqUrl = "http://api-test.instashop.co.id/instashop/" + Config.actions.oauth + "?param=" + encodeURIComponent(JSON.stringify(_reqData)) + "&timestamp=" + new Date().getTime();
             window.location.href = reqUrl;
         },
-        openDialog: function () {
+        openDialog: function (type) {
             Dialog.dialog({
-                body_txt: Oauth.createLoginHtm(),
+                body_txt: Oauth.createLoginHtm(type),
                 show_footer: false,
                 show_top: false,
                 body_fn: function () {
@@ -43,13 +44,14 @@ define([
                 }
             })
         },
-        createLoginHtm: function () {
+        createLoginHtm: function (type) {
             var _htm = "";
             _htm = '<div>' +
                 '<div class="login-dialog-header">Untuk mengikuti promo ini, kamu harus login dulu:</div>' +
                 '<div>' +
                 '<div class="j_dialog_login_line j_dialog_login_btn ins-m-b-2" data-type="line">Login with Line</div>' +
-                '<div class="j_dialog_login_facebook j_dialog_login_btn" data-type="facebook">Login with Facebook</div>' +
+                '<div class="j_dialog_login_facebook j_dialog_login_btn '+(type?'ins-m-b-2':'')+'" data-type="facebook">Login with Facebook</div>' +
+                '<div class="j_cart_no_login" style="display:'+(type?'block':'none')+'" data-type="cart_no_logain">'+Lang.BARGAIN_CART_BTN_UNLOGIN+'</div>'+
                 '</div>' +
                 '</div>';
             return _htm;
