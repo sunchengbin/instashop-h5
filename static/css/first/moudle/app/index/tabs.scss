@@ -27,6 +27,7 @@
   @include remCalc(line-height,80);
   box-sizing: border-box;
   position: relative;
+  color: $gray-color;
 }
 
 .tab-index-wrap .tabitem span{
@@ -41,7 +42,7 @@
   @include remCalc(font-size,40);
 }
 
-.tab-active div {
+.tab-active div ,.tab-items .tab-active div{
   color: $base-color;
 }
 

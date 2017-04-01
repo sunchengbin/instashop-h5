@@ -9,6 +9,28 @@
 body{
     background-color: #333;
 }
+.change-skin-warp{
+    background-color: #fff;
+    height:4rem;
+    line-height:4rem;
+    box-sizing: border-box;
+    padding:.75rem 1.5rem;
+    color:#444;
+}
+.change-skin-warp button{
+    height: 2.5rem;
+    line-height: 2.5rem;
+    border: 1px solid #D8D8D8;
+    text-align: center;
+    display: inline-block;
+    padding: 0 .8rem;
+    border-radius: 2px;
+}
+.change-skin-warp p{
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin-right: 80px;
+}
 .edit-wraper-box{
     padding:1rem 1.5rem 5rem;
 }
