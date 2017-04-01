@@ -1,8 +1,8 @@
 {include file="header.tpl"}
 <body data-spider="yngoklm4">
 <div class="change-skin-warp clearfix">
-    <button class="j_change_btn fr">更换</button>
-    <p>setensilan:pink</p>
+    <button class="j_change_btn fr">Ganti</button>
+    <p>Template: {if $SKIN_INFO eq 'default'}Standar{/if}{if $SKIN_INFO eq 'first'}Pinky Spring{/if}</p>
 </div>
 <div class="edit-wraper-box" data-spider="edit-wraper-box">
     {if $INDEX_DATA.template|@count}

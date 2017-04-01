@@ -548,7 +548,7 @@ define(['base'], function (Base) {
             "INDEX_ITEMS_COMPLEX": "Populer",
             "INDEX_ITEMS_DATE": "Terbaru",
             "INDEX_ITEMS_PRICE": "Harga",
-            "CHANGE_SKIN":"更换皮肤"
+            "CHANGE_SKIN":"Ganti..."
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[navigator.language.toLowerCase()] || Lang.id);
