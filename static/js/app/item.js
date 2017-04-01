@@ -21,7 +21,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                         needTab: true,
                         auto: false
                     });
-                    _this.BargainPlug = Bargain({
+                    _this.BargainPlug = new Bargain({
                         bargain:init_data.item.bargain
                     });
                     // 根据砍价活动计算sku

@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/13.
  */
-require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug', 'favorable', 'cache'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug, Favorable, Cache) {
+require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug', 'favorable', 'cache', 'bargain'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug, Favorable, Cache, Bargain) {
     var OrderConfirmHtm = {
         init: function () {
             var _this = this;
@@ -61,19 +61,23 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 });
             }
 
-            //添加对优惠券处理 -lanchenghao@weidian.com
-            _this.favorablePlugin = Favorable({
-                el: ".order-info",
-                price: _sum,
-                seller_id: JSON.parse(_data).ShopInfo.id,
-                usehandle: function (favorablePrice, favorableCode) {
-                    var _postPrice = $(".j_post").attr("data-price") || 0,
-                        _price = _sum - Number(favorablePrice) + Number(_postPrice);
-                    _this.favorableCode = favorableCode;
-                    _price = _price < 0 ? 0 : _price;
-                    $(".j_sum").text('Rp ' + Base.others.priceFormat(_price));
-                }
-            });
+            // 添加对优惠券处理 -lanchenghao@weidian.com
+            // 如果该有商品为砍价商品
+            if (Bargain.checkIsHaveBargainItem()) {
+                _this.favorablePlugin = Favorable({
+                    el: ".order-info",
+                    price: _sum,
+                    seller_id: JSON.parse(_data).ShopInfo.id,
+                    usehandle: function (favorablePrice, favorableCode) {
+                        var _postPrice = $(".j_post").attr("data-price") || 0,
+                            _price = _sum - Number(favorablePrice) + Number(_postPrice);
+                        _this.favorableCode = favorableCode;
+                        _price = _price < 0 ? 0 : _price;
+                        $(".j_sum").text('Rp ' + Base.others.priceFormat(_price));
+                    }
+                });
+            }
+
             _this.handleFn();
         },
         //1免邮 0付费
@@ -316,6 +320,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                             itemName: _items[item].item.item_name,
                             itemNum: _items[item].num,
                             item_sku: _items[item].sku.id,
+                            price: _items[item].sku.price,
                             discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
                         });
                     } else {
@@ -323,6 +328,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                             itemID: _items[item].item.id,
                             itemName: _items[item].item.item_name,
                             itemNum: _items[item].num,
+                            price: _items[item].price,
                             discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
                         });
                     }

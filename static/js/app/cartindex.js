@@ -91,7 +91,6 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
             });
             $('body').on('click', '.j_go_shop', function () {
                 PaqPush && PaqPush('去逛逛', '');
-                //_paq.push(['trackEvent', '去逛逛', 'click', '']);
                 var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
                 location.href = _url;
             });
@@ -100,19 +99,23 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
 
                 if (_that.checkIsHasBargain()) {
                     // 具备登录机制
-                    if(Oauth.checkIsLogin().result){
+                    var _judageOauth = Oauth.checkIsLogin();
+                    if(_judageOauth.result){
                         // 登录的 去结算
                         // 再请求一次活动明细
+                        PaqPush && PaqPush('登录结算-'+_judageOauth.info.auth_type, '');
                         _that.goClear(_groupid);
                     }else{
                         Oauth.openDialog("cart");
                     }
                 } else {
                     // 不具备登录机制的 去结算
+                    PaqPush && PaqPush('免登录结算', '');
                     _that.goClear(_groupid);
                 }
             });
             $('body').on('click','.j_cart_no_login',function(){
+                PaqPush && PaqPush('免登录结算', '');
                 var _groupid = $(this).attr('group-id');
                 _that.goClear(_groupid);
             })
@@ -122,7 +125,6 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
         },
         goClear: function (groupid) {
             var _that = this;
-            PaqPush && PaqPush('去结算', '');
             _that.subData(groupid);
         },
         checkIsHasBargain: function () {

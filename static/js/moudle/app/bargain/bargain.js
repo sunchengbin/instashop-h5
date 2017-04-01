@@ -55,6 +55,19 @@ define([
             }
             _this.handleFn();
         },
+        checkIsHaveBargainItem: function (items) {
+            var isHave = false;
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    var _curItem = items[i];
+                    if(!!_curItem.bargain){
+                        isHave = true;
+                        break;
+                    }
+                }
+            }
+            return isHave;
+        },
         updateRemoteBargainPrice: function (_self_bargain_price) {
             var _this = this;
             var reqParams = {
@@ -225,11 +238,15 @@ define([
             if (originData.item.sku.length > 0) {
                 for (var i = 0; i < originData.item.sku.length; i++) {
                     var _curSku = originData.item.sku[i];
-                    _curSku.price = ~~_curSku.price - ~~_bargain_result_price;
+                    var _bargain = {
+                        price:0
+                    }
+                    _bargain.price = ~~_curSku.price - ~~_bargain_result_price;
+                    _curSku.bargain = _bargain;
                 }
             } else {
                 // 无sku 商品价格重置为 原价减去砍价总幅度
-                originData.item.price = ~~originData.item.price - ~~_bargain_result_price;
+                originData.item.bargain.price = ~~originData.item.price - ~~_bargain_result_price;
             }
             return originData;
         },
@@ -253,7 +270,5 @@ define([
             };
         }
     }
-    return function (opts) {
-        return new Bargain(opts);
-    }
+    return Bargain;
 });

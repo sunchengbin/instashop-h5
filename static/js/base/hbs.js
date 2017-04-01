@@ -262,6 +262,9 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
                 '<p class="name">' + carts[item].item.item_name + '</p>' +
                 (carts[item].sku ? '<p class="type">' + Lang.H5_SKU + ': ' + carts[item].sku.title + '</p>' : '') +
                 '<p class="num">' + Lang.H5_QUANTITY + ': ' + carts[item].num + '</p>';
+
+
+
             if (carts[item].item.is_discount && carts[item].item.discounting) {
                 if (carts[item].item.discount.discount_type == "percent") {
                     //区分sku
@@ -272,6 +275,13 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
                     }
                 } else {
                     _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
+                }
+            } else if (!!carts[item].item.bargain) {// 砍价活动价格
+                //区分sku
+                if (carts[item].sku && carts[item].sku.id) {
+                    _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.bargain.price) + '</p>';
+                } else {
+                    _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.bargain.price) + '</p>';
                 }
             } else {
                 var _price = (carts[item].sku && carts[item].sku.id) ? carts[item].sku.price : carts[item].item.price;
