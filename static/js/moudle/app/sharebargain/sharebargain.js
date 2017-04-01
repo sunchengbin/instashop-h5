@@ -33,7 +33,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                 +'</div>'
                 +'<div class="share-operate bargain_inv_operate clearfix">'
                 // +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="优惠券分享到facebook" spm-click="" data-url="http://www.facebook.com/share.php?t=">'
-                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="优惠券分享到facebook" spm-click="" data-url="fb://facewebmodal/f?href=http://www.facebook.com/share.php?t=">'
+                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="优惠券分享到facebook" spm-click="" data-url="fb://facewebmodal/f?href=http://www.facebook.com/share.php?u='+encodeURIComponent('http://m-test.instashop.co.id/inv/7?_debug_env=4.5')+'t=instashoptest">'
                 +'<i class="iconfont icon-share-facebook" ></i>'
                 +'<p>FB</p>'
                 +'</a>'
