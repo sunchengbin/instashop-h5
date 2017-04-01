@@ -14,6 +14,15 @@
     $smarty->assign('INDEX_DATA',$json);
     $smarty->assign('INDEX_DATA_STR',$ret);
 
+    $seller_id = $_REQUEST['seller_id'];
+    $path_shop_info = 'v1/shops/'.$seller_id;
+    $paramsForShopInfo = [
+        'action' => 'index_shopinfo',
+        'platform' => 'web'
+    ];
+    $ret_shop_info = get_init_php_data($path_shop_info, $paramsForShopInfo);
+    $shop_info = json_decode($ret, true);
+    $smarty->assign('SHOP_INFO_DATA',$ret_shop_info["shop"]);
     $itemtype = getItemListType($json["template"]);
     $smarty->assign('ITEMTYPE',$itemtype);
 

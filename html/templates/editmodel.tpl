@@ -23,7 +23,9 @@
                         <img data-img="{$INDEX_DATA.shop.logo}" src="" />
                     </div>
                     <p>{$INDEX_DATA.shop.name}</p>
-                    <span><i class="icon iconfont icon-shop-font"></i>Toko fisik</span>
+                    {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
+                        <span><i class="icon iconfont icon-shop-font"></i>Ada Outlet</span>
+                    {/if}
                 </div>
             </section>
             <div class="tabs">
@@ -410,5 +412,5 @@
     {/if}
     <button class="j_submit_btn sub-btn b-top">Gunakan ke Tokomu</button>
 </div>
-<script>var init_data = {$INDEX_DATA_STR};</script>
+<script>var init_data = {$INDEX_DATA_STR};var shop = {$SHOP_INFO_DATA};</script>
 {include file="footer.tpl"}
