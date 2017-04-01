@@ -112,13 +112,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
             $("body").on("click", ".j_bargain_btn_invite_self", function () {
                 location.href = init_data.bargain_invite_detail.item_info.h5_url;
             })
-            // $("body").on("click", ".j_bargain_btn_invite_help", function () {
-            //     // 判断是否登录 登录 弹出 分享 
-            //     if (_this.loginResultPackage.result) {} else {
-            //         Oauth.openDialog();
-            //     }
-            //     // 未登录 弹出 去登录 
-            // })
         },
         cutPrice: function () {
             var _this = this;

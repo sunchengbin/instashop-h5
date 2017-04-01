@@ -227,3 +227,16 @@ function conuntImgNavWidth($data){
 function confirmIsReachBasepirce($data){
     return (intval($data['item_info']['min_price']) - intval($data['bargain_result'])) == intval($data['bargain_info']['base_price']);
 }
+
+function getAfterBargainPrice($data){
+    $item = $data['item_info'];
+    if(!$item.sku){
+        //没有sku
+        $afterPrice = intval($item['min_price'])-intval($data['bargain_result']);
+        return "Rp "+priceFormat($afterPrice);
+    }else{
+        $afterMinPrice = intval($item['min_price'])-intval($data['bargain_result']);
+        $afterMaxPrice = intval($item['max_price'])-intval($data['bargain_result']);
+        return "Rp "+priceFormat($afterMinPrice)+'- '+priceFormat($afterMaxPrice);
+    }
+}

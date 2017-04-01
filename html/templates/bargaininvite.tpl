@@ -149,17 +149,17 @@
             </div>
         </div>
         <div class="bargain-header-desc">
-            {*无法砍价 已经买了 bargain_left_num == 0 *}
-            {if $BARGAIN_INVITE_DETAIL.bargain_left_num eq 0 } 
-                Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa belanja hemat dengan harga Rp 100.000!
+            {*无法砍价 已经买了 bargain_bought_num == 0 *}
+            {if $BARGAIN_INVITE_DETAIL.bargain_bought_num gt 0 } 
+                Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa belanja {$BARGAIN_INVITE_DETAIL.item_info.item_name} Plus dengan harga Rp 100.000!
             {else}
                     {*无法砍价 已经砍到底价了 item.min_price - bargain_result == base_price *}
                 {if $BARGAIN_INVITE_DETAIL|confirmIsReachBasepirce}
-                    Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa belanja hemat dengan harga Rp 100.000!
+                    Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa belanja hemat dengan harga Rp {$BARGAIN_INVITE_DETAIL.bargain_info.base_price|priceFormat}!
                 {else}
                     {*可以砍价 已经坎到了多少价*}
                     Aku lagi ikutan promo tawar Iphone sampai Rp {$BARGAIN_INVITE_DETAIL.bargain_info.base_price|priceFormat} nih.
-                    Harga saat ini Rp 180.000. Yuk bantu aku tawar lagi! 
+                    Harga saat ini {$BARGAIN_INVITE_DETAIL|getAfterBargainPrice}. Yuk bantu aku tawar lagi! 
                 {/if}
             {/if}
             
@@ -169,7 +169,7 @@
     <div class="bargain-good-detail">
         <!--商品图-->
         <div class="">
-            <img src="{$BARGAIN_INVITE_DETAIL.item_info.img}" alt="">
+            <img src="{$BARGAIN_INVITE_DETAIL.item_info.img|item_img}" alt="">
         </div>
         <!--描述-->
         <div class="desc">
@@ -179,9 +179,13 @@
             <p class="price">
             </p>
             <div class="">
-                {*显示*}
-                <button class="j_bargain_btn_invite_help" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
-                {*隐藏*}
+                {if $BARGAIN_INVITE_DETAIL.bargain_bought_num gt 0 }
+                {else}
+                    {if $BARGAIN_INVITE_DETAIL|confirmIsReachBasepirce}
+                    {else}
+                        <button class="j_bargain_btn_invite_help" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
+                    {/if}
+                {/if}
                 <button class="j_bargain_btn_invite_self" type="">Mau Beli Juga</button>
             </div>
         </div>
