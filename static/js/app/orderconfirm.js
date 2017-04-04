@@ -63,7 +63,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
 
             // 添加对优惠券处理 -lanchenghao@weidian.com
             // 如果该有商品为砍价商品
-            if (Bargain.checkIsHaveBargainItem()) {
+            if (!Bargain.checkIsHaveBargainItem(_this.carts)) {
                 _this.favorablePlugin = Favorable({
                     el: ".order-info",
                     price: _sum,

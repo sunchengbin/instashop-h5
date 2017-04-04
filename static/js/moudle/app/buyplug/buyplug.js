@@ -85,9 +85,19 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
             $(_config.wraper).on('click', '.j_add_btn', function () {
                 var _item_num = $('.j_item_num'),
                     _num = Number(_item_num.val()),
-                    _stock = $(this).attr('data-stock');
+                    _stock = $(this).attr('data-stock'),
+                    _limitto = $(this).attr('data-limitto')||0;
                 if (_stock && _stock <= _num) {
                     return;
+                }
+                // 是否限购 0为不限购
+                if(_limitto!=0){
+                    if(_num>=_limitto){
+                        Dialog.tip({
+                            body_txt:"Maksimal Pembelian "+_limitto+" Pcs"
+                        })
+                        return;
+                    }
                 }
                 _item_num.val(++_num);
             });

@@ -68,6 +68,6 @@ unset($_GET['_path_']);
 $url = $host.$api.'?'.http_build_query($_GET);
 $headers = dealHeaders();
 $method = 'POST';
-Log::debug(['url'=>$url, 'headers'=>$headers, 'request'=>$_REQUEST]);
+// Log::debug(['url'=>$url, 'headers'=>$headers, 'request'=>$_REQUEST]);
 $res = HttpProxy::getInstance(array('timeout'=>20000, 'conn_timeout'=>20000))->callInterfaceCommon($url, $method, $_POST, $headers);
 echo $res;

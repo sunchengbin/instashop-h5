@@ -37,7 +37,7 @@
         <div class="item-info-num clearfix">
             <div class="item-num-box">
                 {{#empty item.sku}}
-                    <span class="j_add_btn add-btn fr" data-stock="{{item.stock}}">
+                    <span class="j_add_btn add-btn fr" data-limitto="{{item.bargain.limit_to}}" data-stock="{{item.stock}}">
                         <i class="icon iconfont icon-add-font"></i>
                     </span>
                 {{else}}

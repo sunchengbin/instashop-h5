@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/7/26.
  */
-require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator', 'favorable', 'debug'], function (Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator, Favorable, Debug) {
+require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator', 'favorable', 'debug','bargain'], function (Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator, Favorable, Debug,Bargain) {
     var QuickCartsHtm = {
         init: function () {
             var _this = this,
@@ -80,18 +80,22 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             _this.getTotal();
             _this.handleFn();
             //优惠券
-            _this.favorablePlugin = Favorable({
-                el: ".total-ps",
-                price: $('.j_total').attr('data-price'),
-                seller_id:init_data.shop.id,
-                usehandle: function (favorablePrice) {
-                    var _totalPrice = $(".j_total").attr("data-price"),
-                        _price = Number(_totalPrice) - Number(favorablePrice);
-                    _price = _price < 0 ? 0 : _price;
+            // 添加对优惠券处理 -lanchenghao@weidian.com
+            // 如果该有商品为砍价商品
+            if (!Bargain.checkIsHaveBargainItem(init_data.carts)) {
+                _this.favorablePlugin = Favorable({
+                    el: ".total-ps",
+                    price: $('.j_total').attr('data-price'),
+                    seller_id: init_data.shop.id,
+                    usehandle: function (favorablePrice) {
+                        var _totalPrice = $(".j_total").attr("data-price"),
+                            _price = Number(_totalPrice) - Number(favorablePrice);
+                        _price = _price < 0 ? 0 : _price;
+                        $(".j_total").html('Rp ' + Base.others.priceFormat(_price));
+                    }
+                });
+            }
 
-                    $(".j_total").html('Rp ' + Base.others.priceFormat(_price));
-                }
-            });
         },
         initLocalStorage: function (address) { //根据本地地址数据自动填写用户信息
             address.name && $('.j_name').val(address.name);
@@ -158,7 +162,16 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 var _item_num = $(this).parent().find('.j_item_num'),
                     _num = Number(_item_num.val()),
                     _stock = $(this).attr('data-stock'),
+                    _limitto = $(this).attr('data-limitto') || 0,
                     _dataId = $(this).attr('data-id');
+                if (_limitto != 0) {
+                    if (_limitto <= _num) {
+                        Dialog.tip({
+                            body_txt: "Maksimal Pembelian " + _limitto + " Pcs"
+                        })
+                        return;
+                    }
+                }
                 if (_this.isDetailQuick && _this.testDetailCarts()) { //有sku的单品快速下单
                     _this.quickbuyplug.toShow();
                 } else {

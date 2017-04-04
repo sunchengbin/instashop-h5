@@ -24,7 +24,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
         },
         createHtm : function(){
             var _this = this,
-                _share_url = _this.urlArithmetic(_this.config.bargain_inv_url),
+                _share_url = _this.config.bargain_inv_url,
                 _share_content = _this.config.content+'<br>'+_share_url,
                 _htm = '';
             _this.share_content = _this.config.content+_share_url;
@@ -60,7 +60,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                     _type = _dom.attr('data-type');
                 setTimeout(function(){
                     if(_type=='bbm'&&Base.others.verifyBower().ios){
-                        var _bbm_url = Lang.H5_SHARE_TO_BBM_COUPON_TXT+_this.urlArithmetic(_this.config.bargain_inv_url);
+                        var _bbm_url = Lang.H5_SHARE_TO_BBM_COUPON_TXT+_this.config.bargain_inv_url;
                         location.href = _dom.attr('data-url') + _bbm_url;
                     }else{
                         location.href = _dom.attr('data-url') + _this.share_content;

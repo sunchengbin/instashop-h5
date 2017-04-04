@@ -87,6 +87,9 @@
 
         {*砍价活动功能区begin*}
         {if $INDEX_DATA.item.bargain}
+        <div class="ins-btn ins-btn-gray j_bargain_reachbaseprice">
+        Sudah Harga Termurah
+        </div>
         <div class="ins-btn ins-btn-orange j_bargain_btn_self">
         Tawar Sekarang
         </div>
@@ -100,6 +103,9 @@
         Panduan Tawar Harga ?
         </p>
         {/if}
+
+
+
         {*砍价活动功能区end*}
         {include file="preferential.tpl"}
         <a href="javascript:;" data-url="{$INDEX_DATA.item.shop.url}" spm-auto="去首页" spm-click="go-home" class="go-shop j_shop_info">

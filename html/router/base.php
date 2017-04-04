@@ -223,11 +223,11 @@ function conuntImgNavWidth($data){
 
 // 砍价活动新增
 // 判断是否砍到了底价
-
 function confirmIsReachBasepirce($data){
     return (intval($data['item_info']['min_price']) - intval($data['bargain_result'])) == intval($data['bargain_info']['base_price']);
 }
 
+// 获取砍价后的价格
 function getAfterBargainPrice($data){
     $item = $data['item_info'];
     if(!$item.sku){
@@ -239,4 +239,8 @@ function getAfterBargainPrice($data){
         $afterMaxPrice = intval($item['max_price'])-intval($data['bargain_result']);
         return "Rp "+priceFormat($afterMinPrice)+'- '+priceFormat($afterMaxPrice);
     }
+}
+
+function getBargainLimit($data){
+    return $carts['item']['bargain']['limit_to'] == 0 ? 0 : $carts['item']['bargain']['limit_to'];
 }

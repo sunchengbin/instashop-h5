@@ -32,18 +32,27 @@ define([
                     namespace: "BargainCache",
                     type: "local"
                 });
-
-                // 判断自己有没有砍一刀
-                if (_this.checkIsBargainSelf()) {
-                    // 有的话 显示继续砍价按钮 更新价格视图
-                    $(".price").html(_this.transPriceByBargain());
-                    $(".j_bargain_btn_continue").show();
+                // 判断有没有砍到底价
+                var _amplitude = _this.computeBargainPrice();
+                if (Bargain.isReachBaseprice(init_data.item.min_price,_amplitude.price_origin,init_data.item.bargain.base_price)) {
+                    $(".j_bargain_reachbaseprice").show();
                     $(".j_bargain_btn_self").hide();
-                } else {
-                    // 没有 显示我要砍价
                     $(".j_bargain_btn_continue").hide();
-                    $(".j_bargain_btn_self").show();
+                } else {
+                    $(".j_bargain_reachbaseprice").hide();
+                    // 判断自己有没有砍一刀
+                    if (_this.checkIsBargainSelf()) {
+                        // 有的话 显示继续砍价按钮 更新价格视图
+                        $(".price").html(_this.transPriceByBargain());
+                        $(".j_bargain_btn_continue").show();
+                        $(".j_bargain_btn_self").hide();
+                    } else {
+                        // 没有 显示我要砍价
+                        $(".j_bargain_btn_continue").hide();
+                        $(".j_bargain_btn_self").show();
+                    }
                 }
+
                 //判断是否登录
                 if (_this.loginResultPackage.result) {
                     // 如果已登录 且有 砍价活动 则请求h5 砍价活动明细 并保存到明细中
@@ -55,19 +64,9 @@ define([
             }
             _this.handleFn();
         },
-        checkIsHaveBargainItem: function (items) {
-            var isHave = false;
-            if (items) {
-                for (var i = 0; i < items.length; i++) {
-                    var _curItem = items[i];
-                    if(!!_curItem.bargain){
-                        isHave = true;
-                        break;
-                    }
-                }
-            }
-            return isHave;
-        },
+        /**
+         * 更新商品信息 将bargain注入到价格信息中
+         */
         updateRemoteBargainPrice: function (_self_bargain_price) {
             var _this = this;
             var reqParams = {
@@ -192,6 +191,9 @@ define([
                 return false;
             }
         },
+        /**
+         * 转换价格根据砍价幅度
+         */
         transPriceByBargain: function (_amplitudePrice) {
             var _htm = "",
                 _this = this,
@@ -239,7 +241,7 @@ define([
                 for (var i = 0; i < originData.item.sku.length; i++) {
                     var _curSku = originData.item.sku[i];
                     var _bargain = {
-                        price:0
+                        price: 0
                     }
                     _bargain.price = ~~_curSku.price - ~~_bargain_result_price;
                     _curSku.bargain = _bargain;
@@ -250,6 +252,9 @@ define([
             }
             return originData;
         },
+        /**
+         * 砍了多少钱对话框 html
+         */
         createBargainPriceDialogHtm: function () {
             var _htm = "";
             _htm = '<div class="bargain-howprice-wrap">' +
@@ -260,6 +265,10 @@ define([
                 '</div>'
             return _htm;
         },
+        /**
+         * 计算砍价幅度
+         * @return Object price_origin:幅度无格式 price_format 格式化后格式
+         */
         computeBargainPrice: function () {
             var _this = this;
             //自砍
@@ -270,5 +279,24 @@ define([
             };
         }
     }
+    Bargain.checkIsHaveBargainItem = function (items) {
+        var isHave = false;
+        if (items) {
+            $.each(items, function (key, item) {
+                if (!!item.item.bargain) {
+                    isHave = true;
+                    return;
+                }
+            })
+        }
+        return isHave;
+    }
+    Bargain.isReachBaseprice = function (itemprice, amplitude, baseprice) {
+        var isReach = false;
+        isReach = (~~itemprice - ~~amplitude) <= ~~baseprice;
+        return isReach;
+    }
+
+
     return Bargain;
 });

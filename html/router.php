@@ -100,6 +100,6 @@ Timer::end('total');
 
 $application_run_flag = true;
 
-Log::debug(['request'=>$_REQUEST, 'time'=>Timer::calculate()]);
+// Log::debug(['request'=>$_REQUEST, 'time'=>Timer::calculate()]);
 exit();
 ?>
