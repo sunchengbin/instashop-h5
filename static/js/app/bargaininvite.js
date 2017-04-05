@@ -179,13 +179,10 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                             }
                         })
                     } else {
-                        Dialog.alert({
-                            top_txt: '', //可以是html
-                            cfb_txt: Lang.H5_FRESHEN,
-                            body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
-                            cf_fn: function () {
-                                location.reload();
-                            }
+                        Sharebargain({
+                            title: Lang.BARGAIN_DETAIL_INVITE_TIP,
+                            content: "Hi, aku lagi ikutan promo tawar "+init_data.bargain_invite_detail.item_info.item_name+" sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
+                            bargain_inv_url: location.href
                         });
                     }
                 }

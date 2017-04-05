@@ -2,6 +2,7 @@
 @import "../moudle/app/header/header.css";
 @import "../moudle/app/common/common.css";
 @import "../moudle/ui/dialog/dialog.css";
+@import "../moudle/app/sharecoupon/sharecoupon.css";
 
 .test {
     box-sizing: border-box;
@@ -43,4 +44,7 @@
 }
 .bargain-price {
     min-height: 1.8rem;
+}
+.bargain_inv_operate a {
+    width: 25%;
 }
