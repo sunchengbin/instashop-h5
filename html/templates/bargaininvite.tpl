@@ -181,10 +181,16 @@
             <div class="">
                 {if $BARGAIN_INVITE_DETAIL.bargain_bought_num gt 0 }
                 {else}
-                    {if $BARGAIN_INVITE_DETAIL|confirmIsReachBasepirce}
+                    {*自己是否砍过*}
+                    {if $BARGAIN_INVITE_DETAIL|checkIsUserBargain}
                     {else}
-                        <button class="j_bargain_btn_invite_help" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
+                        {*是否到底价*}
+                        {if $BARGAIN_INVITE_DETAIL|confirmIsReachBasepirce}
+                        {else}
+                            <button class="j_bargain_btn_invite_help" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
+                        {/if}
                     {/if}
+                        
                 {/if}
                 <button class="j_bargain_btn_invite_self" type="">Mau Beli Juga</button>
             </div>

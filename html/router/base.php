@@ -244,3 +244,20 @@ function getAfterBargainPrice($data){
 function getBargainLimit($data){
     return $carts['item']['bargain']['limit_to'] == 0 ? 0 : $carts['item']['bargain']['limit_to'];
 }
+
+// 是否砍过价了
+function checkIsUserBargain($data){
+    $isUserBargain = false;
+    $friends = $data['bargain_detail'];
+    if($friends['length']){
+        $isUserBargain = false;
+    }else{
+        foreach($friends as $friend){
+            if($friend['buyer_id']==$data['buyer_info']['buyer_id']){
+                $isUserBargain = true;
+            }
+        }
+    }
+    return $isUserBargain;
+    
+}

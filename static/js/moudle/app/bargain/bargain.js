@@ -31,7 +31,6 @@ define([
             });
             // 判断是否有砍价活动
             if (init_data.item.bargain) {
-
                 // 判断有没有砍到底价
                 var _amplitude = _this.computeBargainPrice();
                 if (Bargain.isReachBaseprice(init_data.item.min_price, _amplitude.price_origin, init_data.item.bargain.base_price)) {
@@ -41,12 +40,21 @@ define([
                 } else {
                     $(".j_bargain_reachbaseprice").hide();
                     // 判断自己有没有砍一刀
-                    if (_this.checkIsBargainSelf()) {
-                        // 有的话 显示继续砍价按钮 更新价格视图
-                        $(".price").html(_this.transPriceByBargain());
-                        $(".j_bargain_btn_continue").show();
-                        $(".j_bargain_btn_self").hide();
+                    // 判断是不是同一活动
+                    if (!Bargain.checkIsSameBargain()) {
+                        // 同一个活动
+                        if (_this.checkIsBargainSelf()) {
+                            // 有的话 显示继续砍价按钮 更新价格视图
+                            $(".price").html(_this.transPriceByBargain());
+                            $(".j_bargain_btn_continue").show();
+                            $(".j_bargain_btn_self").hide();
+                        } else {
+                            // 没有 显示我要砍价
+                            $(".j_bargain_btn_continue").hide();
+                            $(".j_bargain_btn_self").show();
+                        }
                     } else {
+                        // 不同活动
                         // 没有 显示我要砍价
                         $(".j_bargain_btn_continue").hide();
                         $(".j_bargain_btn_self").show();
@@ -61,6 +69,7 @@ define([
                 } else {
                     // 如果没有登录的话 先检查有没有本地砍价 有的话 显示继续砍价按钮 没有 显示我要砍价
                 }
+
             }
             _this.handleFn();
         },
@@ -104,6 +113,7 @@ define([
             Ajax.getJsonp(url, function (obj) {
                 if (200 == obj.code) {
                     console.log(obj.bargain_invite_detail)
+                    obj.bargain_invite_detail.id = _this.config.bargain.id;
                     _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
                     _this.showFriendHelpList(obj.bargain_invite_detail);
                     //更新result价格
@@ -149,7 +159,7 @@ define([
                         bargain_inv_url: _this.bargainCache.find("remote_bargain_detail").bargain_share_url,
                         c_fn: function () {
                             //判断是否用户有手机号 如果有 则不提示 如果没有则提示
-                            if (_this.loginResultPackage.info.telephone.length == 0) {
+                            if (_this.loginResultPackage.info.telephone||_this.loginResultPackage.info.telephone.length == 0) {
                                 _this.submitBargainPhone = Dialog.dialog({
                                     body_txt: '<div>' +
                                         '<div class="">' + Lang.BARGAIN_SHARE_AFTER_PHONE + '</div>' +
@@ -301,6 +311,21 @@ define([
                 price_format: "Rp " + Base.others.priceFormat(_amplitude)
             };
         }
+    }
+    Bargain.checkIsSameBargain = function () {
+        var isSame = false;
+        var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
+            namespace: "BargainCache",
+            type: "local"
+        });
+        if (_localBargainCache.find("remote_bargain_detail")) {
+            var _localBargainId = _localBargainCache.find("remote_bargain_detail").id;
+            var _remoteBargainId = init_data.item.bargain.id;
+            if (_localBargainId == _remoteBargainId) isSame = true
+        } else {
+            isSame = false;
+        }
+        return isSame;
     }
     Bargain.checkIsHaveBargainItem = function (items) {
         var isHave = false;
