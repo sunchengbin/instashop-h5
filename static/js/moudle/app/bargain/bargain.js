@@ -34,7 +34,7 @@ define([
                 });
                 // 判断有没有砍到底价
                 var _amplitude = _this.computeBargainPrice();
-                if (Bargain.isReachBaseprice(init_data.item.min_price,_amplitude.price_origin,init_data.item.bargain.base_price)) {
+                if (Bargain.isReachBaseprice(init_data.item.min_price, _amplitude.price_origin, init_data.item.bargain.base_price)) {
                     $(".j_bargain_reachbaseprice").show();
                     $(".j_bargain_btn_self").hide();
                     $(".j_bargain_btn_continue").hide();
@@ -57,12 +57,34 @@ define([
                 if (_this.loginResultPackage.result) {
                     // 如果已登录 且有 砍价活动 则请求h5 砍价活动明细 并保存到明细中
                     var _self_bargain_price = _this.bargainCache.find("bargain_price_self");
-                    _this.updateRemoteBargainPrice(_self_bargain_price)
+                    _this.updateRemoteBargainPrice(_self_bargain_price);
                 } else {
                     // 如果没有登录的话 先检查有没有本地砍价 有的话 显示继续砍价按钮 没有 显示我要砍价
                 }
             }
             _this.handleFn();
+        },
+        showFriendHelpList: function (bargainDetail) {
+            var _bargainHelpFriends = bargainDetail.bargain_detail || [];
+            var _htm = '<div class="friend-avatars">';
+            if (_bargainHelpFriends.length != 0) {
+                $.each(_bargainHelpFriends, function (index, friend) {
+                    if (index <= 2) {
+                        if (!!friend.buyer_info.pic) {
+                            _htm += '<img src="' + friend.buyer_info.pic + '" alt="">'
+                        }
+                    }
+                })
+                _htm += ' <div class="friend-bargain-info">' +
+                    '       <p>' + _bargainHelpFriends[0].buyer_info.name + ' dkk telah membantumu menawar Rp ' + Base.others.priceFormat(bargainDetail.bargain_result) + '</p>' +
+                    '    </div>'
+                _htm += '<i class="icon iconfont fr icon-go-font"></i>' +
+                    '</div>';
+                $(".bargain-friend-list-container").html(_htm).show();
+                $(".bargain-friend-list-container").on('click',function(){
+                    location.href = bargainDetail.bargain_share_url;
+                })
+            }
         },
         /**
          * 更新商品信息 将bargain注入到价格信息中
@@ -83,6 +105,7 @@ define([
                 if (200 == obj.code) {
                     console.log(obj.bargain_invite_detail)
                     _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
+                    _this.showFriendHelpList(obj.bargain_invite_detail);
                     //更新result价格
                     $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
                 }
@@ -122,7 +145,7 @@ define([
                 if (_this.loginResultPackage.result) {
                     Sharebargain({
                         title: Lang.BARGAIN_DETAIL_INVITE_TIP,
-                        content: "Hi, aku lagi ikutan promo tawar iPhone 7 sampai " + "Rp " + Base.others.priceFormat(_this.config.bargain.base_price) + " nih! Bantu aku tawar yuk. Klik ",
+                        content: "Hi, aku lagi ikutan promo tawar "+init_data.item.item_name+" sampai " + "Rp " + Base.others.priceFormat(_this.config.bargain.base_price) + " nih! Bantu aku tawar yuk. Klik ",
                         bargain_inv_url: _this.bargainCache.find("remote_bargain_detail").bargain_share_url,
                         c_fn: function () {
                             //判断是否用户有手机号 如果有 则不提示 如果没有则提示

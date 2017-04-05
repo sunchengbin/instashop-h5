@@ -96,6 +96,8 @@
         <div class="ins-btn ins-btn-orange j_bargain_btn_continue">
         Tawar Lagi
         </div>
+        <div class="bargain-friend-list-container">
+        </div>
         {*<div class="j_bargain_tip_unlogin_price">
             Jika kamu sudah berpartisipasi dalam promo "Tawar Harga" ini, <span class="ins-color-hightlight-blue j_user_login">login</span> untuk melihat status terbaru
         </div>*}
