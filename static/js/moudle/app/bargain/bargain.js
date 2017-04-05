@@ -159,7 +159,7 @@ define([
                         bargain_inv_url: _this.bargainCache.find("remote_bargain_detail").bargain_share_url,
                         c_fn: function () {
                             //判断是否用户有手机号 如果有 则不提示 如果没有则提示
-                            if (_this.loginResultPackage.info.telephone||_this.loginResultPackage.info.telephone.length == 0) {
+                            if (!_this.loginResultPackage.info.telephone && _this.loginResultPackage.info.telephone.length == 0) {
                                 _this.submitBargainPhone = Dialog.dialog({
                                     body_txt: '<div>' +
                                         '<div class="">' + Lang.BARGAIN_SHARE_AFTER_PHONE + '</div>' +
