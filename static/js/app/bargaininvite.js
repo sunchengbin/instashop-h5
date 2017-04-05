@@ -5,7 +5,7 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'item', 'dialog', 'debug', 'oauth', 'cache','sharebargain'], function (Lang, Lazyload, Ajax, Config, Base, Common, Fastclick, Item, Dialog, Debug, Oauth, Cache,Sharebargain) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'item', 'dialog', 'debug', 'oauth', 'cache', 'sharebargain'], function (Lang, Lazyload, Ajax, Config, Base, Common, Fastclick, Item, Dialog, Debug, Oauth, Cache, Sharebargain) {
     var ITEM = {
         init: function () {
             var _this = this;
@@ -80,12 +80,25 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 amplitudePrice = _this.getBargainAmplitudePrice();
             }
             // 如果不是sku 
-            if (!init_data.bargain_invite_detail.item_info.sku.length > 0) {
+            // if (!init_data.bargain_invite_detail.item_info.sku.length > 0) {
+            //     var _after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.price - ~~amplitudePrice);
+            //     var _item_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.price);
+            //     _htm = "Rp " + _after_bargain_price + " <span class='bargain-origin-price'> Rp " + _item_price + "</span>";
+            // } else {
+            //     var _min_after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.min_price - ~~amplitudePrice);
+            //     var _max_after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.max_price - ~~amplitudePrice);
+            //     var _min_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.min_price);
+            //     var _max_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.max_price);
+            //     _minPriceBargainHtm = "<p>Rp " + _min_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _min_price + "</span></p>";
+            //     _maxPriceBargainHtm = "<p>Rp " + _max_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _max_price + "</span></p>";
+            //     _htm = _minPriceBargainHtm + _maxPriceBargainHtm;
+            // }
+
+            if (~~init_data.bargain_invite_detail.item_info.min_price == ~~init_data.bargain_invite_detail.item_info.max_price) {
                 var _after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.price - ~~amplitudePrice);
                 var _item_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.price);
                 _htm = "Rp " + _after_bargain_price + " <span class='bargain-origin-price'> Rp " + _item_price + "</span>";
             } else {
-                // 如果存在sku
                 var _min_after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.min_price - ~~amplitudePrice);
                 var _max_after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.max_price - ~~amplitudePrice);
                 var _min_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.min_price);
@@ -94,6 +107,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 _maxPriceBargainHtm = "<p>Rp " + _max_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _max_price + "</span></p>";
                 _htm = _minPriceBargainHtm + _maxPriceBargainHtm;
             }
+
             return _htm;
         },
         createBargainPriceDialogHtm: function () {
@@ -118,11 +132,11 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                         // 砍过 弹出分享框
                         Sharebargain({
                             title: Lang.BARGAIN_DETAIL_INVITE_TIP,
-                            content: "Hi, aku lagi ikutan promo tawar "+init_data.bargain_invite_detail.item_info.item_name+" sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
+                            content: "Hi, aku lagi ikutan promo tawar " + init_data.bargain_invite_detail.item_info.item_name + " sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
                             bargain_inv_url: location.href
                         });
 
-                    }else{
+                    } else {
                         _this.cutPrice();
                     }
                 } else {
@@ -165,7 +179,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                         // 本地存储砍了是否砍过
                         var _curBargain = {};
                         _curBargain[init_data.bargain_invite_detail.bargain_info.id] = init_data.bargain_invite_detail.bargain_info;
-                        _this.bargainInviteStorage.set("bargainInvite",_curBargain);
+                        _this.bargainInviteStorage.set("bargainInvite", _curBargain);
                         // 弹出砍了多少钱
                         Dialog.dialog({
                             body_txt: _this.createBargainPriceDialogHtm(),
@@ -181,7 +195,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                     } else {
                         Sharebargain({
                             title: Lang.BARGAIN_DETAIL_INVITE_TIP,
-                            content: "Hi, aku lagi ikutan promo tawar "+init_data.bargain_invite_detail.item_info.item_name+" sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
+                            content: "Hi, aku lagi ikutan promo tawar " + init_data.bargain_invite_detail.item_info.item_name + " sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
                             bargain_inv_url: location.href
                         });
                     }
