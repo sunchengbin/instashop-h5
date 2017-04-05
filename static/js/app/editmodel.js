@@ -247,16 +247,20 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 event_type: 'click',
                 loading_txt: Lang.CHANGE_SKIN,
                 callback: function (dom) {
-                    var _href = location.href;
-                    switch(SKIN){
+                    var _href = location.href,
+                        _skin = $(dom).attr('data-skin');
+                    switch(_skin){
                         case 'first':
-                            location.href = _this.changeSkinUrlPram(_href,'default',0);
+                            location.href = _this.changeSkinUrlPram(_href,'first',1);
+                            break;
+                        case 'second':
+                            location.href = _this.changeSkinUrlPram(_href,'second',2);
                             break;
                         case 'default':
-                            location.href = _this.changeSkinUrlPram(_href,'first',1);
+                            location.href = _this.changeSkinUrlPram(_href,'default',0);
                             break;
                         default :
-                            location.href = _this.changeSkinUrlPram(_href,'first',1);
+                            location.href = _this.changeSkinUrlPram(_href,'default',0);
                             break;
                     }
 

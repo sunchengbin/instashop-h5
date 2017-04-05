@@ -139,12 +139,16 @@ section{
 }
 //更换
 .change-skin-warp{
-  @include remCalc(height,80);
-  @include remCalc(line-height,80);
   box-sizing: border-box;
-  @include remCalc(padding,15 30);
+  @include remCalc(padding,15 30 0);
   color:$info-color;
   background-color: $white;
+}
+.change-skin-warp div{
+  box-sizing: border-box;
+  @include remCalc(height,65);
+  @include remCalc(line-height,65);
+  border-bottom: 1px solid $border-color;
 }
 .change-skin-warp button{
   @include remCalc(height,50);
