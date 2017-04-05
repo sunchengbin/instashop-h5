@@ -86,15 +86,15 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                 var _item_num = $('.j_item_num'),
                     _num = Number(_item_num.val()),
                     _stock = $(this).attr('data-stock'),
-                    _limitto = $(this).attr('data-limitto')||0;
+                    _limitto = $(this).attr('data-limitto') || 0;
                 if (_stock && _stock <= _num) {
                     return;
                 }
                 // 是否限购 0为不限购
-                if(_limitto!=0){
-                    if(_num>=_limitto){
+                if (_limitto != 0) {
+                    if (_num >= _limitto) {
                         Dialog.tip({
-                            body_txt:"Maksimal Pembelian "+_limitto+" Pcs"
+                            body_txt: "Maksimal Pembelian " + _limitto + " Pcs"
                         })
                         return;
                     }
@@ -157,9 +157,41 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                 return false;
                             }
                         }
-
                     }
                 }
+
+                if (init_data.item.bargain) {
+                    if (init_data.item.bargain.limit_to > 0) {
+                        var _carts = Cart().getCarts();
+                        if (_carts) {
+                            try {
+                                $.each(_carts, function (key, item) {
+                                    //命中
+                                    if (key == init_data.item.id) {
+                                        var _wantBuyNum = ~~_num + ~~item.num;
+                                        if (_wantBuyNum > init_data.item.bargain.limit_to) {
+                                            throw new Error("Maksimal Pembelian " + init_data.item.bargain.limit_to + " Pcs");
+                                        }
+                                    }
+                                })
+                            } catch (e) {
+                                Dialog.tip({
+                                    body_txt: e.message
+                                });
+                                return;
+                            }
+                        } else {
+                            if (_num > init_data.item.bargain.limit_to) {
+                                Dialog.tip({
+                                    body_txt: "Maksimal Pembelian " + init_data.item.bargain.limit_to + " Pcs"
+                                });
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+
                 if (!_has_sku) {
 
                     Cart(init_data).addItem({

@@ -13,7 +13,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=STATIC_DNS?>
     <?=STATIC_ICO_CSS?>
     <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/editmodel.css?v=1491377353789" rel="stylesheet"/>
+    <link href="<?=STATIC_HOST?>/css/dist/app/editmodel.css?v=1491378209455" rel="stylesheet"/>
     <title>分享页面测试</title>
     <style>
         button{
@@ -62,7 +62,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <button class="j_share_to_bbm" data-type="share_to_save">h5_share_to_save</button>
 
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <script src="<?=STATIC_HOST?>/js/dist/app/share.js?v=1491377353789"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/share.js?v=1491378209455"></script>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
