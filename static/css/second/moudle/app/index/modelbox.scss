@@ -1,0 +1,28 @@
+//模板盒子样式
+.model-box{
+  @include remCalc(margin-top,36);
+}
+.model-box .banner-box{
+  margin-top: 0;
+}
+.two-list-banner{
+  @include remCalc(margin-top,36);
+}
+.one-item-box .items-list li{
+  background-color: $white;
+}
+.one-item-box .items-list li:last-child{
+  margin-bottom: 0;
+}
+.one-item-box .items-list li:not(:last-child){
+  margin-bottom:1rem;
+}
+.one-item-box .items-list::before{
+  border: none;
+}
+.banner-wraper{
+  background-color: #fff;
+}
+.no-cursor{
+  cursor: default;
+}

@@ -1,0 +1,252 @@
+@import "../../app/itemlist/itemlist.scss";
+@import "../../../base/common/flex.scss";
+@import "../../ui/arrowslide/arrowbanner.scss";
+/*推荐单件商品导航样式*/
+.one-item-box .title{
+  display: -webkit-box;
+  word-break: break-word;
+  overflow: hidden;
+  color: $info-color;
+  @include remCalc(margin,20 0);
+  @include fontDpr(14px);
+  height: 35px;
+}
+.one-item-box .price{
+  height: 0;
+}
+.one-item-box .discount-price{
+  height: 0;
+}
+.one-item-box{
+  background-color: transparent;
+}
+.one-item-box .discount-price{
+  margin:0;
+}
+.one-item-box .items-list li{
+  width: 100%;
+  padding:0;
+  position: relative;
+}
+.one-item-box .items-list li:not(:last-child){
+  @include remCalc(margin-bottom,45);
+}
+.one-item-box .items-list li a::after{
+  display: none;
+}
+.one-item-icon{
+  @include remCalc(padding,10 30);
+  @include remCalc(border-radius,100);
+  @include fontDpr(12px);
+  display: inline-block;
+  background-color: $base-color;
+  color: $white;
+  position: absolute;
+  @include remCalc(left,13);
+  @include remCalc(top,44);
+  z-index: 10;
+}
+.rotate-banner li{
+  float: left;
+}
+.rotate-banner li img{
+  min-height: 200px;
+  background-color: $base-color;
+}
+.two-li-items-box{
+  position: relative;
+  @include remCalc(padding,0 20 40);
+}
+.two-li-items-box::after{
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left:-50%;
+  right:-50%;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border: 1px solid $base-color;
+  z-index: -1;
+}
+.cart-item {
+  @include remCalc(min-height,200);
+  @include remCalc(padding-top,40);
+  position: relative;
+}
+.item-index{
+  position: absolute;
+  @include remCalc(left,15);
+  @include remCalc(top,24);
+  @include remCalc(width,50);
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  @include fontDpr(14px);
+  background-color: $base-color;
+  color: $white;
+  text-align: center;
+  z-index: 2;
+}
+.cart-item a .item-info-box{
+  @include remCalc(margin,0 64 0 224);
+  color: $txt-color;
+}
+.cart-item p.soon-time{
+  @include fontDpr(12px);
+  margin-top: 0.8rem;
+}
+.cart-item img{
+  @include remCalc(width,200);
+  @include remCalc(height,200);
+  float: left;
+}
+/*导航类模板样式*/
+.navigation-box{
+  position: relative;
+}
+.nav-text-ul li{
+  width: 33.33%;
+  float: left;
+  text-align: center;
+  box-sizing: border-box;
+  @include remCalc(margin-bottom,20);
+}
+.nav-text-ul a{
+  color: $base-color;
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  overflow: hidden;
+  border: 1px solid $base-color;
+  border-top-color:$border-color;
+  box-sizing: border-box;
+}
+.nav-text-ul li:nth-child(3n+1){
+  @include remCalc(padding-right,20);
+}
+.nav-text-ul li:nth-child(3n+3){
+  @include remCalc(padding-left,20);
+}
+.nav-text-ul li:nth-child(3n+2){
+  @include remCalc(padding,0 10);
+}
+.nav-img-box{
+  position: relative;
+}
+.nav-img-box::after{
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left:-50%;
+  right:-50%;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border: 1px solid $base-color;
+  z-index: -1;
+}
+.nav-img-box ul{
+  width: 50%;
+  box-sizing: border-box;
+  float:left;
+}
+.nav-img-ul{
+  @include remCalc(padding,10 20);
+}
+.nav-img-ul li{
+  @include remCalc(padding-right,25);
+  @include remCalc(height,54);
+  @include remCalc(line-height,54);
+  position: relative;
+  color: $black-color;
+}
+.nav-img-ul li::after{
+  border-color: $base-color;
+}
+.nav-img-ul li.nav-img-titile{
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  @include remCalc(padding-right,56);
+  @include fontDpr(14px);
+  font-weight: bold;
+}
+.nav-img-ul li.nav-img-titile span{
+  display: inline-block;
+  vertical-align: middle;
+  @include remCalc(width,12);
+  @include remCalc(height,12);
+  @include remCalc(margin-right,20);
+  background-color: $base-color;
+}
+.nav-img-ul a{
+  box-sizing: border-box;
+  color: $base-color;
+  word-break: break-word;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.nav-img-ul .lazy::after{
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left:-50%;
+  right:-50%;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border: 1px solid $border-color;
+  z-index: 1;
+}
+.nav-img-wrap{
+  @include remCalc(padding,0 10 10 0);
+}
+.nav-img-wrap li{
+  float:left;
+  width: 50%;
+  box-sizing: border-box;
+  @include remCalc(padding-top,10);
+}
+.nav-img-wrap li:nth-child(odd){
+  @include remCalc(padding-right,5);
+}
+.nav-img-wrap li:nth-child(even){
+  @include remCalc(padding-left,5);
+}
+/*banner类模板样式*/
+.two-list-box li{
+  width: 50%;
+  box-sizing: border-box;
+  float: left;
+}
+.two-list-box .lazy::after{
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left:-50%;
+  right:-50%;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border: 1px solid $border-color;
+  z-index: 1;
+}
+.two-list-box li:nth-child(odd){
+  @include remCalc(padding-right,10);
+}
+.two-list-box li:nth-child(even){
+  @include remCalc(padding-right,10);
+  @include remCalc(margin-top,155);
+}
+.static-banner li:not(:first-child){
+  @include remCalc(margin-top,36);
+}
+.banner-wraper{
+  background-color: transparent;
+}
