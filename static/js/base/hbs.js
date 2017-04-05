@@ -187,7 +187,9 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache'], funct
         if (!!data.bargain) {
             // 区分sku
             // 有sku
-            if (data.sku && data.sku.length > 0) {
+            if (data.sku && data.sku.length < 2) {
+                return 'Rp ' + Base.others.priceFormat(data.bargain.price);
+            } else {
                 var sku_price = [];
                 Base.others.each(data.sku, function (item, i) {
                     if (Number(item.bargain.price) > 0) {
@@ -198,8 +200,6 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache'], funct
                     return a - b;
                 });
                 return 'Rp ' + Base.others.priceFormat(sku_price[0]) + '-' + Base.others.priceFormat(sku_price[(sku_price.length - 1)]);
-            } else {
-                return 'Rp ' + Base.others.priceFormat(data.bargain.price);
             }
         }
 
