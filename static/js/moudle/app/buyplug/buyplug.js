@@ -168,7 +168,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                 $.each(_carts, function (key, item) {
                                     //命中
                                     if (_has_sku) {
-                                        if(key==_sku_id){
+                                        if (key == _sku_id) {
                                             var _wantBuyNum = ~~_num + ~~item.num;
                                             if (_wantBuyNum > init_data.item.bargain.limit_to) {
                                                 throw new Error(Lang.BARGAIN_LIMIT);
@@ -203,7 +203,6 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
 
 
                 if (!_has_sku) {
-
                     Cart(init_data).addItem({
                         item: init_data.item,
                         num: _num,
@@ -234,25 +233,49 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                 }
                             });
                         } else {
-                            Cart(init_data).addItem({
-                                item: init_data.item,
-                                sku: {
+                            if (init_data.item.bargain) {
+                                Cart(init_data).addItem({
+                                    item: init_data.item,
+                                    sku: {
+                                        price: _sku_price,
+                                        id: _sku_id,
+                                        title: _sku_title,
+                                        stock: _stock,
+                                        bargain:init_data.item.sku
+                                    },
                                     price: _sku_price,
-                                    id: _sku_id,
-                                    title: _sku_title,
-                                    stock: _stock
-                                },
-                                price: _sku_price,
-                                isbuynow: _is_buy_now,
-                                noStockCallback: function () {
-                                    _this.config.noStockCallback && _this.config.noStockCallback();
-                                    _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
-                                },
-                                num: _num,
-                                callback: function () {
-                                    _this.addSuccessFn(_is_buy_now, _w_h);
-                                }
-                            });
+                                    isbuynow: _is_buy_now,
+                                    noStockCallback: function () {
+                                        _this.config.noStockCallback && _this.config.noStockCallback();
+                                        _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
+                                    },
+                                    num: _num,
+                                    callback: function () {
+                                        _this.addSuccessFn(_is_buy_now, _w_h);
+                                    }
+                                });
+                            } else {
+                                Cart(init_data).addItem({
+                                    item: init_data.item,
+                                    sku: {
+                                        price: _sku_price,
+                                        id: _sku_id,
+                                        title: _sku_title,
+                                        stock: _stock
+                                    },
+                                    price: _sku_price,
+                                    isbuynow: _is_buy_now,
+                                    noStockCallback: function () {
+                                        _this.config.noStockCallback && _this.config.noStockCallback();
+                                        _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
+                                    },
+                                    num: _num,
+                                    callback: function () {
+                                        _this.addSuccessFn(_is_buy_now, _w_h);
+                                    }
+                                });
+                            }
+
                         }
                     }
                 }
