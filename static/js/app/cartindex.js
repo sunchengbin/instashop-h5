@@ -286,7 +286,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                                 if (!!groupid) {
                                                     location.href = Config.host.hrefUrl + 'address.php?groupid=' + groupid + '&buyer_id=' + _buyer_id;
                                                 } else {
-                                                    location.href = Config.host.hrefUrl + 'address.php' + '&buyer_id=' + _buyer_id;
+                                                    location.href = Config.host.hrefUrl + 'address.php' + '?buyer_id=' + _buyer_id;
                                                 }
                                             }, 1);
                                         }

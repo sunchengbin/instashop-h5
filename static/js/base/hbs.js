@@ -1,4 +1,4 @@
-define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS, Base, Config, Lang, Item, Debug) {
+define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache'], function (HBS, Base, Config, Lang, Item, Debug, Cache) {
     function isEmpty(val) {
         var x = false;
         switch (typeof val) {
@@ -301,11 +301,21 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
                 }
             } else if (!!carts[item].item.bargain) { // 砍价活动价格
                 //区分sku
-                if (carts[item].sku && carts[item].sku.id) {
-                    _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.bargain.price) + '</p>';
+                // 有没有砍过
+                var _isBargainSelf = localStorage.getItem('bargain_price_self');
+                if (_isBargainSelf) {
+                    if (carts[item].sku && carts[item].sku.id) {
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.bargain.price) + '</p>';
+                    } else {
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.bargain.price) + '</p>';
+                    }
                 } else {
-                    _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.bargain.price) + '</p>';
+                    var _price = (carts[item].sku && carts[item].sku.id) ? carts[item].sku.price : carts[item].item.price;
+                    if (_price >= 0) {
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(_price) + '</p>';
+                    }
                 }
+
             } else {
                 var _price = (carts[item].sku && carts[item].sku.id) ? carts[item].sku.price : carts[item].item.price;
                 if (_price >= 0) {
