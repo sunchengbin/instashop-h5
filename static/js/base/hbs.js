@@ -539,13 +539,21 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache'], funct
                     } else {
                         _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
                     }
-                } else if (!!carts[item].item.bargain) {
+                } else if (!!carts[item].item.bargain) { //砍价活动
                     //区分sku
-                    if (carts[item].sku && carts[item].sku.id) {
-                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.bargain.price) + '</p>';
+                    var _isBargainSelf = localStorage.getItem('bargain_price_self');
+                    if (_isBargainSelf) {
+                        if (carts[item].sku && carts[item].sku.id) {
+                            _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.bargain.price) + '</p>';
+                        } else {
+                            _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.bargain.price) + '</p>';
+                        }
                     } else {
-                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.bargain.price) + '</p>';
+                        // 正常
+                        var _price = (carts[item].sku && carts[item].sku.id) ? carts[item].sku.price : carts[item].item.price;
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(_price) + '</p>';
                     }
+
                 } else {
                     // 正常
                     var _price = (carts[item].sku && carts[item].sku.id) ? carts[item].sku.price : carts[item].item.price;
