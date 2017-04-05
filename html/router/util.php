@@ -82,7 +82,7 @@ function get_init_php_data($path, $params){
 
     $api = $host.$path.'?param='.json_encode([ 'edata' => $params  ]);
 
-	// Log::debug(['url'=>$api, 'headers'=>deal_headers()]);
+	Log::debug(['url'=>$api, 'headers'=>deal_headers()]);
     $ret = HttpProxy::getInstance(array('timeout'=>20000, 'conn_timeout'=>20000))->callInterfaceCommon($api, 'POST', [], deal_headers());
     //$ret = file_get_contents($api);
     $ret = deal_special_chars($ret);

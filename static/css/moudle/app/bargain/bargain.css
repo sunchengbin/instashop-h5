@@ -177,3 +177,6 @@
 .bargain-friend-list-container .friend-bargain-info {
     display: inline-block;
 }
+.j_bargain_reachbaseprice {
+    display: none;
+}
