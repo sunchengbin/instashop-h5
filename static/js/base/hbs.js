@@ -188,18 +188,32 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache'], funct
             // 区分sku
             // 有sku
             if (data.sku && data.sku.length < 2) {
+                if (data.sku.length == 1) {
+                    var sku_price = [];
+                    Base.others.each(data.sku, function (item, i) {
+                        if (Number(item.bargain.price) > 0) {
+                            sku_price.push(Number(item.bargain.price));
+                        }
+                    });
+                    sku_price.sort(function (a, b) {
+                        return a - b;
+                    });
+                    return 'Rp ' + Base.others.priceFormat(sku_price[0]);
+                } else {
+                    var sku_price = [];
+                    Base.others.each(data.sku, function (item, i) {
+                        if (Number(item.bargain.price) > 0) {
+                            sku_price.push(Number(item.bargain.price));
+                        }
+                    });
+                    sku_price.sort(function (a, b) {
+                        return a - b;
+                    });
+                    return 'Rp ' + Base.others.priceFormat(sku_price[0]) + '-' + Base.others.priceFormat(sku_price[(sku_price.length - 1)]);
+                }
                 return 'Rp ' + Base.others.priceFormat(data.bargain.price);
             } else {
-                var sku_price = [];
-                Base.others.each(data.sku, function (item, i) {
-                    if (Number(item.bargain.price) > 0) {
-                        sku_price.push(Number(item.bargain.price));
-                    }
-                });
-                sku_price.sort(function (a, b) {
-                    return a - b;
-                });
-                return 'Rp ' + Base.others.priceFormat(sku_price[0]) + '-' + Base.others.priceFormat(sku_price[(sku_price.length - 1)]);
+                return 'Rp ' + Base.others.priceFormat(data.bargain.price);
             }
         }
 
@@ -304,7 +318,14 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache'], funct
             } else if (!!carts[item].item.bargain) { // 砍价活动价格
                 //区分sku
                 // 有没有砍过
-                var _isBargainSelf = localStorage.getItem('bargain_price_self');
+                var _bargainCache = Cache.getSpace("BargainCache") || new Cache({
+                    namespace: "BargainCache",
+                    type: "local"
+                });
+                var _isBargainSelf = false;
+                if (_bargainCache.find('bargain_price_self') && _bargainCache.find('bargain_price_self')[carts[item].item.bargain.id] && _bargainCache.find('bargain_price_self')[carts[item].item.bargain.id].amplitudeSelfPrice) {
+                    _isBargainSelf = true;
+                }
                 if (_isBargainSelf) {
                     if (carts[item].sku && carts[item].sku.id) {
                         _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.price) + '</p>';
