@@ -52,11 +52,11 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                             if (!!price_data.price_info.shop_discount) {
                                 return (price_data.price_info.shop_discount.length != 0)
                             }
-                        }else{
+                        } else {
                             // 如果有 并且只有一个商品 那么要返回false 否则返回true 
-                            if(Object.keys(_this.carts).length==1){
+                            if (Object.keys(_this.carts).length == 1) {
                                 return false;
-                            }else{
+                            } else {
                                 return true;
                             }
                         }
@@ -327,22 +327,42 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 var _items = _carts;
                 for (var item in _items) {
                     if (_items[item].sku) {
-                        _arr.push({
-                            itemID: _items[item].item.id,
-                            itemName: _items[item].item.item_name,
-                            itemNum: _items[item].num,
-                            item_sku: _items[item].sku.id,
-                            price: _items[item].sku.price,
-                            discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                        });
+                        if (_items[item].item.bargain) {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                item_sku: _items[item].sku.id,
+                                bargain_price: _items[item].sku.bargain.price,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        } else {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                item_sku: _items[item].sku.id,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        }
                     } else {
-                        _arr.push({
-                            itemID: _items[item].item.id,
-                            itemName: _items[item].item.item_name,
-                            itemNum: _items[item].num,
-                            price: _items[item].price,
-                            discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                        });
+                        if (_items[item].item.bargain) {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                item_sku: _items[item].sku.id,
+                                bargain_price: _items[item].bargain.price,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        } else {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        }
                     }
                 }
             }

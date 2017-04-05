@@ -259,5 +259,8 @@ function checkIsUserBargain($data){
         }
     }
     return $isUserBargain;
-    
+}
+
+function checkIsBargainOverdue($data){
+    return true;
 }
