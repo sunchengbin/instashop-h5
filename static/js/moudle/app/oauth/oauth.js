@@ -46,6 +46,7 @@ define([
         },
         createLoginHtm: function (type,opts) {
             var _htm = "";
+            opts = opts||{}
             _htm = '<div>' +
                 '<div class="login-dialog-header">Untuk mengikuti promo ini, kamu harus login dulu:</div>' +
                 '<div>' +
