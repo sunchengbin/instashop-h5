@@ -94,7 +94,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                 if (_limitto != 0) {
                     if (_num >= _limitto) {
                         Dialog.tip({
-                            body_txt: "Maksimal Pembelian " + _limitto + " Pcs"
+                            body_txt: Lang.BARGAIN_LIMIT
                         })
                         return;
                     }
@@ -167,12 +167,22 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                             try {
                                 $.each(_carts, function (key, item) {
                                     //命中
-                                    if (key == init_data.item.id) {
-                                        var _wantBuyNum = ~~_num + ~~item.num;
-                                        if (_wantBuyNum > init_data.item.bargain.limit_to) {
-                                            throw new Error("Maksimal Pembelian " + init_data.item.bargain.limit_to + " Pcs");
+                                    if (_has_sku) {
+                                        if(key==_sku_id){
+                                            var _wantBuyNum = ~~_num + ~~item.num;
+                                            if (_wantBuyNum > init_data.item.bargain.limit_to) {
+                                                throw new Error(Lang.BARGAIN_LIMIT);
+                                            }
+                                        }
+                                    } else {
+                                        if (key == init_data.item.id) {
+                                            var _wantBuyNum = ~~_num + ~~item.num;
+                                            if (_wantBuyNum > init_data.item.bargain.limit_to) {
+                                                throw new Error(Lang.BARGAIN_LIMIT);
+                                            }
                                         }
                                     }
+
                                 })
                             } catch (e) {
                                 Dialog.tip({
@@ -183,7 +193,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                         } else {
                             if (_num > init_data.item.bargain.limit_to) {
                                 Dialog.tip({
-                                    body_txt: "Maksimal Pembelian " + init_data.item.bargain.limit_to + " Pcs"
+                                    body_txt: Lang.BARGAIN_LIMIT
                                 });
                                 return false;
                             }
