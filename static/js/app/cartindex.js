@@ -106,7 +106,9 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                         PaqPush && PaqPush('登录结算-'+_judageOauth.info.auth_type, '');
                         _that.goClear(_groupid);
                     }else{
-                        Oauth.openDialog("cart");
+                        Oauth.openDialog("cart",{
+                            groupid:_groupid
+                        });
                     }
                 } else {
                     // 不具备登录机制的 去结算
