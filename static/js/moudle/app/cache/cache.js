@@ -43,6 +43,9 @@ define([
         },
         setForLocalStorage: function (key, value) {
             return localStorage.setItem(key, value)
+        },
+        removeForLocalStorage: function (key) {
+            return localStorage.removeItem(key);
         }
     }
     _tool.setForLocalStorage = _tool.setForLocalStorage.before(function (key, value) {
@@ -80,8 +83,8 @@ define([
             count: function () {
 
             },
-            remove: function () {
-
+            remove: function (key) {
+                return _tool.removeForLocalStorage(key);
             },
             clear: function () {
 

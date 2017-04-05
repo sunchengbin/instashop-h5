@@ -41,20 +41,13 @@ define([
                     $(".j_bargain_reachbaseprice").hide();
                     // 判断自己有没有砍一刀
                     // 判断是不是同一活动
-                    if (Bargain.checkIsSameBargain()) {
-                        // 同一个活动
-                        if (_this.checkIsBargainSelf()) {
-                            // 有的话 显示继续砍价按钮 更新价格视图
-                            $(".price").html(_this.transPriceByBargain());
-                            $(".j_bargain_btn_continue").show();
-                            $(".j_bargain_btn_self").hide();
-                        } else {
-                            // 没有 显示我要砍价
-                            $(".j_bargain_btn_continue").hide();
-                            $(".j_bargain_btn_self").show();
-                        }
+                    // 同一个活动
+                    if (_this.checkIsBargainSelf()) {
+                        // 有的话 显示继续砍价按钮 更新价格视图
+                        $(".price").html(_this.transPriceByBargain());
+                        $(".j_bargain_btn_continue").show();
+                        $(".j_bargain_btn_self").hide();
                     } else {
-                        // 不同活动
                         // 没有 显示我要砍价
                         $(".j_bargain_btn_continue").hide();
                         $(".j_bargain_btn_self").show();
@@ -64,7 +57,13 @@ define([
                 //判断是否登录
                 if (_this.loginResultPackage.result) {
                     // 如果已登录 且有 砍价活动 则请求h5 砍价活动明细 并保存到明细中
-                    var _self_bargain_price = _this.bargainCache.find("bargain_price_self");
+                    var _selfPrice = 0;
+                    if (_this.bargainCache.find("bargain_price_self")) {
+                        if (_this.bargainCache.find("bargain_price_self")[init_data.item.bargain.id]) {
+                            _selfPrice = _this.bargainCache.find("bargain_price_self")[init_data.item.bargain.id].amplitudeSelfPrice || 0;
+                        }
+                    }
+                    var _self_bargain_price = _selfPrice;
                     _this.updateRemoteBargainPrice(_self_bargain_price);
                 } else {
                     // 如果没有登录的话 先检查有没有本地砍价 有的话 显示继续砍价按钮 没有 显示我要砍价
@@ -135,7 +134,11 @@ define([
                         // 回填自砍一刀的
                         $(".j_bargain_amplitude_price").text(_amplitude.price_format);
                         //本地存储这一刀
-                        _this.bargainCache.set("bargain_price_self", _amplitude.price_origin);
+                        var _curBargainSelfLocal = {};
+                        _curBargainSelfLocal[init_data.item.bargain.id] = {
+                            amplitudeSelfPrice: _amplitude.price_origin
+                        }
+                        _this.bargainCache.set("bargain_price_self", _curBargainSelfLocal);
                     },
                     c_fn: function () {
                         location.reload();
@@ -208,14 +211,14 @@ define([
             })
         },
         /**
-         * 检查是否本地自己砍过价
+         * 检查是否本地有这个活动的自砍一刀
          */
         checkIsBargainSelf: function () {
             var _this = this,
                 _bargain_price_self;
             if (_this.bargainCache) {
                 _bargain_price_self = _this.bargainCache.find("bargain_price_self");
-                if (!!_bargain_price_self) {
+                if (!!_bargain_price_self && !!_bargain_price_self[init_data.item.bargain.id] && !!_bargain_price_self[init_data.item.bargain.id].amplitudeSelfPrice) {
                     return true;
                 } else {
                     return false;
@@ -237,11 +240,11 @@ define([
                 amplitudePrice = _this.getBargainAmplitudePrice();
             }
 
-            if(~~init_data.item.min_price==~~init_data.item.max_price){
+            if (~~init_data.item.min_price == ~~init_data.item.max_price) {
                 var _after_bargain_price = Base.others.priceFormat(~~init_data.item.price - ~~amplitudePrice);
                 var _item_price = Base.others.priceFormat(~~init_data.item.price);
                 _htm = "Rp " + _after_bargain_price + " <span class='bargain-origin-price'> Rp " + _item_price + "</span>";
-            }else{
+            } else {
                 var _min_after_bargain_price = Base.others.priceFormat(~~init_data.item.min_price - ~~amplitudePrice);
                 var _max_after_bargain_price = Base.others.priceFormat(~~init_data.item.max_price - ~~amplitudePrice);
                 var _min_price = Base.others.priceFormat(~~init_data.item.min_price);
@@ -259,7 +262,13 @@ define([
             if (_this.loginResultPackage.result) {
                 _bargain_result_price = _this.bargainCache.find("remote_bargain_detail") ? _this.bargainCache.find("remote_bargain_detail").bargain_result : 0;
             } else {
-                _bargain_result_price = _this.bargainCache.find("bargain_price_self") || 0;
+                var _selfPrice = 0;
+                if (_this.bargainCache.find("bargain_price_self")) {
+                    if (_this.bargainCache.find("bargain_price_self")[init_data.item.bargain.id]) {
+                        _selfPrice = _this.bargainCache.find("bargain_price_self")[init_data.item.bargain.id].amplitudeSelfPrice || 0;
+                    }
+                }
+                _bargain_result_price = _selfPrice;
             }
             _bargain_result_price = _bargain_result_price;
             return _bargain_result_price;
@@ -321,7 +330,11 @@ define([
         if (_localBargainCache.find("remote_bargain_detail")) {
             var _localBargainId = _localBargainCache.find("remote_bargain_detail").id;
             var _remoteBargainId = init_data.item.bargain.id;
-            if (_localBargainId == _remoteBargainId) isSame = true
+            if (_localBargainId == _remoteBargainId) {
+                isSame = true
+            } else {
+                _localBargainCache.remove("remote_bargain_detail");
+            }
         } else {
             isSame = false;
         }
