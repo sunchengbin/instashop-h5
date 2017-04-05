@@ -79,20 +79,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
             } else {
                 amplitudePrice = _this.getBargainAmplitudePrice();
             }
-            // 如果不是sku 
-            // if (!init_data.bargain_invite_detail.item_info.sku.length > 0) {
-            //     var _after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.price - ~~amplitudePrice);
-            //     var _item_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.price);
-            //     _htm = "Rp " + _after_bargain_price + " <span class='bargain-origin-price'> Rp " + _item_price + "</span>";
-            // } else {
-            //     var _min_after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.min_price - ~~amplitudePrice);
-            //     var _max_after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.max_price - ~~amplitudePrice);
-            //     var _min_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.min_price);
-            //     var _max_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.max_price);
-            //     _minPriceBargainHtm = "<p>Rp " + _min_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _min_price + "</span></p>";
-            //     _maxPriceBargainHtm = "<p>Rp " + _max_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _max_price + "</span></p>";
-            //     _htm = _minPriceBargainHtm + _maxPriceBargainHtm;
-            // }
 
             if (~~init_data.bargain_invite_detail.item_info.min_price == ~~init_data.bargain_invite_detail.item_info.max_price) {
                 var _after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.price - ~~amplitudePrice);
