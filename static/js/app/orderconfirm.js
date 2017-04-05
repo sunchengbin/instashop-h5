@@ -46,9 +46,21 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     nofree: _express_free == 0,
                     express: (_express_free == 0 && _this.testExpress(express_data.express_fee_list.list)),
                     isHaveReduc: (function () {
-                        if (!!price_data.price_info.shop_discount) {
-                            return (price_data.price_info.shop_discount.length != 0)
+                        // 是否含有参加砍价活动的商品
+                        if (!Bargain.checkIsHaveBargainItem(_this.carts)) {
+                            // 没有砍价活动的
+                            if (!!price_data.price_info.shop_discount) {
+                                return (price_data.price_info.shop_discount.length != 0)
+                            }
+                        }else{
+                            // 如果有 并且只有一个商品 那么要返回false 否则返回true 
+                            if(Object.keys(_this.carts).length==1){
+                                return false;
+                            }else{
+                                return true;
+                            }
                         }
+
                         return false;
                     })()
                 });
