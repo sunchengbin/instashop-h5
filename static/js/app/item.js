@@ -5,7 +5,7 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog', 'debug', 'sharecoupon', 'oauth', 'cache','bargain'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog, Debug, Sharecoupon, Oauth, Cache,Bargain) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog', 'debug', 'sharecoupon', 'oauth', 'cache', 'bargain'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog, Debug, Sharecoupon, Oauth, Cache, Bargain) {
     var ITEM = {
         init: function () {
             var _this = this,
@@ -21,11 +21,13 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                         needTab: true,
                         auto: false
                     });
-                    _this.BargainPlug = new Bargain({
-                        bargain:init_data.item.bargain
-                    });
-                    // 根据砍价活动计算sku
-                    init_data = _this.BargainPlug.computeAndUpdateSkuPriceForBargain(init_data);
+                    if (!!init_data.item.bargain) {
+                        _this.BargainPlug = new Bargain({
+                            bargain: init_data.item.bargain
+                        });
+                        // 根据砍价活动计算sku
+                        init_data = _this.BargainPlug.computeAndUpdateSkuPriceForBargain(init_data);
+                    }
                     Buyplug({
                         data: init_data,
                         noStockCallback: function () {
