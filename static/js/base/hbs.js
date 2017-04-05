@@ -249,6 +249,8 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache'], funct
                     } else {
                         data_price = data.discount.price;
                     }
+                } else if (!!data.bargain) {
+                    data_price = item.bargain.price;
                 } else {
                     data_price = item.price;
                 }
@@ -305,7 +307,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache'], funct
                 var _isBargainSelf = localStorage.getItem('bargain_price_self');
                 if (_isBargainSelf) {
                     if (carts[item].sku && carts[item].sku.id) {
-                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.bargain.price) + '</p>';
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.price) + '</p>';
                     } else {
                         _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.bargain.price) + '</p>';
                     }
@@ -544,7 +546,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache'], funct
                     var _isBargainSelf = localStorage.getItem('bargain_price_self');
                     if (_isBargainSelf) {
                         if (carts[item].sku && carts[item].sku.id) {
-                            _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.bargain.price) + '</p>';
+                            _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.price) + '</p>';
                         } else {
                             _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.bargain.price) + '</p>';
                         }
