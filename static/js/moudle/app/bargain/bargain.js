@@ -25,13 +25,13 @@ define([
             window.Oauth = Oauth;
             window.Cache = Cache;
             _this.loginResultPackage = Oauth.checkIsLogin();
-            _this.bargainCache = Cache.getSpace("BargainCache");
+            _this.bargainCache = _this.bargainCache = Cache.getSpace("BargainCache") || new Cache({
+                namespace: "BargainCache",
+                type: "local"
+            });
             // 判断是否有砍价活动
             if (init_data.item.bargain) {
-                _this.bargainCache = Cache.getSpace("BargainCache") || new Cache({
-                    namespace: "BargainCache",
-                    type: "local"
-                });
+
                 // 判断有没有砍到底价
                 var _amplitude = _this.computeBargainPrice();
                 if (Bargain.isReachBaseprice(init_data.item.min_price, _amplitude.price_origin, init_data.item.bargain.base_price)) {
@@ -81,7 +81,7 @@ define([
                 _htm += '<i class="icon iconfont fr icon-go-font"></i>' +
                     '</div>';
                 $(".bargain-friend-list-container").html(_htm).show();
-                $(".bargain-friend-list-container").on('click',function(){
+                $(".bargain-friend-list-container").on('click', function () {
                     location.href = bargainDetail.bargain_share_url;
                 })
             }
@@ -145,7 +145,7 @@ define([
                 if (_this.loginResultPackage.result) {
                     Sharebargain({
                         title: Lang.BARGAIN_DETAIL_INVITE_TIP,
-                        content: "Hi, aku lagi ikutan promo tawar "+init_data.item.item_name+" sampai " + "Rp " + Base.others.priceFormat(_this.config.bargain.base_price) + " nih! Bantu aku tawar yuk. Klik ",
+                        content: "Hi, aku lagi ikutan promo tawar " + init_data.item.item_name + " sampai " + "Rp " + Base.others.priceFormat(_this.config.bargain.base_price) + " nih! Bantu aku tawar yuk. Klik ",
                         bargain_inv_url: _this.bargainCache.find("remote_bargain_detail").bargain_share_url,
                         c_fn: function () {
                             //判断是否用户有手机号 如果有 则不提示 如果没有则提示
