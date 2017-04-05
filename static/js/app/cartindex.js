@@ -129,6 +129,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
         },
         checkIsHasBargain: function () {
             var _data = JSON.parse(localStorage.getItem('ShopData'));
+            if(!_data.ShopInfo.bargain)return false;
             if (_data.ShopInfo.bargain.count > 0) {
                 return true;
             } else {
