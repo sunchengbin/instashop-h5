@@ -41,7 +41,7 @@ define([
                     $(".j_bargain_reachbaseprice").hide();
                     // 判断自己有没有砍一刀
                     // 判断是不是同一活动
-                    if (!Bargain.checkIsSameBargain()) {
+                    if (Bargain.checkIsSameBargain()) {
                         // 同一个活动
                         if (_this.checkIsBargainSelf()) {
                             // 有的话 显示继续砍价按钮 更新价格视图
