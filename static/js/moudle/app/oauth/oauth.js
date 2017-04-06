@@ -68,7 +68,7 @@ define([
             });
             try {
                 loginInfoFromCallBackPost = user_info;
-                if (!!loginInfoFromCallBackPost.buyer_id && !!loginInfoFromCallBackPost.name && !!loginInfoFromCallBackPost.pic) {
+                if (!!loginInfoFromCallBackPost.buyer_id && !!loginInfoFromCallBackPost.name) {
                     loginInfoFromCache.set("loginInfo", loginInfoFromCallBackPost);
                     return {
                         result: true,
