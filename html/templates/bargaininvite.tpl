@@ -174,7 +174,7 @@
         <!--描述-->
         <div class="desc">
             <p>
-                {$BARGAIN_INVITE_DETAIL.item_info.item_comment}
+                {$BARGAIN_INVITE_DETAIL.item_info.item_comment|nl2br}
             </p>
             <p class="price">
             </p>
