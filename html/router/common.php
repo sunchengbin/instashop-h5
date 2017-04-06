@@ -34,7 +34,7 @@ function loadClass($strClassName)
     }
 }
 function getFontCss($url){
-    return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1491464684811") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1491464684811#iconfont") format("svg");}</style>';
+    return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1491464900296") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1491464900296#iconfont") format("svg");}</style>';
 }
 function getIco($url){
     return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';
