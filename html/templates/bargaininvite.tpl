@@ -151,7 +151,7 @@
         <div class="bargain-header-desc">
             {*无法砍价 已经买了 bargain_bought_num == 0 *}
             {if $BARGAIN_INVITE_DETAIL.bargain_bought_num gt 0 } 
-                Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa belanja {$BARGAIN_INVITE_DETAIL.item_info.item_name} Plus dengan harga Rp {$BARGAIN_INVITE_DETAIL.last_buy.discount_price|priceFormat}!
+                Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa belanja {$BARGAIN_INVITE_DETAIL.item_info.item_name} dengan harga Rp {$BARGAIN_INVITE_DETAIL.last_buy.discount_price|priceFormat}!
             {else}
                 {if $BARGAIN_INVITE_DETAIL|confirmIsReachBasepirce}
                     {*无法砍价 已经砍到底价了 item.min_price - bargain_result == base_price *}
