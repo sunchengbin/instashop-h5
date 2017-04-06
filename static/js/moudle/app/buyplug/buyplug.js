@@ -168,12 +168,12 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                 $.each(_carts, function (key, item) {
                                     //命中
                                     if (_has_sku) {
-                                        if (key == _sku_id) {
+                                        // if (key == _sku_id) {
                                             var _wantBuyNum = ~~_num + ~~item.num;
                                             if (_wantBuyNum > init_data.item.bargain.limit_to) {
                                                 throw new Error(Lang.BARGAIN_LIMIT);
                                             }
-                                        }
+                                        // }
                                     } else {
                                         if (key == init_data.item.id) {
                                             var _wantBuyNum = ~~_num + ~~item.num;
@@ -203,19 +203,37 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
 
 
                 if (!_has_sku) {
-                    Cart(init_data).addItem({
-                        item: init_data.item,
-                        num: _num,
-                        price: _sku_price,
-                        isbuynow: _is_buy_now,
-                        noStockCallback: function () {
-                            _this.config.noStockCallback && _this.config.noStockCallback();
-                            _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
-                        },
-                        callback: function () {
-                            _this.addSuccessFn(_is_buy_now, _w_h);
-                        }
-                    });
+                    if (init_data.item.bargain) {
+                        Cart(init_data).addItem({
+                            item: init_data.item,
+                            num: _num,
+                            price: _sku_price,
+                            bargain_price:init_data.item.bargain.price,
+                            isbuynow: _is_buy_now,
+                            noStockCallback: function () {
+                                _this.config.noStockCallback && _this.config.noStockCallback();
+                                _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
+                            },
+                            callback: function () {
+                                _this.addSuccessFn(_is_buy_now, _w_h);
+                            }
+                        });
+                    }else{
+                        Cart(init_data).addItem({
+                            item: init_data.item,
+                            num: _num,
+                            price: _sku_price,
+                            isbuynow: _is_buy_now,
+                            noStockCallback: function () {
+                                _this.config.noStockCallback && _this.config.noStockCallback();
+                                _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
+                            },
+                            callback: function () {
+                                _this.addSuccessFn(_is_buy_now, _w_h);
+                            }
+                        });
+                    }
+
                 } else {
                     if (!_stock) {
                         Dialog.tip({
@@ -234,6 +252,10 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                             });
                         } else {
                             if (init_data.item.bargain) {
+                                var _skuMap = {};
+                                $.each(init_data.item.sku, function (index, sku) {
+                                    _skuMap[sku.id] = sku;
+                                })
                                 Cart(init_data).addItem({
                                     item: init_data.item,
                                     sku: {
@@ -241,7 +263,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                         id: _sku_id,
                                         title: _sku_title,
                                         stock: _stock,
-                                        bargain:init_data.item.sku
+                                        bargain_price: _skuMap[_sku_id].bargain.price
                                     },
                                     price: _sku_price,
                                     isbuynow: _is_buy_now,
