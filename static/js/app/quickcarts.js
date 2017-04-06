@@ -94,6 +94,23 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                         $(".j_total").html('Rp ' + Base.others.priceFormat(_price));
                     }
                 });
+            } else {
+                // 如果有 并且只有一个商品 那么要返回false 否则返回true 
+                if (Object.keys(_this.carts).length == 1) {
+
+                } else {
+                    _this.favorablePlugin = Favorable({
+                        el: ".total-ps",
+                        price: $('.j_total').attr('data-price'),
+                        seller_id: init_data.shop.id,
+                        usehandle: function (favorablePrice) {
+                            var _totalPrice = $(".j_total").attr("data-price"),
+                                _price = Number(_totalPrice) - Number(favorablePrice);
+                            _price = _price < 0 ? 0 : _price;
+                            $(".j_total").html('Rp ' + Base.others.priceFormat(_price));
+                        }
+                    });
+                }
             }
 
         },
@@ -781,7 +798,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                                 itemID: _items[item].item.id,
                                 itemNum: _items[item].num,
                                 discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0),
-                                bargain_price:_items[item].item.bargain.price
+                                bargain_price: _items[item].item.bargain.price
                             });
                         } else {
                             _arr.push({

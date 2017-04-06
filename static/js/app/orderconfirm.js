@@ -519,7 +519,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                         _sum += carts[cart].num * carts[cart].item.discount.price;
                     }
                 } else if (carts[cart].item.bargain) {
-                    if (!!carts[cart].sku.id) {
+                    if (!!carts[cart].sku&&!!carts[cart].sku.id) {
                         _sum += carts[cart].num * carts[cart].sku.bargain_price;
                     } else {
                         _sum += carts[cart].num * carts[cart].bargain_price;
