@@ -270,3 +270,14 @@ function checkIsBargainOverdue($data){
     }
     return false;
 }
+
+function checkBargainLegal($data){
+    $bargainInfo = $data['bargain_info'];
+    $itemInfo = $data['item_info'];
+    if('1'!=$bargainInfo['status']){
+        return true;
+    }
+    if('1'!=$itemInfo['status']){
+        return true;
+    }
+}

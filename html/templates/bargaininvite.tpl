@@ -179,22 +179,30 @@
             <p class="price">
             </p>
             <div class="">
-                {*判断是否到期*}
-                {if $BARGAIN_INVITE_DETAIL.bargain_info|checkIsBargainOverdue}
-                    <button class="j_bargain_btn_invite_help ins-btn-gray" data-overdue="1" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
-                    <button class="j_bargain_btn_invite_self ins-btn-gray" data-overdue="1" type="">Mau Beli Juga</button>
+                {*判断活动是否被删除 商品是否下架 删除 *}
+                {if $BARGAIN_INVITE_DETAIL|checkBargainLegal}
+                        <button class="j_bargain_btn_invite_help ins-btn-gray" data-overdue="1" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
+                        <button class="j_bargain_btn_invite_self ins-btn-gray" data-overdue="1" type="">Mau Beli Juga</button>
                 {else}
-                    {if $BARGAIN_INVITE_DETAIL.bargain_bought_num gt 0 }
+                    {*判断是否到期*}
+                    {if $BARGAIN_INVITE_DETAIL.bargain_info|checkIsBargainOverdue}
+                        <button class="j_bargain_btn_invite_help ins-btn-gray" data-overdue="1" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
+                        <button class="j_bargain_btn_invite_self ins-btn-gray" data-overdue="1" type="">Mau Beli Juga</button>
                     {else}
-                        {*是否到底价*}
-                        {if $BARGAIN_INVITE_DETAIL|confirmIsReachBasepirce}
+                        {if $BARGAIN_INVITE_DETAIL.bargain_bought_num gt 0 }
                         {else}
-                            <button class="j_bargain_btn_invite_help" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
+                            {*是否到底价*}
+                            {if $BARGAIN_INVITE_DETAIL|confirmIsReachBasepirce}
+                            {else}
+                                <button class="j_bargain_btn_invite_help" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
+                            {/if}
+                                
                         {/if}
-                            
+                        <button class="j_bargain_btn_invite_self" type="">Mau Beli Juga</button>
                     {/if}
-                    <button class="j_bargain_btn_invite_self" type="">Mau Beli Juga</button>
                 {/if}
+
+                
                 
             </div>
         </div>
