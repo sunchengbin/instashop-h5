@@ -479,15 +479,11 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
         //满减
         countSum: function (carts) {
             var _this = this;
-            if (_this.bargainCache.find("remote_bargain_detail")) {
-                return _this.countSumReduc();
+            //判断是否参与满减 如果为0 则为不参加满减
+            if (price_data.price_info.shop_discount.length == 0) {
+                return _this.countSumNoReduc(carts);
             } else {
-                //判断是否参与满减 如果为0 则为不参加满减
-                if (price_data.price_info.shop_discount.length == 0) {
-                    return _this.countSumNoReduc(carts);
-                } else {
-                    return _this.countSumReduc();
-                }
+                return _this.countSumReduc();
             }
 
         },
@@ -501,9 +497,9 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     } else {
                         _sum += carts[cart].num * carts[cart].item.discount.price;
                     }
-                }else if(carts[cart].item.bargain){
+                } else if (carts[cart].item.bargain) {
                     _sum += carts[cart].num * carts[cart].bargain_price;
-                }else {
+                } else {
                     _sum += carts[cart].num * carts[cart].price;
                 }
             }
