@@ -195,7 +195,7 @@ define([
                 //获取手机号
                 var _bargainTelphone = $.trim($(".j_bargain_inv_telphone").val());
                 //校验手机号 TODO
-                if(!!_bargainTelphone){
+                if(!_bargainTelphone){
                     Dialog.tip({
                         body_txt:Lang.H5_VALIDATOR_TEL
                     })
