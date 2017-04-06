@@ -714,25 +714,49 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 for (var item in _items) {
                     if (_items[item].sku && _items[item].sku.id) {
                         if (!$('.error-item[data-id="' + _items[item].sku.id + '"]').length) {
-                            var _num = $('.j_cart_item[data-id="' + _items[item].sku.id + '"] .j_item_num').val();
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                itemName: _items[item].item.item_name,
-                                itemNum: (_num ? _num : _items[item].num),
-                                item_sku: _items[item].sku.id,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
+                            if (_items[item].item.bargain) {
+                                var _num = $('.j_cart_item[data-id="' + _items[item].sku.id + '"] .j_item_num').val();
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    itemName: _items[item].item.item_name,
+                                    itemNum: (_num ? _num : _items[item].num),
+                                    item_sku: _items[item].sku.id,
+                                    bargain_price: _items[item].price,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            } else {
+                                var _num = $('.j_cart_item[data-id="' + _items[item].sku.id + '"] .j_item_num').val();
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    itemName: _items[item].item.item_name,
+                                    itemNum: (_num ? _num : _items[item].num),
+                                    item_sku: _items[item].sku.id,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            }
+
 
                         }
                     } else {
                         if (!$('.error-item[data-id="' + _items[item].item.id + '"]').length) {
                             var _num = $('.j_cart_item[data-id="' + _items[item].item.id + '"] .j_item_num').val();
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                itemName: _items[item].item.item_name,
-                                itemNum: (_num ? _num : _items[item].num),
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
+                            if (_items[item].item.bargain) {
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    itemName: _items[item].item.item_name,
+                                    itemNum: (_num ? _num : _items[item].num),
+                                    bargain_price:_items[item].price,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            } else {
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    itemName: _items[item].item.item_name,
+                                    itemNum: (_num ? _num : _items[item].num),
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            }
+
                         }
                     }
                 }
