@@ -61,36 +61,36 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         },
         handelFn : function(bridge){
             var _this = this;
-            //if(!bridge){
-            //    alert('not find bridge');
-            //    return;
-            //}
-            //(function(bridge){
-            //    var _close_param = {
-            //        param:{
-            //            type : 'close_loading',
-            //            param : null
-            //        }
-            //    };
-            //    //关闭webview的loading动画
-            //    bridge.callHandler('insSocket',_close_param, function(response) {
-            //        return null;
-            //    });
-            //    var _param = {
-            //        param:{
-            //            type : 'go_back',
-            //            param : {
-            //                type : 'loaded',
-            //                result : _this.is_edit
-            //            }
-            //        }
-            //    };
-            //    //提供给native设置回退锁,为了回退的时候
-            //    bridge.callHandler('insSocket',_param, function(response) {
-            //        return null;
-            //    });
-            //})(bridge);
-            //_this.registerFn(bridge);
+            if(!bridge){
+                alert('not find bridge');
+                return;
+            }
+            (function(bridge){
+                var _close_param = {
+                    param:{
+                        type : 'close_loading',
+                        param : null
+                    }
+                };
+                //关闭webview的loading动画
+                bridge.callHandler('insSocket',_close_param, function(response) {
+                    return null;
+                });
+                var _param = {
+                    param:{
+                        type : 'go_back',
+                        param : {
+                            type : 'loaded',
+                            result : _this.is_edit
+                        }
+                    }
+                };
+                //提供给native设置回退锁,为了回退的时候
+                bridge.callHandler('insSocket',_param, function(response) {
+                    return null;
+                });
+            })(bridge);
+            _this.registerFn(bridge);
             FastClick.attach(document.body);
             $('body').on('click','.j_insert_model',function(){
                 PaqPush && PaqPush('插入模块','insert-model');
@@ -382,15 +382,34 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             });
         },
         getSkinInfo : function(){
-            var _skin = Base.others.getUrlPrem('skin'),
+            var _this = this,
+                _skin = Base.others.getUrlPrem('skin'),
                 _code = Base.others.getUrlPrem('skin_code');
-                _skin = _skin ? _skin : 'default';
-                _code = _code ? _code : 0;
+                _skin = _skin ? _skin : (SKIN?SKIN:'default');
+                _code = _code ? _code : _this.getSkinCode(_skin);
             var _data = {
                 code : _code,
                 name : _skin
             };
             return _data;
+        },
+        getSkinCode : function(skin){
+            var _code = 0;
+            switch (skin){
+                case 'default':
+                    _code = 0;
+                    break;
+                case 'first':
+                    _code = 1;
+                    break;
+                case 'second':
+                    _code = 2;
+                    break;
+                default :
+                    _code = 0;
+                    break;
+            }
+            return _code;
         },
         closeLoading : function(bridge,code){//关闭native的loading
             var _close_param = {
