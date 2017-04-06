@@ -22,7 +22,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                         auto: false
                     });
                     if (!!init_data.item.bargain) {
-                        var _curDateTime = Base.others.getCurDateTime();
+                        var _curDateTime = Base.others.getCurDateTime()-3600;
                         var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
                         var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
                         if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {

@@ -35,7 +35,7 @@ define([
                 var _amplitude = _this.computeBargainPrice();
 
                 // 判断是否过期
-                var _curDateTime = Base.others.getCurDateTime();
+                var _curDateTime = Base.others.getCurDateTime()-3600;
                 var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
                 var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
                 if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
@@ -413,7 +413,7 @@ define([
             $.each(items, function (key, item) {
                 if (!!item.item.bargain) {
 
-                    var _curDateTime = Base.others.getCurDateTime();
+                    var _curDateTime = Base.others.getCurDateTime()-3600;
                     var _bargain_start_time = Base.others.transDateStrToDateTime(item.item.bargain.start_time);
                     var _bargain_end_time = Base.others.transDateStrToDateTime(item.item.bargain.end_time);
                     if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {

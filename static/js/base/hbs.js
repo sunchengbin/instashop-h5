@@ -186,7 +186,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
         // 砍价活动
 
         if (!!data.bargain) {
-            var _curDateTime = Base.others.getCurDateTime();
+            var _curDateTime = Base.others.getCurDateTime()-3600;
             var _bargain_start_time = Base.others.transDateStrToDateTime(data.bargain.start_time);
             var _bargain_end_time = Base.others.transDateStrToDateTime(data.bargain.end_time);
             if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
@@ -296,7 +296,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                         data_price = data.discount.price;
                     }
                 } else if (!!data.bargain) {
-                    var _curDateTime = Base.others.getCurDateTime();
+                    var _curDateTime = Base.others.getCurDateTime()-3600;
                     var _bargain_start_time = Base.others.transDateStrToDateTime(data.bargain.start_time);
                     var _bargain_end_time = Base.others.transDateStrToDateTime(data.bargain.end_time);
                     if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
