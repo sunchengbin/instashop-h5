@@ -387,7 +387,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                 } else {
                     data_price = item.price;
                 }
-                _htm += '<li class="j_type_li ' + (item.stock == 0 || item.price < 0 ? 'disable' : '') + '" data-price="' + data_price + '" data-stock="' + item.stock + '" data-id="' + item.id + '">' + item.title + '</li>';
+                _htm += '<li class="j_type_li ' + (item.stock == 0 || item.price < 0 ? 'disable' : '') + '" data-price="' + data_price + '" data-stock="' + item.stock + '" data-id="' + item.id + '" data-limitto='+(data.bargain?data.bargain.limit_to:0)+'>' + item.title + '</li>';
             });
         }
         return _htm;

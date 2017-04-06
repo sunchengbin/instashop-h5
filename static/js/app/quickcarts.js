@@ -184,7 +184,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 if (_limitto != 0) {
                     if (_limitto <= _num) {
                         Dialog.tip({
-                            body_txt: "Maksimal Pembelian " + _limitto + " Pcs"
+                            body_txt: "Maksimal Pembelian " + _limitto + " Pc"
                         })
                         return;
                     }
