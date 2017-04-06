@@ -157,7 +157,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                     itemID: _items[item].item.id,
                                     //itemName:_items[item].item.item_name,
                                     itemNum: _items[item].num,
-                                    bargain_price: _items[item].sku.bargain.price,
+                                    bargain_price: _items[item].sku.bargain_price,
                                     item_sku: _items[item].sku.id,
                                     discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
                                 });
