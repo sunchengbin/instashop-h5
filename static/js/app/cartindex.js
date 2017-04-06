@@ -200,7 +200,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                     //itemName:_items[item].item.item_name,
                                     itemNum: _items[item].num,
                                     item_sku: _items[item].sku.id,
-                                    bargain_price: _items[item].sku.bargain.price,
+                                    bargain_price: _items[item].sku.bargain_price,
                                     discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
                                 });
                             } else {

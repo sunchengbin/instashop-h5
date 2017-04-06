@@ -269,7 +269,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                             _arr.push({
                                 itemID: _items[item].item.id,
                                 //itemName:_items[item].item.item_name,
-                                bargain_price: _items[item].sku.bargain.price,
+                                bargain_price: _items[item].sku.bargain_price,
                                 itemNum: _items[item].num,
                                 item_sku: _items[item].sku.id,
                                 discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
