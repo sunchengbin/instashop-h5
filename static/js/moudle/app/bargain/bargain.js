@@ -84,7 +84,7 @@ define([
                     _this.handleFn();
                 }
             }
-            
+
         },
         showFriendHelpList: function (bargainDetail) {
             var _bargainHelpFriends = bargainDetail.bargain_detail || [];
@@ -380,7 +380,15 @@ define([
         if (items) {
             $.each(items, function (key, item) {
                 if (!!item.item.bargain) {
-                    isHave = true;
+
+                    var _curDateTime = Base.others.getCurDateTime();
+                    var _bargain_start_time = Base.others.transDateStrToDateTime(item.item.bargain.start_time);
+                    var _bargain_end_time = Base.others.transDateStrToDateTime(item.item.bargain.end_time);
+                    if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                        isHave = false;
+                    }else{
+                        isHave = true;
+                    }
                     return;
                 }
             })

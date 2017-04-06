@@ -90,13 +90,20 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                 if (_stock && _stock <= _num) {
                     return;
                 }
-                // 是否限购 0为不限购
-                if (_limitto != 0) {
-                    if (_num >= _limitto) {
-                        Dialog.tip({
-                            body_txt: Lang.BARGAIN_LIMIT
-                        })
-                        return;
+                var _curDateTime = Base.others.getCurDateTime();
+                var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
+                var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
+                if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                    // 砍价活动过期了
+                } else {
+                    // 是否限购 0为不限购
+                    if (_limitto != 0) {
+                        if (_num >= _limitto) {
+                            Dialog.tip({
+                                body_txt: Lang.BARGAIN_LIMIT
+                            })
+                            return;
+                        }
                     }
                 }
                 _item_num.val(++_num);
@@ -161,41 +168,48 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                 }
 
                 if (init_data.item.bargain) {
-                    if (init_data.item.bargain.limit_to > 0) {
-                        var _carts = Cart().getCarts();
-                        if (_carts) {
-                            try {
-                                $.each(_carts, function (key, item) {
-                                    //命中
-                                    if (_has_sku) {
-                                        // if (key == _sku_id) {
+                    var _curDateTime = Base.others.getCurDateTime();
+                    var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
+                    var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
+                    if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                        // 砍价活动过期了
+                    } else {
+                        if (init_data.item.bargain.limit_to > 0) {
+                            var _carts = Cart().getCarts();
+                            if (_carts) {
+                                try {
+                                    $.each(_carts, function (key, item) {
+                                        //命中
+                                        if (_has_sku) {
+                                            // if (key == _sku_id) {
                                             var _wantBuyNum = ~~_num + ~~item.num;
                                             if (_wantBuyNum > init_data.item.bargain.limit_to) {
                                                 throw new Error(Lang.BARGAIN_LIMIT);
                                             }
-                                        // }
-                                    } else {
-                                        if (key == init_data.item.id) {
-                                            var _wantBuyNum = ~~_num + ~~item.num;
-                                            if (_wantBuyNum > init_data.item.bargain.limit_to) {
-                                                throw new Error(Lang.BARGAIN_LIMIT);
+                                            // }
+                                        } else {
+                                            if (key == init_data.item.id) {
+                                                var _wantBuyNum = ~~_num + ~~item.num;
+                                                if (_wantBuyNum > init_data.item.bargain.limit_to) {
+                                                    throw new Error(Lang.BARGAIN_LIMIT);
+                                                }
                                             }
                                         }
-                                    }
 
-                                })
-                            } catch (e) {
-                                Dialog.tip({
-                                    body_txt: e.message
-                                });
-                                return;
-                            }
-                        } else {
-                            if (_num > init_data.item.bargain.limit_to) {
-                                Dialog.tip({
-                                    body_txt: Lang.BARGAIN_LIMIT
-                                });
-                                return false;
+                                    })
+                                } catch (e) {
+                                    Dialog.tip({
+                                        body_txt: e.message
+                                    });
+                                    return;
+                                }
+                            } else {
+                                if (_num > init_data.item.bargain.limit_to) {
+                                    Dialog.tip({
+                                        body_txt: Lang.BARGAIN_LIMIT
+                                    });
+                                    return false;
+                                }
                             }
                         }
                     }
@@ -208,7 +222,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                             item: init_data.item,
                             num: _num,
                             price: _sku_price,
-                            bargain_price:init_data.item.bargain.price,
+                            bargain_price: init_data.item.bargain.price,
                             isbuynow: _is_buy_now,
                             noStockCallback: function () {
                                 _this.config.noStockCallback && _this.config.noStockCallback();
@@ -218,7 +232,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                 _this.addSuccessFn(_is_buy_now, _w_h);
                             }
                         });
-                    }else{
+                    } else {
                         Cart(init_data).addItem({
                             item: init_data.item,
                             num: _num,
