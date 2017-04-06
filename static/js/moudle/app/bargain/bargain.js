@@ -223,6 +223,7 @@ define([
                             //更新本地用户信息
                             Cache.getSpace("LoginCache").set("loginInfo", obj.buyer);
                             _this.submitBargainPhone.remove();
+                            location.reload();
                         }
                     }
                 })
