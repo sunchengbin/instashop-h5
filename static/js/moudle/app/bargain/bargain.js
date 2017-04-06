@@ -197,7 +197,8 @@ define([
                 //校验手机号 TODO
                 if(!_bargainTelphone){
                     Dialog.tip({
-                        body_txt:Lang.H5_VALIDATOR_TEL
+                        body_txt:Lang.H5_VALIDATOR_TEL,
+                        can_exist:true
                     })
                     return;
                 }
