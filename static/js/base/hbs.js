@@ -223,7 +223,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                             type: "local"
                         });
                         var fudu = ~~bargainCache.find("remote_bargain_detail").bargain_result;
-                        if (Bargain.isReachBaseprice(data.min_price,fudu, data.bargain.base_price)){
+                        if (Bargain.isReachBaseprice(data.min_price, fudu, data.bargain.base_price)) {
                             return 'Rp ' + Base.others.priceFormat(sku_price[0]);
                         }
 
@@ -296,7 +296,15 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                         data_price = data.discount.price;
                     }
                 } else if (!!data.bargain) {
-                    data_price = item.bargain.price;
+                    var _curDateTime = Base.others.getCurDateTime();
+                    var _bargain_start_time = Base.others.transDateStrToDateTime(data.bargain.start_time);
+                    var _bargain_end_time = Base.others.transDateStrToDateTime(data.bargain.end_time);
+                    if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                        //过期
+                        data_price = item.price;
+                    }else{
+                        data_price = item.bargain.price;
+                    }
                 } else {
                     data_price = item.price;
                 }

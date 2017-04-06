@@ -22,11 +22,17 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                         auto: false
                     });
                     if (!!init_data.item.bargain) {
-                        _this.BargainPlug = new Bargain({
-                            bargain: init_data.item.bargain
-                        });
-                        // 根据砍价活动计算sku
-                        init_data = _this.BargainPlug.computeAndUpdateSkuPriceForBargain(init_data);
+                        var _curDateTime = Base.others.getCurDateTime();
+                        var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
+                        var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
+                        if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                        } else {
+                            _this.BargainPlug = new Bargain({
+                                bargain: init_data.item.bargain
+                            });
+                            // 根据砍价活动计算sku
+                            init_data = _this.BargainPlug.computeAndUpdateSkuPriceForBargain(init_data);
+                        }
                     }
                     Buyplug({
                         data: init_data,
