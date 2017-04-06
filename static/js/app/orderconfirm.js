@@ -501,10 +501,11 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     } else {
                         _sum += carts[cart].num * carts[cart].item.discount.price;
                     }
-                } else {
+                }else if(carts[cart].item.bargain){
+                    _sum += carts[cart].num * carts[cart].bargain_price;
+                }else {
                     _sum += carts[cart].num * carts[cart].price;
                 }
-
             }
             return _sum;
         },
