@@ -266,7 +266,7 @@ function checkIsBargainOverdue($data){
     $endTime = $data['end_time'];
     $curTime = time();
     if($curTime<$startTime||$curTime>$endTime){
-        return false;
+        return true;
     }
-    return true;
+    return false;
 }

@@ -6,12 +6,12 @@
     }
     
     header {
-        height: 16.6rem;
+        {*height: 16.6rem;*}
         background: #FF7400;
     }
     
     .bargain-header-top {
-        height: 6.8rem;
+        {*height: 6.8rem;*}
         width: 100%;
         position: relative;
     }
