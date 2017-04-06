@@ -425,6 +425,17 @@ define(function () {
                 for (var i = 0, l = keys.length; i < l; i++) v = v[keys[i]];
                 return (typeof v !== "undefined" && v !== null) ? v : "";
             });
+        },
+        transDateStrToDateTime:function(dateStr){
+            var _array = dateStr.split(" ");
+            var _year_month_day = _array[0];
+            var _hour_minute = _array[1].replace(".",":");
+            dateStr = _year_month_day+"-"+_hour_minute;
+            var _date = parseInt(new Date(dateStr).getTime()/1000);
+            return _date;
+        },
+        getCurDateTime :function(){
+            return parseInt(new Date().getTime()/1000);
         }
     };
 

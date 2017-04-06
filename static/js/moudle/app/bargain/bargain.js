@@ -33,44 +33,57 @@ define([
             if (init_data.item.bargain) {
                 // 判断有没有砍到底价
                 var _amplitude = _this.computeBargainPrice();
-                if (Bargain.isReachBaseprice(init_data.item.min_price, _amplitude.price_origin, init_data.item.bargain.base_price)) {
-                    $(".j_bargain_reachbaseprice").show();
+
+                // 判断是否过期
+                var _curDateTime = Base.others.getCurDateTime();
+                var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
+                var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
+                if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                    $(".j_bargain_reachbaseprice").hide();
                     $(".j_bargain_btn_self").hide();
                     $(".j_bargain_btn_continue").hide();
+                    $(".j_bargain_tip").hide();
+                    $(".bargain-tip-txt-how").hide();
                 } else {
-                    $(".j_bargain_reachbaseprice").hide();
-                    // 判断自己有没有砍一刀
-                    // 判断是不是同一活动
-                    // 同一个活动
-                    if (_this.checkIsBargainSelf()) {
-                        // 有的话 显示继续砍价按钮 更新价格视图
-                        $(".price").html(_this.transPriceByBargain());
-                        $(".j_bargain_btn_continue").show();
+                    if (Bargain.isReachBaseprice(init_data.item.min_price, _amplitude.price_origin, init_data.item.bargain.base_price)) {
+                        $(".j_bargain_reachbaseprice").show();
                         $(".j_bargain_btn_self").hide();
-                    } else {
-                        // 没有 显示我要砍价
                         $(".j_bargain_btn_continue").hide();
-                        $(".j_bargain_btn_self").show();
-                    }
-                }
-
-                //判断是否登录
-                if (_this.loginResultPackage.result) {
-                    // 如果已登录 且有 砍价活动 则请求h5 砍价活动明细 并保存到明细中
-                    var _selfPrice = 0;
-                    if (_this.bargainCache.find("bargain_price_self")) {
-                        if (_this.bargainCache.find("bargain_price_self")[init_data.item.bargain.id]) {
-                            _selfPrice = _this.bargainCache.find("bargain_price_self")[init_data.item.bargain.id].amplitudeSelfPrice || 0;
+                    } else {
+                        $(".j_bargain_reachbaseprice").hide();
+                        // 判断自己有没有砍一刀
+                        // 判断是不是同一活动
+                        // 同一个活动
+                        if (_this.checkIsBargainSelf()) {
+                            // 有的话 显示继续砍价按钮 更新价格视图
+                            $(".price").html(_this.transPriceByBargain());
+                            $(".j_bargain_btn_continue").show();
+                            $(".j_bargain_btn_self").hide();
+                        } else {
+                            // 没有 显示我要砍价
+                            $(".j_bargain_btn_continue").hide();
+                            $(".j_bargain_btn_self").show();
                         }
                     }
-                    var _self_bargain_price = _selfPrice;
-                    _this.updateRemoteBargainPrice(_self_bargain_price);
-                } else {
-                    // 如果没有登录的话 先检查有没有本地砍价 有的话 显示继续砍价按钮 没有 显示我要砍价
-                }
 
+                    //判断是否登录
+                    if (_this.loginResultPackage.result) {
+                        // 如果已登录 且有 砍价活动 则请求h5 砍价活动明细 并保存到明细中
+                        var _selfPrice = 0;
+                        if (_this.bargainCache.find("bargain_price_self")) {
+                            if (_this.bargainCache.find("bargain_price_self")[init_data.item.bargain.id]) {
+                                _selfPrice = _this.bargainCache.find("bargain_price_self")[init_data.item.bargain.id].amplitudeSelfPrice || 0;
+                            }
+                        }
+                        var _self_bargain_price = _selfPrice;
+                        _this.updateRemoteBargainPrice(_self_bargain_price);
+                    } else {
+                        // 如果没有登录的话 先检查有没有本地砍价 有的话 显示继续砍价按钮 没有 显示我要砍价
+                    }
+                    _this.handleFn();
+                }
             }
-            _this.handleFn();
+            
         },
         showFriendHelpList: function (bargainDetail) {
             var _bargainHelpFriends = bargainDetail.bargain_detail || [];
@@ -162,7 +175,7 @@ define([
                         bargain_inv_url: _this.bargainCache.find("remote_bargain_detail").bargain_share_url,
                         c_fn: function () {
                             //判断是否用户有手机号 如果有 则不提示 如果没有则提示
-                            if(!_this.loginResultPackage.info.telephone){
+                            if (!_this.loginResultPackage.info.telephone) {
                                 _this.submitBargainPhone = Dialog.dialog({
                                     body_txt: '<div>' +
                                         '<div class="">' + Lang.BARGAIN_SHARE_AFTER_PHONE + '</div>' +
@@ -195,10 +208,10 @@ define([
                 //获取手机号
                 var _bargainTelphone = $.trim($(".j_bargain_inv_telphone").val());
                 //校验手机号 TODO
-                if(!_bargainTelphone){
+                if (!_bargainTelphone) {
                     Dialog.tip({
-                        body_txt:Lang.H5_VALIDATOR_TEL,
-                        can_exist:true
+                        body_txt: Lang.H5_VALIDATOR_TEL,
+                        can_exist: true
                     })
                     return;
                 }
