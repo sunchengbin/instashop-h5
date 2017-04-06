@@ -233,11 +233,11 @@ function getAfterBargainPrice($data){
     if(!$item.sku){
         //没有sku
         $afterPrice = intval($item['min_price'])-intval($data['bargain_result']);
-        return "Rp "+priceFormat($afterPrice);
+        return "Rp ".priceFormat($afterPrice);
     }else{
         $afterMinPrice = intval($item['min_price'])-intval($data['bargain_result']);
         $afterMaxPrice = intval($item['max_price'])-intval($data['bargain_result']);
-        return "Rp "+priceFormat($afterMinPrice)+'- '+priceFormat($afterMaxPrice);
+        return "Rp ".priceFormat($afterMinPrice)+'- '.priceFormat($afterMaxPrice);
     }
 }
 
