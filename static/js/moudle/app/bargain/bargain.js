@@ -45,6 +45,7 @@ define([
                     $(".j_bargain_tip").hide();
                     $(".bargain-tip-txt-how").hide();
                 } else {
+                    // 检查是否砍到底价
                     if (Bargain.isReachBaseprice(init_data.item.min_price, _amplitude.price_origin, init_data.item.bargain.base_price)) {
                         $(".j_bargain_reachbaseprice").show();
                         $(".j_bargain_btn_self").hide();
@@ -353,6 +354,7 @@ define([
             };
         }
     }
+    // 检查本地存储和接口返回的活动是否为同一活动
     Bargain.checkIsSameBargain = function () {
         var isSame = false;
         var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
@@ -372,6 +374,7 @@ define([
         }
         return isSame;
     }
+    // 检查是否含有砍价活动商品
     Bargain.checkIsHaveBargainItem = function (items) {
         var isHave = false;
         if (items) {
@@ -384,6 +387,7 @@ define([
         }
         return isHave;
     }
+    // 检查是否砍到了底价
     Bargain.isReachBaseprice = function (itemprice, amplitude, baseprice) {
         var isReach = false;
         isReach = (~~itemprice - ~~amplitude) <= ~~baseprice;

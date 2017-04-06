@@ -203,7 +203,7 @@
     {if $BARGAIN_INVITE_DETAIL.bargain_detail}
     <div class="bargain-list">
         <div class="title">
-            砍价榜[文案还没给]
+            Penawarku
         </div>
         <div class="content">
             <ul>
