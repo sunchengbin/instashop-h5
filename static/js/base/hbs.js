@@ -241,16 +241,6 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                         return a - b;
                     });
 
-                    // 如果砍到底价了 也只显示1行
-                    var bargainCache = new Cache({
-                        namespace: "BargainCache",
-                        type: "local"
-                    });
-                    var fudu = ~~bargainCache.find("remote_bargain_detail").bargain_result;
-                    if (Bargain.isReachBaseprice(data.min_price, fudu, data.bargain.base_price)) {
-                        return 'Rp ' + Base.others.priceFormat(sku_price[0]);
-                    }
-
                     return 'Rp ' + Base.others.priceFormat(sku_price[0]) + '-' + Base.others.priceFormat(sku_price[(sku_price.length - 1)]);
                 }
 
