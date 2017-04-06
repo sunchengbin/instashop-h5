@@ -186,7 +186,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                             show_footer: false,
                             body_fn: function () {
                                 // 回填价格
-                                $(".j_bargain_amplitude_price").text("Rp " + Base.othes.priceFormat(obj.price));
+                                $(".j_bargain_amplitude_price").text("Rp " + Base.others.priceFormat(obj.price));
                             },
                             c_fn: function () {
                                 location.reload();

@@ -48,3 +48,11 @@
 .bargain_inv_operate a {
     width: 25%;
 }
+.bargain-howprice-wrap {
+    text-align: center;
+}
+
+.bargain-howprice-wrap p img {
+    width: 5rem;
+    height: 5rem;
+}
