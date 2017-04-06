@@ -57,6 +57,9 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                             if (Object.keys(_this.carts).length == 1) {
                                 return false;
                             } else {
+                                if (!!price_data.price_info.shop_discount) {
+                                    return (price_data.price_info.shop_discount.length != 0)
+                                }
                                 return true;
                             }
                         }
