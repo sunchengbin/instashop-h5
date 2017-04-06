@@ -162,7 +162,7 @@ define([
                         bargain_inv_url: _this.bargainCache.find("remote_bargain_detail").bargain_share_url,
                         c_fn: function () {
                             //判断是否用户有手机号 如果有 则不提示 如果没有则提示
-                            if (!_this.loginResultPackage.info.telephone && _this.loginResultPackage.info.telephone.length == 0) {
+                            if(!_this.loginResultPackage.info.telephone){
                                 _this.submitBargainPhone = Dialog.dialog({
                                     body_txt: '<div>' +
                                         '<div class="">' + Lang.BARGAIN_SHARE_AFTER_PHONE + '</div>' +
@@ -173,6 +173,17 @@ define([
                                     show_top: false
                                 })
                             }
+                            // if (!_this.loginResultPackage.info.telephone && _this.loginResultPackage.info.telephone.length == 0) {
+                            //     _this.submitBargainPhone = Dialog.dialog({
+                            //         body_txt: '<div>' +
+                            //             '<div class="">' + Lang.BARGAIN_SHARE_AFTER_PHONE + '</div>' +
+                            //             '<div class="bargain-phone-input clearfix ins-m-t-3"><span class="fl">+62</span> <input type="text" class="j_bargain_inv_telphone fr" /></div>' +
+                            //             '<div class="bargain-phone-button j_bargain_inv_submit_telphone">Ya</div>' +
+                            //             '</div>',
+                            //         show_footer: false,
+                            //         show_top: false
+                            //     })
+                            // }
                         }
                     });
                 } else {
