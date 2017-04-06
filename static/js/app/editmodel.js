@@ -249,6 +249,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 callback: function (dom) {
                     var _href = location.href,
                         _skin = $(dom).attr('data-skin');
+                    PaqPush && PaqPush('切换皮肤',_skin);
                     switch(_skin){
                         case 'first':
                             location.href = _this.changeSkinUrlPram(_href,'first',1);
@@ -369,6 +370,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     wduss : _seller_info.wduss
                 }
             };
+            PaqPush && PaqPush('保存皮肤',_skin_info);
             Ajax.postJsonp({
                 url :Config.actions.saveTemplate,
                 data : {param:JSON.stringify(_req_data)},

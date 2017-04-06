@@ -1,18 +1,18 @@
 {include file="header.tpl"}
 <body data-spider="yngoklm4">
-<div class="change-skin-warp">
+<div class="change-skin-warp" data-spider="change-skin-warp">
     <div class="clearfix">
         <button class="j_change_btn fr" data-skin="default">Ganti</button>
         <p>Template: Standar</p>
     </div>
 </div>
-<div class="change-skin-warp">
+<div class="change-skin-warp" data-spider="change-skin-warp">
     <div class="clearfix">
         <button class="j_change_btn fr" data-skin="first">Ganti</button>
         <p>Template: Pinky Spring</p>
     </div>
 </div>
-<div class="change-skin-warp">
+<div class="change-skin-warp" data-spider="change-skin-warp">
     <div class="clearfix">
         <button class="j_change_btn fr" data-skin="second">Ganti</button>
         <p>Template: Black Spring</p>
