@@ -293,7 +293,17 @@ define([
         getBargainAmplitudePrice: function () {
             var _bargain_result_price, _this = this;
             if (_this.loginResultPackage.result) {
-                _bargain_result_price = _this.bargainCache.find("remote_bargain_detail") ? _this.bargainCache.find("remote_bargain_detail").bargain_result : 0;
+                // 判断是不是1个活动
+                var _localRemoteCache = _this.bargainCache.find("remote_bargain_detail");
+                if(_localRemoteCache){
+                    if(_localRemoteCache.id==init_data.item.bargain.id){
+                        _bargain_result_price = _localRemoteCache.bargain_result;
+                    }else{
+                        _bargain_result_price = 0;
+                    }
+                }else{
+                    _bargain_result_price = 0;
+                }
             } else {
                 var _selfPrice = 0;
                 if (_this.bargainCache.find("bargain_price_self")) {
