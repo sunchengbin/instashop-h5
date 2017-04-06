@@ -595,7 +595,7 @@ define(['base'], function (Base) {
             "BARGAIN_BTN_CLICK_BODY": "Promo ini sudah berakhir. Nantikan promo menarik lainnya dari kami",
             "BARGAIN_BTN_CLICK_TOSHOP": "Lihat Produk Kami",
             "BARGAIN_BTN_CLICK_IKONW": "Saya Mengerti",
-            "BARGAIN_LIMIT": "Maksimal Pembelian 1 Pcs",
+            "BARGAIN_LIMIT": "Maksimal Pembelian 1 Pc",
             "BARGAIN_SHAREPAGE_HEADER_PART": "Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa beli barang ini dengan harga Rp 100.000!"
         }
     };

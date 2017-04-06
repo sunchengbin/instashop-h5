@@ -87,11 +87,16 @@
 
         {*砍价活动功能区begin*}
         {if $INDEX_DATA.item.bargain}
+        <div class="ins-btn ins-btn-gray j_bargain_reachbaseprice">
+        Sudah Harga Termurah
+        </div>
         <div class="ins-btn ins-btn-orange j_bargain_btn_self">
         Tawar Sekarang
         </div>
         <div class="ins-btn ins-btn-orange j_bargain_btn_continue">
         Tawar Lagi
+        </div>
+        <div class="bargain-friend-list-container">
         </div>
         {*<div class="j_bargain_tip_unlogin_price">
             Jika kamu sudah berpartisipasi dalam promo "Tawar Harga" ini, <span class="ins-color-hightlight-blue j_user_login">login</span> untuk melihat status terbaru
@@ -100,6 +105,9 @@
         Panduan Tawar Harga ?
         </p>
         {/if}
+
+
+
         {*砍价活动功能区end*}
         {include file="preferential.tpl"}
         <a href="javascript:;" data-url="{$INDEX_DATA.item.shop.url}" spm-auto="去首页" spm-click="go-home" class="go-shop j_shop_info">

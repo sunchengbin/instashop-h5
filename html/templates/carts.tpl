@@ -47,7 +47,7 @@
                                 {else}
                                     <input class="fl j_item_num" type="text" data-price="{$carts.item.discount.price}" value="{$carts.num}" readonly="readonly"/>
                                 {/if}
-                                <span class="j_add_btn" data-id="{$carts|getCartId}" data-stock="{$carts|getDiscountStock}">
+                                <span class="j_add_btn" data-limitto="{$carts|getBargainLimit}" data-id="{$carts|getCartId}" data-stock="{$carts|getDiscountStock}">
                                     <i class="icon iconfont icon-add-font"></i>
                                 </span>
                             </div>
@@ -65,7 +65,7 @@
                                     <i class="icon iconfont icon-minus-font"></i>
                                 </span>
                                 <input class="fl j_item_num" type="text" data-price="{$carts|getCartPrice}" value="{$carts.num}" readonly="readonly"/>
-                                <span class="j_add_btn" data-id="{$carts|getCartId}" data-stock="{$carts|getCartStock}">
+                                <span class="j_add_btn" data-limitto="{$carts|getBargainLimit}" data-id="{$carts|getCartId}" data-stock="{$carts|getCartStock}">
                                     <i class="icon iconfont icon-add-font"></i>
                                 </span>
                             </div>

@@ -1,4 +1,4 @@
-define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS, Base, Config, Lang, Item, Debug) {
+define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache'], function (HBS, Base, Config, Lang, Item, Debug, Cache) {
     function isEmpty(val) {
         var x = false;
         switch (typeof val) {
@@ -162,7 +162,9 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
         return Base.others.priceFormat(price);
     });
 
+    // 购买选择框
     HBS.registerHelper('itemprice', function (data) {
+        // 有折扣活动
         if (data.is_discount) {
             if (data.discounting) {
                 if (data.discount.discount_type == "percent") {
@@ -181,6 +183,56 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
             }
             return '';
         }
+        // 砍价活动
+        if (!!data.bargain) {
+            // 区分sku
+            // 有sku
+            if (data.sku && data.sku.length < 2 && data.sku.length != 0) {
+                if (data.sku.length == 1) {
+                    var sku_price = [];
+                    Base.others.each(data.sku, function (item, i) {
+                        if (Number(item.bargain.price) > 0) {
+                            sku_price.push(Number(item.bargain.price));
+                        }
+                    });
+                    sku_price.sort(function (a, b) {
+                        return a - b;
+                    });
+                    return 'Rp ' + Base.others.priceFormat(sku_price[0]);
+                } else {
+                    var sku_price = [];
+                    Base.others.each(data.sku, function (item, i) {
+                        if (Number(item.bargain.price) > 0) {
+                            sku_price.push(Number(item.bargain.price));
+                        }
+                    });
+                    sku_price.sort(function (a, b) {
+                        return a - b;
+                    });
+                    return 'Rp ' + Base.others.priceFormat(sku_price[0]) + '-' + Base.others.priceFormat(sku_price[(sku_price.length - 1)]);
+                }
+            }
+
+            if (data.sku && data.sku.length != 0 && data.sku.length >= 2) {
+                var sku_price = [];
+                Base.others.each(data.sku, function (item, i) {
+                    if (Number(item.bargain.price) > 0) {
+                        sku_price.push(Number(item.bargain.price));
+                    }
+                });
+                sku_price.sort(function (a, b) {
+                    return a - b;
+                });
+                return 'Rp ' + Base.others.priceFormat(sku_price[0]) + '-' + Base.others.priceFormat(sku_price[(sku_price.length - 1)]);
+            }
+
+            if (data.sku.length == 0) {
+                return 'Rp ' + Base.others.priceFormat(data.bargain.price);
+            }
+
+        }
+
+        // 正常
         if (data.sku && data.sku.length < 2) {
             if (data.price > 0) {
                 return 'Rp ' + Base.others.priceFormat(data.price);
@@ -226,6 +278,8 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
                     } else {
                         data_price = data.discount.price;
                     }
+                } else if (!!data.bargain) {
+                    data_price = item.bargain.price;
                 } else {
                     data_price = item.price;
                 }
@@ -262,6 +316,9 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
                 '<p class="name">' + carts[item].item.item_name + '</p>' +
                 (carts[item].sku ? '<p class="type">' + Lang.H5_SKU + ': ' + carts[item].sku.title + '</p>' : '') +
                 '<p class="num">' + Lang.H5_QUANTITY + ': ' + carts[item].num + '</p>';
+
+
+
             if (carts[item].item.is_discount && carts[item].item.discounting) {
                 if (carts[item].item.discount.discount_type == "percent") {
                     //区分sku
@@ -273,6 +330,30 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
                 } else {
                     _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
                 }
+            } else if (!!carts[item].item.bargain) { // 砍价活动价格
+                //区分sku
+                // 有没有砍过
+                var _bargainCache = Cache.getSpace("BargainCache") || new Cache({
+                    namespace: "BargainCache",
+                    type: "local"
+                });
+                var _isBargainSelf = false;
+                if (_bargainCache.find('bargain_price_self') && _bargainCache.find('bargain_price_self')[carts[item].item.bargain.id] && _bargainCache.find('bargain_price_self')[carts[item].item.bargain.id].amplitudeSelfPrice) {
+                    _isBargainSelf = true;
+                }
+                if (_isBargainSelf) {
+                    if (carts[item].sku && carts[item].sku.id) {
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.price) + '</p>';
+                    } else {
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.bargain.price) + '</p>';
+                    }
+                } else {
+                    var _price = (carts[item].sku && carts[item].sku.id) ? carts[item].sku.price : carts[item].item.price;
+                    if (_price >= 0) {
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(_price) + '</p>';
+                    }
+                }
+
             } else {
                 var _price = (carts[item].sku && carts[item].sku.id) ? carts[item].sku.price : carts[item].item.price;
                 if (_price >= 0) {
@@ -484,6 +565,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
                     '<p class="name">' + carts[item].item.item_name + '</p>' +
                     (carts[item].sku ? '<p class="type">' + Lang.H5_SKU + ': ' + carts[item].sku.title + '</p>' : '') +
                     '<p class="num">' + Lang.H5_QUANTITY + ': ' + carts[item].num + '</p>';
+                // 折扣活动    
                 if (carts[item].item.is_discount && carts[item].item.discounting) {
                     if (carts[item].item.discount.discount_type == "percent") {
                         //区分sku
@@ -495,7 +577,23 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug'], function (HBS,
                     } else {
                         _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
                     }
+                } else if (!!carts[item].item.bargain) { //砍价活动
+                    //区分sku
+                    var _isBargainSelf = localStorage.getItem('bargain_price_self');
+                    if (_isBargainSelf) {
+                        if (carts[item].sku && carts[item].sku.id) {
+                            _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].sku.price) + '</p>';
+                        } else {
+                            _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.bargain.price) + '</p>';
+                        }
+                    } else {
+                        // 正常
+                        var _price = (carts[item].sku && carts[item].sku.id) ? carts[item].sku.price : carts[item].item.price;
+                        _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(_price) + '</p>';
+                    }
+
                 } else {
+                    // 正常
                     var _price = (carts[item].sku && carts[item].sku.id) ? carts[item].sku.price : carts[item].item.price;
                     _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(_price) + '</p>';
 

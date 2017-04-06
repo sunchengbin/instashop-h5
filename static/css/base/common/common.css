@@ -2,64 +2,108 @@
  * Created by sunchengbin on 16/3/9.
  * 项目中通用的东西
  */
-html { font-size: 62.5%; }
+
+html {
+  font-size: 62.5%;
+}
+
 @media only screen and (min-width: 374px) {
-    html { font-size: 72%!important }
+  html {
+    font-size: 72%!important
+  }
 }
+
 @media only screen and (min-width: 413px) {
-    html { font-size: 80%!important }
+  html {
+    font-size: 80%!important
+  }
 }
+
 @media only screen and (min-width: 481px) {
-    html { font-size: 94%!important }
+  html {
+    font-size: 94%!important
+  }
 }
+
 @media only screen and (min-width: 561px) {
-    html { font-size: 109%!important }
+  html {
+    font-size: 109%!important
+  }
 }
+
 @media only screen and (min-width: 641px) {
-    html { font-size: 125%!important }
+  html {
+    font-size: 125%!important
+  }
 }
+
 @media(orientation: landscape) and (min-width: 481px) {
-    html { font-size: 62.5% !important; }
+  html {
+    font-size: 62.5% !important;
+  }
 }
-body, button, input, select,option,td, textarea /* for ie */ {
-    font: 12px/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+body,
+button,
+input,
+select,
+option,
+td,
+textarea
+/* for ie */
+
+{
+  font: 12px/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-.fl{
-    float:left;
+
+.fl {
+  float: left;
 }
-.fr{
-    float:right;
+
+.fr {
+  float: right;
 }
-img{
-    width: 100%;
-    vertical-align: middle;
+
+img {
+  width: 100%;
+  vertical-align: middle;
 }
-.block{
-    display: block;
+
+.block {
+  display: block;
 }
+
 .clearfix:after {
-    content: '\20';
-    display: block;
-    height: 0;
-    clear: both;
+  content: '\20';
+  display: block;
+  height: 0;
+  clear: both;
 }
+
 .clearfix {
-    *zoom: 1;
+  *zoom: 1;
 }
+
 @media only screen and (min-width: 641px) {
-    body {
-        max-width: 640px;
-        margin: 0 auto;
-        background-color: #F5F5F5;
-    }
-    body .buy-box,body .logistics-plug,body .buy-plug,body .shop-header-nav,body footer,body .prove-btn,body .index-footer{
-        max-width: 640px;
-        left: 50%;
-        margin-left: -320px;
-    }
-    body .address-list{
-        max-width: 640px;
-    }
+  body {
+    max-width: 640px;
+    margin: 0 auto;
+    background-color: #F5F5F5;
+  }
+  body .buy-box,
+  body .logistics-plug,
+  body .buy-plug,
+  body .shop-header-nav,
+  body footer,
+  body .prove-btn,
+  body .index-footer {
+    max-width: 640px;
+    left: 50%;
+    margin-left: -320px;
+  }
+  body .address-list {
+    max-width: 640px;
+  }
 }
 
 
@@ -422,17 +466,21 @@ img{
     clear: both;
   }
 }
+
 .ins-m-t-0 {
   margin-top: 0px!important;
 }
+
 .ins-m-t-2 {
   margin-top: 1rem;
 }
+
 .ins-m-t-3 {
   margin-top: 2rem!important;
 }
+
 .ins-m-b-2 {
-  margin-bottom:1rem!important;
+  margin-bottom: 1rem!important;
 }
 
 .ins-text-left {
@@ -440,17 +488,29 @@ img{
 }
 
 .ins-color-hightlight-blue {
-  color:#4990E2;
+  color: #4990E2;
 }
+
 .ins-btn {
   text-align: center;
 }
+
 .ins-btn-orange {
-  background:#F5A623;
-  color:#ffffff;
+  background: #F5A623;
+  color: #ffffff;
   font-size: 16px;
-  height:4.2rem;
+  height: 4.2rem;
   line-height: 4.2rem;
-  width:100%;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.ins-btn-gray {
+  color: #999;
+  background-color: #eee;
+  font-size: 16px;
+  height: 4.2rem;
+  line-height: 4.2rem;
+  width: 100%;
   border-radius: 2px;
 }

@@ -5,7 +5,7 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'item', 'dialog', 'debug', 'oauth', 'cache'], function (Lang, Lazyload, Ajax, Config, Base, Common, Fastclick, Item, Dialog, Debug, Oauth, Cache) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'item', 'dialog', 'debug', 'oauth', 'cache', 'sharebargain'], function (Lang, Lazyload, Ajax, Config, Base, Common, Fastclick, Item, Dialog, Debug, Oauth, Cache, Sharebargain) {
     var ITEM = {
         init: function () {
             var _this = this;
@@ -15,6 +15,9 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
             // 判断是否登录
             _this.loginResultPackage = _this.checkIsLogin();
             $(".price").html(_this.transPriceByBargain(~~init_data.bargain_invite_detail.bargain_result));
+            _this.bargainInviteStorage = new Cache({
+                namespace: "BargainInvite"
+            });
             _this.handleFn();
         },
         getInviteId: function () { //获取url
@@ -76,13 +79,12 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
             } else {
                 amplitudePrice = _this.getBargainAmplitudePrice();
             }
-            // 如果不是sku 
-            if (!init_data.bargain_invite_detail.item_info.sku.length > 0) {
+
+            if (~~init_data.bargain_invite_detail.item_info.min_price == ~~init_data.bargain_invite_detail.item_info.max_price) {
                 var _after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.price - ~~amplitudePrice);
                 var _item_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.price);
                 _htm = "Rp " + _after_bargain_price + " <span class='bargain-origin-price'> Rp " + _item_price + "</span>";
             } else {
-                // 如果存在sku
                 var _min_after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.min_price - ~~amplitudePrice);
                 var _max_after_bargain_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.max_price - ~~amplitudePrice);
                 var _min_price = Base.others.priceFormat(~~init_data.bargain_invite_detail.item_info.min_price);
@@ -91,6 +93,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 _maxPriceBargainHtm = "<p>Rp " + _max_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _max_price + "</span></p>";
                 _htm = _minPriceBargainHtm + _maxPriceBargainHtm;
             }
+
             return _htm;
         },
         createBargainPriceDialogHtm: function () {
@@ -109,7 +112,19 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
             $("body").on("click", ".j_bargain_btn_invite_help", function () {
                 if (_this.loginResultPackage.result) {
                     // 登录了
-                    _this.cutPrice();
+                    var _localBargainInviteStorage = _this.bargainInviteStorage.find("bargainInvite") || {};
+                    // 判断是否砍过
+                    if (_localBargainInviteStorage[init_data.bargain_invite_detail.bargain_info.id]) {
+                        // 砍过 弹出分享框
+                        Sharebargain({
+                            title: Lang.BARGAIN_DETAIL_INVITE_TIP,
+                            content: "Hi, aku lagi ikutan promo tawar " + init_data.bargain_invite_detail.item_info.item_name + " sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
+                            bargain_inv_url: location.href
+                        });
+
+                    } else {
+                        _this.cutPrice();
+                    }
                 } else {
                     // 未登录
                     Oauth.openDialog();
@@ -147,26 +162,27 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 timeout: 30000,
                 success: function (obj) {
                     if (200 == obj.code) {
-                        console.log(obj)
+                        // 本地存储砍了是否砍过
+                        var _curBargain = {};
+                        _curBargain[init_data.bargain_invite_detail.bargain_info.id] = init_data.bargain_invite_detail.bargain_info;
+                        _this.bargainInviteStorage.set("bargainInvite", _curBargain);
+                        // 弹出砍了多少钱
                         Dialog.dialog({
                             body_txt: _this.createBargainPriceDialogHtm(),
                             show_footer: false,
                             body_fn: function () {
-                                // 回填自砍一刀的
-                                $(".j_bargain_amplitude_price").text(_amplitude.price_format);
+                                // 回填价格
+                                $(".j_bargain_amplitude_price").text("Rp " + Base.othes.priceFormat(obj.price));
                             },
                             c_fn: function () {
                                 location.reload();
                             }
                         })
                     } else {
-                        Dialog.alert({
-                            top_txt: '', //可以是html
-                            cfb_txt: Lang.H5_FRESHEN,
-                            body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
-                            cf_fn: function () {
-                                location.reload();
-                            }
+                        Sharebargain({
+                            title: Lang.BARGAIN_DETAIL_INVITE_TIP,
+                            content: "Hi, aku lagi ikutan promo tawar " + init_data.bargain_invite_detail.item_info.item_name + " sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
+                            bargain_inv_url: location.href
                         });
                     }
                 }

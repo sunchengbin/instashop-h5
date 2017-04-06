@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/13.
  */
-require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug', 'favorable', 'cache'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug, Favorable, Cache) {
+require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug', 'favorable', 'cache', 'bargain'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug, Favorable, Cache, Bargain) {
     var OrderConfirmHtm = {
         init: function () {
             var _this = this;
@@ -46,9 +46,21 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     nofree: _express_free == 0,
                     express: (_express_free == 0 && _this.testExpress(express_data.express_fee_list.list)),
                     isHaveReduc: (function () {
-                        if (!!price_data.price_info.shop_discount) {
-                            return (price_data.price_info.shop_discount.length != 0)
+                        // 是否含有参加砍价活动的商品
+                        if (!Bargain.checkIsHaveBargainItem(_this.carts)) {
+                            // 没有砍价活动的
+                            if (!!price_data.price_info.shop_discount) {
+                                return (price_data.price_info.shop_discount.length != 0)
+                            }
+                        } else {
+                            // 如果有 并且只有一个商品 那么要返回false 否则返回true 
+                            if (Object.keys(_this.carts).length == 1) {
+                                return false;
+                            } else {
+                                return true;
+                            }
                         }
+
                         return false;
                     })()
                 });
@@ -61,19 +73,23 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 });
             }
 
-            //添加对优惠券处理 -lanchenghao@weidian.com
-            _this.favorablePlugin = Favorable({
-                el: ".order-info",
-                price: _sum,
-                seller_id: JSON.parse(_data).ShopInfo.id,
-                usehandle: function (favorablePrice, favorableCode) {
-                    var _postPrice = $(".j_post").attr("data-price") || 0,
-                        _price = _sum - Number(favorablePrice) + Number(_postPrice);
-                    _this.favorableCode = favorableCode;
-                    _price = _price < 0 ? 0 : _price;
-                    $(".j_sum").text('Rp ' + Base.others.priceFormat(_price));
-                }
-            });
+            // 添加对优惠券处理 -lanchenghao@weidian.com
+            // 如果该有商品为砍价商品
+            if (!Bargain.checkIsHaveBargainItem(_this.carts)) {
+                _this.favorablePlugin = Favorable({
+                    el: ".order-info",
+                    price: _sum,
+                    seller_id: JSON.parse(_data).ShopInfo.id,
+                    usehandle: function (favorablePrice, favorableCode) {
+                        var _postPrice = $(".j_post").attr("data-price") || 0,
+                            _price = _sum - Number(favorablePrice) + Number(_postPrice);
+                        _this.favorableCode = favorableCode;
+                        _price = _price < 0 ? 0 : _price;
+                        $(".j_sum").text('Rp ' + Base.others.priceFormat(_price));
+                    }
+                });
+            }
+
             _this.handleFn();
         },
         //1免邮 0付费
@@ -311,20 +327,42 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 var _items = _carts;
                 for (var item in _items) {
                     if (_items[item].sku) {
-                        _arr.push({
-                            itemID: _items[item].item.id,
-                            itemName: _items[item].item.item_name,
-                            itemNum: _items[item].num,
-                            item_sku: _items[item].sku.id,
-                            discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                        });
+                        if (_items[item].item.bargain) {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                item_sku: _items[item].sku.id,
+                                bargain_price: _items[item].sku.bargain.price,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        } else {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                item_sku: _items[item].sku.id,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        }
                     } else {
-                        _arr.push({
-                            itemID: _items[item].item.id,
-                            itemName: _items[item].item.item_name,
-                            itemNum: _items[item].num,
-                            discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                        });
+                        if (_items[item].item.bargain) {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                item_sku: _items[item].sku.id,
+                                bargain_price: _items[item].bargain.price,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        } else {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        }
                     }
                 }
             }

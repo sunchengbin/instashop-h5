@@ -151,10 +151,10 @@
         <div class="bargain-header-desc">
             {*无法砍价 已经买了 bargain_bought_num == 0 *}
             {if $BARGAIN_INVITE_DETAIL.bargain_bought_num gt 0 } 
-                Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa belanja {$BARGAIN_INVITE_DETAIL.item_info.item_name} Plus dengan harga Rp 100.000!
+                Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa belanja {$BARGAIN_INVITE_DETAIL.item_info.item_name} Plus dengan harga Rp {$BARGAIN_INVITE_DETAIL.last_buy.discount_price|priceFormat}!
             {else}
-                    {*无法砍价 已经砍到底价了 item.min_price - bargain_result == base_price *}
                 {if $BARGAIN_INVITE_DETAIL|confirmIsReachBasepirce}
+                    {*无法砍价 已经砍到底价了 item.min_price - bargain_result == base_price *}
                     Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa belanja hemat dengan harga Rp {$BARGAIN_INVITE_DETAIL.bargain_info.base_price|priceFormat}!
                 {else}
                     {*可以砍价 已经坎到了多少价*}
@@ -179,14 +179,23 @@
             <p class="price">
             </p>
             <div class="">
-                {if $BARGAIN_INVITE_DETAIL.bargain_bought_num gt 0 }
+                {*判断是否到期*}
+                {if $BARGAIN_INVITE_DETAIL|checkIsBargainOverdue}
+                    <button class="j_bargain_btn_invite_help ins-btn-gray" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
+                    <button class="j_bargain_btn_invite_self ins-btn-gray" type="">Mau Beli Juga</button>
                 {else}
-                    {if $BARGAIN_INVITE_DETAIL|confirmIsReachBasepirce}
+                    {if $BARGAIN_INVITE_DETAIL.bargain_bought_num gt 0 }
                     {else}
-                        <button class="j_bargain_btn_invite_help" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
+                        {*是否到底价*}
+                        {if $BARGAIN_INVITE_DETAIL|confirmIsReachBasepirce}
+                        {else}
+                            <button class="j_bargain_btn_invite_help" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
+                        {/if}
+                            
                     {/if}
+                    <button class="j_bargain_btn_invite_self" type="">Mau Beli Juga</button>
                 {/if}
-                <button class="j_bargain_btn_invite_self" type="">Mau Beli Juga</button>
+                
             </div>
         </div>
     </div>
