@@ -433,7 +433,7 @@ define(function () {
             var _month = _year_month_day.split("/")[1];
             var _day = _year_month_day.split("/")[0];
             var _hour_minute = _array[1].replace(".",":");
-            dateStr = _month+"/"+_day+"/"+_year+"-"+_hour_minute;
+            dateStr = _month+"/"+_day+"/"+_year+" "+_hour_minute;
             var _date = parseInt(new Date(dateStr).getTime()/1000);
             return _date;
         },
