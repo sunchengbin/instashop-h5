@@ -99,7 +99,7 @@
         </div>
     </div>
 </section>
-<section class="buy-box" data-spider="foot-nav">
+<section class="buy-box b-top" data-spider="foot-nav">
     {if $INDEX_DATA.item.shop.line_url} 
         {if $INDEX_DATA.item.shop.phone}
         <a href="javascript:;" data-type="all" spm-auto="联系卖家" spm-click="get-contact" class="j_show_contact ser-box fl">

@@ -144,27 +144,27 @@ body{
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid $border-color;
 }
 .logistics-info{
-  border-top: #ececec 1px solid;
-  padding: .5rem 0;
-  line-height: 2.4rem;
-  font-size: 14px;
+  border-top: $border-color 1px solid;
+  @include remCalc(padding,30 0);
+  line-height:2;
+  @include fontDpr(14px);
 }
 .logistics-info a{
-  color: #666;
+  color: $txt-color;
   display: block;
   position: relative;
 }
 .logistics-info p{
-  margin-right:2rem;
+  @include remCalc(margin-right,60);
 }
 .logistics-info i{
   position: absolute;
   right: 0;
   top: 50%;
-  margin-top: -1rem;
+  @include remCalc(margin-top,-30);
 }
 .logistics-info p:nth-child(2){
   color: #43CB9C;
@@ -174,7 +174,7 @@ body{
 }
 .order-state p a{
   display: block;
-  color: #666;
+  color: $txt-color;
 }
 .order-state i{
   @include fontDpr(12px);
@@ -210,11 +210,11 @@ body{
   float: left;
 }
 .buyer-note{
-  padding: 1rem;
-  background-color: #fff;
-  margin-bottom: 1rem;
-  font-size: 14px;
-  color: #666;
+  @include remCalc(padding,30);
+  background-color: $white;
+  @include remCalc(margin-bottom,30);
+  @include fontDpr(14px);
+  color: $txt-color;
 }
 .prove-btn{
   position: fixed;

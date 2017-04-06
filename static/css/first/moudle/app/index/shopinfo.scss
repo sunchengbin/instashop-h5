@@ -21,7 +21,7 @@
   line-height: 2;
 }
 .shopinfo-base p a {
-  color: #70CAFE;
+  color: $base-color;
 }
 .shopinfo-base p i{
   @include fontDpr(12px);
@@ -65,7 +65,7 @@
   @include fontDpr(14px);
 }
 .shopinfo-map .shopinfo-card-header i {
-  color: #70CAFE;
+  color: $base-color;
 }
 .shopinfo-store-banner li{
   @include remCalc(padding,8);

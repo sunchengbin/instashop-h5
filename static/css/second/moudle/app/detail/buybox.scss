@@ -19,7 +19,7 @@
 }
 .ser-box p{
   @include fontDpr(14px);
-  color: $gray-color;
+  color: $base-color;
   @include remCalc(margin-top,-20);
 }
 .ser-icon{
@@ -37,6 +37,7 @@
 }
 .have-contact a{
   width: 40%;
+  box-sizing: border-box;
 }
 .no-buy a{
   width: 80%;
@@ -52,4 +53,5 @@
 }
 .buy-now{
   background-color: $base-color;
+  border-left:1px solid $white;
 }

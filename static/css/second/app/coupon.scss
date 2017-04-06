@@ -51,7 +51,7 @@
   width: 0;
   height: 0;
   @include remCalc(border,15 solid);
-  border-color: $base-btn-color $base-btn-color $base-bg-color $base-btn-color;
+  border-color: $base-btn-color $base-btn-color #555 $base-btn-color;
   @include remCalc(top,-28);
   @include remCalc(left,50);
 }
@@ -59,7 +59,7 @@
   @include remCalc(padding,20 40);
 }
 .coupon-box-wraper{
-  background: url(../../../../images/first/coupon-card.png) no-repeat center;
+  background: url(../../../../images/second/coupon-card.png) no-repeat center;
   background-size: contain;
   @include remCalc(width,578);
   @include remCalc(height,200);

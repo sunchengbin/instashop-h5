@@ -33,8 +33,29 @@ body{
 }
 .item-out-stock i{
   @include fontDpr(40px);
-  color: #eee;
+  color: $btn-disable-color;
 }
 .item-out-stock p .btn{
   @include remCalc(margin,100 auto 0);
+}
+//优惠券和满减信息
+.reduc-box{
+  position: relative;
+}
+.info-box .reduc-box:first-child::before{
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  top: 0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+  z-index: 1;
+}
+.reduc-box-wrap>div::after{
+  top:0;
+  bottom: inherit;
+  border-color: $border-color;
 }
