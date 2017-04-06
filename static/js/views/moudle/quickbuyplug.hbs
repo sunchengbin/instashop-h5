@@ -1,0 +1,63 @@
+<section class="buy-plug j_buy_plug">
+    <div>
+        <div class="item-info-title clearfix">
+            <img src="{{item.img}}">
+            <div class="j_buy_info">
+                <p class="price j_buy_info_price">{{itempriceforquick item}}</p>
+                {{#empty item.sku}}
+                    {{#elt item.stock 9999999}}
+                        {{#eq item.stock 0}}
+                            <p class="title j_all_stock"></p>
+                        {{else}}
+                            <p class="title j_all_stock">{{lang.H5_STOCK}}: {{item.stock}}</p>
+                        {{/eq}}
+                    {{/elt}}
+                {{else}}
+                    {{#elt item.stock 9999999}}
+                        {{#eq item.stock 0}}
+                            <p class="title j_all_stock"></p>
+                        {{else}}
+                            <p class="title j_all_stock">{{lang.H5_STOCK}}: {{item.stock}}</p>
+                        {{/eq}}
+                    {{/elt}}
+                {{/empty}}
+
+                <p class="title j_buy_info_title"></p>
+            </div>
+            <i class="icon iconfont j_close_btn icon-cancel-font"></i>
+        </div>
+        {{#if item.sku}}
+        <div class="item-info-cont">
+            <p>Type Size</p>
+            <ul class="clearfix j_type">
+                {{{itemtypeforquick item}}}
+            </ul>
+        </div>
+        {{/if}}
+        <div class="item-info-num clearfix">
+            <div class="item-num-box">
+                {{#empty item.sku}}
+                    <span class="j_add_btn add-btn fr" data-limitto="{{item.bargain.limit_to}}" data-stock="{{item.stock}}">
+                        <i class="icon iconfont icon-add-font"></i>
+                    </span>
+                {{else}}
+                    <span class="j_add_btn add-btn fr" data-limitto="{{item.bargain.limit_to}}">
+                        <i class="icon iconfont icon-add-font"></i>
+                    </span>
+                {{/empty}}
+                <span class="j_reduce_btn reduce-btn fl">
+                    <i class="icon iconfont icon-minus-font"></i>
+                </span>
+                <input class="j_item_num" type="text" value="1" readonly="readonly"/>
+
+            </div>
+            <div class="title">{{lang.H5_QUANTITY}}</div>
+        </div>
+        {{#eq item.stock 0}}
+            <button class="btn cancel-btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
+        {{else}}
+            <button class="btn j_plug_submit" data-buynow="{{buyNow}}">{{lang.H5_CONFIRM}}</button>
+        {{/eq}}
+    </div>
+</section>
+<section class="buy-plug-cover j_buy_plug_cover"></section>

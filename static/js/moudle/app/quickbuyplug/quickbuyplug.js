@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/8/16.
  * 快速添加到
  */
-define(['common','base','hbs','text!views/moudle/buyplug.hbs','btn','dialog','lang','config','fastclick','contact'],function(Common,Base,Hbs,Buyplughtm,Btn,Dialog,Lang,Config,Fastclick,Contact){
+define(['common','base','hbs','text!views/moudle/quickbuyplug.hbs','btn','dialog','lang','config','fastclick','contact'],function(Common,Base,Hbs,Buyplughtm,Btn,Dialog,Lang,Config,Fastclick,Contact){
     var QuickBuyPlug = function(opts){
         var _this = this;
         _this.config = $.extend({

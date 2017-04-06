@@ -282,6 +282,61 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
         }
     });
 
+    // 购买选择框
+    HBS.registerHelper('itempriceforquick', function (data) {
+        // 有折扣活动
+        if (data.is_discount) {
+            if (data.discounting) {
+                if (data.discount.discount_type == "percent") {
+                    if (data.discount.min_discount_price == data.discount.max_discount_price) {
+                        return 'Rp ' + Base.others.priceFormat(data.discount.min_discount_price);
+                    } else {
+                        return 'Rp ' + Base.others.priceFormat(data.discount.min_discount_price) + "- " + Base.others.priceFormat(data.discount.max_discount_price);
+                    }
+                } else {
+                    if (data.discount.price > 0) {
+                        return 'Rp ' + Base.others.priceFormat(data.discount.price);
+                    }
+                }
+            } else {
+                return 'Rp ' + Base.others.priceFormat(data.discount.price);
+            }
+            return '';
+        }
+
+        // 正常
+        if (data.sku && data.sku.length < 2) {
+            if (data.price > 0) {
+                return 'Rp ' + Base.others.priceFormat(data.price);
+            }
+            return '';
+        } else {
+            var sku_price = [];
+            Base.others.each(data.sku, function (item, i) {
+                if (Number(item.price) > 0) {
+                    sku_price.push(Number(item.price));
+                } else {
+                    //sku_price.push(0);
+                }
+            });
+            sku_price.sort(function (a, b) {
+                return a - b;
+            });
+            if (sku_price[0] != sku_price[(sku_price.length - 1)]) {
+                return 'Rp ' + Base.others.priceFormat(sku_price[0]) + '-' + Base.others.priceFormat(sku_price[(sku_price.length - 1)]);
+            } else {
+                if (sku_price[0] == 0) {
+                    return '';
+                } else {
+                    return 'Rp ' + Base.others.priceFormat(sku_price[0]);
+                }
+
+            }
+
+        }
+    });
+
+
     HBS.registerHelper('itemtype', function (data) {
         var _htm = '',
             data_price = "";
@@ -305,6 +360,29 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                         data_price = item.price;
                     } else {
                         data_price = item.bargain.price;
+                    }
+                } else {
+                    data_price = item.price;
+                }
+                _htm += '<li class="j_type_li ' + (item.stock == 0 || item.price < 0 ? 'disable' : '') + '" data-price="' + data_price + '" data-stock="' + item.stock + '" data-id="' + item.id + '">' + item.title + '</li>';
+            });
+        }
+        return _htm;
+    });
+
+    HBS.registerHelper('itemtypeforquick', function (data) {
+        var _htm = '',
+            data_price = "";
+        //获取data-price lanchenghao 17.3.23 百分比折扣需求影响改动
+        if (data.sku && data.sku.length) {
+
+            Base.others.each(data.sku, function (item, i) {
+                //有限时折扣活动 并且 活动有效
+                if (data.is_discount == 1 && data.discounting) {
+                    if (data.discount.discount_type == "percent") {
+                        data_price = item.discount.price;
+                    } else {
+                        data_price = data.discount.price;
                     }
                 } else {
                     data_price = item.price;

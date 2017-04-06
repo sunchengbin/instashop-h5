@@ -715,46 +715,24 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                     if (_items[item].sku && _items[item].sku.id) {
                         if (!$('.error-item[data-id="' + _items[item].sku.id + '"]').length) {
                             var _num = $('.j_cart_item[data-id="' + _items[item].sku.id + '"] .j_item_num').val();
-
-                            if (_items[item].item.bargain) {
-                                _arr.push({
-                                    itemID: _items[item].item.id,
-                                    itemName: _items[item].item.item_name,
-                                    itemNum: (_num ? _num : _items[item].num),
-                                    item_sku: _items[item].sku.id,
-                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0),
-                                    bargain_price: _items[item].sku.bargain_price
-                                });
-                            } else {
-                                _arr.push({
-                                    itemID: _items[item].item.id,
-                                    itemName: _items[item].item.item_name,
-                                    itemNum: (_num ? _num : _items[item].num),
-                                    item_sku: _items[item].sku.id,
-                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                                });
-                            }
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: (_num ? _num : _items[item].num),
+                                item_sku: _items[item].sku.id,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
 
                         }
                     } else {
                         if (!$('.error-item[data-id="' + _items[item].item.id + '"]').length) {
                             var _num = $('.j_cart_item[data-id="' + _items[item].item.id + '"] .j_item_num').val();
-                            if (_items[item].item.bargain) {
-                                _arr.push({
-                                    itemID: _items[item].item.id,
-                                    itemName: _items[item].item.item_name,
-                                    itemNum: (_num ? _num : _items[item].num),
-                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0),
-                                    bargain_price: _items[item].bargain_price
-                                });
-                            } else {
-                                _arr.push({
-                                    itemID: _items[item].item.id,
-                                    itemName: _items[item].item.item_name,
-                                    itemNum: (_num ? _num : _items[item].num),
-                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                                });
-                            }
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: (_num ? _num : _items[item].num),
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
                         }
                     }
                 }
@@ -774,40 +752,21 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 var _items = _carts;
                 for (var item in _items) {
                     if (_items[item].sku) {
-                        if (_items[item].item.bargain) {
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                itemNum: _items[item].num,
-                                item_sku: _items[item].sku.id,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0),
-                                bargain_price: _items[item].sku.bargain_price
-                            });
-                        } else {
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                //itemName:_items[item].item.item_name,
-                                itemNum: _items[item].num,
-                                item_sku: _items[item].sku.id,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
-                        }
+                        _arr.push({
+                            itemID: _items[item].item.id,
+                            //itemName:_items[item].item.item_name,
+                            itemNum: _items[item].num,
+                            item_sku: _items[item].sku.id,
+                            discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                        });
 
                     } else {
-                        if (_items[item].item.bargain) {
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                itemNum: _items[item].num,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0),
-                                bargain_price: _items[item].item.bargain.price
-                            });
-                        } else {
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                //itemName:_items[item].item.item_name,
-                                itemNum: _items[item].num,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
-                        }
+                        _arr.push({
+                            itemID: _items[item].item.id,
+                            //itemName:_items[item].item.item_name,
+                            itemNum: _items[item].num,
+                            discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                        });
 
                     }
                 }
@@ -1121,8 +1080,6 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                     if (_res.price_info.items_price != _res.price_info.total_price) {
                         $(".reduc-info").show();
                     }
-
-
                     var _items_price = _res.price_info.items_price;
                     var _last_price = _res.price_info.total_price;
                     var _freight = 0;
