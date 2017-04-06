@@ -166,7 +166,7 @@ define([
                                 _this.submitBargainPhone = Dialog.dialog({
                                     body_txt: '<div>' +
                                         '<div class="">' + Lang.BARGAIN_SHARE_AFTER_PHONE + '</div>' +
-                                        '<div class="bargain-phone-input clearfix ins-m-t-3"><span class="fl">+62</span> <input type="text" class="j_bargain_inv_telphone fr" /></div>' +
+                                        '<div class="bargain-phone-input clearfix ins-m-t-3"><span class="fl">+62</span> <input type="tel" class="j_bargain_inv_telphone fr" maxlength="20" /></div>' +
                                         '<div class="bargain-phone-button j_bargain_inv_submit_telphone">Ya</div>' +
                                         '</div>',
                                     show_footer: false,
