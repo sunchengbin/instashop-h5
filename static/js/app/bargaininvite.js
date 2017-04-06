@@ -43,7 +43,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 type: "local"
             });
             // 如果url中有用户信息 说明刚登录完成 更新ui 更新本地存储用户信息
-            if (!!loginInfoFromCallBackPost.buyer_id && !!loginInfoFromCallBackPost.name && !!loginInfoFromCallBackPost.pic) {
+            if (!!loginInfoFromCallBackPost.buyer_id && !!loginInfoFromCallBackPost.name) {
                 loginInfoFromCache.set("friendLoginInfo", loginInfoFromCallBackPost);
                 return {
                     result: true,
