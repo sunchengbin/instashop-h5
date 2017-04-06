@@ -186,7 +186,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
         // 砍价活动
 
         if (!!data.bargain) {
-            var _curDateTime = Base.others.getCurDateTime()-3600;
+            var _curDateTime = Base.others.getCurDateTime() - 3600;
             var _bargain_start_time = Base.others.transDateStrToDateTime(data.bargain.start_time);
             var _bargain_end_time = Base.others.transDateStrToDateTime(data.bargain.end_time);
             if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
@@ -240,6 +240,17 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                     sku_price.sort(function (a, b) {
                         return a - b;
                     });
+
+                    // 如果砍到底价了 也只显示1行
+                    var bargainCache = new Cache({
+                        namespace: "BargainCache",
+                        type: "local"
+                    });
+                    var fudu = ~~bargainCache.find("remote_bargain_detail").bargain_result;
+                    if (Bargain.isReachBaseprice(data.min_price, fudu, data.bargain.base_price)) {
+                        return 'Rp ' + Base.others.priceFormat(sku_price[0]);
+                    }
+
                     return 'Rp ' + Base.others.priceFormat(sku_price[0]) + '-' + Base.others.priceFormat(sku_price[(sku_price.length - 1)]);
                 }
 
@@ -296,13 +307,13 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                         data_price = data.discount.price;
                     }
                 } else if (!!data.bargain) {
-                    var _curDateTime = Base.others.getCurDateTime()-3600;
+                    var _curDateTime = Base.others.getCurDateTime() - 3600;
                     var _bargain_start_time = Base.others.transDateStrToDateTime(data.bargain.start_time);
                     var _bargain_end_time = Base.others.transDateStrToDateTime(data.bargain.end_time);
                     if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
                         //过期
                         data_price = item.price;
-                    }else{
+                    } else {
                         data_price = item.bargain.price;
                     }
                 } else {
