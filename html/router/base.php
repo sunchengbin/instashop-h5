@@ -242,7 +242,7 @@ function getAfterBargainPrice($data){
 }
 
 function getBargainLimit($data){
-    return $carts['item']['bargain']['limit_to'] == 0 ? 0 : $carts['item']['bargain']['limit_to'];
+    return $carts['item']['bargain']['limit_to'];
 }
 
 // 是否砍过价了
