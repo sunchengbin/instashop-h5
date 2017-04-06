@@ -351,7 +351,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                 itemID: _items[item].item.id,
                                 itemName: _items[item].item.item_name,
                                 itemNum: _items[item].num,
-                                bargain_price: _items[item].bargain.price,
+                                bargain_price: _items[item].bargain_price,
                                 discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
                             });
                         } else {
