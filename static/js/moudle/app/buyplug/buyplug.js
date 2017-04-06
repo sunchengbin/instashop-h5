@@ -183,8 +183,10 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                         if (_has_sku) {
                                             // if (key == _sku_id) {
                                             var _wantBuyNum = ~~_num + ~~item.num;
-                                            if (_wantBuyNum > init_data.item.bargain.limit_to) {
-                                                throw new Error(Lang.BARGAIN_LIMIT);
+                                            if (item.item.id == init_data.item.id) {
+                                                if (_wantBuyNum > init_data.item.bargain.limit_to) {
+                                                    throw new Error(Lang.BARGAIN_LIMIT);
+                                                }
                                             }
                                             // }
                                         } else {
