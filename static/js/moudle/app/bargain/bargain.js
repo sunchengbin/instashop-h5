@@ -295,13 +295,13 @@ define([
             if (_this.loginResultPackage.result) {
                 // 判断是不是1个活动
                 var _localRemoteCache = _this.bargainCache.find("remote_bargain_detail");
-                if(_localRemoteCache){
-                    if(_localRemoteCache.id==init_data.item.bargain.id){
+                if (_localRemoteCache) {
+                    if (_localRemoteCache.id == init_data.item.bargain.id) {
                         _bargain_result_price = _localRemoteCache.bargain_result;
-                    }else{
+                    } else {
                         _bargain_result_price = 0;
                     }
-                }else{
+                } else {
                     _bargain_result_price = 0;
                 }
             } else {
@@ -356,12 +356,34 @@ define([
          */
         computeBargainPrice: function () {
             var _this = this;
-            //自砍
-            var _amplitude = (~~init_data.item.min_price - ~~_this.config.bargain.base_price) * 0.3;
-            return {
-                price_origin: ~~_amplitude,
-                price_format: "Rp " + Base.others.priceFormat(_amplitude)
-            };
+            if (Oauth.checkIsLogin()) {
+                var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
+                    namespace: "BargainCache",
+                    type: "local"
+                });
+                var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
+                if (_localBargainCacheDetail && init_data.item.bargain.id == _localBargainCacheDetail.id) {
+                    return {
+                        price_origin: ~~_localBargainCacheDetail.bargain_result,
+                        price_format: "Rp " + Base.others.priceFormat(_localBargainCacheDetail.bargain_result)
+                    };
+                } else {
+                    var _amplitude = (~~init_data.item.min_price - ~~_this.config.bargain.base_price) * 0.3;
+                    return {
+                        price_origin: ~~_amplitude,
+                        price_format: "Rp " + Base.others.priceFormat(_amplitude)
+                    };
+                }
+
+            } else {
+                //自砍
+                var _amplitude = (~~init_data.item.min_price - ~~_this.config.bargain.base_price) * 0.3;
+                return {
+                    price_origin: ~~_amplitude,
+                    price_format: "Rp " + Base.others.priceFormat(_amplitude)
+                };
+            }
+
         }
     }
     // 检查本地存储和接口返回的活动是否为同一活动
@@ -396,7 +418,7 @@ define([
                     var _bargain_end_time = Base.others.transDateStrToDateTime(item.item.bargain.end_time);
                     if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
                         isHave = false;
-                    }else{
+                    } else {
                         isHave = true;
                     }
                     return;
