@@ -109,7 +109,14 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
         handleFn: function () {
             var _this = this;
             Fastclick.attach(document.body);
-            $("body").on("click", ".j_bargain_btn_invite_help", function () {
+            $("body").on("click", ".j_bargain_btn_invite_help", function (e) {
+                var _isOverdue = $(this).attr("data-overdue")||0;
+                if(_isOverdue==1){
+                    Dialog.tip({
+                        body_txt:Lang.BARGAIN_BTN_CLICK_BODY
+                    })
+                    return;
+                }
                 if (_this.loginResultPackage.result) {
                     // 登录了
                     var _localBargainInviteStorage = _this.bargainInviteStorage.find("bargainInvite") || {};
@@ -135,6 +142,13 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 location.reload();
             })
             $("body").on("click", ".j_bargain_btn_invite_self", function () {
+                var _isOverdue = $(this).attr("data-overdue")||0;
+                if(_isOverdue==1){
+                    Dialog.tip({
+                        body_txt:Lang.BARGAIN_BTN_CLICK_BODY
+                    })
+                    return;
+                }
                 location.href = init_data.bargain_invite_detail.item_info.h5_url;
             })
         },

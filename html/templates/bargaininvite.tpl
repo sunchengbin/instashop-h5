@@ -180,9 +180,9 @@
             </p>
             <div class="">
                 {*判断是否到期*}
-                {if $BARGAIN_INVITE_DETAIL|checkIsBargainOverdue}
-                    <button class="j_bargain_btn_invite_help ins-btn-gray" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
-                    <button class="j_bargain_btn_invite_self ins-btn-gray" type="">Mau Beli Juga</button>
+                {if $BARGAIN_INVITE_DETAIL.bargain_info|checkIsBargainOverdue}
+                    <button class="j_bargain_btn_invite_help ins-btn-gray" data-overdue="1" type="">Bantu {$BARGAIN_INVITE_DETAIL.buyer_info.name} Tawar</button>
+                    <button class="j_bargain_btn_invite_self ins-btn-gray" data-overdue="1" type="">Mau Beli Juga</button>
                 {else}
                     {if $BARGAIN_INVITE_DETAIL.bargain_bought_num gt 0 }
                     {else}

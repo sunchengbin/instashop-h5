@@ -262,5 +262,11 @@ function checkIsUserBargain($data){
 }
 
 function checkIsBargainOverdue($data){
+    $startTime = $data['start_time'];
+    $endTime = $data['end_time'];
+    $curTime = time();
+    if($curTime<$startTime||$curTime>$endTime){
+        return false;
+    }
     return true;
 }
