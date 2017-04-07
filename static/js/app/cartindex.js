@@ -9,7 +9,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                 isGroup = this.isGroup = Cart().getIsGroup();
             if (!_data || !_carts) {
                 var _htm = Hbs.compile(Carthtm)({
-                    cart: null,
+                    cart: [],
                     groupCart: null,
                     lang: Lang,
                     isGroup: false,
