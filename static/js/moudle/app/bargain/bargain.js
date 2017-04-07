@@ -184,11 +184,12 @@ define([
                 PaqPush && PaqPush('登录-弹出登录框', '');
                 Oauth.openDialog();
             })
-            // $("body").on("click", ".bargain-tip-txt-how", function () {
-            //     PaqPush && PaqPush('查看-买家版砍价教程', '');
-            //     var _url = "http://" + location.host + "/html/bargainbuyerflow.html";
-            //     window.open(_url, "_blank")
-            // })
+            $("body").on("click", ".j_bargain_tip", function () {
+                PaqPush && PaqPush('查看-买家版砍价教程', '');
+                // 获取教程位置 fix 滚动bug
+                var _top = $("#bargain-buyer-intro").offset().top;
+                $(window).scrollTop(_top);
+            })
             // 砍了多少钱的弹窗 确认按钮 点击刷新
             $("body").on("click", ".j_btn_confrim_bargain_price", function () {
                 PaqPush && PaqPush('砍价-确认砍价金额', '');
@@ -307,7 +308,7 @@ define([
                     var _maxPriceBargainHtm = "<p>Rp " + _max_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _max_price + "</span></p>";
                     _htm = _minPriceBargainHtm + _maxPriceBargainHtm;
                 }
-            }else{
+            } else {
                 _htm = $(".price").html();
             }
 
@@ -475,9 +476,11 @@ define([
         });
         var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
         if (_localBargainCacheDetail) {
-            if (init_data.item.bargain.limit_to != 0) {
-                if (_localBargainCacheDetail.bargain_bought_num > 0) {
-                    isLimit = true;
+            if (init_data.item.bargain) {
+                if (init_data.item.bargain.limit_to != 0) {
+                    if (_localBargainCacheDetail.bargain_bought_num > 0) {
+                        isLimit = true;
+                    }
                 }
             }
         }
