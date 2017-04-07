@@ -123,10 +123,10 @@ define([
                 if (200 == obj.code) {
                     console.log(obj.bargain_invite_detail)
                     obj.bargain_invite_detail.id = _this.config.bargain.id;
-                    _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
                     _this.showFriendHelpList(obj.bargain_invite_detail);
                     //更新result价格
                     if("0.00"!=obj.bargain_invite_detail.bargain_result){
+                        _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
                         $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
                     }
                 }
