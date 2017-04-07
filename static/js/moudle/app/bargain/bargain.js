@@ -75,6 +75,7 @@ define([
                         var _self_bargain_price = _selfPrice;
                         _this.updateRemoteBargainPrice(_self_bargain_price);
                     } else {
+                        _this.config.normalfn&&_this.config.normalfn();
                         $(".j_bargain_tip_unlogin_price").show();
                     }
                     _this.handleFn();
