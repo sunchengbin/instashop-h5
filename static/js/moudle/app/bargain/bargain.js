@@ -362,7 +362,7 @@ define([
                     type: "local"
                 });
                 var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
-                if (_localBargainCacheDetail && init_data.item.bargain.id == _localBargainCacheDetail.id) {
+                if (_localBargainCacheDetail && init_data.item.bargain.id == _localBargainCacheDetail.id&&_localBargainCacheDetail.bargain_result!="0.00") {
                     return {
                         price_origin: ~~_localBargainCacheDetail.bargain_result,
                         price_format: "Rp " + Base.others.priceFormat(_localBargainCacheDetail.bargain_result)
