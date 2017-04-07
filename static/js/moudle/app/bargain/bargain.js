@@ -31,7 +31,7 @@ define([
             if (init_data.item.bargain) {
                 // 获取砍价幅度
                 var _amplitude = _this.computeBargainPrice();
-
+                var _origin_price = _this.origin_price= $(".price").html();
                 // 判断是否过期
                 var _curDateTime = Base.others.getCurDateTime() - 3600;
                 var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
@@ -130,9 +130,10 @@ define([
                             $(".j_bargain_btn_continue").hide();
                             $(".j_bargain_tip").hide();
                             $(".bargain-tip-txt-how").hide();
-                            $(".bargain-buyer-intro").hide();
+                            $(".bargain-buyer-intro-content").hide();
                             // 恢复原价
                             console.log("恢复原价")
+                            $(".price").html(_this.origin_price);
                         } else {
                             obj.bargain_invite_detail.id = _this.config.bargain.id;
                             _this.showFriendHelpList(obj.bargain_invite_detail);

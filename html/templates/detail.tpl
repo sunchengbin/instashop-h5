@@ -103,7 +103,7 @@
         </div>
         <p id="bargain-buyer-intro" class="bargain-tip-txt-how">
             Panduan Tawar Harga ?
-            <section class="content">
+            <section class="content bargain-buyer-intro-content">
             <h1 id="second-type">Tertarik ikutan promo tawar harga?</h1>
             <h1>Yuk simak caranya:</h1>
             <div>
