@@ -474,7 +474,7 @@ define([
                         // 检查本地的
                         var _localSelfBargainPrice = _localBargainCache.find("bargain_price_self");
                         if (_localSelfBargainPrice) {
-                            if (_localSelfBargainPrice[item.item.bargain.id]&&_localSelfBargainPrice[item.item.bargain.id].amplitudeSelfPrice!="0") {
+                            if (_localSelfBargainPrice[item.item.bargain.id] && _localSelfBargainPrice[item.item.bargain.id].amplitudeSelfPrice != "0") {
                                 isHave = true;
                                 return;
                             } else {
@@ -493,6 +493,24 @@ define([
         }
         return isHave;
     }
+    // 检查是否含有bargain节点 true 有 false没有
+    Bargain.checkIsHaveBargainProperty = function(obj){
+        if(!!obj.bargain)return true;
+        return false;
+    }
+
+    // 检查是否过期 true 过期了 false 没过期
+    Bargain.checkIsOverdue = function (bargain) {
+        var _curDateTime = Base.others.getCurDateTime() - 3600;
+        var _bargain_start_time = Base.others.transDateStrToDateTime(bargain.start_time);
+        var _bargain_end_time = Base.others.transDateStrToDateTime(bargain.end_time);
+        if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     Bargain.checkIsLimitForLogin = function () {
         var isLimit = false;
         var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
