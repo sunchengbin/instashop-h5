@@ -153,6 +153,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             }
             _price.html(Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(opts.price));
             _num.val(opts.num).attr('data-price', opts.price);
+            $('.j_freight').html('Rp 0');
             _this.resetCarts(opts);
             _this.getTotal();
         },
