@@ -87,6 +87,9 @@
 
         {*砍价活动功能区begin*}
         {if $INDEX_DATA.item.bargain}
+        <div class="j_bargain_tip_unlogin_price">
+            Jika kamu sudah berpartisipasi dalam promo "Tawar Harga" ini, <span class="ins-color-hightlight-blue j_user_login">login</span> untuk melihat status terbaru
+        </div>
         <div class="ins-btn ins-btn-gray j_bargain_reachbaseprice">
         Sudah Harga Termurah
         </div>
@@ -97,9 +100,6 @@
         Tawar Lagi
         </div>
         <div class="bargain-friend-list-container">
-        </div>
-        <div class="j_bargain_tip_unlogin_price">
-            Jika kamu sudah berpartisipasi dalam promo "Tawar Harga" ini, <span class="ins-color-hightlight-blue j_user_login">login</span> untuk melihat status terbaru
         </div>
         <p id="bargain-buyer-intro" class="bargain-tip-txt-how">
             Panduan Tawar Harga ?
