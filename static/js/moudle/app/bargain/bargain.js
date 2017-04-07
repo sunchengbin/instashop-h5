@@ -476,6 +476,7 @@ define([
                         if (_localSelfBargainPrice) {
                             if (_localSelfBargainPrice[item.item.bargain.id]&&_localSelfBargainPrice[item.item.bargain.id].amplitudeSelfPrice!="0") {
                                 isHave = true;
+                                return;
                             } else {
                                 isHave = false;
                                 return;
