@@ -121,14 +121,34 @@ define([
             var url = Config.host.actionUrl + Config.actions.bargain + "/" + _this.config.bargain.id + "?param=" + JSON.stringify(reqParams);
             Ajax.getJsonp(url, function (obj) {
                 if (200 == obj.code) {
-                    console.log(obj.bargain_invite_detail)
-                    obj.bargain_invite_detail.id = _this.config.bargain.id;
-                    _this.showFriendHelpList(obj.bargain_invite_detail);
-                    //更新result价格
-                    if ("0.00" != obj.bargain_invite_detail.bargain_result) {
-                        _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
-                        $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
+                    // 判断是不是买过限购的
+                    if (init_data.item.bargain.limit_to != 0) {
+                        // 已经买过了
+                        if (obj.bargain_invite_detail.bargain_bought_num > 0) {
+                            $(".j_bargain_reachbaseprice").hide();
+                            $(".j_bargain_btn_self").hide();
+                            $(".j_bargain_btn_continue").hide();
+                            $(".j_bargain_tip").hide();
+                            $(".bargain-tip-txt-how").hide();
+                        } else {
+                            obj.bargain_invite_detail.id = _this.config.bargain.id;
+                            _this.showFriendHelpList(obj.bargain_invite_detail);
+                            //更新result价格
+                            if ("0.00" != obj.bargain_invite_detail.bargain_result) {
+                                _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
+                                $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
+                            }
+                        }
+                    } else {
+                        obj.bargain_invite_detail.id = _this.config.bargain.id;
+                        _this.showFriendHelpList(obj.bargain_invite_detail);
+                        //更新result价格
+                        if ("0.00" != obj.bargain_invite_detail.bargain_result) {
+                            _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
+                            $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
+                        }
                     }
+
                 }
             }, function () {
 
@@ -442,6 +462,20 @@ define([
             })
         }
         return isHave;
+    }
+    Bargain.checkIsLimitForLogin = function () {
+        var isLimit = false;
+        var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
+            namespace: "BargainCache",
+            type: "local"
+        });
+        var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
+        if(init_data.item.bargain.limit_to!=0){
+            if(_localBargainCacheDetail.bargain_bought_num>0){
+                isLimit =  true;
+            }
+        }
+        return isLimit;
     }
     // 检查是否砍到了底价
     Bargain.isReachBaseprice = function (itemprice, amplitude, baseprice) {

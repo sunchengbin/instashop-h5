@@ -184,71 +184,73 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
             return '';
         }
         // 砍价活动
-
-        if (!!data.bargain) {
-            var _curDateTime = Base.others.getCurDateTime() - 3600;
-            var _bargain_start_time = Base.others.transDateStrToDateTime(data.bargain.start_time);
-            var _bargain_end_time = Base.others.transDateStrToDateTime(data.bargain.end_time);
-            if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
-                //过期了
-            } else {
-                // 区分sku
-                // 有sku
-                if (data.sku && data.sku.length < 2 && data.sku.length != 0) {
-                    if (data.sku.length == 1) {
-                        var sku_price = [];
-                        Base.others.each(data.sku, function (item, i) {
-                            if (Number(item.bargain.price) > 0) {
-                                sku_price.push(Number(item.bargain.price));
-                            }
-                        });
-                        sku_price.sort(function (a, b) {
-                            return a - b;
-                        });
-                        return 'Rp ' + Base.others.priceFormat(sku_price[0]);
-                    } else {
-                        var sku_price = [];
-                        Base.others.each(data.sku, function (item, i) {
-                            if (Number(item.bargain.price) > 0) {
-                                sku_price.push(Number(item.bargain.price));
-                            }
-                        });
-                        sku_price.sort(function (a, b) {
-                            return a - b;
-                        });
-
-                        // 如果砍到底价了 也只显示1行
-                        var bargainCache = new Cache({
-                            namespace: "BargainCache",
-                            type: "local"
-                        });
-                        var fudu = ~~bargainCache.find("remote_bargain_detail").bargain_result;
-                        if (Bargain.isReachBaseprice(data.min_price, fudu, data.bargain.base_price)) {
+        if (!Bargain.checkIsLimitForLogin()) {
+            if (!!data.bargain) {
+                var _curDateTime = Base.others.getCurDateTime() - 3600;
+                var _bargain_start_time = Base.others.transDateStrToDateTime(data.bargain.start_time);
+                var _bargain_end_time = Base.others.transDateStrToDateTime(data.bargain.end_time);
+                if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                    //过期了
+                } else {
+                    // 区分sku
+                    // 有sku
+                    if (data.sku && data.sku.length < 2 && data.sku.length != 0) {
+                        if (data.sku.length == 1) {
+                            var sku_price = [];
+                            Base.others.each(data.sku, function (item, i) {
+                                if (Number(item.bargain.price) > 0) {
+                                    sku_price.push(Number(item.bargain.price));
+                                }
+                            });
+                            sku_price.sort(function (a, b) {
+                                return a - b;
+                            });
                             return 'Rp ' + Base.others.priceFormat(sku_price[0]);
+                        } else {
+                            var sku_price = [];
+                            Base.others.each(data.sku, function (item, i) {
+                                if (Number(item.bargain.price) > 0) {
+                                    sku_price.push(Number(item.bargain.price));
+                                }
+                            });
+                            sku_price.sort(function (a, b) {
+                                return a - b;
+                            });
+
+                            // 如果砍到底价了 也只显示1行
+                            var bargainCache = new Cache({
+                                namespace: "BargainCache",
+                                type: "local"
+                            });
+                            var fudu = ~~bargainCache.find("remote_bargain_detail").bargain_result;
+                            if (Bargain.isReachBaseprice(data.min_price, fudu, data.bargain.base_price)) {
+                                return 'Rp ' + Base.others.priceFormat(sku_price[0]);
+                            }
+
+                            return 'Rp ' + Base.others.priceFormat(sku_price[0]) + '-' + Base.others.priceFormat(sku_price[(sku_price.length - 1)]);
                         }
+                    }
+                    if (data.sku && data.sku.length != 0 && data.sku.length >= 2) {
+                        var sku_price = [];
+                        Base.others.each(data.sku, function (item, i) {
+                            if (Number(item.bargain.price) > 0) {
+                                sku_price.push(Number(item.bargain.price));
+                            }
+                        });
+                        sku_price.sort(function (a, b) {
+                            return a - b;
+                        });
 
                         return 'Rp ' + Base.others.priceFormat(sku_price[0]) + '-' + Base.others.priceFormat(sku_price[(sku_price.length - 1)]);
                     }
-                }
-                if (data.sku && data.sku.length != 0 && data.sku.length >= 2) {
-                    var sku_price = [];
-                    Base.others.each(data.sku, function (item, i) {
-                        if (Number(item.bargain.price) > 0) {
-                            sku_price.push(Number(item.bargain.price));
-                        }
-                    });
-                    sku_price.sort(function (a, b) {
-                        return a - b;
-                    });
 
-                    return 'Rp ' + Base.others.priceFormat(sku_price[0]) + '-' + Base.others.priceFormat(sku_price[(sku_price.length - 1)]);
-                }
-
-                if (data.sku.length == 0) {
-                    return 'Rp ' + Base.others.priceFormat(data.bargain.price);
+                    if (data.sku.length == 0) {
+                        return 'Rp ' + Base.others.priceFormat(data.bargain.price);
+                    }
                 }
             }
         }
+
 
         // 正常
         if (data.sku && data.sku.length < 2) {
@@ -351,7 +353,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                     } else {
                         data_price = data.discount.price;
                     }
-                } else if (!!data.bargain) {
+                } else if (!!data.bargain&&!Bargain.checkIsLimitForLogin()) {
                     var _curDateTime = Base.others.getCurDateTime() - 3600;
                     var _bargain_start_time = Base.others.transDateStrToDateTime(data.bargain.start_time);
                     var _bargain_end_time = Base.others.transDateStrToDateTime(data.bargain.end_time);
@@ -387,7 +389,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                 } else {
                     data_price = item.price;
                 }
-                _htm += '<li class="j_type_li ' + (item.stock == 0 || item.price < 0 ? 'disable' : '') + '" data-price="' + data_price + '" data-stock="' + item.stock + '" data-id="' + item.id + '" data-limitto='+(data.bargain?data.bargain.limit_to:0)+'>' + item.title + '</li>';
+                _htm += '<li class="j_type_li ' + (item.stock == 0 || item.price < 0 ? 'disable' : '') + '" data-price="' + data_price + '" data-stock="' + item.stock + '" data-id="' + item.id + '" data-limitto=' + (data.bargain ? data.bargain.limit_to : 0) + '>' + item.title + '</li>';
             });
         }
         return _htm;

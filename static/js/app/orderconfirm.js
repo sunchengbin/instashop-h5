@@ -376,7 +376,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 for (var item in _items) {
                     if (_items[item].sku) {
                         if (_items[item].item.bargain) {
-                            _this.checkIsLimitForLogin(_items[item].item.bargain);
+                            // _this.checkIsLimitForLogin(_items[item].item.bargain);
                             _arr.push({
                                 itemID: _items[item].item.id,
                                 itemName: _items[item].item.item_name,
@@ -396,7 +396,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                         }
                     } else {
                         if (_items[item].item.bargain) {
-                            _this.checkIsLimitForLogin(_items[item].item.bargain);
+                            // _this.checkIsLimitForLogin(_items[item].item.bargain);
                             _arr.push({
                                 itemID: _items[item].item.id,
                                 itemName: _items[item].item.item_name,

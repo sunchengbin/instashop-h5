@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 添加到购物车插件
  */
-define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog', 'cart', 'lang', 'config', 'fastclick'], function (Common, Base, Hbs, Buyplughtm, Btn, Dialog, Cart, Lang, Config, Fastclick) {
+define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog', 'cart', 'lang', 'config', 'fastclick','bargain'], function (Common, Base, Hbs, Buyplughtm, Btn, Dialog, Cart, Lang, Config, Fastclick,Bargain) {
     var BuyPlug = function (opts) {
         var _this = this;
         _this.config = $.extend({
@@ -169,7 +169,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                     }
                 }
 
-                if (init_data.item.bargain) {
+                if (init_data.item.bargain&&!Bargain.checkIsLimitForLogin()) {
                     var _curDateTime = Base.others.getCurDateTime() - 3600;
                     var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
                     var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
@@ -221,7 +221,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
 
 
                 if (!_has_sku) {
-                    if (init_data.item.bargain) {
+                    if (init_data.item.bargain&&!Bargain.checkIsLimitForLogin()) {
                         Cart(init_data).addItem({
                             item: init_data.item,
                             num: _num,
@@ -269,7 +269,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                 }
                             });
                         } else {
-                            if (init_data.item.bargain) {
+                            if (init_data.item.bargain&&!Bargain.checkIsLimitForLogin()) {
                                 var _skuMap = {};
                                 $.each(init_data.item.sku, function (index, sku) {
                                     _skuMap[sku.id] = sku;
