@@ -101,8 +101,8 @@
         {*<div class="j_bargain_tip_unlogin_price">
             Jika kamu sudah berpartisipasi dalam promo "Tawar Harga" ini, <span class="ins-color-hightlight-blue j_user_login">login</span> untuk melihat status terbaru
         </div>*}
-        <p class="bargain-tip-txt-how">
-        Panduan Tawar Harga ?
+        <p id="bargain-buyer-intro" class="bargain-tip-txt-how">
+            Panduan Tawar Harga ?
         </p>
         {/if}
 
