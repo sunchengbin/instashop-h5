@@ -293,20 +293,24 @@ define([
             } else {
                 amplitudePrice = _this.getBargainAmplitudePrice();
             }
-
-            if (~~init_data.item.min_price == ~~init_data.item.max_price) {
-                var _after_bargain_price = Base.others.priceFormat(~~init_data.item.price - ~~amplitudePrice);
-                var _item_price = Base.others.priceFormat(~~init_data.item.price);
-                _htm = "Rp " + _after_bargain_price + " <span class='bargain-origin-price'> Rp " + _item_price + "</span>";
-            } else {
-                var _min_after_bargain_price = Base.others.priceFormat(~~init_data.item.min_price - ~~amplitudePrice);
-                var _max_after_bargain_price = Base.others.priceFormat(~~init_data.item.max_price - ~~amplitudePrice);
-                var _min_price = Base.others.priceFormat(~~init_data.item.min_price);
-                var _max_price = Base.others.priceFormat(~~init_data.item.max_price);
-                var _minPriceBargainHtm = "<p>Rp " + _min_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _min_price + "</span></p>";
-                var _maxPriceBargainHtm = "<p>Rp " + _max_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _max_price + "</span></p>";
-                _htm = _minPriceBargainHtm + _maxPriceBargainHtm;
+            if (amplitudePrice != 0) {
+                if (~~init_data.item.min_price == ~~init_data.item.max_price) {
+                    var _after_bargain_price = Base.others.priceFormat(~~init_data.item.price - ~~amplitudePrice);
+                    var _item_price = Base.others.priceFormat(~~init_data.item.price);
+                    _htm = "Rp " + _after_bargain_price + " <span class='bargain-origin-price'> Rp " + _item_price + "</span>";
+                } else {
+                    var _min_after_bargain_price = Base.others.priceFormat(~~init_data.item.min_price - ~~amplitudePrice);
+                    var _max_after_bargain_price = Base.others.priceFormat(~~init_data.item.max_price - ~~amplitudePrice);
+                    var _min_price = Base.others.priceFormat(~~init_data.item.min_price);
+                    var _max_price = Base.others.priceFormat(~~init_data.item.max_price);
+                    var _minPriceBargainHtm = "<p>Rp " + _min_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _min_price + "</span></p>";
+                    var _maxPriceBargainHtm = "<p>Rp " + _max_after_bargain_price + " <span class='bargain-origin-price-sku'> Rp " + _max_price + "</span></p>";
+                    _htm = _minPriceBargainHtm + _maxPriceBargainHtm;
+                }
+            }else{
+                _htm = $(".price").html();
             }
+
 
             return _htm;
         },
