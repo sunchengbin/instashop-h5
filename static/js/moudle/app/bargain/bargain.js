@@ -75,7 +75,7 @@ define([
                         var _self_bargain_price = _selfPrice;
                         _this.updateRemoteBargainPrice(_self_bargain_price);
                     } else {
-                        _this.config.normalfn&&_this.config.normalfn();
+                        _this.config.normalfn && _this.config.normalfn();
                         $(".j_bargain_tip_unlogin_price").show();
                     }
                     _this.handleFn();
@@ -502,6 +502,16 @@ define([
         isReach = (~~itemprice - ~~amplitude) <= ~~baseprice;
         return isReach;
     }
+
+    Bargain.hideBargain = function () {
+        $(".j_bargain_reachbaseprice").hide();
+        $(".j_bargain_btn_self").hide();
+        $(".j_bargain_btn_continue").hide();
+        $(".j_bargain_tip").hide();
+        $(".bargain-tip-txt-how").hide();
+        $(".bargain-buyer-intro-content").hide();
+    }
+
     // 检查是否实际参加
     Bargain.isActualAttendBargain = function (bargainId) {
         var isActualAttend = false;

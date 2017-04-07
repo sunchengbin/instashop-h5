@@ -27,49 +27,16 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                             var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
                             var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
                             if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
-                                $(".j_bargain_reachbaseprice").hide();
-                                $(".j_bargain_btn_self").hide();
-                                $(".j_bargain_btn_continue").hide();
-                                $(".j_bargain_tip").hide();
-                                $(".bargain-tip-txt-how").hide();
-                                $(".bargain-buyer-intro-content").hide();
+                                Bargain.hideBargain();
                             } else {
                                 _this.BargainPlug = new Bargain({
                                     bargain: init_data.item.bargain,
                                     afterfn: function () {}
                                 });
                                 init_data = _this.BargainPlug.computeAndUpdateSkuPriceForBargain(init_data);
-                                Buyplug({
-                                    data: init_data,
-                                    noStockCallback: function () {
-                                        if ($('.j_show_contact').length) {
-                                            _this.contact = Contact({
-                                                data: {
-                                                    tel: init_data.item.shop.phone,
-                                                    line: init_data.item.shop.line_url
-                                                },
-                                                lang: Lang
-                                            });
-                                            _this.contact.createHtm({
-                                                data: {
-                                                    tel: init_data.item.shop.phone,
-                                                    line: init_data.item.shop.line_url
-                                                },
-                                                lang: Lang
-                                            }).toShow();
-                                        } else {
-                                            location.href = init_data.item.shop.line_url;
-                                        }
-                                    }
-                                });
                             }
                         } else {
-                            $(".j_bargain_reachbaseprice").hide();
-                            $(".j_bargain_btn_self").hide();
-                            $(".j_bargain_btn_continue").hide();
-                            $(".j_bargain_tip").hide();
-                            $(".bargain-tip-txt-how").hide();
-                            $(".bargain-buyer-intro-content").hide();
+                            Bargain.hideBargain();
                         }
                     }
                     Buyplug({
