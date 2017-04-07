@@ -33,86 +33,11 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                                 $(".j_bargain_tip").hide();
                                 $(".bargain-tip-txt-how").hide();
                                 $(".bargain-buyer-intro-content").hide();
-                                Buyplug({
-                                    data: init_data,
-                                    noStockCallback: function () {
-                                        if ($('.j_show_contact').length) {
-                                            _this.contact = Contact({
-                                                data: {
-                                                    tel: init_data.item.shop.phone,
-                                                    line: init_data.item.shop.line_url
-                                                },
-                                                lang: Lang
-                                            });
-                                            _this.contact.createHtm({
-                                                data: {
-                                                    tel: init_data.item.shop.phone,
-                                                    line: init_data.item.shop.line_url
-                                                },
-                                                lang: Lang
-                                            }).toShow();
-                                        } else {
-                                            location.href = init_data.item.shop.line_url;
-                                        }
-                                    }
-                                });
                             } else {
                                 _this.BargainPlug = new Bargain({
                                     bargain: init_data.item.bargain,
-                                    normalfn: function () {
-                                        Buyplug({
-                                            data: init_data,
-                                            noStockCallback: function () {
-                                                if ($('.j_show_contact').length) {
-                                                    _this.contact = Contact({
-                                                        data: {
-                                                            tel: init_data.item.shop.phone,
-                                                            line: init_data.item.shop.line_url
-                                                        },
-                                                        lang: Lang
-                                                    });
-                                                    _this.contact.createHtm({
-                                                        data: {
-                                                            tel: init_data.item.shop.phone,
-                                                            line: init_data.item.shop.line_url
-                                                        },
-                                                        lang: Lang
-                                                    }).toShow();
-                                                } else {
-                                                    location.href = init_data.item.shop.line_url;
-                                                }
-                                            }
-                                        });
-                                    },
-                                    afterfn: function () {
-                                        // 根据砍价活动计算sku
-                                        init_data = _this.BargainPlug.computeAndUpdateSkuPriceForBargain(init_data);
-                                        console.log("afterfn")
-                                        Buyplug({
-                                            data: init_data,
-                                            noStockCallback: function () {
-                                                if ($('.j_show_contact').length) {
-                                                    _this.contact = Contact({
-                                                        data: {
-                                                            tel: init_data.item.shop.phone,
-                                                            line: init_data.item.shop.line_url
-                                                        },
-                                                        lang: Lang
-                                                    });
-                                                    _this.contact.createHtm({
-                                                        data: {
-                                                            tel: init_data.item.shop.phone,
-                                                            line: init_data.item.shop.line_url
-                                                        },
-                                                        lang: Lang
-                                                    }).toShow();
-                                                } else {
-                                                    location.href = init_data.item.shop.line_url;
-                                                }
-                                            }
-                                        });
-                                    }
                                 });
+                                init_data = _this.BargainPlug.computeAndUpdateSkuPriceForBargain(init_data);
                             }
                         } else {
                             $(".j_bargain_reachbaseprice").hide();
@@ -121,56 +46,31 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                             $(".j_bargain_tip").hide();
                             $(".bargain-tip-txt-how").hide();
                             $(".bargain-buyer-intro-content").hide();
-                            Buyplug({
-                                data: init_data,
-                                noStockCallback: function () {
-                                    if ($('.j_show_contact').length) {
-                                        _this.contact = Contact({
-                                            data: {
-                                                tel: init_data.item.shop.phone,
-                                                line: init_data.item.shop.line_url
-                                            },
-                                            lang: Lang
-                                        });
-                                        _this.contact.createHtm({
-                                            data: {
-                                                tel: init_data.item.shop.phone,
-                                                line: init_data.item.shop.line_url
-                                            },
-                                            lang: Lang
-                                        }).toShow();
-                                    } else {
-                                        location.href = init_data.item.shop.line_url;
-                                    }
-                                }
-                            });
                         }
-
-                    } else {
-                        Buyplug({
-                            data: init_data,
-                            noStockCallback: function () {
-                                if ($('.j_show_contact').length) {
-                                    _this.contact = Contact({
-                                        data: {
-                                            tel: init_data.item.shop.phone,
-                                            line: init_data.item.shop.line_url
-                                        },
-                                        lang: Lang
-                                    });
-                                    _this.contact.createHtm({
-                                        data: {
-                                            tel: init_data.item.shop.phone,
-                                            line: init_data.item.shop.line_url
-                                        },
-                                        lang: Lang
-                                    }).toShow();
-                                } else {
-                                    location.href = init_data.item.shop.line_url;
-                                }
-                            }
-                        });
                     }
+                    Buyplug({
+                        data: init_data,
+                        noStockCallback: function () {
+                            if ($('.j_show_contact').length) {
+                                _this.contact = Contact({
+                                    data: {
+                                        tel: init_data.item.shop.phone,
+                                        line: init_data.item.shop.line_url
+                                    },
+                                    lang: Lang
+                                });
+                                _this.contact.createHtm({
+                                    data: {
+                                        tel: init_data.item.shop.phone,
+                                        line: init_data.item.shop.line_url
+                                    },
+                                    lang: Lang
+                                }).toShow();
+                            } else {
+                                location.href = init_data.item.shop.line_url;
+                            }
+                        }
+                    });
                     Viewer({
                         btn: '.j_banner li',
                         images: init_data.item.imgs
