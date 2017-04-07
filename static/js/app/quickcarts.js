@@ -71,8 +71,9 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 _this.quickbuyplug = QuickBuyplug({
                     data: _this.transCart(),
                     callback: function (opts) {
+                        _this.updateCartsNum(opts.id, opts.num);
                         _this.selectQuick(opts);
-                        _this.updateCartsNum(opts.id, opts.num)
+
                     }
                 });
             }
@@ -153,7 +154,6 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             }
             _price.html(Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(opts.price));
             _num.val(opts.num).attr('data-price', opts.price);
-            $('.j_freight').html('Rp 0');
             _this.resetCarts(opts);
             _this.getTotal();
         },
@@ -169,6 +169,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             }
         },
         updateCartsNum: function (dataId, num) {
+            $('.j_logistics ul').html('');
             var _this = this;
             _this.carts[dataId].num = num;
             _this.getLogistics();
@@ -863,7 +864,6 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                                 }
                             }
                         }
-
                     }
                 },
                 function (error) {
