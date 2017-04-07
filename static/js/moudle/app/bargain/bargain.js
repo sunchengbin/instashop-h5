@@ -22,13 +22,16 @@ define([
     Bargain.prototype = {
         init: function () {
             var _this = this;
+            // 获取用户登陆信息{result boolean,info object}
             _this.loginResultPackage = Oauth.checkIsLogin();
+            // 获取操作砍价活动本地数据操作的句柄
             _this.bargainCache = _this.bargainCache = Cache.getSpace("BargainCache") || new Cache({
                 namespace: "BargainCache",
                 type: "local"
             });
             // 判断是否有砍价活动
             if (init_data.item.bargain) {
+
                 // 获取砍价幅度
                 var _amplitude = _this.computeBargainPrice();
                 var _origin_price = _this.origin_price = $(".price").html();
@@ -444,13 +447,13 @@ define([
     // 检查是否含有砍价活动商品
     Bargain.checkIsHaveBargainItem = function (items) {
         var isHave = false;
+        var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
+            namespace: "BargainCache",
+            type: "local"
+        });
         if (items) {
             $.each(items, function (key, item) {
                 if (!!item.item.bargain) {
-                    var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
-                        namespace: "BargainCache",
-                        type: "local"
-                    });
                     var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
                     if (_localBargainCacheDetail) {
                         if (item.item.bargain.id == _localBargainCacheDetail.id && _localBargainCacheDetail.bargain_result != "0.00") {
@@ -468,8 +471,20 @@ define([
                             return;
                         }
                     } else {
-                        isHave = false;
-                        return;
+                        // 检查本地的
+                        var _localSelfBargainPrice = _localBargainCache.find("bargain_price_self");
+                        if (_localSelfBargainPrice) {
+                            if (_localSelfBargainPrice[item.item.bargain.id]&&_localSelfBargainPrice[item.item.bargain.id].amplitudeSelfPrice!="0") {
+                                isHave = true;
+                            } else {
+                                isHave = false;
+                                return;
+                            }
+                        } else {
+
+                            isHave = false;
+                            return;
+                        }
                     }
 
                 }
