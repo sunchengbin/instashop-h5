@@ -158,7 +158,7 @@
                     Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa belanja hemat dengan harga Rp {$BARGAIN_INVITE_DETAIL.bargain_info.base_price|priceFormat}!
                 {else}
                     {*可以砍价 已经坎到了多少价*}
-                    Aku lagi ikutan promo tawar {$BARGAIN_INVITE_DETAIL.item_info.item_name} sampai Rp {$BARGAIN_INVITE_DETAIL.bargain_info.base_price|priceFormat} nih.
+                    Aku lagi ikutan promo tawar {$BARGAIN_INVITE_DETAIL.bargain_info.title} sampai Rp {$BARGAIN_INVITE_DETAIL.bargain_info.base_price|priceFormat} nih.
                     Harga saat ini {$BARGAIN_INVITE_DETAIL|getAfterBargainPrice}. Yuk bantu aku tawar lagi! 
                 {/if}
             {/if}
