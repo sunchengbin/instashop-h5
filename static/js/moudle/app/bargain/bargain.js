@@ -143,6 +143,7 @@ define([
                 Dialog.dialog({
                     body_txt: _this.createBargainPriceDialogHtm(),
                     show_footer: false,
+                    cover_event: true,
                     body_fn: function () {
                         // 回填自砍一刀的
                         $(".j_bargain_amplitude_price").text(_amplitude.price_format);
@@ -448,7 +449,44 @@ define([
         isReach = (~~itemprice - ~~amplitude) <= ~~baseprice;
         return isReach;
     }
-
+    // 检查是否实际参加
+    Bargain.isActualAttendBargain = function (bargainId) {
+        var isActualAttend = false;
+        var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
+            namespace: "BargainCache",
+            type: "local"
+        });
+        var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
+        var _localBargainCacheSelf = _localBargainCache.find("bargain_price_self");
+        // 如果有远程的 以远程为准
+        if(_localBargainCacheDetail){
+            if(_localBargainCacheDetail.id==bargainId){
+                // 判断是否砍了价格
+                if(_localBargainCacheDetail.bargain_result!="0.00"){
+                    isActualAttend = true;
+                }else{
+                    isActualAttend = false;
+                }
+            }else{
+                //检查本地的
+                // 如果本地有 且是这个活动的
+                if(_localBargainCacheSelf&&_localBargainCacheSelf[bargainId]){
+                    // 如果没有值 或者等0.00 都是未参加
+                    if(!_localBargainCacheSelf[bargainId].amplitudeSelfPrice||_localBargainCacheSelf[bargainId].amplitudeSelfPrice=="0.00"){
+                        isActualAttend = false;
+                    }else{
+                        isActualAttend = true;
+                    }
+                }else{
+                    //本地没有 或者 有但不是这个活动
+                    isActualAttend = false;
+                }
+            }
+        }else{
+            isActualAttend = false;
+        }
+        return isActualAttend;
+    }
 
     return Bargain;
 });

@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug', 'cache', 'oauth'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick, Debug, Cache, Oauth) {
+require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug', 'cache', 'oauth','bargain'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick, Debug, Cache, Oauth,Bargain) {
     var CartIndex = {
         init: function () {
             var _data = JSON.parse(localStorage.getItem('ShopData'));
@@ -200,7 +200,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                     //itemName:_items[item].item.item_name,
                                     itemNum: _items[item].num,
                                     item_sku: _items[item].sku.id,
-                                    bargain_price: _items[item].sku.bargain_price,
+                                    bargain_price: Bargain.isActualAttendBargain(_items[item].item.bargain.id)?_items[item].sku.bargain_price:0,
                                     discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
                                 });
                             } else {
@@ -219,7 +219,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                     itemID: _items[item].item.id,
                                     //itemName:_items[item].item.item_name,
                                     itemNum: _items[item].num,
-                                    bargain_price: _items[item].item.bargain.price,
+                                    bargain_price: Bargain.isActualAttendBargain(_items[item].item.bargain.id)?_items[item].item.bargain.price:0,
                                     discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
                                 });
                             } else {

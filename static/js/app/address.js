@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastclick', 'dialog', 'cart', 'common', 'validator'], function (Base, Hbs, Addresshtm, City, Config, Lang, Fastclick, Dialog, Cart, Common, Validator) {
+require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastclick', 'dialog', 'cart', 'common', 'validator','bargain'], function (Base, Hbs, Addresshtm, City, Config, Lang, Fastclick, Dialog, Cart, Common, Validator,Bargain) {
     var Address = {
         init: function () {
             var _this = this,
@@ -269,7 +269,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                             _arr.push({
                                 itemID: _items[item].item.id,
                                 //itemName:_items[item].item.item_name,
-                                bargain_price: _items[item].sku.bargain_price,
+                                bargain_price: Bargain.isActualAttendBargain(_items[item].item.bargain.id)?_items[item].sku.bargain_price:0,
                                 itemNum: _items[item].num,
                                 item_sku: _items[item].sku.id,
                                 discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
@@ -287,7 +287,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                         if (_items[item].item.bargain) {
                             _arr.push({
                                 itemID: _items[item].item.id,
-                                bargain_price:_items[item].item.bargain.price,
+                                bargain_price:Bargain.isActualAttendBargain(_items[item].item.bargain.id)?_items[item].item.bargain.price:0,
                                 //itemName:_items[item].item.item_name,
                                 itemNum: _items[item].num,
                                 discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
