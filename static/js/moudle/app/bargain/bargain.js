@@ -133,6 +133,7 @@ define([
                             $(".bargain-buyer-intro-content").hide();
                             // 恢复原价
                             console.log("恢复原价")
+                            _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
                             $(".price").html(_this.origin_price);
                         } else {
                             obj.bargain_invite_detail.id = _this.config.bargain.id;
@@ -153,9 +154,10 @@ define([
                         }
                     }
                 }
-                _this.config.afterfn&&_this.config.afterfn();
-            }, function () {
-            },{async:false})
+                _this.config.afterfn && _this.config.afterfn();
+            }, function () {}, {
+                async: false
+            })
         },
         handleFn: function () {
             var _this = this;
@@ -349,20 +351,23 @@ define([
         computeAndUpdateSkuPriceForBargain: function (originData) {
             var _this = this;
             var _bargain_result_price = _this.getBargainAmplitudePrice();
-            // 有sku
-            if (originData.item.sku.length > 0) {
-                for (var i = 0; i < originData.item.sku.length; i++) {
-                    var _curSku = originData.item.sku[i];
-                    var _bargain = {
-                        price: 0
+            if (!Bargain.checkIsLimitForLogin()) {
+                // 有sku
+                if (originData.item.sku.length > 0) {
+                    for (var i = 0; i < originData.item.sku.length; i++) {
+                        var _curSku = originData.item.sku[i];
+                        var _bargain = {
+                            price: 0
+                        }
+                        _bargain.price = ~~_curSku.price - ~~_bargain_result_price;
+                        _curSku.bargain = _bargain;
                     }
-                    _bargain.price = ~~_curSku.price - ~~_bargain_result_price;
-                    _curSku.bargain = _bargain;
+                } else {
+                    // 无sku 商品价格重置为 原价减去砍价总幅度
+                    originData.item.bargain.price = ~~originData.item.price - ~~_bargain_result_price;
                 }
-            } else {
-                // 无sku 商品价格重置为 原价减去砍价总幅度
-                originData.item.bargain.price = ~~originData.item.price - ~~_bargain_result_price;
             }
+
 
             return originData;
         },
