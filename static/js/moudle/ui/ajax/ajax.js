@@ -1,36 +1,37 @@
 /**
  * Created by sunchengbin on 16/6/2.
  */
-define(['config','base'],function(Config,Base){
+define(['config', 'base'], function (Config, Base) {
     var Debug = Base.others.getUrlPrem('_debug_env') || localStorage.getItem('DebugEnv') || 'dev';
     var Ajax = {
-        getJsonp : function ( url, success, error,async ) {
-            var _data = Base.others.getUrlPrem('param',url)?JSON.parse(Base.others.getUrlPrem('param',url)):null;
-            if(_data && Debug){
+        getJsonp: function (url, success, error, opt) {
+            var _data = Base.others.getUrlPrem('param', url) ? JSON.parse(Base.others.getUrlPrem('param', url)) : null;
+            if (_data && Debug) {
                 _data.edata['_debug_env'] = Debug;
                 url = url.split('?')[0];
-                url = url +'?param='+JSON.stringify(_data);
+                url = url + '?param=' + JSON.stringify(_data);
             }
-            $.ajax( {
+            $.ajax($.extend({
                 url: url + "&callback=?",
                 dataType: "JSONP",
-                async:async||true,
-                success: function ( res ) {
-                    success( res );
+                success: function (res) {
+                    success(res);
                 },
                 error: function (err) {
-                    error && error( err );
+                    error && error(err);
                 }
-            } )
+            }, opt))
         },
-        postJsonp : function (opts) {//{url:, data:, type:, success:, error:}
-            var _data = opts.data.param?JSON.parse(opts.data.param).edata:null;
-            if(_data && Debug){
+        postJsonp: function (opts) { //{url:, data:, type:, success:, error:}
+            var _data = opts.data.param ? JSON.parse(opts.data.param).edata : null;
+            if (_data && Debug) {
                 _data['_debug_env'] = Debug;
-                opts.data.param = JSON.stringify({'edata':_data});
+                opts.data.param = JSON.stringify({
+                    'edata': _data
+                });
             }
             var _data = {
-                url: Config.host.hostUrl+'router/api.php?_path_=' + opts.url,
+                url: Config.host.hostUrl + 'router/api.php?_path_=' + opts.url,
                 dataType: "JSON",
                 data: opts.data,
                 type: "POST",
@@ -44,12 +45,12 @@ define(['config','base'],function(Config,Base){
                     opts.error && opts.error(err);
                 }
             };
-            if(opts.timeout){
+            if (opts.timeout) {
                 _data.timeout = opts.timeout;
             }
             $.ajax(_data)
         },
-        transData : function(data){
+        transData: function (data) {
             var _data = {};
             data.client_uuid = localStorage.getItem('ClientUuid');
             _data.edata = data;
@@ -58,4 +59,3 @@ define(['config','base'],function(Config,Base){
     };
     return Ajax;
 })
-

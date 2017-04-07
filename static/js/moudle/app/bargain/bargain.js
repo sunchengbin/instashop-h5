@@ -156,7 +156,7 @@ define([
                 }
             }, function () {
 
-            },false)
+            },{async:false})
         },
         handleFn: function () {
             var _this = this;
