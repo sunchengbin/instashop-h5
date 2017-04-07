@@ -90,19 +90,21 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                 if (_stock && _stock <= _num) {
                     return;
                 }
-                var _curDateTime = Base.others.getCurDateTime()-3600;
-                var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
-                var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
-                if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
-                    // 砍价活动过期了
-                } else {
-                    // 是否限购 0为不限购
-                    if (_limitto != 0) {
-                        if (_num >= _limitto) {
-                            Dialog.tip({
-                                body_txt: Lang.BARGAIN_LIMIT
-                            })
-                            return;
+                if (!!init_data.item.bargain) {
+                    var _curDateTime = Base.others.getCurDateTime() - 3600;
+                    var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
+                    var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
+                    if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                        // 砍价活动过期了
+                    } else {
+                        // 是否限购 0为不限购
+                        if (_limitto != 0) {
+                            if (_num >= _limitto) {
+                                Dialog.tip({
+                                    body_txt: Lang.BARGAIN_LIMIT
+                                })
+                                return;
+                            }
                         }
                     }
                 }
@@ -168,7 +170,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                 }
 
                 if (init_data.item.bargain) {
-                    var _curDateTime = Base.others.getCurDateTime()-3600;
+                    var _curDateTime = Base.others.getCurDateTime() - 3600;
                     var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
                     var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
                     if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {

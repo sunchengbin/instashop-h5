@@ -43,7 +43,7 @@
         <p class="title">
             {*砍价活动*}
             {if $INDEX_DATA.item.bargain}
-                <span class="ins-color-hightlight-blue j_bargain_tip">[Mau beli barang ini seharga Rp {$INDEX_DATA.item.bargain.base_price|priceFormat} rupiah saja? Cuss cek caranya!]</span>
+                <a href="#bargain-buyer-intro" class="ins-color-hightlight-blue j_bargain_tip">[Mau beli barang ini seharga Rp {$INDEX_DATA.item.bargain.base_price|priceFormat} rupiah saja? Cuss cek caranya!]</a>
             {/if}
             {$INDEX_DATA.item.item_comment|nl2br}
         </p>

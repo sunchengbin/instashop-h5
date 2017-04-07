@@ -618,7 +618,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             });
 
         },
-
         showSortPrompt: function () {
             $('.j_sort_prompt_box .btn-cover').html(Lang.H5_GOOD_SORT);
             $('.j_sort_prompt_box').addClass('sort-prompt-box');
