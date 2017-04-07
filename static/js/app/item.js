@@ -22,7 +22,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                         auto: false
                     });
                     if (!!init_data.item.bargain) {
-                        var _curDateTime = Base.others.getCurDateTime()-3600;
+                        var _curDateTime = Base.others.getCurDateTime() - 3600;
                         var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
                         var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
                         if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
@@ -174,15 +174,23 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             });
             //满减 lanchenghao
             $('body').on('click', '.j_reduc_box', function () {
+                PaqPush && PaqPush('查看满减公告', '');
                 var _htm = '<ul class="reduc-rule-list">';
-                if (!!init_data.item.shop.shop_discount) {
-                    PaqPush && PaqPush('查看满减活动公告', '');
-                    //_paq.push(['trackEvent', '查看满减活动公告', 'click', '']);
-                    for (var i = 0, _reducItem; _reducItem = init_data.item.shop.shop_discount.info[i++];) {
-                        _htm += "<li><span></span>Minimal Pembelian Rp " + Base.others.priceFormat(_reducItem.condition_price) + " Potongan Rp " + Base.others.priceFormat(_reducItem.discount_price) + "</li>"
+                var _discount = init_data.item.shop.shop_discount;
+                if (!!_discount) {
+                    switch (_discount.discount_type) {
+                        case "percent":
+                            var _percentInfo = _discount.info[0];
+                            _htm += 'Minimal Pembelian Rp ' + Base.others.priceFormat(_percentInfo.condition_price) + ' akan mendapat potongan - ' + _percentInfo.discount_percent + '%.' + (_discount.limit_price == "0.00" ? '' : 'Nominal potongan maksimal Rq ' + Base.others.priceFormat(_discount.limit_price));
+                            _htm += '<li><span></span>' + $(".reduc-expire").text() + '</li></ul>'
+                            break;
+                        case "price":
+                            for (var i = 0, _reducItem; _reducItem = init_data.item.shop.shop_discount.info[i++];) {
+                                _htm += "<li><span></span>Minimal Pembelian Rp " + Base.others.priceFormat(_reducItem.condition_price) + " Potongan Rp " + Base.others.priceFormat(_reducItem.discount_price) + "</li>"
+                            }
+                            _htm += '<li><span></span>' + $(".reduc-expire").text() + '</li></ul>'
+                            break;
                     }
-                    _htm += '<li><span></span>' + $(".reduc-expire").text() + '</li></ul>';
-                    // _htm = _htm.replace(/,$/gi,'') +"</br>"+ $(".reduc-expire").text();
                     Dialog.alert({
                         top_txt: "<p style='text-align:center'>" + Lang.H5_REDUC_TITLE + "</p>",
                         show_top: true,
