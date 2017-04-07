@@ -152,10 +152,9 @@ define([
                             $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
                         }
                     }
-
                 }
+                _this.config.afterfn&&_this.config.afterfn();
             }, function () {
-
             },{async:false})
         },
         handleFn: function () {
