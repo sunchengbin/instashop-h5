@@ -8,7 +8,7 @@ define([
     'cache',
     'dialog',
     'lang'
-], function (Base, Config, Ajax, Cache, Dialog,Lang) {
+], function (Base, Config, Ajax, Cache, Dialog, Lang) {
     'use strict';
     var Oauth = {
         login: function (type) {
@@ -30,9 +30,9 @@ define([
             var reqUrl = "http://api-test.instashop.co.id/instashop/" + Config.actions.oauth + "?param=" + encodeURIComponent(JSON.stringify(_reqData)) + "&timestamp=" + new Date().getTime();
             window.location.href = reqUrl;
         },
-        openDialog: function (type,opts) {
+        openDialog: function (type, opts) {
             Dialog.dialog({
-                body_txt: Oauth.createLoginHtm(type,opts),
+                body_txt: Oauth.createLoginHtm(type, opts),
                 show_footer: false,
                 show_top: false,
                 body_fn: function () {
@@ -44,15 +44,15 @@ define([
                 }
             })
         },
-        createLoginHtm: function (type,opts) {
+        createLoginHtm: function (type, opts) {
             var _htm = "";
-            opts = opts||{}
+            opts = opts || {}
             _htm = '<div>' +
                 '<div class="login-dialog-header">Untuk mengikuti promo ini, kamu harus login terlebih dahulu:</div>' +
                 '<div>' +
                 '<div class="j_dialog_login_line j_dialog_login_btn ins-m-b-2" data-type="line">Login with Line</div>' +
-                '<div class="j_dialog_login_facebook j_dialog_login_btn '+(type?'ins-m-b-2':'')+'" data-type="facebook">Login with Facebook</div>' +
-                '<div class="j_cart_no_login" style="display:'+(type?'block':'none')+'" group-id="'+opts.groupid+'" data-type="cart_no_logain">'+Lang.BARGAIN_CART_BTN_UNLOGIN+'</div>'+
+                '<div class="j_dialog_login_facebook j_dialog_login_btn ' + (type ? 'ins-m-b-2' : '') + '" data-type="facebook">Login with Facebook</div>' +
+                '<div class="j_cart_no_login" style="display:' + (type ? 'block' : 'none') + '" group-id="' + opts.groupid + '" data-type="cart_no_logain">' + Lang.BARGAIN_CART_BTN_UNLOGIN + '</div>' +
                 '</div>' +
                 '</div>';
             return _htm;
@@ -71,13 +71,16 @@ define([
                 if (!!loginInfoFromCallBackPost.buyer_id && !!loginInfoFromCallBackPost.name) {
                     // post 问题 fix
                     var localLoginInfo = loginInfoFromCache.find("loginInfo");
-                    if(localLoginInfo.buyer_id==loginInfoFromCallBackPost.buyer_id){
-                        // 比对telphone
-                        if(!loginInfoFromCallBackPost.telephone&&localLoginInfo.telephone){
-                            // 如果远程的没有 本地的有
-                            loginInfoFromCallBackPost.telephone = localLoginInfo.telephone;
+                    if (localLoginInfo) {
+                        if (localLoginInfo.buyer_id == loginInfoFromCallBackPost.buyer_id) {
+                            // 比对telphone
+                            if (!loginInfoFromCallBackPost.telephone && localLoginInfo.telephone) {
+                                // 如果远程的没有 本地的有
+                                loginInfoFromCallBackPost.telephone = localLoginInfo.telephone;
+                            }
                         }
                     }
+
                     loginInfoFromCache.set("loginInfo", loginInfoFromCallBackPost);
                     return {
                         result: true,
