@@ -32,9 +32,9 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                 +'<div class="share-info">'+_share_content
                 +'</div>'
                 +'<div class="share-operate bargain_inv_operate clearfix">'
-                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="砍价活动分享到facebook" spm-click="" data-url="fb://facewebmodal/f?href=http://www.facebook.com/share.php?u="'+_this.config.bargain_inv_url+'"t=">'
+                +'<a href="javascript:;" class="j_share_action" data-type="fb" spm-auto="砍价活动分享到facebook" spm-click="">'
                 +'<i class="iconfont icon-share-facebook" ></i>'
-                +'<p>FB</p>'
+                +'<p>Facebook</p>'
                 +'</a>'
                 +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="砍价活动分享到line" spm-click="" data-url="http://line.naver.jp/R/msg/text/?">'
                 +'<i class="iconfont icon-share-line" ></i>'
@@ -61,6 +61,9 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                     if(_type=='bbm'&&Base.others.verifyBower().ios){
                         var _bbm_url = Lang.H5_SHARE_TO_BBM_COUPON_TXT+_this.config.bargain_inv_url;
                         location.href = _dom.attr('data-url') + _bbm_url;
+                    }else if(_type=='fb') {
+                        var _fb_url = 'fb://facewebmodal/f?href="http://www.facebook.com/share.php?u="'+encodeURIComponent(_this.config.bargain_inv_url);
+                        location.href = _fb_url;
                     }else{
                         location.href = _dom.attr('data-url') + _this.share_content;
                     }
