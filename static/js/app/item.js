@@ -32,6 +32,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                                 $(".j_bargain_btn_continue").hide();
                                 $(".j_bargain_tip").hide();
                                 $(".bargain-tip-txt-how").hide();
+                                $(".bargain-buyer-intro").hide();
                             } else {
                                 _this.BargainPlug = new Bargain({
                                     bargain: init_data.item.bargain
@@ -45,6 +46,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                             $(".j_bargain_btn_continue").hide();
                             $(".j_bargain_tip").hide();
                             $(".bargain-tip-txt-how").hide();
+                            $(".bargain-buyer-intro").hide();
                         }
 
                     }

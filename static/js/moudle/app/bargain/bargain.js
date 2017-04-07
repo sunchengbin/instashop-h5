@@ -130,6 +130,9 @@ define([
                             $(".j_bargain_btn_continue").hide();
                             $(".j_bargain_tip").hide();
                             $(".bargain-tip-txt-how").hide();
+                            $(".bargain-buyer-intro").hide();
+                            // 恢复原价
+                            console.log("恢复原价")
                         } else {
                             obj.bargain_invite_detail.id = _this.config.bargain.id;
                             _this.showFriendHelpList(obj.bargain_invite_detail);
