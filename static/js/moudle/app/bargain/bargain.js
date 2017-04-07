@@ -430,16 +430,10 @@ define([
                             return;
                         } else {
                             isHave = false;
+                            return;
                         }
                     } else {
-                        var _curDateTime = Base.others.getCurDateTime() - 3600;
-                        var _bargain_start_time = Base.others.transDateStrToDateTime(item.item.bargain.start_time);
-                        var _bargain_end_time = Base.others.transDateStrToDateTime(item.item.bargain.end_time);
-                        if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
-                            isHave = false;
-                        } else {
-                            isHave = true;
-                        }
+                        isHave = false;
                         return;
                     }
 
