@@ -97,18 +97,21 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 if (Object.keys(_this.carts).length == 1) {
 
                 } else {
-                    _this.favorablePlugin = Favorable({
-                        el: ".order-info",
-                        price: _sum,
-                        seller_id: JSON.parse(_data).ShopInfo.id,
-                        usehandle: function (favorablePrice, favorableCode) {
-                            var _postPrice = $(".j_post").attr("data-price") || 0,
-                                _price = _sum - Number(favorablePrice) + Number(_postPrice);
-                            _this.favorableCode = favorableCode;
-                            _price = _price < 0 ? 0 : _price;
-                            $(".j_sum").text('Rp ' + Base.others.priceFormat(_price));
-                        }
-                    });
+                    if (!Bargain.checkIsHaveBargainItem(_this.carts)) {
+                        _this.favorablePlugin = Favorable({
+                            el: ".order-info",
+                            price: _sum,
+                            seller_id: JSON.parse(_data).ShopInfo.id,
+                            usehandle: function (favorablePrice, favorableCode) {
+                                var _postPrice = $(".j_post").attr("data-price") || 0,
+                                    _price = _sum - Number(favorablePrice) + Number(_postPrice);
+                                _this.favorableCode = favorableCode;
+                                _price = _price < 0 ? 0 : _price;
+                                $(".j_sum").text('Rp ' + Base.others.priceFormat(_price));
+                            }
+                        });
+                    }
+
                 }
             }
 
