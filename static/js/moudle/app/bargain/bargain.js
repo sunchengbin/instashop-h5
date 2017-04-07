@@ -470,11 +470,14 @@ define([
             type: "local"
         });
         var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
-        if(init_data.item.bargain.limit_to!=0){
-            if(_localBargainCacheDetail.bargain_bought_num>0){
-                isLimit =  true;
+        if (_localBargainCacheDetail) {
+            if (init_data.item.bargain.limit_to != 0) {
+                if (_localBargainCacheDetail.bargain_bought_num > 0) {
+                    isLimit = true;
+                }
             }
         }
+
         return isLimit;
     }
     // 检查是否砍到了底价
