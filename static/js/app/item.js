@@ -33,6 +33,29 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                                 $(".j_bargain_tip").hide();
                                 $(".bargain-tip-txt-how").hide();
                                 $(".bargain-buyer-intro-content").hide();
+                                Buyplug({
+                                    data: init_data,
+                                    noStockCallback: function () {
+                                        if ($('.j_show_contact').length) {
+                                            _this.contact = Contact({
+                                                data: {
+                                                    tel: init_data.item.shop.phone,
+                                                    line: init_data.item.shop.line_url
+                                                },
+                                                lang: Lang
+                                            });
+                                            _this.contact.createHtm({
+                                                data: {
+                                                    tel: init_data.item.shop.phone,
+                                                    line: init_data.item.shop.line_url
+                                                },
+                                                lang: Lang
+                                            }).toShow();
+                                        } else {
+                                            location.href = init_data.item.shop.line_url;
+                                        }
+                                    }
+                                });
                             } else {
                                 _this.BargainPlug = new Bargain({
                                     bargain: init_data.item.bargain,
@@ -73,6 +96,29 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                             $(".j_bargain_tip").hide();
                             $(".bargain-tip-txt-how").hide();
                             $(".bargain-buyer-intro-content").hide();
+                            Buyplug({
+                                data: init_data,
+                                noStockCallback: function () {
+                                    if ($('.j_show_contact').length) {
+                                        _this.contact = Contact({
+                                            data: {
+                                                tel: init_data.item.shop.phone,
+                                                line: init_data.item.shop.line_url
+                                            },
+                                            lang: Lang
+                                        });
+                                        _this.contact.createHtm({
+                                            data: {
+                                                tel: init_data.item.shop.phone,
+                                                line: init_data.item.shop.line_url
+                                            },
+                                            lang: Lang
+                                        }).toShow();
+                                    } else {
+                                        location.href = init_data.item.shop.line_url;
+                                    }
+                                }
+                            });
                         }
 
                     } else {
