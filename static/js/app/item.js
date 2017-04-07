@@ -62,6 +62,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                                     afterfn: function () {
                                         // 根据砍价活动计算sku
                                         init_data = _this.BargainPlug.computeAndUpdateSkuPriceForBargain(init_data);
+                                        console.log("afterfn")
                                         Buyplug({
                                             data: init_data,
                                             noStockCallback: function () {
