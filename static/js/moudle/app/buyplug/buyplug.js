@@ -281,7 +281,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                         id: _sku_id,
                                         title: _sku_title,
                                         stock: _stock,
-                                        bargain_price: _skuMap[_sku_id].bargain.price
+                                        bargain_price: _skuMap[_sku_id].bargain?_skuMap[_sku_id].bargain.price:0
                                     },
                                     price: _sku_price,
                                     isbuynow: _is_buy_now,
