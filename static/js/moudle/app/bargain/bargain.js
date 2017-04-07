@@ -459,32 +459,44 @@ define([
         var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
         var _localBargainCacheSelf = _localBargainCache.find("bargain_price_self");
         // 如果有接口返回的 以接口返回为准
-        if(_localBargainCacheDetail){
+        if (_localBargainCacheDetail) {
             // 是同一个活动
-            if(_localBargainCacheDetail.id==bargainId){
+            if (_localBargainCacheDetail.id == bargainId) {
                 // 判断是否砍了价格
-                if(_localBargainCacheDetail.bargain_result!="0.00"){
+                if (_localBargainCacheDetail.bargain_result != "0.00") {
                     isActualAttend = true;
-                }else{
+                } else {
                     isActualAttend = false;
                 }
-            }else{
+            } else {
                 //检查本地的
                 // 如果本地有 且是这个活动的
-                if(_localBargainCacheSelf&&_localBargainCacheSelf[bargainId]){
+                if (_localBargainCacheSelf && _localBargainCacheSelf[bargainId]) {
                     // 如果没有值 或者等0.00 都是未参加
-                    if(!_localBargainCacheSelf[bargainId].amplitudeSelfPrice||_localBargainCacheSelf[bargainId].amplitudeSelfPrice=="0.00"){
+                    if (!_localBargainCacheSelf[bargainId].amplitudeSelfPrice || _localBargainCacheSelf[bargainId].amplitudeSelfPrice == "0.00") {
                         isActualAttend = false;
-                    }else{
+                    } else {
                         isActualAttend = true;
                     }
-                }else{
+                } else {
                     //本地没有 或者 有但不是这个活动
                     isActualAttend = false;
                 }
             }
-        }else{
-            isActualAttend = false;
+        } else {
+            //检查本地的
+            // 如果本地有 且是这个活动的
+            if (_localBargainCacheSelf && _localBargainCacheSelf[bargainId]) {
+                // 如果没有值 或者等0.00 都是未参加
+                if (!_localBargainCacheSelf[bargainId].amplitudeSelfPrice || _localBargainCacheSelf[bargainId].amplitudeSelfPrice == "0.00") {
+                    isActualAttend = false;
+                } else {
+                    isActualAttend = true;
+                }
+            } else {
+                //本地没有 或者 有但不是这个活动
+                isActualAttend = false;
+            }
         }
         return isActualAttend;
     }
