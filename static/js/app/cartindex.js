@@ -16,6 +16,8 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     isDrop: false
                 });
                 $('body').prepend(_htm);
+                this.handleFn();
+                this.loginResultPackage = Oauth.checkIsLogin();
             } else {
                 var GroupCart = this.GroupCart = (function () {
                     if (!isGroup || !_data.GroupCart) return null;
