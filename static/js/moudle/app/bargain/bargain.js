@@ -140,6 +140,7 @@ define([
             var _this = this;
             $('body').on('click', '.j_bargain_btn_self', function () {
                 //弹出 砍了多少钱 dialog
+                PaqPush && PaqPush('砍价-自砍一刀', '');
                 var _amplitude = _this.computeBargainPrice();
                 Dialog.dialog({
                     body_txt: _this.createBargainPriceDialogHtm(),
@@ -161,15 +162,19 @@ define([
             })
             // 登录
             $("body").on("click", ".j_user_login", function () {
+                PaqPush && PaqPush('登录-弹出登录框', '');
                 Oauth.openDialog();
             })
             // 砍了多少钱的弹窗 确认按钮 点击刷新
             $("body").on("click", ".j_btn_confrim_bargain_price", function () {
+                PaqPush && PaqPush('砍价-确认砍价金额', '');
                 location.reload();
             })
             $("body").on("click", ".j_bargain_btn_continue", function () {
+                PaqPush && PaqPush('砍价-继续砍价', '');
                 // 判断是否登录 登录 弹出 分享 
                 if (_this.loginResultPackage.result) {
+                    PaqPush && PaqPush('砍价-弹出分享框', '');
                     Sharebargain({
                         title: Lang.BARGAIN_DETAIL_INVITE_TIP,
                         content: "Hi, aku lagi ikutan promo tawar " + init_data.item.item_name + " sampai " + "Rp " + Base.others.priceFormat(_this.config.bargain.base_price) + " nih! Bantu aku tawar yuk. Klik ",
@@ -177,6 +182,7 @@ define([
                         c_fn: function () {
                             //判断是否用户有手机号 如果有 则不提示 如果没有则提示
                             if (!_this.loginResultPackage.info.telephone) {
+                                PaqPush && PaqPush('砍价-预留手机号', '');
                                 _this.submitBargainPhone = Dialog.dialog({
                                     body_txt: '<div>' +
                                         '<div class="">' + Lang.BARGAIN_SHARE_AFTER_PHONE + '</div>' +
@@ -201,11 +207,13 @@ define([
                         }
                     });
                 } else {
+                    PaqPush && PaqPush('登录-弹出登录框', '');
                     Oauth.openDialog();
                 }
                 // 未登录 弹出 去登录 
             })
             $("body").on("click", ".j_bargain_inv_submit_telphone", function () {
+                PaqPush && PaqPush('砍价-保存手机号', '');
                 //获取手机号
                 var _bargainTelphone = $.trim($(".j_bargain_inv_telphone").val());
                 //校验手机号 TODO

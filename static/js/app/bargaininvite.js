@@ -112,6 +112,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
             $("body").on("click", ".j_bargain_btn_invite_help", function (e) {
                 var _isOverdue = $(this).attr("data-overdue")||0;
                 if(_isOverdue==1){
+                    PaqPush && PaqPush('砍价邀请页-活动过期', '');
                     Dialog.tip({
                         body_txt:Lang.BARGAIN_BTN_CLICK_BODY
                     })
@@ -122,6 +123,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                     var _localBargainInviteStorage = _this.bargainInviteStorage.find("bargainInvite") || {};
                     // 判断是否砍过
                     if (_localBargainInviteStorage[init_data.bargain_invite_detail.bargain_info.id]) {
+                        PaqPush && PaqPush('砍价邀请页-已经砍过-弹出分享页', '');
                         // 砍过 弹出分享框
                         Sharebargain({
                             title: Lang.BARGAIN_DETAIL_INVITE_TIP,
@@ -133,12 +135,14 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                         _this.cutPrice();
                     }
                 } else {
+                    PaqPush && PaqPush('砍价邀请页-弹出登录框', '');
                     // 未登录
                     Oauth.openDialog();
                 }
 
             })
             $("body").on("click", ".j_btn_confrim_bargain_price", function () {
+                PaqPush && PaqPush('砍价邀请页-砍一刀-确认砍价金额', '');
                 location.reload();
             })
             $("body").on("click", ".j_bargain_btn_invite_self", function () {
@@ -149,6 +153,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                     })
                     return;
                 }
+                PaqPush && PaqPush('砍价邀请页-我也要购买', '');
                 location.href = init_data.bargain_invite_detail.item_info.h5_url;
             })
         },
@@ -163,10 +168,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                     "uss": _this.loginResultPackage.info.uss
                 }
             }
-            Debug.log({
-                title: "砍一刀请求参数",
-                data: _reqData.edata
-            })
+            PaqPush && PaqPush('砍价邀请页-砍一刀', '');
             Ajax.postJsonp({
                 url: Config.actions.bargain,
                 data: {
@@ -176,6 +178,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 timeout: 30000,
                 success: function (obj) {
                     if (200 == obj.code) {
+                        PaqPush && PaqPush('砍价邀请页-砍一刀-弹出砍价金额', '');
                         // 本地存储砍了是否砍过
                         var _curBargain = {};
                         _curBargain[init_data.bargain_invite_detail.bargain_info.id] = init_data.bargain_invite_detail.bargain_info;
@@ -193,6 +196,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                             }
                         })
                     } else {
+                        PaqPush && PaqPush('砍价邀请页-砍一刀-弹出分享', '');
                         Sharebargain({
                             title: Lang.BARGAIN_DETAIL_INVITE_TIP,
                             content: "Hi, aku lagi ikutan promo tawar " + init_data.bargain_invite_detail.item_info.item_name + " sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
