@@ -190,7 +190,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     switch (_discount.discount_type) {
                         case "percent":
                             var _percentInfo = _discount.info[0];
-                            _htm += 'Minimal Pembelian Rp ' + Base.others.priceFormat(_percentInfo.condition_price) + ' akan mendapat potongan - ' + _percentInfo.discount_percent + '%.' + (_discount.limit_price == "0.00" ? '' : 'Nominal potongan maksimal Rq ' + Base.others.priceFormat(_discount.limit_price));
+                            _htm += 'Minimal Pembelian Rp ' + Base.others.priceFormat(_percentInfo.condition_price) + ' akan mendapat potongan - ' + _percentInfo.discount_percent + '%.';
                             _htm += '<li><span></span>' + $(".reduc-expire").text() + '</li></ul>'
                             break;
                         case "price":
