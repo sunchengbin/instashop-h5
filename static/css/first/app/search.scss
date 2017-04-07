@@ -82,7 +82,7 @@ body{
   color: $info-color;
 }
 .items-box{
-  @include remCalc(margin-top,30);
+  @include remCalc(margin-top,15);
 }
 .no-search-val{
   text-align: center;

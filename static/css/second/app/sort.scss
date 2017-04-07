@@ -8,7 +8,7 @@ body{
   background-color:#ececec;
 }
 .items-list,.three-items-list{
-  @include remCalc(margin-top,30);
+  @include remCalc(margin-top,15);
 }
 /*头部*/
 .shop-header-nav{
@@ -32,6 +32,9 @@ body{
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
   border-top: 1px solid $border-color;
+}
+.shop-header-nav .cart-num{
+  @include remCalc(top,10);
 }
 .shop-header-nav > div{
   @include remCalc(height,95);

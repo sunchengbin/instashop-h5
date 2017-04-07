@@ -1,6 +1,6 @@
 
 //首页小展示模块样式
-.tab-content{
+.tab-content .tabpanel:first-child > div,.tab-content .tabpanel:last-child > div{
   @include remCalc(padding,0 30);
 }
 /*产品展示列表*/
