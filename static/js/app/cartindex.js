@@ -15,6 +15,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     isGroup: false,
                     isDrop: false
                 });
+                $('body').prepend(_htm);
             } else {
                 var GroupCart = this.GroupCart = (function () {
                     if (!isGroup || !_data.GroupCart) return null;
