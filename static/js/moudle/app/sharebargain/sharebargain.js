@@ -7,7 +7,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
         _this.config = $.extend({
             title : Lang.H5_SHARE_TITLE,
             content : Lang.H5_SHARE_COUPON_TXT,
-            bargain_inv_url: 'http://m-test.instashop.co.id/b/0001'
+            bargain_inv_url: 'http://m-test.instashop.co.id/inv/16'
         },opts);
         _this.init();
     };
@@ -32,20 +32,19 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                 +'<div class="share-info">'+_share_content
                 +'</div>'
                 +'<div class="share-operate bargain_inv_operate clearfix">'
-                // +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="优惠券分享到facebook" spm-click="" data-url="http://www.facebook.com/share.php?t=">'
-                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="优惠券分享到facebook" spm-click="" data-url="fb://facewebmodal/f?href=http://www.facebook.com/share.php?u='+encodeURIComponent('http://m-test.instashop.co.id/inv/7?_debug_env=4.5')+'t=instashoptest">'
+                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="砍价活动分享到facebook" spm-click="" data-url="fb://facewebmodal/f?href=http://www.facebook.com/share.php?t=">'
                 +'<i class="iconfont icon-share-facebook" ></i>'
                 +'<p>FB</p>'
                 +'</a>'
-                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="优惠券分享到line" spm-click="" data-url="http://line.naver.jp/R/msg/text/?">'
+                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="砍价活动分享到line" spm-click="" data-url="http://line.naver.jp/R/msg/text/?">'
                 +'<i class="iconfont icon-share-line" ></i>'
                 +'<p>LINE</p>'
                 +'</a>'
-                +'<a href="javascript:;" class="j_share_action" data-type="whatsapp" spm-auto="优惠券分享到whatsapp" spm-click="" data-url="whatsapp://send?text=">'
+                +'<a href="javascript:;" class="j_share_action" data-type="whatsapp" spm-auto="砍价活动分享到whatsapp" spm-click="" data-url="whatsapp://send?text=">'
                 +'<i class="iconfont icon-share-whatsapp" ></i>'
                 +'<p>WhatsApp</p>'
                 +'</a>'
-                +'<a href="javascript:;" class="j_share_action" data-type="bbm" spm-auto="优惠券分享到bbm" spm-click="" data-url="bbmi://api/share?message=">'
+                +'<a href="javascript:;" class="j_share_action" data-type="bbm" spm-auto="砍价活动分享到bbm" spm-click="" data-url="bbmi://api/share?message=">'
                 +'<i class="iconfont icon-share-bbm " ></i>'
                 +'<p>BBM</p>'
                 +'</a>'

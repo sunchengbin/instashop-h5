@@ -22,8 +22,6 @@ define([
     Bargain.prototype = {
         init: function () {
             var _this = this;
-            window.Oauth = Oauth;
-            window.Cache = Cache;
             _this.loginResultPackage = Oauth.checkIsLogin();
             _this.bargainCache = _this.bargainCache = Cache.getSpace("BargainCache") || new Cache({
                 namespace: "BargainCache",
@@ -31,7 +29,7 @@ define([
             });
             // 判断是否有砍价活动
             if (init_data.item.bargain) {
-                // 判断有没有砍到底价
+                // 获取砍价幅度
                 var _amplitude = _this.computeBargainPrice();
 
                 // 判断是否过期
@@ -53,8 +51,6 @@ define([
                     } else {
                         $(".j_bargain_reachbaseprice").hide();
                         // 判断自己有没有砍一刀
-                        // 判断是不是同一活动
-                        // 同一个活动
                         if (_this.checkIsBargainSelf()) {
                             // 有的话 显示继续砍价按钮 更新价格视图
                             $(".price").html(_this.transPriceByBargain());
@@ -198,17 +194,6 @@ define([
                                     show_top: false
                                 })
                             }
-                            // if (!_this.loginResultPackage.info.telephone && _this.loginResultPackage.info.telephone.length == 0) {
-                            //     _this.submitBargainPhone = Dialog.dialog({
-                            //         body_txt: '<div>' +
-                            //             '<div class="">' + Lang.BARGAIN_SHARE_AFTER_PHONE + '</div>' +
-                            //             '<div class="bargain-phone-input clearfix ins-m-t-3"><span class="fl">+62</span> <input type="text" class="j_bargain_inv_telphone fr" /></div>' +
-                            //             '<div class="bargain-phone-button j_bargain_inv_submit_telphone">Ya</div>' +
-                            //             '</div>',
-                            //         show_footer: false,
-                            //         show_top: false
-                            //     })
-                            // }
                         }
                     });
                 } else {
