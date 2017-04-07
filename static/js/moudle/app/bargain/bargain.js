@@ -33,7 +33,7 @@ define([
                 var _amplitude = _this.computeBargainPrice();
 
                 // 判断是否过期
-                var _curDateTime = Base.others.getCurDateTime()-3600;
+                var _curDateTime = Base.others.getCurDateTime() - 3600;
                 var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
                 var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
                 if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
@@ -125,7 +125,7 @@ define([
                     obj.bargain_invite_detail.id = _this.config.bargain.id;
                     _this.showFriendHelpList(obj.bargain_invite_detail);
                     //更新result价格
-                    if("0.00"!=obj.bargain_invite_detail.bargain_result){
+                    if ("0.00" != obj.bargain_invite_detail.bargain_result) {
                         _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
                         $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
                     }
@@ -163,10 +163,10 @@ define([
                 PaqPush && PaqPush('登录-弹出登录框', '');
                 Oauth.openDialog();
             })
-            $("body").on("click",".bargain-tip-txt-how",function(){
+            $("body").on("click", ".bargain-tip-txt-how", function () {
                 PaqPush && PaqPush('查看-买家版砍价教程', '');
-                var _url = "http://"+location.host+"/html/bargainbuyerflow.html";
-                window.open(_url,"_blank")
+                var _url = "http://" + location.host + "/html/bargainbuyerflow.html";
+                window.open(_url, "_blank")
             })
             // 砍了多少钱的弹窗 确认按钮 点击刷新
             $("body").on("click", ".j_btn_confrim_bargain_price", function () {
@@ -362,7 +362,7 @@ define([
                     type: "local"
                 });
                 var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
-                if (_localBargainCacheDetail && init_data.item.bargain.id == _localBargainCacheDetail.id&&_localBargainCacheDetail.bargain_result!="0.00") {
+                if (_localBargainCacheDetail && init_data.item.bargain.id == _localBargainCacheDetail.id && _localBargainCacheDetail.bargain_result != "0.00") {
                     return {
                         price_origin: ~~_localBargainCacheDetail.bargain_result,
                         price_format: "Rp " + Base.others.priceFormat(_localBargainCacheDetail.bargain_result)
@@ -412,16 +412,37 @@ define([
         if (items) {
             $.each(items, function (key, item) {
                 if (!!item.item.bargain) {
-
-                    var _curDateTime = Base.others.getCurDateTime()-3600;
-                    var _bargain_start_time = Base.others.transDateStrToDateTime(item.item.bargain.start_time);
-                    var _bargain_end_time = Base.others.transDateStrToDateTime(item.item.bargain.end_time);
-                    if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
-                        isHave = false;
+                    var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
+                        namespace: "BargainCache",
+                        type: "local"
+                    });
+                    var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
+                    if (_localBargainCacheDetail) {
+                        if (item.item.bargain.id == _localBargainCacheDetail.id && _localBargainCacheDetail.bargain_result != "0.00") {
+                            var _curDateTime = Base.others.getCurDateTime() - 3600;
+                            var _bargain_start_time = Base.others.transDateStrToDateTime(item.item.bargain.start_time);
+                            var _bargain_end_time = Base.others.transDateStrToDateTime(item.item.bargain.end_time);
+                            if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                                isHave = false;
+                            } else {
+                                isHave = true;
+                            }
+                            return;
+                        } else {
+                            isHave = false;
+                        }
                     } else {
-                        isHave = true;
+                        var _curDateTime = Base.others.getCurDateTime() - 3600;
+                        var _bargain_start_time = Base.others.transDateStrToDateTime(item.item.bargain.start_time);
+                        var _bargain_end_time = Base.others.transDateStrToDateTime(item.item.bargain.end_time);
+                        if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                            isHave = false;
+                        } else {
+                            isHave = true;
+                        }
+                        return;
                     }
-                    return;
+
                 }
             })
         }
