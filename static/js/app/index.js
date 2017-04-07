@@ -57,7 +57,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             _this.initTab();
             _this.handleFn();
         },
-        initTab : function(){
+        initTab: function () {
             var _this = this,
                 _allItemsDefaultTab = 1;
             //首页tab
@@ -177,7 +177,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                         page_num: _this.allItemsPagination.page_num, //子tab切换默认第一页
                         orderby: _this.allItemsPagination.orderby,
                         filter: _this.allItemsPagination.filter
-                    },function(){
+                    }, function () {
                         _this.continueLoad = true;
                     });
                 },
@@ -250,7 +250,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             $(el).append($iframe);
         },
         //获取首页数据
-        getRecommendItem: function (paginationOpt,callback) {
+        getRecommendItem: function (paginationOpt, callback) {
             //默认加载已经请求了第一页 所以从第二页开始
             var _this = this;
             if (!_this.indexItemsPagination.getData) return;
@@ -272,20 +272,20 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             //}
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.shopList + init_data.shop.id + '?param=' + JSON.stringify(reqData), function (obj) {
                 if (obj.code == 200) {
-                        if (obj.item_list.list.length > 0) {
-                            _this.indexItemsPagination.page_num++;
-                            var _list_data = _this.transItems(obj.item_list.list);
-                            if (_list_data.item.length) {
-                                $('.j_hot_list').append(Item.addItem(_list_data.item));
-                            }
-                            if ($('[data-time]').length) {
-                                Item.changeTime();
-                            }
-                            //Common.addItems(obj.item_list.list);
-                            _this.indexItemsPagination.getData = true;
-                        } else {
-                            _this.indexItemsPagination.getData = false;
+                    if (obj.item_list.list.length > 0) {
+                        _this.indexItemsPagination.page_num++;
+                        var _list_data = _this.transItems(obj.item_list.list);
+                        if (_list_data.item.length) {
+                            $('.j_hot_list').append(Item.addItem(_list_data.item));
                         }
+                        if ($('[data-time]').length) {
+                            Item.changeTime();
+                        }
+                        //Common.addItems(obj.item_list.list);
+                        _this.indexItemsPagination.getData = true;
+                    } else {
+                        _this.indexItemsPagination.getData = false;
+                    }
                 } else {
                     _this.indexItemsPagination.getData = true;
                 }
@@ -298,7 +298,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             });
         },
         //获取全部商品
-        getAllItem: function (paginationOpt,callback) {
+        getAllItem: function (paginationOpt, callback) {
             var _this = this;
             if (!_this.allItemsPagination.getData) return;
             _this.allItemsPagination.getData = false;
@@ -461,37 +461,37 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     switch (_this.tagInfo.curTab) {
                         case "index_template":
                             Debug.log("请求推荐商品分页信息", _this.indexItemsPagination)
-                            _this.getRecommendItem(_this.indexItemsPagination,function(){
+                            _this.getRecommendItem(_this.indexItemsPagination, function () {
                                 _that.continueLoad = true;
                             });
                             break;
                         case "index_allitems":
                             Debug.log("请求全部商品", _this.allItemsPagination)
-                            _this.getAllItem(_this.allItemsPagination,function(){
+                            _this.getAllItem(_this.allItemsPagination, function () {
                                 _that.continueLoad = true;
                             });
                             break;
                         case "bycomplex":
                             Debug.log("请求全部商品", _this.allItemsPagination)
-                            _this.getAllItem(_this.allItemsPagination,function(){
+                            _this.getAllItem(_this.allItemsPagination, function () {
                                 _that.continueLoad = true;
                             });
                             break;
                         case "bydate":
                             Debug.log("请求全部商品", _this.allItemsPagination)
-                            _this.getAllItem(_this.allItemsPagination,function(){
+                            _this.getAllItem(_this.allItemsPagination, function () {
                                 _that.continueLoad = true;
                             });
                             break;
                         case "bypricel2h":
                             Debug.log("请求全部商品", _this.allItemsPagination)
-                            _this.getAllItem(_this.allItemsPagination,function(){
+                            _this.getAllItem(_this.allItemsPagination, function () {
                                 _that.continueLoad = true;
                             });
                             break;
                         case "bypriceh2l":
                             Debug.log("请求全部商品", _this.allItemsPagination)
-                            _this.getAllItem(_this.allItemsPagination,function(){
+                            _this.getAllItem(_this.allItemsPagination, function () {
                                 _that.continueLoad = true;
                             });
                             break;
@@ -518,7 +518,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 } else {
                     _url = Common.transFromUrl(_url);
                 }
-                localStorage.setItem('ScrollTop',_scroll_top);
+                localStorage.setItem('ScrollTop', _scroll_top);
                 _that.setRouteInfo();
                 Common.saveFromUrl(function () {
                     location.href = _url;
@@ -558,12 +558,21 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             $('body').on('click', '.j_reduc_box', function () {
                 PaqPush && PaqPush('查看满减公告', '');
                 var _htm = '<ul class="reduc-rule-list">';
-                if (!!init_data.shop.shop_discount) {
-                    for (var i = 0, _reducItem; _reducItem = init_data.shop.shop_discount.info[i++];) {
-                        _htm += "<li><span></span>Minimal Pembelian Rp " + Base.others.priceFormat(_reducItem.condition_price) + " Potongan Rp " + Base.others.priceFormat(_reducItem.discount_price) + "</li>"
+                var _discount = init_data.shop.shop_discount;
+                if (!!_discount) {
+                    switch (_discount.discount_type) {
+                        case "percent":
+                            var _percentInfo = _discount.info[0];
+                            _htm += 'Minimal Pembelian Rp ' + Base.others.priceFormat(_percentInfo.condition_price) + ' akan mendapat potongan - ' + _percentInfo.discount_percent + '%.' + (_discount.limit_price == "0.00" ? '' : 'Nominal potongan maksimal Rq ' + Base.others.priceFormat(_discount.limit_price));
+                            _htm += '<li><span></span>' + $(".reduc-expire").text() + '</li></ul>'
+                            break;
+                        case "price":
+                            for (var i = 0, _reducItem; _reducItem = init_data.shop.shop_discount.info[i++];) {
+                                _htm += "<li><span></span>Minimal Pembelian Rp " + Base.others.priceFormat(_reducItem.condition_price) + " Potongan Rp " + Base.others.priceFormat(_reducItem.discount_price) + "</li>"
+                            }
+                            _htm += '<li><span></span>' + $(".reduc-expire").text() + '</li></ul>'
+                            break;
                     }
-                    _htm += '<li><span></span>' + $(".reduc-expire").text() + '</li></ul>'
-                    // _htm = _htm.replace(/,$/gi,'') +"</br>"+ $(".reduc-expire").text();
                     Dialog.alert({
                         top_txt: "<p style='text-align:center'>" + Lang.H5_REDUC_TITLE + "</p>",
                         show_top: true,
@@ -609,7 +618,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             });
 
         },
-
         showSortPrompt: function () {
             $('.j_sort_prompt_box .btn-cover').html(Lang.H5_GOOD_SORT);
             $('.j_sort_prompt_box').addClass('sort-prompt-box');
