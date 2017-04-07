@@ -11,12 +11,6 @@
   @include fontDpr(14px);
   height: 35px;
 }
-.one-item-box .price{
-  height: 0;
-}
-.one-item-box .discount-price{
-  height: 0;
-}
 .one-item-box{
   background-color: transparent;
 }
@@ -33,6 +27,12 @@
 }
 .one-item-box .items-list li a::after{
   display: none;
+}
+.one-item-box .lazy > span{
+  @include remCalc(top,44);
+  @include remCalc(right,13);
+  @include remCalc(padding,10 30);
+  left: inherit;
 }
 .one-item-icon{
   @include remCalc(padding,10 30);
@@ -68,7 +68,7 @@
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border: 1px solid $border-color;
+  border: 1px solid $base-color;
   z-index: -1;
 }
 .cart-item {
@@ -114,11 +114,12 @@
   @include remCalc(margin-bottom,20);
 }
 .nav-text-ul a{
-  color: $txt-color;
+  color: $base-color;
   @include remCalc(height,50);
   @include remCalc(line-height,50);
   overflow: hidden;
-  border: 2px dotted $nav-text-border-color;
+  border: 1px solid $base-color;
+  border-top-color:$border-color;
   box-sizing: border-box;
 }
 .nav-text-ul li:nth-child(3n+1){
@@ -144,7 +145,7 @@
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border: 1px solid $border-color;
+  border: 1px solid $base-color;
   z-index: -1;
 }
 .nav-img-box ul{
@@ -160,6 +161,10 @@
   @include remCalc(height,54);
   @include remCalc(line-height,54);
   position: relative;
+  color: $black-color;
+}
+.nav-img-ul li::after{
+  border-color: $base-color;
 }
 .nav-img-ul li.nav-img-titile{
   @include remCalc(height,80);
@@ -178,7 +183,7 @@
 }
 .nav-img-ul a{
   box-sizing: border-box;
-  color: #666;
+  color: $base-color;
   word-break: break-word;
   text-overflow: ellipsis;
   overflow: hidden;

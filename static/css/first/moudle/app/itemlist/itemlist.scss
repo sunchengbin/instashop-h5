@@ -14,12 +14,14 @@
   color: $base-color;
   text-align: center;
   text-transform: uppercase;
-  border-bottom: 1px dashed $base-color;
   @include remCalc(margin-bottom,36);
   @include remCalc(padding-bottom,20);
 }
-.b-bottom::after{
-  bottom: -1.5px;
+.item-title::after{
+  border-width: 2px;
+  border-color: $base-color;
+  left: 10%;
+  right:10%;
 }
 .item-title em{
   display: inline-block;
@@ -33,12 +35,9 @@
   display: inline-block;
   @include remCalc(width,12);
   @include remCalc(height,12);
-  //height: .85rem;
-  //width: .5rem;
-  background-color: #F5A623;
+  background-color: $base-btn-color;
   position: absolute;
   @include remCalc(left,20);
-  //left: 1rem;
   top: 1.7rem;
   border-radius: 1px;
 }
@@ -47,7 +46,6 @@
 }
 .item-title a i{
   @include fontDpr(12px);
-  //font-size: 12px;
 }
 .items-list li{
   float: left;
@@ -56,11 +54,9 @@
 }
 .items-list li:nth-child(odd) a{
   @include remCalc(padding,10 5 0 0);
-  //padding:1rem .5rem 0 1rem;
 }
 .items-list li:nth-child(even) a{
   @include remCalc(padding,10 0 0 5);
-  //padding:1rem 1rem 0 .5rem;
 }
 .item-info{
   display: block;
@@ -86,6 +82,7 @@
 .items-list li a{
   @include remCalc(padding-top,30);
   color:$txt-color;
+  //padding-top:1rem;
 }
 .items-list li a::after{
   display: block;
@@ -145,7 +142,7 @@
 .lazy > span{
   display: inline-block;
   @include remCalc(padding,5 30);
-  background-color: rgba(224,179,181,.8);
+  background-color: rgba(0,0,0,.7);
   color: $white;
   @include remCalc(top,15);
   @include remCalc(left,15);
@@ -171,8 +168,8 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  @include remCalc(height,72);
-  @include remCalc(line-height,72);
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
   background-color: rgba(0,0,0,.7);
   color: $white;
   text-align: center;
@@ -181,7 +178,7 @@
 .lazy p i{
   vertical-align: middle;
   margin-right: 5px;
-  font-size: 13px;
+  font-size: 14px;
   color: $white;
   display: inline-block;
 }
@@ -197,5 +194,14 @@
   float: left;
   box-sizing: border-box;
   position:relative;
-  @include remCalc(padding,4);
+  @include remCalc(padding-bottom,30);
+}
+.three-items-list li:nth-child(3n+1){
+ @include remCalc(padding-right,20);
+}
+.three-items-list li:nth-child(3n+2){
+  @include remCalc(padding,0 10);
+}
+.three-items-list li:nth-child(3n+3){
+  @include remCalc(padding-left,20);
 }

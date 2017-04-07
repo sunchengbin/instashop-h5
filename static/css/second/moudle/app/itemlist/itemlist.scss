@@ -142,7 +142,7 @@
 .lazy > span{
   display: inline-block;
   @include remCalc(padding,5 30);
-  background-color: rgba(0,0,0,.8);
+  background-color: rgba(0,0,0,.7);
   color: $white;
   @include remCalc(top,15);
   @include remCalc(left,15);
@@ -168,8 +168,8 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  @include remCalc(height,72);
-  @include remCalc(line-height,72);
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
   background-color: rgba(0,0,0,.7);
   color: $white;
   text-align: center;

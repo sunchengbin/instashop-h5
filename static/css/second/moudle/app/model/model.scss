@@ -11,12 +11,6 @@
   @include fontDpr(14px);
   height: 35px;
 }
-.one-item-box .price{
-  height: 0;
-}
-.one-item-box .discount-price{
-  height: 0;
-}
 .one-item-box{
   background-color: transparent;
 }
@@ -33,6 +27,12 @@
 }
 .one-item-box .items-list li a::after{
   display: none;
+}
+.one-item-box .lazy > span{
+  @include remCalc(top,44);
+  @include remCalc(right,13);
+  @include remCalc(padding,10 30);
+  left: inherit;
 }
 .one-item-icon{
   @include remCalc(padding,10 30);
