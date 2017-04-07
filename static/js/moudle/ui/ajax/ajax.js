@@ -4,7 +4,7 @@
 define(['config','base'],function(Config,Base){
     var Debug = Base.others.getUrlPrem('_debug_env') || localStorage.getItem('DebugEnv') || 'dev';
     var Ajax = {
-        getJsonp : function ( url, success, error ) {
+        getJsonp : function ( url, success, error,async ) {
             var _data = Base.others.getUrlPrem('param',url)?JSON.parse(Base.others.getUrlPrem('param',url)):null;
             if(_data && Debug){
                 _data.edata['_debug_env'] = Debug;
@@ -14,6 +14,7 @@ define(['config','base'],function(Config,Base){
             $.ajax( {
                 url: url + "&callback=?",
                 dataType: "JSONP",
+                async:async||true,
                 success: function ( res ) {
                     success( res );
                 },
