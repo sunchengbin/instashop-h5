@@ -170,7 +170,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                     }
                 }
 
-                if (init_data.item.bargain&&!Bargain.checkIsLimitForLogin()) {
+                if (init_data.item.bargain) {
                     var _curDateTime = Base.others.getCurDateTime() - 3600;
                     var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
                     var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
