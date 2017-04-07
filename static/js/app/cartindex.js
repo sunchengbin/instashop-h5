@@ -1,38 +1,49 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug', 'cache', 'oauth','bargain'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick, Debug, Cache, Oauth,Bargain) {
+require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug', 'cache', 'oauth', 'bargain'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick, Debug, Cache, Oauth, Bargain) {
     var CartIndex = {
         init: function () {
             var _data = JSON.parse(localStorage.getItem('ShopData'));
             var _carts = Cart().getCarts(),
                 isGroup = this.isGroup = Cart().getIsGroup();
-            var GroupCart = this.GroupCart = (function () {
-                if (!isGroup || !_data.GroupCart) return null;
-                return _data.GroupCart[_data.ShopInfo.id];
-            })()
-            var _htm = Hbs.compile(Carthtm)({
-                cart: _carts,
-                groupCart: GroupCart,
-                lang: Lang,
-                isGroup: isGroup,
-                isDrop: _data.ShopInfo.drop
-            });
-            this.carts = _carts;
-            $('body').prepend(_htm);
-            this.handleFn();
-            var _cart_debug = {
-                "isGroup": isGroup,
-                "drop开关": _data.ShopInfo.drop,
-                "组购物车": GroupCart,
-                "组数量": Cart().getGroupNum(),
-                "原始购物车": _carts,
+            if (!_data || !_carts) {
+                var _htm = Hbs.compile(Carthtm)({
+                    cart: null,
+                    groupCart: null,
+                    lang: Lang,
+                    isGroup: false,
+                    isDrop: false
+                });
+            } else {
+                var GroupCart = this.GroupCart = (function () {
+                    if (!isGroup || !_data.GroupCart) return null;
+                    return _data.GroupCart[_data.ShopInfo.id];
+                })()
+                var _htm = Hbs.compile(Carthtm)({
+                    cart: _carts,
+                    groupCart: GroupCart,
+                    lang: Lang,
+                    isGroup: isGroup,
+                    isDrop: _data.ShopInfo.drop
+                });
+                this.carts = _carts;
+                $('body').prepend(_htm);
+                this.handleFn();
+                var _cart_debug = {
+                    "isGroup": isGroup,
+                    "drop开关": _data.ShopInfo.drop,
+                    "组购物车": GroupCart,
+                    "组数量": Cart().getGroupNum(),
+                    "原始购物车": _carts,
+                }
+                Debug.log({
+                    title: "购物车分组信息",
+                    data: _cart_debug
+                })
+                this.loginResultPackage = Oauth.checkIsLogin();
             }
-            Debug.log({
-                title: "购物车分组信息",
-                data: _cart_debug
-            })
-            this.loginResultPackage = Oauth.checkIsLogin();
+
         },
         handleFn: function () {
             var _that = this;
@@ -200,7 +211,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                     //itemName:_items[item].item.item_name,
                                     itemNum: _items[item].num,
                                     item_sku: _items[item].sku.id,
-                                    bargain_price: Bargain.isActualAttendBargain(_items[item].item.bargain.id)?_items[item].sku.bargain_price:0,
+                                    bargain_price: Bargain.isActualAttendBargain(_items[item].item.bargain.id) ? _items[item].sku.bargain_price : 0,
                                     discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
                                 });
                             } else {
@@ -219,7 +230,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                     itemID: _items[item].item.id,
                                     //itemName:_items[item].item.item_name,
                                     itemNum: _items[item].num,
-                                    bargain_price: Bargain.isActualAttendBargain(_items[item].item.bargain.id)?_items[item].item.bargain.price:0,
+                                    bargain_price: Bargain.isActualAttendBargain(_items[item].item.bargain.id) ? _items[item].item.bargain.price : 0,
                                     discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
                                 });
                             } else {
