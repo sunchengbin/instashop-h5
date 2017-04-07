@@ -126,7 +126,9 @@ define([
                     _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
                     _this.showFriendHelpList(obj.bargain_invite_detail);
                     //更新result价格
-                    $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
+                    if("0.00"!=obj.bargain_invite_detail.bargain_result){
+                        $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
+                    }
                 }
             }, function () {
 
