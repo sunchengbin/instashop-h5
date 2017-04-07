@@ -69,6 +69,15 @@ define([
             try {
                 loginInfoFromCallBackPost = user_info;
                 if (!!loginInfoFromCallBackPost.buyer_id && !!loginInfoFromCallBackPost.name) {
+                    // post 问题 fix
+                    var localLoginInfo = loginInfoFromCache.find("loginInfo");
+                    if(localLoginInfo.buyer_id==loginInfoFromCallBackPost.buyer_id){
+                        // 比对telphone
+                        if(!loginInfoFromCallBackPost.telephone&&localLoginInfo.telephone){
+                            // 如果远程的没有 本地的有
+                            loginInfoFromCallBackPost.telephone = localLoginInfo.telephone;
+                        }
+                    }
                     loginInfoFromCache.set("loginInfo", loginInfoFromCallBackPost);
                     return {
                         result: true,
