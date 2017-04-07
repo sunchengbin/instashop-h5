@@ -75,7 +75,7 @@ define([
                         var _self_bargain_price = _selfPrice;
                         _this.updateRemoteBargainPrice(_self_bargain_price);
                     } else {
-                        // 如果没有登录的话 先检查有没有本地砍价 有的话 显示继续砍价按钮 没有 显示我要砍价
+                        $(".j_bargain_tip_unlogin_price").show();
                     }
                     _this.handleFn();
                 }
@@ -458,8 +458,9 @@ define([
         });
         var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
         var _localBargainCacheSelf = _localBargainCache.find("bargain_price_self");
-        // 如果有远程的 以远程为准
+        // 如果有接口返回的 以接口返回为准
         if(_localBargainCacheDetail){
+            // 是同一个活动
             if(_localBargainCacheDetail.id==bargainId){
                 // 判断是否砍了价格
                 if(_localBargainCacheDetail.bargain_result!="0.00"){
