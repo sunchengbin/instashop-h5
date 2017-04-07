@@ -184,11 +184,11 @@ define([
                 PaqPush && PaqPush('登录-弹出登录框', '');
                 Oauth.openDialog();
             })
-            $("body").on("click", ".bargain-tip-txt-how", function () {
-                PaqPush && PaqPush('查看-买家版砍价教程', '');
-                var _url = "http://" + location.host + "/html/bargainbuyerflow.html";
-                window.open(_url, "_blank")
-            })
+            // $("body").on("click", ".bargain-tip-txt-how", function () {
+            //     PaqPush && PaqPush('查看-买家版砍价教程', '');
+            //     var _url = "http://" + location.host + "/html/bargainbuyerflow.html";
+            //     window.open(_url, "_blank")
+            // })
             // 砍了多少钱的弹窗 确认按钮 点击刷新
             $("body").on("click", ".j_btn_confrim_bargain_price", function () {
                 PaqPush && PaqPush('砍价-确认砍价金额', '');
