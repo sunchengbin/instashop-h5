@@ -95,7 +95,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             } else {
                 // 如果有 并且只有一个商品 那么要返回false 否则返回true 
                 if (Object.keys(_this.carts).length == 1) {
-
+                    
                 } else {
                     _this.favorablePlugin = Favorable({
                         el: ".order-info",
