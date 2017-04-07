@@ -87,7 +87,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                                         });
                                     }
                                 });
-
                             }
                         } else {
                             $(".j_bargain_reachbaseprice").hide();

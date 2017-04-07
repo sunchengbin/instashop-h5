@@ -20,6 +20,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
             this.handelFn();
         },
         handelFn: function () {
+            console.log("初始化buyplug")
             var _this = this,
                 _config = _this.config,
                 _wraper = $('.j_buy_plug'),
