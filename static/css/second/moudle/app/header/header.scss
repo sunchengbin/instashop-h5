@@ -57,22 +57,19 @@
   width: 100%;
   z-index: 3;
 }
+.shop-header-nav .cart-num{
+  @include remCalc(top,10);
+}
 .shop-header-nav > div{
   position: relative;
   z-index: 4;
   @include remCalc(width,72);
   @include remCalc(height,72);
-  //width: 3.6rem;
-  //height: 3.6rem;
   @include remCalc(margin,0 30);
-  //margin-left:1rem;
-  //margin-right: 1rem;
 }
 .btn-cover{
   @include remCalc(width,72);
   @include remCalc(height,72);
-  //width: 3rem;
-  //height: 3rem;
   border-radius: 50%;
   background-color:rgba(0,0,0,.5);
 
@@ -82,7 +79,6 @@
   @include remCalc(width,72);
   @include remCalc(height,72);
   @include remCalc(line-height,72);
-  //line-height: 3rem;
   text-align: center;
   border-radius: 50%;
   top:0;
@@ -90,11 +86,11 @@
   z-index: 5;
 }
 .shop-header-nav button i{
-  @include fontDpr(18px);
-  font-size: 18px;
-  color: #fff;
+  @include fontDpr(22px);
+  color: $white;
 }
 .shop-header-nav button i.icon-back-font{
-  font-size: 16px;
+  @include fontDpr(16px);
+  color: $white;
 }
 /*最大宽度居中*/

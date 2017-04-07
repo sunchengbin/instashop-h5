@@ -1,0 +1,98 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/app/common/common.scss";
+@import "../moudle/ui/dialog/dialog.scss";
+@import "../moudle/app/itemlist/itemlist.scss";
+body{
+  @include remCalc(padding-top,95);
+  background-color:#ececec;
+}
+.shop-header-nav{
+  background-color: #f5f5f5;
+  @include remCalc(padding,11.5 0);
+}
+.shop-header-nav > p{
+  @include remCalc(margin,0 100);
+  @include remCalc(line-height,95);
+  @include remCalc(height,95);
+  @include fontDpr(16px);
+  text-align: center;
+}
+.shop-header-nav::after{
+  position: absolute;
+  left:-50%;
+  right: -50%;
+  bottom:-1px;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-top: 1px solid $border-color;
+}
+.shop-header-nav button i{
+  color: $txt-color;
+}
+.shop-header-nav button i.icon-back-font{
+  color: $txt-color;
+}
+.shop-header-nav > div{
+  @include remCalc(height,72);
+  margin:0;
+}
+.shop-header-nav > div.back-box{
+
+}
+.shop-header-nav button{
+  @include remCalc(height,72);
+}
+
+.shop-header-nav > div.search-box{
+  @include remCalc(margin,0 0 0 72);
+  width: initial;
+  position: relative;
+}
+.search-box a{
+  display: block;
+  @include remCalc(width,100);
+  @include remCalc(height,72);
+  @include remCalc(line-height,72);
+  color: $txt-color;
+  @include fontDpr(14px);
+  text-align: center;
+}
+.search-box i{
+  position: absolute;
+  @include remCalc(left,25);
+  color: $gray-color;
+  @include fontDpr(22px);
+}
+.key-box{
+  @include remCalc(height,72);
+  @include remCalc(line-height,72);
+  @include remCalc(margin,0 100 0 0);
+  background-color: $white;
+}
+.key-box input{
+  width: 100%;
+  @include remCalc(height,72);
+  @include remCalc(line-height,72);
+  @include remCalc(padding,0 15 0 75);
+  background: $white;
+  @include fontDpr(14px);
+  color: $info-color;
+}
+.items-box{
+  @include remCalc(margin-top,30);
+}
+.no-search-val{
+  text-align: center;
+  @include remCalc(padding,30);
+}
+.no-search-val img{
+  width: 80px;
+  height: 80px;
+}
+.no-search-val p{
+  margin: 10px 0 30px;
+  color: #999;
+}
