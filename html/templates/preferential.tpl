@@ -20,7 +20,7 @@
                         {/foreach}
                     {/if}
                 </p>
-                <p class="reduc-expire">
+                <p class="reduc-expire reduc-expire-discount">
                     {$INDEX_DATA_SHOP.shop.shop_discount.start_time|transDate} - {$INDEX_DATA_SHOP.shop.shop_discount.end_time|transDate} WIB
                 </p>
             </div>

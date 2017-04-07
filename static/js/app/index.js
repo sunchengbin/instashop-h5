@@ -564,7 +564,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                         case "percent":
                             var _percentInfo = _discount.info[0];
                             _htm += 'Minimal Pembelian Rp ' + Base.others.priceFormat(_percentInfo.condition_price) + ' akan mendapat potongan - ' + _percentInfo.discount_percent + '%.';
-                            _htm += '<li><span></span>' + $(".reduc-expire").text() + '</li></ul>'
+                            _htm += '<li><span></span>' + $(".reduc-expire-discount").text() + '</li></ul>'
                             break;
                         case "price":
                             for (var i = 0, _reducItem; _reducItem = init_data.shop.shop_discount.info[i++];) {
