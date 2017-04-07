@@ -48,7 +48,7 @@ define([
             var _htm = "";
             opts = opts||{}
             _htm = '<div>' +
-                '<div class="login-dialog-header">Untuk mengikuti promo ini, kamu harus login dulu:</div>' +
+                '<div class="login-dialog-header">Untuk mengikuti promo ini, kamu harus login terlebih dahulu:</div>' +
                 '<div>' +
                 '<div class="j_dialog_login_line j_dialog_login_btn ins-m-b-2" data-type="line">Login with Line</div>' +
                 '<div class="j_dialog_login_facebook j_dialog_login_btn '+(type?'ins-m-b-2':'')+'" data-type="facebook">Login with Facebook</div>' +

@@ -49,7 +49,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <script src="<?=STATIC_HOST?>/js/dist/app/404.js?v=1491568578655"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/404.js?v=1491569968939"></script>
     <script>
         var _body = document.querySelector('body');
         var _htm = '<div class=""><img src="<?=STATIC_HOST?>/images/app/404.png"/>';

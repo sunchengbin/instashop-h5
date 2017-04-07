@@ -31,6 +31,22 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 invite_id: _invite_id
             };
         },
+        checkIsSelf: function () {
+            var loginInfoFromCache = Cache.getSpace("FriendLoginCache") || new Cache({
+                namespace: "FriendLoginCache",
+                type: "local"
+            });
+            var _curUser = loginInfoFromCache.find("friendLoginInfo");
+            if (_curUser) {
+                if (_curUser.buyer_id == init_data.bargain_invite_detail.buyer_info.buyer_id) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        },
         /**
          * 获取用户信息 获取本地存储中的用户信息 如果两个值不同 设置页面为未登录状态
          */
@@ -110,11 +126,11 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
             var _this = this;
             Fastclick.attach(document.body);
             $("body").on("click", ".j_bargain_btn_invite_help", function (e) {
-                var _isOverdue = $(this).attr("data-overdue")||0;
-                if(_isOverdue==1){
+                var _isOverdue = $(this).attr("data-overdue") || 0;
+                if (_isOverdue == 1) {
                     PaqPush && PaqPush('砍价邀请页-活动过期', '');
                     Dialog.tip({
-                        body_txt:Lang.BARGAIN_BTN_CLICK_BODY
+                        body_txt: Lang.BARGAIN_BTN_CLICK_BODY
                     })
                     return;
                 }
@@ -130,7 +146,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                             content: "Hi, aku lagi ikutan promo tawar " + init_data.bargain_invite_detail.item_info.item_name + " sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
                             bargain_inv_url: location.href
                         });
-
                     } else {
                         _this.cutPrice();
                     }
@@ -146,10 +161,10 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 location.reload();
             })
             $("body").on("click", ".j_bargain_btn_invite_self", function () {
-                var _isOverdue = $(this).attr("data-overdue")||0;
-                if(_isOverdue==1){
+                var _isOverdue = $(this).attr("data-overdue") || 0;
+                if (_isOverdue == 1) {
                     Dialog.tip({
-                        body_txt:Lang.BARGAIN_BTN_CLICK_BODY
+                        body_txt: Lang.BARGAIN_BTN_CLICK_BODY
                     })
                     return;
                 }
@@ -197,11 +212,17 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                         })
                     } else {
                         PaqPush && PaqPush('砍价邀请页-砍一刀-弹出分享', '');
-                        Sharebargain({
-                            title: Lang.BARGAIN_DETAIL_INVITE_TIP,
-                            content: "Hi, aku lagi ikutan promo tawar " + init_data.bargain_invite_detail.item_info.item_name + " sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
-                            bargain_inv_url: location.href
-                        });
+                        if (_this.checkIsSelf()) {
+                            Dialog.tip({
+                                body_txt:"Maaf, kamu sudah pernah menawar produk ini. Satu akun hanya bisa menawar satu kali :("
+                            })
+                        } else {
+                            Sharebargain({
+                                title: Lang.BARGAIN_DETAIL_INVITE_TIP,
+                                content: "Hi, aku lagi ikutan promo tawar " + init_data.bargain_invite_detail.item_info.item_name + " sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
+                                bargain_inv_url: location.href
+                            });
+                        }
                     }
                 }
             })
