@@ -24,7 +24,7 @@
     $hostname=$_SERVER['SERVER_NAME'];
     $smarty->assign('HOST_NAME',HOST_NAME);
 
-    $index_title = '<title>这是一个测试活动</title>';
+    $index_title = '<title>'.$json['bargain_info']['title']+'</title>';
     $smarty->assign('INDEX_TITLE',$index_title);
 
     /*基础的js,css文件名*/
