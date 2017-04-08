@@ -56,3 +56,25 @@
     width: 5rem;
     height: 5rem;
 }
+.j_btn_confrim_bargain_price {
+    width: 100%;
+    margin: 0 auto;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: #ffffff;
+    font-size: 16px;
+    background: #F5A623;
+    border-radius: 2px;
+}
+.bargain-amplitude-price-tip {
+    font-size: 16px;
+    color: #444444;
+}
+
+.bargain-amplitude-price {
+    font-weight: 400;
+    font-size: 24px;
+    color: #444444;
+}
