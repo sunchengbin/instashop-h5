@@ -62,6 +62,7 @@ define([
                                     $(".j_bargain_btn_self").hide();
                                 }
                                 _this.config.bargainBuyCallback(_execAfterData);
+                                _this.showFriendHelpList(obj.bargain_invite_detail);
                                 $(".price").html(_this.transPriceByBargain());
                             } else {
                                 // 已经买过了 原价购买
@@ -87,6 +88,7 @@ define([
                                         _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
                                         var _execAfterData = _this.computeAndUpdateSkuPriceForBargain(init_data);
                                         _this.config.bargainBuyCallback(_execAfterData);
+                                        _this.showFriendHelpList(obj.bargain_invite_detail);
                                         // 有的话 显示继续砍价按钮 更新价格视图
                                         $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
                                         $(".j_bargain_btn_continue").show();
@@ -394,6 +396,10 @@ define([
         // 获取砍价幅度 如果登录 则获取remote_bargain_detail中的 如果未登录 获取本地的
         getBargainAmplitudePrice: function () {
             var _bargain_result_price, _this = this;
+            if(!init_data.item.bargain){
+                _bargain_result_price = 0;
+                return _bargain_result_price;
+            }
             if (_this.loginResultPackage.result) {
                 // 判断是不是1个活动
                 var _localRemoteCache = _this.bargainCache.find("remote_bargain_detail");

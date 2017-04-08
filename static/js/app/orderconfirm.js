@@ -189,6 +189,13 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                             return;
                         }
 
+                        if(!_this.checkIsBargainOverdue().result){
+                            Dialog.tip({
+                                body_txt:_this.checkIsBargainOverdue().msg
+                            })
+                            return;
+                        }
+
                         PaqPush && PaqPush('下单', '');
                         //_paq.push(['trackEvent', '下单', 'click', '下单']);
                         //alert(JSON.stringify(_data));
@@ -363,6 +370,28 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     throw new Error("Mohon maaf, harga produk ini sudah kembali ke harga normal");
                 }
             }
+        },
+        checkIsBargainOverdue:function(){
+            var _this = this;
+            var _carts = _this.carts;
+            var _result = {
+                result:true
+            };
+            if(!!_carts){
+                var _items = _carts;
+                for (var item in _items) {
+                    if(!!_items[item].item.bargain){
+                        if(Bargain.checkIsOverdue(_items[item].item.bargain)){
+                            _result = {
+                                result:false,
+                                msg:"Mohon maaf, harga produk ini sudah kembali ke harga normal"
+                            }
+                            return;
+                        }
+                    }
+                }
+            }
+            return _result;
         },
         getItems: function () {
             var _this = this;
