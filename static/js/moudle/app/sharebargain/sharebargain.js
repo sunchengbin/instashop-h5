@@ -64,7 +64,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                     }else if(_type=='fb') {
                         // http://www.facebook.com/share.php?u=
                         // var _fb_url = 'fb://faceweb/f?href=http://www.facebook.com/share.php?u='+encodeURIComponent(_this.config.bargain_inv_url);
-                        var _fb_url = 'fb://native_post/'+encodeURIComponent(_this.share_content);
+                        var _fb_url = 'fb://post/'+encodeURIComponent(_this.share_content);
                         location.href = _fb_url;
                     }else{
                         location.href = _dom.attr('data-url') + _this.share_content;
