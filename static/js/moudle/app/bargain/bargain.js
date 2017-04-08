@@ -635,6 +635,20 @@ define([
         }
         return isUnAttendBargain;
     }
+
+    Bargain.checkBargainStatus = function(bargainId,callback){
+        var _this = this;
+        var reqParams = {
+            edata: {
+                "action": "check"
+            }
+        }
+        var url = Config.host.actionUrl + Config.actions.bargain + "/" + bargainId + "?param=" + JSON.stringify(reqParams);
+        Ajax.getJsonp(url, function (obj) {
+            callback&&callback(obj.bargain.status)
+        })
+    }
+
     // 检查是否实际参加
     Bargain.isActualAttendBargain = function (bargainId) {
         var isActualAttend = false;
