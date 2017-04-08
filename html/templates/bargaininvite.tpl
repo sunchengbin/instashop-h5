@@ -14,9 +14,9 @@
     {$STATIC_FONT_CSS}
     {$INDEX_TITLE}
     {if $IS_DEBUG}
-        <link href="{$STATIC_HOST}/css/app/{$INDEX_CSS_NAME}.css?v=1491642361837" rel="stylesheet"/>
+        <link href="{$STATIC_HOST}/css/app/{$INDEX_CSS_NAME}.css?v=1491642748255" rel="stylesheet"/>
     {else}
-        <link id="j_page_index_css" data-url="/css/dist/app/{$INDEX_CSS_NAME}.css?v=1491642361837" href="{$STATIC_HOST}/css/dist/app/{$INDEX_CSS_NAME}.css?v=1491642361837" rel="stylesheet"/>
+        <link id="j_page_index_css" data-url="/css/dist/app/{$INDEX_CSS_NAME}.css?v=1491642748255" href="{$STATIC_HOST}/css/dist/app/{$INDEX_CSS_NAME}.css?v=1491642748255" rel="stylesheet"/>
     {/if}
 </head>
 <style>
