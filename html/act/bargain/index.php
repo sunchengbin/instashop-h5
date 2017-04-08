@@ -23,8 +23,8 @@
 
     $hostname=$_SERVER['SERVER_NAME'];
     $smarty->assign('HOST_NAME',HOST_NAME);
-
-    $index_title = '<title>'.$json['bargain_invite_detail']['bargain_info']['title']+'</title>';
+    $title = '测试语法';
+    $index_title = '<title>'.$title+'</title>';
     $smarty->assign('INDEX_TITLE',$index_title);
 
     /*基础的js,css文件名*/
