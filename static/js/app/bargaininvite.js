@@ -219,7 +219,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                         } else {
                             Sharebargain({
                                 title: Lang.BARGAIN_DETAIL_INVITE_TIP,
-                                content: "Hi, aku lagi ikutan promo tawar " + init_data.bargain_invite_detail.item_info.item_name + " sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
+                                content: "Hi, aku lagi ikutan promo tawar " + init_data.bargain_invite_detail.bargain_info.title + " sampai " + "Rp " + Base.others.priceFormat(init_data.bargain_invite_detail.bargain_info.base_price) + " nih! Bantu aku tawar yuk. Klik ",
                                 bargain_inv_url: location.href
                             });
                         }
