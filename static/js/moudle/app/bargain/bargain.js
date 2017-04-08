@@ -278,7 +278,7 @@ define([
                     PaqPush && PaqPush('砍价-弹出分享框', '');
                     Sharebargain({
                         title: Lang.BARGAIN_DETAIL_INVITE_TIP,
-                        content: "Hi, aku lagi ikutan promo tawar " + init_data.item.item_name + " sampai " + "Rp " + Base.others.priceFormat(init_data.item.bargain.base_price) + " nih! Bantu aku tawar yuk. Klik ",
+                        content: "Hi, aku lagi ikutan promo tawar " + init_data.item.bargain.title + " sampai " + "Rp " + Base.others.priceFormat(init_data.item.bargain.base_price) + " nih! Bantu aku tawar yuk. Klik ",
                         bargain_inv_url: _this.bargainCache.find("remote_bargain_detail").bargain_share_url,
                         c_fn: function () {
                             //判断是否用户有手机号 如果有 则不提示 如果没有则提示
