@@ -728,9 +728,9 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     }
                 } else if (carts[cart].item.bargain) {
                     if (!!carts[cart].sku && !!carts[cart].sku.id) {
-                        _sum += carts[cart].num * carts[cart].sku.bargain_price;
+                        _sum += carts[cart].sku.bargain_price?carts[cart].num * carts[cart].sku.bargain_price:carts[cart].num * carts[cart].sku.price;
                     } else {
-                        _sum += carts[cart].num * carts[cart].bargain_price;
+                        _sum += carts[cart].bargain_price?carts[cart].num * carts[cart].bargain_price:carts[cart].num * carts[cart].price;
                     }
                 } else {
                     _sum += carts[cart].num * carts[cart].price;

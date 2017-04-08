@@ -607,6 +607,27 @@ define([
 
         return isLimit;
     }
+
+    Bargain.checkIsLimitForLoginByOrderConfirm = function (bargain) {
+        var isLimit = false;
+        var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
+            namespace: "BargainCache",
+            type: "local"
+        });
+        var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
+        if (_localBargainCacheDetail) {
+            if (bargain) {
+                if (bargain.limit_to != 0) {
+                    if (_localBargainCacheDetail.bargain_bought_num > 0) {
+                        isLimit = true;
+                    }
+                }
+            }
+        }
+
+        return isLimit;
+    }
+
     // 检查是否砍到了底价
     Bargain.isReachBaseprice = function (itemprice, amplitude, baseprice) {
         var isReach = false;
