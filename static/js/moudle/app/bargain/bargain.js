@@ -70,6 +70,7 @@ define([
                                 _this.config.normalBuyCallback(_execAfterData);
                             }
                         } else {
+                            // case:用户登录后下单一个活动 然后再参加另外一个活动 此时用户为登录状态 默认请求一次砍价活动详情 但没有砍过价格 为未参加的状态
                             if (Bargain.isUnAttendBargain(init_data.item.bargain.id)) {
                                 // 没有 显示我要砍价
                                 $(".j_bargain_btn_continue").hide();
@@ -77,8 +78,9 @@ define([
                                 var _execAfterData = _this.computeAndUpdateSkuPriceForBargain(init_data);
                                 _this.config.normalBuyCallback(_execAfterData);
                             } else {
+                                // case:参加的活动 检查本地是否砍过价
                                 if (_this.checkIsBargainSelf()) {
-                                    // 将价格同步上去
+                                    // 将价格同步一次
                                     var _price = _this.bargainCache.find("bargain_price_self")[init_data.item.bargain.id].amplitudeSelfPrice;
                                     _this.getLastBargainDetail(_price, function (obj) {
                                         obj.bargain_invite_detail.id = init_data.item.bargain.id;
@@ -90,7 +92,6 @@ define([
                                         $(".j_bargain_btn_continue").show();
                                         $(".j_bargain_btn_self").hide();
                                     })
-
                                 } else {
                                     // 没砍过价格 原价购买
                                     Bargain.hideBargain();
