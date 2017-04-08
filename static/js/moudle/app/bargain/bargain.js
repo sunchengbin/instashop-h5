@@ -36,6 +36,7 @@ define([
                     var _oldBargainPrice = _this.getBargainAmplitudePrice();
                     _this.getLastBargainDetail(_oldBargainPrice, function (obj) {
                         // 用接口的更新本地
+                        obj.bargain_invite_detail.id = init_data.item.bargain.id;
                         _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
                         // 判断是否真正参加活动-砍过价格
                         if (Bargain.isActualAttendBargain(init_data.item.bargain.id)) {
@@ -56,9 +57,12 @@ define([
                                 } else {
                                     // 没到底价 砍价幅度
                                     // 到达底价按钮隐藏
+                                    $(".j_bargain_btn_continue").show();
                                     $(".j_bargain_reachbaseprice").hide();
+                                    $(".j_bargain_btn_self").hide();
                                 }
                                 _this.config.bargainBuyCallback(_execAfterData);
+                                $(".price").html(_this.transPriceByBargain());
                             } else {
                                 // 已经买过了 原价购买
                                 Bargain.hideBargain();
@@ -66,10 +70,36 @@ define([
                                 _this.config.normalBuyCallback(_execAfterData);
                             }
                         } else {
-                            // 没砍过价格 原价购买
-                            Bargain.hideBargain();
-                            var _execAfterData = _this.computeAndUpdateSkuPriceForBargain(init_data);
-                            _this.config.normalBuyCallback(_execAfterData);
+                            if (Bargain.isUnAttendBargain(init_data.item.bargain.id)) {
+                                // 没有 显示我要砍价
+                                $(".j_bargain_btn_continue").hide();
+                                $(".j_bargain_btn_self").show();
+                                var _execAfterData = _this.computeAndUpdateSkuPriceForBargain(init_data);
+                                _this.config.normalBuyCallback(_execAfterData);
+                            } else {
+                                if (_this.checkIsBargainSelf()) {
+                                    // 将价格同步上去
+                                    var _price = _this.bargainCache.find("bargain_price_self")[init_data.item.bargain.id].amplitudeSelfPrice;
+                                    _this.getLastBargainDetail(_price, function (obj) {
+                                        obj.bargain_invite_detail.id = init_data.item.bargain.id;
+                                        _this.bargainCache.set("remote_bargain_detail", obj.bargain_invite_detail);
+                                        var _execAfterData = _this.computeAndUpdateSkuPriceForBargain(init_data);
+                                        _this.config.bargainBuyCallback(_execAfterData);
+                                        // 有的话 显示继续砍价按钮 更新价格视图
+                                        $(".price").html(_this.transPriceByBargain(obj.bargain_invite_detail.bargain_result));
+                                        $(".j_bargain_btn_continue").show();
+                                        $(".j_bargain_btn_self").hide();
+                                    })
+
+                                } else {
+                                    // 没砍过价格 原价购买
+                                    Bargain.hideBargain();
+                                    var _execAfterData = _this.computeAndUpdateSkuPriceForBargain(init_data);
+                                    _this.config.normalBuyCallback(_execAfterData);
+                                }
+
+                            }
+
                         }
                     })
                 } else {
@@ -396,7 +426,7 @@ define([
         // 根据砍价幅度计算sku 并存储到对应item中
         computeAndUpdateSkuPriceForBargain: function (originData) {
             var _this = this;
-            var _bargain_result_price = _this.getBargainAmplitudePrice();
+            var _bargain_result_price = Bargain.checkIsLimitForLogin() ? 0 : _this.getBargainAmplitudePrice();
             // 有sku
             if (originData.item.sku.length > 0) {
                 for (var i = 0; i < originData.item.sku.length; i++) {
@@ -583,7 +613,21 @@ define([
         $(".bargain-tip-txt-how").hide();
         $(".bargain-buyer-intro-content").hide();
     }
-
+    Bargain.isUnAttendBargain = function (bargainId) {
+        var isUnAttendBargain = false;
+        var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
+            namespace: "BargainCache",
+            type: "local"
+        });
+        var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
+        var _localBargainCacheSelf = _localBargainCache.find("bargain_price_self");
+        if (_localBargainCacheDetail && _localBargainCacheDetail.id == bargainId && _localBargainCacheDetail.bargain_result == "0.00") {
+            if (!_localBargainCacheSelf || !_localBargainCacheSelf[bargainId]) {
+                isUnAttendBargain = true;
+            }
+        }
+        return isUnAttendBargain;
+    }
     // 检查是否实际参加
     Bargain.isActualAttendBargain = function (bargainId) {
         var isActualAttend = false;
