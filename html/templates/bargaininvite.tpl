@@ -7,8 +7,8 @@
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-  <title>test</title> 
-    <meta property="og:description" content="Hi, aku lagi ikutan promo tawar {$BARGAIN_INVITE_DETAIL.bargain_info.title}  sampai Rp {$BARGAIN_INVITE_DETAIL.bargain_info.title|priceFormat} nih! Bantu aku tawar yuk. Klik ">
+  <title>{$BARGAIN_INVITE_DETAIL.bargain_info.title}</title> 
+    <meta property="og:description" content="Hi, aku lagi ikutan promo tawar {$BARGAIN_INVITE_DETAIL.bargain_info.title}  sampai Rp {$BARGAIN_INVITE_DETAIL.bargain_info.title|priceFormat} nih! Bantu aku tawar yuk. Klik " />
     {$STATIC_DNS}
     {$STATIC_ICO_CSS}
     {$STATIC_FONT_CSS}
