@@ -126,7 +126,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
             var _htm = "";
             _htm = '<div class="bargain-howprice-wrap">' +
                 '   <p>' + Lang.BARGAIN_BTN_CLICK_BODY + '</p>' +
-                '   <div class="j_btn_confrim_bargain_price">Saya mengerti</div>' +
+                '   <div class="j_btn_confrim_i_know">Saya mengerti</div>' +
                 '   <div class="j_btn_confrim_to_shop">Lihat Produk Lainnya</div>' +
                 '</div>'
             return _htm;
@@ -134,13 +134,16 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
         openBargainFailure: function () {
             var _this = this;
             PaqPush && PaqPush('砍价邀请页-活动过期', '');
-            Dialog.confirm({
+            _this.confirmDialog = Dialog.confirm({
                 top_txt: '', //可以是html
+                show_footer:false,
                 body_txt: _this.createBargainFailureHtm(),
+                body_fn:function(){
+                    $("body").on("click",".j_btn_confrim_i_know",function(){
+                        _this.confirmDialog.remove();
+                    })
+                },
                 cf_fn: function () {
-                    setTimeout(function () {
-                        location.reload();
-                    }, 2000);
                 }
             })
         },
@@ -149,7 +152,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
             Fastclick.attach(document.body);
             $("body").on("click",".j_btn_confrim_to_shop",function(){
                 PaqPush && PaqPush('去店铺', '');
-                location.href = "";
+                location.href = init_data.bargain_invite_detail.shop_info.shop_url;
             })
             $("body").on("click", ".j_bargain_btn_invite_help", function (e) {
                 var _isOverdue = $(this).attr("data-overdue") || 0;
@@ -187,9 +190,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
             $("body").on("click", ".j_bargain_btn_invite_self", function () {
                 var _isOverdue = $(this).attr("data-overdue") || 0;
                 if (_isOverdue == 1) {
-                    Dialog.tip({
-                        body_txt: Lang.BARGAIN_BTN_CLICK_BODY
-                    })
+                    PaqPush && PaqPush('砍价邀请页-活动过期', '');
+                    _this.openBargainFailure();
                     return;
                 }
                 PaqPush && PaqPush('砍价邀请页-我也要购买', '');
