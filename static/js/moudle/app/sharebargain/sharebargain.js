@@ -5,7 +5,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
     var ShareBargain = function(opts){
         var _this = this;
         _this.config = $.extend({
-            title : Lang.H5_SHARE_TITLE,
+            title : "Minta Temanmu Bantu Tawar",
             content : Lang.H5_SHARE_COUPON_TXT,
             bargain_inv_url: 'http://m-test.instashop.co.id/inv/16'
         },opts);

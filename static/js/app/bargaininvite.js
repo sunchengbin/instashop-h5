@@ -122,16 +122,40 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 '</div>'
             return _htm;
         },
+        createBargainFailureHtm: function () {
+            var _htm = "";
+            _htm = '<div class="bargain-howprice-wrap">' +
+                '   <p>' + Lang.BARGAIN_BTN_CLICK_BODY + '</p>' +
+                '   <div class="j_btn_confrim_bargain_price">Saya mengerti</div>' +
+                '   <div class="j_btn_confrim_to_shop">Lihat Produk Lainnya</div>' +
+                '</div>'
+            return _htm;
+        },
+        openBargainFailure: function () {
+            var _this = this;
+            PaqPush && PaqPush('砍价邀请页-活动过期', '');
+            Dialog.confirm({
+                top_txt: '', //可以是html
+                body_txt: _this.createBargainFailureHtm(),
+                cf_fn: function () {
+                    setTimeout(function () {
+                        location.reload();
+                    }, 2000);
+                }
+            })
+        },
         handleFn: function () {
             var _this = this;
             Fastclick.attach(document.body);
+            $("body").on("click",".j_btn_confrim_to_shop",function(){
+                PaqPush && PaqPush('去店铺', '');
+                location.href = "";
+            })
             $("body").on("click", ".j_bargain_btn_invite_help", function (e) {
                 var _isOverdue = $(this).attr("data-overdue") || 0;
                 if (_isOverdue == 1) {
                     PaqPush && PaqPush('砍价邀请页-活动过期', '');
-                    Dialog.tip({
-                        body_txt: Lang.BARGAIN_BTN_CLICK_BODY
-                    })
+                    _this.openBargainFailure();
                     return;
                 }
                 if (_this.loginResultPackage.result) {
@@ -214,7 +238,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                         PaqPush && PaqPush('砍价邀请页-砍一刀-弹出分享', '');
                         if (_this.checkIsSelf()) {
                             Dialog.tip({
-                                body_txt:"Maaf, kamu sudah pernah menawar produk ini. Satu akun hanya bisa menawar satu kali :("
+                                body_txt: "Maaf, kamu sudah pernah menawar produk ini. Satu akun hanya bisa menawar satu kali :("
                             })
                         } else {
                             Sharebargain({

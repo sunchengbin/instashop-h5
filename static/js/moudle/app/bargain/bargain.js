@@ -131,9 +131,7 @@ define([
             }
             _this.handleFn();
         },
-        renderItemDetailView: function () {
-
-        },
+        // 展示好友砍价列表
         showFriendHelpList: function (bargainDetail) {
             var _bargainHelpFriends = bargainDetail.bargain_detail || [];
             var _htm = '<div class="friend-avatars">';
@@ -234,6 +232,7 @@ define([
         },
         handleFn: function () {
             var _this = this;
+            // 自砍一刀
             $('body').on('click', '.j_bargain_btn_self', function () {
                 //弹出 砍了多少钱 dialog
                 PaqPush && PaqPush('砍价-自砍一刀', '');
@@ -262,6 +261,7 @@ define([
                 PaqPush && PaqPush('登录-弹出登录框', '');
                 Oauth.openDialog();
             })
+            // 跳到买家版教程
             $("body").on("click", ".j_bargain_tip", function () {
                 PaqPush && PaqPush('查看-买家版砍价教程', '');
                 // 获取教程位置 fix 滚动bug
@@ -273,6 +273,7 @@ define([
                 PaqPush && PaqPush('砍价-确认砍价金额', '');
                 location.reload();
             })
+            // 继续砍价
             $("body").on("click", ".j_bargain_btn_continue", function () {
                 PaqPush && PaqPush('砍价-继续砍价', '');
                 // 判断是否登录 登录 弹出 分享 
@@ -302,13 +303,12 @@ define([
                     PaqPush && PaqPush('登录-弹出登录框', '');
                     Oauth.openDialog();
                 }
-                // 未登录 弹出 去登录 
             })
+            // 提交手机号
             $("body").on("click", ".j_bargain_inv_submit_telphone", function () {
                 PaqPush && PaqPush('砍价-保存手机号', '');
                 //获取手机号
                 var _bargainTelphone = $.trim($(".j_bargain_inv_telphone").val());
-                //校验手机号 TODO
                 if (!_bargainTelphone) {
                     Dialog.tip({
                         body_txt: Lang.H5_VALIDATOR_TEL,
@@ -587,7 +587,7 @@ define([
             return false;
         }
     }
-
+    // 检查是否登录限购
     Bargain.checkIsLimitForLogin = function () {
         var isLimit = false;
         var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
@@ -607,7 +607,7 @@ define([
 
         return isLimit;
     }
-
+    // 订单确认页检查是否登录限购 TODO 后面考虑优化可以和上面方法合并
     Bargain.checkIsLimitForLoginByOrderConfirm = function (bargain) {
         var isLimit = false;
         var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({

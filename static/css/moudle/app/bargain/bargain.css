@@ -15,7 +15,7 @@
 .j_bargain_tip_unlogin_price {
     display: none;
     color: #999999;
-    font-size: 16px;
+    font-size: 14px;
     padding: 0 0 1.2rem 0;
 }
 
@@ -137,6 +137,7 @@
 
 .bargain-price {
     min-height: 1.8rem;
+    font-size:18px!important;
     display: table;
 }
 

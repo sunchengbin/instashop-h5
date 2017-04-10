@@ -589,7 +589,7 @@ define(['base'], function (Base) {
             "BARGAIN_SHAREPAGE_BTN_SELF": "Aku juga mau beli seharga Rp 100.000",
             "BARGAIN_SHAREPAGE_FRIEND_LIST": "Donatur:",
             "BARGAIN_SHAREPAGE_LOGIN_TIP": "Kamu harus login dulu sebelum melanjutkan",
-            "BARGAIN_CART_BTN_UNLOGIN": "Checkout Sebagai Tamu",
+            "BARGAIN_CART_BTN_UNLOGIN": "Checkout Tanpa Registrasi",
             "BARGAIN_DETAIL_PRICE_OVER": "Sudah Ditawar Hingga Harga Termurah",
             "BARGAIN_SHAREPAGE_HEADER_OVER": "Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa beli barang ini dengan harga Rp 100.000!",
             "BARGAIN_BTN_CLICK_BODY": "Promo ini sudah berakhir. Nantikan promo menarik lainnya dari kami",

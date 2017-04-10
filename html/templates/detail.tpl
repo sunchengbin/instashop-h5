@@ -94,7 +94,7 @@
         Sudah Harga Termurah
         </div>
         <div class="ins-btn ins-btn-orange j_bargain_btn_self">
-        Tawar Sekarang
+        Tawar Produk
         </div>
         <div class="ins-btn ins-btn-orange j_bargain_btn_continue">
         Tawar Lagi

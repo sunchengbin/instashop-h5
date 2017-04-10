@@ -68,6 +68,20 @@
     background: #F5A623;
     border-radius: 2px;
 }
+
+.j_btn_confrim_to_shop {
+    width: 100%;
+    margin: 0 auto;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    text-align: center;
+    margin-top: 0.725rem;
+    color: #ffffff;
+    font-size: 16px;
+    background: #43CB9B;
+    border-radius: 2px;
+}
+
 .bargain-amplitude-price-tip {
     font-size: 16px;
     color: #444444;
