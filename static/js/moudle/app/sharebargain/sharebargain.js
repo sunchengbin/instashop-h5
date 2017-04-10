@@ -36,7 +36,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                 +'<i class="iconfont icon-share-facebook" ></i>'
                 +'<p>Facebook</p>'
                 +'</a>'
-                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="砍价活动分享到line" spm-click="" data-url="http://line.naver.jp/R/msg/text/?">'
+                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="砍价活动分享到line" spm-click="" data-url="line://msg/text/">'
                 +'<i class="iconfont icon-share-line" ></i>'
                 +'<p>LINE</p>'
                 +'</a>'
@@ -59,7 +59,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                     _type = _dom.attr('data-type');
                 setTimeout(function(){
                     if(_type=='bbm'&&Base.others.verifyBower().ios){
-                        var _bbm_url = Lang.H5_SHARE_TO_BBM_COUPON_TXT+_this.config.bargain_inv_url;
+                        var _bbm_url = _this.share_content;
                         location.href = _dom.attr('data-url') + _bbm_url;
                     }else if(_type=='fb') {
                         // http://www.facebook.com/share.php?u=
@@ -67,7 +67,9 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                         var _fb_url = 'fb://webview/?url='+encodeURIComponent(_this.config.bargain_inv_url);
                         location.href = _fb_url;
                     }else{
-                        location.href = _dom.attr('data-url') + _this.share_content;
+                        // location.href = _dom.attr('data-url') + encodeURIComponent(_this.config.bargain_inv_url);
+                        location.href = "line://msg/text/https%3A%2F%2Ftw.news.yahoo.com%2F228-p-072909137.html%3Fsoc_src%3Dunv-sh%26soc_trk%3Dli";
+                        // location.href = _dom.attr('data-url') + encodeURIComponent(_this.share_content);
                     }
 
                 },100);
