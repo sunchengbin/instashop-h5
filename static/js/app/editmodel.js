@@ -327,8 +327,6 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 _this.have_list_type = true;
             }
             var _seller_info = Common.getUrlSellerInfo();
-            alert(JSON.stringify(_this.model_data));
-            alert(_this.tranfansModelData(_this.model_data));
             var _req_data = {
                 edata : {
                     content : _this.tranfansModelData(_this.model_data),
