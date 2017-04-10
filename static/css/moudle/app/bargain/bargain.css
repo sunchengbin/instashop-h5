@@ -174,8 +174,8 @@
 
 .friend-avatars {
     width: 100%;
-    display: flex;
-    display: -webkit-flex;
+    display: flex!important;
+    display: -webkit-flex!important;
     align-items:center;
 }
 
