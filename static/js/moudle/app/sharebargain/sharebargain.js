@@ -67,7 +67,8 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                         var _fb_url = 'fb://webview/?url='+encodeURIComponent(_this.config.bargain_inv_url);
                         location.href = _fb_url;
                     }else{
-                        location.href = _dom.attr('data-url') + encodeURIComponent(_this.config.bargain_inv_url);
+                        // location.href = _dom.attr('data-url') + encodeURIComponent(_this.config.bargain_inv_url);
+                        location.href = "line://msg/text/https%3A%2F%2Ftw.news.yahoo.com%2F228-p-072909137.html%3Fsoc_src%3Dunv-sh%26soc_trk%3Dli";
                         // location.href = _dom.attr('data-url') + encodeURIComponent(_this.share_content);
                     }
 
