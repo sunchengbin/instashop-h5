@@ -36,7 +36,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                 +'<i class="iconfont icon-share-facebook" ></i>'
                 +'<p>Facebook</p>'
                 +'</a>'
-                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="砍价活动分享到line" spm-click="" data-url="http://line.naver.jp/R/msg/text/?">'
+                +'<a href="javascript:;" class="j_share_action" data-type="line" spm-auto="砍价活动分享到line" spm-click="" data-url="line://msg/text/">'
                 +'<i class="iconfont icon-share-line" ></i>'
                 +'<p>LINE</p>'
                 +'</a>'
