@@ -334,6 +334,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     wduss : _seller_info.wduss
                 }
             };
+
             Ajax.postJsonp({
                 url :Config.actions.saveTemplate,
                 data : {param:JSON.stringify(_req_data)},
