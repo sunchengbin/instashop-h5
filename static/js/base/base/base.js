@@ -406,7 +406,7 @@ define(function () {
         getCookie: function (name) {
             var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
             if (arr = document.cookie.match(reg)) {
-                return unescape(arr[2]);
+                return decodeURIComponent(arr[2]);
             } else {
                 return null;
             }
@@ -427,12 +427,27 @@ define(function () {
         isInsBrowser: function () {
             return /Instashop/g.test(navigator.userAgent);
         },
-        fillTemplate:function(template,data){
-            return template.replace(/\{([\w\.]*)\}/g, function(str, key) {
-                var keys = key.split("."), v = data[keys.shift()];
+        fillTemplate: function (template, data) {
+            return template.replace(/\{([\w\.]*)\}/g, function (str, key) {
+                var keys = key.split("."),
+                    v = data[keys.shift()];
                 for (var i = 0, l = keys.length; i < l; i++) v = v[keys[i]];
                 return (typeof v !== "undefined" && v !== null) ? v : "";
             });
+        },
+        transDateStrToDateTime:function(dateStr){
+            var _array = dateStr.split(" ");
+            var _year_month_day = _array[0];
+            var _year = _year_month_day.split("/")[2];
+            var _month = _year_month_day.split("/")[1];
+            var _day = _year_month_day.split("/")[0];
+            var _hour_minute = _array[1].replace(".",":");
+            dateStr = _month+"/"+_day+"/"+_year+" "+_hour_minute;
+            var _date = parseInt(new Date(dateStr).getTime()/1000);
+            return _date;
+        },
+        getCurDateTime :function(){
+            return parseInt(new Date().getTime()/1000);
         }
     };
 
@@ -481,7 +496,31 @@ define(function () {
             };
         }());
     }
+    // Object.create 垫片
+    if (typeof Object.create != 'function') {
+        Object.create = (function (undefined) {
+            var Temp = function () {};
+            return function (prototype, propertiesObject) {
+                if (prototype !== null && prototype !== Object(prototype)) {
+                    throw TypeError('Argument must be an object, or null');
+                }
+                Temp.prototype = prototype || {};
+                var result = new Temp();
+                Temp.prototype = null;
+                if (propertiesObject !== undefined) {
+                    Object.defineProperties(result, propertiesObject);
+                }
 
+                // to imitate the case of Object.create(null)
+                if (prototype === null) {
+                    result.__proto__ = null;
+                }
+                return result;
+            };
+        })();
+    }
+
+    
 
     return SUN;
 })

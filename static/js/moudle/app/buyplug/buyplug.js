@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 添加到购物车插件
  */
-define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog', 'cart', 'lang', 'config', 'fastclick'], function (Common, Base, Hbs, Buyplughtm, Btn, Dialog, Cart, Lang, Config, Fastclick) {
+define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog', 'cart', 'lang', 'config', 'fastclick','bargain'], function (Common, Base, Hbs, Buyplughtm, Btn, Dialog, Cart, Lang, Config, Fastclick,Bargain) {
     var BuyPlug = function (opts) {
         var _this = this;
         _this.config = $.extend({
@@ -20,6 +20,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
             this.handelFn();
         },
         handelFn: function () {
+            console.log("初始化buyplug")
             var _this = this,
                 _config = _this.config,
                 _wraper = $('.j_buy_plug'),
@@ -85,9 +86,28 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
             $(_config.wraper).on('click', '.j_add_btn', function () {
                 var _item_num = $('.j_item_num'),
                     _num = Number(_item_num.val()),
-                    _stock = $(this).attr('data-stock');
+                    _stock = $(this).attr('data-stock'),
+                    _limitto = $(this).attr('data-limitto') || 0;
                 if (_stock && _stock <= _num) {
                     return;
+                }
+                if (!!init_data.item.bargain) {
+                    var _curDateTime = Base.others.getCurDateTime() - 3600;
+                    var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
+                    var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
+                    if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                        // 砍价活动过期了
+                    } else {
+                        // 是否限购 0为不限购
+                        if (_limitto != 0) {
+                            if (_num >= _limitto) {
+                                Dialog.tip({
+                                    body_txt: Lang.BARGAIN_LIMIT
+                                })
+                                return;
+                            }
+                        }
+                    }
                 }
                 _item_num.val(++_num);
             });
@@ -147,24 +167,92 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                 return false;
                             }
                         }
-
                     }
                 }
-                if (!_has_sku) {
 
-                    Cart(init_data).addItem({
-                        item: init_data.item,
-                        num: _num,
-                        price: _sku_price,
-                        isbuynow: _is_buy_now,
-                        noStockCallback: function () {
-                            _this.config.noStockCallback && _this.config.noStockCallback();
-                            _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
-                        },
-                        callback: function () {
-                            _this.addSuccessFn(_is_buy_now, _w_h);
+                if (init_data.item.bargain) {
+                    var _curDateTime = Base.others.getCurDateTime() - 3600;
+                    var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
+                    var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
+                    if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                        // 砍价活动过期了
+                    } else {
+                        if (init_data.item.bargain.limit_to > 0) {
+                            var _carts = Cart().getCarts();
+                            if (_carts) {
+                                try {
+                                    $.each(_carts, function (key, item) {
+                                        //命中
+                                        if (_has_sku) {
+                                            // if (key == _sku_id) {
+                                            var _wantBuyNum = ~~_num + ~~item.num;
+                                            if (item.item.id == init_data.item.id) {
+                                                if (_wantBuyNum > init_data.item.bargain.limit_to) {
+                                                    throw new Error(Lang.BARGAIN_LIMIT);
+                                                }
+                                            }
+                                            // }
+                                        } else {
+                                            if (key == init_data.item.id) {
+                                                var _wantBuyNum = ~~_num + ~~item.num;
+                                                if (_wantBuyNum > init_data.item.bargain.limit_to) {
+                                                    throw new Error(Lang.BARGAIN_LIMIT);
+                                                }
+                                            }
+                                        }
+
+                                    })
+                                } catch (e) {
+                                    Dialog.tip({
+                                        body_txt: e.message
+                                    });
+                                    return;
+                                }
+                            } else {
+                                if (_num > init_data.item.bargain.limit_to) {
+                                    Dialog.tip({
+                                        body_txt: Lang.BARGAIN_LIMIT
+                                    });
+                                    return false;
+                                }
+                            }
                         }
-                    });
+                    }
+                }
+
+
+                if (!_has_sku) {
+                    if (init_data.item.bargain&&!Bargain.checkIsLimitForLogin()) {
+                        Cart(init_data).addItem({
+                            item: init_data.item,
+                            num: _num,
+                            price: _sku_price,
+                            bargain_price: init_data.item.bargain.price,
+                            isbuynow: _is_buy_now,
+                            noStockCallback: function () {
+                                _this.config.noStockCallback && _this.config.noStockCallback();
+                                _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
+                            },
+                            callback: function () {
+                                _this.addSuccessFn(_is_buy_now, _w_h);
+                            }
+                        });
+                    } else {
+                        Cart(init_data).addItem({
+                            item: init_data.item,
+                            num: _num,
+                            price: _sku_price,
+                            isbuynow: _is_buy_now,
+                            noStockCallback: function () {
+                                _this.config.noStockCallback && _this.config.noStockCallback();
+                                _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
+                            },
+                            callback: function () {
+                                _this.addSuccessFn(_is_buy_now, _w_h);
+                            }
+                        });
+                    }
+
                 } else {
                     if (!_stock) {
                         Dialog.tip({
@@ -182,25 +270,53 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                 }
                             });
                         } else {
-                            Cart(init_data).addItem({
-                                item: init_data.item,
-                                sku: {
+                            if (init_data.item.bargain&&!Bargain.checkIsLimitForLogin()) {
+                                var _skuMap = {};
+                                $.each(init_data.item.sku, function (index, sku) {
+                                    _skuMap[sku.id] = sku;
+                                })
+                                Cart(init_data).addItem({
+                                    item: init_data.item,
+                                    sku: {
+                                        price: _sku_price,
+                                        id: _sku_id,
+                                        title: _sku_title,
+                                        stock: _stock,
+                                        bargain_price: _skuMap[_sku_id].bargain?_skuMap[_sku_id].bargain.price:0
+                                    },
                                     price: _sku_price,
-                                    id: _sku_id,
-                                    title: _sku_title,
-                                    stock: _stock
-                                },
-                                price: _sku_price,
-                                isbuynow: _is_buy_now,
-                                noStockCallback: function () {
-                                    _this.config.noStockCallback && _this.config.noStockCallback();
-                                    _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
-                                },
-                                num: _num,
-                                callback: function () {
-                                    _this.addSuccessFn(_is_buy_now, _w_h);
-                                }
-                            });
+                                    isbuynow: _is_buy_now,
+                                    noStockCallback: function () {
+                                        _this.config.noStockCallback && _this.config.noStockCallback();
+                                        _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
+                                    },
+                                    num: _num,
+                                    callback: function () {
+                                        _this.addSuccessFn(_is_buy_now, _w_h);
+                                    }
+                                });
+                            } else {
+                                Cart(init_data).addItem({
+                                    item: init_data.item,
+                                    sku: {
+                                        price: _sku_price,
+                                        id: _sku_id,
+                                        title: _sku_title,
+                                        stock: _stock
+                                    },
+                                    price: _sku_price,
+                                    isbuynow: _is_buy_now,
+                                    noStockCallback: function () {
+                                        _this.config.noStockCallback && _this.config.noStockCallback();
+                                        _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
+                                    },
+                                    num: _num,
+                                    callback: function () {
+                                        _this.addSuccessFn(_is_buy_now, _w_h);
+                                    }
+                                });
+                            }
+
                         }
                     }
                 }

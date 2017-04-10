@@ -5,7 +5,7 @@
  * Created by sunchengbin on 16/6/8.
  * 商品详情页
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog','debug','sharecoupon'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog,Debug,Sharecoupon) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog', 'debug', 'sharecoupon', 'oauth', 'cache', 'bargain'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog, Debug, Sharecoupon, Oauth, Cache, Bargain) {
     var ITEM = {
         init: function () {
             var _this = this,
@@ -21,29 +21,61 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                         needTab: true,
                         auto: false
                     });
-                    Buyplug({
-                        data: init_data,
-                        noStockCallback: function () {
-                            if ($('.j_show_contact').length) {
-                                _this.contact = Contact({
-                                    data: {
-                                        tel: init_data.item.shop.phone,
-                                        line: init_data.item.shop.line_url
-                                    },
-                                    lang: Lang
-                                });
-                                _this.contact.createHtm({
-                                    data: {
-                                        tel: init_data.item.shop.phone,
-                                        line: init_data.item.shop.line_url
-                                    },
-                                    lang: Lang
-                                }).toShow();
-                            } else {
-                                location.href = init_data.item.shop.line_url;
-                            }
+
+                    // 初始化砍价活动组件
+                    _this.BargainPlug = new Bargain({
+                        normalBuyCallback: function (execAfterData) {
+                            Buyplug({
+                                data: execAfterData||init_data,
+                                noStockCallback: function () {
+                                    if ($('.j_show_contact').length) {
+                                        _this.contact = Contact({
+                                            data: {
+                                                tel: init_data.item.shop.phone,
+                                                line: init_data.item.shop.line_url
+                                            },
+                                            lang: Lang
+                                        });
+                                        _this.contact.createHtm({
+                                            data: {
+                                                tel: init_data.item.shop.phone,
+                                                line: init_data.item.shop.line_url
+                                            },
+                                            lang: Lang
+                                        }).toShow();
+                                    } else {
+                                        location.href = init_data.item.shop.line_url;
+                                    }
+                                }
+                            });
+                        },
+                        bargainBuyCallback: function (execAfterData) {
+                            Buyplug({
+                                data: execAfterData,
+                                noStockCallback: function () {
+                                    if ($('.j_show_contact').length) {
+                                        _this.contact = Contact({
+                                            data: {
+                                                tel: init_data.item.shop.phone,
+                                                line: init_data.item.shop.line_url
+                                            },
+                                            lang: Lang
+                                        });
+                                        _this.contact.createHtm({
+                                            data: {
+                                                tel: init_data.item.shop.phone,
+                                                line: init_data.item.shop.line_url
+                                            },
+                                            lang: Lang
+                                        }).toShow();
+                                    } else {
+                                        location.href = init_data.item.shop.line_url;
+                                    }
+                                }
+                            });
                         }
                     });
+
                     Viewer({
                         btn: '.j_banner li',
                         images: init_data.item.imgs
@@ -55,11 +87,12 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     _this.handleFn();
                 } catch (error) {
                     Debug.log({
-                        title:"item.js init fail",
-                        data:error
+                        title: "item.js init fail",
+                        data: error
                     })
                 }
             }
+
         },
         handleFn: function () {
             if ($('[data-time]').length) {
@@ -97,20 +130,20 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     _host_url = location.href,
                     _key = Base.others.getUrlPrem('search'),
                     _search_url = Config.host.hrefUrl + 'search.php' + (_key ? '?key=' + _key + '&seller_id=' + init_data.item.seller_id : ''),
-                    _scroll_url = localStorage.getItem('index_route_info')?localStorage.getItem('index_route_info'):'';
+                    _scroll_url = localStorage.getItem('index_route_info') ? localStorage.getItem('index_route_info') : '';
                 if (_local_url && !/detail/g.test(_local_url)) {
-                    if (/\.instashop\.co\.id\/\d+/g.test(_local_url)) {//我们自己的域名下
-                        if(/\?search/g.test(_host_url)){//搜索页过来会追加
+                    if (/\.instashop\.co\.id\/\d+/g.test(_local_url)) { //我们自己的域名下
+                        if (/\?search/g.test(_host_url)) { //搜索页过来会追加
                             location.href = _search_url;
-                        }else{
-                            if (/\/s\//g.test(_local_url)) {//m-test或者m.test的首页url
-                                location.href = _this.transUrl(_local_url,_scroll_url);
+                        } else {
+                            if (/\/s\//g.test(_local_url)) { //m-test或者m.test的首页url
+                                location.href = _this.transUrl(_local_url, _scroll_url);
                             } else {
                                 if (/\?/g.test(_local_url) && !/\?rec/g.test(_local_url)) {
-                                    location.href = localStorage.getItem('FromUrl') + '&item=back'+_scroll_url;
+                                    location.href = localStorage.getItem('FromUrl') + '&item=back' + _scroll_url;
                                 } else {
                                     var _url = Base.others.isCustomHost() ? Config.host.host + 's/' + init_data.item.shop.id : Config.host.host;
-                                    location.href = _url + '?item=back'+_scroll_url;
+                                    location.href = _url + '?item=back' + _scroll_url;
                                 }
                             }
                         }
@@ -121,19 +154,19 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                         } else {
                             if (/\/\d+/g.test(_local_url)) { //是当前详情页
                                 if (/\/k\/\d+/g.test(_local_url)) { //分类页
-                                    location.href = _this.transUrl(_local_url,_scroll_url);
+                                    location.href = _this.transUrl(_local_url, _scroll_url);
                                 } else {
                                     if (/\/s\//g.test(_local_url)) { //m.instashop域名规则首页
-                                        location.href = _this.transUrl(_local_url,_scroll_url);
+                                        location.href = _this.transUrl(_local_url, _scroll_url);
                                     } else {
-                                        location.href = location.protocol + '//' + _host_name + '?item=back'+_scroll_url;
+                                        location.href = location.protocol + '//' + _host_name + '?item=back' + _scroll_url;
                                     }
                                 }
                             } else {
                                 if (/\?/g.test(_local_url) && !/\?rec/g.test(_local_url)) {
-                                    location.href = localStorage.getItem('FromUrl') + '&item=back'+_scroll_url;
+                                    location.href = localStorage.getItem('FromUrl') + '&item=back' + _scroll_url;
                                 } else {
-                                    location.href = location.protocol + '//' + _host_name + '?item=back'+_scroll_url;
+                                    location.href = location.protocol + '//' + _host_name + '?item=back' + _scroll_url;
                                 }
                             }
                         }
@@ -141,7 +174,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                 } else {
                     Common.saveFromUrl(function () {
                         var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + init_data.item.shop.id;
-                        location.href = _url + '?item=back'+_scroll_url;
+                        location.href = _url + '?item=back' + _scroll_url;
                     });
                 }
             });
@@ -155,15 +188,23 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             });
             //满减 lanchenghao
             $('body').on('click', '.j_reduc_box', function () {
+                PaqPush && PaqPush('查看满减公告', '');
                 var _htm = '<ul class="reduc-rule-list">';
-                if (!!init_data.item.shop.shop_discount) {
-                    PaqPush && PaqPush('查看满减活动公告', '');
-                    //_paq.push(['trackEvent', '查看满减活动公告', 'click', '']);
-                    for (var i = 0, _reducItem; _reducItem = init_data.item.shop.shop_discount.info[i++];) {
-                        _htm += "<li><span></span>Minimal Pembelian Rp " + Base.others.priceFormat(_reducItem.condition_price) + " Potongan Rp " + Base.others.priceFormat(_reducItem.discount_price) + "</li>"
+                var _discount = init_data.item.shop.shop_discount;
+                if (!!_discount) {
+                    switch (_discount.discount_type) {
+                        case "percent":
+                            var _percentInfo = _discount.info[0];
+                            _htm += 'Minimal Pembelian Rp ' + Base.others.priceFormat(_percentInfo.condition_price) + ' akan mendapat potongan - ' + _percentInfo.discount_percent + '%.';
+                            _htm += '<li><span></span>' + $(".reduc-expire-discount").text() + '</li></ul>'
+                            break;
+                        case "price":
+                            for (var i = 0, _reducItem; _reducItem = init_data.item.shop.shop_discount.info[i++];) {
+                                _htm += "<li><span></span>Minimal Pembelian Rp " + Base.others.priceFormat(_reducItem.condition_price) + " Potongan Rp " + Base.others.priceFormat(_reducItem.discount_price) + "</li>"
+                            }
+                            _htm += '<li><span></span>' + $(".reduc-expire").text() + '</li></ul>'
+                            break;
                     }
-                    _htm += '<li><span></span>' + $(".reduc-expire").text() + '</li></ul>';
-                    // _htm = _htm.replace(/,$/gi,'') +"</br>"+ $(".reduc-expire").text();
                     Dialog.alert({
                         top_txt: "<p style='text-align:center'>" + Lang.H5_REDUC_TITLE + "</p>",
                         show_top: true,
@@ -174,11 +215,11 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     })
                 }
             });
-            $('body').on('click','.j_share_btn',function(){
+            $('body').on('click', '.j_share_btn', function () {
                 PaqPush && PaqPush('分享获取优惠券', '');
                 var _coupon_id = $(this).attr('data-couponid');
                 Sharecoupon({
-                    coupon_url : Config.host.host+'b/'+_coupon_id
+                    coupon_url: Config.host.host + 'b/' + _coupon_id
                 });
             });
             var _this = this;
@@ -204,11 +245,11 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                 location.href = init_data.item.shop.line_url;
             })
         },
-        transUrl: function (url,scroll_url) {
+        transUrl: function (url, scroll_url) {
             if (/\?/g.test(url)) {
-                return url + '&item=back'+scroll_url;
+                return url + '&item=back' + scroll_url;
             } else {
-                return url + '?item=back'+scroll_url;
+                return url + '?item=back' + scroll_url;
             }
         }
     };

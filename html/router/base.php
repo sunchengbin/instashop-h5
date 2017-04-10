@@ -220,3 +220,64 @@ function isExistSupplyShop ($carts) {
 function conuntImgNavWidth($data){
     return 8.5*count($data).'rem';
 }
+
+// 砍价活动新增
+// 判断是否砍到了底价
+function confirmIsReachBasepirce($data){
+    return (intval($data['item_info']['min_price']) - intval($data['bargain_result'])) == intval($data['bargain_info']['base_price']);
+}
+
+// 获取砍价后的价格
+function getAfterBargainPrice($data){
+    $item = $data['item_info'];
+    if(!$item.sku){
+        //没有sku
+        $afterPrice = intval($item['min_price'])-intval($data['bargain_result']);
+        return "Rp ".priceFormat($afterPrice);
+    }else{
+        $afterMinPrice = intval($item['min_price'])-intval($data['bargain_result']);
+        $afterMaxPrice = intval($item['max_price'])-intval($data['bargain_result']);
+        return "Rp ".priceFormat($afterMinPrice)+'- '.priceFormat($afterMaxPrice);
+    }
+}
+
+function getBargainLimit($data){
+    return $data['item']['bargain']['limit_to'];
+}
+
+// 是否砍过价了
+function checkIsUserBargain($data){
+    $isUserBargain = false;
+    $friends = $data['bargain_detail'];
+    if($friends['length']){
+        $isUserBargain = false;
+    }else{
+        foreach($friends as $friend){
+            if($friend['buyer_id']==$data['buyer_info']['buyer_id']){
+                $isUserBargain = true;
+            }
+        }
+    }
+    return $isUserBargain;
+}
+
+function checkIsBargainOverdue($data){
+    $startTime = $data['start_time'];
+    $endTime = $data['end_time'];
+    $curTime = time();
+    if($curTime<$startTime||$curTime>$endTime){
+        return true;
+    }
+    return false;
+}
+
+function checkBargainLegal($data){
+    $bargainInfo = $data['bargain_info'];
+    $itemInfo = $data['item_info'];
+    if('1'!=$bargainInfo['status']){
+        return true;
+    }
+    if('1'!=$itemInfo['status']){
+        return true;
+    }
+}

@@ -229,3 +229,20 @@ textarea{
 .logistics-list{
    padding:.5rem 0;
 }
+
+.j_btn_confrim_bargain_unvalid {
+    width: 100%;
+    margin: 0 auto;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: #ffffff;
+    font-size: 16px;
+    background: #F5A623;
+    border-radius: 2px;
+}
+.bargain-unvalid-tip {
+    color:#F5A623;
+    font-size:18px;
+}

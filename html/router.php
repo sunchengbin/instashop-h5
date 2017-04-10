@@ -54,11 +54,16 @@ function handle()
 		require( dirname(__FILE__).'/../html/sort.php');
 	}
 	else if (preg_match('/^\/b\/([\_\d]+)(\?.*)?$/i', $uri, $coupon_matches))
-    	{
-    		$coupon_id = $coupon_matches[1];
-    		$_REQUEST['coupon_id'] = $coupon_id;
-    		require( dirname(__FILE__).'/../html/getcoupon.php');
-    	}
+	{
+		$coupon_id = $coupon_matches[1];
+		$_REQUEST['coupon_id'] = $coupon_id;
+		require( dirname(__FILE__).'/../html/getcoupon.php');
+	} 
+	else if (preg_match('/^\/inv\/([\_\d]+)(\?.*)?$/i', $uri, $invite_matches)){
+		$invite_id = $invite_matches[1];
+		$_REQUEST['invite_id'] = $invite_id;
+		require( dirname(__FILE__).'/../html/act/bargain/index.php');
+	}
 	else if (preg_match('/^\/html\/(.*?)(\?.*)?$/i', $uri, $f_matches))
 	{
 		require( dirname(__FILE__)."/../html/".$f_matches[1]);
@@ -83,6 +88,6 @@ Timer::end('total');
 
 $application_run_flag = true;
 
-Log::debug(['request'=>$_REQUEST, 'time'=>Timer::calculate()]);
+// Log::debug(['request'=>$_REQUEST, 'time'=>Timer::calculate()]);
 exit();
 ?>

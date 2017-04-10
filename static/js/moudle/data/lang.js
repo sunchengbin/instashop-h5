@@ -212,7 +212,32 @@ define(['base'], function (Base) {
             "INDEX_ITEMS_COMPLEX": "综合",
             "INDEX_ITEMS_DATE": "时间",
             "INDEX_ITEMS_PRICE": "价格",
-            "CHANGE_SKIN":"更换皮肤"
+            "CHANGE_SKIN":"更换皮肤",
+            // 砍价活动文案
+            "BARGAIN_GUID_ANCHOR": "最低Rp xxx抢购，查看方法",
+            "BARGAIN_DETAIL_BTN_SELF": "我要砍价",
+            "BARGAIN_GUID_LINK": "如何低价抢购商品？",
+            "BARGAIN_DETAIL_BTN_CONTINUE": "继续砍价",
+            "BARGAIN_DETAIL_LOGIN_TIP": "此活动需要登录，请先登录：",
+            "BARGAIN_DETAIL_INVITE_TIP": "邀请好友来帮我继续砍价",
+            "BARGAIN_SHARE_TXT": "快来帮我一起砍价，Rp 9.000抢iPhone 7 Plus，点击链接http://chanue.instashop.co.id/inv/23545",
+            "BARGAIN_SHARE_AFTER_PHONE": "建议留下你的手机号，当好友帮你砍价后，我们会短信通知你",
+            "BARGAIN_SHARE_AFTER_PHONE_TIP": "请输入手机号",
+            "BARGAIN_BTN_TXT_OK": "好",
+            "BARGAIN_FRIEND_HAVE_HELP": "lahansiri等已帮你砍价Rp 50.000",
+            "BARGAIN_SHAREPAGE_HEADER": "我正在参加Rp 100.000抢iPhone的活动，已经砍到Rp 180.000，快来帮我继续砍吧！",
+            "BARGAIN_SHAREPAGE_BTN_HELP": "帮chanue砍价",
+            "BARGAIN_SHAREPAGE_BTN_SELF": "我也要Rp 100.000抢购",
+            "BARGAIN_SHAREPAGE_FRIEND_LIST": "好友砍价榜",
+            "BARGAIN_SHAREPAGE_LOGIN_TIP": "此活动需要登录，请先登录：",
+            "BARGAIN_CART_BTN_UNLOGIN": "免登录下单",
+            "BARGAIN_DETAIL_PRICE_OVER": "已砍至底价",
+            "BARGAIN_SHAREPAGE_HEADER_OVER": "谢谢大家的鼎力相助，我已经成功砍到了底价Rp 100.000！",
+            "BARGAIN_BTN_CLICK_BODY": "活动已结束，请留意店铺后续活动",
+            "BARGAIN_BTN_CLICK_TOSHOP": "去店铺",
+            "BARGAIN_BTN_CLICK_IKONW": "我知道了",
+            "BARGAIN_LIMIT": "此商品限购1件",
+            "BARGAIN_SHAREPAGE_HEADER_PART": "谢谢大家的鼎力相助，我已经成功以 Rp 120.000 购买了iPhone 7 Plus ！"
         },
 
         id: {
@@ -283,7 +308,7 @@ define(['base'], function (Base) {
             'H5_SHIPPING_COST': 'Biaya Pengiriman',
 
             // 价格
-            'H5_PRICE': 'Harga',
+            'H5_PRICE': 'Harga Jualmu',
 
             // 型号
             'H5_ITEM_SKU': 'Model',
@@ -548,7 +573,32 @@ define(['base'], function (Base) {
             "INDEX_ITEMS_COMPLEX": "Populer",
             "INDEX_ITEMS_DATE": "Terbaru",
             "INDEX_ITEMS_PRICE": "Harga",
-            "CHANGE_SKIN":"Ganti..."
+            "CHANGE_SKIN":"Ganti...",
+            // 砍价活动文案
+            "BARGAIN_GUID_ANCHOR": "Mau beli barang ini seharga 9.000 rupiah saja? Cuss cek caranya!",
+            "BARGAIN_DETAIL_BTN_SELF": "Tawar Sekarang",
+            "BARGAIN_GUID_LINK": "Panduan Tawar Harga",
+            "BARGAIN_DETAIL_BTN_CONTINUE": "Tawar Lagi",
+            "BARGAIN_DETAIL_LOGIN_TIP": "Untuk mengikuti promo ini, kamu harus login dulu:",
+            "BARGAIN_DETAIL_INVITE_TIP": "Minta Temanmu Bantu Tawar ",
+            "BARGAIN_SHARE_TXT": "Hi, aku lagi ikutan promo tawar iPhone 7 sampai Rp 9.000 loh! Bantu tawar harganya dong. Klik http://chanue.instashop.co.id/inv/23545",
+            "BARGAIN_SHARE_AFTER_PHONE": "Tinggalkan nomor ponselmu, kami akan menginformasikanmu setiap kali ada teman yang membantumu menawar harga",
+            "BARGAIN_SHARE_AFTER_PHONE_TIP": "Masukkan Nomor Ponselmu",
+            "BARGAIN_BTN_TXT_OK": "Selesai",
+            "BARGAIN_FRIEND_HAVE_HELP": "Lahansiri dkk telah membantumu menawar Rp 50.000",
+            "BARGAIN_SHAREPAGE_HEADER": "Aku lagi ikutan promo tawar harga Iphone sampai Rp 100.000 loh.Sekarang harganya sudah jadi Rp 180.000.Yuk bantu aku tawar lagi harganya!",
+            "BARGAIN_SHAREPAGE_BTN_HELP": "Bantu chanue Tawar Harga",
+            "BARGAIN_SHAREPAGE_BTN_SELF": "Aku juga mau beli seharga Rp 100.000",
+            "BARGAIN_SHAREPAGE_FRIEND_LIST": "Donatur:",
+            "BARGAIN_SHAREPAGE_LOGIN_TIP": "Kamu harus login dulu sebelum melanjutkan",
+            "BARGAIN_CART_BTN_UNLOGIN": "Checkout Sebagai Tamu",
+            "BARGAIN_DETAIL_PRICE_OVER": "Sudah Ditawar Hingga Harga Termurah",
+            "BARGAIN_SHAREPAGE_HEADER_OVER": "Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa beli barang ini dengan harga Rp 100.000!",
+            "BARGAIN_BTN_CLICK_BODY": "Promo ini sudah berakhir. Nantikan promo menarik lainnya dari kami",
+            "BARGAIN_BTN_CLICK_TOSHOP": "Lihat Produk Kami",
+            "BARGAIN_BTN_CLICK_IKONW": "Saya Mengerti",
+            "BARGAIN_LIMIT": "Maksimal Pembelian 1 Pc",
+            "BARGAIN_SHAREPAGE_HEADER_PART": "Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa beli barang ini dengan harga Rp 100.000!"
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[navigator.language.toLowerCase()] || Lang.id);

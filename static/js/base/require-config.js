@@ -53,7 +53,11 @@ require.config({
         validator:'moudle/ui/validator/validator',
         debug:'moudle/app/debug/debug',
         favorable:'moudle/app/favorable/favorable',
-        "tab":"moudle/ui/tab/tab"
+        "tab":"moudle/ui/tab/tab",
+        "oauth":"moudle/app/oauth/oauth",
+        "cache":"moudle/app/cache/cache",
+        "sharebargain":"moudle/app/sharebargain/sharebargain",
+        "bargain":"moudle/app/bargain/bargain"
     },
     packages: []
 });

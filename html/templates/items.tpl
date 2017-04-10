@@ -53,12 +53,19 @@
                         <p class="price cost-price">Rp {$item.price|priceFormat}</p>
                         {else}
                         <p class="price">Rp {$item.price|priceFormat}</p>
-                        {/if} {if $item.is_discount} {if $item.discounting}
-                        <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                        {/if} 
+                        {if $item.is_discount} 
+                            {if $item.discounting}
+                                {if $item.discount.discount_type eq "percent"}
+                                    <p class="discount-price">Rp {$item.discount.min_discount_price|priceFormat}</p>
+                                {else}
+                                    <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                {/if}
+                            {else}
+                                <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                            {/if} 
                         {else}
-                        <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
-                        {/if} {else}
-                        <p class="discount-price"></p>
+                            <p class="discount-price"></p>
                         {/if}
                     </a>
                 </li>
