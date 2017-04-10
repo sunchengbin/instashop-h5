@@ -114,12 +114,11 @@
   @include remCalc(margin-bottom,20);
 }
 .nav-text-ul a{
-  color: $base-color;
+  color: $txt-color;
   @include remCalc(height,50);
   @include remCalc(line-height,50);
   overflow: hidden;
-  border: 1px solid $base-color;
-  border-top-color:$border-color;
+  border: 1px dashed $nav-img-border-color;
   box-sizing: border-box;
 }
 .nav-text-ul li:nth-child(3n+1){
@@ -145,7 +144,7 @@
   content: '';
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  border: 1px solid $base-color;
+  border: 1px solid $nav-img-border-color;
   z-index: -1;
 }
 .nav-img-box ul{
@@ -164,7 +163,7 @@
   color: $black-color;
 }
 .nav-img-ul li::after{
-  border-color: $base-color;
+  border-color: $nav-text-border-color;
 }
 .nav-img-ul li.nav-img-titile{
   @include remCalc(height,80);
@@ -183,7 +182,7 @@
 }
 .nav-img-ul a{
   box-sizing: border-box;
-  color: $base-color;
+  color: $txt-color;
   word-break: break-word;
   text-overflow: ellipsis;
   overflow: hidden;

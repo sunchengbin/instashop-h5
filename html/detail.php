@@ -16,7 +16,7 @@
         $ss = split('\/', $_SERVER['REQUEST_URI']);
         $item_id = end($ss);
     }
-    $params["opt"] = 'H5_Detail';
+    $params["opt"] = 'H5_Detail,bargain';
     $path = 'v1/items/'.$item_id;
     $ret = get_init_php_data($path, $params);
     $json = json_decode($ret, true);
