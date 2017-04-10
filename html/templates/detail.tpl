@@ -94,7 +94,7 @@
         Sudah Harga Termurah
         </div>
         <div class="ins-btn ins-btn-orange j_bargain_btn_self">
-        Tawar Produk
+        Tawar Sekarang
         </div>
         <div class="ins-btn ins-btn-orange j_bargain_btn_continue">
         Tawar Lagi
@@ -102,7 +102,7 @@
         <div class="bargain-friend-list-container">
         </div>
         <p id="bargain-buyer-intro" class="bargain-tip-txt-how">
-            Panduan Tawar Harga ?
+            Panduan Tawar Harga
             <section class="content bargain-buyer-intro-content">
             <h1 id="second-type">Tertarik ikutan promo tawar harga?</h1>
             <h1>Yuk simak caranya:</h1>

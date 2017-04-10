@@ -579,7 +579,7 @@ define(['base'], function (Base) {
             "BARGAIN_DETAIL_BTN_SELF": "Tawar Sekarang",
             "BARGAIN_GUID_LINK": "Panduan Tawar Harga",
             "BARGAIN_DETAIL_BTN_CONTINUE": "Tawar Lagi",
-            "BARGAIN_DETAIL_LOGIN_TIP": "Untuk mengikuti promo ini, kamu harus login dulu:",
+            "BARGAIN_DETAIL_LOGIN_TIP": "Untuk mengikuti promo ini, kamu harus login terlebih dahulu:",
             "BARGAIN_DETAIL_INVITE_TIP": "Minta Temanmu Bantu Tawar ",
             "BARGAIN_SHARE_TXT": "Hi, aku lagi ikutan promo tawar iPhone 7 sampai Rp 9.000 loh! Bantu tawar harganya dong. Klik http://chanue.instashop.co.id/inv/23545",
             "BARGAIN_SHARE_AFTER_PHONE": "Tinggalkan nomor ponselmu, kami akan menginformasikanmu setiap kali ada teman yang membantumu menawar harga",
