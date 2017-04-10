@@ -67,7 +67,8 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                         var _fb_url = 'fb://webview/?url='+encodeURIComponent(_this.config.bargain_inv_url);
                         location.href = _fb_url;
                     }else{
-                        location.href = _dom.attr('data-url') + encodeURIComponent(_this.share_content);
+                        location.href = _dom.attr('data-url') + encodeURIComponent(_this.config.bargain_inv_url);
+                        // location.href = _dom.attr('data-url') + encodeURIComponent(_this.share_content);
                     }
 
                 },100);
