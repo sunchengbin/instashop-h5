@@ -242,10 +242,10 @@
         </div>
         </section>
         {else}
-        <div class="no-exists">
-            <img src="{$STATIC_HOST}/images/app/404.png" />
-            <p>Koneksi internet kamu bermasalah, silakan coba lagi!</p>
-        </div>
+        <section class="item-out-stock">
+            <i class="icon iconfont icon-error-font"></i>
+            <p>Koneksi internet kamu bermasalah, silakan coba lagi</p>
+        </section>
         {/if}
     {/if} 
 {/if}
