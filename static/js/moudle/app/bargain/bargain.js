@@ -578,12 +578,19 @@ define([
 
     // 检查是否过期 true 过期了 false 没过期
     Bargain.checkIsOverdue = function (bargain) {
+        console.log("begin computed overdue")
         var _curDateTime = Base.others.getCurDateTime() - 3600;
         var _bargain_start_time = Base.others.transDateStrToDateTime(bargain.start_time);
         var _bargain_end_time = Base.others.transDateStrToDateTime(bargain.end_time);
+        console.log("begin computed overdue curdatetime:"+_curDateTime)
+        console.log("begin computed overdue starttime:"+_bargain_start_time)
+        console.log("begin computed overdue endtime:"+_bargain_end_time)
+        console.log("begin computed overdue:bargain unoverdue")
         if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+            console.log("begin computed overdue:bargain overdue")
             return true;
         } else {
+            console.log("begin computed overdue:bargain unoverdue")
             return false;
         }
     }
