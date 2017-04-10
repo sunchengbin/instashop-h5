@@ -59,7 +59,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                     _type = _dom.attr('data-type');
                 setTimeout(function(){
                     if(_type=='bbm'&&Base.others.verifyBower().ios){
-                        var _bbm_url = Lang.H5_SHARE_TO_BBM_COUPON_TXT+_this.config.bargain_inv_url;
+                        var _bbm_url = _this.share_content;
                         location.href = _dom.attr('data-url') + _bbm_url;
                     }else if(_type=='fb') {
                         // http://www.facebook.com/share.php?u=
@@ -67,7 +67,7 @@ define(['dialog','lang','base'],function(Dialog,Lang,Base){
                         var _fb_url = 'fb://webview/?url='+encodeURIComponent(_this.config.bargain_inv_url);
                         location.href = _fb_url;
                     }else{
-                        location.href = _dom.attr('data-url') + _this.share_content;
+                        location.href = _dom.attr('data-url') + encodeURIComponent(_this.share_content);
                     }
 
                 },100);
