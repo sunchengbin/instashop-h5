@@ -14,8 +14,7 @@ define([
         login: function (type) {
             var _reqData = {
                 url: location.href,
-                action: "loginfb",
-                _debug_env: "4.5"
+                action: "loginfb"
             };
             switch (type) {
                 case "facebook":
@@ -27,7 +26,7 @@ define([
                 default:
                     break;
             }
-            var reqUrl = "http://api-test.instashop.co.id/instashop/" + Config.actions.oauth + "?param=" + encodeURIComponent(JSON.stringify(_reqData)) + "&timestamp=" + new Date().getTime();
+            var reqUrl = Config.host.phpHost + Config.actions.oauth + "?param=" + encodeURIComponent(JSON.stringify(_reqData)) + "&timestamp=" + new Date().getTime();
             window.location.href = reqUrl;
         },
         openDialog: function (type, opts) {
