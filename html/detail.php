@@ -30,6 +30,7 @@
     $smarty->assign('INDEX_DATA',$json);
     $smarty->assign('INDEX_DATA_SHOP',$json['item']);
     $smarty->assign('INDEX_DATA_STR',$ret);
+    $smarty->assign('INDEX_USER_INFO',json_encode($_POST));
 
     /*item页面支持app分享的数据*/
     $item_title = '<meta property="og:image" content="'.$url.'"><title>'.$json["item"]["item_name"].'</title>';
