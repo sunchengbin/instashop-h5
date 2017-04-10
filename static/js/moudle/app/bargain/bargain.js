@@ -265,7 +265,8 @@ define([
             $("body").on("click", ".j_bargain_tip", function () {
                 PaqPush && PaqPush('查看-买家版砍价教程', '');
                 // 获取教程位置 fix 滚动bug
-                var _top = $("#bargain-buyer-intro").offset().top;
+                // 0001870: 锚点定位到教程偏上一点，把我要砍价的按钮露出来
+                var _top = ~~$("#bargain-buyer-intro").offset().top-80;
                 $(window).scrollTop(_top);
             })
             // 砍了多少钱的弹窗 确认按钮 点击刷新
