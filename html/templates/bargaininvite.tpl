@@ -139,7 +139,7 @@
     }
 </style>
 
-<body>
+<body data-spider="jg06fbr2">
     <!--邀请头-->
     <header>
         <div class="bargain-header-top">
