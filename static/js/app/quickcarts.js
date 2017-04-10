@@ -171,6 +171,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
         updateCartsNum: function (dataId, num) {
             $('.j_logistics ul').html('');
             var _this = this;
+            _this.clearAddress();
             _this.carts[dataId].num = num;
             _this.getLogistics();
         },
