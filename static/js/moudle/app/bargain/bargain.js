@@ -534,12 +534,9 @@ define([
                     var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
                     if (_localBargainCacheDetail) {
                         if (item.item.bargain.id == _localBargainCacheDetail.id && _localBargainCacheDetail.bargain_result != "0.00") {
-                            var _curDateTime = Base.others.getCurDateTime() - 3600;
-                            var _bargain_start_time = Base.others.transDateStrToDateTime(item.item.bargain.start_time);
-                            var _bargain_end_time = Base.others.transDateStrToDateTime(item.item.bargain.end_time);
-                            if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
+                            if(Bargain.checkIsOverdue(item.item.bargain)){
                                 isHave = false;
-                            } else {
+                            }else{
                                 isHave = true;
                             }
                             return;
@@ -575,11 +572,30 @@ define([
         if (!!obj.bargain && !!obj.bargain.id) return true;
         return false;
     }
+    // 如果为印尼时区返回0 如果为北京时区返回3600
+    Bargain.getGMTSecond = function(){
+        var regex="\\((.+?)\\)";
+        var _curDate = new Date()+"";
+        var _timeZone = _curDate.match(regex)?_curDate.match(regex)[1]:"WIB";
+        var _difference ;
+        switch(_timeZone){
+            case "WIB":
+            _difference = 0;
+            break;
+            case "CST":
+            _difference = 3600;
+            break;
+            default:
+            _difference = 0;
+            break;
+        }
+        return _difference;
+    }
 
     // 检查是否过期 true 过期了 false 没过期
     Bargain.checkIsOverdue = function (bargain) {
         console.log("begin computed overdue")
-        var _curDateTime = Base.others.getCurDateTime() - 3600;
+        var _curDateTime = Base.others.getCurDateTime() - Bargain.getGMTSecond();
         var _bargain_start_time = Base.others.transDateStrToDateTime(bargain.start_time);
         var _bargain_end_time = Base.others.transDateStrToDateTime(bargain.end_time);
         console.log("begin computed overdue curdatetime:"+_curDateTime)

@@ -186,12 +186,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
         // 砍价活动
         if (!Bargain.checkIsLimitForLogin()) {
             if (!!data.bargain) {
-                var _curDateTime = Base.others.getCurDateTime() - 3600;
-                var _bargain_start_time = Base.others.transDateStrToDateTime(data.bargain.start_time);
-                var _bargain_end_time = Base.others.transDateStrToDateTime(data.bargain.end_time);
-                if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
-                    //过期了
-                } else {
+                if (!Bargain.checkIsOverdue(data.bargain)) {
                     // 区分sku
                     // 有sku
                     if (data.sku && data.sku.length < 2 && data.sku.length != 0) {
@@ -353,14 +348,10 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                     } else {
                         data_price = data.discount.price;
                     }
-                } else if (!!data.bargain&&!Bargain.checkIsLimitForLogin()) {
-                    var _curDateTime = Base.others.getCurDateTime() - 3600;
-                    var _bargain_start_time = Base.others.transDateStrToDateTime(data.bargain.start_time);
-                    var _bargain_end_time = Base.others.transDateStrToDateTime(data.bargain.end_time);
-                    if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
-                        //过期
+                } else if (!!data.bargain && !Bargain.checkIsLimitForLogin()) {
+                    if(Bargain.checkIsOverdue(data.bargain)){
                         data_price = item.price;
-                    } else {
+                    }else{
                         data_price = item.bargain.price;
                     }
                 } else {

@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 添加到购物车插件
  */
-define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog', 'cart', 'lang', 'config', 'fastclick','bargain'], function (Common, Base, Hbs, Buyplughtm, Btn, Dialog, Cart, Lang, Config, Fastclick,Bargain) {
+define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog', 'cart', 'lang', 'config', 'fastclick', 'bargain'], function (Common, Base, Hbs, Buyplughtm, Btn, Dialog, Cart, Lang, Config, Fastclick, Bargain) {
     var BuyPlug = function (opts) {
         var _this = this;
         _this.config = $.extend({
@@ -92,12 +92,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                     return;
                 }
                 if (!!init_data.item.bargain) {
-                    var _curDateTime = Base.others.getCurDateTime() - 3600;
-                    var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
-                    var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
-                    if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
-                        // 砍价活动过期了
-                    } else {
+                    if (!Bargain.checkIsOverdue(init_data.item.bargain)) {
                         // 是否限购 0为不限购
                         if (_limitto != 0) {
                             if (_num >= _limitto) {
@@ -171,12 +166,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                 }
 
                 if (init_data.item.bargain) {
-                    var _curDateTime = Base.others.getCurDateTime() - 3600;
-                    var _bargain_start_time = Base.others.transDateStrToDateTime(init_data.item.bargain.start_time);
-                    var _bargain_end_time = Base.others.transDateStrToDateTime(init_data.item.bargain.end_time);
-                    if (_curDateTime > _bargain_end_time || _curDateTime < _bargain_start_time) {
-                        // 砍价活动过期了
-                    } else {
+                    if (!Bargain.checkIsOverdue(init_data.item.bargain)) {
                         if (init_data.item.bargain.limit_to > 0) {
                             var _carts = Cart().getCarts();
                             if (_carts) {
@@ -222,7 +212,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
 
 
                 if (!_has_sku) {
-                    if (init_data.item.bargain&&!Bargain.checkIsLimitForLogin()) {
+                    if (init_data.item.bargain && !Bargain.checkIsLimitForLogin()) {
                         Cart(init_data).addItem({
                             item: init_data.item,
                             num: _num,
@@ -270,7 +260,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                 }
                             });
                         } else {
-                            if (init_data.item.bargain&&!Bargain.checkIsLimitForLogin()) {
+                            if (init_data.item.bargain && !Bargain.checkIsLimitForLogin()) {
                                 var _skuMap = {};
                                 $.each(init_data.item.sku, function (index, sku) {
                                     _skuMap[sku.id] = sku;
@@ -282,7 +272,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                         id: _sku_id,
                                         title: _sku_title,
                                         stock: _stock,
-                                        bargain_price: _skuMap[_sku_id].bargain?_skuMap[_sku_id].bargain.price:0
+                                        bargain_price: _skuMap[_sku_id].bargain ? _skuMap[_sku_id].bargain.price : 0
                                     },
                                     price: _sku_price,
                                     isbuynow: _is_buy_now,
