@@ -402,7 +402,9 @@
         <div class="model-btns clearfix j_model_btns" data-spider="btn-box">
             <button class="edit-btn j_edit_model handle-btn" data-type="item_list_type">Ubah</button>
         </div>
-        <p class="item-title b-bottom"><span></span>Tampilan Produk</p>
+        <div class="item-default-title">
+            <img src="../../../images/second/default_title.png"/>
+        </div>
         {if $ITEMTYPE eq '3'}
             <ul class="three-items-list clearfix">
                 {foreach $INDEX_DATA.item_list.list as $item}

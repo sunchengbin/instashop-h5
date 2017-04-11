@@ -250,3 +250,25 @@
 .banner-wraper{
   background-color: transparent;
 }
+.item-default-title{
+  text-align: center;
+  position: relative;
+  @include remCalc(margin-bottom,30);
+  @include remCalc(padding-bottom,30);
+}
+.item-default-title::after{
+  position: absolute;
+  border-width: 2px;
+  left: 10%;
+  right: 10%;
+  bottom: 0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $base-color;
+  z-index: 1;
+}
+.item-default-title img{
+  @include remCalc(width,325);
+}

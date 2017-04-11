@@ -163,3 +163,6 @@ section{
   @include remCalc(line-height,50);
   @include remCalc(margin-right,180);
 }
+.item-default-title{
+  @include remCalc(padding-top,30);
+}
