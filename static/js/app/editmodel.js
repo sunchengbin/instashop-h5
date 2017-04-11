@@ -250,6 +250,10 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     var _href = location.href,
                         _skin = $(dom).attr('data-skin');
                     PaqPush && PaqPush('切换皮肤',_skin);
+                    _this._loading = Dialog.loading({
+                        width: 100,
+                        is_cover: true
+                    });
                     switch(_skin){
                         case 'first':
                             location.href = _this.changeSkinUrlPram(_href,'first',1);
