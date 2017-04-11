@@ -6,6 +6,9 @@
 .logistics-plug-top,.logistics-list{
   @include remCalc(margin,30);
 }
+.logistics-plug-top{
+  margin-bottom:0;
+}
 .logistics-list li{
   @include fontDpr(14px);
   @include remCalc(padding-top,10);
