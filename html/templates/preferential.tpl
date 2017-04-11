@@ -16,11 +16,12 @@
                         {/foreach}
                     {else}
                         {foreach $INDEX_DATA_SHOP.shop.shop_discount.info as $keyvar=>$item}
-                            Minimal Pembelian Rp {$item.condition_price|priceFormat} akan mendapat potongan -{$item.discount_percent}%.{if $INDEX_DATA_SHOP.shop.shop_discount.limit_price neq '0.00'}Nominal potongan maksimal Rq {$INDEX_DATA_SHOP.shop.shop_discount.limit_price|priceFormat}{/if}
+                            Minimal Pembelian Rp {$item.condition_price|priceFormat} akan mendapat potongan -{$item.discount_percent}%.
+                            {*{if $INDEX_DATA_SHOP.shop.shop_discount.limit_price neq '0.00'}Nominal potongan maksimal Rq {$INDEX_DATA_SHOP.shop.shop_discount.limit_price|priceFormat}{/if}*}
                         {/foreach}
                     {/if}
                 </p>
-                <p class="reduc-expire">
+                <p class="reduc-expire reduc-expire-discount">
                     {$INDEX_DATA_SHOP.shop.shop_discount.start_time|transDate} - {$INDEX_DATA_SHOP.shop.shop_discount.end_time|transDate} WIB
                 </p>
             </div>

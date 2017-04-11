@@ -59,12 +59,14 @@
                                     href="javascript:;">
                                     <div class="lazy" data-img="{$item.img|list_img}">
                                         {if $item.is_discount}
-                                        <span>-{$item.discount.value}%</span> {if $item.discounting}
+                                        <span>-{$item.discount.value}%</span> 
+                                        {if $item.discounting}
                                         <p><i class="icon iconfont icon-time-font"></i><span data-time="{$item.discount.end_time|discountSecond}">{$item.discount.end_time|discountTime}</span>
                                         </p>
                                         {else}
                                         <p>Coming Soon</p>
-                                        {/if} {/if}
+                                        {/if} 
+                                        {/if}
                                     </div>
                                     <p class="title">{$item.item_comment|nl2br}</p>
                                     {if $item.price lt 0}
@@ -73,12 +75,19 @@
                                     <p class="price cost-price">Rp {$item.price|priceFormat}</p>
                                     {else}
                                     <p class="price">Rp {$item.price|priceFormat}</p>
-                                    {/if} {if $item.is_discount} {if $item.discounting}
-                                    <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                    {/if} 
+                                    {if $item.is_discount} 
+                                        {if $item.discounting}
+                                            {if $item.discount.discount_type eq "percent"}
+                                                <p class="discount-price">Rp {$item.discount.min_discount_price|priceFormat}</p>
+                                            {else}
+                                                <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                            {/if}
+                                        {else}
+                                            <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
+                                        {/if} 
                                     {else}
-                                    <p class="discount-price">Rp {$item.discount.price|priceFormat}</p>
-                                    {/if} {else}
-                                    <p class="discount-price"></p>
+                                        <p class="discount-price"></p>
                                     {/if}
                                 </a>
                             </li>

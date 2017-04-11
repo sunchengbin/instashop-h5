@@ -1,37 +1,52 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick','debug'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick,Debug) {
+require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug', 'cache', 'oauth', 'bargain'], function (Hbs, Carthtm, Cart, Dialog, Ajax, Config, Base, Lang, Fastclick, Debug, Cache, Oauth, Bargain) {
     var CartIndex = {
         init: function () {
             var _data = JSON.parse(localStorage.getItem('ShopData'));
             var _carts = Cart().getCarts(),
                 isGroup = this.isGroup = Cart().getIsGroup();
-            var GroupCart = this.GroupCart = (function () {
-                if (!isGroup || !_data.GroupCart) return null;
-                return _data.GroupCart[_data.ShopInfo.id];
-            })()
-            var _htm = Hbs.compile(Carthtm)({
-                cart: _carts,
-                groupCart: GroupCart,
-                lang: Lang,
-                isGroup: isGroup,
-                isDrop: _data.ShopInfo.drop
-            });
-            this.carts = _carts;
-            $('body').prepend(_htm);
-            this.handleFn();
-            var _cart_debug = {
-                "isGroup":isGroup,
-                "drop开关":_data.ShopInfo.drop,
-                "组购物车":GroupCart,
-                "组数量":Cart().getGroupNum(),
-                "原始购物车":_carts,
+            if (!_data || !_carts) {
+                var _htm = Hbs.compile(Carthtm)({
+                    cart: [],
+                    groupCart: null,
+                    lang: Lang,
+                    isGroup: false,
+                    isDrop: false
+                });
+                $('body').prepend(_htm);
+                this.handleFn();
+                this.loginResultPackage = Oauth.checkIsLogin();
+            } else {
+                var GroupCart = this.GroupCart = (function () {
+                    if (!isGroup || !_data.GroupCart) return null;
+                    return _data.GroupCart[_data.ShopInfo.id];
+                })()
+                var _htm = Hbs.compile(Carthtm)({
+                    cart: _carts,
+                    groupCart: GroupCart,
+                    lang: Lang,
+                    isGroup: isGroup,
+                    isDrop: _data.ShopInfo.drop
+                });
+                this.carts = _carts;
+                $('body').prepend(_htm);
+                this.handleFn();
+                var _cart_debug = {
+                    "isGroup": isGroup,
+                    "drop开关": _data.ShopInfo.drop,
+                    "组购物车": GroupCart,
+                    "组数量": Cart().getGroupNum(),
+                    "原始购物车": _carts,
+                }
+                Debug.log({
+                    title: "购物车分组信息",
+                    data: _cart_debug
+                })
+                this.loginResultPackage = Oauth.checkIsLogin();
             }
-            Debug.log({
-                title:"购物车分组信息",
-                data:_cart_debug
-            })
+
         },
         handleFn: function () {
             var _that = this;
@@ -55,13 +70,13 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                 $('.j_cart_list').addClass("no_goods_box");
                             }
                             _that.GroupCart = Cart().convertGroup(Cart().getCart())[JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id];
-                        }else{
+                        } else {
                             //被删空了
-                            if($.isEmptyObject(_that.carts)){
+                            if ($.isEmptyObject(_that.carts)) {
                                 $('.j_cart_list').addClass("no_goods_box");
                             }
                         }
-                        
+
                     }
                 });
             });
@@ -72,35 +87,69 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                 if (!_fromurl) {
                     var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
                     localStorage.removeItem('CartFromUrl');
-                    setTimeout(function(){
+                    setTimeout(function () {
                         location.href = _url;
-                    },1);
+                    }, 1);
                 } else {
                     localStorage.removeItem('CartFromUrl');
-                    var _scroll_url = localStorage.getItem('index_route_info')?localStorage.getItem('index_route_info'):'';
-                    setTimeout(function(){
-                        if(/pt/g.test(_fromurl)){
-                            location.href = _fromurl.split('?')[0]+'?item=back'+_scroll_url;
-                        }else{
-                            location.href = _fromurl+'?item=back'+_scroll_url;
+                    var _scroll_url = localStorage.getItem('index_route_info') ? localStorage.getItem('index_route_info') : '';
+                    setTimeout(function () {
+                        if (/pt/g.test(_fromurl)) {
+                            location.href = _fromurl.split('?')[0] + '?item=back' + _scroll_url;
+                        } else {
+                            location.href = _fromurl + '?item=back' + _scroll_url;
                         }
 
-                    },1);
+                    }, 1);
                 }
             });
             $('body').on('click', '.j_go_shop', function () {
                 PaqPush && PaqPush('去逛逛', '');
-                //_paq.push(['trackEvent', '去逛逛', 'click', '']);
                 var _url = !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
                 location.href = _url;
             });
             $('body').on('click', '.j_submit_btn', function () {
                 var _groupid = $(this).attr('group-id');
-                PaqPush && PaqPush('去结算', '');
-                _that.subData(_groupid);
+
+                if (_that.checkIsHasBargain()) {
+                    // 具备登录机制
+                    var _judageOauth = Oauth.checkIsLogin();
+                    if (_judageOauth.result) {
+                        // 登录的 去结算
+                        // 再请求一次活动明细
+                        PaqPush && PaqPush('登录结算-' + _judageOauth.info.auth_type, '');
+                        _that.goClear(_groupid);
+                    } else {
+                        Oauth.openDialog("cart", {
+                            groupid: _groupid
+                        });
+                    }
+                } else {
+                    // 不具备登录机制的 去结算
+                    PaqPush && PaqPush('免登录结算', '');
+                    _that.goClear(_groupid);
+                }
             });
+            $('body').on('click', '.j_cart_no_login', function () {
+                PaqPush && PaqPush('免登录结算', '');
+                var _groupid = $(this).attr('group-id');
+                _that.goClear(_groupid);
+            })
             if (Base.others.getUrlPrem('error')) {
                 _that.subData();
+            }
+        },
+        goClear: function (groupid) {
+            var _that = this;
+            _that.subData(groupid);
+        },
+        checkIsHasBargain: function () {
+            var _data = JSON.parse(localStorage.getItem('ShopData'));
+            if (!_data.ShopInfo.bargain) return false;
+            if (_data.ShopInfo.bargain.count > 0) {
+                return true;
+            } else {
+                return false;
             }
         },
         getAddressItems: function (groupid) {
@@ -117,40 +166,85 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     _items = _carts.group[groupid];
                     for (var item in _items) {
                         if (_items[item].sku) {
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                //itemName:_items[item].item.item_name,
-                                itemNum: _items[item].num,
-                                item_sku: _items[item].sku.id,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
+                            if (_items[item].item.bargain) {
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    //itemName:_items[item].item.item_name,
+                                    itemNum: _items[item].num,
+                                    bargain_price: _items[item].sku.bargain_price,
+                                    item_sku: _items[item].sku.id,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            } else {
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    //itemName:_items[item].item.item_name,
+                                    itemNum: _items[item].num,
+                                    item_sku: _items[item].sku.id,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            }
                         } else {
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                //itemName:_items[item].item.item_name,
-                                itemNum: _items[item].num,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
+                            if (_items[item].item.bargain) {
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    //itemName:_items[item].item.item_name,
+                                    bargain_price: _items[item].item.bargain.price,
+                                    itemNum: _items[item].num,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            } else {
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    //itemName:_items[item].item.item_name,
+                                    itemNum: _items[item].num,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            }
+
                         }
                     }
                 } else {
                     _items = _carts;
                     for (var item in _items) {
                         if (_items[item].sku) {
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                //itemName:_items[item].item.item_name,
-                                itemNum: _items[item].num,
-                                item_sku: _items[item].sku.id,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
+                            if (_items[item].item.bargain) {
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    //itemName:_items[item].item.item_name,
+                                    itemNum: _items[item].num,
+                                    item_sku: _items[item].sku.id,
+                                    bargain_price: Bargain.isActualAttendBargain(_items[item].item.bargain.id) ? _items[item].sku.bargain_price : 0,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            } else {
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    //itemName:_items[item].item.item_name,
+                                    itemNum: _items[item].num,
+                                    item_sku: _items[item].sku.id,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            }
+
                         } else {
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                //itemName:_items[item].item.item_name,
-                                itemNum: _items[item].num,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
+                            if (_items[item].item.bargain) {
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    //itemName:_items[item].item.item_name,
+                                    itemNum: _items[item].num,
+                                    bargain_price: Bargain.isActualAttendBargain(_items[item].item.bargain.id) ? _items[item].item.bargain.price : 0,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            } else {
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    //itemName:_items[item].item.item_name,
+                                    itemNum: _items[item].num,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            }
+
                         }
                     }
                 }
@@ -250,10 +344,11 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                             _shop_data.Cart[_shop_data.ShopInfo.id] = _that.carts;
                                             localStorage.setItem('ShopData', JSON.stringify(_shop_data));
                                             setTimeout(function () {
-                                                if(!!groupid){
-                                                    location.href = Config.host.hrefUrl + 'address.php?groupid='+ groupid;
-                                                }else{
-                                                    location.href = Config.host.hrefUrl + 'address.php';
+                                                var _buyer_id = _that.loginResultPackage.result ? _that.loginResultPackage.info.buyer_id : "";
+                                                if (!!groupid) {
+                                                    location.href = Config.host.hrefUrl + 'address.php?groupid=' + groupid + '&buyer_id=' + _buyer_id;
+                                                } else {
+                                                    location.href = Config.host.hrefUrl + 'address.php' + '?buyer_id=' + _buyer_id;
                                                 }
                                             }, 1);
                                         }
@@ -266,7 +361,8 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                         _addr = _address.country + ',' + _address.city + ',' + _address.province;
                                     setTimeout(function () {
                                         var _item_str = JSON.stringify(_that.getAddressItems(groupid));
-                                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + reqData.edata.seller_id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + groupid + '&items=' + encodeURIComponent(_item_str);
+                                        var _buyer_id = _that.loginResultPackage.result ? _that.loginResultPackage.info.buyer_id : "";
+                                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + reqData.edata.seller_id + '&addr=' + encodeURIComponent(_addr) + '&buyer_id=' + _buyer_id + '&groupid=' + groupid + '&items=' + encodeURIComponent(_item_str);
                                     }, 1);
                                 }
                             }

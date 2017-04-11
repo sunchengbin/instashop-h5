@@ -18,6 +18,7 @@ then
     node js-version html/router
     node js-version html/act/domainfirst
     node js-version html/act/domainsecond
+    node js-version html/act/bargain
 else
     echo 'change timestamp'
     if [ $1 ]
@@ -30,6 +31,7 @@ else
         node js-version html/router
         node js-version html/act/domainfirst
         node js-version html/act/domainsecond
+        node js-version html/act/bargain
     fi
 
     echo 'js start compress'

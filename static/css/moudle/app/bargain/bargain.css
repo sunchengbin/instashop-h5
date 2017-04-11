@@ -1,0 +1,189 @@
+.bargain-tip-txt-how {
+    font-size: 16px;
+    padding: .5rem 0;
+}
+
+.bargain-howprice-wrap {
+    text-align: center;
+}
+
+.bargain-howprice-wrap p img {
+    width: 5rem;
+    height: 5rem;
+}
+
+.j_bargain_tip_unlogin_price {
+    display: none;
+    color: #999999;
+    font-size: 14px;
+    padding: 0 0 1.2rem 0;
+}
+
+.j_dialog_login_line,
+.j_dialog_login_facebook,
+.j_cart_no_login {
+    width: 90%;
+    height: 3.9rem;
+    line-height: 3.9rem;
+    border-radius: 2px;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.j_cart_no_login {
+    background: #43CB9B
+}
+
+.j_dialog_login_line {
+    background: #00B900;
+}
+
+.j_dialog_login_facebook {
+    background: #3B589C;
+}
+
+.j_bargain_btn_continue {
+    display: none;
+}
+
+.bargain_inv_operate a {
+    width: 25%;
+}
+
+.bargain-phone-input {
+    width: 100%;
+    height: 4rem;
+    line-height: 4rem;
+    background: #EDEDED;
+    border: 1px solid #D8D8D8;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 0 1rem;
+    color: #444444;
+}
+
+.bargain-phone-input span {}
+
+.bargain-phone-input input {
+    height: 100%;
+    line-height: 4rem;
+    border: 0px;
+    outline: none;
+    background: #EDEDED;
+    box-sizing: border-box;
+    width: 87%;
+    font-size: 16px;
+    margin-left: -5rem;
+    color: #444444;
+}
+
+.bargain-phone-button {
+    width: 100%;
+    margin: 0 auto;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: #ffffff;
+    font-size: 16px;
+    background: #40CB90;
+    border-radius: 2px;
+}
+
+.bargain-amplitude-price-tip {
+    font-size: 16px;
+    color: #444444;
+}
+
+.bargain-amplitude-price {
+    font-weight: 400;
+    font-size: 24px;
+    color: #444444;
+}
+
+.j_btn_confrim_bargain_price {
+    width: 100%;
+    margin: 0 auto;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: #ffffff;
+    font-size: 16px;
+    background: #F5A623;
+    border-radius: 2px;
+}
+
+.bargain-origin-price {
+    font-size: 14px;
+    opacity: 0.5;
+    padding-left:0.625rem;
+    display: table-cell;
+    vertical-align: middle;
+    text-decoration: line-through;
+}
+
+.bargain-origin-price-sku {
+    font-size: 12px;
+    color:#FBDBA0;
+    vertical-align: middle;
+    text-decoration: line-through;
+}
+
+.icon-share-facebook {
+    color: #667EB9;
+}
+
+.bargain-price {
+    min-height: 1.8rem;
+    font-size:18px!important;
+    display: table;
+}
+
+.bargain-friend-list-container {
+    height: 5.55rem;
+    line-height: 5.55rem;
+    background: #F5F5F5;
+    margin: 1.35rem 0;
+    padding: 0 0.375rem;
+    display: none;
+}
+
+.bargain-friend-list-container img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    margin-right: .625rem;
+}
+
+.friend-bargain-info {
+    display: inline-block;
+    flex: 1;
+    width: 58%;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.friend-bargain-info p {
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+}
+
+.friend-avatars {
+    width: 100%;
+    display: flex!important;
+    display: -webkit-flex!important;
+    align-items:center;
+}
+
+.bargain-friend-list-container .friend-avatars,
+.bargain-friend-list-container .friend-bargain-info {
+    display: inline-block;
+}
+.j_bargain_reachbaseprice {
+    display: none;
+}

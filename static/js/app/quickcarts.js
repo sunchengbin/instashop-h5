@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/7/26.
  */
-require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator', 'favorable', 'debug'], function (Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator, Favorable, Debug) {
+require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator', 'favorable', 'debug', 'bargain'], function (Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator, Favorable, Debug, Bargain) {
     var QuickCartsHtm = {
         init: function () {
             var _this = this,
@@ -71,8 +71,9 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 _this.quickbuyplug = QuickBuyplug({
                     data: _this.transCart(),
                     callback: function (opts) {
+                        _this.updateCartsNum(opts.id, opts.num);
                         _this.selectQuick(opts);
-                        _this.updateCartsNum(opts.id, opts.num)
+
                     }
                 });
             }
@@ -80,18 +81,39 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             _this.getTotal();
             _this.handleFn();
             //优惠券
-            _this.favorablePlugin = Favorable({
-                el: ".total-ps",
-                price: $('.j_total').attr('data-price'),
-                seller_id:init_data.shop.id,
-                usehandle: function (favorablePrice) {
-                    var _totalPrice = $(".j_total").attr("data-price"),
-                        _price = Number(_totalPrice) - Number(favorablePrice);
-                    _price = _price < 0 ? 0 : _price;
+            // 添加对优惠券处理 -lanchenghao@weidian.com
+            // 如果该有商品为砍价商品
+            if (!Bargain.checkIsHaveBargainItem(init_data.carts)) {
+                _this.favorablePlugin = Favorable({
+                    el: ".total-ps",
+                    price: $('.j_total').attr('data-price'),
+                    seller_id: init_data.shop.id,
+                    usehandle: function (favorablePrice) {
+                        var _totalPrice = $(".j_total").attr("data-price"),
+                            _price = Number(_totalPrice) - Number(favorablePrice);
+                        _price = _price < 0 ? 0 : _price;
+                        $(".j_total").html('Rp ' + Base.others.priceFormat(_price));
+                    }
+                });
+            } else {
+                // 如果有 并且只有一个商品 那么要返回false 否则返回true 
+                if (Object.keys(_this.carts).length == 1) {
 
-                    $(".j_total").html('Rp ' + Base.others.priceFormat(_price));
+                } else {
+                    _this.favorablePlugin = Favorable({
+                        el: ".total-ps",
+                        price: $('.j_total').attr('data-price'),
+                        seller_id: init_data.shop.id,
+                        usehandle: function (favorablePrice) {
+                            var _totalPrice = $(".j_total").attr("data-price"),
+                                _price = Number(_totalPrice) - Number(favorablePrice);
+                            _price = _price < 0 ? 0 : _price;
+                            $(".j_total").html('Rp ' + Base.others.priceFormat(_price));
+                        }
+                    });
                 }
-            });
+            }
+
         },
         initLocalStorage: function (address) { //根据本地地址数据自动填写用户信息
             address.name && $('.j_name').val(address.name);
@@ -147,7 +169,9 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             }
         },
         updateCartsNum: function (dataId, num) {
+            $('.j_logistics ul').html('');
             var _this = this;
+            _this.clearAddress();
             _this.carts[dataId].num = num;
             _this.getLogistics();
         },
@@ -158,7 +182,16 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 var _item_num = $(this).parent().find('.j_item_num'),
                     _num = Number(_item_num.val()),
                     _stock = $(this).attr('data-stock'),
+                    _limitto = $(this).attr('data-limitto') || 0,
                     _dataId = $(this).attr('data-id');
+                if (_limitto != 0) {
+                    if (_limitto <= _num) {
+                        Dialog.tip({
+                            body_txt: "Maksimal Pembelian " + _limitto + " Pc"
+                        })
+                        return;
+                    }
+                }
                 if (_this.isDetailQuick && _this.testDetailCarts()) { //有sku的单品快速下单
                     _this.quickbuyplug.toShow();
                 } else {
@@ -684,24 +717,49 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 for (var item in _items) {
                     if (_items[item].sku && _items[item].sku.id) {
                         if (!$('.error-item[data-id="' + _items[item].sku.id + '"]').length) {
-                            var _num = $('.j_cart_item[data-id="' + _items[item].sku.id + '"] .j_item_num').val();
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                itemName: _items[item].item.item_name,
-                                itemNum: (_num ? _num : _items[item].num),
-                                item_sku: _items[item].sku.id,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
+                            if (_items[item].item.bargain) {
+                                var _num = $('.j_cart_item[data-id="' + _items[item].sku.id + '"] .j_item_num').val();
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    itemName: _items[item].item.item_name,
+                                    itemNum: (_num ? _num : _items[item].num),
+                                    item_sku: _items[item].sku.id,
+                                    bargain_price: _items[item].price,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            } else {
+                                var _num = $('.j_cart_item[data-id="' + _items[item].sku.id + '"] .j_item_num').val();
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    itemName: _items[item].item.item_name,
+                                    itemNum: (_num ? _num : _items[item].num),
+                                    item_sku: _items[item].sku.id,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            }
+
+
                         }
                     } else {
                         if (!$('.error-item[data-id="' + _items[item].item.id + '"]').length) {
                             var _num = $('.j_cart_item[data-id="' + _items[item].item.id + '"] .j_item_num').val();
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                itemName: _items[item].item.item_name,
-                                itemNum: (_num ? _num : _items[item].num),
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
+                            if (_items[item].item.bargain) {
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    itemName: _items[item].item.item_name,
+                                    itemNum: (_num ? _num : _items[item].num),
+                                    bargain_price:_items[item].price,
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            } else {
+                                _arr.push({
+                                    itemID: _items[item].item.id,
+                                    itemName: _items[item].item.item_name,
+                                    itemNum: (_num ? _num : _items[item].num),
+                                    discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                                });
+                            }
+
                         }
                     }
                 }
@@ -728,6 +786,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                             item_sku: _items[item].sku.id,
                             discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
                         });
+
                     } else {
                         _arr.push({
                             itemID: _items[item].item.id,
@@ -735,6 +794,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                             itemNum: _items[item].num,
                             discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
                         });
+
                     }
                 }
             }
@@ -805,7 +865,6 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                                 }
                             }
                         }
-
                     }
                 },
                 function (error) {
@@ -1047,8 +1106,6 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                     if (_res.price_info.items_price != _res.price_info.total_price) {
                         $(".reduc-info").show();
                     }
-
-
                     var _items_price = _res.price_info.items_price;
                     var _last_price = _res.price_info.total_price;
                     var _freight = 0;

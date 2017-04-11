@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/13.
  */
-require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug','favorable'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug,Favorable) {
+require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug', 'favorable', 'cache', 'bargain'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug, Favorable, Cache, Bargain) {
     var OrderConfirmHtm = {
         init: function () {
             var _this = this;
@@ -9,6 +9,10 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             var _groupid = _this._groupid = Base.others.getUrlPrem("groupid", location.href);
             var _data = localStorage.getItem('ShopData');
             var _carts;
+            _this.bargainCache = Cache.getSpace("BargainCache") || new Cache({
+                namespace: "BargainCache",
+                type: "local"
+            });
             if (_isGroup) {
                 _carts = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid];
             } else {
@@ -42,9 +46,25 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     nofree: _express_free == 0,
                     express: (_express_free == 0 && _this.testExpress(express_data.express_fee_list.list)),
                     isHaveReduc: (function () {
+                        // 是否含有参加砍价活动的商品
+                        // if (!Bargain.checkIsHaveBargainItem(_this.carts)) {
+                        // 没有砍价活动的
                         if (!!price_data.price_info.shop_discount) {
                             return (price_data.price_info.shop_discount.length != 0)
                         }
+                        // }
+                        //  else {
+                        //     // 如果有 并且只有一个商品 那么要返回false 否则返回true 
+                        //     if (Object.keys(_this.carts).length == 1) {
+                        //         return false;
+                        //     } else {
+                        //         if (!!price_data.price_info.shop_discount) {
+                        //             return (price_data.price_info.shop_discount.length != 0)
+                        //         }
+                        //         return true;
+                        //     }
+                        // }
+
                         return false;
                     })()
                 });
@@ -57,19 +77,43 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 });
             }
 
-            //添加对优惠券处理 -lanchenghao@weidian.com
-            _this.favorablePlugin = Favorable({
-                el:".order-info",
-                price:_sum,
-                seller_id:JSON.parse(_data).ShopInfo.id,
-                usehandle:function(favorablePrice,favorableCode){
-                    var _postPrice = $(".j_post").attr("data-price")|| 0,
-                        _price = _sum - Number(favorablePrice) + Number(_postPrice);
-                    _this.favorableCode = favorableCode;
-                    _price = _price < 0 ? 0 : _price;
-                    $(".j_sum").text('Rp '+Base.others.priceFormat(_price));
+            // 添加对优惠券处理 -lanchenghao@weidian.com
+            // 如果该有商品为砍价商品
+            if (!Bargain.checkIsHaveBargainItem(_this.carts)) {
+                _this.favorablePlugin = Favorable({
+                    el: ".order-info",
+                    price: _sum,
+                    seller_id: JSON.parse(_data).ShopInfo.id,
+                    usehandle: function (favorablePrice, favorableCode) {
+                        var _postPrice = $(".j_post").attr("data-price") || 0,
+                            _price = _sum - Number(favorablePrice) + Number(_postPrice);
+                        _this.favorableCode = favorableCode;
+                        _price = _price < 0 ? 0 : _price;
+                        $(".j_sum").text('Rp ' + Base.others.priceFormat(_price));
+                    }
+                });
+            } else {
+                // 如果有 并且只有一个商品 那么要返回false 否则返回true 
+                if (Object.keys(_this.carts).length == 1) {
+
+                } else {
+                    if (!Bargain.checkIsHaveBargainItem(_this.carts)) {
+                        _this.favorablePlugin = Favorable({
+                            el: ".order-info",
+                            price: _sum,
+                            seller_id: JSON.parse(_data).ShopInfo.id,
+                            usehandle: function (favorablePrice, favorableCode) {
+                                var _postPrice = $(".j_post").attr("data-price") || 0,
+                                    _price = _sum - Number(favorablePrice) + Number(_postPrice);
+                                _this.favorableCode = favorableCode;
+                                _price = _price < 0 ? 0 : _price;
+                                $(".j_sum").text('Rp ' + Base.others.priceFormat(_price));
+                            }
+                        });
+                    }
+
                 }
-            });
+            }
 
             _this.handleFn();
         },
@@ -112,163 +156,306 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 event_type: 'click',
                 loading_txt: Lang.H5_SUBMITTING_ORDER,
                 callback: function (dom) {
-                    var _that = this,
-                        _items = _this.getItems();
-                    if (dom.is('.disable-btn')) {
-                        _that.cancelDisable();
-                        _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-                        return;
-                    }
-                    if (!_items.length || dom.is('.disable-btn')) {
-                        _that.cancelDisable();
-                        _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-                        return;
-                    }
-                    var _data = _this.getData();
-                    Debug.log({
-                        title: "下单开始-orderconfirm-j_submit_buy",
-                        data: _data
-                    })
-                    if (!_data) {
-                        _that.cancelDisable();
-                        _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-                        return;
-                    }
-                    if ($('.j_check_box').is('.icon-checkbox-font')) {
-                        _that.cancelDisable();
-                        _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-                        Dialog.tip({
-                            top_txt: '', //可以是html
-                            body_txt: '<p class="dialog-body-p">aggree is must checked</p>'
-                        });
-                        return;
-                    }
-                    PaqPush && PaqPush('下单', '');
-                    //_paq.push(['trackEvent', '下单', 'click', '下单']);
-                    //alert(JSON.stringify(_data));
-                    Ajax.postJsonp({
-                        url: Config.actions.orderConfirm,
-                        data: {
-                            param: JSON.stringify(_data)
-                        },
-                        type: 'POST',
-                        timeout: 30000,
-                        success: function (obj) {
-                            if (obj.code == 200) {
-                                var _post_price = $('.j_logistics_info').attr('data-price'),
-                                    _bank_info = JSON.stringify(obj.order.pay_info.banks),
-                                    _total = (_post_price && _post_price > 0) ? (Number(_post_price) + Number(_this.countSum(Cart().getCarts()))) : _this.countSum(Cart().getCarts());
-                                localStorage.setItem('OrderTotal', _total);
-                                localStorage.setItem('BankInfo', _bank_info);
-                                localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
-                                for (var index in _items) {
-                                    if (!!_items[index].item_sku) {
-                                        Cart().removeItem(_items[index].item_sku);
-                                    } else {
-                                        Cart().removeItem(_items[index].itemID);
-                                    }
-                                }
-                                // Cart().clearCarts();
-                                setTimeout(function () {
-                                    location.href = Config.host.hrefUrl + 'ordersuccess.php?price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400);
-                                }, 100);
-                            } else {
-                                if ("server error" == obj.message) {
-                                    _that.cancelDisable();
-                                    _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-                                    var reqData = {
-                                        edata: {
-                                            action: 'check',
-                                            items: _this.getItems(),
-                                            telephone: JSON.parse(localStorage.getItem('ShopData')).Address.telephone,
-                                            seller_id: JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
-                                            wduss: ''
-                                        }
-                                    };
-                                    Ajax.postJsonp({
-                                        url: Config.actions.testCart,
-                                        data: {
-                                            param: JSON.stringify(reqData)
-                                        },
-                                        type: 'POST',
-                                        success: function (obj) {
-                                            if (obj.code == 200) {
-                                                if (obj.carts) {
-                                                    if (_this.testCarts(obj.carts)) {
-                                                        Dialog.tip({
+                    var _that = this;
+                    try {
+                        var _items = _this.getItems();
+                        if (dom.is('.disable-btn')) {
+                            _that.cancelDisable();
+                            _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                            return;
+                        }
+                        if (!_items.length || dom.is('.disable-btn')) {
+                            _that.cancelDisable();
+                            _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                            return;
+                        }
+                        var _data = _this.getData();
+                        Debug.log({
+                            title: "下单开始-orderconfirm-j_submit_buy",
+                            data: _data
+                        })
+                        if (!_data) {
+                            _that.cancelDisable();
+                            _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                            return;
+                        }
+                        if ($('.j_check_box').is('.icon-checkbox-font')) {
+                            _that.cancelDisable();
+                            _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                            Dialog.tip({
+                                top_txt: '', //可以是html
+                                body_txt: '<p class="dialog-body-p">aggree is must checked</p>'
+                            });
+                            return;
+                        }
+                        // 是否含有bargain商品 如果不含有直接去确认订单
+                        if (_this.checkIsHaveBargain()) {
+                            _this.checkBargainStatus(function () {
+                                PaqPush && PaqPush('下单', '');
+                                Ajax.postJsonp({
+                                    url: Config.actions.orderConfirm,
+                                    data: {
+                                        param: JSON.stringify(_data)
+                                    },
+                                    type: 'POST',
+                                    timeout: 30000,
+                                    success: function (obj) {
+                                        if (obj.code == 200) {
+                                            var _post_price = $('.j_logistics_info').attr('data-price'),
+                                                _bank_info = JSON.stringify(obj.order.pay_info.banks),
+                                                _total = (_post_price && _post_price > 0) ? (Number(_post_price) + Number(_this.countSum(Cart().getCarts()))) : _this.countSum(Cart().getCarts());
+                                            localStorage.setItem('OrderTotal', _total);
+                                            localStorage.setItem('BankInfo', _bank_info);
+                                            localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
+                                            for (var index in _items) {
+                                                if (!!_items[index].item_sku) {
+                                                    Cart().removeItem(_items[index].item_sku);
+                                                } else {
+                                                    Cart().removeItem(_items[index].itemID);
+                                                }
+                                            }
+                                            // Cart().clearCarts();
+                                            setTimeout(function () {
+                                                location.href = Config.host.hrefUrl + 'ordersuccess.php?price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400);
+                                            }, 100);
+                                        } else {
+                                            if ("server error" == obj.message) {
+                                                _that.cancelDisable();
+                                                _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                                                var reqData = {
+                                                    edata: {
+                                                        action: 'check',
+                                                        items: _this.getItems(),
+                                                        telephone: JSON.parse(localStorage.getItem('ShopData')).Address.telephone,
+                                                        seller_id: JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
+                                                        wduss: ''
+                                                    }
+                                                };
+                                                Ajax.postJsonp({
+                                                    url: Config.actions.testCart,
+                                                    data: {
+                                                        param: JSON.stringify(reqData)
+                                                    },
+                                                    type: 'POST',
+                                                    success: function (obj) {
+                                                        if (obj.code == 200) {
+                                                            if (obj.carts) {
+                                                                if (_this.testCarts(obj.carts)) {
+                                                                    Dialog.tip({
+                                                                        top_txt: '', //可以是html
+                                                                        body_txt: '<p class="dialog-body-p">' + Lang.H5_CONFIRM_ORDER_ERROR + '</p>',
+                                                                        after_fn: function () {
+                                                                            setTimeout(function () {
+                                                                                location.reload();
+                                                                            }, 2000);
+                                                                        }
+                                                                    });
+                                                                } else {
+                                                                    //setTimeout(function(){
+                                                                    //    location.href = Config.host.hrefUrl+'cart.php?error=confirm';
+                                                                    //},3000);
+                                                                }
+                                                            } else {
+                                                                Dialog.confirm({
+                                                                    top_txt: '', //可以是html
+                                                                    body_txt: '<p class="dialog-body-p">' + Lang.H5_CONFIRM_ORDER_ERROR + '</p>',
+                                                                    cf_fn: function () {
+                                                                        setTimeout(function () {
+                                                                            location.reload();
+                                                                        }, 2000);
+                                                                    }
+                                                                });
+                                                            }
+                                                        } else {
+                                                            Dialog.confirm({
+                                                                top_txt: '', //可以是html
+                                                                body_txt: '<p class="dialog-body-p">' + obj.msg || obj.message + '</p>',
+                                                                cf_fn: function () {
+                                                                    setTimeout(function () {
+                                                                        location.href = Config.host.hrefUrl + 'cart.php';
+                                                                    }, 3000);
+                                                                }
+                                                            });
+                                                        }
+                                                    },
+                                                    error: function (error) {
+                                                        Dialog.alert({
                                                             top_txt: '', //可以是html
-                                                            body_txt: '<p class="dialog-body-p">' + Lang.H5_CONFIRM_ORDER_ERROR + '</p>',
-                                                            after_fn: function () {
-                                                                setTimeout(function () {
-                                                                    location.reload();
-                                                                }, 2000);
+                                                            cfb_txt: Lang.H5_FRESHEN,
+                                                            body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
+                                                            cf_fn: function () {
+                                                                location.reload();
                                                             }
                                                         });
-                                                    } else {
-                                                        //setTimeout(function(){
-                                                        //    location.href = Config.host.hrefUrl+'cart.php?error=confirm';
-                                                        //},3000);
                                                     }
-                                                } else {
-                                                    Dialog.confirm({
-                                                        top_txt: '', //可以是html
-                                                        body_txt: '<p class="dialog-body-p">' + Lang.H5_CONFIRM_ORDER_ERROR + '</p>',
-                                                        cf_fn: function () {
-                                                            setTimeout(function () {
-                                                                location.reload();
-                                                            }, 2000);
-                                                        }
-                                                    });
-                                                }
+                                                });
                                             } else {
-                                                Dialog.confirm({
+                                                Dialog.tip({
                                                     top_txt: '', //可以是html
-                                                    body_txt: '<p class="dialog-body-p">' + obj.msg || obj.message + '</p>',
-                                                    cf_fn: function () {
+                                                    body_txt: '<p class="dialog-body-p">' + obj.message + '</p>',
+                                                    after_fn: function () {
                                                         setTimeout(function () {
                                                             location.href = Config.host.hrefUrl + 'cart.php';
-                                                        }, 3000);
+                                                        }, 2000);
                                                     }
                                                 });
                                             }
-                                        },
-                                        error: function (error) {
-                                            Dialog.alert({
+                                        }
+                                    },
+                                    error: function (error) {
+                                        Dialog.tip({
+                                            top_txt: '', //可以是html
+                                            body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
+                                            auto_fn: function () {
+                                                this.remove();
+                                                _that.cancelDisable();
+                                                _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                                            }
+                                        });
+                                    }
+                                });
+                            })
+                        } else {
+                            PaqPush && PaqPush('下单', '');
+                            Ajax.postJsonp({
+                                url: Config.actions.orderConfirm,
+                                data: {
+                                    param: JSON.stringify(_data)
+                                },
+                                type: 'POST',
+                                timeout: 30000,
+                                success: function (obj) {
+                                    if (obj.code == 200) {
+                                        var _post_price = $('.j_logistics_info').attr('data-price'),
+                                            _bank_info = JSON.stringify(obj.order.pay_info.banks),
+                                            _total = (_post_price && _post_price > 0) ? (Number(_post_price) + Number(_this.countSum(Cart().getCarts()))) : _this.countSum(Cart().getCarts());
+                                        localStorage.setItem('OrderTotal', _total);
+                                        localStorage.setItem('BankInfo', _bank_info);
+                                        localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
+                                        for (var index in _items) {
+                                            if (!!_items[index].item_sku) {
+                                                Cart().removeItem(_items[index].item_sku);
+                                            } else {
+                                                Cart().removeItem(_items[index].itemID);
+                                            }
+                                        }
+                                        // Cart().clearCarts();
+                                        setTimeout(function () {
+                                            location.href = Config.host.hrefUrl + 'ordersuccess.php?price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400);
+                                        }, 100);
+                                    } else {
+                                        if ("server error" == obj.message) {
+                                            _that.cancelDisable();
+                                            _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                                            var reqData = {
+                                                edata: {
+                                                    action: 'check',
+                                                    items: _this.getItems(),
+                                                    telephone: JSON.parse(localStorage.getItem('ShopData')).Address.telephone,
+                                                    seller_id: JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
+                                                    wduss: ''
+                                                }
+                                            };
+                                            Ajax.postJsonp({
+                                                url: Config.actions.testCart,
+                                                data: {
+                                                    param: JSON.stringify(reqData)
+                                                },
+                                                type: 'POST',
+                                                success: function (obj) {
+                                                    if (obj.code == 200) {
+                                                        if (obj.carts) {
+                                                            if (_this.testCarts(obj.carts)) {
+                                                                Dialog.tip({
+                                                                    top_txt: '', //可以是html
+                                                                    body_txt: '<p class="dialog-body-p">' + Lang.H5_CONFIRM_ORDER_ERROR + '</p>',
+                                                                    after_fn: function () {
+                                                                        setTimeout(function () {
+                                                                            location.reload();
+                                                                        }, 2000);
+                                                                    }
+                                                                });
+                                                            } else {
+                                                                //setTimeout(function(){
+                                                                //    location.href = Config.host.hrefUrl+'cart.php?error=confirm';
+                                                                //},3000);
+                                                            }
+                                                        } else {
+                                                            Dialog.confirm({
+                                                                top_txt: '', //可以是html
+                                                                body_txt: '<p class="dialog-body-p">' + Lang.H5_CONFIRM_ORDER_ERROR + '</p>',
+                                                                cf_fn: function () {
+                                                                    setTimeout(function () {
+                                                                        location.reload();
+                                                                    }, 2000);
+                                                                }
+                                                            });
+                                                        }
+                                                    } else {
+                                                        Dialog.confirm({
+                                                            top_txt: '', //可以是html
+                                                            body_txt: '<p class="dialog-body-p">' + obj.msg || obj.message + '</p>',
+                                                            cf_fn: function () {
+                                                                setTimeout(function () {
+                                                                    location.href = Config.host.hrefUrl + 'cart.php';
+                                                                }, 3000);
+                                                            }
+                                                        });
+                                                    }
+                                                },
+                                                error: function (error) {
+                                                    Dialog.alert({
+                                                        top_txt: '', //可以是html
+                                                        cfb_txt: Lang.H5_FRESHEN,
+                                                        body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
+                                                        cf_fn: function () {
+                                                            location.reload();
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                        } else {
+                                            Dialog.tip({
                                                 top_txt: '', //可以是html
-                                                cfb_txt: Lang.H5_FRESHEN,
-                                                body_txt: '<p class="dialog-body-p">' + Lang.H5_ERROR + '</p>',
-                                                cf_fn: function () {
-                                                    location.reload();
+                                                body_txt: '<p class="dialog-body-p">' + obj.message + '</p>',
+                                                after_fn: function () {
+                                                    setTimeout(function () {
+                                                        location.href = Config.host.hrefUrl + 'cart.php';
+                                                    }, 2000);
                                                 }
                                             });
                                         }
-                                    });
-                                } else {
+                                    }
+                                },
+                                error: function (error) {
                                     Dialog.tip({
                                         top_txt: '', //可以是html
-                                        body_txt: '<p class="dialog-body-p">' + obj.message + '</p>',
-                                        after_fn: function () {
-                                            setTimeout(function () {
-                                                location.href = Config.host.hrefUrl + 'cart.php';
-                                            }, 2000);
+                                        body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
+                                        auto_fn: function () {
+                                            this.remove();
+                                            _that.cancelDisable();
+                                            _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
                                         }
                                     });
                                 }
-                            }
-                        },
-                        error: function (error) {
-                            Dialog.tip({
-                                top_txt: '', //可以是html
-                                body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
-                                auto_fn: function () {
-                                    this.remove();
-                                    _that.cancelDisable();
-                                    _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-                                }
                             });
-
                         }
-                    });
+
+
+
+
+                    } catch (e) {
+                        Dialog.tip({
+                            body_txt: e.message,
+                            auto_fn: function () {
+                                this.remove();
+                                _that.cancelDisable();
+                                _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                            }
+                        })
+                        return;
+                    }
+
                 }
             });
             $('body').on('click', '.j_go_back', function () {
@@ -295,6 +482,64 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             //    location.href = Config.host.host+'detail/'+$(this).attr('data-itemid');
             //});
         },
+        checkIsLimitForLogin: function (bargainDetail) {
+            var _this = this;
+            var _curBargainDetail = _this.bargainCache.find("remote_bargain_detail");
+            // 限购
+            if ("0" != bargainDetail.limit_to) {
+                // 已经买了一件
+                if (~~_curBargainDetail.bargain_bought_num > 0) {
+                    throw new Error("Mohon maaf, harga produk ini sudah kembali ke harga normal");
+                }
+            }
+        },
+        checkIsHaveBargain: function () {
+            var isHave = false,
+                _this = this;
+            var _carts = _this.carts;
+            if (!!_carts) {
+                var _items = _carts;
+                for (var item in _items) {
+                    if (Bargain.checkIsHaveBargainProperty(_items[item].item)) {
+                        isHave = true;
+                        return isHave;
+                    }
+                }
+            }
+            return isHave;
+        },
+        checkBargainStatus: function (callback) {
+            var _this = this;
+            var _carts = _this.carts;
+            var _result = {
+                result: true
+            };
+            if (!!_carts) {
+                var _items = _carts;
+                for (var item in _items) {
+                    if (!!_items[item].item.bargain) {
+                        Bargain.checkBargainStatus(_items[item].item.bargain.id, function (status) {
+                            if (status != 1) {
+                                Dialog.confirm({
+                                    top_txt: '', //可以是html
+                                    body_txt: '<p class="dialog-body-p bargain-unvalid-tip">Mohon maaf, harga produk ini sudah kembali ke harga normal</p><div class="j_btn_confrim_bargain_unvalid">Saya mengerti</div>',
+                                    body_fn: function () {
+                                        $("body").on("click",".j_btn_confrim_bargain_unvalid",function(){
+                                            callback && callback();
+                                        })
+                                    },
+                                    show_footer:false
+                                })
+                                return;
+                            }else{
+                                callback && callback();
+                            }
+                        })
+                    }
+                }
+            }
+            return _result;
+        },
         getItems: function () {
             var _this = this;
             var _carts = _this.carts,
@@ -309,20 +554,43 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 var _items = _carts;
                 for (var item in _items) {
                     if (_items[item].sku) {
-                        _arr.push({
-                            itemID: _items[item].item.id,
-                            itemName: _items[item].item.item_name,
-                            itemNum: _items[item].num,
-                            item_sku: _items[item].sku.id,
-                            discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                        });
+                        if (_items[item].item.bargain) {
+                            // _this.checkIsLimitForLogin(_items[item].item.bargain);
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                item_sku: _items[item].sku.id,
+                                bargain_price: _items[item].sku.bargain_price,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        } else {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                item_sku: _items[item].sku.id,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        }
                     } else {
-                        _arr.push({
-                            itemID: _items[item].item.id,
-                            itemName: _items[item].item.item_name,
-                            itemNum: _items[item].num,
-                            discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                        });
+                        if (_items[item].item.bargain) {
+                            // _this.checkIsLimitForLogin(_items[item].item.bargain);
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                bargain_price: _items[item].bargain_price,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        } else {
+                            _arr.push({
+                                itemID: _items[item].item.id,
+                                itemName: _items[item].item.item_name,
+                                itemNum: _items[item].num,
+                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
+                            });
+                        }
                     }
                 }
             }
@@ -410,15 +678,22 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 }).toShow();
                 return null;
             }
+            var buyer_id = "0",
+                uss = "";
+            var _cacheLogin = Cache.getSpace("LoginCache", "local");
+            if (_cacheLogin) {
+                buyer_id = _cacheLogin.find("loginInfo") ? _cacheLogin.find("loginInfo").buyer_id : "0";
+                uss = _cacheLogin.find("loginInfo") ? _cacheLogin.find("loginInfo").uss : "";
+            }
             var _data = {
                 "edata": {
-                    "wduss": "",
+                    "uss": uss,
                     "address_id": "0",
                     "note": "",
                     "pay_way": 11,
                     "pay_type": 1,
                     "seller_id": _seller_id,
-                    "buyer_id": "0",
+                    "buyer_id": buyer_id,
                     "buyer_note": _note,
                     "express_company": (_company ? _company : ''),
                     "express_fee_id": (_fee_id ? _fee_id : ''),
@@ -427,7 +702,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     "frm": 2
                 }
             };
-            if(!!_this.favorableCode)_data.edata.code=_this.favorableCode;
+            if (!!_this.favorableCode) _data.edata.code = _this.favorableCode;
             return _data;
         },
         //满减
@@ -439,16 +714,27 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             } else {
                 return _this.countSumReduc();
             }
+
         },
         countSumNoReduc: function (carts) {
             var _sum = 0;
             for (var cart in carts) {
                 if (carts[cart].item.is_discount && carts[cart].item.discounting) {
-                    _sum += carts[cart].num * carts[cart].item.discount.price;
+                    //折扣区分sku
+                    if (carts[cart].sku && carts[cart].sku.id) {
+                        _sum += carts[cart].num * carts[cart].sku.price;
+                    } else {
+                        _sum += carts[cart].num * carts[cart].item.discount.price;
+                    }
+                } else if (carts[cart].item.bargain) {
+                    if (!!carts[cart].sku && !!carts[cart].sku.id) {
+                        _sum += carts[cart].sku.bargain_price?carts[cart].num * carts[cart].sku.bargain_price:carts[cart].num * carts[cart].sku.price;
+                    } else {
+                        _sum += carts[cart].bargain_price?carts[cart].num * carts[cart].bargain_price:carts[cart].num * carts[cart].price;
+                    }
                 } else {
                     _sum += carts[cart].num * carts[cart].price;
                 }
-
             }
             return _sum;
         },
