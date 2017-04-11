@@ -15,7 +15,7 @@
 <div class="change-skin-warp" data-spider="change-skin-warp">
     <div class="clearfix">
         <button class="j_change_btn fr" data-skin="second">Ganti</button>
-        <p>Template: Black Spring</p>
+        <p>Template: Classic Black</p>
     </div>
 </div>
 <div class="edit-wraper-box" data-spider="edit-wraper-box">
