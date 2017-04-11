@@ -119,6 +119,7 @@
 .bargain-origin-price {
     font-size: 14px;
     opacity: 0.5;
+    padding-left:0.625rem;
     display: table-cell;
     vertical-align: middle;
     text-decoration: line-through;

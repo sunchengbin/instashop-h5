@@ -582,7 +582,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                             for (var i = 0, _reducItem; _reducItem = init_data.shop.shop_discount.info[i++];) {
                                 _htm += "<li><span></span>Minimal Pembelian Rp " + Base.others.priceFormat(_reducItem.condition_price) + " Potongan Rp " + Base.others.priceFormat(_reducItem.discount_price) + "</li>"
                             }
-                            _htm += '<li><span></span>' + $(".reduc-expire").text() + '</li></ul>'
+                            _htm += '<li><span></span>' + $(".reduc-expire-discount").text() + '</li></ul>'
                             break;
                     }
                     Dialog.alert({
