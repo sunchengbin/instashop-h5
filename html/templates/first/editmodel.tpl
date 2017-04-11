@@ -403,7 +403,7 @@
             <button class="edit-btn j_edit_model handle-btn" data-type="item_list_type">Ubah</button>
         </div>
         <div class="item-default-title">
-            <img src="../../../images/first/default_title.png"/>
+            <img src="{$STATIC_HOST}/images/{$TEMP_FOLDER}/default_title.png"/>
         </div>
         {if $ITEMTYPE eq '3'}
             <ul class="three-items-list clearfix">
