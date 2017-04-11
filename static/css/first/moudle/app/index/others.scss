@@ -58,3 +58,12 @@
 .item-list-wraper{
   @include remCalc(margin-top,14);
 }
+.item-default-title{
+  text-align: center;
+  border-bottom: 1px dashed $base-btn-color;
+  @include remCalc(margin-bottom,30);
+  @include remCalc(padding-bottom,30);
+}
+.item-default-title img{
+  @include remCalc(width,325);
+}

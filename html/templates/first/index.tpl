@@ -45,7 +45,10 @@
                     {/if}
                     <section class="items-box j_hot_box j_box">
                         {if $RECOMMEND_ITEM|@count}
-                        <p class="item-title b-bottom">Rekomendasi Item</p>
+                        <div class="item-default-title">
+                            <img src="../../../images/first/default_title.png"/>
+                        </div>
+                        {*<p class="item-title b-bottom">Rekomendasi Item</p>*}
                         {if $ITEMTYPE neq '3'}
                         <ul class="items-list clearfix j_hot_list">
                             {foreach $RECOMMEND_ITEM as $item}
