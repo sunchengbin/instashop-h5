@@ -121,7 +121,7 @@
             <ul class="items-list clearfix">
                 {foreach $model.data as $item}
                     <li>
-                        <a spm-auto="行单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info clearfix j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
+                        <a spm-auto="行单品" spm-click="itemId={$item.id},sellerId={$INDEX_DATA.shop.id}" class="item-info j_item_info" data-url="{$item.h5_url|transUrl}" href="javascript:;">
                             <div class="lazy" data-img="{$item.img|list_img}">
                                 {if $item.is_discount}
                                 <span>-{$item.discount.value}%</span>
