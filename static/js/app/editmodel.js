@@ -19,11 +19,13 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             Lazyload();
             _this.initRotateBanner();
             _this.setBodyHeight();
+            //_this.initHtml();
             Insjs.WebOnReady(function(bridge){
                 _this.handelFn(bridge);
             },function(){
                 _this.handelFn();
             });
+
         },
         clearNullData:function(){
             var _this =this,
@@ -497,7 +499,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             _html+= _this.createModelHtm(_this.model_data)
                 +_this.defaultItemsHtm()
                 +'<button class="j_submit_btn sub-btn b-top">'+Lang.H5_APPLY_MODEL+'</button>';
-            $('.edit-wraper-box').prepend(_html);
+            $('.edit-wraper-box').html(_html);
         },
         createModelBtnHtm : function(opts){
             return Hbs.compile(ModelBtns)({
@@ -537,10 +539,10 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     _folder = '';
                     break;
                 case 'first':
-                    _folder = 'first';
+                    _folder = '/first';
                     break;
                 case 'second':
-                    _folder = 'second';
+                    _folder = '/second';
                     break;
                 default :
                     _folder = '';
@@ -655,7 +657,9 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
-                lang : Lang
+                lang : Lang,
+                skin : opts.skin,
+                static_banner_title:opts.static_banner_title
             });
         },
         rotateBannerHtm : function(opts){
@@ -667,7 +671,8 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
-                lang : Lang
+                lang : Lang,
+                skin : opts.skin
             });
         },
         twoListBannerHtm : function(opts){
@@ -679,7 +684,9 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
-                lang : Lang
+                lang : Lang,
+                skin : opts.skin,
+                two_li_banner_txt:opts.two_li_banner_txt
             });
         },
         imgNavigationHtm : function(opts){

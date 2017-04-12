@@ -41,7 +41,7 @@
                         </a>
                         <div class="two_li_banner_txt">
                             {{#iseven @index}}
-                                <img src="{{../two_li_banner_txt}}"/>
+                                <img src="{{../../two_li_banner_txt}}"/>
                             {{/iseven}}
                         </div>
                     </li>
@@ -63,7 +63,7 @@
                     <ul class="item-banner static-banner clearfix">
                         {{#each data.data}}
                             {{#eq @index 0}}
-                                <li class=""><img class="static-banner-title" data-img="{{../static_banner_title}}"/><a spm-auto="标准banner" spm-click="static-banner" class="block no-cursor" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
+                                <li class=""><img class="static-banner-title" data-img="{{../../static_banner_title}}"/><a spm-auto="标准banner" spm-click="static-banner" class="block no-cursor" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
                             {{else}}
                                 <li class=""><a class="block" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
                             {{/eq}}
@@ -74,7 +74,7 @@
         {{/eq}}
     </section>
 {{/eq}}
-{#eq skin 'second'}}
+{{#eq skin 'second'}}
     <section class="banner-wraper j_model_box" data-spider="edit-banner">
         {{{btns}}}
         {{#eq type 'two_list'}}
@@ -86,7 +86,7 @@
                         </a>
                         <div class="two_li_banner_txt">
                             {{#iseven @index}}
-                                <img src="{{two_li_banner_txt}}"/>
+                                <img src="{{../../two_li_banner_txt}}"/>
                             {{/iseven}}
                         </div>
                     </li>
@@ -108,7 +108,7 @@
                     <ul class="item-banner static-banner clearfix">
                         {{#each data.data}}
                             {{#eq @index 0}}
-                                <li class=""><img class="static-banner-title" data-img="{{static_banner_title}}"/><a spm-auto="标准banner" spm-click="static-banner" class="block no-cursor" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
+                                <li class=""><img class="static-banner-title" data-img="{{../../static_banner_title}}"/><a spm-auto="标准banner" spm-click="static-banner" class="block no-cursor" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
                             {{else}}
                                 <li class=""><a class="block" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
                             {{/eq}}

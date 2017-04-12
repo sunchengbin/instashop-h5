@@ -785,7 +785,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
     });
     //编辑两列式模板小图
     HBS.registerHelper('iseven', function (n, options) {
-        if ((Number(n)+1)%2==0) {
+        if ((Number(n))%2==0) {
             return options.fn(this);
         } else {
             return options.inverse(this);
