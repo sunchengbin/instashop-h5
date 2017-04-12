@@ -1,3 +1,4 @@
+@import "../../app/item/item.scss";
 @import "../../app/itemlist/itemlist.scss";
 @import "../../../base/common/flex.scss";
 @import "../../ui/arrowslide/arrowbanner.scss";
@@ -74,6 +75,7 @@
 .cart-item {
   @include remCalc(min-height,200);
   @include remCalc(padding-top,40);
+  padding-bottom:0;
   position: relative;
 }
 .item-index{
@@ -101,6 +103,9 @@
   @include remCalc(width,200);
   @include remCalc(height,200);
   float: left;
+}
+.cart-item::after{
+  display: none;
 }
 /*导航类模板样式*/
 .navigation-box{
