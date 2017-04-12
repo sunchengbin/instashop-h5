@@ -269,9 +269,6 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
               <span><i class="iconfont icon-phone-font"></i></span>
               PH/WA: 0812 8491 8486
           </li>
-          <li><span><i class="iconfont icon-shop-font"></i></span>
-              Instashop Versi Desktop : <br>'http://dashboard.instashop.co.id'
-          </li>
       </ul>
   </div>
   <script>
