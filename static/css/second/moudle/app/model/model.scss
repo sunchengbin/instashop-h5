@@ -184,7 +184,7 @@
 .nav-img-ul a{
   box-sizing: border-box;
   color: $base-color;
-  word-break: break-word;
+  white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
