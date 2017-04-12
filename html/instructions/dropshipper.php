@@ -11,7 +11,9 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <?=STATIC_DNS?>
   <?=STATIC_ICO_CSS?>
+  <?=STATIC_FONT_CSS?>
   <style>
   *{
       padding:0;
@@ -62,6 +64,26 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     }
     .pc-download-app{
         display:none;
+    }
+    .iconfont {
+        font-family: "iconfont" !important;
+        font-size: 2.1rem;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-stroke-width: 0.2px;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .icon-phone-font:before {
+        content: "\e605";
+    }
+
+    .icon-shop-font:before {
+        content: "\e607";
+    }
+
+    .icon-line:before {
+        content: "\e61e";
     }
     @media only screen and (min-width: 1200px) {
         .pc-download-app{
@@ -129,6 +151,34 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     }
     p,img,h1,h2,ul{
         margin-bottom:20px;
+    }
+    .icon-line {
+        font-size: 2.6rem;
+        margin-left: -4px;
+    }
+    ul{
+        list-style:none;
+    }
+    .icon-line:before {
+        position: absolute;
+        line-height: 2;
+    }
+    .contact-us{
+        padding:1rem 2rem;
+    }
+    .contact-us span {
+        width: 2.5rem;
+        text-align: left;
+        display: inline-block;
+    }
+    .contact-us i{
+        color:#999;
+    }
+    .contact-us span:first-child {
+        position: relative;
+    }
+    .contact-title{
+        font-size:18px;
     }
   </style>
   <title>[UNTUK DROPSHIPPER] PANDUAN DROPSHIP</title>
@@ -208,6 +258,22 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     <p>NOTE: Proses pencairan saldo membutuhkan pendaftaran rekening bank terlebih dahulu. Silakan daftarkan rekening bank kamu di menu <strong>Penghasilan</strong>. Demi kelancaran proses pencairan saldo, pastikan nomor rekening dan nama pemilik rekening yang diisi PERSIS SAMA  (termasuk tanda titik, tanda koma dan huruf besar) dengan nama di buku tabunganmu.</p>
     <img src="<?=HOST_URL?>/html/instructions/images/20.png" alt="">
   </section>
+  <div class="contact-us">
+      <ul>
+          <li class="contact-title">Contact us:</li>
+          <li>
+              <span><i class="iconfont icon-line"></i></span>
+              LINE: @instashop
+          </li>
+          <li>
+              <span><i class="iconfont icon-phone-font"></i></span>
+              PH/WA: 0812 8491 8486
+          </li>
+          <li><span><i class="iconfont icon-shop-font"></i></span>
+              Instashop Versi Desktop : <br>'http://dashboard.instashop.co.id'
+          </li>
+      </ul>
+  </div>
   <script>
         function bowser(){
           var u = navigator.userAgent;
