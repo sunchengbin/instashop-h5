@@ -530,9 +530,28 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 lang : Lang
             });
         },
+        getFolder : function(skin){
+            var _folder = '';
+            switch (skin){
+                case 'default':
+                    _folder = '';
+                    break;
+                case 'first':
+                    _folder = 'first';
+                    break;
+                case 'second':
+                    _folder = 'second';
+                    break;
+                default :
+                    _folder = '';
+                    break;
+            }
+            return _folder;
+        },
         createModelHtm : function(model){
             var _this = this,
-                _html = '';
+                _html = '',
+                _skin_info = _this.getSkinInfo().name;
             if(!model.length)return _html;
             for(var i = 0;i < model.length;i++){
                 var _model_info = model[i],
@@ -540,60 +559,71 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 if(model[i]){
                     switch(model[i].type){
                         case 'edit_signage':
-                            _html+= _this.createSignageHtm(_model_info.data[0]);
+                            _html+= _this.createSignageHtm(_model_info.data[0],_skin_info);
                             break;
                         case 'static_banner':
                             _html+= _this.staticBannerHtm({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info,
+                                static_banner_title:Config.host.imgUrl+_this.getFolder(_skin_info)+'/static_banner_title.png'
                             });
                             break;
                         case 'rotate_banner':
                             _html+= _this.rotateBannerHtm({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'two_list_banner':
                             _html+= _this.twoListBannerHtm({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info,
+                                two_li_banner_txt:Config.host.imgUrl+_this.getFolder(_skin_info)+'/two_li_banner_txt.png'
                             });
                             break;
                         case 'img_navigation':
                             _html+= _this.imgNavigationHtm({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'text_navigation':
                             _html+= _this.textNavigationHtm({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'two_li_items':
                             _html+= _this.twoLiItemsHtm({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'big_img_item':
                             _html+= _this.bigImgItem({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'list_items':
                             _html+= _this.listItems({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'three_li_items':
                             _html+= _this.threeRowItems({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'item_list_type':
@@ -608,11 +638,12 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             }
             return _html;
         },
-        createSignageHtm : function(data){
+        createSignageHtm : function(data,skin){
             return Hbs.compile(SignageHtm)({
                 data : data,
                 shop : init_data.shop,
-                lang:Lang
+                lang:Lang,
+                skin : skin
             });
         },
         staticBannerHtm : function(opts){

@@ -783,5 +783,13 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
     HBS.registerHelper('translineurl', function (url) {
         return url.split('http://')[1];
     });
+    //编辑两列式模板小图
+    HBS.registerHelper('iseven', function (n, options) {
+        if ((Number(n)+1)%2==0) {
+            return options.fn(this);
+        } else {
+            return options.inverse(this);
+        }
+    });
     return HBS;
 });
