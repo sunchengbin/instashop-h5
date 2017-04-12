@@ -516,7 +516,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     }
 
                 } else {
-                    _url = Common.transFromUrl(_url);
+                    //_url = Common.transFromUrl(_url);
                 }
                 localStorage.setItem('ScrollTop', _scroll_top);
                 _that.setRouteInfo();
