@@ -71,7 +71,7 @@ section{
 .model-btns button{
   display: inline-block;
   position: relative;
-  @include remCalc(min-width,120);
+  @include remCalc(min-width,140);
   @include remCalc(padding,0 15);
   float: left;
 }
