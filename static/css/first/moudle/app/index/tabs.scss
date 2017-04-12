@@ -84,7 +84,7 @@
   color: $txt-color;
 }
 .all-items-wrap-box .item-tabs{
-  @include remCalc(margin,0 -30);
+  //@include remCalc(margin,0 -30);
   position: relative;
 }
 .all-items-wrap-box .item-tabs::after{

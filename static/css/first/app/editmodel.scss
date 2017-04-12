@@ -51,7 +51,7 @@ section{
 .insert-btn{
   border-radius: 2px;
   position: absolute;
-  @include remCalc(right,-45);
+  @include remCalc(right,-30);
   @include remCalc(top,-25);
   z-index: 110;
 }
