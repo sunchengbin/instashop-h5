@@ -30,6 +30,7 @@
              {/if}
             {if $model.type eq 'edit_signage'}
                 <section class="shop-header">
+                    <button class="handle-btn j_edit_model" data-type="edit_signage">Ubah</button>
                     <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
                     <div class="shop-info-wrap" flex="main:center cross:center">
                         <div class="shop-info">

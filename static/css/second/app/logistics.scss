@@ -1,0 +1,72 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/app/common/common.scss";
+@import "../moudle/app/item/item.scss";
+@import "../moudle/app/logistics/logistics.scss";
+.logistics-id{
+  text-align: center;
+  font-size: 20px;
+  color: $base-color;
+  @include remCalc(padding,60 0);
+  @include remCalc(margin,0 30);
+  position: relative;
+}
+.logistics-id::after{
+  position: absolute;
+  left:-50%;
+  right: -50%;
+  bottom:0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+}
+.logistics-state{
+  @include remCalc(padding,60 30);
+  color: $gray-color;
+}
+.time{
+  @include remCalc(width,180);
+  text-align: right;
+  @include remCalc(padding-right,45);
+}
+.time p:last-child{
+  color: #ccc;
+
+}
+.txt{
+  margin-left: 7.5rem;
+  position: relative;
+}
+.txt i{
+  font-size: 16px;
+  float: left;
+  position: absolute;
+  left: 0;
+  top: -.5rem;
+}
+.txt i.checked-btn:before{
+  font-size: 16px;
+}
+.logistics-state :not(:first-child) .txt i{
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: #d8d8d8;
+  border-radius: 50%;
+  left: .13rem;
+  top: .1rem;
+}
+.logistics-state :not(:first-child) .txt i:before{
+  content: "";
+}
+.txt p{
+  margin-left: .6rem;
+  border-left: 1px solid #d8d8d8;
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+}
+.logistics-state li:last-child .txt p{
+  border: none;
+}
