@@ -724,6 +724,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
+                skin : opts.skin,
                 lang : Lang
             });
         },

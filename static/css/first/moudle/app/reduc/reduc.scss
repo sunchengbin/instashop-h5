@@ -2,7 +2,7 @@
 
 .reduc-box {
   color: $txt-color!important;
-  //@include remCalc(margin-top,30);
+  @include remCalc(margin-top,30);
 }
 
 .reduc-box-wrap {
