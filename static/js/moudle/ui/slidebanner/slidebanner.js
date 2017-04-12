@@ -272,9 +272,9 @@ define(["dialog",'base','debug'],function (Dialog,Base,Debug) {
                 _this.isScrolling = undefined;
             }, false);
 
-            //window.addEventListener("resize", function () {
-            //    _this.resize();
-            //}, false);
+            window.addEventListener("resize", function () {
+                _this.resize();
+            }, false);
 
             if (_this.auto && _this.IsAndroid) {
                 window.addEventListener("focus", function () {
