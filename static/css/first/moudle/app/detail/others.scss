@@ -38,3 +38,16 @@ body{
 .item-out-stock p .btn{
   @include remCalc(margin,100 auto 0);
 }
+.info-box > p.bargain-tip-txt-how{
+  margin-bottom:0;
+}
+.bargain-buyer-intro-content img{
+  min-height:200px;
+  @include remCalc(margin-bottom,15);
+}
+.bargain-buyer-intro-content div{
+  @include remCalc(padding-top,15);
+}
+.bargain-buyer-intro-content div p{
+  @include remCalc(margin-bottom,15);
+}

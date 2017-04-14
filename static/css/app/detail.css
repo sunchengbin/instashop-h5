@@ -324,3 +324,16 @@ body{
 .reduc-box-wrap{
     padding:1rem 0;
 }
+.info-box > p.bargain-tip-txt-how{
+    margin-bottom:0;
+}
+.bargain-buyer-intro-content img{
+    min-height:200px;
+    margin-bottom:.5rem;
+}
+.bargain-buyer-intro-content div{
+    padding-top:.5rem;
+}
+.bargain-buyer-intro-content div p{
+    margin-bottom:.5rem;
+}
