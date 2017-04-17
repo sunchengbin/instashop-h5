@@ -1,0 +1,17 @@
+//我也要开店
+.index-btn-box {
+  @include remCalc(padding,0 50);
+  @include remCalc(margin,50 0 150);
+}
+.index-btn-box .icon-shop-font {
+  @include fontDpr(18px);
+}
+.index-btn-box .btn {
+  @include fontDpr(16px);
+  @include remCalc(border-radius,5);
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+}
+.index-btn-box a {
+  color:$white;
+}

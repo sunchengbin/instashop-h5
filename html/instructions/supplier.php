@@ -11,7 +11,9 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   <meta name="apple-touch-fullscreen" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <?=STATIC_DNS?>
   <?=STATIC_ICO_CSS?>
+  <?=STATIC_FONT_CSS?>
   <style>
     *{
     padding:0;
@@ -134,6 +136,56 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     strong.italic{
       font-style: italic;
     }
+    .iconfont {
+        font-family: "iconfont" !important;
+        font-size: 2.1rem;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-stroke-width: 0.2px;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .icon-phone-font:before {
+        content: "\e605";
+    }
+
+    .icon-shop-font:before {
+        content: "\e607";
+    }
+    .icon-line {
+        font-size: 2.6rem;
+        margin-left: -4px;
+    }
+    .icon-line:before {
+        position: absolute;
+        line-height: 2;
+        content: "\e61e";
+    }
+
+    ul{
+        list-style:none;
+    }
+    ul{
+        list-style:none;
+    }
+    .contact-us{
+      padding:1rem 2rem;
+    }
+    .contact-us span {
+        width: 2.5rem;
+        text-align: left;
+        display: inline-block;
+    }
+    .contact-us i{
+        color:#999;
+    }
+    .contact-us span:first-child {
+        position: relative;
+    }
+    .contact-title{
+        font-size:18px;
+    }
+
   </style>
   <title>[UNTUK SUPPLIER] PANDUAN DROPSHIP</title>
   <body data-spider="8pzm16nd">
@@ -181,7 +233,21 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     <img src="<?=HOST_URL?>/html/instructions/images/7.png" alt="">
     <p>5. Kamu bisa langsung menarik saldo <strong>harga produk dan ongkos kirimmu</strong> di menu penghasilan</p>
     <img src="<?=HOST_URL?>/html/instructions/images/10.png" alt="">
+
   </section>
+  <div class="contact-us">
+          <ul>
+              <li class="contact-title">Contact us:</li>
+              <li>
+                  <span><i class="iconfont icon-line"></i></span>
+                  LINE: @instashop
+              </li>
+              <li>
+                  <span><i class="iconfont icon-phone-font"></i></span>
+                  PH/WA: 0812 8491 8486
+              </li>
+          </ul>
+      </div>
   <script>
     function bowser(){
           var u = navigator.userAgent;

@@ -5,7 +5,6 @@
             <div>
             <i class="iconfont icon-go-font fr reduc-box-go"></i>
                 <p class="reduc-box-info">
-                    {*<i class="iconfont icon-bugle"></i>*}
                     {if $INDEX_DATA_SHOP.shop.shop_discount.discount_type eq 'price'}
                         {foreach $INDEX_DATA_SHOP.shop.shop_discount.info as $keyvar=>$item}
                             {if $keyvar eq 0}

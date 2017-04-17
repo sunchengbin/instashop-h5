@@ -1,0 +1,105 @@
+//button
+/*按钮类*/
+.btn {
+  display: block;
+  width: 100%;
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  @include fontDpr(14px);
+  text-align: center;
+  color: $white;
+  border-radius: 3px;
+  background-color: $btn-color;
+}
+
+/*确定按钮*/
+.confirm-btn {
+  background-color: $btn-color;
+}
+
+.confirm-btn:hover {
+  background-color: $btn-color;
+}
+
+/*取消按钮*/
+.cancel-btn {
+  background-color: $btn-disable-color;
+  color: $btn-color;
+}
+
+.cancel-btn:hover {
+  background-color: $cancel-btn-bg;
+  color: $btn-color;
+}
+
+/*退出按钮*/
+.exit-btn {
+  background-color: $white;
+  color: $btn-color;
+}
+
+.exit-btn:hover {
+  background-color: $btn-disable-color;
+}
+
+/*禁用按钮*/
+.disable-btn {
+  width: 20rem;
+  color:$gray-color;
+  background-color: $btn-disable-color;
+}
+
+/*不同大小btn类*/
+.b-btn {
+  width: 15rem;
+}
+
+.c-btn {
+  width: 10rem;
+}
+/*check-box*/
+.check-btn, .checked-btn {
+  font-size: 3rem;
+}
+
+//border
+.b-top, .b-bottom, .b-right {
+  position: relative;
+}
+.b-top::before {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  top: -1px;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+  z-index: 1;
+}
+
+.b-right::before {
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  right: 0;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-right: 1px solid $border-color;
+  z-index: 1;
+}
+
+.b-bottom::after {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: 0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+  z-index: 1;
+}

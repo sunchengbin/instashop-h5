@@ -1,0 +1,74 @@
+body{
+  background-color: $white;
+  @include remCalc(padding-bottom,90);
+  @include fontDpr(12px);
+}
+.item-info{
+  background-color: $white;
+  overflow: hidden;
+}
+.index-btn-box{
+  @include remCalc(margin-bottom,50);
+}
+/*商品图片轮播*/
+.item-banner li{
+  float: left;
+  width: 100%;
+}
+.item-banner li img {
+  cursor: pointer;
+}
+.banner-box{
+  min-height: 320px;
+  position: relative;
+  max-width: 640px;
+  overflow: hidden;
+}
+/*商品下架*/
+.item-out-stock{
+  @include remCalc(padding,100 0 300);
+  text-align: center;
+  @include fontDpr(14px);
+  background: $white;
+}
+.item-out-stock i{
+  @include fontDpr(40px);
+  color: $btn-disable-color;
+}
+.item-out-stock p .btn{
+  @include remCalc(margin,100 auto 0);
+}
+//优惠券和满减信息
+.reduc-box{
+  position: relative;
+}
+.info-box .reduc-box:first-child::before{
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  top: 0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+  z-index: 1;
+}
+.reduc-box-wrap>div::after{
+  top:0;
+  bottom: inherit;
+  border-color: $border-color;
+}
+.info-box > p.bargain-tip-txt-how{
+  margin-bottom:0;
+}
+.bargain-buyer-intro-content img{
+  min-height:200px;
+  @include remCalc(margin-bottom,15);
+}
+.bargain-buyer-intro-content div{
+  @include remCalc(padding-top,15);
+}
+.bargain-buyer-intro-content div p{
+  @include remCalc(margin-bottom,15);
+}

@@ -1,9 +1,10 @@
 <?php
     include_once( dirname(__FILE__).'/../html/router/common.php');
+    include_once( dirname(__FILE__).'/../html/router/util.php' );
+
     $smarty = smartyCommon();
 
     /*获取index页面的数据*/
-    include_once( dirname(__FILE__).'/../html/router/util.php' );
 
     // 获取url信息 拼接默认参数
     //首页tab 1-第一个首页模版 2-第二个全部商品 3-第三个店铺简介
@@ -110,7 +111,6 @@
             $seller_id = end($ss);
         }
     }
-
     //请求第一个tab数据
     $path = 'v1/shops/'.$seller_id;
     $ret = get_init_php_data($path, $paramsForIndexTemplate);
@@ -161,4 +161,6 @@
     $smarty->assign('INDEX_JS_NAME','index');
     $smarty->assign('INDEX_CSS_NAME','index');
     $smarty->display('index.tpl');
+
+
 ?>

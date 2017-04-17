@@ -1,31 +1,123 @@
-<section class="navigation-box j_model_box" data-spider="edit-navigation">
-    {{{btns}}}
-    {{#if data.title}}
-        <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
-    {{/if}}
-    {{#eq type 'text'}}
-        <ul class="nav-text-ul">
-        {{#each data.data}}
-            <li class="b-top">
-                <a class="block clearfix" href="javascript:;">
-                    <i class="icon iconfont icon-go-font fr"></i>
-                    <span>{{{navigation_name}}}</span>
-                </a>
-            </li>
-        {{/each}}
-        </ul>
-    {{else}}
-        <div class="nav-img-box j_nav_img_box">
-            <ul class="nav-img-ul clearfix">
+{{#eq skin 'default'}}
+    <section class="navigation-box j_model_box" data-spider="edit-navigation">
+        {{{btns}}}
+        {{#if data.title}}
+            <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
+        {{/if}}
+        {{#eq type 'text'}}
+            <ul class="nav-text-ul">
                 {{#each data.data}}
-                    <li class="">
+                    <li class="b-top">
                         <a class="block clearfix" href="javascript:;">
-                            <div class="lazy" data-img="{{transimgurl img}}"></div>
-                            <p class="">{{{navigation_name}}}</p>
+                            <i class="icon iconfont icon-go-font fr"></i>
+                            <span>{{{navigation_name}}}</span>
                         </a>
                     </li>
                 {{/each}}
             </ul>
-        </div>
-    {{/eq}}
-</section>
+        {{else}}
+            <div class="nav-img-box j_nav_img_box">
+                <ul class="nav-img-ul clearfix">
+                    {{#each data.data}}
+                        <li class="">
+                            <a class="block clearfix" href="javascript:;">
+                                <div class="lazy" data-img="{{transimgurl img}}"></div>
+                                <p class="">{{{navigation_name}}}</p>
+                            </a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{/eq}}
+    </section>
+{{/eq}}
+{{#eq skin 'first'}}
+    <section class="navigation-box j_model_box" data-spider="edit-navigation">
+        {{{btns}}}
+        {{#eq type 'text'}}
+            {{#if data.title}}
+                <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
+            {{/if}}
+            <ul class="nav-text-ul clearfix">
+                {{#each data.data}}
+                    <li>
+                        <a class="block clearfix" href="javascript:;">
+                            <span>{{{navigation_name}}}</span>
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <div class="nav-img-box">
+                <div class="clearfix">
+                    <ul class="nav-img-ul">
+                        {{#if data.title}}
+                            <li class="nav-img-titile b-bottom"><span></span>{{{data.title}}}</li>
+                        {{/if}}
+                        {{#each data.data}}
+                        <li class="b-bottom">
+                            <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="javascript:;" href="javascript:;">
+                                {{{navigation_name}}}
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    <ul class="nav-img-wrap clearfix">
+                        {{#each data.data}}
+                        <li class="nav-img-li">
+                            <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="javascript:;" href="javascript:;">
+                                <div class="lazy" data-img="{{transimgurl img}}"></div>
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        {{/eq}}
+    </section>
+{{/eq}}
+{{#eq skin 'second'}}
+    <section class="navigation-box j_model_box" data-spider="edit-navigation">
+        {{{btns}}}
+        {{#eq type 'text'}}
+            {{#if data.title}}
+                <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
+            {{/if}}
+            <ul class="nav-text-ul clearfix">
+                {{#each data.data}}
+                    <li>
+                        <a class="block clearfix" href="javascript:;">
+                            <span>{{{navigation_name}}}</span>
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <div class="nav-img-box">
+                <div class="clearfix">
+                    <ul class="nav-img-ul">
+                        {{#if data.title}}
+                            <li class="nav-img-titile b-bottom"><span></span>{{{data.title}}}</li>
+                        {{/if}}
+                        {{#each data.data}}
+                            <li class="b-bottom">
+                                <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="javascript:;" href="javascript:;">
+                                    {{{navigation_name}}}
+                                </a>
+                            </li>
+                        {{/each}}
+                    </ul>
+                    <ul class="nav-img-wrap clearfix">
+                        {{#each data.data}}
+                            <li class="nav-img-li">
+                                <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="javascript:;" href="javascript:;">
+                                    <div class="lazy" data-img="{{transimgurl img}}"></div>
+                                </a>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        {{/eq}}
+    </section>
+{{/eq}}

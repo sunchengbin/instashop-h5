@@ -33,12 +33,6 @@ function loadClass($strClassName)
         }
     }
 }
-function getFontCss($url){
-    return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1491992317320") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1491992317320#iconfont") format("svg");}</style>';
-}
-function getIco($url){
-    return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';
-}
 function is_https()
 {
 	if (!isset($_SERVER['HTTP_X_FORWARDED_PROTO']))
@@ -52,12 +46,21 @@ function is_https()
 }
 function getSellerInfo(){
     $seller_id = $_REQUEST['seller_id'];
+    if (!$seller_id) {
+        $seller_id = getUrlParam('seller_id');
+    }
     $wduss = $_REQUEST['wduss'];
     $params = [
         'seller_id' => $seller_id,
         'wduss' => urlencode($wduss)
     ];
     return $params;
+}
+function flexible(){
+$js = <<<JS
+!function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("将根据已有的meta标签来设置缩放比例");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=a.navigator.userAgent,q=(!!p.match(/android/gi),!!p.match(/iphone/gi)),r=q&&!!p.match(/OS 9_3/),s=a.devicePixelRatio;i=q&&!r?s>=3&&(!i||i>=3)?3:s>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var t=e.createElement("div");t.appendChild(g),e.write(t.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
+JS;
+return $js;
 }
 function biJs(){
 $js = <<<JS
@@ -175,13 +178,36 @@ function isDebug(){
     }
     return $is_debug;
 }
-function smartyCommon(){
+function getFontCss($url,$folder_name){
+    if($folder_name){
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1488795292974") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1488795292974#iconfont") format("svg");}</style>';
+    }else{
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1488795292974") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1488795292974#iconfont") format("svg");}</style>';
+    }
+}
+function getIco($url){
+    return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';
+}
+function smartyCommon($folder){
     require_once(__DIR__.'/../lib/libs/Smarty.class.php');
     $smarty = new Smarty();
-    $smarty->setTemplateDir(__DIR__.'/../templates/');
-    $smarty->setCompileDir(__DIR__.'/../templates_c/');
-    $smarty->setConfigDir(__DIR__.'/../configs/');
-    $smarty->setCacheDir(__DIR__.'/../cache/');
+    $folder_name = getSkinInfo();
+    $folder_name = $folder?$folder:$folder_name;
+    //$folder_name = 'default';
+    $static_font_css = setStaticFontCss($folder_name);
+    define('STATIC_FONT_CSS', $static_font_css);
+    if($folder_name != 'default'){
+        $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
+        $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
+        $smarty->assign('TEMP_FOLDER',$folder_name.'/');
+        $smarty->assign('CSS_DEBUG','.debug');
+        $smarty->assign('FLEXIBLE',FLEXIBLE);
+    }else{
+        $smarty->setTemplateDir(__DIR__.'/../templates/');
+        $smarty->setCompileDir(__DIR__.'/../templates_c/');
+        $smarty->assign('TEMP_FOLDER','');
+        $smarty->assign('CSS_DEBUG','');
+    }
     $smarty->assign('STATIC_DNS',STATIC_DNS);
     $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
     $smarty->assign('STATIC_FONT_CSS',STATIC_FONT_CSS);
@@ -189,23 +215,103 @@ function smartyCommon(){
     $smarty->assign('HOST_URL',HOST_URL);
     $smarty->assign('BI_SCRIPT',BI_SCRIPT);
     $smarty->assign('IS_DEBUG',IS_DEBUG);
+    $smarty->assign('SKIN_INFO',$folder_name);
     return $smarty;
 }
+function setStaticFontCss($folder_name){
+    if($folder_name && $folder_name == 'default'){
+        $folder_name = '';
+    }
+    return C_RUNTIME_ONLINE?getFontCss($host_name.'/static',$folder_name):getFontCss($host_name.'/static',$folder_name);
+}
+function set_request_seller_id() {
+	// 测试环境，便于h5调试
+	if (!C_RUNTIME_ONLINE && $_REQUEST['seller_id']) {
+		return;
+	}
+    include_once( dirname(__FILE__).'/util.php');
+	$host_preg = C_RUNTIME_ONLINE ? '/^(www\.)?(.*?)\.instashop\.co\.id$/i' : '/^(www\.)?(.*?)\.test\.instashop\.co\.id$/i';
+	$host = $_SERVER['HTTP_HOST'];
+	$h_match = preg_match($host_preg, $host, $matches);
+	if ($h_match)
+	{
+		$alias = $matches[2];
+	}
+	else
+	{
+		$alias = get_seller_id_by_personal_host($host);
+	}
+	$_REQUEST['seller_id'] = $alias;
+}
+function getSkinInfo(){
+    set_request_seller_id();
+    include_once( dirname(__FILE__).'/util.php');
+    $seller_id = $_REQUEST['seller_id'];
+    if (!$seller_id) {
+        $seller_id = getUrlParam('seller_id');
+    }
+    $skin_path = 'v1/shopsSkin/';
+    $skin_ret = json_decode(get_init_php_data($skin_path, ["seller_id" => $seller_id]), true);
+
+    if($skin_ret['code'] == 200){
+        return $skin_ret['shop_skin']['name'];
+    }else{
+        return 'default';
+    }
+}
+function setStaticConfig(){
+    $prompt = is_https() ? 'https:' : 'http:';
+    $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
+    $static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
+    $static_ico_css =C_RUNTIME_ONLINE?getIco($prompt.'//m.instashop.co.id'):getIco($prompt.'//m-test.instashop.co.id');
+    $host_url =C_RUNTIME_ONLINE?$prompt.'//m.instashop.co.id':$prompt.'//m-test.instashop.co.id';
+    $static_dns = '<meta name="spider-id" content="orju7v"><link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';
+    $bi_js = biJs();
+    $static_font_css = setStaticFontCss();
+    define('STATIC_DNS', $static_dns);
+    define('STATIC_FONT_CSS', $static_font_css);
+    define('STATIC_ICO_CSS', $static_ico_css);
+    define('HOST_URL', $host_url);
+    define('STATIC_HOST', $static_host);
+    define('HOST_NAME', $host_name);
+    define('BI_SCRIPT', $bi_js);
+    define('IS_DEBUG', isDebug());
+    define('FLEXIBLE', flexible());
+    $folder_name = getSkinInfo();
+    define('SKIN_INFO', $folder_name);
+    //$folder_name = 'default';
+    if($folder_name != 'default'){
+        define('TEMP_FOLDER', $folder_name.'/');
+    }else{
+        define('TEMP_FOLDER', '');
+    }
+}
+
 spl_autoload_register('loadClass');
-$prompt = is_https() ? 'https:' : 'http:';
-$host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
-$static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
-$static_font_css =C_RUNTIME_ONLINE?getFontCss($host_name.'/static'):getFontCss($host_name.'/static');
-$static_ico_css =C_RUNTIME_ONLINE?getIco($prompt.'//m.instashop.co.id'):getIco($prompt.'//m-test.instashop.co.id');
-$host_url =C_RUNTIME_ONLINE?$prompt.'//m.instashop.co.id':$prompt.'//m-test.instashop.co.id';
-$static_dns = '<meta name="spider-id" content="orju7v"><link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';
-$bi_js = biJs();
-define('STATIC_DNS', $static_dns);
-define('STATIC_FONT_CSS', $static_font_css);
-define('STATIC_ICO_CSS', $static_ico_css);
-define('HOST_URL', $host_url);
-define('STATIC_HOST', $static_host);
-define('HOST_NAME', $host_name);
-define('BI_SCRIPT', $bi_js);
-define('IS_DEBUG', isDebug());
+setStaticConfig();
+function initPhpJs($js_name){
+    $skin_info = '<script>var SKIN="'.SKIN_INFO.'";</script>';
+    if(isDebug()){
+        return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1490070969974"></script>';
+    }else{
+        return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1490070969974"></script>';
+    }
+}
+function initPhpCss($css_name){
+    if(TEMP_FOLDER){
+        $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS.'<script>'.FLEXIBLE.'</script>';
+    }else{
+        $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS;
+    }
+    if(isDebug()){
+        if(TEMP_FOLDER){
+            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1490070969974" rel="stylesheet"/>';
+        }else{
+            return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1490070969974" rel="stylesheet"/>';
+        }
+    }else{
+        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1490070969974" rel="stylesheet"/>';
+    }
+}
+
 

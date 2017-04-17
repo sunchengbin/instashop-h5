@@ -1,0 +1,27 @@
+@import "../../../base/reset/reset.css";
+.select-wraper{
+    height: 20px;
+    position: relative;
+    background-color: #a5a5a5;
+}
+.select-options{
+    position: absolute;
+    width: 100%;
+    background: #01579b;
+    top:20px;
+    left:0;
+    color:#fff;
+}
+.select-options li{
+    cursor:pointer;
+    height: 20px;
+    text-align: center;
+}
+.select-options li.act{
+    background-color:#ccc;
+}
+.select-value{
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}

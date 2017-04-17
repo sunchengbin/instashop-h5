@@ -10,10 +10,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <meta name="format-detection" content="telephone=no" />
-    <?=STATIC_DNS?>
-    <?=STATIC_ICO_CSS?>
-    <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/orderdetail.css?v=1491992317062" rel="stylesheet"/>
+    <?=initPhpCss('orderdetail')?>
     <title>Detail Pesanan</title>
     <script>
         <?php
@@ -34,8 +31,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body data-spider="wqk2d63u"></body>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <!--<script src="../js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/orderdetail.js?v=1491992317062"></script>
+    <?=initPhpJs('orderdetail')?>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -44,7 +40,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 
           ga('create', 'UA-78448705-7', 'auto');
           ga('send', 'pageview');
-<?=BI_SCRIPT?>
-      </script>
+          <?=BI_SCRIPT?>
+    </script>
 </body>
 </html>

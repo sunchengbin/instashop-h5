@@ -1,41 +1,92 @@
-{{#if data}}
+{{#eq skin 'default'}}
     {{#eq type 'twoItem'}}
         {{#if isdefault}}
             <section class="items-box model-box j_default_item_box" data-spider="default-item">
         {{else}}
             <section class="items-box model-box j_model_box" data-spider="two-item">
         {{/if}}
-            {{{btns}}}
-            {{#if data.title}}
-            <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
-            {{/if}}
+        {{{btns}}}
+        {{#if data.title}}
+                <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
+        {{/if}}
         {{#if listtype}}
             {{#eq listtype 2}}
-                <ul class="items-list clearfix j_default_item_list">
-                    {{#tagItemList data.data}}{{/tagItemList}}
-                </ul>
+                    <ul class="items-list clearfix j_default_item_list">
+                        {{#tagItemList data.data}}{{/tagItemList}}
+                    </ul>
             {{else}}
-                <ul class="three-items-list clearfix j_default_item_list">
-                    {{#threeItemList data.data}}{{/threeItemList}}
-                </ul>
+                    <ul class="three-items-list clearfix j_default_item_list">
+                        {{#threeItemList data.data}}{{/threeItemList}}
+                    </ul>
             {{/eq}}
         {{else}}
-            <ul class="items-list clearfix j_item_list">
-                {{#tagItemList data.data}}{{/tagItemList}}
-            </ul>
+                <ul class="items-list clearfix j_item_list">
+                    {{#tagItemList data.data}}{{/tagItemList}}
+                </ul>
         {{/if}}
         </section>
     {{/eq}}
     {{#eq type 'bigitem'}}
-        <section class="one-item-box j_model_box" data-spider="big-item">
-            {{{btns}}}
-            {{#if data.title}}
+            <section class="one-item-box j_model_box" data-spider="big-item">
+                {{{btns}}}
+                {{#if data.title}}
+                    <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
+                {{/if}}
+                <ul class="items-list clearfix j_item_list">
+                    {{#tagItemList data.data}}{{/tagItemList}}
+                </ul>
+            </section>
+    {{/eq}}
+    {{#eq type 'listitem'}}
+            <section class="item-list-box j_model_box" data-spider="list-item">
+                {{{btns}}}
+                {{#if data.title}}
+                    <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
+                {{/if}}
+                <ul class="">
+                    {{#itemlist data.data}}{{/itemlist}}
+                </ul>
+            </section>
+    {{/eq}}
+{{/eq}}
+{{#eq skin 'first'}}
+    {{#eq type 'twoItem'}}
+        {{#if isdefault}}
+            <section class="items-box model-box j_default_item_box" data-spider="default-item">
+        {{else}}
+            <section class="items-box model-box j_model_box" data-spider="two-item">
+        {{/if}}
+        {{{btns}}}
+        {{#if data.title}}
                 <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
-            {{/if}}
-            <ul class="items-list clearfix j_item_list">
-                {{#tagItemList data.data}}{{/tagItemList}}
-            </ul>
+        {{/if}}
+        {{#if listtype}}
+            {{#eq listtype 2}}
+                    <ul class="items-list clearfix j_default_item_list">
+                        {{#tagItemList data.data}}{{/tagItemList}}
+                    </ul>
+            {{else}}
+                    <ul class="three-items-list clearfix j_default_item_list">
+                        {{#threeItemList data.data}}{{/threeItemList}}
+                    </ul>
+            {{/eq}}
+        {{else}}
+                <ul class="items-list clearfix j_item_list">
+                    {{#tagItemList data.data}}{{/tagItemList}}
+                </ul>
+        {{/if}}
         </section>
+    {{/eq}}
+    {{#eq type 'bigitem'}}
+            <section class="one-item-box j_model_box" data-spider="big-item">
+                {{{btns}}}
+                {{#if data.title}}
+                    <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
+                {{/if}}
+                <ul class="items-list clearfix j_item_list">
+                    {{#bigImgItem data.data skin}}{{/bigImgItem}}
+                </ul>
+            </section>
     {{/eq}}
     {{#eq type 'listitem'}}
         <section class="item-list-box j_model_box" data-spider="list-item">
@@ -43,14 +94,65 @@
             {{#if data.title}}
                 <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
             {{/if}}
-            <ul class="">
-                {{#itemlist data.data}}{{/itemlist}}
-            </ul>
+            <div class="two-li-items-box">
+                <ul class="">
+                    {{#skinitemlist data.data}}{{/skinitemlist}}
+                </ul>
+            </div>
         </section>
     {{/eq}}
-{{else}}
-    <!--<section class="empty-sort">-->
-        <!--<i class="icon iconfont icon-empty-font"></i>-->
-        <!--<p>{{lang.H5_INDEX_NO_GOOD}}</p>-->
-    <!--</section>-->
-{{/if}}
+{{/eq}}
+{{#eq skin 'second'}}
+    {{#eq type 'twoItem'}}
+        {{#if isdefault}}
+            <section class="items-box model-box j_default_item_box" data-spider="default-item">
+        {{else}}
+            <section class="items-box model-box j_model_box" data-spider="two-item">
+        {{/if}}
+        {{{btns}}}
+        {{#if data.title}}
+                <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
+        {{/if}}
+        {{#if listtype}}
+            {{#eq listtype 2}}
+                    <ul class="items-list clearfix j_default_item_list">
+                        {{#tagItemList data.data}}{{/tagItemList}}
+                    </ul>
+            {{else}}
+                    <ul class="three-items-list clearfix j_default_item_list">
+                        {{#threeItemList data.data}}{{/threeItemList}}
+                    </ul>
+            {{/eq}}
+        {{else}}
+                <ul class="items-list clearfix j_item_list">
+                    {{#tagItemList data.data}}{{/tagItemList}}
+                </ul>
+        {{/if}}
+        </section>
+    {{/eq}}
+    {{#eq type 'bigitem'}}
+            <section class="one-item-box j_model_box" data-spider="big-item">
+                {{{btns}}}
+                {{#if data.title}}
+                    <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
+                {{/if}}
+                <ul class="items-list clearfix j_item_list">
+                    {{#bigImgItem data.data skin}}{{/bigImgItem}}
+                </ul>
+            </section>
+    {{/eq}}
+    {{#eq type 'listitem'}}
+            <section class="item-list-box j_model_box" data-spider="list-item">
+                {{{btns}}}
+                {{#if data.title}}
+                    <p class="item-title b-bottom"><span></span>{{{data.title}}}</p>
+                {{/if}}
+                <div class="two-li-items-box">
+                <ul class="">
+                    {{#skinitemlist data.data}}{{/skinitemlist}}
+                </ul>
+                </div>
+            </section>
+    {{/eq}}
+{{/eq}}
+

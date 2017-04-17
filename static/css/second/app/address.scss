@@ -1,0 +1,75 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/ui/dialog/dialog.scss";
+@import "../moudle/app/common/common.scss";
+@import "../moudle/app/address/address.scss";
+body{
+  background-color: #F5F5F5;
+  width: 100%;
+  max-width: none;
+  font-size: 12px;
+}
+body .address-list{
+  max-width: none;
+}
+.user-info,.user-address{
+  background-color: #fff;
+}
+.info-box{
+  color: $info-color;
+  @include fontDpr(14px);
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
+  @include remCalc(padding,0 30);
+  position: relative;
+}
+.info-box input{
+  @include fontDpr(14px);
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
+  width: 100%;
+}
+.info-box-address{
+  @include remCalc(padding,30);
+  //padding:1rem 2rem;
+}
+.info-box-address textarea{
+  width: 100%;
+  resize: none;
+  @include remCalc(height,200);
+  @include fontDpr(14px);
+}
+.tel-msg-txt{
+  @include remCalc(padding,30);
+  color: $gray-color;
+  position: relative;
+}
+.act{
+  color: $black-color;
+}
+.act i{
+  color: $gray-color;
+}
+
+.address-form-box{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.address-wraper{
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.user-tel{
+  position: relative;
+}
+.user-tel span{
+  position: absolute;
+  color: $black-color;
+}
+.user-tel input{
+  @include remCalc(padding-left,90);
+}

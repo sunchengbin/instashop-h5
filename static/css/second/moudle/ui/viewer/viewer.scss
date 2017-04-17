@@ -1,0 +1,24 @@
+.viewer-box{
+  position: fixed;
+  left: 0;
+  top:0;
+  bottom: 0;
+  right:0;
+  background: rgba(0,0,0,1);
+  display: none;
+}
+.viewer-box ul{
+  min-width: 100%;
+}
+.viewer-box li div{
+  text-align:center;
+}
+.viewer-box li{
+  float:left;
+}
+.viewer-box .slide_tab i{
+  background-color: #fff;
+}
+.viewer-box .slide_tab{
+  bottom:2rem;
+}

@@ -1,0 +1,48 @@
+@import "../../../base/base.css";
+.on-off{
+    display: inline-block;
+    width: 6rem;
+    height: 2rem;
+    border-radius: 2rem;
+    background-color: #01579b;
+    border:1px solid #01579b;
+    -webkit-transition: background-color,border-color .1s ease-in .1s;
+    -moz-transition: background-color,border-color .1s ease-in .1s;
+    -ms-transition: background-color,border-color .1s ease-in .1s;
+    -o-transition: background-color,border-color .1s ease-in .1s;
+    transition: background-color,border-color .1s ease-in .1s;
+}
+.on-off i{
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #fff;
+    border: .1rem solid #01579b;
+    margin-top: -.05rem;
+    margin-left: -.05rem;
+    transition:.1s;
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+.off{
+    background-color: #ccc;
+    border:.1rem solid #bbb;
+    -webkit-transition: background-color,border-color .1s ease-in .1s;
+    -moz-transition: background-color,border-color .1s ease-in .1s;
+    -ms-transition: background-color,border-color .1s ease-in .1s;
+    -o-transition: background-color,border-color .1s ease-in .1s;
+    transition: background-color,border-color .1s ease-in .1s;
+}
+.off i{
+    border-color: #bbb;
+    transition:.1s;
+    -webkit-transform: translate(4rem, 0);
+    -moz-transform: translate(4rem, 0);
+    -ms-transform: translate(4rem, 0);
+    -o-transform: translate(4rem, 0);
+    transform: translate(4rem, 0);
+}

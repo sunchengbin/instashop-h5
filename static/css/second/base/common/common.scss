@@ -1,0 +1,52 @@
+/**
+ * Created by sunchengbin on 16/3/9.
+ * 项目中通用的东西
+ */
+body, button, input, select,option,td, textarea /* for ie */ {
+  font: 12px/1.5 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: $txt-color;
+}
+.fl{
+  float:left;
+}
+.fr{
+  float:right;
+}
+img{
+  width: 100%;
+  vertical-align: middle;
+}
+.block{
+  display: block;
+}
+.clearfix:after {
+  content: '\20';
+  display: block;
+  height: 0;
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
+.lazy{
+  height: 0;
+  padding-top: 100%;
+  background-repeat: no-repeat;
+  background-color: $base-color;
+  background-size: contain;
+}
+@media only screen and (min-width: 641px) {
+  body {
+    max-width: 640px;
+    margin: 0 auto;
+    background-color: #fff;
+  }
+  body .buy-box,body .logistics-plug,body .buy-plug,body .shop-header-nav,body footer,body .prove-btn,body .index-footer{
+    max-width: 640px;
+    left: 50%;
+    margin-left: -320px;
+  }
+  body .address-list{
+    max-width: 640px;
+  }
+}

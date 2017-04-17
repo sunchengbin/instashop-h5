@@ -1,30 +1,123 @@
-<section class="banner-wraper j_model_box" data-spider="edit-banner">
-    {{{btns}}}
-    {{#eq type 'two_list'}}
-        <ul class="two-list-box clearfix">
-            {{#each data.data}}
-                <li>
-                    <div class="lazy" data-img="{{transimgurl img}}"></div>
-                </li>
-            {{/each}}
-        </ul>
-    {{else}}
-        <div class="banner-box">
-            {{#eq type 'rotate'}}
+{{#eq skin 'default'}}
+    <section class="banner-wraper j_model_box" data-spider="edit-banner">
+        {{{btns}}}
+        {{#eq type 'two_list'}}
+            <ul class="two-list-box clearfix">
+                {{#each data.data}}
+                    <li>
+                        <div class="lazy" data-img="{{transimgurl img}}"></div>
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <div class="banner-box">
+                {{#eq type 'rotate'}}
                 <ul class="item-banner j_banner rotate-banner clearfix">
                     {{#each data.data}}
                         <li class=""><a class="block" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
                     {{/each}}
-            {{else}}
+                {{else}}
                 <ul class="item-banner static-banner clearfix">
                     {{#each data.data}}
                         <li class=""><a class="block" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
                     {{/each}}
-            {{/eq}}
+                {{/eq}}
 
 
             </ul>
-        </div>
-    {{/eq}}
-</section>
+            </div>
+        {{/eq}}
+    </section>
+{{/eq}}
+{{#eq skin 'first'}}
+    <section class="banner-wraper j_model_box" data-spider="edit-banner">
+        {{{btns}}}
+        {{#eq type 'two_list'}}
+            <ul class="two-list-box clearfix">
+                {{#each data.data}}
+                    <li>
+                        <a spm-auto="两列banner" spm-click="two-list-banner" class="block" href="javascript:;">
+                            <div class="lazy" data-img="{{transimgurl img}}"></div>
+                        </a>
+                        <div class="two_li_banner_txt">
+                            {{#iseven @index}}
+                                <img src="{{../../two_li_banner_txt}}"/>
+                            {{/iseven}}
+                        </div>
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            {{#eq type 'rotate'}}
+            <div class="rotate-banner-box">
+            <div class="banner-box-wrap">
+                <ul class="item-banner j_banner rotate-banner clearfix">
+                    {{#each data.data}}
+                        <li class=""><a class="block" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
+                    {{/each}}
+                </ul>
+                <div>
+                </div>
+            {{else}}
+                <div class="banner-box">
+                    <ul class="item-banner static-banner clearfix">
+                        {{#each data.data}}
+                            {{#eq @index 0}}
+                                <li class=""><img class="static-banner-title" data-img="{{../../static_banner_title}}"/><a spm-auto="标准banner" spm-click="static-banner" class="block no-cursor" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
+                            {{else}}
+                                <li class=""><a class="block" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
+                            {{/eq}}
+                        {{/each}}
+                    </ul>
+                </div>
+            {{/eq}}
+        {{/eq}}
+    </section>
+{{/eq}}
+{{#eq skin 'second'}}
+    <section class="banner-wraper j_model_box" data-spider="edit-banner">
+        {{{btns}}}
+        {{#eq type 'two_list'}}
+            <ul class="two-list-box clearfix">
+                {{#each data.data}}
+                    <li>
+                        <a spm-auto="两列banner" spm-click="two-list-banner" class="block" href="javascript:;">
+                            <div class="lazy" data-img="{{transimgurl img}}"></div>
+                        </a>
+                        <div class="two_li_banner_txt">
+                            {{#iseven @index}}
+                                <img src="{{../../two_li_banner_txt}}"/>
+                            {{/iseven}}
+                        </div>
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            {{#eq type 'rotate'}}
+            <div class="rotate-banner-box">
+            <div class="banner-box-wrap">
+                <ul class="item-banner j_banner rotate-banner clearfix">
+                    {{#each data.data}}
+                        <li class=""><a class="block" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
+                    {{/each}}
+                </ul>
+                <div>
+                </div>
+            {{else}}
+                <div class="banner-box">
+                    <ul class="item-banner static-banner clearfix">
+                        {{#each data.data}}
+                            {{#eq @index 0}}
+                                <li class=""><img class="static-banner-title" data-img="{{../../static_banner_title}}"/><a spm-auto="标准banner" spm-click="static-banner" class="block no-cursor" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
+                            {{else}}
+                                <li class=""><a class="block" href="javascript:;"><img data-img="{{transbannerimgurl img}}"/></a></li>
+                            {{/eq}}
+                        {{/each}}
+                    </ul>
+                </div>
+            {{/eq}}
+        {{/eq}}
+    </section>
+{{/eq}}
+
 

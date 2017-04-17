@@ -1,0 +1,283 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/app/common/common.scss";
+@import "../moudle/ui/dialog/dialog.scss";
+@import "../moudle/app/contact/contact.scss";
+@import "../moudle/app/logistics/logistics.scss";
+@import "../moudle/app/address/address.scss";
+@import "../moudle/app/buyplug/buyplug.scss";
+@import "../moudle/app/reduc/reduc.scss";
+@import "../moudle/app/favorable/favorable-quickcarts.scss";
+@import "../moudle/app/item/item.scss";
+@import "../moudle/app/agreeinfo/agreeinfo.scss";
+@import "../moudle/app/topstatus/topstatus.scss";
+
+html{
+  height: 100%;
+}
+body{
+  overflow-x: hidden;
+  width: 100%;
+  max-width: none;
+}
+body .address-list{
+  max-width: none;
+}
+
+.user-info,.user-address{
+  background-color: $white;
+  @include remCalc(padding,0 30);
+}
+.info-box{
+  color: $info-color;
+  @include fontDpr(14px);
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
+  position: relative;
+}
+.info-box p{
+  @include fontDpr(14px);
+}
+.tel-msg-txt{
+  @include remCalc(padding,30 15);
+  color: $gray-color;
+  background-color: $white;
+}
+.user-tel{
+  position: relative;
+}
+.user-tel span{
+  position: absolute;
+  left: 0;
+  top:0;
+  color: $black-color;
+}
+.user-tel input{
+  @include remCalc(padding-left,100);
+}
+.info-box input{
+  @include fontDpr(14px);
+  @include remCalc(height,90);
+  @include remCalc(line-height,90);
+  width: 100%;
+}
+.info-box-address{
+  @include remCalc(padding,30 0);
+}
+.info-box-address textarea{
+  width: 100%;
+  resize: none;
+  @include remCalc(height,100);
+  @include fontDpr(14px);
+}
+.act{
+  color: $black-color;
+}
+.act i{
+  color: $gray-color;
+}
+
+.address-form-box{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.address-wraper{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.cart-list{
+  @include remCalc(padding,0 25);
+  background-color: $white;
+}
+.confirm-btn{
+  width: 88%;
+  @include remCalc(margin,0 auto);
+  border-radius: 3px;
+}
+.empty-cart{
+  text-align: center;
+  @include fontDpr(16px);
+  @include remCalc(margin-top,60);
+  margin-top: 2rem;
+  color: $gray-color;
+}
+
+.act span{
+  position: absolute;
+  border-bottom: 7px solid transparent;
+  border-right: 7px solid #b1ed8b;
+  border-top: 7px solid transparent;
+}
+.address-title{
+  @include remCalc(height,100);
+  @include remCalc(line-height,100);
+  @include remCalc(padding,0 30);
+  @include fontDpr(16px);
+  color: $info-color;
+  background-color: #F5F5F5;
+}
+.hiden{
+  display: none;
+}
+.logistics-list{
+  background-color: $white;
+  @include remCalc(padding,30);
+}
+.logistics-list i{
+  color: $base-btn-color;
+  @include fontDpr(20px);
+  vertical-align: middle;
+  @include remCalc(margin-right,5);
+  display: inline-block;
+  @include remCalc(height,40);
+  @include remCalc(line-height,40);
+  position: absolute;
+  left: 0;
+  @include remCalc(top,15);
+}
+.logistics-list li{
+  font-size: 14px;
+  position: relative;
+  line-height: 2;
+  @include remCalc(padding-left,60);
+}
+.logistics-list li.no-logistic{
+  padding-left:0;
+}
+.cart-item div.price{
+  @include remCalc(line-height,40);
+  @include fontDpr(14px);
+  color:$base-btn-color;
+  position: relative;
+}
+.cart-item div.price > span{
+  display: inline-block;
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+}
+.cart-item .item-num-box{
+  right: 0;
+  top: 0;
+  width: auto;
+}
+.cart-item .item-num-box::before{
+  border: 0;
+
+}
+.cart-list .cart-item .item-num-box span{
+  display: block;
+  @include remCalc(width,50);
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  text-align: center;
+  float:left;
+  position: relative;
+}
+.cart-list .item-num-box span i{
+  @include fontDpr(12px);
+  color: $gray-color;
+  float: inherit;
+  position: relative;
+  margin: 0;
+  @include remCalc(width,50);
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  top:0;
+  left: 0;
+}
+.cart-list .cart-item p{
+  @include remCalc(height,40);
+}
+.cart-list .item-num-box span.reduc-price i{
+  color: $base-btn-color;
+}
+.cart-item .item-num-box input{
+  text-align: center;
+  @include fontDpr(14px);
+  @include remCalc(height,50);
+  @include remCalc(padding,15);
+  @include remCalc(width,70);
+  position: relative;
+}
+.cart-item .j_reduce_btn{
+  border: 1px solid $base-btn-color;
+  border-radius: 50%;
+}
+.cart-item .j_add_btn{
+  border: 1px solid $base-btn-color;
+  border-radius: 50%;
+  background-color: $base-btn-color;
+}
+.cart-item .item-num-box span.j_add_btn i{
+  color: $white;
+}
+.cart-item .item-num-box::before,.cart-item .item-num-box::after{
+  height: 0;
+}
+.cart-item > div{
+  margin-right:0;
+}
+
+.error-item{
+  opacity: .5;
+}
+.error-item .j_add_btn{
+  border-color: $border-color;
+  background-color: $border-color;
+}
+.logistics-plug-top, .logistics-list{
+  margin:0;
+  @include remCalc(padding, 15 30);
+}
+.logistics-list li i{
+  color: #ccc;
+}
+.logistics-list li i.checked-btn{
+  color: $base-btn-color;
+}
+.total-box{
+  @include remCalc(padding,0 30);
+  background: $white;
+}
+.total-ps{
+  @include remCalc(padding, 30 0);
+}
+.total-p{
+  @include fontDpr(14px);
+  @include remCalc(padding-top,15);
+}
+.total-p span{
+  color: $base-btn-color;
+}
+.disable-btn{
+  width: 80%;
+}
+.address-buyer-note {
+  position: relative;
+  color: $gray-color;
+  @include fontDpr(14px);
+  overflow: hidden;
+}
+.address-buyer-note span {
+  position: absolute;
+  @include remCalc(left,20);
+  top: 0;
+  display: inline-block;
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
+  color: $info-color;
+}
+.address-buyer-note input {
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
+  @include remCalc(padding,30 20 30 200);
+  color: black;
+  font-size: 12px!important;
+  width: 100%!important;
+}
+.agree-info{
+  @include remCalc(margin,0 30);
+}

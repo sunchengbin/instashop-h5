@@ -10,10 +10,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <meta name="format-detection" content="telephone=no" />
-    <?=STATIC_DNS?>
-    <?=STATIC_ICO_CSS?>
-    <?=STATIC_FONT_CSS?>
-    <link href="<?=STATIC_HOST?>/css/dist/app/uploadprove.css?v=1491992317062" rel="stylesheet"/>
+    <?=initPhpCss('uploadprove')?>
     <title>Bukti Pembayaran</title>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );
@@ -38,8 +35,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body data-spider="fa8uybh3">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/uploadprove.js?v=1491992317062"></script>
+    <?=initPhpJs('uploadprove')?>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

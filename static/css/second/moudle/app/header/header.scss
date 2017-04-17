@@ -1,0 +1,93 @@
+.header-nav{
+  position:relative;
+  @include remCalc(padding,0 30);
+  @include remCalc(height,95);
+  @include remCalc(line-height,95);
+  background-color: $header-bg-color;
+  @include fontDpr(16px);
+  color: $info-color;
+}
+/*风格统一需求*/
+.header-nav:after {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: -1px;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+  z-index: 1;
+}
+
+.header-nav .iconfont{
+  @include fontDpr(16px);
+  display: inline-block;
+  @include remCalc(height,95);
+  @include remCalc(line-height,95);
+}
+.cart-num{
+  position: absolute;
+  display: inline-block;
+  @include remCalc(width,36);
+  @include remCalc(height,36);
+  @include remCalc(line-height,36);
+  border-radius: 50%;
+  text-align: center;
+  background-color: $footer-num-bg;
+  color: $white;
+  right: 0;
+  top: 0;
+  @include fontDpr(12px);
+}
+.header-nav button{
+  float: right;
+  @include remCalc(height,95);
+  @include remCalc(line-height,95);
+  @include remCalc(padding-left,30);
+  @include fontDpr(16px);
+}
+/*漂浮的后退按钮和购物车按钮*/
+.shop-header-nav{
+  @include remCalc(padding,30 0 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+}
+.shop-header-nav > div{
+  position: relative;
+  z-index: 4;
+  @include remCalc(width,72);
+  @include remCalc(height,72);
+  @include remCalc(margin,0 30);
+}
+.btn-cover{
+  @include remCalc(width,72);
+  @include remCalc(height,72);
+  border-radius: 50%;
+  background-color:rgba(0,0,0,.5);
+
+}
+.shop-header-nav button{
+  position: absolute;
+  @include remCalc(width,72);
+  @include remCalc(height,72);
+  @include remCalc(line-height,72);
+  text-align: center;
+  border-radius: 50%;
+  top:0;
+  left: 0;
+  z-index: 5;
+}
+.shop-header-nav button i{
+  @include fontDpr(20px);
+  color: $white;
+}
+.shop-header-nav button i.icon-back-font{
+  @include fontDpr(16px);
+  color: $white;
+}
+/*最大宽度居中*/
