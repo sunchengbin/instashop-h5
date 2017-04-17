@@ -241,7 +241,9 @@ function set_request_seller_id() {
 	{
 		$alias = get_seller_id_by_personal_host($host);
 	}
-	$_REQUEST['seller_id'] = $alias;
+	if(!$_REQUEST['seller_id']){
+	    $_REQUEST['seller_id'] = $alias;
+	}
 }
 function getSkinInfo(){
     set_request_seller_id();

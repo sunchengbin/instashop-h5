@@ -1,5 +1,5 @@
 <?php
-    $seller_id = $_REQUEST['seller_id'];
+
     include_once( dirname(__FILE__).'/../html/router/common.php');
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     include_once( dirname(__FILE__).'/../html/router/base.php');
@@ -15,6 +15,7 @@
     $smarty->assign('INDEX_DATA',$json);
     $smarty->assign('INDEX_DATA_STR',$ret);
 
+    $seller_id = $_REQUEST['seller_id'];
     $path_shop_info = 'v1/shops/'.$seller_id;
     $paramsForShopInfo = [
         'action' => 'index_shopinfo',
