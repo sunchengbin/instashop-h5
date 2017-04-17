@@ -15,6 +15,15 @@
     $smarty->assign('INDEX_DATA_STR',$ret);
 
     $seller_id = $_REQUEST['seller_id'];
+    if (!$seller_id) {
+        $ss = split('\/', $_SERVER['REQUEST_URI']);
+        if(split('\?', $_SERVER['REQUEST_URI']).length > 0){
+            $si = split('\?',end($ss))[0];
+            $seller_id = $si;
+        }else{
+            $seller_id = end($ss);
+        }
+    }
     $path_shop_info = 'v1/shops/'.$seller_id;
     $paramsForShopInfo = [
         'action' => 'index_shopinfo',
