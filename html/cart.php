@@ -10,6 +10,10 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <?=initPhpCss('cart')?>
+    <script>
+        var user_info = <?php echo json_encode($_POST); ?>;
+    </script>
+
     <title>Keranjangku</title>
 </head>
 <body data-spider="a5fivmur">

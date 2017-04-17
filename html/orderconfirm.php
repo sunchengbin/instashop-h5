@@ -21,7 +21,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $seller_id = $_REQUEST['seller_id'];
         $supply_shop_id = $_REQUEST['groupid'];
         $addr = $_REQUEST['addr'];
-        $addr = $_REQUEST['addr'];
         $items = json_decode($_REQUEST['items'],true);
         $new_addr = $_REQUEST['new_addr'];
         if ($new_addr) {
