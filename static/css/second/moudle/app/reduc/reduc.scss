@@ -1,0 +1,113 @@
+/*满减活动*/
+
+.reduc-box {
+  color: $txt-color!important;
+  //@include remCalc(margin-top,30);
+}
+
+.reduc-box-wrap {
+  @include remCalc(min-height,110);
+  box-sizing:border-box;
+  position: relative;
+  text-align: right;
+
+}
+.reduc-box-wrap > div{
+  @include remCalc(min-height,100);
+  position: relative;
+  @include remCalc(padding,25 0);
+}
+.reduc-box-wrap > div::after{
+  border-color:$base-color;
+}
+.reduc-expire-coupon{
+  @include fontDpr(12px);
+  color: $reminder-color;
+}
+.reduc-box-info-coupon{
+  overflow: hidden;
+}
+.reduc-box-info-coupon em,.reduc-box-info em{
+  @include remCalc(margin-left,10);
+  @include fontDpr(18px);
+  color: $black-color;
+}
+.rp-bg{
+  position: absolute;
+  display: inline-block;
+  @include remCalc(left,0);
+  @include remCalc(top,0);
+  @include remCalc(width,56.2);
+  @include remCalc(height,58.9);
+  background: url(../../../../../images/first/rp_bg.png) no-repeat;
+  background-size: contain;
+}
+
+.reduc-box-line .reduc-box-wrap {
+  padding: 0!important;
+}
+
+.reduc-box-info {
+  overflow: hidden;
+  line-height: 1.2;
+  @include remCalc(padding,20 0);
+}
+
+.reduc-box-go {
+  color: #999999!important;
+  font-size: 14px;
+  /* line-height: 2rem; */
+  box-sizing: border-box;
+  display: block;
+  height: 2rem;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 1rem;
+  margin: auto;
+}
+
+
+/*满减优惠*/
+
+.reduc-info {
+  color: $txt-color;
+
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
+  @include fontDpr(14px);
+  position: relative;
+}
+
+.reduc-info p span {
+  color: $base-btn-color;
+}
+
+.reduc-box-line:before {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  top: 0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+}
+
+.total-box .reduc-info:before {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  top: 0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+}
+
+.reduc-expire {
+  @include fontDpr(12px);
+  color:$reminder-color;
+}

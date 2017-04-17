@@ -1,0 +1,213 @@
+.ins-text-left {
+  text-align: left!important;
+}
+
+.ins-color-hightlight-blue {
+  color: #4990E2;
+}
+
+.ins-btn {
+  text-align: center;
+}
+
+.ins-btn-orange {
+  background: $base-btn-color;
+  color: $white;
+  @include fontDpr(16px);
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  width: 100%;
+  border-radius: 2px;
+}
+
+.ins-btn-gray {
+  color: $gray-color!important;
+  background-color: #eee!important;
+  @include fontDpr(16px);
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  width: 100%;
+  border-radius: 2px;
+}
+.bargain-tip-txt-how {
+  @include fontDpr(16px);
+  @include remCalc(padding,15 0);
+}
+
+.bargain-howprice-wrap {
+  text-align: center;
+}
+
+.bargain-howprice-wrap p img {
+  @include remCalc(width,150);
+  @include remCalc(height,150);
+}
+
+.j_bargain_tip_unlogin_price {
+  display: none;
+  color: $gray-color;
+  @include fontDpr(14px);
+  @include remCalc(padding,0 0 30 0);
+}
+
+.j_dialog_login_line,
+.j_dialog_login_facebook,
+.j_cart_no_login {
+  width: 90%;
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  border-radius: 2px;
+  color: $white;
+  @include fontDpr(16px);
+  text-align: center;
+  @include remCalc(margin,30 auto 0);
+}
+
+.j_cart_no_login {
+  background: #43CB9B
+}
+
+.j_dialog_login_line {
+  background: #00B900;
+}
+
+.j_dialog_login_facebook {
+  background: #3B589C;
+}
+
+.j_bargain_btn_continue {
+  display: none;
+}
+
+.bargain_inv_operate a {
+  width: 25%;
+}
+
+.bargain-phone-input {
+  width: 100%;
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  background: #EDEDED;
+  color: $info-color;
+  border: 1px solid $border-color;
+  @include fontDpr(16px);
+  box-sizing: border-box;
+  @include remCalc(padding,0 30);
+}
+
+.bargain-phone-input span {}
+
+.bargain-phone-input input {
+  height: 100%;
+  @include remCalc(line-height,80);
+  border: 0px;
+  outline: none;
+  background: #EDEDED;
+  box-sizing: border-box;
+  width: 87%;
+  @include fontDpr(16px);
+  @include remCalc(margin-left,-100);
+  color: $info-color;
+}
+
+.bargain-phone-button {
+  width: 100%;
+  margin: 0 auto;
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  text-align: center;
+  @include remCalc(margin-top,60);
+  color: $white;
+  @include fontDpr(16px);
+  background: $base-btn-color;
+  border-radius: 2px;
+}
+
+.bargain-amplitude-price-tip {
+  @include fontDpr(16px);
+  color: $info-color;
+}
+
+.bargain-amplitude-price {
+  font-weight: 400;
+  @include fontDpr(24px);
+  color: $info-color;
+}
+
+.j_btn_confrim_bargain_price {
+  width: 100%;
+  margin: 0 auto;
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  text-align: center;
+  @include remCalc(margin-top,60);
+  color: $white;
+  @include fontDpr(16px);
+  background: $base-btn-color;
+  border-radius: 2px;
+}
+
+.bargain-origin-price {
+  @include fontDpr(14px);
+  opacity: 0.5;
+  display: table-cell;
+  vertical-align: middle;
+  text-decoration: line-through;
+}
+
+.bargain-origin-price-sku {
+  @include fontDpr(12px);
+  color:#FBDBA0;
+  vertical-align: middle;
+  text-decoration: line-through;
+}
+
+.icon-share-facebook {
+  color: #667EB9;
+}
+
+.bargain-price {
+  font-size:18px!important;
+  display: table;
+}
+
+.bargain-friend-list-container {
+  @include remCalc(height,150);
+  @include remCalc(line-height,150);
+  background: #F5F5F5;
+  @include remCalc(margin,45 0);
+  @include remCalc(padding,0 10);
+  display: none;
+}
+
+.bargain-friend-list-container img {
+  @include remCalc(width,90);
+  @include remCalc(height,90);
+  border-radius: 100%;
+}
+
+.friend-bargain-info {
+  display: inline-block;
+  width: 58%;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.friend-bargain-info p {
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+
+.friend-avatars {
+  width: 100%;
+}
+
+.bargain-friend-list-container .friend-avatars,
+.bargain-friend-list-container .friend-bargain-info {
+  display: inline-block;
+}
+.j_bargain_reachbaseprice {
+  display: none;
+}

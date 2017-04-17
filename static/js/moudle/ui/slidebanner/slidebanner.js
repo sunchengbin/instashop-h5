@@ -59,7 +59,6 @@ define(["dialog",'base','debug'],function (Dialog,Base,Debug) {
                 }else{
                     _this.boxWidth = window.innerWidth;
                 }
-
             }
             _this.boxHeight = _this.parentDom.clientHeight;
 
@@ -338,11 +337,18 @@ define(["dialog",'base','debug'],function (Dialog,Base,Debug) {
         resize: function () {
             var _this = this;
             clearTimeout(_this.autoTime);
-            // _this.boxWidth = _this.parentDom.offsetWidth;
+
             var ch = _this.parentDom.clientHeight;
             if (ch != 0) {
-                _this.boxWidth = window.innerWidth;
-                _this.boxHeight = ch;
+                _this.boxWidth = _this.parentDom.clientWidth;
+                if(_this.boxWidth == 0){
+                    if(window.innerWidth >= 640){
+                        _this.boxWidth = 640;
+                    }else{
+                        _this.boxWidth = window.innerWidth;
+                    }
+                }
+                _this.boxHeight = _this.parentDom.clientHeight;
                 _this.setSize();
 
                 _this.toPage();

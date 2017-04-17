@@ -2,7 +2,7 @@
  * Created by sunchengbin on 2016/11/10.
  * 店铺装修首页
  */
-require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fastclick','config','hbs','text!views/moudle/model/signage.hbs','text!views/moudle/model/banner.hbs','text!views/moudle/model/itemmodel.hbs','text!views/moudle/model/editbtns.hbs','text!views/moudle/model/navigation.hbs'],function(Base,Dialog,Slide,Ajax,Lang,Common,Lazyload,Insjs,FastClick,Config,Hbs,SignageHtm,StaticBannerHtm,Itemmodel,ModelBtns,Navigation){
+require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fastclick','config','hbs','text!views/moudle/model/signage.hbs','text!views/moudle/model/banner.hbs','text!views/moudle/model/itemmodel.hbs','text!views/moudle/model/editbtns.hbs','text!views/moudle/model/navigation.hbs','btn'],function(Base,Dialog,Slide,Ajax,Lang,Common,Lazyload,Insjs,FastClick,Config,Hbs,SignageHtm,StaticBannerHtm,Itemmodel,ModelBtns,Navigation,Btn){
     var EditModel = {
         init : function(){
             var _this = this;
@@ -19,11 +19,13 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             Lazyload();
             _this.initRotateBanner();
             _this.setBodyHeight();
+            //_this.initHtml();
             Insjs.WebOnReady(function(bridge){
                 _this.handelFn(bridge);
             },function(){
                 _this.handelFn();
             });
+
         },
         clearNullData:function(){
             var _this =this,
@@ -61,7 +63,6 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
         },
         handelFn : function(bridge){
             var _this = this;
-            //console.log(_this.model_data);
             if(!bridge){
                 alert('not find bridge');
                 return;
@@ -231,8 +232,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             });
             $('body').on('click','.j_submit_btn',function(){
                 PaqPush && PaqPush('应用到店铺','save-model');
-                //_paq.push(['trackEvent', '应用到店铺', 'click', '应用到店铺']);
-                //_this.subModel();
+                _this.subModel();
                 var _param = {
                     param:{
                         type:'show_loading',
@@ -243,6 +243,46 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     return null;
                 });
             });
+            Btn({
+                wraper: 'body',
+                target: '.j_change_btn',
+                event_type: 'click',
+                loading_txt: Lang.CHANGE_SKIN,
+                callback: function (dom) {
+                    var _href = location.href,
+                        _skin = $(dom).attr('data-skin');
+                    PaqPush && PaqPush('切换皮肤',_skin);
+                    _this._loading = Dialog.loading({
+                        width: 100,
+                        is_cover: true
+                    });
+                    switch(_skin){
+                        case 'first':
+                            location.href = _this.changeSkinUrlPram(_href,'first',1);
+                            break;
+                        case 'second':
+                            location.href = _this.changeSkinUrlPram(_href,'second',2);
+                            break;
+                        case 'default':
+                            location.href = _this.changeSkinUrlPram(_href,'default',0);
+                            break;
+                        default :
+                            location.href = _this.changeSkinUrlPram(_href,'default',0);
+                            break;
+                    }
+
+                }
+            });
+        },
+        changeSkinUrlPram : function(href,skin,skin_code){
+            var _href = href;
+            if(Base.others.getUrlPrem('skin')){
+                _href = Base.others.resetUrlPrem('skin',skin,_href);
+                _href = Base.others.resetUrlPrem('skin_code',skin_code,_href);
+            }else{
+                _href += '&skin='+skin+'&skin_code='+skin_code;
+            }
+            return _href;
         },
         tranfansModelData : function(data){
             return JSON.parse(Common.decodeSingleQuotes(JSON.stringify(data)));
@@ -302,7 +342,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     }
                 });
             }
-            Common.slideImgNav();
+            //Common.slideImgNav();
         },
         verifySub : function(){//提交前验证
             if($('.static-banner').length > 5)return false;
@@ -327,14 +367,16 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 _this.have_list_type = true;
             }
             var _seller_info = Common.getUrlSellerInfo();
+            var _skin_info = _this.getSkinInfo();
             var _req_data = {
                 edata : {
+                    skin : _skin_info,
                     content : _this.tranfansModelData(_this.model_data),
                     seller_id : _seller_info.seller_id,
                     wduss : _seller_info.wduss
                 }
             };
-
+            PaqPush && PaqPush('保存皮肤',_skin_info);
             Ajax.postJsonp({
                 url :Config.actions.saveTemplate,
                 data : {param:JSON.stringify(_req_data)},
@@ -346,6 +388,36 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     _this.closeLoading(bridge,{code:500,message:Lang.H5_ORDER_TIMEOUT_ERROR});
                 }
             });
+        },
+        getSkinInfo : function(){
+            var _this = this,
+                _skin = Base.others.getUrlPrem('skin'),
+                _code = Base.others.getUrlPrem('skin_code');
+                _skin = _skin ? _skin : (SKIN?SKIN:'default');
+                _code = _code ? _code : _this.getSkinCode(_skin);
+            var _data = {
+                code : _code,
+                name : _skin
+            };
+            return _data;
+        },
+        getSkinCode : function(skin){
+            var _code = 0;
+            switch (skin){
+                case 'default':
+                    _code = 0;
+                    break;
+                case 'first':
+                    _code = 1;
+                    break;
+                case 'second':
+                    _code = 2;
+                    break;
+                default :
+                    _code = 0;
+                    break;
+            }
+            return _code;
         },
         closeLoading : function(bridge,code){//关闭native的loading
             var _close_param = {
@@ -427,7 +499,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             _html+= _this.createModelHtm(_this.model_data)
                 +_this.defaultItemsHtm()
                 +'<button class="j_submit_btn sub-btn b-top">'+Lang.H5_APPLY_MODEL+'</button>';
-            $('.edit-wraper-box').prepend(_html);
+            $('.edit-wraper-box').html(_html);
         },
         createModelBtnHtm : function(opts){
             return Hbs.compile(ModelBtns)({
@@ -460,9 +532,28 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 lang : Lang
             });
         },
+        getFolder : function(skin){
+            var _folder = '';
+            switch (skin){
+                case 'default':
+                    _folder = '';
+                    break;
+                case 'first':
+                    _folder = '/first';
+                    break;
+                case 'second':
+                    _folder = '/second';
+                    break;
+                default :
+                    _folder = '';
+                    break;
+            }
+            return _folder;
+        },
         createModelHtm : function(model){
             var _this = this,
-                _html = '';
+                _html = '',
+                _skin_info = _this.getSkinInfo().name;
             if(!model.length)return _html;
             for(var i = 0;i < model.length;i++){
                 var _model_info = model[i],
@@ -470,60 +561,71 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                 if(model[i]){
                     switch(model[i].type){
                         case 'edit_signage':
-                            _html+= _this.createSignageHtm(_model_info.data[0]);
+                            _html+= _this.createSignageHtm(_model_info.data[0],_skin_info);
                             break;
                         case 'static_banner':
                             _html+= _this.staticBannerHtm({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info,
+                                static_banner_title:Config.host.imgUrl+_this.getFolder(_skin_info)+'/static_banner_title.png'
                             });
                             break;
                         case 'rotate_banner':
                             _html+= _this.rotateBannerHtm({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'two_list_banner':
                             _html+= _this.twoListBannerHtm({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info,
+                                two_li_banner_txt:Config.host.imgUrl+_this.getFolder(_skin_info)+'/two_li_banner_txt.png'
                             });
                             break;
                         case 'img_navigation':
                             _html+= _this.imgNavigationHtm({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'text_navigation':
                             _html+= _this.textNavigationHtm({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'two_li_items':
                             _html+= _this.twoLiItemsHtm({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'big_img_item':
                             _html+= _this.bigImgItem({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'list_items':
                             _html+= _this.listItems({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'three_li_items':
                             _html+= _this.threeRowItems({
                                 data : _model_info,
-                                notmove : _notmove
+                                notmove : _notmove,
+                                skin : _skin_info
                             });
                             break;
                         case 'item_list_type':
@@ -538,11 +640,12 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             }
             return _html;
         },
-        createSignageHtm : function(data){
+        createSignageHtm : function(data,skin){
             return Hbs.compile(SignageHtm)({
                 data : data,
                 shop : init_data.shop,
-                lang:Lang
+                lang:Lang,
+                skin : skin
             });
         },
         staticBannerHtm : function(opts){
@@ -554,7 +657,9 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
-                lang : Lang
+                lang : Lang,
+                skin : opts.skin,
+                static_banner_title:opts.static_banner_title
             });
         },
         rotateBannerHtm : function(opts){
@@ -566,7 +671,8 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
-                lang : Lang
+                lang : Lang,
+                skin : opts.skin
             });
         },
         twoListBannerHtm : function(opts){
@@ -578,7 +684,9 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
-                lang : Lang
+                lang : Lang,
+                skin : opts.skin,
+                two_li_banner_txt:opts.two_li_banner_txt
             });
         },
         imgNavigationHtm : function(opts){
@@ -590,6 +698,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
+                skin : opts.skin,
                 lang : Lang
             });
         },
@@ -602,6 +711,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
+                skin : opts.skin,
                 lang : Lang
             });
         },
@@ -614,6 +724,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
+                skin : opts.skin,
                 lang : Lang
             });
         },
@@ -626,6 +737,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
+                skin : opts.skin,
                 lang : Lang
             });
         },
@@ -638,6 +750,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
+                skin : opts.skin,
                 lang : Lang
             });
         },
@@ -651,6 +764,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     notmove : opts.notmove
                 }),
                 data : opts.data,
+                skin : opts.skin,
                 lang : Lang
             });
         }

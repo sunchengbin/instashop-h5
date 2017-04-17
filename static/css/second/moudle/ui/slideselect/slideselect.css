@@ -1,0 +1,63 @@
+@import "../../../base/base.css";
+.slide-select-wraper{
+    position: relative;
+    height: 14rem;
+    font-size:1.6rem;
+    overflow: hidden;
+}
+.slide-select-wraper .value-box li,.slide-select-wraper > p{
+    height: 2rem;
+    line-height: 2rem;
+    padding:0 1rem;
+}
+.slide-select-wraper a.cancel{
+    color:#ddd;
+}
+.slide-select-wraper a.confirm{
+    color: #01579b;
+}
+.value-box li{
+    text-align: center;
+}
+.cover-box{
+    position:absolute;
+    top:2rem;
+    left: 0;
+    width: 100%;
+    height:10rem;
+    z-index: 1;
+    overflow: hidden;
+}
+.cover-box > div{
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    height: 4rem;
+    left: 0;
+}
+.cover-box .top-cover{
+    top:0;
+    background-image: -webkit-gradient(linear,left top,left bottom,rgba(255,255,255,.9),rgba(255,255,255,.6) 50%,rgba(255,255,255,.2) 95%,rgba(255,255,255,0) 95%,rgba(255,255,255,0));
+    background-image: -webkit-linear-gradient(top,rgba(255,255,255,.9),rgba(255,255,255,.6) 50%,rgba(255,255,255,.2) 95%,rgba(255,255,255,0));
+    background-image: linear-gradient(top,rgba(255,255,255,.9),rgba(255,255,255,.6) 50%,rgba(255,255,255,.2) 95%,rgba(255,255,255,0));
+}
+.cover-box .bottom-cover{
+    bottom: 0rem;
+    background-image: -webkit-gradient(linear,left bottom,left top,rgba(255,255,255,.9),rgba(255,255,255,.6) 50%,rgba(255,255,255,.2) 95%,rgba(255,255,255,0));
+    background-image: -webkit-linear-gradient(bottom,rgba(255,255,255,.9),rgba(255,255,255,.6) 50%,rgba(255,255,255,.2) 95%,rgba(255,255,255,0));
+    background-image: linear-gradient(bottom,rgba(255,255,255,.9),rgba(255,255,255,.6) 50%,rgba(255,255,255,.2) 95%,rgba(255,255,255,0));
+}
+.cover-box > div:before{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #CCC;
+}
+.cover-box .top-cover:before{
+    bottom:0;
+}
+.cover-box .bottom-cover:before{
+    top:0;
+}

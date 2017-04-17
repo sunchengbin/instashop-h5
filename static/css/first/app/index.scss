@@ -1,0 +1,29 @@
+@import "../base/base.scss";
+@import "../moudle/app/common/common.scss";
+@import "../base/common/flex.scss";
+@import "../base/common/insavg.scss";
+@import "../moudle/ui/tab/tab.scss";
+@import "../moudle/app/contact/contact.scss";
+@import "../moudle/app/reduc/reduc.scss";
+@import "../moudle/app/sharecoupon/sharecoupon.scss";
+@import "../moudle/ui/viewer/viewer.scss";
+@import "../moudle/app/model/model.scss";
+@import "../moudle/ui/dialog/dialog.scss";
+//tab样式
+@import "../moudle/app/index/tabs.scss";
+//首页小区块样式
+@import "../moudle/app/index/others.scss";
+//店招店铺名字
+@import "../moudle/app/index/shopheader.scss";
+/*分类侧栏弹窗*/
+@import "../moudle/app/index/category.scss";
+/*banner*/
+@import "../moudle/app/index/banner.scss";
+/*3.5 功能4需求 去官网按钮box*/
+@import "../moudle/app/index/gowebsite.scss";
+//模板样式
+@import "../moudle/app/index/modelbox.scss";
+/*店铺详情*/
+@import "../moudle/app/index/shopinfo.scss";
+/*底栏*/
+@import "../moudle/app/index/footer.scss";

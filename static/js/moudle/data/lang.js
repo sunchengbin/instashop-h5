@@ -212,6 +212,7 @@ define(['base'], function (Base) {
             "INDEX_ITEMS_COMPLEX": "综合",
             "INDEX_ITEMS_DATE": "时间",
             "INDEX_ITEMS_PRICE": "价格",
+            "CHANGE_SKIN":"更换皮肤",
             // 砍价活动文案
             "BARGAIN_GUID_ANCHOR": "最低Rp xxx抢购，查看方法",
             "BARGAIN_DETAIL_BTN_SELF": "我要砍价",
@@ -572,6 +573,7 @@ define(['base'], function (Base) {
             "INDEX_ITEMS_COMPLEX": "Populer",
             "INDEX_ITEMS_DATE": "Terbaru",
             "INDEX_ITEMS_PRICE": "Harga",
+            "CHANGE_SKIN":"Ganti...",
             // 砍价活动文案
             "BARGAIN_GUID_ANCHOR": "Mau beli barang ini seharga 9.000 rupiah saja? Cuss cek caranya!",
             "BARGAIN_DETAIL_BTN_SELF": "Tawar Sekarang",

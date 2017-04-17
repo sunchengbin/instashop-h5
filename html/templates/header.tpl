@@ -11,9 +11,21 @@
   {$STATIC_ICO_CSS}
   {$STATIC_FONT_CSS}
   {$INDEX_TITLE}
+  {if $FLEXIBLE}
+  <script>
+  {$FLEXIBLE}
+  </script>
+  {/if}
+  <script>
+    var SKIN = "{$SKIN_INFO}";
+  </script>
   {if $IS_DEBUG}
-    <link href="{$STATIC_HOST}/css/app/{$INDEX_CSS_NAME}.css?v=1491992317161" rel="stylesheet"/>
+    {if $TEMP_FOLDER}
+      <link href="{$STATIC_HOST}/css/dist/{$TEMP_FOLDER}app/{$INDEX_CSS_NAME}.css?v=1492394617269" rel="stylesheet"/>
+    {else}
+      <link href="{$STATIC_HOST}/css/app/{$INDEX_CSS_NAME}.css?v=1492394617269" rel="stylesheet"/>
+    {/if}
   {else}
-    <link id="j_page_index_css" data-url="/css/dist/app/{$INDEX_CSS_NAME}.css?v=1491992317161" href="{$STATIC_HOST}/css/dist/app/{$INDEX_CSS_NAME}.css?v=1491992317161" rel="stylesheet"/>
+    <link href="{$STATIC_HOST}/css/dist/{$TEMP_FOLDER}app/{$INDEX_CSS_NAME}.css?v=1492394617269" rel="stylesheet"/>
   {/if}
 </head>

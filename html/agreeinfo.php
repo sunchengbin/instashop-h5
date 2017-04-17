@@ -65,17 +65,17 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             width:100%;
             box-sizing:border-box;
             padding: 0 1rem;
-            height: 4.6rem;
-            line-height: 4.6rem;
-            background-color: #43CB9C;
+            height: 3.9rem;
+            line-height: 3.9rem;
+            background-color: #f5f5f5;
             font-size: 1.6rem;
-            color: #fff;
+            color: #444;
         }
         .header-nav .iconfont{
             font-size: 1.6rem;
             display: inline-block;
-            height: 4.6rem;
-            line-height: 4.6rem;
+            height: 3.9rem;
+            line-height: 3.9rem;
         }
     </style>
 </head>

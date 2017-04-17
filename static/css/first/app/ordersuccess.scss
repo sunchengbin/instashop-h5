@@ -1,0 +1,216 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/app/common/common.scss";
+@import "../moudle/app/topstatus/topstatus.scss";
+body{
+  background-color: #F5F5F5;
+  @include remCalc(padding-bottom,100);
+}
+section{
+  @include fontDpr(14px);
+  background-color: $white;
+}
+.pay-info{
+  @include remCalc(padding,20);
+  @include fontDpr(14px);
+  background-color: transparent;
+}
+.three_info{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  box-orient: horizontal;
+  box-direction:normal;
+}
+.three_info li{
+  @include remCalc(padding-bottom,15);
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 1;
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+  max-width: 35%;
+}
+.three_info li:nth-child(2){
+  @include remCalc(padding,0 10 15);
+}
+.three_info li.act{
+  background-color: #EDEDED;
+}
+.three_info li p{
+  background-color: $white;
+  position: relative;
+  @include remCalc(padding,30 15);
+  //padding:1rem;
+}
+.three_info li.act p{
+  background-color: #EDEDED;
+}
+.three_info li:nth-child(1){
+  @include remCalc(padding-right,10);
+}
+.three_info li.act{
+  padding-left:0;
+  padding-right:0;
+}
+.three_info li:nth-child(3){
+  @include remCalc(padding-left,10);
+  //padding-left:.5rem;
+}
+.pay-info .two_act_info li:nth-child(2){
+  padding: 0 0 1rem .5rem;
+}
+.pay-info .two_act_info li:nth-child(1){
+  padding-right:.5rem;
+}
+.mandiri{
+  padding: 1.8rem 2rem 2.2rem;
+}
+.bank-info img{
+  /*min-width: 45px;*/
+  vertical-align: middle;
+}
+.order-box{
+  text-align: center;
+  position: relative;
+  @include remCalc(padding,20 0);
+}
+.order-info{
+  color: $black-color;
+}
+.order-content{
+  font-size: 12px;
+  color: $black-color;
+  line-height: 1.4;
+}
+.txt-box{
+  position: relative;
+  padding-bottom:1rem;
+  background-color: #EDEDED;
+}
+.txt-box p{
+  line-height: 1.5;
+}
+.f-w{
+  font-weight: bold;
+  font-size: 12px;
+}
+.f-w a{
+  color:#748bcf;
+}
+.pay-content,.pay-content-explain,.last-explain,.f-w{
+  @include remCalc(padding,0 20);
+
+}
+.pay-content{
+  @include remCalc(padding-top,20);
+}
+.last-explain{
+  color: $gray-color;
+}
+.last-explain ul{
+  list-style: disc inside;
+}
+.pay-content-explain{
+  @include fontDpr(14px);
+}
+.total-price{
+  @include fontDpr(24px);
+  color: $base-btn-color;
+}
+.pay-time-out{
+  @include remCalc(padding,23 18);
+  text-align: left;
+  background-color: $white;
+  position: relative;
+  @include fontDpr(14px);
+}
+.pay-time-out::after{
+  position: absolute;
+  left:-50%;
+  right: -50%;
+  bottom:0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+}
+.pay-time-out::before{
+  position: absolute;
+  left:-50%;
+  right: -50%;
+  top:0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+}
+footer{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: #f5f5f5;
+  @include remCalc(padding,14 22);
+  //padding: .5rem;
+  box-sizing: border-box;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+
+}
+footer .btn{
+  width: 49%;
+  @include remCalc(height,72);
+  @include remCalc(line-height,72);
+}
+footer::before{
+  position: absolute;
+  left:-50%;
+  right: -50%;
+  top:0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-top: 1px solid $border-color;
+}
+.hide{
+  display: none;
+}
+
+.quick-box{
+  background-color: $base-btn-color;
+  color: $white;
+  @include remCalc(padding,18);
+}
+p.quick-order-txt{
+  text-align: left;
+  line-height: 1.3;
+  @include fontDpr(12px);
+}
+p.quick-order-txt span{
+  color: $base-btn-color;
+}
+/*js出错*/
+.item-out-stock{
+  @include remCalc(padding,200 0 600);
+  text-align: center;
+  @include fontDpr(14px);
+  background: $white;
+}
+.item-out-stock i{
+  @include fontDpr(50px);
+  color: $btn-disable-color;
+}
+.item-out-stock p .btn{
+  @include remCalc(margin,90 auto 0);
+}

@@ -1,5 +1,23 @@
 {include file="header.tpl"}
 <body data-spider="yngoklm4">
+<div class="change-skin-warp" data-spider="change-skin-warp">
+    <div class="clearfix">
+        <button class="j_change_btn fr" data-skin="default">Ganti</button>
+        <p>Template: Standar</p>
+    </div>
+</div>
+<div class="change-skin-warp" data-spider="change-skin-warp">
+    <div class="clearfix">
+        <button class="j_change_btn fr" data-skin="first">Ganti</button>
+        <p>Template: Pinky Spring</p>
+    </div>
+</div>
+<div class="change-skin-warp" data-spider="change-skin-warp">
+    <div class="clearfix">
+        <button class="j_change_btn fr" data-skin="second">Ganti</button>
+        <p>Template: Classic Black</p>
+    </div>
+</div>
 <div class="edit-wraper-box" data-spider="edit-wraper-box">
     {if $INDEX_DATA.template|@count}
         {foreach from=$INDEX_DATA.template item=model name=foo}
@@ -19,7 +37,9 @@
                         <img data-img="{$INDEX_DATA.shop.logo}" src="" />
                     </div>
                     <p>{$INDEX_DATA.shop.name}</p>
-                    <span><i class="icon iconfont icon-shop-font"></i>Toko fisik</span>
+                    {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
+                        <span><i class="icon iconfont icon-shop-font"></i>Ada Outlet</span>
+                    {/if}
                 </div>
             </section>
             <div class="tabs">
@@ -130,8 +150,8 @@
                 {if $model.title}
                 <p class="item-title b-bottom"><span></span>{$model.title}</p>
                 {/if}
-                <div class="nav-img-box j_nav_img_box">
-                    <ul class="nav-img-ul clearfix">
+                <div class="nav-img-box">
+                    <ul class="nav-img-ul clearfix" style="width:{$model.data|conuntImgNavWidth};">
                         {foreach $model.data as $navigation}
                             <li class="">
                                 <a spm-auto="图文导航" spm-click="img-navigation" class="block clearfix j_item_info" data-url="{$navigation.link_url|transUrl}" href="javascript:;">

@@ -34,7 +34,7 @@
                             {/if}
                     {/if}
                             <div class="item-num-box clearfix">
-                                <span class="j_reduce_btn" data-id="{$carts|getCartId}">
+                                <span class="j_reduce_btn reduc-price" data-id="{$carts|getCartId}">
                                     <i class="icon iconfont icon-minus-font"></i>
                                 </span>
                                 {if $carts.item.discount.discount_type eq 'percent'}

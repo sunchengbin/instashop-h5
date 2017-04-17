@@ -21,18 +21,7 @@ register_shutdown_function("shutdown_func");
 
 function handle()
 {
-	$host_preg = C_RUNTIME_ONLINE ? '/^(www\.)?(.*?)\.instashop\.co\.id$/i' : '/^(www\.)?(.*?)\.test\.instashop\.co\.id$/i';
-	$host = $_SERVER['HTTP_HOST'];
 	$uri = $_SERVER['REQUEST_URI'];
-	$h_match = preg_match($host_preg, $host, $matches);
-	if ($h_match)
-	{
-		$alias = $matches[2];
-	}
-	else
-	{
-		$alias = get_seller_id_by_personal_host($host);
-	}
 
 	if (preg_match('/^(\/detail)?\/(\d+)(\?.*)?$/i', $uri, $item_matches))
 	{
@@ -81,7 +70,6 @@ function handle()
 	}
 	else if (preg_match('/^\/(\?.*)?$/i', $uri))
 	{
-		$_REQUEST['seller_id'] = $alias;
 		require( dirname(__FILE__).'/../html/index.php');
 	}
 	else

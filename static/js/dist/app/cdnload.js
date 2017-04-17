@@ -1,0 +1,1 @@
+(function(){console.log("cdn-load-success")})(),define("app/cdnload",function(){});

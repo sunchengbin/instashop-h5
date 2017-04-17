@@ -151,10 +151,12 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
             return options.inverse(this);
         }
     });
-    HBS.registerHelper('tagItemList', function (items, options) {
+    HBS.registerHelper('tagItemList', function (items) {
         return Item.addItem(items);
     });
-
+    HBS.registerHelper('bigImgItem', function (items,skin) {
+        return Item.addItem(items,'',skin);
+    });
     HBS.registerHelper('transprice', function (price) {
         if (price < 0) {
             return '';
@@ -541,6 +543,36 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
         }
         return _htm;
     });
+    HBS.registerHelper('skinitemlist', function (carts) {
+        var _htm = '';
+        if (!carts.length) {
+            return '<li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>';
+        }
+        var _i = 0;
+        for (var item in carts) {
+            _i++;
+            var _item = carts[item],
+                _id = (_item.sku ? _item.sku.id : _item.id);
+            _htm += '<li class="cart-item j_cart_item" data-id="' + _id + '">' +
+                '<a class="block clearfix" href="javascript:;">' +
+                '<img src="' + Base.others.cutImg(_item.img) + '">'
+                +'<span class="item-index">'+_i+'</span>';
+            _htm += '<div class="item-info-box">' +
+                '<p class="name">' + Base.others.transTxt(_item.item_comment) + '</p>';
+            if (_item.is_discount && _item.discounting) {
+                _htm += '<p class="price clearfix"><span class="fr">-' + _item.discount.value + '%</span>' + 'Rp ' + Base.others.priceFormat(_item.discount.price) + '</p>';
+                _htm += '<p class="soon-time">' + transDate(_item.discount.start_time) + '-' + transDate(_item.discount.end_time) + 'WIB</p>';
+            } else {
+                var _price = (_item.sku && _item.sku.id) ? _item.sku.price : _item.price;
+                if (_price >= 0) {
+                    _htm += '<p class="price">Rp ' + Base.others.priceFormat(_price) + '</p>';
+                }
+            }
+            _htm += '</div></a>' +
+                '</li>';
+        }
+        return _htm;
+    });
     HBS.registerHelper('threeItemList', function (carts) {
         var _htm = '';
         if (!carts.length) {
@@ -782,6 +814,14 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
     //截取lineurl
     HBS.registerHelper('translineurl', function (url) {
         return url.split('http://')[1];
+    });
+    //编辑两列式模板小图
+    HBS.registerHelper('iseven', function (n, options) {
+        if ((Number(n))%2==0) {
+            return options.fn(this);
+        } else {
+            return options.inverse(this);
+        }
     });
     return HBS;
 });

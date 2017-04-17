@@ -67,11 +67,23 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang','fa
 
         },
         createHtm : function(info){
-            if($('.j_logistics_plug').length)return this;
+            if($('.j_logistics_plug').length){
+                this.resetSelectLogistics();
+                return this;
+            }
             info.lang = Lang;
             var PlugHtm= Hbs.compile(Logistics)(info);
             $('body').prepend(PlugHtm);
             return this;
+        },
+        resetSelectLogistics : function(){
+            var _data_id = $('.j_logistics_info').attr('data-id'),
+                _checked_dom = $('.j_logistics_li[data-id="'+_data_id+'"]');
+            $('.checked-btn').addClass('check-btn').removeClass('checked-btn');
+            $('.icon-radioed-font').addClass('icon-radio-font').removeClass('icon-radioed-font');
+            _checked_dom.find('.check-btn').addClass('checked-btn');
+            _checked_dom.find('.check-btn').addClass('icon-radioed-font').removeClass('icon-radio-font');
+
         },
         toShow : function(){
             var _this = this,

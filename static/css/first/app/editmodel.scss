@@ -1,0 +1,168 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../base/common/flex.scss";
+@import "../base/common/insavg.scss";
+@import "../moudle/ui/tab/tab.scss";
+@import "../moudle/app/common/common.scss";
+@import "../moudle/app/contact/contact.scss";
+@import "../moudle/app/model/model.scss";
+@import "../moudle/ui/dialog/dialog.scss";
+@import "../moudle/ui/tab/tab.scss";
+@import "../moudle/app/index/shopheader.scss";
+@import "../moudle/app/index/tabs.scss";
+@import "../moudle/app/index/banner.scss";
+body{
+  background-color: #333;
+}
+.edit-wraper-box{
+  @include remCalc(padding,30 30 150);
+}
+section{
+  background-color: $white;
+  position: relative;
+}
+.shop-header{
+  position: relative;
+}
+.shop-header .handle-btn{
+  position: absolute;
+  right: 0;
+  top: 100px;
+  border-radius: 2px 0 0 2px;
+  z-index: 100;
+}
+.shop-header-bg{
+  min-height: 100px;
+}
+.rotate-banner-box{
+  margin-top:0;
+}
+.handle-btn{
+  display: block;
+  box-sizing: border-box;
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  @include remCalc(padding,0 45);
+  background-color: rgba(51,51,51,.98);
+  color: $white;
+  text-align: center;
+  @include fontDpr(12px);
+}
+.insert-btn{
+  border-radius: 2px;
+  position: absolute;
+  @include remCalc(right,-30);
+  @include remCalc(top,-25);
+  z-index: 110;
+}
+.insert-box{
+  position: relative;
+  @include remCalc(height,30);
+}
+.model-btns{
+  position: absolute;
+  z-index: 110;
+  @include remCalc(left,15);
+  @include remCalc(top,15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.model-btns button{
+  display: inline-block;
+  position: relative;
+  @include remCalc(min-width,120);
+  @include remCalc(padding,0 15);
+  float: left;
+}
+.model-btns :not(:first-child)::after{
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left: 0;
+  width: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-left: 1px solid #000;
+  z-index: 1;
+}
+.banner-box{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+.sub-btn{
+  display: block;
+  position: fixed;
+  width: 100%;
+  @include remCalc(height,90);
+  @include remCalc(line-height,90);
+  text-align: center;
+  @include fontDpr(16px);
+  color: $base-color;
+  background-color: rgba(255,255,255,.98);
+  bottom: 0;
+  left: 0;
+  z-index: 200;
+}
+.two-list-box{
+  background-color: $white;
+}
+.static-banner li:not(:first-child){
+  @include remCalc(margin-top,45);
+}
+.one-item-box .items-list li a{
+  @include remCalc(padding,30 30 0);
+}
+.one-item-icon{
+  @include remCalc(left,43);
+  @include remCalc(top,74);
+}
+.one-item-box{
+  background-color: $white;
+}
+.item-title{
+  @include remCalc(padding-top,20);
+}
+/*商品展示列*/
+.check-btn, .checked-btn{
+  @include fontDpr(18px);
+  @include remCalc(margin-right,20);
+  vertical-align: middle;
+}
+.checked-btn{
+  color: $base-color;
+}
+//更换
+.change-skin-warp{
+  box-sizing: border-box;
+  @include remCalc(padding,15 30 0);
+  color:$info-color;
+  background-color: $white;
+}
+.change-skin-warp div{
+  box-sizing: border-box;
+  @include remCalc(height,65);
+  @include remCalc(line-height,65);
+  border-bottom: 1px solid $border-color;
+}
+.change-skin-warp button{
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  border:1px solid $info-color;
+  text-align: center;
+  display: inline-block;
+  @include remCalc(padding,0 12);
+  border-radius: 2px;
+}
+.change-skin-warp p{
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  @include remCalc(margin-right,180);
+}
+.item-default-title{
+  @include remCalc(padding-top,30);
+}

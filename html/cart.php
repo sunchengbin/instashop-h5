@@ -9,33 +9,16 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
-    <?=STATIC_DNS?>
-    <?=STATIC_ICO_CSS?>
-    <?=STATIC_FONT_CSS?>
-    <?php
-        if(isDebug()){
-            echo '<link href="'.STATIC_HOST.'/css/app/cart.css?v=1491992317060" rel="stylesheet"/>';
-        }else{
-            echo '<link href="'.STATIC_HOST.'/css/dist/app/cart.css?v=1491992317060" rel="stylesheet"/>';
-        }
-     ?>
-     <script>
-         var user_info = <?php echo json_encode($_POST); ?>;
-     </script>
+    <?=initPhpCss('cart')?>
+    <script>
+        var user_info = <?php echo json_encode($_POST); ?>;
+    </script>
+
     <title>Keranjangku</title>
 </head>
 <body data-spider="a5fivmur">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <!--<script src="<?=STATIC_HOST?>/js/dist/app/cartindex.js?v=1491992317060"></script>-->
-    <?php
-        if(isDebug()){
-            echo '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script>';
-            echo '<script src="'.STATIC_HOST.'/js/app/cartindex.js?v=1491992317060"></script>';
-        }else{
-            echo '<script src="'.STATIC_HOST.'/js/dist/app/cartindex.js?v=1491992317060"></script>';
-        }
-     ?>
+    <?=initPhpJs('cartindex')?>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

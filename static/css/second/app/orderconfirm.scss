@@ -1,0 +1,210 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/app/common/common.scss";
+@import "../moudle/app/item/item.scss";
+@import "../moudle/ui/dialog/dialog.scss";
+@import "../moudle/app/logistics/logistics.scss";
+@import "../moudle/app/reduc/reduc.scss";
+@import "../moudle/app/favorable/favorable.scss";
+@import "../moudle/app/agreeinfo/agreeinfo.scss";
+body{
+  background-color: #f5f5f5;
+}
+.address-box,.logistics-box,.list-box{
+  @include remCalc(padding,0 30);
+  background-color: $white;
+  @include remCalc(margin-bottom,30);
+  color: $info-color;
+}
+.user-info{
+  @include fontDpr(14px);
+  color: $gray-color;
+  @include remCalc(padding-right,30);
+}
+.user-info i{
+  color: $base-btn-color;
+  @include fontDpr(14px);
+  @include remCalc(margin-right,5);
+}
+.user-info i.icon-phone-font{
+  @include fontDpr(14px);
+}
+.user-info span.fr{
+  color: $base-btn-color;
+}
+.user-info span.fl{
+  color: $txt-color;
+}
+.address-box{
+  @include remCalc(padding,30);
+  position: relative;
+}
+.address-box:after{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  content:' ';
+  height: 2px;
+  width: 100%;
+  background: url(../../../../images/app/divider.png) repeat center center;
+}
+
+.address-info{
+  @include remCalc(margin,0 100 0 30);
+  @include fontDpr(14px);
+  word-break:break-all;
+  color: $gray-color;
+  line-height: 2;
+}
+.user-address-info{
+  color: $gray-color;
+}
+.cart-item:last-child::after{
+  border-bottom: none;
+}
+.user-address-info i,.logistics-box i,.cart-item i{
+  //font-size: 14px;
+  @include fontDpr(14px);
+  color: $gray-color;
+}
+.user-address-info i{
+  @include remCalc(margin-top,30);
+}
+.cart-item i{
+  width: auto;
+}
+.logistics-box{
+  @include fontDpr(14px);
+  @include remCalc(height,95);
+  @include remCalc(line-height,95);
+  @include remCalc(padding,0 30);
+}
+.logistics-box div{
+  @include fontDpr(16px);
+  //font-size: 16px;
+  display: inline-block;
+  @include remCalc(height,95);
+}
+.logistics-box span{
+  margin-right: .5rem;
+  font-size: 14px;
+  display: inline-block;
+  @include remCalc(height,95);
+  color: $txt-color;
+  max-width: 85px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.order-info{
+  @include remCalc(padding-bottom,30);
+}
+.order-info p{
+  @include fontDpr(14px);
+  @include remCalc(padding-top,30);
+}
+.order-info p span{
+  color: $base-btn-color;
+}
+.list-box{
+  @include remCalc(padding-bottom,30);
+  margin-bottom:0;
+}
+.shop-info{
+  @include remCalc(padding,20 0);
+  position: relative;
+}
+.shop-info::after{
+  position: absolute;
+  left:-50%;
+  right: -50%;
+  bottom:0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+}
+.shop-info img{
+  @include remCalc(width,72);
+  @include remCalc(height,72);
+  border-radius: 50%;
+  float:left;
+}
+.shop-info p{
+  @include remCalc(margin-left,90);
+  @include remCalc(height,72);
+  @include remCalc(line-height,72);
+  @include fontDpr(14px);
+  color: $info-color;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.empty-cart{
+  text-align: center;
+  @include remCalc(padding,30);
+  @include fontDpr(14px);
+  color: $gray-color;
+  @include remCalc(height,90);
+  @include remCalc(line-height,90);
+}
+.buyer-note-p{
+  position: relative;
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
+  @include fontDpr(14px);
+  overflow: hidden;
+}
+.buyer-note-p::before{
+  position: absolute;
+  left:-50%;
+  right: -50%;
+  top:0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+}
+.buyer-note-p::after{
+  position: absolute;
+  left:-50%;
+  right: -50%;
+  bottom:0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+}
+.buyer-note-p span{
+  position: absolute;
+  display: inline-block;
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
+  left: 0;
+  top:0;
+}
+.buyer-note-p input{
+  display: -webkit-box;
+  width: 100%;
+  @include remCalc(padding,30 0 30 180);
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
+  @include fontDpr(12px);
+}
+
+.disable-btn{
+  width: 100%;
+}
+.logistics-list li i{
+  color: $disable-color;
+}
+.logistics-list li i.checked-btn{
+  color: $base-btn-color;
+}
+.reduc-info p{
+  color: $info-color;
+}

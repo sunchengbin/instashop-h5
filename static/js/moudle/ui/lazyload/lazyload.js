@@ -59,7 +59,7 @@ define(function() {
             var pos = imageEl.getBoundingClientRect(),
                 _this = this;
 
-            if ((pos['top'] > 0 && window['innerHeight'] * 2 - pos['top'] > 0) || (pos['top'] <= 0 && pos['bottom'] >= 0)) {
+            if ((pos['top'] > 0 && window['innerHeight']+100 - pos['top'] > 0) || (pos['top'] <= 0 && pos['bottom'] >= 0)) {
                 _this.imageReplace(imageEl);
             } else {
                 return;

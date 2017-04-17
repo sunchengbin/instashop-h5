@@ -1,0 +1,105 @@
+//店铺详情
+.shopinfo-card {
+  background: $white;
+  box-sizing: border-box;
+}
+
+.shopinfo-card-allp {
+  @include remCalc(padding,30);
+}
+
+.shopinfo-card-header {
+  @include remCalc(padding,20 0 10);
+  width: 100%;
+  @include fontDpr(14px);
+  color: $info-color;
+}
+
+.shopinfo-base p {
+  color: $gray-color;
+  @include fontDpr(12px);
+  line-height: 2;
+}
+.shopinfo-base p a {
+  color: $base-color;
+}
+.shopinfo-base p i{
+  @include fontDpr(12px);
+  @include remCalc(margin,0 10);
+}
+.ins-typo {
+  position:relative;
+  height: 1px;
+  @include remCalc(margin,30 0 0);
+}
+.ins-typo::after{
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  height: 1px;
+  bottom:1px;
+  left:-50%;
+  right:-50%;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-top: 1px solid $border-color;
+  z-index: 100;
+}
+.shopinfo-map-content iframe {
+  width:100%;
+  @include remCalc(height,400);
+  background:$border-color;
+}
+
+.shopinfo-note .shopinfo-map-content {
+  background: #F8F8F8;
+}
+.shopinfo-note p:first-child {
+  @include remCalc(padding,20);
+  color:$txt-color;
+}
+.shopinfo-note p:last-child {
+  color:$gray-color;
+  word-wrap: break-word;
+  @include fontDpr(14px);
+}
+.shopinfo-map .shopinfo-card-header i {
+  color: $base-color;
+}
+.shopinfo-store-banner li{
+  @include remCalc(padding,8);
+  box-sizing: border-box;
+}
+.shopinfo-store-banner img{
+  @include remCalc(max-height,270);
+}
+.shopinfo-banner-box ul > li {
+  float:left;
+}
+.shopinfo-note{
+  @include remCalc(padding-top,30);
+  position: relative;
+}
+.shopinfo-note::before {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  top: -1px;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid #d8d8d8;
+  z-index: 1;
+}
+.shopinfo-banner-box{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+  @include remCalc(padding-bottom,36);
+}
+.all-items-wrap{
+  @include remCalc(margin-top,36);
+}

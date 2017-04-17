@@ -1,0 +1,156 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/app/common/common.scss";
+@import "../moudle/ui/dialog/dialog.scss";
+@import "../moudle/app/sharecoupon/sharecoupon.scss";
+.coupon-info{
+  //padding:1rem;
+  @include remCalc(padding,30 25);
+  color: $white;
+  background-color:$base-btn-color;
+}
+.shop-info img{
+  @include remCalc(width,130);
+  @include remCalc(height,130);
+  //width: 6rem;
+  //height: 6rem;
+  border-radius: 50%;
+}
+.shop-img{
+  @include remCalc(border,5 solid $white);
+  //border: .2rem solid $white;
+  border-radius: 50%;
+  float: left;
+  @include remCalc(width,130);
+  @include remCalc(height,130);
+  overflow: hidden;
+}
+.shop-info p{
+  @include fontDpr(16px);
+  //font-size: 16px;
+  color: $white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @include remCalc(height,130);
+  @include remCalc(line-height,130);
+  @include remCalc(margin-left,160);
+}
+.coupon-info-box{
+  @include fontDpr(14px);
+  background: rgba(255,255,255,0.3);
+  @include remCalc(padding,15 25);
+  @include remCalc(border-radius,50);
+  @include remCalc(margin-top,30);
+  position: relative;
+}
+.coupon-info-box::after{
+  content: ' ';
+  position: absolute;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  @include remCalc(border,15 solid);
+  border-color: $base-btn-color $base-btn-color $base-bg-color $base-btn-color;
+  @include remCalc(top,-28);
+  @include remCalc(left,50);
+}
+.coupon-box{
+  @include remCalc(padding,20 40);
+}
+.coupon-box-wraper{
+  background: url(../../../../images/first/coupon-card.png) no-repeat center;
+  background-size: contain;
+  @include remCalc(width,578);
+  @include remCalc(height,200);
+  margin:0 auto;
+}
+.coupon-box-left{
+  width: 62%;
+  float:left;
+  text-align: center;
+}
+.coupon-box-right{
+  margin-left: 62%;
+  @include remCalc(padding-top,60);
+  text-align: center;
+}
+.coupon-box-right p{
+  @include fontDpr(18px);
+  line-height: 1.1;
+}
+.coupon-box-right p.code-box{
+  font-weight: bolder;
+}
+.price{
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  color: $base-btn-color;
+  @include fontDpr(22px);
+  @include remCalc(margin-top,40);
+}
+.condition{
+  @include fontDpr(12px);
+  color: $i-color;
+  min-height: 20px;
+}
+.use-time{
+  @include fontDpr(12px);
+  color: $txt-color;
+}
+.cart-explain{
+  text-align: center;
+  @include fontDpr(14px);
+}
+.coupon-operate{
+  text-align: center;
+  border-bottom: dashed 1px $border-color;
+}
+.coupon-operate p{
+  @include fontDpr(18px);
+  color:$txt-color;
+  @include remCalc(margin-top,60);
+}
+.coupon-operate a{
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  width: 70%;
+  @include fontDpr(16px);
+  color: $white;
+  @include remCalc(margin,30 auto);
+  border-radius: 2px;
+}
+.go-home{
+  background-color: $btn-color;
+}
+.coupon-operate a.go-homeed{
+  background-color: $btn-color;
+}
+.share-coupon{
+  background-color: $base-btn-color;
+}
+.coupon-introduce{
+  @include remCalc(padding,5 30);
+}
+.coupon-introduce p{
+  @include fontDpr(16px);
+  color: $gray-color;
+  text-align: center;
+}
+.coupon-introduce ul{
+  @include fontDpr(14px);
+  color: $txt-color;
+  @include remCalc(margin-top,15);
+}
+.coupon-introduce li div:first-child{
+  float:left;
+}
+.coupon-introduce li div:last-child{
+  @include remCalc(margin-left,45);
+}
+.past-explain{
+  @include remCalc(padding,30 30 0);
+  color: $txt-color;
+  @include fontDpr(14px);
+  text-align: center;
+}

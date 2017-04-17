@@ -1,0 +1,95 @@
+//首页分类侧滑栏目
+.sort-list-wraper{
+  position: fixed;
+  z-index: 210;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 30%;
+  @include remCalc(padding,60 0 0 30);
+  //padding: 2rem 0 0 1rem;
+  overflow-x:hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling : touch;
+  background-color: $white;
+}
+.sort-list-wraper > p{
+  @include fontDpr(18px);
+  color: $black-color;
+}
+.sort-list-wraper > ul{
+  @include remCalc(padding-left,30);
+  //padding-left:1rem;
+}
+.sort-list-wraper > ul li{
+  @include fontDpr(14px);
+  //font-size: 14px;
+  color: $gray-color;
+  @include remCalc(height,100);
+  @include remCalc(line-height,100);
+  //height: 5rem;
+  //line-height: 5rem;
+  position: relative;
+}
+.sort-list-wraper a{
+  display: block;
+  color: $gray-color;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @include remCalc(padding-right,30);
+  //padding-right:1rem;
+}
+.sort-list-wraper > ul li::after{
+  position: absolute;
+  left:-50%;
+  right: -50%;
+  bottom:0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  transform: scale(0.5);
+  border-top: 1px solid #d8d8d8;
+}
+.sort-list-wraper > ul li:last-child::after{
+  border:none;
+}
+.sort-list-wraper li span{
+  display: inline-block;
+  @include remCalc(width,15);
+  @include remCalc(height,15);
+  //width: .5rem;
+  //height: .5rem;
+  border-radius: 50%;
+  background-color: #d8d8d8;
+  //margin-right: .5rem;
+  @include remCalc(margin-right,15);
+  vertical-align: middle;
+}
+.sort-list-cover{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 209;
+  background: rgba(0,0,0,.8);
+}
+.sort-list-cover i{
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  color: #999;
+  @include fontDpr(30px);
+  //font-size: 3rem;
+  margin-top: -15px;
+  transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -webkit-transform: rotate(-180deg);
+}
+.sort-list-wraper,.sort-list-cover{
+  transform: translate3d(-100%,0,0);
+  -moz-transform: translate3d(-100%,0,0);
+  -webkit-transform: translate3d(-100%,0,0);
+}

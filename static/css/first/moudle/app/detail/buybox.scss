@@ -1,0 +1,55 @@
+.buy-box{
+  position: fixed;
+  bottom:0;
+  left: 0;
+  width: 100%;
+  @include remCalc(height,90);
+  background-color: $white;
+  z-index: 100;
+}
+.ser-box{
+  width: 20%;
+  @include remCalc(height,90);
+  text-align: center;
+  position: relative;
+}
+.ser-box i{
+  @include fontDpr(22px);
+  color: $contact-color;
+}
+.ser-box p{
+  @include fontDpr(14px);
+  color: $gray-color;
+  @include remCalc(margin-top,-20);
+}
+.ser-icon{
+  @include fontDpr(22px);
+}
+.buy-btns a{
+  float:left;
+  display: block;
+  width: 50%;
+  @include remCalc(height,90);
+  @include remCalc(line-height,90);
+  text-align: center;
+  @include fontDpr(14px);
+  color: $white;
+}
+.have-contact a{
+  width: 40%;
+}
+.no-buy a{
+  width: 80%;
+}
+.buy-btns a.disable-addnow{
+  background-color: $border-color;
+}
+.buy-btns a.disable-buynow{
+  background-color: $disable-color;
+}
+.add-cart{
+  background-color: $add-buy-color;
+}
+.buy-now{
+  background-color: $base-color;
+}

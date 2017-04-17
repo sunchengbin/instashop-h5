@@ -1,0 +1,58 @@
+//首页底部导航
+.index-footer{
+  position: fixed;
+  @include remCalc(height,100);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: $base-color;
+  z-index: 200;
+}
+.index-footer ul{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.index-footer ul li{
+  width: 0;
+  height: auto;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 1;
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+  @include remCalc(height,100);
+  @include remCalc(line-height,100);
+  box-sizing: border-box;
+  text-align: center;
+  @include fontDpr(12px);
+  color: #fff;
+}
+.index-footer ul li i{
+  @include fontDpr(16px);
+  vertical-align: middle;
+}
+.index-footer ul li a{
+  color: $footer-color;
+}
+.index-footer ul li::before,.index-footer ul::before{
+  border-color: $footer-border-color;
+}
+.index-footer .cart-num {
+  position: absolute;
+  display: inline-block;
+  @include remCalc(height,30);
+  @include remCalc(line-height,30);
+  @include remCalc(width,30);
+  border-radius: 50%;
+  text-align: center;
+  background-color: $footer-num-bg;
+  color: $footer-num-color;
+  left: 50%;
+  @include remCalc(margin-left,-25);
+  @include remCalc(top,15);
+  @include fontDpr(12px);
+}

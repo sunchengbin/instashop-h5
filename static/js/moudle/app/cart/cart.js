@@ -289,7 +289,7 @@ define(['base', 'lang', 'dialog', 'debug'], function (Base, Lang, Dialog, Debug)
                 $('.j_cart_animate').remove();
                 if (!$('.j_cart_animate').length) {
                     //$('body').append('<div class="j_cart_animate" style="border-radius:50%;position:fixed;left:1rem;bottom:'+_b_h+'px;width:10px;height:10px;z-index:'+Base.others.zIndex+';background-color:#FD623C;"></div>');
-                    $('body').append('<img class="j_cart_animate" style="width:6rem;height:6rem;position:fixed;left:1rem;bottom:' + _b_h + 'px;z-index:' + Base.others.zIndex + ';" src="' + itemimg + '"/>');
+                    $('body').append('<img class="j_cart_animate" style="border-radius:50%;width:3rem;height:3rem;position:fixed;left:.5rem;bottom:' + _b_h + 'px;z-index:' + Base.others.zIndex + ';" src="' + itemimg + '"/>');
                 }
                 setTimeout(function () {
                     var _ca = document.querySelector('.j_cart_animate');

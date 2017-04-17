@@ -1,0 +1,51 @@
+//首页小展示模块样式
+.tab-content .tabpanel:first-child > div,.tab-content .tabpanel:last-child > div{
+  @include remCalc(padding,0 30);
+}
+/*产品展示列表*/
+.list-box{
+  width: 100%;
+  overflow-x: hidden;
+}
+.items-box{
+  @include remCalc(margin-top,30);
+}
+/*店铺被禁*/
+.shop-delete{
+  @include remCalc(padding,120 0 200);
+  //padding: 4rem 0 30rem;
+  text-align: center;
+  @include fontDpr(14px);
+  //font-size: 14px;
+}
+.shop-delete i{
+  font-size: 5rem;
+  color: $btn-disable-color;
+}
+//没有商品
+.no_item{
+  @include remCalc(padding,150 30 150);
+  text-align: center;
+  @include fontDpr(16px);
+}
+//搜索
+.search-box{
+  @include remCalc(width,100);
+  @include remCalc(height,100);
+  @include remCalc(line-height,100);
+  position: absolute;
+  right: 0;
+  @include remCalc(bottom,150);
+  z-index: 200;
+  background-color: rgba(0,0,0,.9);
+  text-align: center;
+  border-radius: 50%;
+}
+.search-btn i{
+  @include fontDpr(24px);
+  color: $white;
+}
+//推荐商品盒子
+.item-list-wraper{
+  @include remCalc(margin-top,14);
+}
