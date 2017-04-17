@@ -1,9 +1,8 @@
 <?php
-    print_r($_REQUEST);
+    $seller_id = $_REQUEST['seller_id'];
     include_once( dirname(__FILE__).'/../html/router/common.php');
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     include_once( dirname(__FILE__).'/../html/router/base.php');
-    print_r($_REQUEST);
     $skin = getUrlParam('skin');
     $smarty = smartyCommon($skin);
     /*获取model页面的数据*/
@@ -16,18 +15,6 @@
     $smarty->assign('INDEX_DATA',$json);
     $smarty->assign('INDEX_DATA_STR',$ret);
 
-    $seller_id = $_REQUEST['seller_id'];
-    print_r($_REQUEST);
-    exit;
-    if (!$seller_id) {
-        $ss = split('\/', $_SERVER['REQUEST_URI']);
-        if(split('\?', $_SERVER['REQUEST_URI']).length > 0){
-            $si = split('\?',end($ss))[0];
-            $seller_id = $si;
-        }else{
-            $seller_id = end($ss);
-        }
-    }
     $path_shop_info = 'v1/shops/'.$seller_id;
     $paramsForShopInfo = [
         'action' => 'index_shopinfo',
