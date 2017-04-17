@@ -357,7 +357,8 @@
   margin-top: 0px!important;
 }
 .ins-m-t-2 {
-  margin-top: 1rem;
+  @include remCalc(margin-top,30);
+  //margin-top: 1rem;
 }
 
 .ins-text-left {
