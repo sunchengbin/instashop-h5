@@ -28,6 +28,7 @@ require.config({
         fastclick:"moudle/ui/fastclick/fastclick",
         viewer:"moudle/ui/viewer/viewer",
         sharecoupon:"moudle/app/sharecoupon/sharecoupon",
+        uploadimg:"moudle/app/uploadimg/uploadimg",
         //h5配置
         config:'moudle/config/config',
         //数据存储js

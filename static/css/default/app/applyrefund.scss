@@ -1,0 +1,78 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/ui/dialog/dialog.scss";
+@import "../moudle/app/common/common.scss";
+@import "../moudle/app/address/address.scss";
+@import "../moudle/app/uploadimg/uploadimg.scss";
+html{
+  height: 100%;
+}
+body{
+  background-color: #F5F5F5;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  max-width: none;
+}
+body .address-list{
+  max-width: none;
+}
+.address-wraper{
+  height: 100%;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.form-box{
+  background-color: #fff;
+  @include remCalc(padding-bottom,30);
+}
+.form-li > div{
+  width: 50%;
+  box-sizing: border-box;
+  float: left;
+  @include remCalc(padding,10 30 10 0);
+  @include remCalc(height,100);
+  @include remCalc(line-height,100);
+}
+.form-li > div input{
+  width: 100%;
+  @include remCalc(height,80);
+  @include remCalc(padding,15);
+  background-color: #f5f5f5;
+}
+.submit-btn{
+  width: 80%;
+  @include remCalc(margin,30 auto 0);
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+}
+.g-color{
+  color: $gray-color;
+  text-align: right;
+}
+/*申请退款步骤*/
+.step-one,.step-two{
+  @include remCalc(padding,0 30);
+}
+h2{
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+}
+.refund-price,.refund-cause{
+  border:1px solid $border-color;
+}
+.refund-price{
+  width: 100%;
+  background-color: $white;
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  @include remCalc(padding,20);
+}
+.refund-cause{
+  resize: none;
+  background-color: $white;
+  width: 100%;
+  @include remCalc(padding,20);
+  @include remCalc(height,300);
+}

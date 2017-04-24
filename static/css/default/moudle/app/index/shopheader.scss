@@ -1,0 +1,36 @@
+//首页店招
+.shop-header{
+  position: relative;
+  @include remCalc(min-height,100);
+}
+.shop-info-wrap{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top:0;
+  bottom: 0;
+  text-align: center;
+}
+.shop-img{
+  display: inline-block;
+  border:solid #fff;
+  @include remCalc(border-width,5);
+  border-radius: 50%;
+  @include remCalc(width,130);
+  overflow: hidden;
+}
+.shop-seller-info p{
+  @include remCalc(height,55);
+  @include remCalc(line-height,55);
+  @include remCalc(padding,0 50);
+  @include fontDpr(16px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color:#fff;
+}
+.shop-seller-info p.seller-sign{
+  @include fontDpr(12px);
+  height: auto;
+  line-height: inherit;
+}

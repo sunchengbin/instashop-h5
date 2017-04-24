@@ -29,6 +29,7 @@
         "fastclick":"moudle/ui/fastclick/fastclick",
         "viewer":"moudle/ui/viewer/viewer",
         "sharecoupon":"moudle/app/sharecoupon/sharecoupon",
+        "uploadimg":"moudle/app/uploadimg/uploadimg",
         "jsbn":"moudle/decode/jsbn",
         "xxtea":"moudle/decode/xxtea",
         "rsa":"moudle/decode/rsa",
