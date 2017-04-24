@@ -53,11 +53,9 @@ function curl_post($url,$data)
     }
     return $result;
 }
-if (strpos($_SERVER['HTTP_HOST'],'-test.')!==false || strpos($_SERVER['HTTP_HOST'],'.test.')!==false || strpos($_SERVER['HTTP_HOST'], 'localhost')!==false){
-    $host = 'https://apip-test.instashop.co.id/instashop/';   // 测试
-}else{
-    $host = 'https://apip.instashop.co.id/instashop/';
-}
+
+$host_ext = C_RUNTIME_ONLINE ? (ENV == 'AWS' ? '-aws' : '') : (ENV == 'AWS' ? '-testaws' : '-test');
+$host = 'https://apip'.$host_ext.'.instashop.co.id/instashop/';
 
 $api = trim($_GET['_path_'],' /');
 
