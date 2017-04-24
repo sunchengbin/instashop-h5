@@ -52,7 +52,7 @@ body .address-list{
   text-align: right;
 }
 /*申请退款步骤*/
-.step-one,.step-two{
+.step-one{
   @include remCalc(padding,0 30);
 }
 h2{
@@ -75,4 +75,77 @@ h2{
   width: 100%;
   @include remCalc(padding,20);
   @include remCalc(height,300);
+}
+.refund-explain{
+  @include remCalc(padding,20 0);
+  text-align: right;
+  color: $explain-color;
+}
+.refund-explain a{
+  color: $explain-color;
+}
+.refund-img-box{
+  @include remCalc(margin-bottom,50);
+}
+.refund-img-box li{
+  float: left;
+  @include remCalc(width,150);
+  @include remCalc(height,150);
+  @include remCalc(line-height,150);
+  @include remCalc(margin-right,30);
+  border:1px dashed $border-color;
+  text-align: center;
+}
+.refund-img-box li i{
+  @include fontDpr(30px);
+}
+.hide{
+  display: none;
+}
+// 第二步
+.form-box{
+  background-color: transparent;
+}
+.form-li{
+  @include remCalc(padding,0 30);
+  position: relative;
+  background-color: $white;
+}
+.form-li::before{
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: 0;
+  height: 1px;
+  content: '';
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom: 1px solid $border-color;
+  z-index: 1;
+}
+.form-li>div{
+  @include remCalc(padding,0 30 0 0);
+  text-align: left;
+  position: relative;
+}
+.form-li>div input{
+  background-color:transparent;
+  padding:0;
+}
+.form-li i{
+  position: absolute;
+  right:0;
+  top:0;
+}
+.form-li span{
+  position: absolute;
+  left:0;
+  top:0;
+  color: $black-color;
+}
+.form-li>div.tel-ipt-box{
+  @include remCalc(padding,0 0 0 60);
+}
+.step-two-explain{
+  @include remCalc(padding,25 30);
 }

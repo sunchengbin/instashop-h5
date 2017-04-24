@@ -94,9 +94,7 @@ define(['md5','config'],function(SparkMD5,Config){
         createUpLoad : function(){
             var _htm = '';
             _htm+='<div class="upload-img-box"><form id="upload-img" action="" enctype="multipart/form-data" method="post" target="resultHandlerIframe">';
-            _htm+='<a class="icon-picture iconfont icon-upimg-font" href="javascript:;">';
             _htm+='<input type="file" accept="image/*" name="upload_img_ipt">';
-            _htm+='</a>';
             _htm+='</form>';
             _htm+='<iframe src="" name="resultHandlerIframe" class="iframe"></iframe></div>';
             return _htm;

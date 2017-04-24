@@ -303,20 +303,24 @@ function initPhpJs($js_name){
         return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1492599527462"></script>';
     }
 }
-function initPhpCss($css_name){
-    if(TEMP_FOLDER){
+function initPhpCss($css_name,$folder){
+    $folder_name = TEMP_FOLDER;
+    if($folder && $folder_name == ''){
+        $folder_name = $folder.'/';
+    }
+    if($folder_name){
         $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS.'<script>'.FLEXIBLE.'</script>';
     }else{
         $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS;
     }
     if(isDebug()){
         if(TEMP_FOLDER){
-            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
+            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
         }else{
             return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
         }
     }else{
-        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
+        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
     }
 }
 
