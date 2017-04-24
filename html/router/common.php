@@ -14,6 +14,11 @@ if(file_exists(C_RUNTIME_FILE_PATH.'/.iamonline')){
 	$is_online = true;
 }
 define('C_RUNTIME_ONLINE', $is_online);
+if (file_exists(C_RUNTIME_FILE_PATH.'/.iamaws')) {
+		define('ENV', 'AWS');
+} else {
+		define('ENV', 'HK');
+}
 
 define('LOG_ROOT', '/data/logs/' . MODE_NAME);
 define('COM_LIB_PATH', BASE_PATH . '/libs');
@@ -264,9 +269,11 @@ function getSkinInfo(){
 function setStaticConfig(){
     $prompt = is_https() ? 'https:' : 'http:';
     $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
-    $static_host = C_RUNTIME_ONLINE ? $prompt.'//static.instashop.co.id' : $prompt.'//static-test.instashop.co.id';
-    $static_ico_css =C_RUNTIME_ONLINE?getIco($prompt.'//m.instashop.co.id'):getIco($prompt.'//m-test.instashop.co.id');
-    $host_url =C_RUNTIME_ONLINE?$prompt.'//m.instashop.co.id':$prompt.'//m-test.instashop.co.id';
+	$host_ext = C_RUNTIME_ONLINE ? (ENV == 'AWS' ? '-aws' : '') : (ENV == 'AWS' ? '-testaws' : '-test');
+
+    $static_host = $prompt.'//static'.$host_ext.'.instashop.co.id';
+    $static_ico_css = getIco($prompt.'//m'.$host_ext.'.instashop.co.id');
+    $host_url = $prompt.'//m'.$host_ext.'.instashop.co.id';
     $static_dns = '<meta name="spider-id" content="orju7v"><link rel="dns-prefetch" href="//static.instashop.co.id"><link rel="dns-prefetch" href="//imghk0.geilicdn.com">';
     $bi_js = biJs();
     $static_font_css = setStaticFontCss();
