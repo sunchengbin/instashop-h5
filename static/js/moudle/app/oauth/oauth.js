@@ -11,6 +11,9 @@ define([
 ], function (Base, Config, Ajax, Cache, Dialog, Lang) {
     'use strict';
     var Oauth = {
+        checkIsNeedLogin:function(shopData){
+            return shopData.buyer_login_flag||0;
+        },
         login: function (type) {
             var _reqData = {
                 url: location.href,

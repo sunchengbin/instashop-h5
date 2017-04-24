@@ -10,12 +10,12 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <meta name="format-detection" content="telephone=no" />
-    <?=initPhpCss('ordersuccess')?>
+    <?=initPhpCss('warrantsuccess')?>
     <title>Informasi Pembayaran</title>
 </head>
 <body data-spider="de4cti31">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <?=initPhpJs('ordersuccess')?>
+    <?=initPhpJs('warrantsuccess')?>
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

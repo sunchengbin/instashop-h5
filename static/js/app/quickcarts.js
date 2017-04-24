@@ -52,18 +52,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             })();
             //页面初始化
             _this.initLocalStorage(_address);
-            //var _hb_opts = {
-            //    carts: init_data.carts,
-            //    shop: init_data.shop,
-            //    address: _address,
-            //    name: '',
-            //    telephone: '',
-            //    host: Config.host,
-            //    lang: Lang
-            //};
-            //var _htm = Hbs.compile(QuickCarts)(_hb_opts);
-            //$('.j_php_loding').remove();
-            //$('body').prepend(_htm);
+
             if (_this['province']) {
                 _this.getLogistics();
             }
@@ -113,7 +102,6 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                     });
                 }
             }
-
         },
         initLocalStorage: function (address) { //根据本地地址数据自动填写用户信息
             address.name && $('.j_name').val(address.name);

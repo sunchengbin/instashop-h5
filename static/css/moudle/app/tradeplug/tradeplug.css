@@ -1,0 +1,120 @@
+/*选择交易类型样式*/
+
+.trade-plug {
+    margin-bottom: 1.2rem;
+}
+
+.trade-tip {
+    text-align: right;
+    padding: 0 1rem;
+    height: 3rem;
+    line-height: 3rem;
+    color: #4990E2;
+}
+
+.trade-box {
+    background: #ffffff;
+}
+
+.trade-box-title {
+    position: relative;
+    width: 100%;
+    height: 4.5rem;
+    padding: 0 1rem;
+    line-height: 4.5rem;
+    color: #999999;
+    font-size: 14px;
+}
+
+.divide {
+    width: 100%;
+    height: 1px;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.trade-items {
+    padding: 0 1rem;
+}
+
+.trade-item {
+    width: 100%;
+    height: 4.4rem;
+    line-height: 4.4rem;
+    color: #666666;
+}
+
+.checkbox-warp {
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 1px solid #cccccc;
+    border-radius: 100%;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    /*transition: all .5s;*/
+    margin-right: 0.75rem;
+}
+
+.checkbox-warp:after {
+    content: '\00a0';
+    display: inline-block;
+    border: 2px solid #fff;
+    border-top-width: 0;
+    border-right-width: 0;
+    width: 0.7rem;
+    height: 0.425rem;
+    transform: rotate(-50deg);
+    -webkit-transform: rotate(-50deg);
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    /*transition: all .5s*/
+}
+.checkbox-disabled {
+    color: #D1D1D1;
+}
+.checkbox-disabled .checkbox-warp {
+    background: #FAFAFA;
+    border: 1px solid #ECECEC;
+}
+.checkbox-warp.disable {
+    background: #f8f8f8;
+    border-color: #dcdcdc
+}
+
+.checkbox-warp.disable:after {
+    border-color: #dcdcdc
+}
+
+.checkbox-warp.active {
+    border-color: #43CB9C;
+    background: #43CB9C;
+}
+
+.checkbox-warp.active:after {
+    border-color: #ffffff;
+}
+
+.checkbox-div-inline {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.checkbox-div-inline .checkbox-warp {
+    margin-top: 0px!important;
+}
+
+.checkbox-warp input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 99;
+    margin-left: 0!important;
+}

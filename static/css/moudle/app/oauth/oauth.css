@@ -1,0 +1,24 @@
+.j_dialog_login_line,
+.j_dialog_login_facebook,
+.j_cart_no_login {
+    width: 90%;
+    height: 3.6rem;
+    line-height: 3.6rem;
+    border-radius: 2px;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.j_cart_no_login {
+    background: #43CB9B
+}
+
+.j_dialog_login_line {
+    background: #00B900;
+}
+
+.j_dialog_login_facebook {
+    background: #3B589C;
+}

@@ -1,0 +1,32 @@
+{{!--选择支付类型--}}
+<div class="trade-plug">
+    <div class="trade-box j_sel_payment clearfix">
+        <div class="trade-box-title">
+            {{lang.SELECT_TRADE_TIP}}
+        </div>
+        <div class="divide"></div>
+        <div class="trade-items">
+            <div class="trade-item">
+                {{!--添加class checkbox-disabled 表示禁用--}}
+                <div class="checkbox-div j_trade_sel" data-tradetype="1">
+                    <div class="checkbox-warp">
+                        <div class="checkbox"></div>
+                    </div>
+                    直接到账
+                </div>
+            </div>
+            <div class="divide"></div>
+            <div class="trade-item">
+                <div class="checkbox-div j_trade_sel" data-tradetype="2">
+                    <div class="checkbox-warp">
+                        <div class="checkbox"></div>
+                    </div>
+                    担保交易
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="trade-tip">
+        两种交易类型有何区别?
+    </div>
+</div>

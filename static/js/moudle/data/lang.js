@@ -237,7 +237,8 @@ define(['base'], function (Base) {
             "BARGAIN_BTN_CLICK_TOSHOP": "去店铺",
             "BARGAIN_BTN_CLICK_IKONW": "我知道了",
             "BARGAIN_LIMIT": "此商品限购1件",
-            "BARGAIN_SHAREPAGE_HEADER_PART": "谢谢大家的鼎力相助，我已经成功以 Rp 120.000 购买了iPhone 7 Plus ！"
+            "BARGAIN_SHAREPAGE_HEADER_PART": "谢谢大家的鼎力相助，我已经成功以 Rp 120.000 购买了iPhone 7 Plus ！",
+            "SELECT_TRADE_TIP":"选择交易类型"
         },
 
         id: {
@@ -598,7 +599,8 @@ define(['base'], function (Base) {
             "BARGAIN_BTN_CLICK_TOSHOP": "Lihat Produk Kami",
             "BARGAIN_BTN_CLICK_IKONW": "Saya Mengerti",
             "BARGAIN_LIMIT": "Maksimal Pembelian 1 Pc",
-            "BARGAIN_SHAREPAGE_HEADER_PART": "Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa beli barang ini dengan harga Rp 100.000!"
+            "BARGAIN_SHAREPAGE_HEADER_PART": "Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa beli barang ini dengan harga Rp 100.000!",
+            "SELECT_TRADE_TIP":"选择交易类型"
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[navigator.language.toLowerCase()] || Lang.id);

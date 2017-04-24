@@ -108,3 +108,9 @@
 .icon-arrow-fill-down:before { content: "\e62d"; }
 
 .icon-share-facebook:before { content: "\e62e"; }
+
+.icon-order:before { content: "\e62f"; }
+
+.icon-warrant-flag:before { content: "\e630"; }
+
+.icon-warrant-complete:before { content: "\e631"; }

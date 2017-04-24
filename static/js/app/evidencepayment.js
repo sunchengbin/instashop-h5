@@ -4,7 +4,7 @@
 /**
  * Created by sunchengbin on 16/6/6.
  */
-require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','common','base'],function(Lang,Hbs,OrderSuccess,Config,Fastclick,Common,Base){
+require(['lang','hbs','text!views/app/evidencepayment.hbs','config','fastclick','common','base'],function(Lang,Hbs,EvidencePayment,Config,Fastclick,Common,Base){
     var I = {
         init : function(){
             var IndexHtm = '<div>'+Lang.H5_LOADING+'</div>';
@@ -42,7 +42,7 @@ require(['lang','hbs','text!views/app/ordersuccess.hbs','config','fastclick','co
                         cancelTime : getUrlPrem('time',location.href)
                     }
                 }
-                IndexHtm= Hbs.compile(OrderSuccess)({
+                IndexHtm= Hbs.compile(EvidencePayment)({
                     totalPrice : totalPrice,
                     shopInfo : OrderInfo.shop_info,
                     banksInfo : banksInfo,
