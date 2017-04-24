@@ -1,0 +1,53 @@
+@import "../base/base.css";
+@import "../moudle/app/header/header.css";
+@import "../moudle/app/common/common.css";
+body{
+    background-color: #ffffff;
+    padding-bottom: 6rem;
+}
+section{
+    padding:1rem;
+    font-size: 14px;
+    background-color: #fff;
+}
+.warrant-box{
+    text-align: center;
+    position: relative;
+    padding-top:.5rem;
+    padding-bottom:.5rem;
+}
+
+
+.warrant-btn {
+    display: block;
+    text-decoration: none;
+    box-sizing: border-box;
+    border: 1px solid #28C669;
+    border-radius: 4px;
+    width:25rem;
+    height: 4rem;
+    line-height: 4rem;
+    font-size:14px;
+    margin:0 auto;
+}
+
+.warrant-btn-order {
+    margin-top:2rem;
+    color:#28C669;
+}
+.warrant-btn-evidence {
+    margin-top:2.7rem;
+    background: #28C669;
+    color:#ffffff;
+}
+
+.warrant-logo i{
+    font-size:7.345rem;
+    color:#28C669;
+}
+.warrant-tip{
+    font-size: 12px;
+    /*font-weight: bold;*/
+    color: #666666;
+    line-height: 1.4;
+}

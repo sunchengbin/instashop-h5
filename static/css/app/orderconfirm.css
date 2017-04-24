@@ -7,6 +7,7 @@
 @import "./reduc.css";
 @import "../moudle/app/favorable/favorable.css";
 @import "../moudle/app/tradeplug/tradeplug.css";
+@import "../moudle/app/oauth/oauth.css";
 
 
 body{
