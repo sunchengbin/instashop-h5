@@ -7,32 +7,21 @@
 define(['base'],function(Base){
     var URL_HTTP_TYPE = location.protocol,
         URL_HOST_NAME = location.hostname,
+        HOST_URL = isAws()?getAwsHostUrl():getHongKongHostUrl(),
         HOST = {//线上环境
             hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
             host : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/',
-            imgUrl : URL_HTTP_TYPE+'//static.instashop.co.id/images',
+            imgUrl : URL_HTTP_TYPE+'//'+HOST_URL.staticHost+'/images',
             hrefUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',
             hrefHost : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html',
-            actionUrl : 'https://apip.instashop.co.id/instashop/',
+            actionUrl : 'https://'+HOST_URL.apipHost+'/instashop/',
+            phpHost : 'http://'+HOST_URL.apiHost+'/instashop/',
             imHost : 'http://218.213.86.206',
-            phpHost : 'http://api.instashop.co.id/instashop/',
             imUserNameHost : 'http://218.213.86.206:2040/',//存储im用户名字
             maphost : 'http://m.instashop.co.id/'//存储im用户名字
-        },
-        TEST_HOST = {//测试环境
-            hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
-            host : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/',
-            imgUrl : URL_HTTP_TYPE+'//static-test.instashop.co.id/images',
-            hrefUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',
-            hrefHost : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html',
-            actionUrl : 'https://apip-test.instashop.co.id/instashop/',
-            imHost : 'http://10.5.15.10:2000',
-            imUserNameHost : 'http://10.5.15.10:2040/',//存储im用户名字
-            phpHost : 'http://api-test.instashop.co.id/instashop/',
-            maphost : 'http://m-test.instashop.co.id/'//存储im用户名字
         };
     var CONFIG = {
-        host : isTestHost(),
+        host : HOST,
         actions : {
             setUserName : 'set_user_memo',//设置app中用户的name
             getUserInfo : 'getUserInfo',//获取用户信息
@@ -64,11 +53,41 @@ define(['base'],function(Base){
             FILTER_TOP:1
         }
     };
-    function isTestHost(){
-        if(/test\.instashop/g.test(URL_HOST_NAME) || /test\./g.test(URL_HOST_NAME)){
-            return TEST_HOST;
+    function isAws(){
+        if(/testaws\./g.test(URL_HOST_NAME) || /\.aws\./g.test(URL_HOST_NAME)){
+            return true;
         }
-        return HOST;
+        return false;
+    }
+    function getHongKongHostUrl(){//香港服务器
+        if(/test\.instashop/g.test(URL_HOST_NAME) || /test\./g.test(URL_HOST_NAME)){
+            //测试环境
+            return {
+                staticHost : 'static-test.instashop.co.id',
+                apipHost : 'apip-test.instashop.co.id',
+                apiHost : 'api-test.instashop.co.id'
+            };
+        }
+        return {
+            staticHost : 'static.instashop.co.id',
+            apipHost : 'apip.instashop.co.id',
+            apiHost : 'api.instashop.co.id'
+        };
+    }
+    function getAwsHostUrl(){
+        if(/testaws\.instashop/g.test(URL_HOST_NAME) || /testaws\./g.test(URL_HOST_NAME)){
+            //测试环境
+            return {
+                staticHost : 'static-testaws.instashop.co.id',
+                apipHost : 'apip-testaws.instashop.co.id',
+                apiHost : 'api-testaws.instashop.co.id'
+            };
+        }
+        return {
+            staticHost : 'staticaws.instashop.co.id',
+            apipHost : 'apipaws.instashop.co.id',
+            apiHost : 'apiaws.instashop.co.id'
+        };
     }
     function setDebugEnv(){
         var Debug = Base.others.getUrlPrem('_debug_env') || localStorage.getItem('DebugEnv');
