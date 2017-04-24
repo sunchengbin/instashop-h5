@@ -50,8 +50,24 @@
             <li class="j_cart_wraper b-right" data-url="{$HOST_NAME}/html/cart.php" spm-auto="去购物车" spm-click="go-cart">
                 <i class="icon iconfont icon-i-shop-font"></i> Troli
             </li>
-            <li data-url="{$HOST_NAME}/html/cart.php" spm-auto="我的订单" spm-click="go-order">
-                <i class="icon iconfont icon-edit-font"></i> 我的订单
+            <li>
+                {if $INDEX_DATA.shop.line_url}
+                    {if $INDEX_DATA.shop.phone}
+                        <a spm-auto="查看联系方式" spm-click="check-contact" class="contact-services j_show_contact" data-type="all" href="javascript:;">
+                            <i class="icon iconfont icon-i-news-font"></i> Kontak
+                        </a>
+                    {else}
+                        <a class="contact-services block j_goto_line" spm-auto="联系卖家line" spm-click="go-line" href="javascript:;">
+                            <i class="icon iconfont icon-i-news-font"></i> Kontak
+                        </a>
+                    {/if}
+                {else}
+                    {if $INDEX_DATA.shop.phone}
+                    <a spm-auto="查看联系方式" spm-click="check-contact" class="contact-services j_show_contact" data-type="tel" href="javascript:;">
+                        <i class="icon iconfont icon-i-news-font"></i> Kontak
+                    </a>
+                    {/if}
+                {/if}
             </li>
         </ul>
     {/if}

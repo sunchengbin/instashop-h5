@@ -57,7 +57,8 @@ require.config({
         "oauth":"moudle/app/oauth/oauth",
         "cache":"moudle/app/cache/cache",
         "sharebargain":"moudle/app/sharebargain/sharebargain",
-        "bargain":"moudle/app/bargain/bargain"
+        "bargain":"moudle/app/bargain/bargain",
+        "tradeplug":"moudle/app/tradeplug/tradeplug"
     },
     packages: []
 });
