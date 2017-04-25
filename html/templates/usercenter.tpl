@@ -17,7 +17,7 @@
                         ljalkdjflakjdflk;ajld;kfja;lkdfjlkadjflkajdlfkjalkdjfl;adflkalkdfkladfkljalkdflkja
                     </div>
                 </div>
-                <p class="clearfix total-price"><i class="icon iconfont fl icon-back-font"></i>Jumlah Total：Rp 290.000</p>
+                <p class="clearfix total-price"><i class="icon iconfont fl icon-warrant-flag"></i>Jumlah Total：Rp 290.000</p>
             </li>
             <li class="order-info">
                 <p class="order-status b-bottom"><span>nsdfns</span>2017.2.13</p>
@@ -28,7 +28,7 @@
                         <img data-img="">
                     </div>
                 </div>
-                <p class="clearfix total-price"><i class="icon iconfont fl icon-back-font"></i>Jumlah Total：Rp 290.000</p>
+                <p class="clearfix total-price"><i class="icon iconfont fl icon-warrant-flag"></i>Jumlah Total：Rp 290.000</p>
             </li>
         </ul>
 

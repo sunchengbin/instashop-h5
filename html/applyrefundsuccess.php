@@ -19,7 +19,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         申请退款
     </nav>
     <section class="content-box">
-        <i class="icon iconfont icon-add-font"></i>
+        <i class="icon iconfont icon-warrant-complete"></i>
         <p>Permintaan pengembalian dana berhasil, harap memperhatikan dekat dengan pengembalian kemajuan</p>
         <div class="btn confirm-btn">下一步</div>
     </section>

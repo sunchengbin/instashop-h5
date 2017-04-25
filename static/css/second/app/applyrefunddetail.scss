@@ -1,0 +1,74 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/app/common/common.scss";
+@import "../base/common/flex.scss";
+body{
+  background-color: $header-bg-color;
+}
+.refund-progress{
+  @include remCalc(padding,30);
+  background-color: $white;
+}
+.progress-step{
+  @include remCalc(min-width,85);
+  position: relative;
+}
+.progress-step span{
+  display: inline-block;
+  text-align: center;
+  @include remCalc(width,60);
+  @include remCalc(height,60);
+  @include remCalc(line-height,60);
+  background-color: $disable-color;
+  border-radius: 50%;
+  color: $white;
+  @include fontDpr(16px);
+  position: relative;
+  z-index: 1;
+}
+.progress-step::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  @include remCalc(width,4);
+  @include remCalc(left,28);
+  background-color: $disable-color;
+  z-index: 0;
+}
+.act .progress-step span,.act .progress-step::after{
+  background-color: $base-btn-color;
+}
+.refund-progress li:last-child .progress-step::after{
+  display: none;
+}
+.progress-info{
+  word-wrap: break-word;
+  @include remCalc(padding-bottom,30);
+}
+
+.progress-info-content{
+  @include fontDpr(14px);
+  color: $black-color;
+}
+.progress-info-time{
+  color: $gray-color;
+}
+
+.refund-info-box{
+  background-color: $white;
+  @include remCalc(padding,30);
+  @include remCalc(margin-top,30);
+}
+.refund-info-box li h2,.refund-info-box li p{
+  @include remCalc(padding-bottom,15);
+  @include fontDpr(14px);
+}
+.refund-info-box li h2{
+  @include remCalc(padding-top,15);
+}
+img{
+  @include remCalc(width,150);
+  @include remCalc(height,150);
+  @include remCalc(margin-right,20);
+}

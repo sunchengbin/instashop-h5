@@ -180,9 +180,9 @@ function isDebug(){
 }
 function getFontCss($url,$folder_name){
     if($folder_name){
-        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1493030551952") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1493030551952#iconfont") format("svg");}</style>';
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1492599527462") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1492599527462#iconfont") format("svg");}</style>';
     }else{
-        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1493030551952") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1493030551952#iconfont") format("svg");}</style>';
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1492599527462") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1492599527462#iconfont") format("svg");}</style>';
     }
 }
 function getIco($url){
@@ -193,20 +193,24 @@ function smartyCommon($folder){
     $smarty = new Smarty();
     $folder_name = getSkinInfo();
     $folder_name = $folder?$folder:$folder_name;
-    //$folder_name = 'default';
+    //$folder_name = 'second';
     $static_font_css = setStaticFontCss($folder_name);
     define('STATIC_FONT_CSS', $static_font_css);
     if($folder_name != 'default'){
         $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
         $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
         $smarty->assign('TEMP_FOLDER',$folder_name.'/');
-        $smarty->assign('CSS_DEBUG','.debug');
+        $smarty->assign('CSS_DEBUG','debug');
         $smarty->assign('FLEXIBLE',FLEXIBLE);
     }else{
         $smarty->setTemplateDir(__DIR__.'/../templates/');
         $smarty->setCompileDir(__DIR__.'/../templates_c/');
-        $smarty->assign('TEMP_FOLDER','');
-        $smarty->assign('CSS_DEBUG','');
+        if($folder){
+            $smarty->assign('TEMP_FOLDER','default/');
+            $smarty->assign('FLEXIBLE',FLEXIBLE);
+        }else{
+            $smarty->assign('TEMP_FOLDER','');
+        }
     }
     $smarty->assign('STATIC_DNS',STATIC_DNS);
     $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
@@ -281,7 +285,7 @@ function setStaticConfig(){
     define('FLEXIBLE', flexible());
     $folder_name = getSkinInfo();
     define('SKIN_INFO', $folder_name);
-    //$folder_name = 'default';
+    //$folder_name = 'second';
     if($folder_name != 'default'){
         define('TEMP_FOLDER', $folder_name.'/');
     }else{
@@ -299,20 +303,24 @@ function initPhpJs($js_name){
         return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1492599527462"></script>';
     }
 }
-function initPhpCss($css_name){
-    if(TEMP_FOLDER){
+function initPhpCss($css_name,$folder){
+    $folder_name = TEMP_FOLDER;
+    if($folder && $folder_name == ''){
+        $folder_name = $folder.'/';
+    }
+    if($folder_name){
         $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS.'<script>'.FLEXIBLE.'</script>';
     }else{
         $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS;
     }
     if(isDebug()){
         if(TEMP_FOLDER){
-            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
+            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
         }else{
             return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
         }
     }else{
-        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
+        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
     }
 }
 

@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Mon Apr 24 18:10:05 2017
+Created by FontForge 20120731 at Mon Apr 24 18:52:29 2017
  By admin
 </metadata>
 <defs>
@@ -194,7 +194,7 @@ q-64 67 -166 67q-101 0 -165 -67q-38 -41 -60 -103h-88zM348 663q15 36 39 61q46 49 
 d="M516 652l-411 -469h822z" />
     <glyph glyph-name="arrow-fill-down" unicode="&#xe62d;" 
 d="M516 183l411 469h-822z" />
-    <glyph glyph-name="facebook" unicode="&#xe62e;" 
+    <glyph glyph-name="share-facebook" unicode="&#xe62e;" 
 d="M512.5 780q-104.5 0 -193 -51.5t-139.5 -140t-51 -193t51 -192.5t139.5 -139.5t193 -51.5t193 51.5t140 139.5t51.5 192.5t-51.5 193t-140 140t-193 51.5zM567 396h-36v-128h-52v128h-25v44h25v27q0 41 28 52q11 5 24 5h40v-44h-24q-10 0 -14 -6q-2 -4 -2 -14v-20h40z
 " />
     <glyph glyph-name="order" unicode="&#xe62f;" 
