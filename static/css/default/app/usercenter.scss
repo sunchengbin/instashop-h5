@@ -48,3 +48,6 @@ body{
 .items-img,.one-item{
   @include remCalc(padding-top,15);
 }
+.header-nav .icon-logout{
+  font-size: 18px;
+}

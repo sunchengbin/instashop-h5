@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 <body data-spider="">
     <nav class="header-nav clearfix" data-spider="header-nav">
-        <i class="icon iconfont j_log_out icon-add-font fr"></i>
+        <i class="icon iconfont j_log_out icon-logout fr"></i>
         <i class="icon iconfont j_go_back icon-back-font"></i>
         申请退款
     </nav>

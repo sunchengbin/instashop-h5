@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 2017/4/21.
  */
-define(['md5','config'],function(SparkMD5,Config){
+define(['md5','config','base'],function(SparkMD5,Config,Base){
     var UploadImgPlugIn = function(opts){
         var _this = this;
         _this.config = $.extend({
@@ -71,7 +71,7 @@ define(['md5','config'],function(SparkMD5,Config){
                     } else {
                         var midHelperFile = Config.host.hrefHost+'/iframe.html';
                         document.querySelector('#upload-img').action =
-                            Config.host.phpHost+'upload_split?param='
+                            Config.host.phpHost+Config.actions.uploadimg+'?param='
                             + JSON.stringify( getParam( spark.end() ) )
                             + '&redirectUrl=' + encodeURIComponent( midHelperFile );
                         document.querySelector('#upload-img').submit();
@@ -92,9 +92,14 @@ define(['md5','config'],function(SparkMD5,Config){
             loadNext();
         },
         createUpLoad : function(){
-            var _htm = '';
+            var _htm = '',
+                _debug_env = Base.others.getUrlPrem('_debug_env');
             _htm+='<div class="upload-img-box"><form id="upload-img" action="" enctype="multipart/form-data" method="post" target="resultHandlerIframe">';
             _htm+='<input type="file" accept="image/*" name="upload_img_ipt">';
+            if(_debug_env){
+                _htm+='<input type="hidden" name="_debug_env" value="'+_debug_env+'">';
+            }
+            _htm+='<input type="hidden" name="kind" value="refundevidence">';
             _htm+='</form>';
             _htm+='<iframe src="" name="resultHandlerIframe" class="iframe"></iframe></div>';
             return _htm;

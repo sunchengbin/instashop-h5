@@ -53,7 +53,9 @@ define(['base'],function(Base){
             search:'v1/shopsItems/self',//商品搜索
             getCoupon:'v1/coupon',//领取优惠券
             oauth:'v1/buyer',//登录
-            bargain:"v1/bargain"//砍价
+            bargain:"v1/bargain",//砍价
+            uploadimg:'instashop/item/pc/addImgs'//上传图片接口
+
         },
         businessCodes:{
             ORDER_BY_DEFAULT:0,
