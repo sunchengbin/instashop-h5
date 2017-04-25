@@ -235,3 +235,27 @@ body{
     left: 0;
     bottom: 0;
 }
+.cart-item-price {
+    margin:0!important;
+}
+.cart-item-price .price {
+    color:#666666!important;
+}
+.cart-item-price .origin-price {
+    font-size: 14px;
+    opacity: 0.5;
+    padding-left:0.625rem;
+    display: table-cell;
+    vertical-align: middle;
+    text-decoration: line-through;
+}
+.refund-btn {
+    display:inline-block;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: 14px;
+    color:#444444;
+    border-radius: 100px;
+    border:1px solid #666666;
+    padding:0 1rem;
+}
