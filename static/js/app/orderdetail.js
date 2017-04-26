@@ -76,7 +76,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                         _urlParamStr +=key+"="+val+"&";
                         console.log(_urlParamStr)
                     })
-                    location.href = _url + "?" + _urlParamStr;
+                    location.href = _url + "?" + _urlParamStr.replace(/&$/,"");
                 } else {
                     Oauth.openDialog();
                 }
