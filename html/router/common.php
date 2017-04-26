@@ -38,16 +38,29 @@ function loadClass($strClassName)
         }
     }
 }
+
 function is_https()
 {
-	if (!isset($_SERVER['HTTP_X_FORWARDED_PROTO']))
-	{
-		return false;
+	if (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on'){
+		return true;
 	}
 
-	$proto = $_SERVER['HTTP_X_FORWARDED_PROTO'];
-	$p_arr = explode(':', $proto);
-	return trim($p_arr[0]) === 'https';
+	if (isset($_SERVER['REQUEST_SCHEME']) && strtolower($_SERVER['REQUEST_SCHEME']) == 'https'){
+		return true;
+	}
+
+	if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']))
+	{
+		$proto = $_SERVER['HTTP_X_FORWARDED_PROTO'];
+		$p_arr = explode(':', $proto);
+		return trim($p_arr[0]) === 'https';
+	}
+
+	if (!empty($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS']) !== 'off'){
+		return true;
+	}
+
+	return false;
 }
 function getSellerInfo(){
     $seller_id = $_REQUEST['seller_id'];
@@ -227,7 +240,9 @@ function setStaticFontCss($folder_name){
     if($folder_name && $folder_name == 'default'){
         $folder_name = '';
     }
-    return C_RUNTIME_ONLINE?getFontCss($host_name.'/static',$folder_name):getFontCss($host_name.'/static',$folder_name);
+    $prompt = is_https() ? 'https:' : 'http:';
+    $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
+    return C_RUNTIME_ONLINE ? getFontCss($host_name.'/static',$folder_name) : getFontCss($host_name.'/static',$folder_name);
 }
 function set_request_seller_id() {
 	// 测试环境，便于h5调试
