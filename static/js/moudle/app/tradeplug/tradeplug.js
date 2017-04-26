@@ -11,6 +11,11 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
         _this.init();
     };
     TradePlug.prototype = {
+        goToSelectedTrade: function () {
+            var _this = this;
+            var _top = ~~$(_this.config.insertAfterEl).offset().top;
+            $(window).scrollTop(_top);
+        },
         getSelectedTrade: function () {
             return this.selectedTrade || "";
         },
@@ -36,7 +41,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
             var _this = this;
             var warrant_flag = JSON.parse(localStorage.getItem('ShopData')).ShopInfo.warrant_flag;
             if(warrant_flag){
-                if(""==_this.selectedTrade){
+                if(""==_this.selectedTrade||_this.selectedTrade==void(0)){
                     return false;
                 }else{
                     return true;

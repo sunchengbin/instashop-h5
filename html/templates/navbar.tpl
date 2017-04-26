@@ -6,8 +6,7 @@
         </a>
     </div>
 
-    {* TODO 测试用 先写死 记得app好了 $INDEX_DATA.shop.warrant_flag eq 1 *}
-    {if true}
+    {if $INDEX_DATA.shop.warrant_flag eq 1}
         {*开通担保交易底部导航*}
         <div class="contact-box" data-spider="go-search">
             {if $INDEX_DATA.shop.line_url} 

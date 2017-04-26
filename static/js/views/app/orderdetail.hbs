@@ -74,22 +74,38 @@
     <div class="list-box">
         <ul class="order-items">
             {{#each data.order.items}}
-                <li class="clearfix cart-item">
-                    <img src="{{img_head}}">
-                    <div class="clearfix">
-                        <p class="name">{{item_title}}</p>
-                        {{#if item_sku_title}}
-                            <p class="type">{{../../lang.H5_ITEM_SKU}}: {{item_sku_title}}</p>
-                        {{/if}}
-                    </div>
-                    <div class="cart-item-price">
-                        <p class="price clearfix">Rp {{transprice price}} x{{quantity}}</p>
-                        <p class="origin-price clearfix">Rp 400.000</p>
-                    </div>
-                    <div class="clearfix">
-                        {{#if discount.value}}<span class="refund-btn fr">退款</span>{{/if}}
-                    </div>
-                </li>
+                {{!--担保交易--}}
+                {{#eq ../data.order.warrant_status "normal"}}
+                    <li class="clearfix cart-item">
+                        <img src="{{img_head}}">
+                        <div class="clearfix">
+                            <p class="name">{{item_title}}</p>
+                            {{#if item_sku_title}}
+                                <p class="type">{{../../../lang.H5_ITEM_SKU}}: {{item_sku_title}}</p>
+                            {{/if}}
+                        </div>
+                        <div class="cart-item-price">
+                            <p class="price clearfix">Rp {{transprice price}} x{{quantity}}</p>
+                            <p class="origin-price clearfix">Rp 400.000</p>
+                        </div>
+                        <div class="clearfix">
+                            {{#if discount.value}}<span class="refund-btn fr">退款</span>{{/if}}
+                        </div>
+                    </li>
+                {{else}}
+                    {{!--非担保交易--}}
+                    <li class="clearfix cart-item">
+                        <img src="{{img_head}}">
+                        <div class="">
+                            <p class="name">{{item_title}}</p>
+                            {{#if item_sku_title}}
+                                <p class="type">{{../../../lang.H5_ITEM_SKU}}: {{item_sku_title}}</p>
+                            {{/if}}
+                            <p class="num">{{../../lang.H5_QUANTITY}}: {{quantity}}</p>
+                            <p class="price clearfix">{{../../lang.H5_PRICE}}: {{#if discount.value}}<span class="fr">-{{transpricevalue discount.value}}%</span>{{/if}}Rp {{transprice price}}</p>
+                        </div>
+                    </li>
+                {{/eq}}
             {{/each}}
         </ul>
         <!--{{#if isHaveReduc}}-->
@@ -165,3 +181,15 @@
         </div>
     {{/neq}}
 </section>
+{{!--未登录都提示登录--}}
+{{!--<div class="order-login-tip">
+    <p>登录来申请退款、确认收货</p>
+    <div class="fr order-login-btn">
+        Login
+    </div>
+</div>--}}
+<div class="order-bottom-btns">
+    <div class="order-bottom-btn">
+        Cancel Order
+    </div>
+</div>
