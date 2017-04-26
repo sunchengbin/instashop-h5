@@ -1,5 +1,6 @@
 @import "../base/base.scss";
 @import "../moudle/app/header/header.scss";
+@import "../base/common/flex.scss";
 @import "../moudle/app/common/common.scss";
 $price-color:#F6A623;
 body{
@@ -45,7 +46,7 @@ body{
   @include remCalc(height,100);
   @include remCalc(margin-right,20);
 }
-.items-img,.one-item{
+.items-img,.one-item,.one-item-explain{
   @include remCalc(padding-top,15);
 }
 .header-nav .icon-logout{
