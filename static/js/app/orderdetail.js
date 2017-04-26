@@ -69,7 +69,8 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                         uss:loginResult.info.uss,
                         item_id:_item_id,
                         item_sku_id:_item_sku_id,
-                        order_id:init_data.order.id
+                        order_id:init_data.order.id,
+                        seller_id:init_data.order.seller_id
                     }
                     var _urlParamStr = ""
                     $.each(_urlParam,function(key,val){
