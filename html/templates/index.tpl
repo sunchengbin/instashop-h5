@@ -149,6 +149,8 @@
 <script>
     {*首页数据*}
     var init_data = {$INDEX_DATA_STR};
+    {*登录信息*}
+    var user_info = {$INDEX_USER_INFO};
 </script>
 <script>
     {*回退节点和翻页数据*}

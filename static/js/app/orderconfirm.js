@@ -164,9 +164,12 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     // 检查开启担保交易的卖家店铺 买家是否选择了交易类型
                     if (!_this.tradeplug.checkIsSelectTrade()) {
                         // 开通了但是没有选择交易类型
-                        Dialog.tip({
-                            body_txt: "请选择交易类型"
-                        })
+                        // Dialog.tip({
+                        //     body_txt: "请选择交易类型"
+                        // })
+                        _this.tradeplug.goToSelectedTrade();
+                        _that.cancelDisable();
+                        _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
                         return;
                     }
                     try {

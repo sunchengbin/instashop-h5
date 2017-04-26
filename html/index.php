@@ -149,14 +149,14 @@
     $json = json_decode($ret, true);
     $smarty->assign('SHOP_INFO_DATA_STR',$ret);
     $smarty->assign('SHOP_INFO_DATA',$json["shop"]);
-
+    $smarty->assign('INDEX_USER_INFO',json_encode($_POST));
+    
     $hostname=$_SERVER['SERVER_NAME'];
     $smarty->assign('HOST_NAME',HOST_NAME);
     $shop_note = str_replace(">", "gt;", addslashes($json["shop"]["note"]));
     $share_content = '<meta name="description" content="'.$shop_note.'"/>';
     $index_title = $share_content.'<meta property="og:image" content="'.$url.'">'.'<title>'.$json["shop"]["name"].'</title>';
     $smarty->assign('INDEX_TITLE',$index_title);
-
     /*基础的js,css文件名*/
     $smarty->assign('INDEX_JS_NAME','index');
     $smarty->assign('INDEX_CSS_NAME','index');

@@ -6,8 +6,7 @@
         </a>
     </div>
 
-    {* TODO 测试用 先写死 记得app好了 $INDEX_DATA.shop.warrant_flag eq 1 *}
-    {if true}
+    {if $INDEX_DATA.shop.warrant_flag eq 1}
         {*开通担保交易底部导航*}
         <div class="contact-box" data-spider="go-search">
             {if $INDEX_DATA.shop.line_url} 
@@ -37,7 +36,7 @@
             <li class="j_cart_wraper b-right" data-url="{$HOST_NAME}/html/cart.php" spm-auto="去购物车" spm-click="go-cart">
                 <i class="icon iconfont icon-i-shop-font"></i> Troli
             </li>
-            <li data-url="{$HOST_NAME}/html/cart.php" spm-auto="我的订单" spm-click="go-order">
+            <li class="j_my_order" data-url="{$HOST_NAME}/html/usercenter.php" spm-auto="我的订单" spm-click="go-order">
                 <i class="icon iconfont icon-edit-font"></i> 我的订单
             </li>
         </ul>

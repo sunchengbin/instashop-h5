@@ -32,6 +32,16 @@ define([
             var reqUrl = Config.host.phpHost + Config.actions.oauth + "?param=" + encodeURIComponent(JSON.stringify(_reqData)) + "&timestamp=" + new Date().getTime();
             window.location.href = reqUrl;
         },
+        signout:function(){
+            var loginInfoFromCache = Cache.getSpace("LoginCache") || new Cache({
+                namespace: "LoginCache",
+                type: "local"
+            });
+            loginInfoFromCache.remove("loginInfo");
+            setTimeout(function(){
+                location.reload();
+            },2000)
+        },
         openDialog: function (type, opts) {
             Dialog.dialog({
                 body_txt: Oauth.createLoginHtm(type, opts),
