@@ -238,7 +238,23 @@ define(['base'], function (Base) {
             "BARGAIN_BTN_CLICK_IKONW": "我知道了",
             "BARGAIN_LIMIT": "此商品限购1件",
             "BARGAIN_SHAREPAGE_HEADER_PART": "谢谢大家的鼎力相助，我已经成功以 Rp 120.000 购买了iPhone 7 Plus ！",
-            "SELECT_TRADE_TIP":"选择交易类型"
+            "SELECT_TRADE_TYPE" : "选择交易类型",
+            "TRADE_TYPE_ZHIJIE" : "直接到账",
+            "TRADE_TYPE_DANBAO" : "担保交易",
+            "TRADE_QUBIE_TIP" : "两种交易类型有何区别？",
+            "TRADE_SUPPORT_NO_TIP" : "暂不支持担保交易",
+            "TRADE_IKNOW" : "我知道了",
+            "USER_CENTER_ORDER" : "我的订单",
+            "CHECK_ORDER_DETAIL" : "查看订单详情",
+            "CHECK_PAY_ACCOUNT" : "查看付款账号",
+            "DANBAO_TIP" : "资金由PT Insta Shop担保，你确认收到货后，才会打给商家。",
+            "DANBAO_ORDER_UNLOGIN_TIP" : "登录来申请退款、确认收货",
+            "USER_CENTER_ORDER_TOTAL_PRICE" : "共计：Rp 450.000",
+            "REFOUND_BTN_APPLY_TXT" : "退款",
+            "REFOUND_BTN_PROCESS_TXT" : "退款进展",
+            "ORDER_BTN_CANCEL_TXT" : "取消订单",
+            "REFOUND_FILL_ACCOUNT" : "填写退款账号",
+            "ORDER_BTN_DELAY_RECEIVE_TIME_TXT" : "延长收货时间"
         },
 
         id: {
@@ -600,7 +616,23 @@ define(['base'], function (Base) {
             "BARGAIN_BTN_CLICK_IKONW": "Saya Mengerti",
             "BARGAIN_LIMIT": "Maksimal Pembelian 1 Pc",
             "BARGAIN_SHAREPAGE_HEADER_PART": "Terima kasih untuk bantuan teman-teman semua. Sekarang aku sudah bisa beli barang ini dengan harga Rp 100.000!",
-            "SELECT_TRADE_TIP":"选择交易类型"
+            "SELECT_TRADE_TYPE" : "选择交易类型",
+            "TRADE_TYPE_ZHIJIE" : "直接到账",
+            "TRADE_TYPE_DANBAO" : "担保交易",
+            "TRADE_QUBIE_TIP" : "两种交易类型有何区别？",
+            "TRADE_SUPPORT_NO_TIP" : "暂不支持担保交易",
+            "TRADE_IKNOW" : "我知道了",
+            "USER_CENTER_ORDER" : "我的订单",
+            "CHECK_ORDER_DETAIL" : "查看订单详情",
+            "CHECK_PAY_ACCOUNT" : "查看付款账号",
+            "DANBAO_TIP" : "资金由PT Insta Shop担保，你确认收到货后，才会打给商家。",
+            "DANBAO_ORDER_UNLOGIN_TIP" : "登录来申请退款、确认收货",
+            "USER_CENTER_ORDER_TOTAL_PRICE" : "共计：Rp 450.000",
+            "REFOUND_BTN_APPLY_TXT" : "退款",
+            "REFOUND_BTN_PROCESS_TXT" : "退款进展",
+            "ORDER_BTN_CANCEL_TXT" : "取消订单",
+            "REFOUND_FILL_ACCOUNT" : "填写退款账号",
+            "ORDER_BTN_DELAY_RECEIVE_TIME_TXT" : "延长收货时间"
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[navigator.language.toLowerCase()] || Lang.id);

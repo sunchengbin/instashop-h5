@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 物流插件
  */
-define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oauth'], function (Common, Base, Hbs, TradeHtml, Lang, Oauth) {
+define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oauth', 'dialog'], function (Common, Base, Hbs, TradeHtml, Lang, Oauth, Dialog) {
     var TradePlug = function (opts) {
         var _this = this;
         _this.config = $.extend({
@@ -22,11 +22,22 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
         init: function () {
             this.handelFn();
         },
+        checkShopIsOpenWarrant: function () {
+            var warrant_flag = JSON.parse(localStorage.getItem('ShopData')).ShopInfo.warrant_flag;
+            if (warrant_flag) {
+                return true;
+            } else {
+                return false;
+            }
+        },
         handelFn: function () {
             var _this = this;
-            this.createHtm({});
+            this.createHtm({
+                isOpenWarrant:_this.checkShopIsOpenWarrant()
+            });
             $("body").on("click", ".j_trade_sel", function () {
                 if (!$(this).hasClass("checkbox-disabled")) {
+
                     if (Oauth.checkIsLogin().result) {
                         _this.resetSelectClass();
                         _this.selectedTrade = $(this).attr("data-tradetype");
@@ -34,19 +45,37 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
                     } else {
                         Oauth.openDialog();
                     }
+                } else {
+                    // 没有开通担保交易
+                    var _dialog = Dialog.dialog({
+                        body_txt: _this.createUnOpenWarrantHtm(),
+                        show_footer: false,
+                        body_fn: function () {
+                            $("body").on("click",".j_btn_confrim_i_know",function(){
+                                _dialog.remove();
+                            })
+                        }
+                    })
                 }
             })
         },
-        checkIsSelectTrade:function(){
+        createUnOpenWarrantHtm: function () {
+            var _htm = "";
+            _htm = '<div style="text-align:center">' +
+                '   <p>'+Lang.TRADE_SUPPORT_NO_TIP+'</p>' +
+                '   <div class="j_btn_confrim_i_know">'+Lang.TRADE_IKNOW+'</div>' +
+                '</div>'
+            return _htm;
+        },
+        checkIsSelectTrade: function () {
             var _this = this;
-            var warrant_flag = JSON.parse(localStorage.getItem('ShopData')).ShopInfo.warrant_flag;
-            if(warrant_flag){
-                if(""==_this.selectedTrade||_this.selectedTrade==void(0)){
+            if (_this.checkShopIsOpenWarrant()) {
+                if ("" == _this.selectedTrade || _this.selectedTrade == void(0)) {
                     return false;
-                }else{
+                } else {
                     return true;
                 }
-            }else{
+            } else {
                 //没有开通
                 return true;
             }

@@ -89,7 +89,11 @@
                             <p class="origin-price clearfix">Rp 400.000</p>
                         </div>
                         <div class="clearfix">
-                            {{#if discount.value}}<span class="refund-btn fr">退款</span>{{/if}}
+                            {{#each op}}
+                                {{#eq this "pre_refund"}}
+                                    <span class="refund-btn fr">{{../../../../lang.REFOUND_BTN_APPLY_TXT}}</span>
+                                {{/eq}}
+                            {{/each}}
                         </div>
                     </li>
                 {{else}}
