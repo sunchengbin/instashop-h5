@@ -97,6 +97,7 @@
                 {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
                 <span><i class="icon iconfont icon-shop-font"></i>Ada Outlet</span>
                 {/if}
+                <i class="icon iconfont icon-secured"></i>
             </div>
         </a>
     </div>

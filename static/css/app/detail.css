@@ -337,3 +337,8 @@ body{
 .bargain-buyer-intro-content div p{
     margin-bottom:.5rem;
 }
+.shop-info i.icon-secured{
+    color: #7ED321;
+    font-size: 25px;
+    vertical-align: middle;
+}

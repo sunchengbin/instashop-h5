@@ -4,7 +4,7 @@
 @import "../moudle/app/common/common.scss";
 @import "../moudle/app/address/address.scss";
 @import "../moudle/app/uploadimg/uploadimg.scss";
-$explain-color:$base-color;
+$explain-color:$base-btn-color ;
 html{
   height: 100%;
 }
@@ -80,10 +80,13 @@ h2{
 .refund-explain{
   @include remCalc(padding,20 0);
   text-align: right;
-  color: $explain-color;
 }
 .refund-explain a{
   color: $explain-color;
+}
+.refund-explain a i{
+  vertical-align:middle;
+  @include fontDpr(18px);
 }
 .refund-img-box{
   @include remCalc(margin-bottom,50);
@@ -96,9 +99,22 @@ h2{
   @include remCalc(margin-right,30);
   border:1px dashed $border-color;
   text-align: center;
+  position: relative;
 }
 .refund-img-box li i{
   @include fontDpr(30px);
+  color: $gray-color;
+}
+.refund-img{
+  position: relative;
+}
+.refund-img-box li.refund-img i{
+  @include fontDpr(16px);
+  line-height: normal;
+  color: $base-btn-color;
+  position: absolute;
+  @include remCalc(right,5);
+  @include remCalc(top,5);
 }
 .hide{
   display: none;
@@ -149,4 +165,7 @@ h2{
 }
 .step-two-explain{
   @include remCalc(padding,25 30);
+}
+.error{
+  border-color: red;
 }

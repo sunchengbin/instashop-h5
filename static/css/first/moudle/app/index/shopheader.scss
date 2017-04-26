@@ -20,6 +20,31 @@
   @include remCalc(width,130);
   overflow: hidden;
 }
+.shop-info{
+  position: relative;
+}
+.secured-box{
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  background: $white;
+  @include remCalc(width,46);
+  @include remCalc(height,46);
+  //width: 23px;
+  //height: 23px;
+  z-index: 1;
+  left: 50%;
+  @include remCalc(margin-left,30);
+  @include remCalc(top,86);
+}
+.icon-secured{
+  @include remCalc(font-size,60);
+  position: absolute;
+  @include remCalc(left,-8);
+  @include remCalc(top,-20);
+  z-index: 2;
+  color:#7ED321;
+}
 .shop-seller-info p{
   @include remCalc(height,55);
   @include remCalc(line-height,55);

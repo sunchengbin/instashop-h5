@@ -5,6 +5,9 @@
         <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
         <div class="shop-info-wrap" flex="main:center cross:center">
             <div class="shop-info">
+                <div class="secured-box">
+                    <i class="icon iconfont icon-secured"></i>
+                </div>
                 <div class="shop-img">
                     <img src="{$INDEX_DATA.shop.logo}"/>
                 </div>
