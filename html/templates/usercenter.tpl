@@ -5,8 +5,10 @@
         <i class="icon iconfont j_go_back icon-back-font"></i>
         申请退款
     </nav>
+    {$INDEX_DATA|count}
     <section class="content-box">
         <ul class="trade-order-list">
+
             <li class="order-info">
                 <p class="order-status b-bottom"><span>nsdfns</span>2017.2.13</p>
                 <div class="info-detail" flex="dir:left">

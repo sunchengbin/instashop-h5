@@ -13,7 +13,7 @@
         <textarea class="refund-cause j_refund_explain" maxlength="1000"></textarea>
         <h2>Sertifikat Upload（Hingga 3pcs）</h2>
         <ul class="refund-img-box clearfix j_refund_img_box">
-            <!--<li class="refund-img j_refund_img"><img src=""/><i class="icon iconfont j_del_img icon-delete-font"></i></li>-->
+            <li class="refund-img j_refund_img" data-src="https://imghk0.geilicdn.com/instashop-1492403176613-1unadjust.jpg?w=640&h=640&cp=1"><img src="https://imghk0.geilicdn.com/instashop-1492403176613-1unadjust.jpg?w=640&h=640&cp=1"/><i class="icon iconfont j_del_img icon-delete-font"></i></li>
             <li class="upload-img-li j_upload_img_btn"><i class="icon iconfont icon-add-font"></i></li>
         </ul>
         <div class="btn confirm-btn j_next_step">下一步</div>
