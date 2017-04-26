@@ -552,7 +552,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 if (loginResult.result) {
                     localStorage.setItem('ScrollTop', $(window).scrollTop());
                     _that.setRouteInfo();
-                    Common.saveCartFromUrl(function () {
+                    Common.saveFromUrl(function () {
                         location.href = _url+"?buyer_id="+loginResult.info.buyer_id+"&uss="+loginResult.info.uss;
                     });
                 } else {

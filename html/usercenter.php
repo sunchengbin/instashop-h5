@@ -10,5 +10,6 @@
 
     /*基础的js,css文件名*/
     $smarty->assign('INDEX_CSS_NAME','usercenter');
+    $smarty->assign('INDEX_JS_NAME','usercenter');
     $smarty->display('usercenter.tpl');
 ?>

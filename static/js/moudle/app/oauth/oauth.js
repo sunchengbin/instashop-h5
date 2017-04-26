@@ -32,14 +32,14 @@ define([
             var reqUrl = Config.host.phpHost + Config.actions.oauth + "?param=" + encodeURIComponent(JSON.stringify(_reqData)) + "&timestamp=" + new Date().getTime();
             window.location.href = reqUrl;
         },
-        signout:function(){
+        signout:function(url){
             var loginInfoFromCache = Cache.getSpace("LoginCache") || new Cache({
                 namespace: "LoginCache",
                 type: "local"
             });
             loginInfoFromCache.remove("loginInfo");
             setTimeout(function(){
-                location.reload();
+                location.href = url;
             },2000)
         },
         openDialog: function (type, opts) {
