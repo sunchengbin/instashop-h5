@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/6.
  * 首页
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer', 'oauth'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer, Oauth) {
     var Default_Page_Size = 18;
     var I = {
         indexItemsPagination: {
@@ -40,7 +40,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     $('.j_cart_wraper').append('<span class="cart-num">' + _cart_num + '</span>');
                 }
                 //插入模板中的轮播图js初始化
-                if(route_pt == 1 || route_pt == undefined){
+                if (route_pt == 1 || route_pt == undefined) {
                     _this.initRotateBanner();
                 }
             }
@@ -125,8 +125,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     }
                     PaqPush && PaqPush('首页父级导航tab-' + _this.tagInfo.curTab, '');
                     Debug.log("切换信息:", switchInfo)
-                    if(route_pt != 1){
-                        if(_this.tagInfo.curTab == "index_template"){
+                    if (route_pt != 1) {
+                        if (_this.tagInfo.curTab == "index_template") {
                             _this.initRotateBanner();
                         }
                     }
@@ -355,7 +355,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 _len = _banners.length,
                 _this = this;
             console.log(_this.isInitBanner);
-            if(_this.isInitBanner){
+            if (_this.isInitBanner) {
                 return;
             }
             _this.isInitBanner = true;
@@ -544,6 +544,21 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 Common.saveCartFromUrl(function () {
                     location.href = _url;
                 });
+            });
+            $('body').on('click', '.j_my_order', function () {
+                var _this = $(this),
+                    _url = _this.attr('data-url');
+                    var loginResult = Oauth.checkIsLogin();
+                if (loginResult.result) {
+                    localStorage.setItem('ScrollTop', $(window).scrollTop());
+                    _that.setRouteInfo();
+                    Common.saveCartFromUrl(function () {
+                        location.href = _url+"?buyer_id="+loginResult.info.buyer_id+"&uss="+loginResult.info.uss;
+                    });
+                } else {
+                    Oauth.openDialog();
+                }
+
             });
             $('body').on('click', '.j_category', function () {
                 var _sort_box = document.querySelector('.j_sort_box');

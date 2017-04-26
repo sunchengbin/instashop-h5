@@ -36,7 +36,7 @@
             <li class="j_cart_wraper b-right" data-url="{$HOST_NAME}/html/cart.php" spm-auto="去购物车" spm-click="go-cart">
                 <i class="icon iconfont icon-i-shop-font"></i> Troli
             </li>
-            <li data-url="{$HOST_NAME}/html/cart.php" spm-auto="我的订单" spm-click="go-order">
+            <li class="j_my_order" data-url="{$HOST_NAME}/html/usercenter.php" spm-auto="我的订单" spm-click="go-order">
                 <i class="icon iconfont icon-edit-font"></i> 我的订单
             </li>
         </ul>

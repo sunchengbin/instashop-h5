@@ -10,6 +10,7 @@
 @import "./shop_index.css";
 @import "../moudle/ui/viewer/viewer.css";
 @import "../moudle/ui/arrowslide/arrowbanner.css";
+@import "../moudle/app/oauth/oauth.css";
 body {
     color: #666;
     background-color: #f5f5f5;
