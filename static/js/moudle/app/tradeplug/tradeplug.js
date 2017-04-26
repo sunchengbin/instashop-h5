@@ -23,17 +23,30 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
             this.handelFn();
         },
         checkShopIsOpenWarrant: function () {
-            var warrant_flag = JSON.parse(localStorage.getItem('ShopData')).ShopInfo.warrant_flag;
-            if (warrant_flag) {
-                return true;
+            var _ShopData = JSON.parse(localStorage.getItem('ShopData'));
+            if (!!_ShopData.SupplyShopInfo) {
+                // 存在供应商
+                var _supplyWarrantFlag = _ShopData.SupplyShopInfo.warrant_flag;
+                var _dropshiperWarrantFlag = _ShopData.ShopInfo.warrant_flag;
+                if(_supplyWarrantFlag&&_dropshiperWarrantFlag){
+                    return true;
+                }else{
+                    return false;
+                }
             } else {
-                return false;
+                var warrant_flag = JSON.parse(localStorage.getItem('ShopData')).ShopInfo.warrant_flag;
+                if (warrant_flag) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
+
         },
         handelFn: function () {
             var _this = this;
             this.createHtm({
-                isOpenWarrant:_this.checkShopIsOpenWarrant()
+                isOpenWarrant: _this.checkShopIsOpenWarrant()
             });
             $("body").on("click", ".j_trade_sel", function () {
                 if (!$(this).hasClass("checkbox-disabled")) {
@@ -51,7 +64,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
                         body_txt: _this.createUnOpenWarrantHtm(),
                         show_footer: false,
                         body_fn: function () {
-                            $("body").on("click",".j_btn_confrim_i_know",function(){
+                            $("body").on("click", ".j_btn_confrim_i_know", function () {
                                 _dialog.remove();
                             })
                         }
@@ -62,8 +75,8 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
         createUnOpenWarrantHtm: function () {
             var _htm = "";
             _htm = '<div style="text-align:center">' +
-                '   <p>'+Lang.TRADE_SUPPORT_NO_TIP+'</p>' +
-                '   <div class="j_btn_confrim_i_know">'+Lang.TRADE_IKNOW+'</div>' +
+                '   <p>' + Lang.TRADE_SUPPORT_NO_TIP + '</p>' +
+                '   <div class="j_btn_confrim_i_know">' + Lang.TRADE_IKNOW + '</div>' +
                 '</div>'
             return _htm;
         },
