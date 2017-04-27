@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/6.
  * 首页
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer', 'oauth'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer, Oauth) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer', 'oauth', 'cache'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer, Oauth, Cache) {
     var Default_Page_Size = 18;
     var I = {
         indexItemsPagination: {
@@ -197,7 +197,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
         initShopInfoImgSlideBanner: function () {
             var _this = this;
             var _shopInfoImgs = shop_info_data.shop.realinfo.imgs;
-            _this._groupImgs = [];
+            _this._groupImgs = []; 
             _this.groupArrayByNumber(_shopInfoImgs, 3, _this._groupImgs);
             _this.createShopInfoSlierDom();
             Slide.createNew({
@@ -548,12 +548,12 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             $('body').on('click', '.j_my_order', function () {
                 var _this = $(this),
                     _url = _this.attr('data-url');
-                    var loginResult = Oauth.checkIsLogin();
+                var loginResult = Oauth.checkIsLogin();
                 if (loginResult.result) {
                     localStorage.setItem('ScrollTop', $(window).scrollTop());
                     _that.setRouteInfo();
                     Common.saveFromUrl(function () {
-                        location.href = _url+"?buyer_id="+loginResult.info.buyer_id+"&uss="+loginResult.info.uss;
+                        location.href = _url + "?buyer_id=" + loginResult.info.buyer_id + "&uss=" + loginResult.info.uss;
                     });
                 } else {
                     Oauth.openDialog();
@@ -676,6 +676,18 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     }
                 }
             }, 100);
+        },
+        showOrderGuide: function () {
+            var IndexCoverCache = Cache.getSpace("IndexCache") || new Cache({
+                namespace: "IndexCache",
+                type: "local"
+            });
+            var  isShowOrderGuid = IndexCoverCache.find("isShowOrderGuid");
+            // 有值 且 值为1
+            if(isShowOrderGuid!=void(0)&&isShowOrderGuid==1){
+                $(".order-guide-info-wrap").show();
+                Base.others.coverGuide(document.querySelector(".order-guide-cover"),document.querySelector(".j_my_order"));
+            }
         },
         transItems: function (items) {
             var i = 0,

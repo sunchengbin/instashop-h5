@@ -145,6 +145,16 @@
         {include file="navbar.tpl"}
     </div>
     {/if}
+    <div class="order-guide-cover"></div>
+    <div class="order-guide-info-wrap">
+        <div class="order-guide-text">
+             <p>点这里查看订单详情</p>
+             <p>
+                <button class="order-guide-btn">Saya mengerti</button>
+             </p>
+             <img src="{$STATIC_HOST}/images/app/cover-arrow.png" />
+        </div>
+    </div>
 </body>
 <script>
     {*首页数据*}
