@@ -82,6 +82,31 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                     Oauth.openDialog();
                 }
             });
+            $('body').on('click', '.j_check_refund', function () {
+                var _this = $(this),
+                    _url = _this.attr('data-url'),
+                    _item_id = _this.attr('data-item-id'),
+                    _item_sku_id = _this.attr('data-item-sku-id');
+                var loginResult = Oauth.checkIsLogin();
+                if (loginResult.result) {
+                    var _urlParam = {
+                        buyer_id:loginResult.info.buyer_id,
+                        uss:loginResult.info.uss,
+                        item_id:_item_id,
+                        item_sku_id:_item_sku_id,
+                        order_id:init_data.order.id,
+                        seller_id:init_data.order.seller_id
+                    }
+                    var _urlParamStr = ""
+                    $.each(_urlParam,function(key,val){
+                        _urlParamStr +=key+"="+val+"&";
+                        console.log(_urlParamStr)
+                    })
+                    location.href = _url + "?" + _urlParamStr.replace(/&$/,"");
+                } else {
+                    Oauth.openDialog();
+                }
+            });
         }
 
     };

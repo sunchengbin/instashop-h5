@@ -28,14 +28,14 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
                 // 存在供应商
                 var _supplyWarrantFlag = _ShopData.SupplyShopInfo.warrant_flag;
                 var _dropshiperWarrantFlag = _ShopData.ShopInfo.warrant_flag;
-                if(_supplyWarrantFlag&&_dropshiperWarrantFlag){
+                if (1 == _supplyWarrantFlag && 1 == _dropshiperWarrantFlag) {
                     return true;
-                }else{
+                } else {
                     return false;
                 }
             } else {
                 var warrant_flag = JSON.parse(localStorage.getItem('ShopData')).ShopInfo.warrant_flag;
-                if (warrant_flag) {
+                if (1 == warrant_flag) {
                     return true;
                 } else {
                     return false;
@@ -50,13 +50,19 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
             });
             $("body").on("click", ".j_trade_sel", function () {
                 if (!$(this).hasClass("checkbox-disabled")) {
-
-                    if (Oauth.checkIsLogin().result) {
+                    // 选担保交易
+                    if ("2" == $(this).attr("data-tradetype")) {
+                        if (Oauth.checkIsLogin().result) {
+                            _this.resetSelectClass();
+                            _this.selectedTrade = $(this).attr("data-tradetype");
+                            $(this).find(".checkbox-warp").addClass("active");
+                        } else {
+                            Oauth.openDialog();
+                        }
+                    } else {
                         _this.resetSelectClass();
                         _this.selectedTrade = $(this).attr("data-tradetype");
                         $(this).find(".checkbox-warp").addClass("active");
-                    } else {
-                        Oauth.openDialog();
                     }
                 } else {
                     // 没有开通担保交易
@@ -82,16 +88,16 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
         },
         checkIsSelectTrade: function () {
             var _this = this;
-            if (_this.checkShopIsOpenWarrant()) {
-                if ("" == _this.selectedTrade || _this.selectedTrade == void(0)) {
-                    return false;
-                } else {
-                    return true;
-                }
+            // if (_this.checkShopIsOpenWarrant()) {
+            if ("" == _this.selectedTrade || _this.selectedTrade == void(0)) {
+                return false;
             } else {
-                //没有开通
                 return true;
             }
+            // } else {
+            //     //没有开通
+            //     return true;
+            // }
         },
         createHtm: function (info) {
             var _this = this;
