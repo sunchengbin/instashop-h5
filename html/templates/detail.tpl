@@ -95,9 +95,12 @@
                     <div class="clearfix shop-info">
                         <i class="icon iconfont fr icon-go-font"></i>
                         <img class="fl" src="{$INDEX_DATA.item.shop.logo}" />
-                        <p>{$INDEX_DATA.item.shop.name}<i class="icon iconfont icon-secured"></i></p>
+                        <p>{$INDEX_DATA.item.shop.name}</p>
                         {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
                         <span><i class="icon iconfont icon-shop-font"></i>Ada Outlet</span>
+                        {/if}
+                        {if $INDEX_DATA.item.shop.warrant_flag == 1}
+                        <i class="icon iconfont icon-secured"></i>
                         {/if}
                     </div>
                 </a>
