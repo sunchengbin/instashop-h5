@@ -17,12 +17,12 @@
     $params["action"] = 'refund_detail';
     $params["item_id"] = $item_id;
     $params["item_sku_id"] = $item_sku_id;
-    $params["opt"] = id_hash;
+    $params["opt"] = 'id_hash';
 
     $ret = get_init_php_data($path, $params);
     $json = json_decode($ret, true);
 
-    $smarty->assign('INDEX_DATA',$json["refund_Detail"]);
+    $smarty->assign('INDEX_DATA',$json["refund_detail"]);
 
     $index_title = '<title>退款进度</title>';
     $smarty->assign('INDEX_TITLE',$index_title);

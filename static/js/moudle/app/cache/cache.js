@@ -164,6 +164,7 @@ define([
         },
         // 移除一个cache记录
         remove: function (key) {
+            var _context = this;
             var _contextForType = _typeCacheHandler[this.type];
             return _typeCacheHandler[this.type].remove.call(_contextForType,_context, key);
         },
