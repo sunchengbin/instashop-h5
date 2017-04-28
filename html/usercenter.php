@@ -13,7 +13,7 @@
     $params["buyer_id"] = $buyer_id;
     $params["uss"] = $uss;
     $params["page_num"] = 0;
-    $params["page_size"] = 30;
+    $params["page_size"] = 20;
     $params["seller_id"] = $seller_id;
     $params["action"] = 'buyer_list';
 

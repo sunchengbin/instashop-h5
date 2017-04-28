@@ -6,10 +6,10 @@
         申请退款
     </nav>
     <section class="content-box">
-        <ul class="trade-order-list">
+        <ul class="trade-order-list j_order_list">
         {foreach $INDEX_DATA as $item}
             {if $item.items|count > 1}
-                <li class="order-info">
+                <li class="order-info j_order_info" data-url="{$item.url}">
                     <p class="order-status b-bottom"><span>{$item.state_txt}</span>{$item.add_time|dateFormat}</p>
                     <div class="info-detail">
                         <div class="items-img">
@@ -21,7 +21,7 @@
                    <p class="clearfix total-price">{if $item.warrant_status}<i class="icon iconfont fl icon-warrant-flag"></i>{/if}Jumlah Total：Rp {$item.total_price|priceFormat}</p>
                 </li>
             {else}
-                <li class="order-info">
+                <li class="order-info j_order_info" data-url="{$item.url}">
                     <p class="order-status b-bottom"><span>{$item.state_txt}</span>{$item.add_time|dateFormat}</p>
                     <div class="info-detail" flex="dir:left">
                         <div class="one-item">

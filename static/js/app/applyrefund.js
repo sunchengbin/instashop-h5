@@ -291,8 +291,9 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                          body_txt : '<p class="dialog-body-p">'+Lang.H5_SUBMIT_SUCCESS+'</p>',
                          auto_fn : function(){
                              setTimeout(function(){
-                                 location.href = localStorage.getItem('RefundBack');
-                             },2000);
+                                 localStorage.setItem('ApplyRefundDetail',Config.hrefUrl + 'applyrefunddetail.php'+location.search);
+                                 location.href = Config.hrefUrl + 'applyrefundsuccess.php'+location.search;
+                             },1000);
                          }
                      });
                  }else{
