@@ -124,7 +124,6 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                 IndexCoverCache.set("isShowOrderGuid", "1")
             }
 
-
             $("body").on("click", ".j_order_op", function () {
                 var _op = $(this).attr("data-op");
 
@@ -148,7 +147,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                     case "bindcard":
                         _this.bindCard();
                         break;
-                    case "can_evidence":
+                    case "evidence":
                         _this.evidence();
                         break;
                     default:
@@ -160,10 +159,19 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                 }
             })
         },
+        // 退款
         bindCard: function () {
-
+            PaqPush && PaqPush('退款', '');
+            location.href = Config.host.hrefUrl+"refund.php?"+"order_id="+init_data.order.id;
         },
+        // 支付证明
+        evidence: function () {
+            PaqPush && PaqPush('上传支付证明', '');
+            location.href = Config.host.hrefUrl+"uploadprove.php?"+"order_id="+init_data.order.id+"&hash="+init_data.order.id_hash;
+        },
+        // 延长收货时间
         extendReceiveTime: function (data) {
+            PaqPush && PaqPush('延长收货时间', '');
             Ajax.postJsonp({
                 url: Config.actions.orderConfirm + '/' + init_data.order.id,
                 data: {
@@ -199,10 +207,9 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                 }
             });
         },
-        evidence: function () {
-
-        },
+        // 确认收货
         confirmReceive: function (data) {
+            PaqPush && PaqPush('确认收货', '');
             Ajax.postJsonp({
                 url: Config.actions.orderConfirm + '/' + init_data.order.id,
                 data: {
