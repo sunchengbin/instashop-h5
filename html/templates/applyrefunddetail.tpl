@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 <body data-spider="">
     <nav class="header-nav clearfix" data-spider="header-nav">
-        <i class="icon iconfont j_go_back icon-back-font" onclick="history.go(-1);"></i>
+        <i class="icon iconfont fr icon-right-font" onclick="location.href='{$INDEX_DATA.url}'+'#'+{if $INDEX_DATA.item_sku_id != 0}{$INDEX_DATA.item_sku_id}{else}{$INDEX_DATA.item_id}{/if};"></i>
         申请退款
     </nav>
     <section class="content-box">
