@@ -189,14 +189,15 @@
     {{/neq}}
 </section>
 {{!--未登录都提示登录--}}
-{{!--<div class="order-login-tip">
-    <p>登录来申请退款、确认收货</p>
-    <div class="fr order-login-btn">
-        Login
-    </div>
-</div>--}}
-<div class="order-bottom-btns">
-    <div class="order-bottom-btn">
-        Cancel Order
-    </div>
-</div>
+{{#neq data.order.warrant_status "nowarrant"}}
+{{else}}
+    {{#if isLogin}}
+        <div class="order-login-tip">
+            <p>{{../lang.DANBAO_ORDER_UNLOGIN_TIP}}</p>
+            <div class="fr order-login-btn">
+                Login
+            </div>
+        </div>
+    {{/if}}
+{{/neq}}
+{{{transbtn data.order.op}}}

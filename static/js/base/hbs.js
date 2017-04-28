@@ -154,8 +154,8 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
     HBS.registerHelper('tagItemList', function (items) {
         return Item.addItem(items);
     });
-    HBS.registerHelper('bigImgItem', function (items,skin) {
-        return Item.addItem(items,'',skin);
+    HBS.registerHelper('bigImgItem', function (items, skin) {
+        return Item.addItem(items, '', skin);
     });
     HBS.registerHelper('transprice', function (price) {
         if (price < 0) {
@@ -351,9 +351,9 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                         data_price = data.discount.price;
                     }
                 } else if (!!data.bargain && !Bargain.checkIsLimitForLogin()) {
-                    if(Bargain.checkIsOverdue(data.bargain)){
+                    if (Bargain.checkIsOverdue(data.bargain)) {
                         data_price = item.price;
-                    }else{
+                    } else {
                         data_price = item.bargain.price;
                     }
                 } else {
@@ -555,8 +555,8 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                 _id = (_item.sku ? _item.sku.id : _item.id);
             _htm += '<li class="cart-item j_cart_item" data-id="' + _id + '">' +
                 '<a class="block clearfix" href="javascript:;">' +
-                '<img src="' + Base.others.cutImg(_item.img) + '">'
-                +'<span class="item-index">'+_i+'</span>';
+                '<img src="' + Base.others.cutImg(_item.img) + '">' +
+                '<span class="item-index">' + _i + '</span>';
             _htm += '<div class="item-info-box">' +
                 '<p class="name">' + Base.others.transTxt(_item.item_comment) + '</p>';
             if (_item.is_discount && _item.discounting) {
@@ -817,10 +817,44 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
     });
     //编辑两列式模板小图
     HBS.registerHelper('iseven', function (n, options) {
-        if ((Number(n))%2==0) {
+        if ((Number(n)) % 2 == 0) {
             return options.fn(this);
         } else {
             return options.inverse(this);
+        }
+    });
+    //订单详情页底部按钮
+    HBS.registerHelper('transbtn', function (data) {
+        var _btnSortArray = data.botton_sort;
+        var _curBtnArray = [];
+        var _btnBody = '<div class="order-bottom-btns">';
+        var _btnHtm = "";
+        for (var i = 0; i < _btnSortArray.length; i++) {
+            var _curBtn = _btnSortArray[i];
+            var _curBtnTxt = "";
+            if (data[_curBtn]) {
+                switch (_curBtn) {
+                    case "can_bindcard":
+                        _curBtnTxt = '<div class="order-bottom-btn ins-m-l-1 j_order_op" data-op="bindcard">'+Lang.H5_EDIT_REFUND_CARD+'</div>';
+                        break;
+                    case "can_receive":
+                        _curBtnTxt = '<div class="order-bottom-btn ins-m-l-1 j_order_op" data-op="receive">'+Lang.ORDER_CONFIRM_RECEIVE+'</div>';
+                        break;
+                    case "can_extend":
+                        _curBtnTxt = '<div class="order-bottom-btn ins-m-l-1 j_order_op" data-op="extendtime">'+Lang.ORDER_BTN_DELAY_RECEIVE_TIME_TXT+'</div>';
+                        break;
+                    case "can_logistics":
+                        _curBtnTxt = '';
+                        break;
+                    case "can_evidence":
+                        _curBtnTxt = '<div class="order-bottom-btn ins-m-l-1 j_order_op" data-op="evidence">'+Lang.H5_PAY_WARRANT+'</div>';
+                        break;
+                };
+                _btnHtm += _curBtnTxt;
+            }
+        }
+        if(''!=_btnHtm){
+            return _btnBody+_btnHtm+"</div>";
         }
     });
     return HBS;
