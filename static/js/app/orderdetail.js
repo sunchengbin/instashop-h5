@@ -61,10 +61,10 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
             });
             // 申请退款
             $('body').on('click', '.j_apply_refund', function () {
-                var _this = $(this),
-                    _url = _this.attr('data-url'),
-                    _item_id = _this.attr('data-item-id'),
-                    _item_sku_id = _this.attr('data-item-sku-id');
+                var $this = $(this),
+                    _url = $this.attr('data-url'),
+                    _item_id = $this.attr('data-item-id'),
+                    _item_sku_id = $this.attr('data-item-sku-id');
                 var loginResult = _this.loginResult;
                 if (loginResult.result) {
                     var _urlParam = {
@@ -87,10 +87,10 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
             });
             // 查看退款进展
             $('body').on('click', '.j_check_refund', function () {
-                var _this = $(this),
-                    _url = _this.attr('data-url'),
-                    _item_id = _this.attr('data-item-id'),
-                    _item_sku_id = _this.attr('data-item-sku-id');
+                var $this = $(this),
+                    _url = $this.attr('data-url'),
+                    _item_id = $this.attr('data-item-id'),
+                    _item_sku_id = $this.attr('data-item-sku-id');
                 var loginResult = _this.loginResult;
                 if (loginResult.result) {
                     var _urlParam = {

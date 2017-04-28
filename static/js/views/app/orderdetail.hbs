@@ -25,6 +25,15 @@
         {{#eq data.order.state 5}}
             {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
         {{/eq}}
+        {{#eq data.order.state 6}}
+            {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
+        {{/eq}}
+        {{#eq data.order.state 7}}
+            {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
+        {{/eq}}
+        {{#eq data.order.state 8}}
+            {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
+        {{/eq}}
     </div>
     <p data-spider="bank-info">
         <a spm-auto="查看收款账号" spm-click="check-bankinfo" href="{{hrefUrl}}ordersuccess.php?price={{data.order.total_price}}&detail=1" class="">
