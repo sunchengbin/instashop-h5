@@ -469,13 +469,13 @@ define(function () {
                 // set size and border-width
                 cover.style.width = targetWidth + 'px';
                 cover.style.height = targetHeight + 'px';
-                
+
                 var borderWidth =
                     offsetTop + 'px ' +
                     (pageWidth - targetWidth + offsetLeft) + 'px ' +
                     (pageHeight - targetHeight - offsetTop) + 'px ' +
                     offsetLeft + 'px';
-                $(cover).css("border-width",borderWidth)
+                $(cover).css("border-width", borderWidth)
                 cover.style.display = 'block';
 
                 // resize
@@ -493,6 +493,19 @@ define(function () {
                     }
                 }
             }
+        },
+        transDateStrToOrderDateTime:function(dateStr){
+            var _array = dateStr.split(" ");
+            var _year_month_day = _array[0];
+            var _year = _year_month_day.split("-")[0];
+            var _month = _year_month_day.split("-")[1];
+            var _day = _year_month_day.split("-")[2];
+            var _hour_minute = _array[1].replace(".",":");
+            var _time = [];
+            _time.push(_hour_minute.split(':')[0]);
+            _time.push(_hour_minute.split(':')[1]);
+            dateStr = _day+"/"+_month+" "+_time.join(':');
+            return dateStr;
         }
     };
 

@@ -10,14 +10,9 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
          var _this = this;
          UploadImg({
              wrap : '.j_upload_img_btn',
-             selectedImgSuccess : function(img){
-                 //选完需要上传商品后操作
-                 console.log(img);
-
-             },
              uploadImgSuccess : function(result){
                  //提交上传商品图片后
-                 var img = result;
+                 var img = result[0].small;
                  console.log(result);
                  if($('.j_refund_img').length > 3){
                      Dialog.tip({
@@ -110,22 +105,29 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                              +'<p class="dialog-body-p">'+Lang.H5_SUB_BRANCH+' : '+_items.b_branch+'</p>'
                              +'<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NAME+' : '+_items.c_name+'</p>'
                              +'<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NUMBER+' : '+_items.c_number+'</p>';
-                 _paq.push(['trackEvent', '提交退款账号', 'click', '提交退款账号']);
                  Dialog.confirm({
                      top_txt : Lang.H5_CONFIRM_SUBMIT,
                      show_top : true,
                      body_txt : _body,
                      cf_fn : function(){
-                         //验证单品详情页的
-                         _paq.push(['trackEvent', '确认无误提交', 'click', '确认无误提交']);
                          _this.saveData({
                              data : {
                                  edata: {
-                                     "action":"refund_card",
-                                     "c_number":_items.c_number,
-                                     "c_name":_items.c_name,
-                                     "b_name":_items.b_name,
-                                     "b_branch":_items.b_branch
+                                     "action": "refund",
+                                     "bank_info" : {
+                                         "c_number":_items.c_number,
+                                         "c_name":_items.c_name,
+                                         "b_name":_items.b_name,
+                                         "b_branch":_items.b_branch
+                                     },
+                                     "buyer_id": Base.others.getUrlPrem('buyer_id'),
+                                     "imgs": _step_one.refundImgs,
+                                     "item_id": Base.others.getUrlPrem('item_id'),
+                                     "item_sku_id": Base.others.getUrlPrem('item_sku_id'),
+                                     "price":_step_one.refundPrice,
+                                     "reason": _step_one.refundExplain,
+                                     "uss": Base.others.getUrlPrem('uss')
+
                                  }
                              },
                              callback : function(){
@@ -289,8 +291,9 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                          body_txt : '<p class="dialog-body-p">'+Lang.H5_SUBMIT_SUCCESS+'</p>',
                          auto_fn : function(){
                              setTimeout(function(){
-                                 location.href = localStorage.getItem('RefundBack');
-                             },2000);
+                                 localStorage.setItem('ApplyRefundDetail',Config.hrefUrl + 'applyrefunddetail.php'+location.search);
+                                 location.href = Config.hrefUrl + 'applyrefundsuccess.php'+location.search;
+                             },1000);
                          }
                      });
                  }else{

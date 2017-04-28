@@ -5,6 +5,24 @@
     include_once( dirname(__FILE__).'/../html/router/base.php');
     $smarty = smartyCommon('default');
 
+    $buyer_id = $_REQUEST['buyer_id'];
+    $seller_id = $_REQUEST['seller_id'];
+    $uss = $_REQUEST['uss'];
+    $path = 'v1/orders';
+    $params = [];
+    $params["buyer_id"] = $buyer_id;
+    $params["uss"] = $uss;
+    $params["page_num"] = 0;
+    $params["page_size"] = 20;
+    $params["seller_id"] = $seller_id;
+    $params["action"] = 'buyer_list';
+
+
+    $ret = get_init_php_data($path, $params);
+    $json = json_decode($ret, true);
+
+    $smarty->assign('INDEX_DATA',$json["order_list"]["list"]);
+
     $index_title = '<title>用户中心</title>';
     $smarty->assign('INDEX_TITLE',$index_title);
 
