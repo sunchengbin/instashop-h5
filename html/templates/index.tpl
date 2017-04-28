@@ -6,11 +6,7 @@
         <section class="shop-header">
             <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
             <div class="clearfix shop-info">
-                {if $INDEX_DATA.shop.warrant_flag == 1}
-                <div class="secured-box">
-                    <i class="icon iconfont icon-secured"></i>
-                </div>
-                {/if}
+
                 <div class="shop-img">
                     <img data-img="{$INDEX_DATA.shop.logo}" src="" />
                 </div>
@@ -18,6 +14,11 @@
                 {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
                     {*是否有实体店标志*}
                     <span><i class="icon iconfont icon-shop-font"></i>Ada Outlet</span>
+                {/if}
+                {if $INDEX_DATA.shop.warrant_flag == 1}
+                <div class="secured-box">
+                    <i class="icon iconfont icon-secured"></i>
+                </div>
                 {/if}
             </div>
         </section>

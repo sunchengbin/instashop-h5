@@ -758,3 +758,22 @@ footer .btn i {
     border: 1px solid #ffffff;
     padding: 0 1rem;
 }
+.secured-box{
+    position: relative;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    line-height: 1.5rem;
+    background-color: #fff;
+    top: .3rem;
+
+}
+.icon-secured{
+    position: absolute;
+    font-size: 24px;
+    top: 0;
+    left: -.2rem;
+    color: #7ED321;
+    vertical-align: middle;
+}
