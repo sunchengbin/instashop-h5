@@ -150,9 +150,9 @@
         <div class="order-guide-text">
              <p>点这里查看订单详情</p>
              <p>
-                <button class="order-guide-btn">Saya mengerti</button>
+                <button class="order-guide-btn j_close_guide">Saya mengerti</button>
              </p>
-             <img src="{$STATIC_HOST}/images/app/cover-arrow.png" />
+             <img class="order-guide-arrow" src="{$STATIC_HOST}/images/app/cover-arrow.png" />
         </div>
     </div>
 </body>

@@ -449,7 +449,7 @@ define(function () {
         getCurDateTime: function () {
             return parseInt(new Date().getTime() / 1000);
         },
-        coverGuide: function (cover, target) {
+        coverGuide: function (cover, target,adjustTop,adjustLeft) {
             var body = document.body,
                 doc = document.documentElement;
             var _this = this;
@@ -469,12 +469,13 @@ define(function () {
                 // set size and border-width
                 cover.style.width = targetWidth + 'px';
                 cover.style.height = targetHeight + 'px';
-                cover.style.borderWidth =
+                
+                var borderWidth =
                     offsetTop + 'px ' +
-                    (pageWidth - targetWidth - offsetLeft) + 'px ' +
+                    (pageWidth - targetWidth + offsetLeft) + 'px ' +
                     (pageHeight - targetHeight - offsetTop) + 'px ' +
                     offsetLeft + 'px';
-
+                $(cover).css("border-width",borderWidth)
                 cover.style.display = 'block';
 
                 // resize

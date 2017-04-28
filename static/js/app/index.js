@@ -58,6 +58,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
 
             _this.initTab();
             _this.handleFn();
+            _this.checkIsShowGuide();
         },
         initTab: function () {
             var _this = this,
@@ -197,7 +198,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
         initShopInfoImgSlideBanner: function () {
             var _this = this;
             var _shopInfoImgs = shop_info_data.shop.realinfo.imgs;
-            _this._groupImgs = []; 
+            _this._groupImgs = [];
             _this.groupArrayByNumber(_shopInfoImgs, 3, _this._groupImgs);
             _this.createShopInfoSlierDom();
             Slide.createNew({
@@ -643,6 +644,15 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             $('body').on('click', '.j_goto_line', function () {
                 location.href = init_data.shop.line_url;
             });
+            $("body").on("click", ".j_close_guide", function () {
+                $(".order-guide-cover").hide();
+                $(".order-guide-info-wrap").hide();
+                var IndexCoverCache = Cache.getSpace("IndexCache") || new Cache({
+                    namespace: "IndexCache",
+                    type: "local"
+                });
+                IndexCoverCache.set("isShowOrderGuid", 2);
+            })
 
         },
         showSortPrompt: function () {
@@ -677,16 +687,29 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 }
             }, 100);
         },
-        showOrderGuide: function () {
+        checkIsShowGuide: function () {
             var IndexCoverCache = Cache.getSpace("IndexCache") || new Cache({
                 namespace: "IndexCache",
                 type: "local"
             });
-            var  isShowOrderGuid = IndexCoverCache.find("isShowOrderGuid");
+            var isShowOrderGuid = IndexCoverCache.find("isShowOrderGuid");
             // 有值 且 值为1
-            if(isShowOrderGuid!=void(0)&&isShowOrderGuid==1){
+            if (isShowOrderGuid != void(0) && isShowOrderGuid == 1) {
                 $(".order-guide-info-wrap").show();
-                Base.others.coverGuide(document.querySelector(".order-guide-cover"),document.querySelector(".j_my_order"));
+                Base.others.coverGuide(document.querySelector(".order-guide-cover"), document.querySelector(".j_my_order"));
+                var $coverInfoWrap = $(".order-guide-info-wrap");
+                var $coverGuideArrow = $(".order-guide-arrow");
+                var $orderGuideCover = $(".order-guide-cover");
+
+                var coverInfoWrapWidth = $coverInfoWrap.offset().width;
+                var coverGuideArrowWidth = $coverGuideArrow.offset().width;
+                var coverGuideCoverWidth = ~~$orderGuideCover[0].style.width.replace("px", "");
+
+                var offsetRight = coverGuideArrowWidth + coverGuideCoverWidth;
+                $coverInfoWrap.css("right", offsetRight + "px")
+                $coverGuideArrow.css("left", coverInfoWrapWidth + "px");
+                $(".order-guide-info-wrap").show();
+                // IndexCoverCache.set("isShowOrderGuid",2);
             }
         },
         transItems: function (items) {
