@@ -158,6 +158,9 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                         break;
                 }
             })
+            $("body").on("click",".order-login-btn",function(){
+                Oauth.openDialog();
+            })
         },
         // 退款
         bindCard: function () {

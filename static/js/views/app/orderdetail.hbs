@@ -177,7 +177,7 @@
             {{/if}}
         {{/if}}
     </div>
-    {{#if data.order.buyer_op.can_bindcard}}
+    {{!--{{#if data.order.buyer_op.can_bindcard}}
         <div class="prove-btn">
             <a spm-auto="退款" spm-click="refund" class="submit-btn btn confirm-btn" href="{{hrefUrl}}refund.php?order_id={{data.order.id}}">{{lang.H5_EDIT_REFUND_CARD}}</a>
         </div>
@@ -186,11 +186,10 @@
         <div class="prove-btn">
             <a spm-auto="上传支付证明" spm-click="upload-prove" class="submit-btn btn confirm-btn" href="{{hrefUrl}}uploadprove.php?order_id={{data.order.id}}&hash={{data.order.id_hash}}">{{lang.H5_PAY_WARRANT}}</a>
         </div>
-    {{/neq}}
+    {{/neq}}--}}
 </section>
 {{!--未登录都提示登录--}}
 {{#neq data.order.warrant_status "nowarrant"}}
-{{else}}
     {{#if isLogin}}
         <div class="order-login-tip">
             <p>{{../lang.DANBAO_ORDER_UNLOGIN_TIP}}</p>
@@ -198,6 +197,11 @@
                 Login
             </div>
         </div>
+    {{else}}
+        {{{transbtn data.order.op}}}
     {{/if}}
 {{/neq}}
-{{{transbtn data.order.op}}}
+{{!--普通订单 直接展示op--}}
+{{#eq data.order.warrant_status "nowarrant"}}
+    {{{transbtn data.order.op}}}
+{{/eq}}
