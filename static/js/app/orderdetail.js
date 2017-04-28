@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/15.
  */
-require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', 'base','oauth'], function (Lang, Hbs, OrderDetail, Config, Contact, Base,Oauth) {
+require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', 'base','oauth','cache'], function (Lang, Hbs, OrderDetail, Config, Contact, Base,Oauth,Cache) {
     var OD = {
         init: function () {
             var ItemHtm = '<div>' + Lang.H5_LOADING + '</div>';
@@ -82,6 +82,43 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                     Oauth.openDialog();
                 }
             });
+            $('body').on('click', '.j_check_refund', function () {
+                var _this = $(this),
+                    _url = _this.attr('data-url'),
+                    _item_id = _this.attr('data-item-id'),
+                    _item_sku_id = _this.attr('data-item-sku-id');
+                var loginResult = Oauth.checkIsLogin();
+                if (loginResult.result) {
+                    var _urlParam = {
+                        buyer_id:loginResult.info.buyer_id,
+                        uss:loginResult.info.uss,
+                        item_id:_item_id,
+                        item_sku_id:_item_sku_id,
+                        order_id:init_data.order.id,
+                        seller_id:init_data.order.seller_id
+                    }
+                    var _urlParamStr = ""
+                    $.each(_urlParam,function(key,val){
+                        _urlParamStr +=key+"="+val+"&";
+                        console.log(_urlParamStr)
+                    })
+                    location.href = _url + "?" + _urlParamStr.replace(/&$/,"");
+                } else {
+                    Oauth.openDialog();
+                }
+            });
+            //TODO 看情况再封装
+            var IndexCoverCache = Cache.getSpace("IndexCache") || new Cache({
+                namespace: "IndexCache",
+                type: "local"
+            });
+            // 先获取 如果没有再种 有的话pass
+            var  isShowOrderGuid = IndexCoverCache.find("isShowOrderGuid");
+            if(isShowOrderGuid==void(0)){
+                // 没有种过
+                // 1表示没有展示过
+                IndexCoverCache.set("isShowOrderGuid","1")
+            }
         }
 
     };

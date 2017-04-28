@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/6.
  * 首页
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer', 'oauth'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer, Oauth) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer', 'oauth', 'cache'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer, Oauth, Cache) {
     var Default_Page_Size = 18;
     var I = {
         indexItemsPagination: {
@@ -58,6 +58,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
 
             _this.initTab();
             _this.handleFn();
+            _this.checkIsShowGuide();
         },
         initTab: function () {
             var _this = this,
@@ -548,12 +549,12 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             $('body').on('click', '.j_my_order', function () {
                 var _this = $(this),
                     _url = _this.attr('data-url');
-                    var loginResult = Oauth.checkIsLogin();
+                var loginResult = Oauth.checkIsLogin();
                 if (loginResult.result) {
                     localStorage.setItem('ScrollTop', $(window).scrollTop());
                     _that.setRouteInfo();
                     Common.saveFromUrl(function () {
-                        location.href = _url+"?buyer_id="+loginResult.info.buyer_id+"&uss="+loginResult.info.uss;
+                        location.href = _url + "?buyer_id=" + loginResult.info.buyer_id + "&uss=" + loginResult.info.uss;
                     });
                 } else {
                     Oauth.openDialog();
@@ -643,6 +644,15 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             $('body').on('click', '.j_goto_line', function () {
                 location.href = init_data.shop.line_url;
             });
+            $("body").on("click", ".j_close_guide", function () {
+                $(".order-guide-cover").hide();
+                $(".order-guide-info-wrap").hide();
+                var IndexCoverCache = Cache.getSpace("IndexCache") || new Cache({
+                    namespace: "IndexCache",
+                    type: "local"
+                });
+                IndexCoverCache.set("isShowOrderGuid", 2);
+            })
 
         },
         showSortPrompt: function () {
@@ -676,6 +686,31 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     }
                 }
             }, 100);
+        },
+        checkIsShowGuide: function () {
+            var IndexCoverCache = Cache.getSpace("IndexCache") || new Cache({
+                namespace: "IndexCache",
+                type: "local"
+            });
+            var isShowOrderGuid = IndexCoverCache.find("isShowOrderGuid");
+            // 有值 且 值为1
+            if (isShowOrderGuid != void(0) && isShowOrderGuid == 1) {
+                $(".order-guide-info-wrap").show();
+                Base.others.coverGuide(document.querySelector(".order-guide-cover"), document.querySelector(".j_my_order"));
+                var $coverInfoWrap = $(".order-guide-info-wrap");
+                var $coverGuideArrow = $(".order-guide-arrow");
+                var $orderGuideCover = $(".order-guide-cover");
+
+                var coverInfoWrapWidth = $coverInfoWrap.offset().width;
+                var coverGuideArrowWidth = $coverGuideArrow.offset().width;
+                var coverGuideCoverWidth = ~~$orderGuideCover[0].style.width.replace("px", "");
+
+                var offsetRight = coverGuideArrowWidth + coverGuideCoverWidth;
+                $coverInfoWrap.css("right", offsetRight + "px")
+                $coverGuideArrow.css("left", coverInfoWrapWidth + "px");
+                $(".order-guide-info-wrap").show();
+                // IndexCoverCache.set("isShowOrderGuid",2);
+            }
         },
         transItems: function (items) {
             var i = 0,

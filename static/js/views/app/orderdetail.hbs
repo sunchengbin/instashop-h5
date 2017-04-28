@@ -75,8 +75,8 @@
         <ul class="order-items">
             {{#each data.order.items}}
                 {{!--担保交易--}}
-                {{#eq ../data.order.warrant_status "normal"}}
-                    <li class="clearfix cart-item">
+                {{#neq ../data.order.warrant_status "nowarrant"}}
+                    <li id="{{#if item_sku_id}}{{item_sku_id}}{{else}}{{item_id}}" class="clearfix cart-item">
                         <img src="{{img_head}}">
                         <div class="clearfix">
                             <p class="name">{{item_title}}</p>
@@ -93,12 +93,15 @@
                                 {{#eq this "pre_refund"}}
                                     <span data-item-id="{{../../item_id}}" data-item-sku-id="{{../../item_sku_id}}" data-url="{{../../../../host}}html/applyrefund.php" class="refund-btn j_apply_refund fr">{{../../../../lang.REFOUND_BTN_APPLY_TXT}}</span>
                                 {{/eq}}
+                                {{#eq this "refund_detail"}}
+                                    <span data-item-id="{{../../item_id}}" data-item-sku-id="{{../../item_sku_id}}" data-url="{{../../../../host}}html/applyrefunddetail.php" class="refund-btn j_check_refund fr">{{../../../../lang.REFOUND_BTN_PROCESS_TXT}}</span>
+                                {{/eq}}
                             {{/each}}
                         </div>
                     </li>
                 {{else}}
                     {{!--非担保交易--}}
-                    <li class="clearfix cart-item">
+                    <li id="{{#if item_sku_id}}{{item_sku_id}}{{else}}{{item_id}}" class="clearfix cart-item">
                         <img src="{{img_head}}">
                         <div class="">
                             <p class="name">{{item_title}}</p>
@@ -109,7 +112,7 @@
                             <p class="price clearfix">{{../../lang.H5_PRICE}}: {{#if discount.value}}<span class="fr">-{{transpricevalue discount.value}}%</span>{{/if}}Rp {{transprice price}}</p>
                         </div>
                     </li>
-                {{/eq}}
+                {{/neq}}
             {{/each}}
         </ul>
         <!--{{#if isHaveReduc}}-->

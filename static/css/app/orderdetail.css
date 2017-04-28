@@ -1,6 +1,7 @@
 @import "../base/base.css";
 @import "../moudle/app/header/header.css";
 @import "../moudle/app/common/common.css";
+@import "../moudle/ui/dialog/dialog.css";
 @import "../moudle/app/item/item.css";
 @import "../moudle/app/contact/contact.css";
 @import "../moudle/app/oauth/oauth.css";
