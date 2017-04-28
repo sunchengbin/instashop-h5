@@ -554,7 +554,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     localStorage.setItem('ScrollTop', $(window).scrollTop());
                     _that.setRouteInfo();
                     Common.saveFromUrl(function () {
-                        location.href = _url + "?buyer_id=" + loginResult.info.buyer_id + "&uss=" + loginResult.info.uss;
+                        location.href = _url + "?buyer_id=" + loginResult.info.buyer_id + "&uss=" + loginResult.info.uss+"&seller_id="+init_data.shop.id;
                     });
                 } else {
                     Oauth.openDialog();
