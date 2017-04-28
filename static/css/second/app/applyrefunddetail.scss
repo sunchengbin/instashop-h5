@@ -5,6 +5,9 @@
 body{
   background-color: $header-bg-color;
 }
+.header-nav a{
+  color: $gray-color;
+}
 .refund-progress{
   @include remCalc(padding,30);
   background-color: $white;
