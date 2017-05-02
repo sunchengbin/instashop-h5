@@ -200,11 +200,11 @@
 {{!--未登录都提示登录--}}
 {{#neq data.order.warrant_status "nowarrant"}}
     {{#if isLogin}}
-        <div class="order-login-tip">
-            <p>{{../lang.DANBAO_ORDER_UNLOGIN_TIP}}</p>
+        <div class="order-login-tip clearfix">
             <div class="fr order-login-btn">
                 Login
             </div>
+            <p>{{../lang.DANBAO_ORDER_UNLOGIN_TIP}}</p>
         </div>
     {{else}}
         {{{transbtn data.order.op}}}

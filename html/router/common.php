@@ -193,7 +193,7 @@ function smartyCommon($folder){
     $smarty = new Smarty();
     $folder_name = getSkinInfo();
     $folder_name = $folder?$folder:$folder_name;
-    $folder_name = 'first';
+    //$folder_name = 'first';
     $static_font_css = setStaticFontCss($folder_name);
     define('STATIC_FONT_CSS', $static_font_css);
     if($folder_name != 'default'){
@@ -285,7 +285,7 @@ function setStaticConfig(){
     define('FLEXIBLE', flexible());
     $folder_name = getSkinInfo();
     define('SKIN_INFO', $folder_name);
-    $folder_name = 'first';
+    //$folder_name = 'first';
     if($folder_name != 'default'){
         define('TEMP_FOLDER', $folder_name.'/');
     }else{

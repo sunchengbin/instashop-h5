@@ -35,7 +35,6 @@
   vertical-align: middle;
   display: block;
   line-height: normal;
-  @include remCalc(margin-top,14);
 }
 .index-footer ul li a{
   color: $footer-color;

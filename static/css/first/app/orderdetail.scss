@@ -4,6 +4,9 @@
 @import "../moudle/app/item/item.scss";
 @import "../moudle/app/contact/contact.scss";
 @import "../moudle/app/reduc/reduc.scss";
+@import "../moudle/ui/dialog/dialog.scss";
+/*登录*/
+@import "../moudle/app/oauth/oauth.scss";
 body{
   background-color: #f5f5f5;
   @include remCalc(padding-bottom,90);
@@ -190,7 +193,7 @@ body{
   content:' ';
   height: 2px;
   width: 100%;
-  background: url(../../../images/app/divider.png) repeat center center;
+  background: url(../../../../images/app/divider.png) repeat center center;
 }
 .href-box a{
   display: inline-block;
@@ -221,4 +224,77 @@ body{
   width: 100%;
   left: 0;
   bottom: 0;
+}
+//4.7担保交易
+.cart-item-price {
+  margin:0!important;
+  float: left;
+}
+.cart-item-price .price {
+  color:#666666!important;
+}
+.cart-item-price .origin-price {
+  font-size: 14px;
+  opacity: 0.5;
+  padding-left:0.625rem;
+  display: table-cell;
+  vertical-align: middle;
+  text-decoration: line-through;
+}
+.refund-btn {
+  display:inline-block;
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  @include fontDpr(14px);
+  color:#444444;
+  @include remCalc(border-radius,100);
+  border:1px solid $txt-color;
+  @include remCalc(padding,0 30);
+}
+.order-login-tip p{
+  @include remCalc(margin-right,230);
+}
+.order-login-tip {
+  position:fixed;
+  bottom:0;
+  width:100%;
+  max-width: 640px;
+  @include remCalc(height,144);
+  color:$white;
+  @include fontDpr(14px);
+  background:rgba(246, 166, 35,0.8);
+  box-sizing: border-box;
+  @include remCalc(padding,20 30);
+
+}
+.order-login-btn {
+  @include remCalc(width,183);
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  @include remCalc(margin-top,30);
+  border: 1px solid $white;
+  border-radius: 4px;
+  text-align: center;
+}
+.order-bottom-btns {
+  position:fixed;
+  bottom:0;
+  width:100%;
+  @include remCalc(height,100);
+  @include remCalc(line-height,100);
+  @include fontDpr(14px);
+  background: $white;
+  box-sizing: border-box;
+  @include remCalc(padding,0 30);
+  text-align: right;
+  border-top: 1px solid $border-color;
+}
+.order-bottom-btn {
+  @include remCalc(height,50);
+  @include remCalc(line-height,50);
+  border: 1px solid #979797;
+  @include remCalc(border-radius,100);
+  text-align: center;
+  @include remCalc(padding,0 30);
+  display: inline-block;
 }

@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="../header.tpl"}
 <body data-spider="">
     <nav class="header-nav clearfix" data-spider="header-nav">
         <a href = "{$INDEX_DATA.order.url}#{if $INDEX_DATA.item_sku_id != 0}{$INDEX_DATA.item_sku_id}{else}{$INDEX_DATA.item_id}{/if}"><i class="icon iconfont fr icon-allright-font"></i></a>
@@ -49,4 +49,4 @@
             </li>
         </ul>
     </section>
-{include file="footer.tpl"}
+{include file="../footer.tpl"}
