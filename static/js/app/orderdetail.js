@@ -126,8 +126,6 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
 
             $("body").on("click", ".j_order_op", function () {
                 var _op = $(this).attr("data-op");
-
-                // 校验是否登录 确认收货需要、退款账号、延长收货、上传支付证明
                 var _reqData = {
                     edata: {
                         "action": "",
