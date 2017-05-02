@@ -92,7 +92,10 @@ define([
                             }
                         }
                     }
-
+                    loginInfoFromCallBackPost.options = {
+                        plant:Base.others.getCurDateTime(),
+                        expire:2592000//30天-2592000
+                    }
                     loginInfoFromCache.set("loginInfo", loginInfoFromCallBackPost);
                     return {
                         result: true,
@@ -110,11 +113,28 @@ define([
                         result: false
                     };
                 } else {
-                    // 本地存储有 返回用户信息
-                    return {
-                        result: true,
-                        info: loginInfo
-                    };
+                    if(loginInfo.options){
+                        var curDateTime = Base.others.getCurDateTime();
+                        var plantTime = loginInfo.options.plant;
+                        if(~~(curDateTime-plantTime)<=~~loginInfo.options.expire){
+                            // 本地存储有 返回用户信息
+                            return {
+                                result: true,
+                                info: loginInfo
+                            };
+                        }else{
+                            return {
+                                result: false
+                            };
+                        }
+                    }else{
+                        // 本地存储有 返回用户信息
+                        return {
+                            result: true,
+                            info: loginInfo
+                        };
+                    }
+                    
                 }
             }
         }
