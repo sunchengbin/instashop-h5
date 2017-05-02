@@ -5,6 +5,9 @@
 {else}
     <script src="{$STATIC_HOST}/js/dist/app/{$INDEX_JS_NAME}.js?v=1492599527319"></script>
 {/if}
+{if $FACEBOOK_JS}
+    {$FACEBOOK_JS}
+{/if}
 {literal}
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

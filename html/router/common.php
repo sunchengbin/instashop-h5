@@ -157,7 +157,21 @@ $js = <<<JS
 JS;
 return $js;
 }
-
+function facebookJs($facebook_id){
+$js = <<<JS
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '$facebook_id'); // Insert your pixel ID here.
+    fbq('track', 'PageView');
+    </script>
+    <noscript>< img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=$facebook_id&ev=PageView&noscript=1"/></noscript>
+JS;
+return $js;
+}
 function setHref($link){
     if(!$link){
         $link = 'javascript:;';
@@ -191,7 +205,8 @@ function getIco($url){
 function smartyCommon($folder){
     require_once(__DIR__.'/../lib/libs/Smarty.class.php');
     $smarty = new Smarty();
-    $folder_name = getSkinInfo();
+    $common_info = getSkinInfo();
+    $folder_name = $common_info['skin_name'];
     $folder_name = $folder?$folder:$folder_name;
     //$folder_name = 'default';
     $static_font_css = setStaticFontCss($folder_name);
@@ -216,6 +231,10 @@ function smartyCommon($folder){
     $smarty->assign('BI_SCRIPT',BI_SCRIPT);
     $smarty->assign('IS_DEBUG',IS_DEBUG);
     $smarty->assign('SKIN_INFO',$folder_name);
+    $facebook_id = $common_info['facebook_id'];
+    if($facebook_id){
+        $smarty->assign('FACEBOOK_JS',facebookJs($facebook_id));
+    }
     return $smarty;
 }
 function setStaticFontCss($folder_name){
@@ -255,11 +274,14 @@ function getSkinInfo(){
     $skin_path = 'v1/shopsSkin/';
     $skin_ret = json_decode(get_init_php_data($skin_path, ["seller_id" => $seller_id]), true);
 
+    $result = [];
     if($skin_ret['code'] == 200){
-        return $skin_ret['shop_skin']['name'];
+        $result['skin_name'] = $skin_ret['shop_skin']['name'];
+        $result['facebook_id'] = $skin_ret['shop_skin']['facebook_id'];
     }else{
-        return 'default';
+        $result['skin_name'] = 'default';
     }
+    return $result;
 }
 function setStaticConfig(){
     $prompt = is_https() ? 'https:' : 'http:';
@@ -279,13 +301,18 @@ function setStaticConfig(){
     define('BI_SCRIPT', $bi_js);
     define('IS_DEBUG', isDebug());
     define('FLEXIBLE', flexible());
-    $folder_name = getSkinInfo();
+    $common_info = getSkinInfo();
+    $folder_name = $common_info['skin_name'];
     define('SKIN_INFO', $folder_name);
     //$folder_name = 'default';
     if($folder_name != 'default'){
         define('TEMP_FOLDER', $folder_name.'/');
     }else{
         define('TEMP_FOLDER', '');
+    }
+    $facebook_id = $common_info['facebook_id'];
+    if($facebook_id){
+        define('FACEBOOK_JS', facebookJs($facebook_id));
     }
 }
 
@@ -296,6 +323,9 @@ function initPhpJs($js_name){
     if(isDebug()){
         return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1492599527462"></script>';
     }else{
+        if(FACEBOOK_JS){
+            $skin_info = $skin_info.FACEBOOK_JS;
+        }
         return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1492599527462"></script>';
     }
 }
