@@ -234,6 +234,8 @@ function smartyCommon($folder){
     $facebook_id = $common_info['facebook_id'];
     if($facebook_id){
         $smarty->assign('FACEBOOK_JS',facebookJs($facebook_id));
+    }else{
+        $smarty->assign('FACEBOOK_JS','');
     }
     return $smarty;
 }
@@ -313,6 +315,8 @@ function setStaticConfig(){
     $facebook_id = $common_info['facebook_id'];
     if($facebook_id){
         define('FACEBOOK_JS', facebookJs($facebook_id));
+    }else{
+        define('FACEBOOK_JS', '');
     }
 }
 
@@ -323,6 +327,7 @@ function initPhpJs($js_name){
     if(isDebug()){
         return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1492599527462"></script>';
     }else{
+    print_r(FACEBOOK_JS);
         if(FACEBOOK_JS){
             $skin_info = $skin_info.FACEBOOK_JS;
         }
