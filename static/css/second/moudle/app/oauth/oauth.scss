@@ -1,0 +1,24 @@
+.j_dialog_login_line,
+.j_dialog_login_facebook,
+.j_cart_no_login {
+  width: 90%;
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  border-radius: 2px;
+  color: $white;
+  @include fontDpr(16px);
+  text-align: center;
+  @include remCalc(margin,30 auto 0);
+}
+
+.j_cart_no_login {
+  background: #43CB9B
+}
+
+.j_dialog_login_line {
+  background: #00B900;
+}
+
+.j_dialog_login_facebook {
+  background: #3B589C;
+}

@@ -3,8 +3,8 @@
 @import "../moudle/app/common/common.scss";
 @import "../moudle/ui/dialog/dialog.scss";
 @import "../moudle/app/item/item.scss";
-//砍价商品
-@import "../moudle/app/detail/bargain.scss";
+/*登录*/
+@import "../moudle/app/oauth/oauth.scss";
 body {
   background: $cart-bg;
 }

@@ -139,7 +139,17 @@
     </div>
     {*底部浮动导航*}
     {include file="../navbar.tpl"}
-</div>
+    </div>
+    <div class="order-guide-cover"></div>
+    <div class="order-guide-info-wrap">
+        <div class="order-guide-text">
+             <p>点这里查看订单详情</p>
+             <p>
+                <button class="order-guide-btn j_close_guide">Saya mengerti</button>
+             </p>
+             <img class="order-guide-arrow" src="{$STATIC_HOST}/images/app/cover-arrow.png" />
+        </div>
+    </div>
 {else}
     <section class="no_item">Belum ada produk</section>
 {/if}
