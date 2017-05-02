@@ -250,7 +250,11 @@ function set_request_seller_id() {
 		return;
 	}
     include_once( dirname(__FILE__).'/util.php');
-	$host_preg = C_RUNTIME_ONLINE ? '/^(www\.)?(.*?)\.instashop\.co\.id$/i' : '/^(www\.)?(.*?)\.test\.instashop\.co\.id$/i';
+	if (ENV == 'AWS') {
+		$host_preg = C_RUNTIME_ONLINE ? '/^(www\.)?(.*?)\.aws\.instashop\.co\.id$/i' : '/^(www\.)?(.*?)\.testaws\.instashop\.co\.id$/i';
+	} else {
+		$host_preg = C_RUNTIME_ONLINE ? '/^(www\.)?(.*?)\.instashop\.co\.id$/i' : '/^(www\.)?(.*?)\.test\.instashop\.co\.id$/i';
+	}
 	$host = $_SERVER['HTTP_HOST'];
 	$h_match = preg_match($host_preg, $host, $matches);
 	if ($h_match)
