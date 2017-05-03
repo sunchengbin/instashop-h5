@@ -543,7 +543,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                             if (status != 1) {
                                 Dialog.confirm({
                                     top_txt: '', //可以是html
-                                    body_txt: '<p class="dialog-body-p bargain-unvalid-tip">Mohon maaf, harga produk ini sudah kembali ke harga normal</p><div class="j_btn_confrim_bargain_unvalid">Saya mengerti</div>',
+                                    body_txt: '<p class="dialog-body-p bargain-unvalid-tip">Mohon maaf, harga produk ini sudah kembali ke harga normal</p><div class="j_btn_confrim_bargain_unvalid btn confirm-btn">Saya mengerti</div>',
                                     body_fn: function () {
                                         $("body").on("click", ".j_btn_confrim_bargain_unvalid", function () {
                                             callback && callback();
