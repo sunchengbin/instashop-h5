@@ -194,9 +194,9 @@ function isDebug(){
 }
 function getFontCss($url,$folder_name){
     if($folder_name){
-        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1492599527462") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1492599527462#iconfont") format("svg");}</style>';
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1493776093359") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1493776093359#iconfont") format("svg");}</style>';
     }else{
-        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1492599527462") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1492599527462#iconfont") format("svg");}</style>';
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1493776093359") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1493776093359#iconfont") format("svg");}</style>';
     }
 }
 function getIco($url){
@@ -325,13 +325,13 @@ setStaticConfig();
 function initPhpJs($js_name){
     $skin_info = '<script>var SKIN="'.SKIN_INFO.'";</script>';
     if(isDebug()){
-        return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1492599527462"></script>';
+        return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1493776093359"></script>';
     }else{
     print_r(FACEBOOK_JS);
         if(FACEBOOK_JS){
             $skin_info = $skin_info.FACEBOOK_JS;
         }
-        return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1492599527462"></script>';
+        return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1493776093359"></script>';
     }
 }
 function initPhpCss($css_name){
@@ -342,12 +342,12 @@ function initPhpCss($css_name){
     }
     if(isDebug()){
         if(TEMP_FOLDER){
-            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
+            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1493776093359" rel="stylesheet"/>';
         }else{
-            return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
+            return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1493776093359" rel="stylesheet"/>';
         }
     }else{
-        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
+        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1493776093359" rel="stylesheet"/>';
     }
 }
 
