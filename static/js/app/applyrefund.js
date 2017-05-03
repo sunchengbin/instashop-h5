@@ -195,7 +195,7 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
      },
      isEdit : function(){//是否编辑过
          var _this = this,
-             _step_one_data = _this.testStepOne(),
+             _step_one_data = _this.testStepOneIsEmpty(),
              _data = _this.testIsEmpty();
          if(_step_one_data && _data){
              return true;
@@ -226,6 +226,49 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              "b_branch":_branch
          }
      },
+    testStepOneIsEmpty : function(){
+        var _refund_price = $.trim($('.j_refund_price').val()),
+            _max_price = $('.j_refund_price').attr('data-maxprice'),
+            _refund_explain = $.trim($('.j_refund_explain').val());
+        _refund_price = $.trim(_refund_price.replace(/Rp\s/g, ''));
+        if(!_refund_price){
+            return null;
+        }else{
+            if (/\./g.test(_refund_price)) {
+                if (/\.00$/g.test(_refund_price)) {
+                    _refund_price = _refund_price.replace(/\./g, '') / 100;
+                } else {
+                    _refund_price = _refund_price.replace(/\./g, '');
+                }
+            }
+            if(Number(_refund_price) > Number(_max_price)){
+                return null;
+            }
+        }
+        if(!_refund_explain){
+            return null;
+        }else{
+            if(_refund_explain > 1000){
+                return null;
+            }
+        }
+        var _imgs = [];
+        $('.j_refund_img').each(function(i,item){
+            _imgs.push($(item).attr('data-src'));
+        });
+        if(!_imgs.length){
+            return null;
+        }else{
+            if(_imgs.length > 3){
+                return null;
+            }
+        }
+        return {
+            refundPrice : _refund_price,
+            refundExplain : _refund_explain,
+            refundImgs : _imgs
+        };
+    },
      testStepOne : function(){
          var _refund_price = $.trim($('.j_refund_price').val()),
             _max_price = $('.j_refund_price').attr('data-maxprice'),
