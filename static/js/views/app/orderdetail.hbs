@@ -17,7 +17,7 @@
             </div>
         {{/eq}}
         {{#eq data.order.state 3}}
-            {{lang.H5_ORDER_STATUS}}: Sudah Dikirim
+            {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
         {{/eq}}
         {{#eq data.order.state 4}}
             {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}

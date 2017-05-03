@@ -173,49 +173,61 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
         // 延长收货时间
         extendReceiveTime: function (data) {
             PaqPush && PaqPush('延长收货时间', '');
-            Ajax.postJsonp({
-                url: Config.actions.orderConfirm + '/' + init_data.order.id,
-                data: {
-                    param: JSON.stringify(data)
-                },
-                type: 'put',
-                timeout: 15000,
-                success: function (obj) {
-                    if (obj.code == 200) {
-                        Dialog.tip({
-                            top_txt: '', //可以是html
-                            body_txt: '<p class="dialog-body-p">' + Lang.CONTROLL_SUCCESS + '</p>',
-                            auto_fn: function () {
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 2000);
+            Dialog.confirm({
+                cfb_txt: Lang.ORDER_CONFIRM_RECEIVE_OK,
+                cab_txt: Lang.ORDER_CONFIRM_RECEIVE_CANCEL,
+                body_txt: Lang.ORDER_DELAY_TIP,
+                cf_fn: function () {
+                    Ajax.postJsonp({
+                        url: Config.actions.orderConfirm + '/' + init_data.order.id,
+                        data: {
+                            param: JSON.stringify(data)
+                        },
+                        type: 'put',
+                        timeout: 15000,
+                        success: function (obj) {
+                            if (obj.code == 200) {
+                                Dialog.tip({
+                                    top_txt: '', //可以是html
+                                    body_txt: '<p class="dialog-body-p">' + Lang.CONTROLL_SUCCESS + '</p>',
+                                    auto_fn: function () {
+                                        setTimeout(function () {
+                                            location.reload();
+                                        }, 2000);
+                                    }
+                                });
+                            } else {
+                                Dialog.tip({
+                                    top_txt: '', //可以是html
+                                    body_txt: '<p class="dialog-body-p">' + obj.message || Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
+                                    auto_fn: function () {
+                                        this.remove();
+                                    }
+                                });
                             }
-                        });
-                    } else {
-                        opts.callback && opts.callback();
-                    }
-                },
-                error: function (error) {
-                    Dialog.tip({
-                        top_txt: '', //可以是html
-                        body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
-                        auto_fn: function () {
-                            this.remove();
-                            opts.callback && opts.callback();
+                        },
+                        error: function (error) {
+                            Dialog.tip({
+                                top_txt: '', //可以是html
+                                body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
+                                auto_fn: function () {
+                                    this.remove();
+                                }
+                            });
+
                         }
                     });
-
                 }
-            });
+            })
         },
         // 确认收货
         confirmReceive: function (data) {
             var _this = this;
             PaqPush && PaqPush('确认收货', '');
             Dialog.confirm({
-                cfb_txt:Lang.ORDER_CONFIRM_RECEIVE_OK,
-                cab_txt:Lang.ORDER_CONFIRM_RECEIVE_CANCEL,
-                body_txt:Lang.ORDER_CONFIRM_RECEIVE_TITLE,
+                cfb_txt: Lang.ORDER_CONFIRM_RECEIVE_OK,
+                cab_txt: Lang.ORDER_CONFIRM_RECEIVE_CANCEL,
+                body_txt: Lang.ORDER_CONFIRM_RECEIVE_TITLE,
                 cf_fn: function () {
                     Ajax.postJsonp({
                         url: Config.actions.orderConfirm + '/' + init_data.order.id,
@@ -236,7 +248,13 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                                     }
                                 });
                             } else {
-                                opts.callback && opts.callback();
+                                Dialog.tip({
+                                    top_txt: '', //可以是html
+                                    body_txt: '<p class="dialog-body-p">' + obj.message || Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
+                                    auto_fn: function () {
+                                        this.remove();
+                                    }
+                                });
                             }
                         },
                         error: function (error) {
@@ -245,7 +263,6 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                                 body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
                                 auto_fn: function () {
                                     this.remove();
-                                    opts.callback && opts.callback();
                                 }
                             });
                         }
