@@ -641,12 +641,12 @@ define(['base'], function (Base) {
             "REFOUND_BTN_PROCESS_TXT": "Status Pengembalian Dana",
             "ORDER_BTN_CANCEL_TXT": "Batalkan Pesanan",
             "REFOUND_FILL_ACCOUNT": "Informasi Rekening Pengembalian dana",
-            "ORDER_BTN_DELAY_RECEIVE_TIME_TXT": "Perpanjang Waktu Penerimaan Produk",
+            "ORDER_BTN_DELAY_RECEIVE_TIME_TXT": "Perpanjang Penerimaan",
             "ORDER_CHECK_TUIKUAN_PROCESS": "Cek Status Pengembalian Dana",
             "ORDER_CONFIRM_RECEIVE_TITLE": "Apakah kamu telah menerima pesanan?",
             "ORDER_CONFIRM_RECEIVE_OK": "Ya",
             "ORDER_CONFIRM_RECEIVE_CANCEL": "Tidak",
-            "ORDER_CONFIRM_RECEIVE": "Terima",
+            "ORDER_CONFIRM_RECEIVE": "Sudah Diterima",
             "CONTROLL_SUCCESS":"Pemrosesan Berhasil",
             "ORDER_WARRANT_SUCCESS":"Pemesanan Berhasil"
         }
