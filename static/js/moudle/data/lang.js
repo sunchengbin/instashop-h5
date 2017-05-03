@@ -642,10 +642,10 @@ define(['base'], function (Base) {
             "REFOUND_FILL_ACCOUNT": "Informasi Rekening Pengembalian dana",
             "ORDER_BTN_DELAY_RECEIVE_TIME_TXT": "Perpanjang Waktu Penerimaan Produk",
             "ORDER_CHECK_TUIKUAN_PROCESS": "Cek Status Pengembalian Dana",
-            "ORDER_CONFIRM_RECEIVE_TITLE": "是否确认收货？",
-            "ORDER_CONFIRM_RECEIVE_OK": "确认",
-            "ORDER_CONFIRM_RECEIVE_CANCEL": "取消",
-            "ORDER_CONFIRM_RECEIVE": "确认收货",
+            "ORDER_CONFIRM_RECEIVE_TITLE": "Apakah kamu telah menerima pesanan?",
+            "ORDER_CONFIRM_RECEIVE_OK": "Ya",
+            "ORDER_CONFIRM_RECEIVE_CANCEL": "Tidak",
+            "ORDER_CONFIRM_RECEIVE": "Konfirmasi Penerimaan pesanan",
             "CONTROLL_SUCCESS":"Pemrosesan Berhasil"
         }
     };
