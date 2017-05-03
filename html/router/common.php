@@ -188,40 +188,6 @@ function getFontCss($url,$folder_name){
 function getIco($url){
     return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';
 }
-function smartyCommon($folder){
-    require_once(__DIR__.'/../lib/libs/Smarty.class.php');
-    $smarty = new Smarty();
-    $folder_name = getSkinInfo();
-    $folder_name = $folder?$folder:$folder_name;
-    //$folder_name = 'first';
-    $static_font_css = setStaticFontCss($folder_name);
-    define('STATIC_FONT_CSS', $static_font_css);
-    if($folder_name != 'default'){
-        $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
-        $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
-        $smarty->assign('TEMP_FOLDER',$folder_name.'/');
-        $smarty->assign('CSS_DEBUG','debug');
-        $smarty->assign('FLEXIBLE',FLEXIBLE);
-    }else{
-        $smarty->setTemplateDir(__DIR__.'/../templates/');
-        $smarty->setCompileDir(__DIR__.'/../templates_c/');
-        if($folder){
-            $smarty->assign('TEMP_FOLDER','default/');
-            $smarty->assign('FLEXIBLE',FLEXIBLE);
-        }else{
-            $smarty->assign('TEMP_FOLDER','');
-        }
-    }
-    $smarty->assign('STATIC_DNS',STATIC_DNS);
-    $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
-    $smarty->assign('STATIC_FONT_CSS',STATIC_FONT_CSS);
-    $smarty->assign('STATIC_HOST',STATIC_HOST);
-    $smarty->assign('HOST_URL',HOST_URL);
-    $smarty->assign('BI_SCRIPT',BI_SCRIPT);
-    $smarty->assign('IS_DEBUG',IS_DEBUG);
-    $smarty->assign('SKIN_INFO',$folder_name);
-    return $smarty;
-}
 function setStaticFontCss($folder_name){
     if($folder_name && $folder_name == 'default'){
         $folder_name = '';
@@ -264,6 +230,40 @@ function getSkinInfo(){
     }else{
         return 'default';
     }
+}
+function smartyCommon($folder){
+    require_once(__DIR__.'/../lib/libs/Smarty.class.php');
+    $smarty = new Smarty();
+    $folder_name = getSkinInfo();
+    $folder_name = $folder?$folder:$folder_name;
+    //$folder_name = 'first';
+    $static_font_css = setStaticFontCss($folder_name);
+    define('STATIC_FONT_CSS', $static_font_css);
+    if($folder_name != 'default'){
+        $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
+        $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
+        $smarty->assign('TEMP_FOLDER',$folder_name.'/');
+        $smarty->assign('CSS_DEBUG','debug');
+        $smarty->assign('FLEXIBLE',FLEXIBLE);
+    }else{
+        $smarty->setTemplateDir(__DIR__.'/../templates/');
+        $smarty->setCompileDir(__DIR__.'/../templates_c/');
+        if($folder){
+            $smarty->assign('TEMP_FOLDER','default/');
+            $smarty->assign('FLEXIBLE',FLEXIBLE);
+        }else{
+            $smarty->assign('TEMP_FOLDER','');
+        }
+    }
+    $smarty->assign('STATIC_DNS',STATIC_DNS);
+    $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
+    $smarty->assign('STATIC_FONT_CSS',STATIC_FONT_CSS);
+    $smarty->assign('STATIC_HOST',STATIC_HOST);
+    $smarty->assign('HOST_URL',HOST_URL);
+    $smarty->assign('BI_SCRIPT',BI_SCRIPT);
+    $smarty->assign('IS_DEBUG',IS_DEBUG);
+    $smarty->assign('SKIN_INFO',$folder_name);
+    return $smarty;
 }
 function setStaticConfig(){
     $prompt = is_https() ? 'https:' : 'http:';
