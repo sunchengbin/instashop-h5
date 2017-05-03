@@ -650,7 +650,7 @@ define(['base'], function (Base) {
             "ORDER_CONFIRM_RECEIVE": "Sudah Diterima",
             "CONTROLL_SUCCESS":"Pemrosesan Berhasil",
             "ORDER_WARRANT_SUCCESS":"Pemesanan Berhasil",
-            "ORDER_DELAY_TIP":"只能延长一次收货时间，将在7天确认收货基础上再增加3天，是否确认？"
+            "ORDER_DELAY_TIP":"Apakah kamu yakin ingin memperpanjang waktu penerimaan pesanan selama 3 hari setelah 7 hari sejak pengiriman telah lewat ?"
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[navigator.language.toLowerCase()] || Lang.id);
