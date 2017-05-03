@@ -288,10 +288,10 @@ body{
     height: 5rem;
     line-height: 5rem;
     color:#666666;
-    font-size: 14px;
+    font-size: 12px;
     background:#ffffff;
     box-sizing: border-box;
-    padding:0 1.6rem;
+    padding:0 1rem;
     text-align: right;
     border-top: 1px solid #D8D8D8;
 }
@@ -301,6 +301,6 @@ body{
     border: 1px solid #979797;
     border-radius: 100px;
     text-align: center;
-    padding:0 1rem;
+    padding:0 .5rem;
     display: inline-block;
 }
