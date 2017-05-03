@@ -58,7 +58,13 @@ function handle()
 		$coupon_id = $coupon_matches[1];
 		$_REQUEST['coupon_id'] = $coupon_id;
 		require( dirname(__FILE__).'/../html/getcoupon.php');
-	} 
+	}
+	else if (preg_match('/^\/c\/([0-9a-zA-Z]{3,6})(\?.*)?$/i', $uri, $order_matches))
+	{
+		$code = $coupon_matches[1];
+		$_REQUEST['code'] = $code;
+		require( dirname(__FILE__).'/../html/coupon.php');
+	}
 	else if (preg_match('/^\/inv\/([\_\d]+)(\?.*)?$/i', $uri, $invite_matches)){
 		$invite_id = $invite_matches[1];
 		$_REQUEST['invite_id'] = $invite_id;

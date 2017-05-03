@@ -31,10 +31,20 @@
         </div>
     </section>
     <section class="coupon-operate" data-spider="coupon_operate_box" data="{$INDEX_DATA.coupon.coupon.status}">
-    <div class="past-explain">Silakan screenshot halaman ini untuk menyimpan kode voucher. Ketika mengajukan pesanan, kode voucher harus dimasukkan untuk mendapat diskon</div>
+        {if $INDEX_DATA.coupon.coupon.type eq 2}
+        {*售后优惠券*}
+            <div class="past-explain">Salin dan Isi KODE VOUCHER di atas pada saat mengajukan pesanan</div>
+        {else}
+            <div class="past-explain">Silakan screenshot halaman ini untuk menyimpan kode voucher. Ketika mengajukan pesanan, kode voucher harus dimasukkan untuk mendapat diskon</div>
+        {/if}
         {if $INDEX_DATA.coupon.coupon.status eq 0 || $INDEX_DATA.coupon.coupon.status eq 1}
-            <a href="{$INDEX_DATA.coupon.url}" spm-auto="立即使用" class="block go-home">Gunakan Sekarang</a>
-            <a href="javascript:;" spm-auto="分享获取优惠券" class="block share-coupon j_share_btn">Bagikan Promo Voucher</a>
+            {if $INDEX_DATA.coupon.coupon.type eq 2}
+            {*售后优惠券*}
+                <a href="{$INDEX_DATA.coupon.url}" spm-auto="立即使用售后优惠券" class="block go-home">Gunakan Sekarang</a>
+            {else}
+                <a href="{$INDEX_DATA.coupon.url}" spm-auto="立即使用" class="block go-home">Gunakan Sekarang</a>
+                <a href="javascript:;" spm-auto="分享获取优惠券" class="block share-coupon j_share_btn">Bagikan Promo Voucher</a>
+            {/if}
         {else}
             <a href="{$INDEX_DATA.coupon.url|transUrl}" spm-auto="去逛逛" class="block go-homeed">Masuk ke toko</a>
         {/if}

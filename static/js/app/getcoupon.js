@@ -14,7 +14,7 @@ require(['lang','ajax','config','fastclick','dialog','common','btn'],function(La
                     body_txt: '<p class="dialog-body-p">'+Lang.H5_LOADING+'</p>',
                     after_fn: function () {
                         setTimeout(function () {
-                            location.href = Config.host.hrefUrl + 'coupon.php?coupon_id='+_this.getCouponId().coupon_id+'&code='+_code;
+                            location.href = Config.host.host + 'c/'+_code;
                         }, 100);
                     }
                 });
@@ -135,7 +135,7 @@ require(['lang','ajax','config','fastclick','dialog','common','btn'],function(La
                             body_txt: '<p class="dialog-body-p">'+Lang.H5_GET_COUPON_SUCCESS+'</p>',
                             after_fn: function () {
                                 setTimeout(function () {
-                                    location.href = Config.host.hrefUrl + 'coupon.php?coupon_id='+_coupon_id.coupon_id+'&code='+_code;
+                                    location.href = Config.host.host + 'c/'+_code;
                                 }, 2000);
                             }
                         });

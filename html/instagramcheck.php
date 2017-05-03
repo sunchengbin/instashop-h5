@@ -197,7 +197,7 @@ height:600px;
 </div>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
     <!--<script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>-->
-    <script src="<?=STATIC_HOST?>/js/dist/app/instagramcheck.js?v=1493368766811"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/instagramcheck.js?v=1492599527231"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -157,7 +157,21 @@ $js = <<<JS
 JS;
 return $js;
 }
-
+function facebookJs($facebook_id){
+$js = <<<JS
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '$facebook_id'); // Insert your pixel ID here.
+    fbq('track', 'PageView');
+    </script>
+    <noscript>< img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=$facebook_id&ev=PageView&noscript=1"/></noscript>
+JS;
+return $js;
+}
 function setHref($link){
     if(!$link){
         $link = 'javascript:;';
@@ -180,9 +194,9 @@ function isDebug(){
 }
 function getFontCss($url,$folder_name){
     if($folder_name){
-        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1493368767032") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1493368767032#iconfont") format("svg");}</style>';
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1493776093359") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1493776093359#iconfont") format("svg");}</style>';
     }else{
-        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1493368767032") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1493368767032#iconfont") format("svg");}</style>';
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1493776093359") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1493776093359#iconfont") format("svg");}</style>';
     }
 }
 function getIco($url){
@@ -225,11 +239,14 @@ function getSkinInfo(){
     $skin_path = 'v1/shopsSkin/';
     $skin_ret = json_decode(get_init_php_data($skin_path, ["seller_id" => $seller_id]), true);
 
+    $result = [];
     if($skin_ret['code'] == 200){
-        return $skin_ret['shop_skin']['name'];
+        $result['skin_name'] = $skin_ret['shop_skin']['name'];
+        $result['facebook_id'] = $skin_ret['shop_skin']['facebook_id'];
     }else{
-        return 'default';
+        $result['skin_name'] = 'default';
     }
+    return $result;
 }
 function smartyCommon($folder){
     require_once(__DIR__.'/../lib/libs/Smarty.class.php');
@@ -283,13 +300,20 @@ function setStaticConfig(){
     define('BI_SCRIPT', $bi_js);
     define('IS_DEBUG', isDebug());
     define('FLEXIBLE', flexible());
-    $folder_name = getSkinInfo();
+    $common_info = getSkinInfo();
+    $folder_name = $common_info['skin_name'];
     define('SKIN_INFO', $folder_name);
-    //$folder_name = 'first';
+    //$folder_name = 'default';
     if($folder_name != 'default'){
         define('TEMP_FOLDER', $folder_name.'/');
     }else{
         define('TEMP_FOLDER', '');
+    }
+    $facebook_id = $common_info['facebook_id'];
+    if($facebook_id){
+        define('FACEBOOK_JS', facebookJs($facebook_id));
+    }else{
+        define('FACEBOOK_JS', '');
     }
 }
 
@@ -298,9 +322,13 @@ setStaticConfig();
 function initPhpJs($js_name){
     $skin_info = '<script>var SKIN="'.SKIN_INFO.'";</script>';
     if(isDebug()){
-        return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1493368767032"></script>';
+        return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1493776093359"></script>';
     }else{
-        return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1493368767032"></script>';
+    print_r(FACEBOOK_JS);
+        if(FACEBOOK_JS){
+            $skin_info = $skin_info.FACEBOOK_JS;
+        }
+        return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1493776093359"></script>';
     }
 }
 function initPhpCss($css_name,$folder){
