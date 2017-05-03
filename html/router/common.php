@@ -266,7 +266,6 @@ function initPhpJs($js_name){
     if(isDebug()){
         return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1493776093359"></script>';
     }else{
-    print_r(FACEBOOK_JS);
         if(FACEBOOK_JS){
             $skin_info = $skin_info.FACEBOOK_JS;
         }
@@ -356,7 +355,7 @@ function setStaticConfig(){
     $common_info = getSkinInfo();
     $folder_name = $common_info['skin_name'];
     define('SKIN_INFO', $folder_name);
-    //$folder_name = 'default';
+    //$folder_name = 'first';
     if($folder_name != 'default'){
         define('TEMP_FOLDER', $folder_name.'/');
     }else{
