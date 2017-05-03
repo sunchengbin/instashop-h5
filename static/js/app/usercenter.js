@@ -125,7 +125,7 @@ require(['oauth','base','config','common','lazyload','ajax','dialog'],function(O
             var _htm = '';
             $.each(list,function(i,item){
                 if(item.items.length > 1) {
-                    _htm += '<li class="order-info">';
+                    _htm += '<li class="order-info j_order_info" data-url="'+item.url+'">';
                     _htm += '<p class="order-status b-bottom"><span>'+item.state_txt+'</span>'+Base.others.transDateStrToOrderDateTime(item.add_time)+'</p>';
                     _htm += '<div class="info-detail">';
                     _htm += '<div class="items-img">';
@@ -137,7 +137,7 @@ require(['oauth','base','config','common','lazyload','ajax','dialog'],function(O
                     _htm += '<p class="clearfix total-price">'+(item.warrant_status?'<i class="icon iconfont fl icon-warrant-flag"></i>':'')+'Jumlah Total：Rp '+Base.others.priceFormat(item.total_price)+'</p>';
                     _htm += '</li>';
                 }else{
-                    _htm += '<li class="order-info">';
+                    _htm += '<li class="order-info j_order_info" data-url="'+item.url+'">';
                     _htm += '<p class="order-status b-bottom"><span>'+item.state_txt+'</span>'+Base.others.transDateStrToOrderDateTime(item.add_time)+'</p>';
                     _htm += '<div class="info-detail" flex="dir:left">';
                     _htm += '<div class="one-item">';
