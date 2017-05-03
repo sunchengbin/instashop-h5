@@ -67,7 +67,7 @@ define(['md5','config','base','dialog'],function(SparkMD5,Config,Base,Dialog){
             var _htm = '',
                 _debug_env = Base.others.getUrlPrem('_debug_env');
             _htm+='<div class="upload-img-box"><form id="upload-img" action="" enctype="multipart/form-data" method="post" target="resultHandlerIframe">';
-            _htm+='<input type="file" accept="image/*" id="upload_img_ipt" name="imgs[]">';
+            _htm+='<input type="file" accept="image/*" multiple="multiple" id="upload_img_ipt" name="imgs[]">';
             if(_debug_env){
                 _htm+='<input type="hidden" name="_debug_env" value="'+_debug_env+'">';
             }
