@@ -24,7 +24,7 @@
 
     $smarty->assign('INDEX_DATA',$json["refund_detail"]);
 
-    $index_title = '<title>退款进度</title>';
+    $index_title = '<title>Status Pengembalian Dana</title>';
     $smarty->assign('INDEX_TITLE',$index_title);
 
     /*基础的js,css文件名*/

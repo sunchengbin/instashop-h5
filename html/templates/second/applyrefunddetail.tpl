@@ -2,7 +2,7 @@
 <body data-spider="">
     <nav class="header-nav clearfix" data-spider="header-nav">
         <a href = "{$INDEX_DATA.order.url}#{if $INDEX_DATA.item_sku_id != 0}{$INDEX_DATA.item_sku_id}{else}{$INDEX_DATA.item_id}{/if}"><i class="icon iconfont fr icon-allright-font"></i></a>
-        申请退款
+        Status Pengembalian Dana
     </nav>
     <section class="content-box">
         <ul class="refund-progress">
@@ -18,25 +18,11 @@
         </ul>
         <ul class="refund-info-box">
             <li class="b-bottom">
-                <h2>Jumlah pengembalian dana</h2>
+                <h2>Jumlah Pengembalian Dana</h2>
                 <p>Rp {$INDEX_DATA.request_refund_price|priceFormat}</p>
             </li>
             <li class="b-bottom">
-                <h2>Alasan Pengembalian Dana</h2>
-                <p>{$INDEX_DATA.reason}</p>
-            </li>
-            <li class="b-bottom">
-                <h2>Sertifikat Upload（Hingga 3pcs）</h2>
-                {foreach $INDEX_DATA.evidence as $evidenceimg}
-                    <img src="{$evidenceimg}">
-                {/foreach}
-            </li>
-            <li class="b-bottom">
-                <h2>Nama Bank</h2>
-                <p>{$INDEX_DATA.bank_info.b_name}</p>
-            </li>
-            <li class="b-bottom">
-                <h2>Rekening Bank</h2>
+                <h2>Nomor Rekening Penerima</h2>
                 <p>{$INDEX_DATA.bank_info.b_branch}</p>
             </li>
             <li class="b-bottom">
@@ -44,8 +30,14 @@
                 <p>{$INDEX_DATA.bank_info.c_name}</p>
             </li>
             <li class="b-bottom">
-                <h2>Nomor Ponsel</h2>
-                <p>{$INDEX_DATA.bank_info.c_number}</p>
+                <h2>Alasan Pengembalian Dana</h2>
+                <p>{$INDEX_DATA.reason}</p>
+            </li>
+            <li class="b-bottom">
+                <h2>Foto Bukti Pengajuan</h2>
+                {foreach $INDEX_DATA.evidence as $evidenceimg}
+                    <img src="{$evidenceimg}">
+                {/foreach}
             </li>
         </ul>
     </section>

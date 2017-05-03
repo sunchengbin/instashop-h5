@@ -22,7 +22,7 @@
 
     $smarty->assign('INDEX_DATA',$json["pre_refund"]["highest_price"]);
 
-    $index_title = '<title>申请退款</title>';
+    $index_title = '<title>Pengajuan Pengembalian Dana</title>';
     $smarty->assign('INDEX_TITLE',$index_title);
 
     /*基础的js,css文件名*/

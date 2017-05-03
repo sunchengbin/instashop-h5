@@ -11,17 +11,17 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="expect" content="0">
     <meta name="format-detection" content="telephone=no" />
     <?=initPhpCss('applyrefundsuccess','default')?>
-    <title>申请退款成功页面</title>
+    <title>Pengajuan Pengembalian Dana</title>
 </head>
 <body data-spider="">
     <nav class="header-nav clearfix" data-spider="header-nav">
         <i class="icon iconfont j_go_back icon-back-font" onclick="history.go(-1);"></i>
-        申请退款
+        Pengajuan Pengembalian Dana
     </nav>
     <section class="content-box">
         <i class="icon iconfont icon-applayrefundsuccess"></i>
-        <p>Permintaan pengembalian dana berhasil, harap memperhatikan dekat dengan pengembalian kemajuan</p>
-        <div class="btn confirm-btn j_refunddetail">查看退款进程</div>
+        <p>Permintaan pengembalian dana berhasil diajukan, silakan cek Status Pengembalian Dana</p>
+        <div class="btn confirm-btn j_refunddetail">Cek Status Pengembalian Dana</div>
     </section>
     <script>
         document.querySelector('.j_refunddetail').onclick = function(){

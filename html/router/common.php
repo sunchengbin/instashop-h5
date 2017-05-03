@@ -260,7 +260,7 @@ function getSkinInfo(){
     }
     return $result;
 }
-//普通php初始化js和css方法
+//普通php初始化js和css方法(应用在需要兼容模板的问题)
 function initPhpJs($js_name){
     $skin_info = '<script>var SKIN="'.SKIN_INFO.'";</script>';
     if(isDebug()){
