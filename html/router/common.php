@@ -327,7 +327,6 @@ function initPhpJs($js_name){
     if(isDebug()){
         return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1493776093359"></script>';
     }else{
-    print_r(FACEBOOK_JS);
         if(FACEBOOK_JS){
             $skin_info = $skin_info.FACEBOOK_JS;
         }
