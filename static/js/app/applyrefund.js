@@ -12,15 +12,16 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              wrap : '.j_upload_img_btn',
              uploadImgSuccess : function(result){
                  //提交上传商品图片后
-                 var img = result[0].small;
-                 console.log(result);
                  if($('.j_refund_img').length > 3){
                      Dialog.tip({
                          top_txt : '',//可以是html
                          body_txt : '<p class="dialog-body-p">最多上传三张</p>'
                      });
                  }else{
-                     $('.j_refund_img_box').prepend('<li class="refund-img j_refund_img" data-src="'+img+'"><img src="'+img+'"/><i class="icon iconfont j_del_img icon-delete-font"></i></li>');
+                     $.each(result,function(i,item){
+                         var img = item.small;
+                         $('.j_refund_img_box').prepend('<li class="refund-img j_refund_img" data-src="'+img+'"><img src="'+img+'"/><i class="icon iconfont j_del_img icon-delete-font"></i></li>');
+                     });
                      if($('.j_refund_img').length == 3){
                          $('.j_upload_img_btn').hide();
                      }
@@ -87,6 +88,12 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
          $('body').on('click','.j_go_address',function(){
              $('.j_address_list_box').addClass('hide').removeClass('show');
          });
+         $('body').on('focus', '.j_refund_price', function () {
+             _this.execPriceInputByFocus($(this));
+         });
+         $('body').on('keyup', '.j_refund_price', function (e) {
+             _this.execPriceInputByKeyup($(this), e.which)
+         });
          Btn({
              wraper : 'body',
              target : '.j_sub_btn',
@@ -146,6 +153,46 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              }
          });
      },
+     execPriceInputByFocus: function ($ele) {
+        var _price = $ele.val();
+        if (_price != '' && !/Rp/g.test(_price)) {
+            $(this).val('Rp ' + _price);
+        }
+     },
+     execPriceInputByKeyup: function ($ele, keycode) {
+        var _this = $ele;
+        var _price = $.trim(_this.val().replace(/Rp\s/g, ''));
+        var _msg = '';
+        if (_price != '') {
+            if (/\./g.test(_price)) {
+                if (/\.00$/g.test(_price) && keycode != 8) {
+                    _price = _price.replace(/\./g, '') / 100;
+                } else {
+                    _price = _price.replace(/\./g, '');
+                }
+            }
+            if (isNaN(_price)) {
+                _msg = '请填写数字';
+            } else {
+                if (_price <= 0) {
+                    _msg = '不能小于0';
+                } else {
+                    if (_price.length > 10) {
+                        _price = _price.substr(0, 10);
+                    }
+                }
+            }
+
+            if (_msg) {
+                Dialog.tip({
+                    top_txt: '', //可以是html
+                    body_txt: '<p class="dialog-body-p">' + _msg + '</p>'
+                });
+                return;
+            }
+            _this.val('Rp ' + Base.others.priceFormat(_price));
+        }
+     },
      isEdit : function(){//是否编辑过
          var _this = this,
              _step_one_data = _this.testStepOne(),
@@ -183,6 +230,7 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
          var _refund_price = $.trim($('.j_refund_price').val()),
             _max_price = $('.j_refund_price').attr('data-maxprice'),
             _refund_explain = $.trim($('.j_refund_explain').val());
+            _refund_price = $.trim(_refund_price.replace(/Rp\s/g, ''));
          if(!_refund_price){
              Dialog.tip({
                  top_txt : '',//可以是html
@@ -190,6 +238,13 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              });
              return null;
          }else{
+             if (/\./g.test(_refund_price)) {
+                 if (/\.00$/g.test(_refund_price)) {
+                     _refund_price = _refund_price.replace(/\./g, '') / 100;
+                 } else {
+                     _refund_price = _refund_price.replace(/\./g, '');
+                 }
+             }
              if(Number(_refund_price) > Number(_max_price)){
                  Dialog.tip({
                      top_txt : '',//可以是html
@@ -291,8 +346,8 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                          body_txt : '<p class="dialog-body-p">'+Lang.H5_SUBMIT_SUCCESS+'</p>',
                          auto_fn : function(){
                              setTimeout(function(){
-                                 localStorage.setItem('ApplyRefundDetail',Config.hrefUrl + 'applyrefunddetail.php'+location.search);
-                                 location.href = Config.hrefUrl + 'applyrefundsuccess.php'+location.search;
+                                 localStorage.setItem('ApplyRefundDetail',Config.host.hrefUrl + 'applyrefunddetail.php'+location.search);
+                                 location.href = Config.host.hrefUrl + 'applyrefundsuccess.php'+location.search;
                              },1000);
                          }
                      });
