@@ -261,7 +261,8 @@ define(['base'], function (Base) {
             "ORDER_CONFIRM_RECEIVE_OK": "确认",
             "ORDER_CONFIRM_RECEIVE_CANCEL": "取消",
             "ORDER_CONFIRM_RECEIVE": "确认收货",
-            "CONTROLL_SUCCESS":"操作成功"
+            "CONTROLL_SUCCESS":"操作成功",
+            ORDER_WARRANT_SUCCESS:"下单成功"
         },
 
         id: {
@@ -645,8 +646,9 @@ define(['base'], function (Base) {
             "ORDER_CONFIRM_RECEIVE_TITLE": "Apakah kamu telah menerima pesanan?",
             "ORDER_CONFIRM_RECEIVE_OK": "Ya",
             "ORDER_CONFIRM_RECEIVE_CANCEL": "Tidak",
-            "ORDER_CONFIRM_RECEIVE": "Konfirmasi Penerimaan pesanan",
-            "CONTROLL_SUCCESS":"Pemrosesan Berhasil"
+            "ORDER_CONFIRM_RECEIVE": "Terima",
+            "CONTROLL_SUCCESS":"Pemrosesan Berhasil",
+            "ORDER_WARRANT_SUCCESS":"Pemesanan Berhasil"
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[navigator.language.toLowerCase()] || Lang.id);
