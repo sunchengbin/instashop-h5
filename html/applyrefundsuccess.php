@@ -15,7 +15,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
 </head>
 <body data-spider="0dz7gmbw">
     <nav class="header-nav clearfix" data-spider="header-nav">
-        <i class="icon iconfont j_go_back icon-back-font" onclick="history.go(-1);"></i>
+        <!--<i class="icon iconfont j_go_back icon-back-font" onclick="history.go(-1);"></i>-->
         Pengajuan Pengembalian Dana
     </nav>
     <section class="content-box" data-spider="content-box">
