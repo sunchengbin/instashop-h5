@@ -23,7 +23,7 @@
 
     $smarty->assign('INDEX_DATA',$json["order_list"]["list"]);
 
-    $index_title = '<title>用户中心</title>';
+    $index_title = '<title>Pesanan Saya</title>';
     $smarty->assign('INDEX_TITLE',$index_title);
 
     /*基础的js,css文件名*/
