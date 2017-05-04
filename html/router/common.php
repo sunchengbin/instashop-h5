@@ -316,6 +316,10 @@ function initPhpCss($css_name,$folder){
         return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1493865781761" rel="stylesheet"/>';
     }
 }
+//方便调试统一修改皮肤
+function getTestSkin(){
+    return null;
+}
 //初始化smarty或者普通php页面中全局变量的方法
 function smartyCommon($folder){
     require_once(__DIR__.'/../lib/libs/Smarty.class.php');
@@ -323,7 +327,7 @@ function smartyCommon($folder){
     $common_info = getSkinInfo();
     $folder_name = $common_info['skin_name'];
     $folder_name = $folder?$folder:$folder_name;
-    //$folder_name = 'first';
+    $folder_name = getTestSkin()?getTestSkin():$folder_name;
     $static_font_css = setStaticFontCss($folder_name);
     define('STATIC_FONT_CSS', $static_font_css);
     if($folder_name != 'default'){
@@ -381,7 +385,7 @@ function setStaticConfig(){
     $common_info = getSkinInfo();
     $folder_name = $common_info['skin_name'];
     define('SKIN_INFO', $folder_name);
-    //$folder_name = 'first';
+    $folder_name = getTestSkin()?getTestSkin():$folder_name;
     if($folder_name != 'default'){
         define('TEMP_FOLDER', $folder_name.'/');
     }else{

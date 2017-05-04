@@ -408,7 +408,14 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                          }
                      });
                  }else{
-                     opts.callback && opts.callback();
+                     Dialog.tip({
+                         top_txt : '',//可以是html
+                         body_txt : '<p class="dialog-body-p">'+obj.message+'</p>',
+                         auto_fn : function(){
+                             this.remove();
+                             opts.callback && opts.callback();
+                         }
+                     });
                  }
              },
              error : function(error){
