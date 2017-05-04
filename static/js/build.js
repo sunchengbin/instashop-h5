@@ -29,6 +29,7 @@
         "fastclick":"moudle/ui/fastclick/fastclick",
         "viewer":"moudle/ui/viewer/viewer",
         "sharecoupon":"moudle/app/sharecoupon/sharecoupon",
+        "uploadimg":"moudle/app/uploadimg/uploadimg",
         "jsbn":"moudle/decode/jsbn",
         "xxtea":"moudle/decode/xxtea",
         "rsa":"moudle/decode/rsa",
@@ -46,7 +47,8 @@
         "oauth":"moudle/app/oauth/oauth",
         "cache":"moudle/app/cache/cache",
         "sharebargain":"moudle/app/sharebargain/sharebargain",
-        "bargain":"moudle/app/bargain/bargain"
+        "bargain":"moudle/app/bargain/bargain",
+        "tradeplug":"moudle/app/tradeplug/tradeplug"
     },
     "fileExclusionRegExp": "/.hbs$/",
     "keepBuildDir": true,

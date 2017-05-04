@@ -11,6 +11,9 @@ define([
 ], function (Base, Config, Ajax, Cache, Dialog, Lang) {
     'use strict';
     var Oauth = {
+        checkIsNeedLogin:function(shopData){
+            return shopData.buyer_login_flag||0;
+        },
         login: function (type) {
             var _reqData = {
                 url: location.href,
@@ -28,6 +31,16 @@ define([
             }
             var reqUrl = Config.host.phpHost + Config.actions.oauth + "?param=" + encodeURIComponent(JSON.stringify(_reqData)) + "&timestamp=" + new Date().getTime();
             window.location.href = reqUrl;
+        },
+        signout:function(url){
+            var loginInfoFromCache = Cache.getSpace("LoginCache") || new Cache({
+                namespace: "LoginCache",
+                type: "local"
+            });
+            loginInfoFromCache.remove("loginInfo");
+            setTimeout(function(){
+                location.href = url;
+            },2000)
         },
         openDialog: function (type, opts) {
             Dialog.dialog({
@@ -79,7 +92,10 @@ define([
                             }
                         }
                     }
-
+                    loginInfoFromCallBackPost.options = {
+                        plant:Base.others.getCurDateTime(),
+                        expire:2592000//30天-2592000
+                    }
                     loginInfoFromCache.set("loginInfo", loginInfoFromCallBackPost);
                     return {
                         result: true,
@@ -97,11 +113,28 @@ define([
                         result: false
                     };
                 } else {
-                    // 本地存储有 返回用户信息
-                    return {
-                        result: true,
-                        info: loginInfo
-                    };
+                    if(loginInfo.options){
+                        var curDateTime = Base.others.getCurDateTime();
+                        var plantTime = loginInfo.options.plant;
+                        if(~~(curDateTime-plantTime)<=~~loginInfo.options.expire){
+                            // 本地存储有 返回用户信息
+                            return {
+                                result: true,
+                                info: loginInfo
+                            };
+                        }else{
+                            return {
+                                result: false
+                            };
+                        }
+                    }else{
+                        // 本地存储有 返回用户信息
+                        return {
+                            result: true,
+                            info: loginInfo
+                        };
+                    }
+                    
                 }
             }
         }

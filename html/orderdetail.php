@@ -27,6 +27,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $path = 'v1/orders/'.$order_id;
         ?>
         var init_data = JSON.parse(<?php echo get_init_data($path, $params); ?>);
+        var user_info = <?php echo json_encode($_POST); ?>;
     </script>
 </head>
 <body data-spider="wqk2d63u"></body>

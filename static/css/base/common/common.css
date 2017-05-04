@@ -482,6 +482,9 @@ img {
 .ins-m-b-2 {
   margin-bottom: 1rem!important;
 }
+.ins-m-l-1 {
+  margin-left: .5rem!important;
+}
 
 .ins-text-left {
   text-align: left!important;

@@ -110,8 +110,9 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
             });
             $('body').on('click', '.j_submit_btn', function () {
                 var _groupid = $(this).attr('group-id');
-
-                if (_that.checkIsHasBargain()) {
+                
+                // 4.7改造更新 判断用户是否需要登录
+                if (Oauth.checkIsNeedLogin(JSON.parse(localStorage.getItem('ShopData')).ShopInfo)) {
                     // 具备登录机制
                     var _judageOauth = Oauth.checkIsLogin();
                     if (_judageOauth.result) {

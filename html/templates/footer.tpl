@@ -1,9 +1,14 @@
-<script src="{$STATIC_HOST}/js/base/require-zepto.js"></script>
-{if $IS_DEBUG}
-    <script src="{$STATIC_HOST}/js/base/require-config.js"></script>
-    <script src="{$STATIC_HOST}/js/app/{$INDEX_JS_NAME}.js?v=1492599527319"></script>
-{else}
-    <script src="{$STATIC_HOST}/js/dist/app/{$INDEX_JS_NAME}.js?v=1492599527319"></script>
+{if $INDEX_JS_NAME}
+    <script src="{$STATIC_HOST}/js/base/require-zepto.js"></script>
+    {if $IS_DEBUG}
+        <script src="{$STATIC_HOST}/js/base/require-config.js"></script>
+        <script src="{$STATIC_HOST}/js/app/{$INDEX_JS_NAME}.js?v=1493865781615"></script>
+    {else}
+        <script src="{$STATIC_HOST}/js/dist/app/{$INDEX_JS_NAME}.js?v=1493865781615"></script>
+    {/if}
+    {if $FACEBOOK_JS}
+        {$FACEBOOK_JS}
+    {/if}
 {/if}
 {literal}
     <script>

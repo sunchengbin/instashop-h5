@@ -17,7 +17,7 @@
             </div>
         {{/eq}}
         {{#eq data.order.state 3}}
-            {{lang.H5_ORDER_STATUS}}: Sudah Dikirim
+            {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
         {{/eq}}
         {{#eq data.order.state 4}}
             {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
@@ -25,9 +25,18 @@
         {{#eq data.order.state 5}}
             {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
         {{/eq}}
+        {{#eq data.order.state 6}}
+            {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
+        {{/eq}}
+        {{#eq data.order.state 7}}
+            {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
+        {{/eq}}
+        {{#eq data.order.state 8}}
+            {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
+        {{/eq}}
     </div>
     <p data-spider="bank-info">
-        <a spm-auto="查看收款账号" spm-click="check-bankinfo" href="{{hrefUrl}}ordersuccess.php?price={{data.order.total_price}}&detail=1" class="">
+        <a spm-auto="查看收款账号" spm-click="check-bankinfo" href="{{hrefUrl}}evidencepayment.php?price={{data.order.total_price}}&detail=1" class="">
             <i class="icon iconfont fr icon-go-font"></i>{{lang.H5_CHECK_ACCOUNT_RECEIVABLES}}
         </a>
     </p>
@@ -74,17 +83,45 @@
     <div class="list-box">
         <ul class="order-items">
             {{#each data.order.items}}
-                <li class="clearfix cart-item">
-                    <img src="{{img_head}}">
-                    <div class="">
-                        <p class="name">{{item_title}}</p>
-                        {{#if item_sku_title}}
-                            <p class="type">{{../../lang.H5_ITEM_SKU}}: {{item_sku_title}}</p>
-                        {{/if}}
-                        <p class="num">{{../lang.H5_QUANTITY}}: {{quantity}}</p>
-                        <p class="price clearfix">{{../lang.H5_PRICE}}: {{#if discount.value}}<span class="fr">-{{transpricevalue discount.value}}%</span>{{/if}}Rp {{transprice price}}</p>
-                    </div>
-                </li>
+                {{!--担保交易--}}
+                {{#neq ../data.order.warrant_status "nowarrant"}}
+                    <li id="{{#if item_sku_id}}{{item_sku_id}}{{else}}{{item_id}}{{/if}}" class="clearfix cart-item">
+                        <img src="{{img_head}}">
+                        <div class="clearfix">
+                            <p class="name">{{item_title}}</p>
+                            {{#if item_sku_title}}
+                                <p class="type">{{../../../lang.H5_ITEM_SKU}}: {{item_sku_title}}</p>
+                            {{/if}}
+                        </div>
+                        <div class="cart-item-price">
+                            <p class="price clearfix">Rp {{transprice price}} x{{quantity}}</p>
+                            <p class="origin-price clearfix">Rp 400.000</p>
+                        </div>
+                        <div class="clearfix">
+                            {{#each op}}
+                                {{#eq this "pre_refund"}}
+                                    <span data-item-id="{{../../item_id}}" data-item-sku-id="{{../../item_sku_id}}" data-url="{{../../../../host}}html/applyrefund.php" class="refund-btn j_apply_refund fr">{{../../../../lang.REFOUND_BTN_APPLY_TXT}}</span>
+                                {{/eq}}
+                                {{#eq this "refund_detail"}}
+                                    <span data-item-id="{{../../item_id}}" data-item-sku-id="{{../../item_sku_id}}" data-url="{{../../../../host}}html/applyrefunddetail.php" class="refund-btn j_check_refund fr">{{../../../../lang.REFOUND_BTN_PROCESS_TXT}}</span>
+                                {{/eq}}
+                            {{/each}}
+                        </div>
+                    </li>
+                {{else}}
+                    {{!--非担保交易--}}
+                    <li id="{{#if item_sku_id}}{{item_sku_id}}{{else}}{{item_id}}{{/if}}" class="clearfix cart-item">
+                        <img src="{{img_head}}">
+                        <div class="">
+                            <p class="name">{{item_title}}</p>
+                            {{#if item_sku_title}}
+                                <p class="type">{{../../../lang.H5_ITEM_SKU}}: {{item_sku_title}}</p>
+                            {{/if}}
+                            <p class="num">{{../../lang.H5_QUANTITY}}: {{quantity}}</p>
+                            <p class="price clearfix">{{../../lang.H5_PRICE}}: {{#if discount.value}}<span class="fr">-{{transpricevalue discount.value}}%</span>{{/if}}Rp {{transprice price}}</p>
+                        </div>
+                    </li>
+                {{/neq}}
             {{/each}}
         </ul>
         <!--{{#if isHaveReduc}}-->
@@ -149,7 +186,7 @@
             {{/if}}
         {{/if}}
     </div>
-    {{#if data.order.buyer_op.can_bindcard}}
+    {{!--{{#if data.order.buyer_op.can_bindcard}}
         <div class="prove-btn">
             <a spm-auto="退款" spm-click="refund" class="submit-btn btn confirm-btn" href="{{hrefUrl}}refund.php?order_id={{data.order.id}}">{{lang.H5_EDIT_REFUND_CARD}}</a>
         </div>
@@ -158,5 +195,22 @@
         <div class="prove-btn">
             <a spm-auto="上传支付证明" spm-click="upload-prove" class="submit-btn btn confirm-btn" href="{{hrefUrl}}uploadprove.php?order_id={{data.order.id}}&hash={{data.order.id_hash}}">{{lang.H5_PAY_WARRANT}}</a>
         </div>
-    {{/neq}}
+    {{/neq}}--}}
 </section>
+{{!--未登录都提示登录--}}
+{{#neq data.order.warrant_status "nowarrant"}}
+    {{#if isLogin}}
+        <div class="order-login-tip clearfix">
+            <div class="fr order-login-btn">
+                Login
+            </div>
+            <p>{{../lang.DANBAO_ORDER_UNLOGIN_TIP}}</p>
+        </div>
+    {{else}}
+        {{{transbtn data.order.op}}}
+    {{/if}}
+{{/neq}}
+{{!--普通订单 直接展示op--}}
+{{#eq data.order.warrant_status "nowarrant"}}
+    {{{transbtn data.order.op}}}
+{{/eq}}

@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/6.
  * 首页
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer', 'oauth', 'cache'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer, Oauth, Cache) {
     var Default_Page_Size = 18;
     var I = {
         indexItemsPagination: {
@@ -40,7 +40,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     $('.j_cart_wraper').append('<span class="cart-num">' + _cart_num + '</span>');
                 }
                 //插入模板中的轮播图js初始化
-                if(route_pt == 1 || route_pt == undefined){
+                if (route_pt == 1 || route_pt == undefined) {
                     _this.initRotateBanner();
                 }
             }
@@ -58,6 +58,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
 
             _this.initTab();
             _this.handleFn();
+            _this.checkIsShowGuide();
         },
         initTab: function () {
             var _this = this,
@@ -125,8 +126,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     }
                     PaqPush && PaqPush('首页父级导航tab-' + _this.tagInfo.curTab, '');
                     Debug.log("切换信息:", switchInfo)
-                    if(route_pt != 1){
-                        if(_this.tagInfo.curTab == "index_template"){
+                    if (route_pt != 1) {
+                        if (_this.tagInfo.curTab == "index_template") {
                             _this.initRotateBanner();
                         }
                     }
@@ -355,7 +356,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 _len = _banners.length,
                 _this = this;
             console.log(_this.isInitBanner);
-            if(_this.isInitBanner){
+            if (_this.isInitBanner) {
                 return;
             }
             _this.isInitBanner = true;
@@ -545,6 +546,21 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     location.href = _url;
                 });
             });
+            $('body').on('click', '.j_my_order', function () {
+                var _this = $(this),
+                    _url = _this.attr('data-url');
+                var loginResult = Oauth.checkIsLogin();
+                if (loginResult.result) {
+                    localStorage.setItem('ScrollTop', $(window).scrollTop());
+                    _that.setRouteInfo();
+                    Common.saveFromUrl(function () {
+                        location.href = _url + "?buyer_id=" + loginResult.info.buyer_id + "&uss=" + loginResult.info.uss+"&seller_id="+init_data.shop.id;
+                    });
+                } else {
+                    Oauth.openDialog();
+                }
+
+            });
             $('body').on('click', '.j_category', function () {
                 var _sort_box = document.querySelector('.j_sort_box');
                 var _sort_cover = document.querySelector('.j_sort_cover');
@@ -628,6 +644,15 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             $('body').on('click', '.j_goto_line', function () {
                 location.href = init_data.shop.line_url;
             });
+            $("body").on("click", ".j_close_guide", function () {
+                $(".order-guide-cover").hide();
+                $(".order-guide-info-wrap").hide();
+                var IndexCoverCache = Cache.getSpace("IndexCache") || new Cache({
+                    namespace: "IndexCache",
+                    type: "local"
+                });
+                IndexCoverCache.set("isShowOrderGuid", 2);
+            })
 
         },
         showSortPrompt: function () {
@@ -661,6 +686,31 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     }
                 }
             }, 100);
+        },
+        checkIsShowGuide: function () {
+            var IndexCoverCache = Cache.getSpace("IndexCache") || new Cache({
+                namespace: "IndexCache",
+                type: "local"
+            });
+            var isShowOrderGuid = IndexCoverCache.find("isShowOrderGuid");
+            // 有值 且 值为1
+            if (isShowOrderGuid != void(0) && isShowOrderGuid == 1) {
+                $(".order-guide-info-wrap").show();
+                Base.others.coverGuide(document.querySelector(".order-guide-cover"), document.querySelector(".j_my_order"));
+                var $coverInfoWrap = $(".order-guide-info-wrap");
+                var $coverGuideArrow = $(".order-guide-arrow");
+                var $orderGuideCover = $(".order-guide-cover");
+
+                var coverInfoWrapWidth = $coverInfoWrap.offset().width;
+                var coverGuideArrowWidth = $coverGuideArrow.offset().width;
+                var coverGuideCoverWidth = ~~$orderGuideCover[0].style.width.replace("px", "");
+
+                var offsetRight = coverGuideArrowWidth + coverGuideCoverWidth;
+                $coverInfoWrap.css("right", offsetRight + "px")
+                $coverGuideArrow.css("left", coverInfoWrapWidth + "px");
+                $(".order-guide-info-wrap").show();
+                // IndexCoverCache.set("isShowOrderGuid",2);
+            }
         },
         transItems: function (items) {
             var i = 0,

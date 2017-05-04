@@ -180,11 +180,11 @@ define(function () {
             return _items;
         },
         //重设url中某个特定参数的值
-        resetUrlPrem : function(key,val,url){
+        resetUrlPrem: function (key, val, url) {
             var _search = url || document.location.search,
                 _pattern = new RegExp(key + "\=([^&]+)", "g");
-            if(_pattern.test(_search)){
-                _search = _search.replace(_pattern,key+'='+val);
+            if (_pattern.test(_search)) {
+                _search = _search.replace(_pattern, key + '=' + val);
             }
             return _search;
         },
@@ -435,19 +435,77 @@ define(function () {
                 return (typeof v !== "undefined" && v !== null) ? v : "";
             });
         },
-        transDateStrToDateTime:function(dateStr){
+        transDateStrToDateTime: function (dateStr) {
             var _array = dateStr.split(" ");
             var _year_month_day = _array[0];
             var _year = _year_month_day.split("/")[2];
             var _month = _year_month_day.split("/")[1];
             var _day = _year_month_day.split("/")[0];
-            var _hour_minute = _array[1].replace(".",":");
-            dateStr = _month+"/"+_day+"/"+_year+" "+_hour_minute;
-            var _date = parseInt(new Date(dateStr).getTime()/1000);
+            var _hour_minute = _array[1].replace(".", ":");
+            dateStr = _month + "/" + _day + "/" + _year + " " + _hour_minute;
+            var _date = parseInt(new Date(dateStr).getTime() / 1000);
             return _date;
         },
-        getCurDateTime :function(){
-            return parseInt(new Date().getTime()/1000);
+        getCurDateTime: function () {
+            return parseInt(new Date().getTime() / 1000);
+        },
+        coverGuide: function (cover, target,adjustTop,adjustLeft) {
+            var body = document.body,
+                doc = document.documentElement;
+            var _this = this;
+            if (cover && target) {
+                // target size(width/height)
+                var targetWidth = target.clientWidth,
+                    targetHeight = target.clientHeight;
+
+                // page size
+                var pageHeight = doc.scrollHeight,
+                    pageWidth = doc.scrollWidth;
+
+                // offset of target    
+                var offsetTop = target.getBoundingClientRect().top + (body.scrollTop || doc.scrollTop),
+                    offsetLeft = target.getBoundingClientRect().left + (body.scrollLeft || doc.scrollLeft);
+
+                // set size and border-width
+                cover.style.width = targetWidth + 'px';
+                cover.style.height = targetHeight + 'px';
+
+                var borderWidth =
+                    offsetTop + 'px ' +
+                    (pageWidth - targetWidth + offsetLeft) + 'px ' +
+                    (pageHeight - targetHeight - offsetTop) + 'px ' +
+                    offsetLeft + 'px';
+                $(cover).css("border-width", borderWidth)
+                cover.style.display = 'block';
+
+                // resize
+                if (!cover.isResizeBind) {
+                    if (window.addEventListener) {
+                        window.addEventListener('resize', function () {
+                            _this.coverGuide(cover, target);
+                        });
+                        cover.isResizeBind = true;
+                    } else if (window.attachEvent) {
+                        window.attachEvent('onresize', function () {
+                            _this.coverGuide(cover, target);
+                        });
+                        cover.isResizeBind = true;
+                    }
+                }
+            }
+        },
+        transDateStrToOrderDateTime:function(dateStr){
+            var _array = dateStr.split(" ");
+            var _year_month_day = _array[0];
+            var _year = _year_month_day.split("-")[0];
+            var _month = _year_month_day.split("-")[1];
+            var _day = _year_month_day.split("-")[2];
+            var _hour_minute = _array[1].replace(".",":");
+            var _time = [];
+            _time.push(_hour_minute.split(':')[0]);
+            _time.push(_hour_minute.split(':')[1]);
+            dateStr = _day+"/"+_month+" "+_time.join(':');
+            return dateStr;
         }
     };
 
@@ -520,7 +578,7 @@ define(function () {
         })();
     }
 
-    
+
 
     return SUN;
 })

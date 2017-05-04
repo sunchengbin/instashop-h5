@@ -1,4 +1,5 @@
 <?php
+//服务端方法开始
 date_default_timezone_set('Asia/Chongqing');
 header('Content-type: text/html; charset=utf-8');
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
@@ -24,6 +25,7 @@ define('LOG_ROOT', '/data/logs/' . MODE_NAME);
 define('COM_LIB_PATH', BASE_PATH . '/libs');
 define('LOG_ID', '' . time() . rand(10000, 20000));
 
+spl_autoload_register('loadClass');
 function loadClass($strClassName)
 {
     $pathArray = array(
@@ -62,6 +64,8 @@ function is_https()
 
 	return false;
 }
+//服务端方法结束
+//app内嵌页面获取seller信息
 function getSellerInfo(){
     $seller_id = $_REQUEST['seller_id'];
     if (!$seller_id) {
@@ -74,12 +78,14 @@ function getSellerInfo(){
     ];
     return $params;
 }
+//自动计算页面字体大小
 function flexible(){
 $js = <<<JS
 !function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("将根据已有的meta标签来设置缩放比例");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=a.navigator.userAgent,q=(!!p.match(/android/gi),!!p.match(/iphone/gi)),r=q&&!!p.match(/OS 9_3/),s=a.devicePixelRatio;i=q&&!r?s>=3&&(!i||i>=3)?3:s>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var t=e.createElement("div");t.appendChild(g),e.write(t.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
 JS;
 return $js;
 }
+//自有统计引入
 function biJs(){
 $js = <<<JS
     (function(){
@@ -175,7 +181,23 @@ $js = <<<JS
 JS;
 return $js;
 }
-
+//facebook统计(针对个别用户)
+function facebookJs($facebook_id){
+$js = <<<JS
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '$facebook_id'); // Insert your pixel ID here.
+    fbq('track', 'PageView');
+    </script>
+    <noscript>< img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=$facebook_id&ev=PageView&noscript=1"/></noscript>
+JS;
+return $js;
+}
+//杂
 function setHref($link){
     if(!$link){
         $link = 'javascript:;';
@@ -188,6 +210,7 @@ function transUrl($url){
     }
     return $url;
 }
+//css和js开启debug模式
 function isDebug(){
     $is_debug = false;
     $debug = $_REQUEST['static_debug'];
@@ -196,45 +219,16 @@ function isDebug(){
     }
     return $is_debug;
 }
+//获取初始化字体样式和ico
 function getFontCss($url,$folder_name){
     if($folder_name){
-        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1492599527462") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1492599527462#iconfont") format("svg");}</style>';
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1493865781761") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1493865781761#iconfont") format("svg");}</style>';
     }else{
-        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1492599527462") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1492599527462#iconfont") format("svg");}</style>';
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1493865781761") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1493865781761#iconfont") format("svg");}</style>';
     }
 }
 function getIco($url){
     return '<link rel="shortcut icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon"><link rel="icon" href="'.$url.'/favicon.ico" type="image/vnd.microsoft.icon">';
-}
-function smartyCommon($folder){
-    require_once(__DIR__.'/../lib/libs/Smarty.class.php');
-    $smarty = new Smarty();
-    $folder_name = getSkinInfo();
-    $folder_name = $folder?$folder:$folder_name;
-    //$folder_name = 'default';
-    $static_font_css = setStaticFontCss($folder_name);
-    define('STATIC_FONT_CSS', $static_font_css);
-    if($folder_name != 'default'){
-        $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
-        $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
-        $smarty->assign('TEMP_FOLDER',$folder_name.'/');
-        $smarty->assign('CSS_DEBUG','.debug');
-        $smarty->assign('FLEXIBLE',FLEXIBLE);
-    }else{
-        $smarty->setTemplateDir(__DIR__.'/../templates/');
-        $smarty->setCompileDir(__DIR__.'/../templates_c/');
-        $smarty->assign('TEMP_FOLDER','');
-        $smarty->assign('CSS_DEBUG','');
-    }
-    $smarty->assign('STATIC_DNS',STATIC_DNS);
-    $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
-    $smarty->assign('STATIC_FONT_CSS',STATIC_FONT_CSS);
-    $smarty->assign('STATIC_HOST',STATIC_HOST);
-    $smarty->assign('HOST_URL',HOST_URL);
-    $smarty->assign('BI_SCRIPT',BI_SCRIPT);
-    $smarty->assign('IS_DEBUG',IS_DEBUG);
-    $smarty->assign('SKIN_INFO',$folder_name);
-    return $smarty;
 }
 function setStaticFontCss($folder_name){
     if($folder_name && $folder_name == 'default'){
@@ -244,6 +238,7 @@ function setStaticFontCss($folder_name){
     $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
     return C_RUNTIME_ONLINE ? getFontCss($host_name.'/static',$folder_name) : getFontCss($host_name.'/static',$folder_name);
 }
+//设置全局seller_id
 function set_request_seller_id() {
 	// 测试环境，便于h5调试
 	if (!C_RUNTIME_ONLINE && $_REQUEST['seller_id']) {
@@ -269,6 +264,7 @@ function set_request_seller_id() {
 	    $_REQUEST['seller_id'] = $alias;
 	}
 }
+//获取皮肤和facebook的统计id的方法
 function getSkinInfo(){
     set_request_seller_id();
     include_once( dirname(__FILE__).'/util.php');
@@ -279,11 +275,88 @@ function getSkinInfo(){
     $skin_path = 'v1/shopsSkin/';
     $skin_ret = json_decode(get_init_php_data($skin_path, ["seller_id" => $seller_id]), true);
 
+    $result = [];
     if($skin_ret['code'] == 200){
-        return $skin_ret['shop_skin']['name'];
+        $result['skin_name'] = $skin_ret['shop_skin']['name'];
+        $result['facebook_id'] = $skin_ret['shop_skin']['facebook_id'];
     }else{
-        return 'default';
+        $result['skin_name'] = 'default';
     }
+    return $result;
+}
+//普通php初始化js和css方法(应用在需要兼容模板的问题)
+function initPhpJs($js_name){
+    $skin_info = '<script>var SKIN="'.SKIN_INFO.'";</script>';
+    if(isDebug()){
+        return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1493865781761"></script>';
+    }else{
+        if(FACEBOOK_JS){
+            $skin_info = $skin_info.FACEBOOK_JS;
+        }
+        return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1493865781761"></script>';
+    }
+}
+function initPhpCss($css_name,$folder){
+    $folder_name = TEMP_FOLDER;
+    if($folder && $folder_name == ''){
+        $folder_name = $folder.'/';
+    }
+    if($folder_name){
+        $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS.'<script>'.FLEXIBLE.'</script>';
+    }else{
+        $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS;
+    }
+    if(isDebug()){
+        if(TEMP_FOLDER){
+            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1493865781761" rel="stylesheet"/>';
+        }else{
+            return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1493865781761" rel="stylesheet"/>';
+        }
+    }else{
+        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1493865781761" rel="stylesheet"/>';
+    }
+}
+//初始化smarty或者普通php页面中全局变量的方法
+function smartyCommon($folder){
+    require_once(__DIR__.'/../lib/libs/Smarty.class.php');
+    $smarty = new Smarty();
+    $common_info = getSkinInfo();
+    $folder_name = $common_info['skin_name'];
+    $folder_name = $folder?$folder:$folder_name;
+    $folder_name = 'first';
+    $static_font_css = setStaticFontCss($folder_name);
+    define('STATIC_FONT_CSS', $static_font_css);
+    if($folder_name != 'default'){
+        $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
+        $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
+        $smarty->assign('TEMP_FOLDER',$folder_name.'/');
+        $smarty->assign('CSS_DEBUG','debug');
+        $smarty->assign('FLEXIBLE',FLEXIBLE);
+    }else{
+        $smarty->setTemplateDir(__DIR__.'/../templates/');
+        $smarty->setCompileDir(__DIR__.'/../templates_c/');
+        if($folder){
+            $smarty->assign('TEMP_FOLDER','default/');
+            $smarty->assign('FLEXIBLE',FLEXIBLE);
+        }else{
+            $smarty->assign('TEMP_FOLDER','');
+        }
+    }
+    $smarty->assign('STATIC_DNS',STATIC_DNS);
+    $smarty->assign('STATIC_ICO_CSS',STATIC_ICO_CSS);
+    $smarty->assign('STATIC_FONT_CSS',STATIC_FONT_CSS);
+    $smarty->assign('STATIC_HOST',STATIC_HOST);
+    $smarty->assign('HOST_URL',HOST_URL);
+    $smarty->assign('BI_SCRIPT',BI_SCRIPT);
+    $smarty->assign('IS_DEBUG',IS_DEBUG);
+    $smarty->assign('SKIN_INFO',$folder_name);
+    $facebook_id = $common_info['facebook_id'];
+    if($facebook_id){
+        $smarty->assign('FACEBOOK_JS',facebookJs($facebook_id));
+    }else{
+        $smarty->assign('FACEBOOK_JS','');
+    }
+    return $smarty;
 }
 function setStaticConfig(){
     $prompt = is_https() ? 'https:' : 'http:';
@@ -305,41 +378,24 @@ function setStaticConfig(){
     define('BI_SCRIPT', $bi_js);
     define('IS_DEBUG', isDebug());
     define('FLEXIBLE', flexible());
-    $folder_name = getSkinInfo();
+    $common_info = getSkinInfo();
+    $folder_name = $common_info['skin_name'];
     define('SKIN_INFO', $folder_name);
-    //$folder_name = 'default';
+    $folder_name = 'first';
     if($folder_name != 'default'){
         define('TEMP_FOLDER', $folder_name.'/');
     }else{
         define('TEMP_FOLDER', '');
     }
+    $facebook_id = $common_info['facebook_id'];
+    if($facebook_id){
+        define('FACEBOOK_JS', facebookJs($facebook_id));
+    }else{
+        define('FACEBOOK_JS', '');
+    }
 }
-
-spl_autoload_register('loadClass');
+//初始化全局变量
 setStaticConfig();
-function initPhpJs($js_name){
-    $skin_info = '<script>var SKIN="'.SKIN_INFO.'";</script>';
-    if(isDebug()){
-        return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1492599527462"></script>';
-    }else{
-        return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1492599527462"></script>';
-    }
-}
-function initPhpCss($css_name){
-    if(TEMP_FOLDER){
-        $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS.'<script>'.FLEXIBLE.'</script>';
-    }else{
-        $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS;
-    }
-    if(isDebug()){
-        if(TEMP_FOLDER){
-            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
-        }else{
-            return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
-        }
-    }else{
-        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.TEMP_FOLDER.'app/'.$css_name.'.css?v=1492599527462" rel="stylesheet"/>';
-    }
-}
+
 
 

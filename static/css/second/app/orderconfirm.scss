@@ -7,6 +7,10 @@
 @import "../moudle/app/reduc/reduc.scss";
 @import "../moudle/app/favorable/favorable.scss";
 @import "../moudle/app/agreeinfo/agreeinfo.scss";
+/*登录*/
+@import "../moudle/app/oauth/oauth.scss";
+/*担保交易选择*/
+@import "../moudle/app/tradeplug/tradeplug.scss";
 body{
   background-color: #f5f5f5;
 }

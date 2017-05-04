@@ -25,15 +25,16 @@
   -ms-flex-negative: 1;
   flex-shrink: 1;
   @include remCalc(height,100);
-  @include remCalc(line-height,100);
   box-sizing: border-box;
   text-align: center;
   @include fontDpr(12px);
-  color: #fff;
+  color: $white;
 }
 .index-footer ul li i{
   @include fontDpr(16px);
   vertical-align: middle;
+  display: block;
+  line-height: normal;
 }
 .index-footer ul li a{
   color: $footer-color;
@@ -47,12 +48,18 @@
   @include remCalc(height,30);
   @include remCalc(line-height,30);
   @include remCalc(width,30);
+  //width: 1.2rem;
+  //height: 1.2rem;
   border-radius: 50%;
   text-align: center;
+  //line-height: 1.2rem;
   background-color: $footer-num-bg;
   color: $footer-num-color;
   left: 50%;
   @include remCalc(margin-left,-25);
+  //margin-left: -1.1rem;
   @include remCalc(top,15);
+  //top: .6rem;
   @include fontDpr(12px);
+  //font-size: 12px;
 }

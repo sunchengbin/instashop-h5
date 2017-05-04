@@ -1,0 +1,34 @@
+.info-box{
+  @include remCalc(padding,15 30);
+}
+.info-box > p {
+  @include fontDpr(14px);
+  @include remCalc(margin-bottom,10);
+  word-break: break-word;
+}
+.info-box .title {
+  color: $gray-color;
+}
+.info-box .price {
+  color: $base-color;
+  @include fontDpr(14px);
+}
+.info-box .discount-price {
+  color: $base-color;
+  @include fontDpr(18px);
+}
+.discount-info{
+  color: $base-color;
+}
+.discount-info span:first-child{
+  display: inline-block;
+  @include remCalc(padding,4 30);
+  background-color: $base-color;
+  color: $white;
+  @include remCalc(border-radius,30);
+}
+.price-lang{
+  color: #ccc;
+  text-decoration: line-through;
+  @include remCalc(margin-bottom,20);
+}

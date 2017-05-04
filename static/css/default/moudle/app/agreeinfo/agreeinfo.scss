@@ -1,0 +1,20 @@
+.agree-info{
+  @include fontDpr(14px);
+  @include remCalc(padding,30 0);
+}
+.agree-info p{
+  margin-left: 30px;
+  @include fontDpr(12px);
+  word-break: break-all;
+  overflow: hidden;
+  line-height:2;
+}
+.agree-info i{
+  @include fontDpr(18px);
+  color: $base-btn-color;
+  @include remCalc(padding-right,20);
+  @include remCalc(margin-top,20);
+}
+.agree-info a{
+  color: #748bcf;
+}

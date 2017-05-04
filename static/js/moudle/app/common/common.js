@@ -98,6 +98,13 @@ define(['base','dialog','lang','debug'],function(Base,Dialog,Lang,Debug){
                 callback && callback();
             },100);
         },
+        transUrl: function (url, scroll_url) {
+            if (/\?/g.test(url)) {
+                return url + '&item=back' + scroll_url;
+            } else {
+                return url + '?item=back' + scroll_url;
+            }
+        },
         getFromUrl : function(){//获取返回上一页的url地址
             return localStorage.getItem('FromUrl');
         },

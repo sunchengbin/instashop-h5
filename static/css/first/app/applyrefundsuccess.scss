@@ -1,0 +1,15 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/app/common/common.scss";
+.content-box{
+  text-align: center;
+  @include remCalc(padding,72 40);
+  background-color: $white;
+}
+.content-box p{
+  @include remCalc(margin,20 auto 50);
+}
+.content-box i{
+  @include fontDpr(100px);
+  color: $base-btn-color;
+}
