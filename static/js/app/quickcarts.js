@@ -448,7 +448,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                         localStorage.setItem('BankInfo', _bank_info);
                         localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
                         setTimeout(function () {
-                            location.href = Config.host.hrefUrl + 'ordersuccess.php?price=' + obj.order.total_price + '&detail=2&shop_id=' + init_data.shop.id + '&order_id=' + obj.order.id_hash + '&bname=' + _name + '&bphone=' + _telephone + '&sname=' + init_data.shop.name + '&time=' + (init_data.shop.cancel_coutdown / 86400);
+                            location.href = Config.host.hrefUrl + 'evidencepayment.php?price=' + obj.order.total_price + '&detail=2&shop_id=' + init_data.shop.id + '&order_id=' + obj.order.id_hash + '&bname=' + _name + '&bphone=' + _telephone + '&sname=' + init_data.shop.name + '&time=' + (init_data.shop.cancel_coutdown / 86400);
                         }, 100);
                     } else {
 
