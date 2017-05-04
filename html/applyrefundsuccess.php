@@ -13,15 +13,15 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=initPhpCss('applyrefundsuccess','default')?>
     <title>Pengajuan Pengembalian Dana</title>
 </head>
-<body data-spider="">
+<body data-spider="0dz7gmbw">
     <nav class="header-nav clearfix" data-spider="header-nav">
         <i class="icon iconfont j_go_back icon-back-font" onclick="history.go(-1);"></i>
         Pengajuan Pengembalian Dana
     </nav>
-    <section class="content-box">
+    <section class="content-box" data-spider="content-box">
         <i class="icon iconfont icon-applayrefundsuccess"></i>
         <p>Permintaan pengembalian dana berhasil diajukan, silakan cek Status Pengembalian Dana</p>
-        <div class="btn confirm-btn j_refunddetail">Cek Status Pengembalian Dana</div>
+        <div class="btn confirm-btn j_refunddetail" spm-auto="查看退款进度" spm-click="">Cek Status Pengembalian Dana</div>
     </section>
     <script>
         document.querySelector('.j_refunddetail').onclick = function(){

@@ -1,7 +1,7 @@
 {include file="../header.tpl"}
-<body data-spider="">
+<body data-spider="kduyfjxm">
     <nav class="header-nav clearfix" data-spider="header-nav">
-        <a href = "{$INDEX_DATA.order.url}#{if $INDEX_DATA.item_sku_id != 0}{$INDEX_DATA.item_sku_id}{else}{$INDEX_DATA.item_id}{/if}"><i class="icon iconfont fr icon-allright-font"></i></a>
+        <a spm-auto="回到订单详情页" href = "{$INDEX_DATA.order.url}#{if $INDEX_DATA.item_sku_id != 0}{$INDEX_DATA.item_sku_id}{else}{$INDEX_DATA.item_id}{/if}"><i class="icon iconfont fr icon-allright-font"></i></a>
         Status Pengembalian Dana
     </nav>
     <section class="content-box">

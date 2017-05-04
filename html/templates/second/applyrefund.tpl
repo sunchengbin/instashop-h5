@@ -1,11 +1,11 @@
 {include file="../header.tpl"}
-<body data-spider="">
+<body data-spider="2zhbuq07">
 <div class="address-wraper">
     <nav class="header-nav clearfix" data-spider="header-nav">
         <i class="icon iconfont j_go_back icon-back-font" data-step="one"></i>
         Pengajuan Pengembalian Dana
     </nav>
-    <div class="step-one j_step_one">
+    <div class="step-one j_step_one" data-spider="refund-step-one">
         <h2>Jumlah Pengembalian Dana</h2>
         <input class="refund-price j_refund_price" type="tel" data-maxprice="{$INDEX_DATA}"/>
         <p class="refund-explain b-bottom"><a href="#" class="">Maksimum Rp {$INDEX_DATA|priceFormat} <i class="icon iconfont icon-question"></i></a></p>
@@ -16,9 +16,9 @@
             <!--<li class="refund-img j_refund_img" data-src="https://imghk0.geilicdn.com/instashop-1492403176613-1unadjust.jpg?w=640&h=640&cp=1"><img src="https://imghk0.geilicdn.com/instashop-1492403176613-1unadjust.jpg?w=640&h=640&cp=1"/><i class="icon iconfont j_del_img icon-delete-font"></i></li>-->
             <li class="upload-img-li j_upload_img_btn"><i class="icon iconfont icon-add-font"></i></li>
         </ul>
-        <div class="btn confirm-btn j_next_step">Selanjutnya</div>
+        <div class="btn confirm-btn j_next_step" spm-auto="下一步" spm-click="">Selanjutnya</div>
     </div>
-    <div class="step-two j_step_two form-box hide">
+    <div class="step-two j_step_two form-box hide" data-spider="refund-step-two">
         <p class="step-two-explain">Mohon untuk mengisi nomor rekening kamu dan nominal dana yang ingin dikembalikan.</p>
         <div class="form-li clearfix">
             <div class="g-color form-titie">Bank</div>
@@ -36,7 +36,7 @@
             <div class="g-color">Nomor Ponsel</div>
             <div class="ipt-box tel-ipt-box"><span>+62</span><input type="tel" value="" placeholder="Nomor Ponsel" class="j_number"/></div>
         </div>
-        <button class="submit-btn btn confirm-btn j_sub_btn">Ya</button>
+        <button class="submit-btn btn confirm-btn j_sub_btn" spm-auto="提交退款申请" spm-click="">Ya</button>
     </div>
     <section class="address-list-box j_address_list_box">
         <nav class="header-nav address-header-nav j_address_header clearfix">

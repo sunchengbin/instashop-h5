@@ -81,6 +81,7 @@ require(['oauth','base','config','common','lazyload','ajax','dialog'],function(O
                 Oauth.signout(localStorage.getItem('FromUrl'));
             });
             $('body').on('click','.j_order_info',function(){
+                PaqPush && PaqPush('查看订单', '');
                 var _url = $(this).attr('data-url');
                 location.href = _url;
 
