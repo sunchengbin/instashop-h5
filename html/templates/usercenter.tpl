@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 <body data-spider="ixawcheq">
     <nav class="header-nav clearfix" data-spider="header-nav">
-        <i class="icon iconfont j_log_out icon-logout fr" spm-auto="退出登录" spm-click=""></i>
+        <i class="icon iconfont j_log_out icon-logout fr" spm-auto="退出登录" spm-click="">Keluar</i>
         <i class="icon iconfont j_go_back icon-back-font" spm-auto="回退" spm-click=""></i>
         Pesanan Saya
     </nav>

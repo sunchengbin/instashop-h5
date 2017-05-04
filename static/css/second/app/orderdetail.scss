@@ -170,7 +170,7 @@ body{
   @include remCalc(margin-top,-30);
 }
 .logistics-info p:nth-child(2){
-  color: #43CB9C;
+  color: $base-btn-color;
 }
 .logistics-info p:last-child{
   color: #ccc;
@@ -241,6 +241,9 @@ body{
   vertical-align: middle;
   text-decoration: line-through;
 }
+.cart-item>div{
+  margin-right:0;
+}
 .refund-btn {
   display:inline-block;
   @include remCalc(height,50);
@@ -280,12 +283,13 @@ body{
   position:fixed;
   bottom:0;
   width:100%;
+  max-width: 640px;
   @include remCalc(height,100);
   @include remCalc(line-height,100);
   @include fontDpr(14px);
   background: $white;
   box-sizing: border-box;
-  @include remCalc(padding,0 30);
+  //@include remCalc(padding,0 30);
   text-align: right;
   border-top: 1px solid $border-color;
 }
@@ -295,6 +299,7 @@ body{
   border: 1px solid #979797;
   @include remCalc(border-radius,100);
   text-align: center;
-  @include remCalc(padding,0 30);
+  @include remCalc(padding,0 10);
+  @include remCalc(margin-right,30);
   display: inline-block;
 }

@@ -285,6 +285,7 @@ body{
     position:fixed;
     bottom:0;
     width:100%;
+    max-width: 640px;
     height: 5rem;
     line-height: 5rem;
     color:#666666;

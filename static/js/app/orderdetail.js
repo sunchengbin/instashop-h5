@@ -129,8 +129,8 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                 var _reqData = {
                     edata: {
                         "action": "",
-                        "buyer_id": _this.loginResult.info.buyer_id,
-                        "uss": _this.loginResult.info.uss
+                        "buyer_id": _this.loginResult.info ? _this.loginResult.info.buyer_id:'',
+                        "uss": _this.loginResult.info ? _this.loginResult.info.uss : ''
                     }
                 }
                 switch (_op) {

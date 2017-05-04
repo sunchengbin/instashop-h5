@@ -318,7 +318,9 @@ function initPhpCss($css_name,$folder){
 }
 //方便调试统一修改皮肤
 function getTestSkin(){
-    return null;
+    //return null;
+    return 'first';
+    //return 'second';
 }
 //初始化smarty或者普通php页面中全局变量的方法
 function smartyCommon($folder){
