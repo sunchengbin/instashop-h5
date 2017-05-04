@@ -166,6 +166,7 @@ h2{
 .step-two-explain{
   @include remCalc(padding,25 30);
 }
-.error{
-  border-color: red;
+//输入框为空提示
+.refund-error{
+  border: 1px solid #ff2d2d !important;
 }

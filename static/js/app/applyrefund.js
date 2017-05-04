@@ -1,9 +1,6 @@
 /**
  * Created by sunchengbin on 2017/4/21.
- */
- /**
-  * Created by sunchengbin on 2016/11/23.
-  */
+*/
 require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','base','bankcity'],function(Hbs,UploadImg,Config,Lang,Fastclick,Dialog,Btn,Ajax,Base,BankCity){
     var UploadProve = {
      init : function(){
@@ -15,7 +12,7 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                  if($('.j_refund_img').length > 3){
                      Dialog.tip({
                          top_txt : '',//可以是html
-                         body_txt : '<p class="dialog-body-p">最多上传三张</p>'
+                         body_txt : '<p class="dialog-body-p">'+Lang.REFUND_EXPLAIN_MSG+'</p>'
                      });
                  }else{
                      $.each(result,function(i,item){
@@ -87,6 +84,12 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
          });
          $('body').on('click','.j_go_address',function(){
              $('.j_address_list_box').addClass('hide').removeClass('show');
+         });
+         $('body').on('focus', 'input', function () {
+             $('.refund-error').removeClass('refund-error');
+         });
+         $('body').on('focus', 'textarea', function () {
+             $('.refund-error').removeClass('refund-error');
          });
          $('body').on('focus', '.j_refund_price', function () {
              _this.execPriceInputByFocus($(this));
@@ -184,10 +187,11 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
             }
 
             if (_msg) {
-                Dialog.tip({
-                    top_txt: '', //可以是html
-                    body_txt: '<p class="dialog-body-p">' + _msg + '</p>'
-                });
+                //Dialog.tip({
+                //    top_txt: '', //可以是html
+                //    body_txt: '<p class="dialog-body-p">' + _msg + '</p>'
+                //});
+                $('.j_refund_price').addClass('refund-error');
                 return;
             }
             _this.val('Rp ' + Base.others.priceFormat(_price));
@@ -275,10 +279,11 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
             _refund_explain = $.trim($('.j_refund_explain').val());
             _refund_price = $.trim(_refund_price.replace(/Rp\s/g, ''));
          if(!_refund_price){
-             Dialog.tip({
-                 top_txt : '',//可以是html
-                 body_txt : '<p class="dialog-body-p">请填写提现金额</p>'
-             });
+             //Dialog.tip({
+             //    top_txt : '',//可以是html
+             //    body_txt : '<p class="dialog-body-p">请填写提现金额</p>'
+             //});
+             $('.j_refund_price').addClass('refund-error');
              return null;
          }else{
              if (/\./g.test(_refund_price)) {
@@ -291,23 +296,26 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              if(Number(_refund_price) > Number(_max_price)){
                  Dialog.tip({
                      top_txt : '',//可以是html
-                     body_txt : '<p class="dialog-body-p">最多能提现Rp'+_max_price+'</p>'
+                     body_txt : '<p class="dialog-body-p">'+Lang.REFUND_PRICE_MSG+' Rp '+_max_price+'</p>'
                  });
+                 $('.j_refund_price').addClass('refund-error');
                  return null;
              }
          }
          if(!_refund_explain){
-             Dialog.tip({
-                 top_txt : '',//可以是html
-                 body_txt : '<p class="dialog-body-p">退款原因描述不能为空</p>'
-             });
+             //Dialog.tip({
+             //    top_txt : '',//可以是html
+             //    body_txt : '<p class="dialog-body-p">退款原因描述不能为空</p>'
+             //});
+             $('.j_refund_explain').addClass('refund-error');
             return null;
          }else{
             if(_refund_explain > 1000){
                 Dialog.tip({
                     top_txt : '',//可以是html
-                    body_txt : '<p class="dialog-body-p">退款原因最多1000字符</p>'
+                    body_txt : '<p class="dialog-body-p">'+Lang.REFUND_EXPLAIN_MSG+'</p>'
                 });
+                $('.j_refund_explain').addClass('refund-error');
                 return null;
             }
          }
@@ -316,16 +324,17 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              _imgs.push($(item).attr('data-src'));
          });
          if(!_imgs.length){
-             Dialog.tip({
-                 top_txt : '',//可以是html
-                 body_txt : '<p class="dialog-body-p">请上传凭证</p>'
-             });
+             //Dialog.tip({
+             //    top_txt : '',//可以是html
+             //    body_txt : '<p class="dialog-body-p">请上传凭证</p>'
+             //});
+             $('.j_upload_img_btn').addClass('refund-error');
              return null;
          }else{
              if(_imgs.length > 3){
                  Dialog.tip({
                      top_txt : '',//可以是html
-                     body_txt : '<p class="dialog-body-p">最多上传三张</p>'
+                     body_txt : '<p class="dialog-body-p">'+Lang.REFUND_IMG_MSG+'</p>'
                  });
                  return null;
              }
@@ -342,31 +351,35 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              _name = $.trim($('.j_name').val()),
              _number = $.trim($('.j_number').val());
          if(!_bankname){
-             Dialog.tip({
-                 top_txt : '',//可以是html
-                 body_txt : '<p class="dialog-body-p">'+Lang.H5_BANK_NAME+' '+Lang.H5_NOT_EMPTY+'?</p>'
-             });
+             //Dialog.tip({
+             //    top_txt : '',//可以是html
+             //    body_txt : '<p class="dialog-body-p">'+Lang.H5_BANK_NAME+' '+Lang.H5_NOT_EMPTY+'?</p>'
+             //});
+             $('.j_bank_name').addClass('refund-error');
              return null;
          }
          if(!_branch){
-             Dialog.tip({
-                 top_txt : '',//可以是html
-                 body_txt : '<p class="dialog-body-p">'+Lang.H5_SUB_BRANCH+' '+Lang.H5_NOT_EMPTY+'?</p>'
-             });
+             //Dialog.tip({
+             //    top_txt : '',//可以是html
+             //    body_txt : '<p class="dialog-body-p">'+Lang.H5_SUB_BRANCH+' '+Lang.H5_NOT_EMPTY+'?</p>'
+             //});
+             $('.j_branch').addClass('refund-error');
              return null;
          }
          if(!_name){
-             Dialog.tip({
-                 top_txt : '',//可以是html
-                 body_txt : '<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NAME+' '+Lang.H5_NOT_EMPTY+'?</p>'
-             });
+             //Dialog.tip({
+             //    top_txt : '',//可以是html
+             //    body_txt : '<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NAME+' '+Lang.H5_NOT_EMPTY+'?</p>'
+             //});
+             $('.j_name').addClass('refund-error');
              return null;
          }
          if(!_number){
-             Dialog.tip({
-                 top_txt : '',//可以是html
-                 body_txt : '<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NUMBER+' '+Lang.H5_NOT_EMPTY+'?</p>'
-             });
+             //Dialog.tip({
+             //    top_txt : '',//可以是html
+             //    body_txt : '<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NUMBER+' '+Lang.H5_NOT_EMPTY+'?</p>'
+             //});
+             $('.j_number').addClass('refund-error');
              return null;
          }
          return {
