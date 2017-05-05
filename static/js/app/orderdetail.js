@@ -146,6 +146,9 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
             $("body").on("click", ".order-login-btn", function () {
                 Oauth.openDialog();
             })
+            $("body").on("click", ".j_go_back", function () {
+                history.back();
+            })
         },
         // 退款
         bindCard: function () {
