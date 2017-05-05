@@ -81,7 +81,7 @@ define([
             });
             try {
                 loginInfoFromCallBackPost = user_info;
-                if (!!loginInfoFromCallBackPost.buyer_id && !!loginInfoFromCallBackPost.name) {
+                if (!!loginInfoFromCallBackPost.buyer_id) {
                     // post 问题 fix
                     var localLoginInfo = loginInfoFromCache.find("loginInfo");
                     if (localLoginInfo) {

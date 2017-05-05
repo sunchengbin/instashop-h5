@@ -63,9 +63,11 @@ require(['lang', 'hbs', 'text!views/app/warrantsuccess.hbs', 'config', 'fastclic
                 if (isShowOrderGuid == void(0)) {
                     // 没有种过
                     // 1表示没有展示过
+                    PaqPush && PaqPush('首次担保下单', '');
                     IndexCoverCache.set("isShowOrderGuid", "1")
                     location.href = '/s/'+data.ShopInfo.id;;//去店铺首页
                 }else{
+                    PaqPush && PaqPush('查看订单详情', '');
                     location.href = _this.orderUrl;
                 }
             })
