@@ -6,7 +6,8 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
     var TradePlug = function (opts) {
         var _this = this;
         _this.config = $.extend({
-            insertAfterEl: '.address-box'
+            insertAfterEl: '.address-box',
+            carts:null
         }, opts);
         _this.init();
     };
@@ -23,8 +24,16 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
             this.handelFn();
         },
         checkShopIsOpenWarrant: function () {
+            var _this = this;
             var _ShopData = JSON.parse(localStorage.getItem('ShopData'));
-            if (!!_ShopData.SupplyShopInfo) {
+            var _isContainSupplyShopGood = false;
+            // 判断商品是否含有供应商的
+            for (var item in _this.config.carts) {
+                if (_this.config.carts[item].item.supply_type == 2) {
+                   _isContainSupplyShopGood = true;
+                }
+            }
+            if (!!_isContainSupplyShopGood) {
                 // 存在供应商
                 var _supplyWarrantFlag = _ShopData.SupplyShopInfo.warrant_flag;
                 var _dropshiperWarrantFlag = _ShopData.ShopInfo.warrant_flag;

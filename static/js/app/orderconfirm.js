@@ -117,7 +117,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
 
             // 4.7 新增需求 初始化交易类型选择插件
             _this.tradeplug = Tradeplug({
-                insertAfterEl: ".address-box"
+                insertAfterEl: ".address-box",
+                carts:_carts
             })
             _this.handleFn();
         },
