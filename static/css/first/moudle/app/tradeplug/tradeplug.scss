@@ -18,7 +18,7 @@
 
 .trade-box-title {
   position: relative;
-  width: 100%;
+  //width: 100%;
   @include remCalc(height,90);
   @include remCalc(line-height,90);
   @include remCalc(padding,0 30);
