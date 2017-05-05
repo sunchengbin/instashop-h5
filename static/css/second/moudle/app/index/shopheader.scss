@@ -39,8 +39,8 @@
 .icon-secured{
   @include remCalc(font-size,60);
   position: absolute;
-  @include remCalc(left,-8);
-  @include remCalc(top,-20);
+  @include remCalc(left,-7.2);
+  @include remCalc(top,-20.88);
   z-index: 2;
   color:#7ED321;
 }
