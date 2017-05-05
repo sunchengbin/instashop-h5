@@ -36,7 +36,7 @@
         </li>
         {if $INDEX_DATA.shop.warrant_flag neq 0}
         <li class="j_my_order b-right" data-url="{$HOST_NAME}/html/usercenter.php" spm-auto="我的订单" spm-click="go-order" flex="main:center cross:center">
-            <div><i class="icon iconfont icon-order"></i> Pesanan Saya</div>
+            <div><i class="icon iconfont icon-order"></i> Pesananku</div>
         </li>
         {/if}
     </ul>
