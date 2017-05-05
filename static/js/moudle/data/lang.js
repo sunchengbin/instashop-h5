@@ -631,7 +631,7 @@ define(['base'], function (Base) {
             "SELECT_TRADE_TYPE": "Pilih Metode Pembayaran",
             "TRADE_TYPE_ZHIJIE": "Transfer ke Penjual",
             "TRADE_TYPE_DANBAO": "Rekening Bersama",
-            "TRADE_QUBIE_TIP": "Cek detil",
+            "TRADE_QUBIE_TIP": "Klik untuk penjelasan lebih lanjut",
             "TRADE_SUPPORT_NO_TIP": "Kami belum menyediakan Rekening Bersama",
             "TRADE_IKNOW": "Saya mengerti",
             "USER_CENTER_ORDER": "Pesanan Saya",
