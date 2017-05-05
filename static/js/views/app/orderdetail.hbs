@@ -95,7 +95,7 @@
                         </div>
                         <div class="cart-item-price">
                             <p class="price clearfix">Rp {{transprice price}} x{{quantity}}</p>
-                            <p class="origin-price clearfix">Rp 400.000</p>
+                            {{#if discount.value}}<p class="origin-price clearfix">Rp {{transprice total_price}}</p>{{/if}}
                         </div>
                         <div class="clearfix">
                             {{#each op}}

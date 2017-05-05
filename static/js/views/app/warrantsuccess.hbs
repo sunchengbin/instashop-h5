@@ -1,13 +1,13 @@
 {{#if detail}}
     {{#eq detail 1}}
         <nav class="header-nav clearfix " data-spider="header-nav">
-            <i class="icon iconfont j_go_back icon-back-font"></i>
+            {{!--<i class="icon iconfont j_go_back icon-back-font"></i>--}}
             {{lang.ORDER_WARRANT_SUCCESS}}
         </nav>
     {{/eq}}
 {{else}}
     <nav class="header-nav clearfix " data-spider="header-nav">
-        <i class="icon iconfont fr icon-allright-font j_go_back"></i>
+        {{!--<i class="icon iconfont fr icon-allright-font j_go_back"></i>--}}
         {{lang.ORDER_WARRANT_SUCCESS}}
     </nav>
 {{/if}}
@@ -22,7 +22,7 @@
         {{lang.DANBAO_TIP_TWO}}
     </p>
 
-    <a href="{{orderUrl}}" class="warrant-btn warrant-btn-order">
+    <a href="javascript:;" class="warrant-btn warrant-btn-order j_goto_order_detail">
         {{lang.CHECK_ORDER_DETAIL}}
     </a>
 
