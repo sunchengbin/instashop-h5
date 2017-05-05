@@ -143,7 +143,7 @@
     <div class="order-guide-cover"></div>
     <div class="order-guide-info-wrap">
         <div class="order-guide-text">
-             <p>点这里查看订单详情</p>
+             <p>Klik untuk Cek Detail Pesanan</p>
              <p>
                 <button class="order-guide-btn j_close_guide">Saya mengerti</button>
              </p>
