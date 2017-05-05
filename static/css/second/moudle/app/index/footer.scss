@@ -56,9 +56,10 @@
   background-color: $footer-num-bg;
   color: $footer-num-color;
   left: 50%;
-  @include remCalc(margin-left,-25);
+  @include remCalc(margin-left,3);
   //margin-left: -1.1rem;
-  @include remCalc(top,15);
+  top:0;
+  //@include remCalc(top,15);
   //top: .6rem;
   @include fontDpr(12px);
   //font-size: 12px;
