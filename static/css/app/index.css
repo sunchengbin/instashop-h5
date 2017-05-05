@@ -761,10 +761,10 @@ footer .btn i {
 .secured-box{
     position: relative;
     display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.3rem;
+    height: 1.3rem;
     border-radius: 50%;
-    line-height: 1.5rem;
+    line-height: 1.3rem;
     background-color: #fff;
     top: .3rem;
 
@@ -773,7 +773,7 @@ footer .btn i {
     position: absolute;
     font-size: 24px;
     top: 0;
-    left: -.25rem;
+    left: -.35rem;
     color: #7ED321;
     vertical-align: middle;
 }
