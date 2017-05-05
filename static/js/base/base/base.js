@@ -504,7 +504,7 @@ define(function () {
             var _time = [];
             _time.push(_hour_minute.split(':')[0]);
             _time.push(_hour_minute.split(':')[1]);
-            dateStr = _day+"/"+_month+" "+_time.join(':');
+            dateStr = _day+"/"+_month+" "+_time.join('.');
             return dateStr;
         }
     };
