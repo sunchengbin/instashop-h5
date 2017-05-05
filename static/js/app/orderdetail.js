@@ -111,18 +111,6 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                     Oauth.openDialog();
                 }
             });
-            //TODO 标记引导 看情况再封装
-            var IndexCoverCache = Cache.getSpace("IndexCache") || new Cache({
-                namespace: "IndexCache",
-                type: "local"
-            });
-            // 先获取 如果没有再种 有的话pass
-            var isShowOrderGuid = IndexCoverCache.find("isShowOrderGuid");
-            if (isShowOrderGuid == void(0)) {
-                // 没有种过
-                // 1表示没有展示过
-                IndexCoverCache.set("isShowOrderGuid", "1")
-            }
 
             $("body").on("click", ".j_order_op", function () {
                 var _op = $(this).attr("data-op");
@@ -152,8 +140,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                         Dialog.tip({
                             body_txt: "unknow op"
                         })
-                        return;
-                        break;
+                    break;
                 }
             })
             $("body").on("click", ".order-login-btn", function () {
