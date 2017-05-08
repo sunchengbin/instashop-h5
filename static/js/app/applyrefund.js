@@ -237,7 +237,7 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                  if(_refund_price > Number(_max_price)){
                      Dialog.tip({
                          top_txt : '',//可以是html
-                         body_txt : '<p class="dialog-body-p">'+Lang.REFUND_PRICE_MSG+' Rp '+_max_price+'</p>'
+                         body_txt : '<p class="dialog-body-p">'+Lang.REFUND_PRICE_MSG+' Rp '+Base.others.priceFormat(_max_price)+'</p>'
                      });
                      $('.j_refund_price').addClass('refund-error');
                      return null;
