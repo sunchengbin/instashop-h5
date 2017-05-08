@@ -14,6 +14,7 @@
                     <div class="info-detail">
                         <div class="items-img">
                             {foreach $item.items as $one_item}
+
                                 <img data-img="{$one_item.img_head}">
                             {/foreach}
                         </div>

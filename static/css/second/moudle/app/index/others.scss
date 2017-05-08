@@ -81,6 +81,7 @@
   font-size: 16px;
   font-weight: 700;
   position: fixed;
+  @include remCalc(width,310);
   @include remCalc(bottom,180);
   z-index: 9999;
   display: none;
