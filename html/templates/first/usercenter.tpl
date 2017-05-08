@@ -13,8 +13,10 @@
                     <p class="order-status b-bottom"><span>{$item.state_txt}</span>{$item.add_time|dateFormat}</p>
                     <div class="info-detail">
                         <div class="items-img">
-                            {foreach $item.items as $one_item}
-                                <img data-img="{$one_item.img_head}">
+                            {foreach from=$item.items item=one_item name=items}
+                                {if $smarty.foreach.items.index lt 4}
+                                    <img data-img="{$one_item.img_head}">
+                                {/if}
                             {/foreach}
                         </div>
                     </div>
