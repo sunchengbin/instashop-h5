@@ -56,16 +56,16 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                  $('.j_step_one').show();
                  $('.j_step_two').hide();
              }else{
-                 if(_this.isEdit()){
-                     Dialog.confirm({
-                         body_txt : '<p class="dialog-body-p">'+Lang.H5_EXIT_CONFIRM+'</p>',
-                         cf_fn : function(){
-                             location.href = localStorage.getItem('RefundBack');
-                         }
-                     });
-                 }else{
+                 //if(_this.isEdit()){
+                 //    Dialog.confirm({
+                 //        body_txt : '<p class="dialog-body-p">'+Lang.H5_EXIT_CONFIRM+'</p>',
+                 //        cf_fn : function(){
+                 //            location.href = localStorage.getItem('RefundBack');
+                 //        }
+                 //    });
+                 //}else{
                      location.href = localStorage.getItem('RefundBack');
-                 }
+                 //}
              }
          });
          $('body').on('focus','.j_bank_name',function(){
@@ -86,13 +86,21 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              $('.j_address_list_box').addClass('hide').removeClass('show');
          });
          $('body').on('focus', 'input', function () {
-             $('.refund-error').removeClass('refund-error');
+             $('.j_upload_img_btn').removeClass('refund-error');
+             if($(this).is('.refund-error')){
+                 $(this).removeClass('refund-error');
+             }
          });
          $('body').on('focus', 'textarea', function () {
-             $('.refund-error').removeClass('refund-error');
+             if($(this).is('.refund-error')){
+                 $(this).removeClass('refund-error');
+             }
          });
          $('body').on('focus', '.j_refund_price', function () {
              _this.execPriceInputByFocus($(this));
+         });
+         $('body').on('blur', '.j_refund_price', function () {
+             _this.execPriceInputByKeyup($(this));
          });
          $('body').on('keyup', '.j_refund_price', function (e) {
              _this.execPriceInputByKeyup($(this), e.which)
@@ -106,7 +114,7 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                  var _that = this,
                      _step_one = _this.testStepOne(),
                      _items = _this.testData();
-                 if(!_items){
+                 if(!_items || !_step_one){
                      _that.cancelDisable();
                      _that.setBtnTxt(dom,Lang.H5_CONFIRM);
                      return null;
@@ -194,85 +202,10 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                 $('.j_refund_price').addClass('refund-error');
                 return;
             }
+            $('.j_refund_price').removeClass('refund-error');
             _this.val('Rp ' + Base.others.priceFormat(_price));
         }
      },
-     isEdit : function(){//是否编辑过
-         var _this = this,
-             _step_one_data = _this.testStepOneIsEmpty(),
-             _data = _this.testIsEmpty();
-         if(_step_one_data && _data){
-             return true;
-         }
-         return false;
-     },
-     testIsEmpty : function(){
-         var _bankname = $.trim($('.j_bank_name').val()),
-             _branch= $.trim($('.j_branch').val()),
-             _name = $.trim($('.j_name').val()),
-             _number = $.trim($('.j_number').val());
-         if(!_bankname){
-             return null;
-         }
-         if(!_branch){
-             return null;
-         }
-         if(!_name){
-             return null;
-         }
-         if(!_number){
-             return null;
-         }
-         return {
-             "c_number":_number,
-             "c_name":_name,
-             "b_name":_bankname,
-             "b_branch":_branch
-         }
-     },
-    testStepOneIsEmpty : function(){
-        var _refund_price = $.trim($('.j_refund_price').val()),
-            _max_price = $('.j_refund_price').attr('data-maxprice'),
-            _refund_explain = $.trim($('.j_refund_explain').val());
-        _refund_price = $.trim(_refund_price.replace(/Rp\s/g, ''));
-        if(!_refund_price){
-            return null;
-        }else{
-            if (/\./g.test(_refund_price)) {
-                if (/\.00$/g.test(_refund_price)) {
-                    _refund_price = _refund_price.replace(/\./g, '') / 100;
-                } else {
-                    _refund_price = _refund_price.replace(/\./g, '');
-                }
-            }
-            if(Number(_refund_price) > Number(_max_price)){
-                return null;
-            }
-        }
-        if(!_refund_explain){
-            return null;
-        }else{
-            if(_refund_explain > 1000){
-                return null;
-            }
-        }
-        var _imgs = [];
-        $('.j_refund_img').each(function(i,item){
-            _imgs.push($(item).attr('data-src'));
-        });
-        if(!_imgs.length){
-            return null;
-        }else{
-            if(_imgs.length > 3){
-                return null;
-            }
-        }
-        return {
-            refundPrice : _refund_price,
-            refundExplain : _refund_explain,
-            refundImgs : _imgs
-        };
-    },
      testStepOne : function(){
          var _refund_price = $.trim($('.j_refund_price').val()),
             _max_price = $('.j_refund_price').attr('data-maxprice'),
@@ -293,14 +226,24 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                      _refund_price = _refund_price.replace(/\./g, '');
                  }
              }
-             if(Number(_refund_price) > Number(_max_price)){
-                 Dialog.tip({
-                     top_txt : '',//可以是html
-                     body_txt : '<p class="dialog-body-p">'+Lang.REFUND_PRICE_MSG+' Rp '+_max_price+'</p>'
-                 });
+             if(isNaN(_refund_price)){
                  $('.j_refund_price').addClass('refund-error');
                  return null;
+             }else{
+                 _refund_price = Number(_refund_price);
+                 if (_refund_price <= 0) {
+                     return null;
+                 }
+                 if(_refund_price > Number(_max_price)){
+                     Dialog.tip({
+                         top_txt : '',//可以是html
+                         body_txt : '<p class="dialog-body-p">'+Lang.REFUND_PRICE_MSG+' Rp '+_max_price+'</p>'
+                     });
+                     $('.j_refund_price').addClass('refund-error');
+                     return null;
+                 }
              }
+
          }
          if(!_refund_explain){
              //Dialog.tip({
@@ -310,7 +253,7 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              $('.j_refund_explain').addClass('refund-error');
             return null;
          }else{
-            if(_refund_explain > 1000){
+            if(_refund_explain.length > 1000){
                 Dialog.tip({
                     top_txt : '',//可以是html
                     body_txt : '<p class="dialog-body-p">'+Lang.REFUND_EXPLAIN_MSG+'</p>'
