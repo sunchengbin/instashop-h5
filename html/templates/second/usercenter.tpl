@@ -18,7 +18,7 @@
                             {/if}
                         {/foreach}
                     </div>
-                   <p class="clearfix total-price">{if $item.warrant_status}<i class="icon iconfont fl icon-warrant-flag"></i>{/if}Jumlah Total：Rp {$item.total_price|priceFormat}</p>
+                   <p class="clearfix total-price">{if $item.warrant_status neq 'nowarrant'}<i class="icon iconfont fl icon-warrant-flag"></i>{/if}Jumlah Total：Rp {$item.total_price|priceFormat}</p>
                 </li>
             {else}
                 <li class="order-info j_order_info" data-url="{$item.url}">
@@ -31,7 +31,7 @@
                             {$item.items[0].item_title}
                         </div>
                     </div>
-                    <p class="clearfix total-price">{if $item.warrant_status}<i class="icon iconfont fl icon-warrant-flag"></i>{/if}Jumlah Total：Rp {$item.total_price|priceFormat}</p>
+                    <p class="clearfix total-price">{if $item.warrant_status neq 'nowarrant'}<i class="icon iconfont fl icon-warrant-flag"></i>{/if}Jumlah Total：Rp {$item.total_price|priceFormat}</p>
                 </li>
             {/if}
 
