@@ -25,6 +25,7 @@ require(['lang', 'hbs', 'text!views/app/warrantsuccess.hbs', 'config', 'fastclic
                         shopUrl = _isCustomHost ? _url + OrderInfo.shop_info.id : _url;
                 }
                 _this.orderUrl = _order_url;
+                _this.shopUrl = shopUrl;
                 IndexHtm = Hbs.compile(WarrantSuccess)({
                     shopInfo: OrderInfo.shop_info,
                     lang: Lang,
@@ -65,7 +66,9 @@ require(['lang', 'hbs', 'text!views/app/warrantsuccess.hbs', 'config', 'fastclic
                     // 1表示没有展示过
                     PaqPush && PaqPush('首次担保下单', '');
                     IndexCoverCache.set("isShowOrderGuid", "1")
-                    location.href = '/s/'+data.ShopInfo.id;;//去店铺首页
+                    setTimeout(function(){
+                        location.href = _this.shopUrl;;//去店铺首页
+                    },500)
                 }else{
                     PaqPush && PaqPush('查看订单详情', '');
                     location.href = _this.orderUrl;
