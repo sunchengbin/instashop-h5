@@ -103,6 +103,7 @@
 .order-guide-text img {
   position: absolute;
   top: 15px;
+  @include remCalc(width,240);
   @include remCalc(bottom,240);
 }
 
