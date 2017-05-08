@@ -9,7 +9,10 @@
     padding: 0 1rem;
     height: 3rem;
     line-height: 3rem;
+}
+.trade-tip a {
     color: #4990E2;
+    text-decoration: none;
 }
 
 .trade-box {

@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 物流插件
  */
-define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oauth', 'dialog'], function (Common, Base, Hbs, TradeHtml, Lang, Oauth, Dialog) {
+define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oauth', 'dialog','config'], function (Common, Base, Hbs, TradeHtml, Lang, Oauth, Dialog,Config) {
     var TradePlug = function (opts) {
         var _this = this;
         _this.config = $.extend({
@@ -111,6 +111,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
         createHtm: function (info) {
             var _this = this;
             info.lang = Lang;
+            info.host = Config.host;
             var PlugHtm = Hbs.compile(TradeHtml)(info);
             $(_this.config.insertAfterEl).after(PlugHtm);
             return this;

@@ -17,6 +17,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                 ItemHtm = Hbs.compile(OrderDetail)({
                     data: init_data,
                     lang: Lang,
+                    isBack:Base.others.getUrlPrem('from'),
                     isLogin: !_this.loginResult.result,
                     hrefUrl: Config.host.hrefUrl,
                     host: Config.host.host,
