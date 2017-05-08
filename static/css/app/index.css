@@ -735,6 +735,7 @@ footer .btn i {
     bottom: 6rem;
     z-index: 9999;
     display: none;
+    width:170px;
 }
 
 .order-guide-text {
