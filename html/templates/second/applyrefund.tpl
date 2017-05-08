@@ -26,15 +26,15 @@
         </div>
         <div class="form-li clearfix">
             <div class="g-color">Nomor Rekening</div>
-            <div class="ipt-box"><input type="text" value=""  placeholder="Nomor Rekening" class="j_branch"/></div>
+            <div class="ipt-box"><input type="text" value="" maxlength="50"  placeholder="Nomor Rekening" class="j_branch"/></div>
         </div>
         <div class="form-li clearfix">
             <div class="g-color">Nama Pemilik Rekening</div>
-            <div class="ipt-box"><input type="text" value="" placeholder="Nama Pemilik Rekening" class="j_name"/></div>
+            <div class="ipt-box"><input type="text" value="" maxlength="50" placeholder="Nama Pemilik Rekening" class="j_name"/></div>
         </div>
         <div class="form-li clearfix">
             <div class="g-color">Nomor Ponsel</div>
-            <div class="ipt-box tel-ipt-box"><span>+62</span><input type="tel" value="" placeholder="Nomor Ponsel" class="j_number"/></div>
+            <div class="ipt-box tel-ipt-box"><span>+62</span><input maxlength="50" type="tel" value="" placeholder="Nomor Ponsel" class="j_number"/></div>
         </div>
         <button class="submit-btn btn confirm-btn j_sub_btn" spm-auto="提交退款申请" spm-click="">Ya</button>
     </div>
