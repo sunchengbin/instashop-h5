@@ -44,7 +44,7 @@
     {{#eq data.order.ship_status 1}}
         <div class="logistics-info">
             {{#eq data.order.logistics_info.express.express_company_id 0}}
-                <p>Kirim Langsung</p>
+                <p style="line-height:3">Kirim Langsung</p>
             {{else}}
                 <a spm-auto="查看物流详情" spm-click="check-logistics-info" href="{{hrefUrl}}logistics.php?order_id={{data.order.id_hash}}&logistics_id={{data.order.express_info_id}}" class="clearfix">
                     <i class="icon iconfont fr icon-go-font"></i>
