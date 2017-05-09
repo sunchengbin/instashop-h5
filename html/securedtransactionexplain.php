@@ -63,10 +63,10 @@
             background-color:#f5f5f5;
         }
         .mb20{
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
         .mt20{
-            margin-top: 20px;
+            margin-top: 40px;
         }
     </style>
 </head>
