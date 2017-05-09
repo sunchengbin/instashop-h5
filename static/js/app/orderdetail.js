@@ -159,7 +159,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                     $.each(_urlParam, function (key, val) {
                         _urlParamStr += key + "=" + val + "&";
                     })
-                    location.href = Config.host.hrefUrl + "usercenter.php??" + _urlParamStr.replace(/&$/, "");
+                    location.href = Config.host.hrefUrl + "usercenter.php?" + _urlParamStr.replace(/&$/, "");
                 }else{
                     history.back();
                 }
