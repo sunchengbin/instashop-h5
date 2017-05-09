@@ -148,7 +148,21 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                 Oauth.openDialog();
             })
             $("body").on("click", ".j_go_back", function () {
-                history.back();
+                var _from = Base.others.getUrlPrem('from');
+                if(!!_from){
+                    var _urlParam = {
+                        buyer_id: _this.loginResult.info.buyer_id,
+                        uss: _this.loginResult.info.uss,
+                        seller_id: init_data.order.seller_id
+                    }
+                    var _urlParamStr = ""
+                    $.each(_urlParam, function (key, val) {
+                        _urlParamStr += key + "=" + val + "&";
+                    })
+                    location.href = Config.host.hrefUrl + "usercenter.php??" + _urlParamStr.replace(/&$/, "");
+                }else{
+                    history.back();
+                }
             })
         },
         // 退款
