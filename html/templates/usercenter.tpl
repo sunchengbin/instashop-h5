@@ -7,7 +7,7 @@
     </nav>
     <section class="content-box">
         {if $INDEX_DATA|count eq 0}
-            没有数据
+            <p class="no-order">Belum ada pesanan</p>
         {else}
             <ul class="trade-order-list j_order_list" data-spider="order-list">
             {foreach $INDEX_DATA as $item}

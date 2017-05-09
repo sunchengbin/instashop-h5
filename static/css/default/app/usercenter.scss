@@ -52,3 +52,9 @@ body{
 .header-nav .icon-logout{
   //font-size: 18px;
 }
+.no-order{
+  text-align:center;
+  @include fontDpr(18px);
+  color: $gray-color;
+  margin:50px 0;
+}

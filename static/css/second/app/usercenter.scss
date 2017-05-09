@@ -49,3 +49,9 @@ body{
 .items-img,.one-item{
   @include remCalc(padding-top,15);
 }
+.no-order{
+  text-align:center;
+  @include fontDpr(18px);
+  color: $gray-color;
+  margin:50px 0;
+}
