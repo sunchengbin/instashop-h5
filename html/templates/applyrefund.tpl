@@ -34,7 +34,7 @@
         </div>
         <div class="form-li clearfix">
             <div class="g-color">Nomor Ponsel</div>
-            <div class="ipt-box tel-ipt-box"><span>+62</span><input type="tel"  maxlength="50" value="" placeholder="Nomor Ponsel" class="j_number"/></div>
+            <div class="ipt-box tel-ipt-box"><span>+62</span><input type="tel"  maxlength="20" value="" placeholder="Nomor Ponsel" class="j_number"/></div>
         </div>
         <button class="submit-btn btn confirm-btn j_sub_btn" spm-auto="提交退款申请" spm-click="">Ya</button>
     </div>
