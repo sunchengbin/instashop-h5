@@ -7,7 +7,7 @@
     <meta name="apple-touch-fullscreen" content="yes"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <title>Penjelasan Promo "Tawar Harga"</title>
+    <title>Apa perbedaan Rekber dengan Transfer langsung?</title>
     <style>
         *{
             margin: 0;
@@ -58,7 +58,7 @@
     </style>
 </head>
 <body>
-    <h1>Apa perbedaan Rekber dengan Transfer langsung?</h1>
+    <h1>Apa bedanya Rekening Bersama dengan Transfer ke Penjual? </h1>
     <section class="content">
         <div>
             <p><strong>Dengan Rekening Bersama</strong>, dana pembeli akan disimpan sementara di rekening Instashop dan baru dicairkan ke “Saldo Dapat Ditarik” penjual setelah pembeli mengkonfirmasi penerimaan barang.</p>
