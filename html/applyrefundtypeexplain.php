@@ -58,7 +58,7 @@
     </style>
 </head>
 <body>
-    <h1>Apa bedanya Rekening Bersama dengan Transfer ke Penjual? (versi pembeli)</h1>
+    <h1>Apa perbedaan Rekber dengan Transfer langsung?</h1>
     <section class="content">
         <div>
             <p><strong>Dengan Rekening Bersama</strong>, dana pembeli akan disimpan sementara di rekening Instashop dan baru dicairkan ke “Saldo Dapat Ditarik” penjual setelah pembeli mengkonfirmasi penerimaan barang.</p>

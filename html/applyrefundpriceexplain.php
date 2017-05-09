@@ -64,15 +64,15 @@
 <body>
     <section class="content">
         <h1 id="first-type">Syarat Pengajuan Pengembalian Dana</h1>
-        <div>
-            <p>
+        <ul>
+            <li>
                Melampirkan bukti d alasan kuat atas permintaan pengembalian dana tersebut. Isi deskripsi selengkap mungkin dan lampirkan gambar / foto jelas dari produk untuk dijadikan bahan pertimbangan penjual dan tim CS Instashop .
-            </p>
-            <p><strong>Jika produk belum dikirim oleh penjual (status: Menunggu Pengiriman)</strong>, maka jumlah maksimal dana yang dapat dikembalikan adalah senilai <strong>total harga pesanan (harga produk + ongkos kirim)</strong>. </p>
-            <p><strong>Jika produk sudah dikirim oleh penjual (status: Sudah Dikirim)</strong>, maka jumlah maksimal dana yang dapat dikembalikan hanya <strong>senilai harga produk</strong>, tidak termasuk ongkos kirim.</p>
-            <p>Status Pengembalian Dana akan diperbaharui di halaman web ini.</p>
-            <p>Penjual dapat menentukan untuk menerima atau menolak pengembalian dana. Jika pengembalian dana ditolak oleh penjual, tim CS Instashop akan membantu proses mediasi antara kamu dan penjual.</p>
-        </div>
+            </li>
+            <li><strong>Jika produk belum dikirim oleh penjual (status: Menunggu Pengiriman)</strong>, maka jumlah maksimal dana yang dapat dikembalikan adalah senilai <strong>total harga pesanan (harga produk + ongkos kirim)</strong>.</li>
+            <li><strong>Jika produk sudah dikirim oleh penjual (status: Sudah Dikirim)</strong>, maka jumlah maksimal dana yang dapat dikembalikan hanya <strong>senilai harga produk</strong>, tidak termasuk ongkos kirim.</li>
+            <li>Status Pengembalian Dana akan diperbaharui di halaman web ini.</li>
+            <li>Penjual dapat menentukan untuk menerima atau menolak pengembalian dana. Jika pengembalian dana ditolak oleh penjual, tim CS Instashop akan membantu proses mediasi antara kamu dan penjual.</li>
+        </ul>
         <h1 id="second-type">Bagaimana Alur Pengembalian Dana?</h1>
         <div>
             <img src="">
