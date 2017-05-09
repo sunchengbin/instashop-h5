@@ -97,16 +97,11 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
         },
         checkIsSelectTrade: function () {
             var _this = this;
-            // if (_this.checkShopIsOpenWarrant()) {
             if ("" == _this.selectedTrade || _this.selectedTrade == void(0)) {
                 return false;
             } else {
                 return true;
             }
-            // } else {
-            //     //没有开通
-            //     return true;
-            // }
         },
         createHtm: function (info) {
             var _this = this;
