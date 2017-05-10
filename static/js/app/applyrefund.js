@@ -119,10 +119,10 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                      _that.setBtnTxt(dom,Lang.H5_CONFIRM);
                      return null;
                  }
-                 var _body = '<p class="dialog-body-p">'+Lang.H5_BANK_NAME+' : '+_items.b_name+'</p>'
-                             +'<p class="dialog-body-p">'+Lang.H5_SUB_BRANCH+' : '+_items.b_branch+'</p>'
+                 var _body = '<p class="dialog-body-p">'+Lang.H5_BANK_NAME+' : '+_items.b_code+'</p>'
+                             +'<p class="dialog-body-p">'+Lang.H5_SUB_BRANCH+' : '+_items.c_number+'</p>'
                              +'<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NAME+' : '+_items.c_name+'</p>'
-                             +'<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NUMBER+' : '+_items.c_number+'</p>';
+                             +'<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NUMBER+' : '+_items.telephone+'</p>';
                  Dialog.confirm({
                      top_txt : Lang.H5_CONFIRM_SUBMIT,
                      show_top : true,
@@ -135,8 +135,8 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                                      "bank_info" : {
                                          "c_number":_items.c_number,
                                          "c_name":_items.c_name,
-                                         "b_name":_items.b_name,
-                                         "b_branch":_items.b_branch
+                                         "b_code":_items.b_code,
+                                         "telephone":_items.telephone
                                      },
                                      "buyer_id": Base.others.getUrlPrem('buyer_id'),
                                      "imgs": _step_one.refundImgs,
@@ -326,10 +326,10 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              return null;
          }
          return {
-             "c_number":_number,
-             "c_name":_name,
-             "b_name":_bankname,
-             "b_branch":_branch
+             "c_number":_branch,//银行账号
+             "c_name":_name,//用户名
+             "b_code":_bankname,//银行
+             "telephone":_number//用户手机号
          }
      },
      saveData : function(opts){

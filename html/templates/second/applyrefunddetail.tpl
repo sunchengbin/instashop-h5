@@ -23,7 +23,7 @@
             </li>
             <li class="b-bottom">
                 <h2>Nomor Rekening Penerima</h2>
-                <p>{$INDEX_DATA.bank_info.b_branch}</p>
+                <p>{$INDEX_DATA.bank_info.c_number}</p>
             </li>
             <li class="b-bottom">
                 <h2>Nama Pemilik Rekening</h2>
