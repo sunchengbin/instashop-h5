@@ -289,10 +289,10 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
          };
      },
      testData : function(){
-         var _bankname = $.trim($('.j_bank_name').val()),
-             _branch= $.trim($('.j_branch').val()),
-             _name = $.trim($('.j_name').val()),
-             _number = $.trim($('.j_number').val());
+         var _bankname = $.trim($('.j_bank_name').val()),//银行
+             _branch= $.trim($('.j_branch').val()),//银行账号
+             _name = $.trim($('.j_name').val()),//用户名
+             _number = $.trim($('.j_number').val());//手机号
          if(!_bankname){
              //Dialog.tip({
              //    top_txt : '',//可以是html
