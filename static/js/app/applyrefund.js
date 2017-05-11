@@ -361,6 +361,7 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                  callback && callback();
              },function(){
                  //去确认
+                 $('.j_number').addClass('refund-error');
                  ccallback && ccallback();
                  return null;
 
