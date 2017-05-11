@@ -31,6 +31,13 @@ body{
 .one-item-explain{
   word-break: break-all;
   color: $info-color;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-height: 40px;
+
 }
 .total-price{
   @include remCalc(height,80);
