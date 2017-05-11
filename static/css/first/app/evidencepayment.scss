@@ -188,7 +188,7 @@ footer::before{
 }
 
 .quick-box{
-  background-color: $base-btn-color;
+  background-color: $btn-color;
   color: $white;
   @include remCalc(padding,18);
 }

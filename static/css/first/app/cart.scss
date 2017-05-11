@@ -37,10 +37,10 @@ body {
   @include remCalc(padding,0 30);
 }
 .cart-supplier-card .j_del_cart {
-  color: $base-btn-color;
+  color: $base-color;
 }
 .cart-supplier-list .j_del_cart {
-  color: $base-btn-color;
+  color: $base-color;
 }
 .cart-supplier-header {
   background: $white;

@@ -30,7 +30,7 @@
   @include fontDpr(14px);
 }
 .cart-item p.price{
-  color: $add-buy-color;
+  color: $base-color;
 }
 .cart-item p.price span,.cart-item p.discount-price span{
   display: inline-block;
