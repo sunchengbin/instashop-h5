@@ -174,7 +174,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
             var _item_id = Base.others.getUrlPrem('item_id');
             if (!!_item_id) {
                 var _itemTop = ~~$("#"+_item_id).offset().top;
-                $(window).scrollTop(_top);
+                $(window).scrollTop(_itemTop);
             }
         },
         // 退款
