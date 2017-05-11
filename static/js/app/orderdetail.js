@@ -17,7 +17,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                 ItemHtm = Hbs.compile(OrderDetail)({
                     data: init_data,
                     lang: Lang,
-                    isBack:Base.others.getUrlPrem('from'),
+                    isBack: Base.others.getUrlPrem('from'),
                     isLogin: !_this.loginResult.result,
                     hrefUrl: Config.host.hrefUrl,
                     host: Config.host.host,
@@ -37,6 +37,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                 }
             }
             $('body').prepend(ItemHtm);
+            _this.jumpToItemPosition();
             if ($('.j_show_contact').length) {
                 _this.contact = Contact({
                     data: {
@@ -121,7 +122,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                 var _reqData = {
                     edata: {
                         "action": "",
-                        "buyer_id": _this.loginResult.info ? _this.loginResult.info.buyer_id:'',
+                        "buyer_id": _this.loginResult.info ? _this.loginResult.info.buyer_id : '',
                         "uss": _this.loginResult.info ? _this.loginResult.info.uss : ''
                     }
                 }
@@ -144,7 +145,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                         Dialog.tip({
                             body_txt: "unknow op"
                         })
-                    break;
+                        break;
                 }
             })
             $("body").on("click", ".order-login-btn", function () {
@@ -152,7 +153,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
             })
             $("body").on("click", ".j_go_back", function () {
                 var _from = Base.others.getUrlPrem('from');
-                if(!!_from){
+                if (!!_from) {
                     var _urlParam = {
                         buyer_id: _this.loginResult.info.buyer_id,
                         uss: _this.loginResult.info.uss,
@@ -163,10 +164,18 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                         _urlParamStr += key + "=" + val + "&";
                     })
                     location.href = Config.host.hrefUrl + "usercenter.php?" + _urlParamStr.replace(/&$/, "");
-                }else{
+                } else {
                     history.back();
                 }
             })
+        },
+        // 如果有item_id跳到对应位置
+        jumpToItemPosition: function () {
+            var _item_id = Base.others.getUrlPrem('item_id');
+            if (!!_item_id) {
+                var _itemTop = ~~$("#"+_item_id).offset().top;
+                $(window).scrollTop(_top);
+            }
         },
         // 退款
         bindCard: function () {
