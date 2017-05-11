@@ -58,10 +58,12 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
             }
             //修正因标签属性href有值的问题导致被追加spider参数 line中user not find的问题
             $('body').on('click', '.j_goto_line', function () {
+                PaqPush && PaqPush('跳转到line', '');
                 location.href = init_data.order.shop_info.line_url;
             });
             // 申请退款
             $('body').on('click', '.j_apply_refund', function () {
+                PaqPush && PaqPush('去申请退款', '');
                 var $this = $(this),
                     _url = $this.attr('data-url'),
                     _item_id = $this.attr('data-item-id'),
@@ -88,6 +90,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
             });
             // 查看退款进展
             $('body').on('click', '.j_check_refund', function () {
+                PaqPush && PaqPush('查看退款进展', '');
                 var $this = $(this),
                     _url = $this.attr('data-url'),
                     _item_id = $this.attr('data-item-id'),
