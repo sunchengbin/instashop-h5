@@ -119,10 +119,10 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                      _that.setBtnTxt(dom,Lang.H5_CONFIRM);
                      return null;
                  }
-                 var _body = '<p class="dialog-body-p">'+Lang.H5_BANK_NAME+' : '+_items.b_name+'</p>'
-                             +'<p class="dialog-body-p">'+Lang.H5_SUB_BRANCH+' : '+_items.c_number+'</p>'
-                             +'<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NAME+' : '+_items.c_name+'</p>'
-                             +'<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NUMBER+' : '+_items.telephone+'</p>';
+                 var _body = '<p class="dialog-body-p">'+Lang.REFUND_BANK+' : '+_items.b_name+'</p>'
+                             +'<p class="dialog-body-p">'+Lang.REFUND_BANK_NUMBER+' : '+_items.c_number+'</p>'
+                             +'<p class="dialog-body-p">'+Lang.REFUND_CLIENT_NAME+' : '+_items.c_name+'</p>'
+                             +'<p class="dialog-body-p">'+Lang.REFUND_CLIENT_TELEPHONE+' : '+_items.telephone+'</p>';
                  Dialog.confirm({
                      top_txt : Lang.H5_CONFIRM_SUBMIT,
                      show_top : true,

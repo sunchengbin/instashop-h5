@@ -266,7 +266,11 @@ define(['base'], function (Base) {
             "ORDER_DELAY_TIP":"只能延长一次收货时间，将在7天确认收货基础上再增加3天，是否确认？",
             REFUND_EXPLAIN_MSG:'最多1000字',
             REFUND_IMG_MSG:'上传凭证(最多3张)',
-            REFUND_PRICE_MSG:'最多'
+            REFUND_PRICE_MSG:'最多',
+            REFUND_BANK:'银行',
+            REFUND_BANK_NUMBER:'银行账号',
+            REFUND_CLIENT_NAME:'账户名',
+            REFUND_CLIENT_TELEPHONE:'手机号'
         },
 
         id: {
@@ -656,7 +660,11 @@ define(['base'], function (Base) {
             "ORDER_DELAY_TIP":"Apakah kamu yakin ingin memperpanjang waktu penerimaan pesanan selama 3 hari setelah 7 hari sejak pengiriman telah lewat ?",
             REFUND_EXPLAIN_MSG:'Maksimum 1000 karakter',
             REFUND_IMG_MSG:'Upload (Maksimal 3 Lembar)',
-            REFUND_PRICE_MSG:'Maksimum'
+            REFUND_PRICE_MSG:'Maksimum',
+            REFUND_BANK:'Bank',
+            REFUND_BANK_NUMBER:'Nomor Rekening',
+            REFUND_CLIENT_NAME:'Nama Pemilik Rekening',
+            REFUND_CLIENT_TELEPHONE:'Nomor Ponsel'
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[navigator.language.toLowerCase()] || Lang.id);
