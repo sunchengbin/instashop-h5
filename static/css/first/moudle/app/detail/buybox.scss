@@ -15,7 +15,7 @@
 }
 .ser-box i{
   @include fontDpr(22px);
-  color: $contact-color;
+  color: $btn-color;
 }
 .ser-box p{
   @include fontDpr(14px);
@@ -51,5 +51,5 @@
   background-color: $add-buy-color;
 }
 .buy-now{
-  background-color: $base-color;
+  background-color: $buy-now-color;
 }
