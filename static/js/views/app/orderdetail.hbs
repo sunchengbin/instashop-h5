@@ -90,7 +90,7 @@
             {{#each data.order.items}}
                 {{!--担保交易--}}
                 {{#neq ../data.order.warrant_status "nowarrant"}}
-                    <li id="{{#if item_sku_id}}{{item_sku_id}}{{else}}{{item_id}}{{/if}}" class="clearfix cart-item">
+                    <li id="{{#neq item_sku_id 0 }}{{item_sku_id}}{{else}}{{item_id}}{{/neq}}" class="clearfix cart-item">
                         <img src="{{img_head}}">
                         <div class="clearfix">
                             <p class="name">{{item_title}}</p>
