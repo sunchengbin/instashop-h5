@@ -222,9 +222,9 @@ function isDebug(){
 //获取初始化字体样式和ico
 function getFontCss($url,$folder_name){
     if($folder_name){
-        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1494468248847") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1494468248847#iconfont") format("svg");}</style>';
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1494469960958") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1494469960958#iconfont") format("svg");}</style>';
     }else{
-        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1494468248847") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1494468248847#iconfont") format("svg");}</style>';
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1494469960958") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1494469960958#iconfont") format("svg");}</style>';
     }
 }
 function getIco($url){
@@ -288,12 +288,12 @@ function getSkinInfo(){
 function initPhpJs($js_name){
     $skin_info = '<script>var SKIN="'.SKIN_INFO.'";</script>';
     if(isDebug()){
-        return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1494468248847"></script>';
+        return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1494469960958"></script>';
     }else{
         if(FACEBOOK_JS){
             $skin_info = $skin_info.FACEBOOK_JS;
         }
-        return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1494468248847"></script>';
+        return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1494469960958"></script>';
     }
 }
 function initPhpCss($css_name,$folder){
@@ -308,12 +308,12 @@ function initPhpCss($css_name,$folder){
     }
     if(isDebug()){
         if(TEMP_FOLDER){
-            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1494468248847" rel="stylesheet"/>';
+            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1494469960958" rel="stylesheet"/>';
         }else{
-            return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1494468248847" rel="stylesheet"/>';
+            return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1494469960958" rel="stylesheet"/>';
         }
     }else{
-        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1494468248847" rel="stylesheet"/>';
+        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1494469960958" rel="stylesheet"/>';
     }
 }
 //方便调试统一修改皮肤
