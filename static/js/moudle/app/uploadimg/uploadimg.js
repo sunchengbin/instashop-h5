@@ -49,6 +49,7 @@ define(['md5','config','base','dialog'],function(SparkMD5,Config,Base,Dialog){
                     top_txt: '', //可以是html
                     body_txt: '<p class="dialog-body-p">Kamu hanya dapat memilih maksimal 3 gambar</p>'
                 });
+                $('#upload_img_ipt').val('');
                 return;
             }
             _this.loading = Dialog.loading({

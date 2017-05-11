@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 2017/4/21.
 */
-require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','base','bankcity'],function(Hbs,UploadImg,Config,Lang,Fastclick,Dialog,Btn,Ajax,Base,BankCity){
+require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','base','bankcity','common'],function(Hbs,UploadImg,Config,Lang,Fastclick,Dialog,Btn,Ajax,Base,BankCity,Common){
     var UploadProve = {
      init : function(){
          var _this = this;
@@ -17,7 +17,7 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                  }else{
                      $.each(result,function(i,item){
                          var img = item.small;
-                         $('.j_refund_img_box').prepend('<li class="refund-img j_refund_img" data-src="'+img+'"><img src="'+img+'"/><i class="icon iconfont j_del_img icon-delete-font"></i></li>');
+                         $('<li class="refund-img j_refund_img" data-src="'+img+'"><img src="'+img+'"/><i class="icon iconfont j_del_img icon-delete-font"></i></li>').insertBefore('.j_upload_img_btn');
                      });
                      if($('.j_refund_img').length == 3){
                          $('.j_upload_img_btn').hide();
@@ -112,55 +112,70 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              loading_txt:Lang.H5_SUBMITING,
              callback : function(dom){
                  var _that = this,
-                     _step_one = _this.testStepOne(),
-                     _items = _this.testData();
-                 if(!_items || !_step_one){
+                     _step_one = _this.testStepOne();
+                 if(!_step_one){
                      _that.cancelDisable();
                      _that.setBtnTxt(dom,Lang.H5_CONFIRM);
                      return null;
                  }
-                 var _body = '<p class="dialog-body-p">'+Lang.REFUND_BANK+' : '+_items.b_name+'</p>'
-                             +'<p class="dialog-body-p">'+Lang.REFUND_BANK_NUMBER+' : '+_items.c_number+'</p>'
-                             +'<p class="dialog-body-p">'+Lang.REFUND_CLIENT_NAME+' : '+_items.c_name+'</p>'
-                             +'<p class="dialog-body-p">'+Lang.REFUND_CLIENT_TELEPHONE+' : '+_items.telephone+'</p>';
-                 Dialog.confirm({
-                     top_txt : Lang.H5_CONFIRM_SUBMIT,
-                     show_top : true,
-                     body_txt : _body,
-                     cf_fn : function(){
-                         _this.saveData({
-                             data : {
-                                 edata: {
-                                     "action": "refund",
-                                     "bank_info" : {
-                                         "c_number":_items.c_number,
-                                         "c_name":_items.c_name,
-                                         "b_name":_items.b_name,
-                                         "telephone":_items.telephone
-                                     },
-                                     "buyer_id": Base.others.getUrlPrem('buyer_id'),
-                                     "imgs": _step_one.refundImgs,
-                                     "item_id": Base.others.getUrlPrem('item_id'),
-                                     "item_sku_id": Base.others.getUrlPrem('item_sku_id'),
-                                     "price":_step_one.refundPrice,
-                                     "reason": _step_one.refundExplain,
-                                     "uss": Base.others.getUrlPrem('uss')
-
-                                 }
-                             },
-                             callback : function(){
-                                 _that.cancelDisable();
-                                 _that.setBtnTxt(dom,Lang.H5_CONFIRM);
-                             }
-                         });
-                     },
-                     c_fn : function(){
+                 if(!_this.testData(function(){
+                         //忽略手机号错误
+                         _this.subRefund(_that,_step_one,dom);
+                     },function(){
                          _that.cancelDisable();
                          _that.setBtnTxt(dom,Lang.H5_CONFIRM);
-                         _paq.push(['trackEvent', '取消提交', 'click', '取消提交']);
                          return null;
+                     })){//数据出错
+                     _that.cancelDisable();
+                     _that.setBtnTxt(dom,Lang.H5_CONFIRM);
+                     return null;
+                 }
+             }
+         });
+     },
+     subRefund : function(_that,_step_one,dom){
+         var _this = this,
+             _items = _this.getTestData();
+         var _body = '<p class="dialog-body-p">'+Lang.REFUND_BANK+' : '+_items.b_name+'</p>'
+             +'<p class="dialog-body-p">'+Lang.REFUND_BANK_NUMBER+' : '+_items.c_number+'</p>'
+             +'<p class="dialog-body-p">'+Lang.REFUND_CLIENT_NAME+' : '+_items.c_name+'</p>'
+             +'<p class="dialog-body-p">'+Lang.REFUND_CLIENT_TELEPHONE+' : '+_items.telephone+'</p>';
+         Dialog.confirm({
+             top_txt : Lang.H5_CONFIRM_SUBMIT,
+             show_top : true,
+             body_txt : _body,
+             cf_fn : function(){
+                 _this.saveData({
+                     data : {
+                         edata: {
+                             "action": "refund",
+                             "bank_info" : {
+                                 "c_number":_items.c_number,
+                                 "c_name":_items.c_name,
+                                 "b_name":_items.b_name,
+                                 "telephone":_items.telephone
+                             },
+                             "buyer_id": Base.others.getUrlPrem('buyer_id'),
+                             "imgs": _step_one.refundImgs,
+                             "item_id": Base.others.getUrlPrem('item_id'),
+                             "item_sku_id": Base.others.getUrlPrem('item_sku_id'),
+                             "price":_step_one.refundPrice,
+                             "reason": _step_one.refundExplain,
+                             "uss": Base.others.getUrlPrem('uss')
+
+                         }
+                     },
+                     callback : function(){
+                         _that.cancelDisable();
+                         _that.setBtnTxt(dom,Lang.H5_CONFIRM);
                      }
                  });
+             },
+             c_fn : function(){
+                 _that.cancelDisable();
+                 _that.setBtnTxt(dom,Lang.H5_CONFIRM);
+                 _paq.push(['trackEvent', '取消提交', 'click', '取消提交']);
+                 return null;
              }
          });
      },
@@ -288,7 +303,19 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              refundImgs : _imgs
          };
      },
-     testData : function(){
+     getTestData : function(){
+         var _bankname = $.trim($('.j_bank_name').val()),//银行
+             _branch= $.trim($('.j_branch').val()),//银行账号
+             _name = $.trim($('.j_name').val()),//用户名
+             _number = $.trim($('.j_number').val());//手机号
+         return {
+             "c_number":_branch,//银行账号
+             "c_name":_name,//用户名
+             "b_name":_bankname,//银行
+             "telephone":_number//用户手机号
+         };
+     },
+     testData : function(callback,ccallback){
          var _bankname = $.trim($('.j_bank_name').val()),//银行
              _branch= $.trim($('.j_branch').val()),//银行账号
              _name = $.trim($('.j_name').val()),//用户名
@@ -299,6 +326,7 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              //    body_txt : '<p class="dialog-body-p">'+Lang.H5_BANK_NAME+' '+Lang.H5_NOT_EMPTY+'?</p>'
              //});
              $('.j_bank_name').addClass('refund-error');
+             ccallback && ccallback();
              return null;
          }
          if(!_branch){
@@ -307,6 +335,7 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              //    body_txt : '<p class="dialog-body-p">'+Lang.H5_SUB_BRANCH+' '+Lang.H5_NOT_EMPTY+'?</p>'
              //});
              $('.j_branch').addClass('refund-error');
+             ccallback && ccallback();
              return null;
          }
          if(!_name){
@@ -315,6 +344,7 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              //    body_txt : '<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NAME+' '+Lang.H5_NOT_EMPTY+'?</p>'
              //});
              $('.j_name').addClass('refund-error');
+             ccallback && ccallback();
              return null;
          }
          if(!_number){
@@ -323,16 +353,24 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
              //    body_txt : '<p class="dialog-body-p">'+Lang.H5_ACCOUNT_NUMBER+' '+Lang.H5_NOT_EMPTY+'?</p>'
              //});
              $('.j_number').addClass('refund-error');
+             ccallback && ccallback();
              return null;
          }
-         return {
-             "c_number":_branch,//银行账号
-             "c_name":_name,//用户名
-             "b_name":_bankname,//银行
-             "telephone":_number//用户手机号
+         if (Common.telVerify(_number, function () {
+                 //取消
+                 callback && callback();
+             },function(){
+                 //去确认
+                 ccallback && ccallback();
+                 return null;
+
+             }))
+         {
+             callback && callback();
          }
      },
      saveData : function(opts){
+         //console.log(opts);
          Ajax.postJsonp({
              url :Config.actions.orderConfirm+'/'+Base.others.getUrlPrem('order_id'),
              data : {param:JSON.stringify(opts.data)},
