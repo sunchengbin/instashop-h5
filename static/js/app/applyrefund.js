@@ -136,14 +136,18 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
      subRefund : function(_that,_step_one,dom){
          var _this = this,
              _items = _this.getTestData();
-         var _body = '<p class="dialog-body-p">'+Lang.REFUND_BANK+' : '+_items.b_name+'</p>'
-             +'<p class="dialog-body-p">'+Lang.REFUND_BANK_NUMBER+' : '+_items.c_number+'</p>'
-             +'<p class="dialog-body-p">'+Lang.REFUND_CLIENT_NAME+' : '+_items.c_name+'</p>'
-             +'<p class="dialog-body-p">'+Lang.REFUND_CLIENT_TELEPHONE+' : '+_items.telephone+'</p>';
+         var _body = ''
+             //+'<p class="dialog-body-p">'+Lang.REFUND_BANK+' : '+_items.b_name+'</p>'
+
+            +'<p class="dialog-body-p">'+Lang.REFUND_MONEY+' Rp: '+Base.others.priceFormat(_step_one.refundPrice)+'</p>'
+            +'<p class="dialog-body-p">'+Lang.REFUND_BANK_NUMBER+' : '+_items.c_number+'</p>'
+            +'<p class="dialog-body-p">'+Lang.REFUND_CLIENT_NAME+' : '+_items.c_name+'</p>';
+             //+'<p class="dialog-body-p">'+Lang.REFUND_CLIENT_TELEPHONE+' : '+_items.telephone+'</p>';
          Dialog.confirm({
              top_txt : Lang.H5_CONFIRM_SUBMIT,
              show_top : true,
              body_txt : _body,
+             cab_txt : Lang.REFUND_EDIT_BTN_TXT,
              cf_fn : function(){
                  _this.saveData({
                      data : {

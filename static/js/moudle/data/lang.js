@@ -270,7 +270,9 @@ define(['base'], function (Base) {
             REFUND_BANK:'银行',
             REFUND_BANK_NUMBER:'银行账号',
             REFUND_CLIENT_NAME:'账户名',
-            REFUND_CLIENT_TELEPHONE:'手机号'
+            REFUND_CLIENT_TELEPHONE:'手机号',
+            REFUND_MONEY:'退款金额',
+            REFUND_EDIT_BTN_TXT:'修改'
         },
 
         id: {
@@ -664,7 +666,9 @@ define(['base'], function (Base) {
             REFUND_BANK:'Bank',
             REFUND_BANK_NUMBER:'Nomor Rekening',
             REFUND_CLIENT_NAME:'Nama Pemilik Rekening',
-            REFUND_CLIENT_TELEPHONE:'Nomor Ponsel'
+            REFUND_CLIENT_TELEPHONE:'Nomor Ponsel',
+            REFUND_MONEY:'Jumlah Pengembalian Dana',
+            'REFUND_EDIT_BTN_TXT': 'Ubah'
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[navigator.language.toLowerCase()] || Lang.id);
