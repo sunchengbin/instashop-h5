@@ -33,7 +33,7 @@
                                 <img data-img="{$item.items[0].img_head}">
                             </div>
                             <div class="one-item-explain">
-                                {$item.items[0].item_title}
+                                {$item.items[0].item_title|nl2br}
                             </div>
                         </div>
                         <p class="clearfix total-price">{if $item.warrant_status neq 'nowarrant'}<i class="icon iconfont fl icon-warrant-flag"></i>{/if}Jumlah Total：Rp {$item.total_price|priceFormat}</p>

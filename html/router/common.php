@@ -353,6 +353,7 @@ function smartyCommon($folder){
     $smarty->assign('STATIC_FONT_CSS',STATIC_FONT_CSS);
     $smarty->assign('STATIC_HOST',STATIC_HOST);
     $smarty->assign('HOST_URL',HOST_URL);
+    $smarty->assign('HOST_NAME',HOST_NAME);
     $smarty->assign('BI_SCRIPT',BI_SCRIPT);
     $smarty->assign('IS_DEBUG',IS_DEBUG);
     $smarty->assign('SKIN_INFO',$folder_name);

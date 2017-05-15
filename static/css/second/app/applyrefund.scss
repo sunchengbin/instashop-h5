@@ -10,7 +10,7 @@ html{
 }
 body{
   //background-color: #F5F5F5;
-  //overflow: hidden;
+  overflow-x: hidden;
   height: 100%;
   width: 100%;
   max-width: none;
@@ -96,6 +96,7 @@ h2{
   @include remCalc(margin-right,30);
   border:1px dashed $border-color;
   text-align: center;
+  position: relative;
 }
 .refund-img-box li i{
   @include fontDpr(30px);
