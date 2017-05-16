@@ -110,7 +110,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
             });
             $('body').on('click', '.j_submit_btn', function () {
                 var _groupid = $(this).attr('group-id');
-                
+
                 // 4.7改造更新 判断用户是否需要登录
                 if (Oauth.checkIsNeedLogin(JSON.parse(localStorage.getItem('ShopData')).ShopInfo)) {
                     // 具备登录机制
@@ -167,7 +167,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     _items = _carts.group[groupid];
                     for (var item in _items) {
                         if (_items[item].sku) {
-                            if (_items[item].item.bargain) {
+                            if (_items[item].item.bargain && !Bargain.checkIsOverdue(_items[item].item.bargain)) {
                                 _arr.push({
                                     itemID: _items[item].item.id,
                                     //itemName:_items[item].item.item_name,
@@ -186,7 +186,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                                 });
                             }
                         } else {
-                            if (_items[item].item.bargain) {
+                            if (_items[item].item.bargain && !Bargain.checkIsOverdue(_items[item].item.bargain)) {
                                 _arr.push({
                                     itemID: _items[item].item.id,
                                     //itemName:_items[item].item.item_name,
@@ -209,7 +209,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                     _items = _carts;
                     for (var item in _items) {
                         if (_items[item].sku) {
-                            if (_items[item].item.bargain) {
+                            if (_items[item].item.bargain && !Bargain.checkIsOverdue(_items[item].item.bargain)) {
                                 _arr.push({
                                     itemID: _items[item].item.id,
                                     //itemName:_items[item].item.item_name,
@@ -229,7 +229,7 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                             }
 
                         } else {
-                            if (_items[item].item.bargain) {
+                            if (_items[item].item.bargain && !Bargain.checkIsOverdue(_items[item].item.bargain)) {
                                 _arr.push({
                                     itemID: _items[item].item.id,
                                     //itemName:_items[item].item.item_name,
