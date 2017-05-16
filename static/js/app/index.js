@@ -4,6 +4,10 @@
  */
 require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer', 'oauth', 'cache'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer, Oauth, Cache) {
     var Default_Page_Size = 18;
+    var _eventPreventDefault = function(e){
+		e.preventDefault();
+	};
+
     var I = {
         indexItemsPagination: {
             page_size: Default_Page_Size,
@@ -652,6 +656,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     type: "local"
                 });
                 IndexCoverCache.set("isShowOrderGuid", 2);
+                _this.allowPageScroll();
             })
 
         },
@@ -688,6 +693,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             }, 100);
         },
         checkIsShowGuide: function () {
+            var _this = this;
             var IndexCoverCache = Cache.getSpace("IndexCache") || new Cache({
                 namespace: "IndexCache",
                 type: "local"
@@ -709,6 +715,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 $coverInfoWrap.css("right", offsetRight + "px")
                 $coverGuideArrow.css("left", coverInfoWrapWidth + "px");
                 $(".order-guide-info-wrap").show();
+                _this.disablePageScroll();
                 // IndexCoverCache.set("isShowOrderGuid",2);
             }
         },
@@ -730,7 +737,17 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 item: items
                 // tags : _this.getTags(items).tags
             };
-        }
+        },
+        disablePageScroll:function(){
+            var dom = document;
+      		dom.querySelector("html").style.overflow = "hidden";
+      		dom.addEventListener("touchmove",_eventPreventDefault,false);
+    	},
+    	allowPageScroll:function(){
+            var dom = document;
+      		dom.querySelector("html").style.overflow = "auto";
+      		dom.removeEventListener("touchmove",_eventPreventDefault,false);
+    	}
     };
     I.init(init_data);
 })
