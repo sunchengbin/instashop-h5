@@ -541,7 +541,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             if (!!_carts) {
                 var _items = _carts;
                 for (var item in _items) {
-                    if (!!_items[item].item.bargain) {
+                    if (!!_items[item].item.bargain&&!Bargain.checkIsOverdue(_items[item].item.bargain)) {
                         Bargain.checkBargainStatus(_items[item].item.bargain.id, function (status) {
                             if (status != 1) {
                                 Dialog.confirm({
@@ -582,7 +582,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 var _items = _carts;
                 for (var item in _items) {
                     if (_items[item].sku) {
-                        if (_items[item].item.bargain) {
+                        if (_items[item].item.bargain&&!Bargain.checkIsOverdue(_items[item].item.bargain)) {
                             // _this.checkIsLimitForLogin(_items[item].item.bargain);
                             _arr.push({
                                 itemID: _items[item].item.id,
@@ -602,7 +602,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                             });
                         }
                     } else {
-                        if (_items[item].item.bargain) {
+                        if (_items[item].item.bargain&&!Bargain.checkIsOverdue(_items[item].item.bargain)) {
                             // _this.checkIsLimitForLogin(_items[item].item.bargain);
                             _arr.push({
                                 itemID: _items[item].item.id,
@@ -755,7 +755,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     } else {
                         _sum += carts[cart].num * carts[cart].item.discount.price;
                     }
-                } else if (carts[cart].item.bargain) {
+                } else if (carts[cart].item.bargain&&!Bargain.checkIsOverdue(carts[cart].item.bargain)) {
                     if (!!carts[cart].sku && !!carts[cart].sku.id) {
                         _sum += carts[cart].sku.bargain_price ? carts[cart].num * carts[cart].sku.bargain_price : carts[cart].num * carts[cart].sku.price;
                     } else {
