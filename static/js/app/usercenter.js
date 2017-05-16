@@ -80,12 +80,11 @@ require(['oauth','base','config','common','lazyload','ajax','dialog'],function(O
             $('body').on('click','.j_log_out',function (e) {
                 Oauth.signout(localStorage.getItem('FromUrl'));
             });
-            $('body').on('click','.j_order_info',function(){
+            $(".j_order_info").on("click",function(){
                 PaqPush && PaqPush('查看订单', '');
                 var _url = $(this).attr('data-url');
                 location.href = _url+'?from=usercenter';
-
-            });
+            })
         },
         getMoreOrderList : function(callback){
             var _this = this;
