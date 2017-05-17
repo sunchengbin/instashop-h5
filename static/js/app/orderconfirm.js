@@ -13,6 +13,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 namespace: "BargainCache",
                 type: "local"
             });
+            _this.submitSwitch = true;
             if (_isGroup) {
                 _carts = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid];
             } else {
@@ -216,6 +217,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                     type: 'POST',
                                     timeout: 30000,
                                     success: function (obj) {
+                                        _this.submitSwitch = true;
                                         if (obj.code == 200) {
                                             var _post_price = $('.j_logistics_info').attr('data-price'),
                                                 _bank_info = JSON.stringify(obj.order.pay_info.banks),
@@ -539,7 +541,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             if (!!_carts) {
                 var _items = _carts;
                 for (var item in _items) {
-                    if (!!_items[item].item.bargain) {
+                    if (!!_items[item].item.bargain&&!Bargain.checkIsOverdue(_items[item].item.bargain)) {
                         Bargain.checkBargainStatus(_items[item].item.bargain.id, function (status) {
                             if (status != 1) {
                                 Dialog.confirm({
@@ -547,7 +549,11 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                     body_txt: '<p class="dialog-body-p bargain-unvalid-tip">Mohon maaf, harga produk ini sudah kembali ke harga normal</p><div class="j_btn_confrim_bargain_unvalid btn confirm-btn">Saya mengerti</div>',
                                     body_fn: function () {
                                         $("body").on("click", ".j_btn_confrim_bargain_unvalid", function () {
-                                            callback && callback();
+                                            if(_this.submitSwitch){
+                                                _this.submitSwitch = false;
+                                                callback && callback();
+                                            }
+                                            
                                         })
                                     },
                                     show_footer: false
@@ -576,7 +582,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 var _items = _carts;
                 for (var item in _items) {
                     if (_items[item].sku) {
-                        if (_items[item].item.bargain) {
+                        if (_items[item].item.bargain&&!Bargain.checkIsOverdue(_items[item].item.bargain)) {
                             // _this.checkIsLimitForLogin(_items[item].item.bargain);
                             _arr.push({
                                 itemID: _items[item].item.id,
@@ -596,7 +602,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                             });
                         }
                     } else {
-                        if (_items[item].item.bargain) {
+                        if (_items[item].item.bargain&&!Bargain.checkIsOverdue(_items[item].item.bargain)) {
                             // _this.checkIsLimitForLogin(_items[item].item.bargain);
                             _arr.push({
                                 itemID: _items[item].item.id,
@@ -749,7 +755,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     } else {
                         _sum += carts[cart].num * carts[cart].item.discount.price;
                     }
-                } else if (carts[cart].item.bargain) {
+                } else if (carts[cart].item.bargain&&!Bargain.checkIsOverdue(carts[cart].item.bargain)) {
                     if (!!carts[cart].sku && !!carts[cart].sku.id) {
                         _sum += carts[cart].sku.bargain_price ? carts[cart].num * carts[cart].sku.bargain_price : carts[cart].num * carts[cart].sku.price;
                     } else {

@@ -429,7 +429,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                 } else {
                     _htm += '<p class="price">' + Lang.H5_PRICE + ': Rp ' + Base.others.priceFormat(carts[item].item.discount.price) + '</p>';
                 }
-            } else if (!!carts[item].item.bargain) { // 砍价活动价格
+            } else if (!!carts[item].item.bargain&&!Bargain.checkIsOverdue(carts[item].item.bargain)) { // 砍价活动价格
                 //区分sku
                 // 有没有砍过
                 var _bargainCache = Cache.getSpace("BargainCache") || new Cache({

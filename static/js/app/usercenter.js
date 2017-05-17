@@ -13,7 +13,7 @@ require(['oauth','base','config','common','lazyload','ajax','dialog'],function(O
         },
         handleFn : function(){
             var _this = this;
-            $('body').on('click', '.j_go_back', function () {
+            $('.j_go_back').on('click', function () {
                 var _local_url = localStorage.getItem('FromUrl'),
                     _host_url = location.href,
                     _key = Base.others.getUrlPrem('search'),
@@ -77,15 +77,14 @@ require(['oauth','base','config','common','lazyload','ajax','dialog'],function(O
                     _this.getMoreOrderList();
                 }
             });
-            $('body').on('click','.j_log_out',function (e) {
+            $('.j_log_out').on('click',function (e) {
                 Oauth.signout(localStorage.getItem('FromUrl'));
             });
-            $('body').on('click','.j_order_info',function(){
+            $(".j_order_info").on("click",function(){
                 PaqPush && PaqPush('查看订单', '');
                 var _url = $(this).attr('data-url');
                 location.href = _url+'?from=usercenter';
-
-            });
+            })
         },
         getMoreOrderList : function(callback){
             var _this = this;

@@ -265,7 +265,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                 }
                 for (var item in _items) {
                     if (_items[item].sku) {
-                        if (_items[item].item.bargain) {
+                        if (_items[item].item.bargain&& !Bargain.checkIsOverdue(_items[item].item.bargain)) {
                             _arr.push({
                                 itemID: _items[item].item.id,
                                 //itemName:_items[item].item.item_name,
@@ -284,7 +284,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                             });
                         }
                     } else {
-                        if (_items[item].item.bargain) {
+                        if (_items[item].item.bargain&& !Bargain.checkIsOverdue(_items[item].item.bargain)) {
                             _arr.push({
                                 itemID: _items[item].item.id,
                                 bargain_price:Bargain.isActualAttendBargain(_items[item].item.bargain.id)?_items[item].item.bargain.price:0,

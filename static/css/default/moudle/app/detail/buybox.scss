@@ -18,9 +18,9 @@
   color: $contact-color;
 }
 .ser-box p{
-  @include fontDpr(14px);
+  @include fontDpr(12px);
   color: $gray-color;
-  @include remCalc(margin-top,-20);
+  @include remCalc(margin-top,-22);
 }
 .ser-icon{
   @include fontDpr(22px);
