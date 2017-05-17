@@ -61,13 +61,8 @@ define(['md5','config','base','dialog'],function(SparkMD5,Config,Base,Dialog){
                 Config.host.phpHost+Config.actions.uploadimg+'?param='
                 + JSON.stringify(_data)
                 + '&redirectUrl=' + encodeURIComponent( midHelperFile );
-
-            alert(document.querySelector('#upload-img').action);
-            setTimeout(function(){
-                alert(document.querySelector('#upload-img').action);
-                $('#upload-img').submit();
-                $('#upload_img_ipt').val('');
-            },500);
+            $('#upload-img').submit();
+            $('#upload_img_ipt').val('');
         },
         createUpLoad : function(){
             var _htm = '',
