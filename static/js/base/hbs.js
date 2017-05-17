@@ -412,7 +412,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                 '<i class="icon iconfont j_del_cart icon-delete-small" group-id="' + groupid + '" data-id="' + _id + '"></i>' +
                 '<img src="' + carts[item].item.img + '">' +
                 '<div class="">' +
-                '<p class="name">' + carts[item].item.item_name + '</p>' +
+                '<p class="name">' + Base.others.transTxt(carts[item].item.item_name) + '</p>' +
                 (carts[item].sku ? '<p class="type">' + Lang.H5_SKU + ': ' + carts[item].sku.title + '</p>' : '') +
                 '<p class="num">' + Lang.H5_QUANTITY + ': ' + carts[item].num + '</p>';
 
