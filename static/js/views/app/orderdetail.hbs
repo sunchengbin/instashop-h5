@@ -93,7 +93,7 @@
                     <li id="{{#neq item_sku_id 0 }}{{item_sku_id}}{{else}}{{item_id}}{{/neq}}" class="clearfix cart-item">
                         <img src="{{img_head}}">
                         <div class="clearfix">
-                            <p class="name">{{item_title}}</p>
+                            <p class="name">{{transTxt item_title}}</p>
                             {{#if item_sku_title}}
                                 <p class="type">{{../../../lang.H5_ITEM_SKU}}: {{item_sku_title}}</p>
                             {{/if}}
