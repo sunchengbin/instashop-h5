@@ -29,7 +29,7 @@ define([
                 default:
                     break;
             }
-            var Debug = Base.others.getUrlPrem('_debug_env') || localStorage.getItem('DebugEnv') || 'aws';
+            var Debug = Base.others.getUrlPrem('_debug_env') || localStorage.getItem('DebugEnv') || 'master';
             var reqUrl = Config.host.phpHost + Config.actions.oauth + "?param=" + encodeURIComponent(JSON.stringify(_reqData)) + "&timestamp=" + new Date().getTime()+"&_debug_env="+Debug;
             window.location.href = reqUrl;
         },
