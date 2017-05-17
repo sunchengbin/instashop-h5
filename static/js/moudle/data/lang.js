@@ -648,7 +648,7 @@ define(['base'], function (Base) {
             "DANBAO_ORDER_UNLOGIN_TIP": "Login untuk meminta pengembalian dana, dan mengkonfirmasi penerimaan pesanan",
             "USER_CENTER_ORDER_TOTAL_PRICE": "Total",
             "REFOUND_BTN_APPLY_TXT": "Pengembalian Dana",
-            "REFOUND_BTN_PROCESS_TXT": "Status Pengembalian Dana",
+            "REFOUND_BTN_PROCESS_TXT": "Status Refund",
             "ORDER_BTN_CANCEL_TXT": "Batalkan Pesanan",
             "REFOUND_FILL_ACCOUNT": "Informasi Rekening Pengembalian dana",
             "ORDER_BTN_DELAY_RECEIVE_TIME_TXT": "Perpanjang Penerimaan",
