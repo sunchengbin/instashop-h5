@@ -1,9 +1,10 @@
 <?php
     include_once( dirname(__FILE__).'/../../../html/router/common.php');
+    include_once( dirname(__FILE__).'/../../../html/router/util.php' );
     $smarty = smartyCommon();
 
     /*获取index页面的数据*/
-    include_once( dirname(__FILE__).'/../../../html/router/util.php' );
+
     $ss = split('\/', $_SERVER['REQUEST_URI']);
     $invite_id = intval(end($ss));
     $path = 'v1/bargain/';
