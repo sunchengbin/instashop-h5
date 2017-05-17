@@ -62,7 +62,7 @@ define(['md5','config','base','dialog'],function(SparkMD5,Config,Base,Dialog){
                 + JSON.stringify(_data)
                 + '&redirectUrl=' + encodeURIComponent( midHelperFile );
             $('#upload-img').submit();
-            $('#upload_img_ipt').val('');
+            //$('#upload_img_ipt').val('');
         },
         createUpLoad : function(){
             var _htm = '',
