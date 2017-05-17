@@ -56,13 +56,17 @@ define(['md5','config','base','dialog'],function(SparkMD5,Config,Base,Dialog){
                 width: 100,
                 is_cover: true
             });
+            alert('loading');
             var midHelperFile = Config.host.hrefHost+'/iframe.html';
             document.querySelector('#upload-img').action =
                 Config.host.phpHost+Config.actions.uploadimg+'?param='
                 + JSON.stringify(_data)
                 + '&redirectUrl=' + encodeURIComponent( midHelperFile );
-            document.querySelector('#upload-img').submit();
-            $('#upload_img_ipt').val('');
+            $('#upload-img').submit();
+            alert('submit');
+            setTimeout(function(){
+                $('#upload_img_ipt').val('');
+            },500);
         },
         createUpLoad : function(){
             var _htm = '',
