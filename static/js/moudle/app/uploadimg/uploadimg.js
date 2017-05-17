@@ -66,7 +66,7 @@ define(['md5','config','base','dialog'],function(SparkMD5,Config,Base,Dialog){
         },
         createUpLoad : function(){
             var _htm = '',
-                _debug_env = Base.others.getUrlPrem('_debug_env');
+                _debug_env = Config.getDebugEnv;
             _htm+='<div class="upload-img-box"><form id="upload-img" action="" enctype="multipart/form-data" method="post" target="resultHandlerIframe">';
             _htm+='<input type="file" accept="image/*" multiple="multiple" id="upload_img_ipt" name="imgs[]">';
             if(_debug_env){

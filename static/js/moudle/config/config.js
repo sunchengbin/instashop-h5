@@ -22,6 +22,7 @@ define(['base'],function(Base){
         };
     var CONFIG = {
         host : HOST,
+        getDebugEnv:getDebugEnv('master'),
         actions : {
             setUserName : 'set_user_memo',//设置app中用户的name
             getUserInfo : 'getUserInfo',//获取用户信息
@@ -96,6 +97,9 @@ define(['base'],function(Base){
         if(Debug){
             localStorage.setItem('DebugEnv',Debug);
         }
+    }
+    function getDebugEnv(debugenv){
+        return Base.others.getUrlPrem('_debug_env') || localStorage.getItem('DebugEnv') || debugenv;
     }
     setDebugEnv();
     return CONFIG;

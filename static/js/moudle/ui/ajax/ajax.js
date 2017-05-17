@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  */
 define(['config', 'base'], function (Config, Base) {
-    var Debug = Base.others.getUrlPrem('_debug_env') || localStorage.getItem('DebugEnv') || '4.7';
+    var Debug = Config.getDebugEnv;
     var Ajax = {
         getJsonp: function (url, success, error, opt) {
             var _data = Base.others.getUrlPrem('param', url) ? JSON.parse(Base.others.getUrlPrem('param', url)) : null;
