@@ -15,7 +15,7 @@ define(['base'],function(Base){
             hrefUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',
             hrefHost : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html',
             actionUrl : 'https://'+HOST_URL.apipHost+'/instashop/',
-            phpHost : 'http://'+HOST_URL.apiHost+'/instashop/',
+            phpHost : 'https://'+HOST_URL.apiHost+'/instashop/',
             imHost : 'http://218.213.86.206',
             imUserNameHost : 'http://218.213.86.206:2040/',//存储im用户名字
             maphost : 'http://m.instashop.co.id/'//存储im用户名字
