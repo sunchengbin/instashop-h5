@@ -1,7 +1,7 @@
 <?php
     include_once( dirname(__FILE__).'/../../../html/router/common.php');
     include_once( dirname(__FILE__).'/../../../html/router/util.php' );
-    $smarty = smartyCommon();
+    $smarty = smartyCommon('default','default_css');
 
     /*获取index页面的数据*/
 

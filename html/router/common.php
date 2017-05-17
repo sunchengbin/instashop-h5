@@ -323,7 +323,7 @@ function getTestSkin(){
     //return 'second';
 }
 //初始化smarty或者普通php页面中全局变量的方法
-function smartyCommon($folder){
+function smartyCommon($folder,$default_css){
     require_once(__DIR__.'/../lib/libs/Smarty.class.php');
     $smarty = new Smarty();
     $common_info = getSkinInfo();
@@ -342,8 +342,12 @@ function smartyCommon($folder){
         $smarty->setTemplateDir(__DIR__.'/../templates/');
         $smarty->setCompileDir(__DIR__.'/../templates_c/');
         if($folder){
-            $smarty->assign('TEMP_FOLDER','default/');
-            $smarty->assign('FLEXIBLE',FLEXIBLE);
+            if($default_css){
+                $smarty->assign('TEMP_FOLDER','');
+            }else{
+                $smarty->assign('TEMP_FOLDER','default/');
+                $smarty->assign('FLEXIBLE',FLEXIBLE);
+            }
         }else{
             $smarty->assign('TEMP_FOLDER','');
         }
