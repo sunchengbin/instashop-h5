@@ -33,17 +33,17 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
          //android机型键盘收缩
          Common.listenAndroidKeyboardToggle(function(){
              //alert(1);
-             $('.j_dialog_cover').css('bottom',0);
+             //$('.j_dialog_cover').css('bottom',0);
              Common.ScorllToBottom();
              setTimeout(function(){
-                 $('.j_dialog_cover').css('bottom',0);
+                 $('.j_dialog_cover').css('height',$(window).height());
              },100);
          },function(){
              //alert(2);
-             $('.j_dialog_cover').css('bottom',0);
+             //$('.j_dialog_cover').css('bottom',0);
              Common.ScorllToBottom();
              setTimeout(function(){
-                 $('.j_dialog_cover').css('bottom',0);
+                 $('.j_dialog_cover').css('height',$(window).height());
              },100);
          });
          $('body').on('click','.j_del_img',function(){
