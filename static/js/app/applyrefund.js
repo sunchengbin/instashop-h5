@@ -30,6 +30,12 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
      handleFn : function(){
          var _this = this;
          Fastclick.attach(document.body);
+         //android机型键盘收缩
+         Common.listenAndroidKeyboardToggle(function(){
+             Common.ScorllToBottom();
+         },function(){
+             Common.ScorllToBottom();
+         });
          $('body').on('click','.j_del_img',function(){
             var _parent = $(this).parent('.j_refund_img');
             Dialog.confirm({
