@@ -424,6 +424,7 @@ footer .btn i {
 .index-footer ul li i {
     vertical-align: middle;
     display: block;
+    font-size: 16px;
 }
 
 .index-footer ul li a {
@@ -445,9 +446,9 @@ footer .btn i {
     line-height: 1.2rem;
     background-color: #F58823;
     color: #fff;
-    right: 27%;
-    margin-left: -1.1rem;
-    top: .6rem;
+    left: 50%;
+    /*margin-left: -1.1rem;*/
+    top: 0;
     font-size: 12px;
 }
 
