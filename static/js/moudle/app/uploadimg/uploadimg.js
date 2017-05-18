@@ -29,6 +29,7 @@ define(['md5','config','base','dialog'],function(SparkMD5,Config,Base,Dialog){
         handle : function(){
             var _this = this;
             $('body').on('change', '[name="imgs[]"]', function (e) {
+                alert("文件大小:"+e.target.files[0].size+"; 文件类型:"+e.target.files[0].type);
                 _this.upImgFn(e);
             });
         },
@@ -52,17 +53,17 @@ define(['md5','config','base','dialog'],function(SparkMD5,Config,Base,Dialog){
                 $('#upload_img_ipt').val('');
                 return;
             }
-            _this.loading = Dialog.loading({
-                width: 100,
-                is_cover: true
-            });
-            var midHelperFile = Config.host.hrefHost+'/iframe.html';
-            document.querySelector('#upload-img').action =
-                Config.host.phpHost+Config.actions.uploadimg+'?param='
-                + JSON.stringify(_data)
-                + '&redirectUrl=' + encodeURIComponent( midHelperFile );
-            $('#upload-img').submit();
-            $('#upload_img_ipt').val('');
+            // _this.loading = Dialog.loading({
+            //     width: 100,
+            //     is_cover: true
+            // });
+            // var midHelperFile = Config.host.hrefHost+'/iframe.html';
+            // document.querySelector('#upload-img').action =
+            //     Config.host.phpHost+Config.actions.uploadimg+'?param='
+            //     + JSON.stringify(_data)
+            //     + '&redirectUrl=' + encodeURIComponent( midHelperFile );
+            // $('#upload-img').submit();
+            // $('#upload_img_ipt').val('');
         },
         createUpLoad : function(){
             var _htm = '',
