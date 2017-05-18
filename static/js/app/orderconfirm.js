@@ -453,10 +453,6 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                 }
                             });
                         }
-
-
-
-
                     } catch (e) {
                         Dialog.tip({
                             body_txt: e.message,
@@ -563,6 +559,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                 callback && callback();
                             }
                         })
+                    }else{
+                        callback && callback();
                     }
                 }
             }
