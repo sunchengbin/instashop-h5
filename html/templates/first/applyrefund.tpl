@@ -8,7 +8,7 @@
     <div class="step-one j_step_one" data-spider="refund-step-one">
         <h2>Jumlah Pengembalian Dana</h2>
         <input class="refund-price j_refund_price" maxlength="50" type="tel" data-maxprice="{$INDEX_DATA}"/>
-        <p class="refund-explain b-bottom"><a href="{$HOST_NAME}/html/applyrefundpriceexplain.php" class="">Maksimum Rp {$INDEX_DATA|priceFormat} <i class="icon iconfont icon-question"></i></a></p>
+        <p class="refund-explain b-bottom"><a href="{$HOST_NAME}/html/applyrefundpriceexplain.php?from=applyrefund" class="">Maksimum Rp {$INDEX_DATA|priceFormat} <i class="icon iconfont icon-question"></i></a></p>
         <h2>Alasan Pengembalian Dana</h2>
         <textarea class="refund-cause j_refund_explain" placeholder="Maksimum 1000 karakter" maxlength="1000"></textarea>
         <h2>Upload (Maksimal 3 Lembar)</h2>
