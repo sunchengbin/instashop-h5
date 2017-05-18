@@ -4,7 +4,7 @@
 /**
  * Created by sunchengbin on 16/6/6.
  */
-require(['lang', 'hbs', 'text!views/app/warrantsuccess.hbs', 'config', 'fastclick', 'common', 'base','cache'], function (Lang, Hbs, WarrantSuccess, Config, Fastclick, Common, Base,Cache) {
+require(['lang', 'hbs', 'text!views/app/warrantsuccess.hbs', 'config', 'fastclick', 'common', 'base', 'cache'], function (Lang, Hbs, WarrantSuccess, Config, Fastclick, Common, Base, Cache) {
     var I = {
         init: function () {
             var IndexHtm = '<div>' + Lang.H5_LOADING + '</div>';
@@ -54,25 +54,31 @@ require(['lang', 'hbs', 'text!views/app/warrantsuccess.hbs', 'config', 'fastclic
                 _this = this;
             // 查看订单详情
             $("body").on("click", ".j_goto_order_detail", function () {
-                //TODO 标记引导 看情况再封装
                 var IndexCoverCache = Cache.getSpace("IndexCache") || new Cache({
                     namespace: "IndexCache",
                     type: "local"
                 });
-                // 先获取 如果没有再种 有的话pass
-                var isShowOrderGuid = IndexCoverCache.find("isShowOrderGuid");
-                if (isShowOrderGuid == void(0)) {
-                    // 没有种过
-                    // 1表示没有展示过
-                    PaqPush && PaqPush('首次担保下单', '');
-                    IndexCoverCache.set("isShowOrderGuid", "1")
-                    setTimeout(function(){
-                        location.href = _this.shopUrl;;//去店铺首页
-                    },500)
-                }else{
+                // 首次担保交易要显示遮罩
+                if (data.ShopInfo.warrant_flag == 1) {
+                    // 先获取 如果没有再种 有的话pass
+                    var isShowOrderGuid = IndexCoverCache.find("isShowOrderGuid");
+                    if (isShowOrderGuid == void(0)) {
+                        // 没有种过
+                        // 1表示没有展示过
+                        PaqPush && PaqPush('首次担保下单', '');
+                        IndexCoverCache.set("isShowOrderGuid", "1")
+                        setTimeout(function () {
+                            location.href = _this.shopUrl;; //去店铺首页
+                        }, 500)
+                    } else {
+                        PaqPush && PaqPush('查看订单详情', '');
+                        location.href = _this.orderUrl;
+                    }
+                } else {
                     PaqPush && PaqPush('查看订单详情', '');
                     location.href = _this.orderUrl;
                 }
+
             })
         }
     };

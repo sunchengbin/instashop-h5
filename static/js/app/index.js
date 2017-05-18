@@ -4,9 +4,9 @@
  */
 require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastclick', 'contact', 'slide', 'item', 'dialog', 'sharecoupon', 'tab', 'debug', 'viewer', 'oauth', 'cache'], function (Lang, Lazyload, Ajax, Config, Base, Common, Cart, Fastclick, Contact, Slide, Item, Dialog, Sharecoupon, Tab, Debug, Viewer, Oauth, Cache) {
     var Default_Page_Size = 18;
-    var _eventPreventDefault = function(e){
-		e.preventDefault();
-	};
+    var _eventPreventDefault = function (e) {
+        e.preventDefault();
+    };
 
     var I = {
         indexItemsPagination: {
@@ -558,7 +558,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     localStorage.setItem('ScrollTop', $(window).scrollTop());
                     _that.setRouteInfo();
                     Common.saveFromUrl(function () {
-                        location.href = _url + "?buyer_id=" + loginResult.info.buyer_id + "&uss=" + loginResult.info.uss+"&seller_id="+init_data.shop.id;
+                        location.href = _url + "?buyer_id=" + loginResult.info.buyer_id + "&uss=" + loginResult.info.uss + "&seller_id=" + init_data.shop.id;
                     });
                 } else {
                     Oauth.openDialog();
@@ -698,25 +698,27 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 namespace: "IndexCache",
                 type: "local"
             });
-            var isShowOrderGuid = IndexCoverCache.find("isShowOrderGuid");
-            // 有值 且 值为1
-            if (isShowOrderGuid != void(0) && isShowOrderGuid == 1) {
-                $(".order-guide-info-wrap").show();
-                Base.others.coverGuide(document.querySelector(".order-guide-cover"), document.querySelector(".j_my_order"));
-                var $coverInfoWrap = $(".order-guide-info-wrap");
-                var $coverGuideArrow = $(".order-guide-arrow");
-                var $orderGuideCover = $(".order-guide-cover");
+            if (init_data.shop.warrant_flag == 1) {
+                var isShowOrderGuid = IndexCoverCache.find("isShowOrderGuid");
+                // 有值 且 值为1
+                if (isShowOrderGuid != void(0) && isShowOrderGuid == 1) {
+                    $(".order-guide-info-wrap").show();
+                    Base.others.coverGuide(document.querySelector(".order-guide-cover"), document.querySelector(".j_my_order"));
+                    var $coverInfoWrap = $(".order-guide-info-wrap");
+                    var $coverGuideArrow = $(".order-guide-arrow");
+                    var $orderGuideCover = $(".order-guide-cover");
 
-                var coverInfoWrapWidth = $coverInfoWrap.offset().width;
-                var coverGuideArrowWidth = $coverGuideArrow.offset().width;
-                var coverGuideCoverWidth = ~~$orderGuideCover[0].style.width.replace("px", "");
+                    var coverInfoWrapWidth = $coverInfoWrap.offset().width;
+                    var coverGuideArrowWidth = $coverGuideArrow.offset().width;
+                    var coverGuideCoverWidth = ~~$orderGuideCover[0].style.width.replace("px", "");
 
-                var offsetRight = coverGuideArrowWidth + coverGuideCoverWidth;
-                $coverInfoWrap.css("right", (offsetRight-30) + "px")
-                $coverGuideArrow.css("right", "-"+(coverGuideArrowWidth) + "px");
-                $(".order-guide-info-wrap").show();
-                _this.disablePageScroll();
-                // IndexCoverCache.set("isShowOrderGuid",2);
+                    var offsetRight = coverGuideArrowWidth + coverGuideCoverWidth;
+                    $coverInfoWrap.css("right", (offsetRight - 30) + "px")
+                    $coverGuideArrow.css("right", "-" + (coverGuideArrowWidth) + "px");
+                    $(".order-guide-info-wrap").show();
+                    _this.disablePageScroll();
+                    // IndexCoverCache.set("isShowOrderGuid",2);
+                }
             }
         },
         transItems: function (items) {
@@ -738,16 +740,16 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 // tags : _this.getTags(items).tags
             };
         },
-        disablePageScroll:function(){
+        disablePageScroll: function () {
             var dom = document;
-      		dom.querySelector("html").style.overflow = "hidden";
-      		dom.addEventListener("touchmove",_eventPreventDefault,false);
-    	},
-    	allowPageScroll:function(){
+            dom.querySelector("html").style.overflow = "hidden";
+            dom.addEventListener("touchmove", _eventPreventDefault, false);
+        },
+        allowPageScroll: function () {
             var dom = document;
-      		dom.querySelector("html").style.overflow = "auto";
-      		dom.removeEventListener("touchmove",_eventPreventDefault,false);
-    	}
+            dom.querySelector("html").style.overflow = "auto";
+            dom.removeEventListener("touchmove", _eventPreventDefault, false);
+        }
     };
     I.init(init_data);
 })
