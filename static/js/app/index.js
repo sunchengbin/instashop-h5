@@ -712,8 +712,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 var coverGuideCoverWidth = ~~$orderGuideCover[0].style.width.replace("px", "");
 
                 var offsetRight = coverGuideArrowWidth + coverGuideCoverWidth;
-                $coverInfoWrap.css("right", offsetRight + "px")
-                $coverGuideArrow.css("left", coverInfoWrapWidth + "px");
+                $coverInfoWrap.css("right", (offsetRight-30) + "px")
+                $coverGuideArrow.css("right", "-"+(coverGuideArrowWidth) + "px");
                 $(".order-guide-info-wrap").show();
                 _this.disablePageScroll();
                 // IndexCoverCache.set("isShowOrderGuid",2);
