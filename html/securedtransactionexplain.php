@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <!--担保交易说明详情-->
+<?php
+include_once( dirname(__FILE__).'/../html/router/common.php');
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -105,20 +108,25 @@
             <p>7. Jika hingga hari ke-10 pesanan belum juga diterima, pembeli dapat klik <strong>“Pengembalian Dana”</strong>. Setelah pesanan masuk ke dalam status “Pengembalian Dana”, maka dana akan kembali disimpan oleh Instashop. Dana akan dicairkan ke penjual atau dikembalikan ke pembeli setelah mendapat persetujuan dari kedua belah pihak. </p>
             <p class="mb20">8. Jika pembeli tidak klik “Pengembalian Dana”, <strong>dana akan otomatis dicairkan ke penjual di hari kesebelas</strong>. Penjual dapat melihat dan menarik saldo dana tersebut di submenu “Saldo Belum Ditarik” dalam menu “Penghasilan”</p>
             <p><strong>Bagaimana Alur Pengembalian Dana?</strong></p>
-            <img src="">
+            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_all.png">
             <p>1. Pembeli dapat mengajukan pengembalian dana setelah pembayaran terkonfirmasi.</p>
+            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_one.jpeg">
             <p>2. Penjual dapat memilih untuk menerima atau menolak pengajuan pengembalian dana.</p>
+            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_two.jpeg">
             <p>3. Jika pengajuan pengembalian dana ditolak, maka tim CS Instashop akan menghubungi pembeli dan penjual untuk melakukan mediasi. </p>
             <p>Setelah mediasi mencapai kesepakatan, maka tim CS kami akan memproses pengembalian dana / pencairan dana sesuai hasil mediasi.</p>
+            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_three.jpeg">
             <p>4. Pencairan dana diajukan ke bank. Dana akan sampai ke rekening dalam 2 (dua) hari kerja.</p>
-            <p class="mb20">5. Transaksi Selesai.</p>
+            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_four.jpeg">
+            <p >5. Transaksi Selesai.</p>
+            <img class="mb20" src="<?=STATIC_HOST?>/images/refundexplain/refund_process_five.jpeg">
             <p><strong>Bagaimana Langkah Untuk Mengaktifkan Fitur Rekening Bersama? </strong></p>
             <p>1. Dari menu Atur Toko klik Rekening Bersama.</p>
-            <img src="">
+            <img class="mb20" src="<?=STATIC_HOST?>/images/refundexplain/refund_explain_one.jpeg">
             <p>2.  Klik “Aktif” untuk mengaktifkan fitur ini.</p>
-            <img src="">
+            <img class="mb20" src="<?=STATIC_HOST?>/images/refundexplain/refund_explain_two.png">
             <p>3. Pilih Ya , selamat fitur Rekening Bersama telah berhasil diaktifkan.</p>
-            <img src="">
+            <img class="mb20" src="<?=STATIC_HOST?>/images/refundexplain/refund_explain_dialog.png">
             <p class="mt20"><strong>Apa Pengaruh Fitur Rekening Bersama ini bagi Dropshipper?</strong></p>
             <p>Fitur “Rekening Bersama” hanya akan aktif di akun dropshipper <strong>jika sudah diaktifkan oleh supplier</strong>. Dengan kata lain, jika supplier mengaktifkan fitur Rekening Bersama, maka fitur Rekening Bersama ini juga bisa dinikmati oleh <strong>pembeli yang berbelanja di web dropshippermu</strong>.</p>
             <p>Ketika supplier menolak permintaan pengembalian dana dari pembeli dropshipper, maka dropshipper sebagai pihak penengah bertugas untuk <strong>menegosiasikan hal ini dengan pembeli dan suppliernya</strong>, dan <strong>menyampaikan hasil akhir kesepakatan</strong> ini ke tim CS Instashop.</p>

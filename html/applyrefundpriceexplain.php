@@ -192,17 +192,22 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         </ul>
         <h1 id="second-type">Bagaimana Alur Pengembalian Dana?</h1>
         <div>
-            <img src="">
+            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_all.png">
             <p>1. Pembeli dapat mengajukan pengembalian dana setelah pembayaran terkonfirmasi.</p>
+            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_one.jpeg">
             <p>2. Penjual dapat memilih untuk menerima atau menolak pengajuan pengembalian dana.</p>
+            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_two.jpeg">
             <p>3. Jika pengajuan pengembalian dana ditolak, maka tim CS Instashop akan menghubungi pembeli dan penjual untuk melakukan mediasi. </p>
             <p>Setelah mediasi mencapai kesepakatan, maka tim CS kami akan memproses pengembalian dana / pencairan dana sesuai hasil mediasi.</p>
+            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_three.jpeg">
             <p>4. Pencairan dana diajukan ke bank. Dana akan sampai ke rekening dalam 2 (dua) hari kerja.</p>
+            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_four.jpeg">
             <p>5. Transaksi Selesai.</p>
+            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_five.jpeg">
         </div>
     </section>
     <script>
-        document.querySelector('.j_go_back').addEventListener('click',function(){
+       document.querySelector('.j_go_back') && document.querySelector('.j_go_back').addEventListener('click',function(){
             history.go(-1);
         });
     </script>
