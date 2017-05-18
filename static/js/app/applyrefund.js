@@ -126,7 +126,10 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                  }
                  if(!_this.testData(function(){
                          //忽略手机号错误
-                         _this.subRefund(_that,_step_one,dom);
+                         setTimeout(function(){
+                             _this.subRefund(_that,_step_one,dom);
+                         },100);
+
                      },function(){
                          _that.cancelDisable();
                          _that.setBtnTxt(dom,Lang.H5_CONFIRM);
