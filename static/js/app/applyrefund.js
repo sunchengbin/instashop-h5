@@ -32,11 +32,11 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
          Fastclick.attach(document.body);
          //android机型键盘收缩
          Common.listenAndroidKeyboardToggle(function(){
-             alert(1);
+             //alert(1);
              $('.j_dialog_cover').css('bottom',0);
              Common.ScorllToBottom();
          },function(){
-             alert(2);
+             //alert(2);
              $('.j_dialog_cover').css('bottom',0);
              Common.ScorllToBottom();
          });
@@ -131,7 +131,7 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                  if(!_this.testData(function(){
                          //忽略手机号错误
                          setTimeout(function(){
-                             alert(0);
+                             //alert(0);
                              _this.subRefund(_that,_step_one,dom);
                          },100);
 
