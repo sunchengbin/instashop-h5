@@ -30,6 +30,22 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
      handleFn : function(){
          var _this = this;
          Fastclick.attach(document.body);
+         //android机型键盘收缩
+         Common.listenAndroidKeyboardToggle(function(){
+             //alert(1);
+             $('.j_dialog_cover').css('bottom',0);
+             Common.ScorllToBottom();
+             setTimeout(function(){
+                 $('.j_dialog_cover').css('bottom',0);
+             },100);
+         },function(){
+             //alert(2);
+             $('.j_dialog_cover').css('bottom',0);
+             Common.ScorllToBottom();
+             setTimeout(function(){
+                 $('.j_dialog_cover').css('bottom',0);
+             },100);
+         });
          $('body').on('click','.j_del_img',function(){
             var _parent = $(this).parent('.j_refund_img');
             Dialog.confirm({
@@ -120,7 +136,11 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                  }
                  if(!_this.testData(function(){
                          //忽略手机号错误
-                         _this.subRefund(_that,_step_one,dom);
+                         setTimeout(function(){
+                             //alert(0);
+                             _this.subRefund(_that,_step_one,dom);
+                         },100);
+
                      },function(){
                          _that.cancelDisable();
                          _that.setBtnTxt(dom,Lang.H5_CONFIRM);
