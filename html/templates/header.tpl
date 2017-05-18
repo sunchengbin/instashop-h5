@@ -21,11 +21,11 @@
   </script>
   {if $IS_DEBUG}
     {if $TEMP_FOLDER}
-      <link href="{$STATIC_HOST}/css/dist/{$TEMP_FOLDER}app/{$INDEX_CSS_NAME}.css?v=1495098620269" rel="stylesheet"/>
+      <link href="{$STATIC_HOST}/css/dist/{$TEMP_FOLDER}app/{$INDEX_CSS_NAME}.css?v=1495099384350" rel="stylesheet"/>
     {else}
-      <link href="{$STATIC_HOST}/css/app/{$INDEX_CSS_NAME}.css?v=1495098620269" rel="stylesheet"/>
+      <link href="{$STATIC_HOST}/css/app/{$INDEX_CSS_NAME}.css?v=1495099384350" rel="stylesheet"/>
     {/if}
   {else}
-    <link href="{$STATIC_HOST}/css/dist/{$TEMP_FOLDER}app/{$INDEX_CSS_NAME}.css?v=1495098620269" rel="stylesheet"/>
+    <link href="{$STATIC_HOST}/css/dist/{$TEMP_FOLDER}app/{$INDEX_CSS_NAME}.css?v=1495099384350" rel="stylesheet"/>
   {/if}
 </head>
