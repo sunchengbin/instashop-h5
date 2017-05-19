@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/13.
  */
-require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug', 'favorable', 'cache', 'bargain'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug, Favorable, Cache, Bargain) {
+require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug', 'favorable', 'cache', 'bargain', 'tradeplug'], function (Hbs, OrderConfirm, Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug, Favorable, Cache, Bargain, Tradeplug) {
     var OrderConfirmHtm = {
         init: function () {
             var _this = this;
@@ -13,6 +13,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 namespace: "BargainCache",
                 type: "local"
             });
+            _this.submitSwitch = true;
             if (_isGroup) {
                 _carts = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid];
             } else {
@@ -115,6 +116,11 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 }
             }
 
+            // 4.7 新增需求 初始化交易类型选择插件
+            _this.tradeplug = Tradeplug({
+                insertAfterEl: ".address-box",
+                carts:_carts
+            })
             _this.handleFn();
         },
         //1免邮 0付费
@@ -157,6 +163,17 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 loading_txt: Lang.H5_SUBMITTING_ORDER,
                 callback: function (dom) {
                     var _that = this;
+                    // 检查开启担保交易的卖家店铺 买家是否选择了交易类型
+                    if (!_this.tradeplug.checkIsSelectTrade()) {
+                        // 开通了但是没有选择交易类型
+                        // Dialog.tip({
+                        //     body_txt: "请选择交易类型"
+                        // })
+                        _this.tradeplug.goToSelectedTrade();
+                        _that.cancelDisable();
+                        _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
+                        return;
+                    }
                     try {
                         var _items = _this.getItems();
                         if (dom.is('.disable-btn')) {
@@ -200,6 +217,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                     type: 'POST',
                                     timeout: 30000,
                                     success: function (obj) {
+                                        _this.submitSwitch = true;
                                         if (obj.code == 200) {
                                             var _post_price = $('.j_logistics_info').attr('data-price'),
                                                 _bank_info = JSON.stringify(obj.order.pay_info.banks),
@@ -215,9 +233,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                                 }
                                             }
                                             // Cart().clearCarts();
-                                            setTimeout(function () {
-                                                location.href = Config.host.hrefUrl + 'ordersuccess.php?price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400);
-                                            }, 100);
+                                            _this.goToSuccess(obj);
                                         } else {
                                             if ("server error" == obj.message) {
                                                 _that.cancelDisable();
@@ -339,10 +355,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                                 Cart().removeItem(_items[index].itemID);
                                             }
                                         }
-                                        // Cart().clearCarts();
-                                        setTimeout(function () {
-                                            location.href = Config.host.hrefUrl + 'ordersuccess.php?price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400);
-                                        }, 100);
+                                        _this.goToSuccess(obj);
                                     } else {
                                         if ("server error" == obj.message) {
                                             _that.cancelDisable();
@@ -440,10 +453,6 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                                 }
                             });
                         }
-
-
-
-
                     } catch (e) {
                         Dialog.tip({
                             body_txt: e.message,
@@ -482,6 +491,17 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             //    location.href = Config.host.host+'detail/'+$(this).attr('data-itemid');
             //});
         },
+        goToSuccess: function (obj) {
+            if ("normal" == obj.order.warrant_status) {
+                setTimeout(function () {
+                    location.href = Config.host.hrefUrl + 'warrantsuccess.php?price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400);
+                }, 100);
+            } else {
+                setTimeout(function () {
+                    location.href = Config.host.hrefUrl + 'evidencepayment.php?price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400);
+                }, 100);
+            }
+        },
         checkIsLimitForLogin: function (bargainDetail) {
             var _this = this;
             var _curBargainDetail = _this.bargainCache.find("remote_bargain_detail");
@@ -517,24 +537,30 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             if (!!_carts) {
                 var _items = _carts;
                 for (var item in _items) {
-                    if (!!_items[item].item.bargain) {
+                    if (!!_items[item].item.bargain&&!Bargain.checkIsOverdue(_items[item].item.bargain)) {
                         Bargain.checkBargainStatus(_items[item].item.bargain.id, function (status) {
                             if (status != 1) {
                                 Dialog.confirm({
                                     top_txt: '', //可以是html
-                                    body_txt: '<p class="dialog-body-p bargain-unvalid-tip">Mohon maaf, harga produk ini sudah kembali ke harga normal</p><div class="j_btn_confrim_bargain_unvalid">Saya mengerti</div>',
+                                    body_txt: '<p class="dialog-body-p bargain-unvalid-tip">Mohon maaf, harga produk ini sudah kembali ke harga normal</p><div class="j_btn_confrim_bargain_unvalid btn confirm-btn">Saya mengerti</div>',
                                     body_fn: function () {
-                                        $("body").on("click",".j_btn_confrim_bargain_unvalid",function(){
-                                            callback && callback();
+                                        $("body").on("click", ".j_btn_confrim_bargain_unvalid", function () {
+                                            if(_this.submitSwitch){
+                                                _this.submitSwitch = false;
+                                                callback && callback();
+                                            }
+                                            
                                         })
                                     },
-                                    show_footer:false
+                                    show_footer: false
                                 })
                                 return;
-                            }else{
+                            } else {
                                 callback && callback();
                             }
                         })
+                    }else{
+                        callback && callback();
                     }
                 }
             }
@@ -554,7 +580,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                 var _items = _carts;
                 for (var item in _items) {
                     if (_items[item].sku) {
-                        if (_items[item].item.bargain) {
+                        if (_items[item].item.bargain&&!Bargain.checkIsOverdue(_items[item].item.bargain)) {
                             // _this.checkIsLimitForLogin(_items[item].item.bargain);
                             _arr.push({
                                 itemID: _items[item].item.id,
@@ -574,7 +600,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                             });
                         }
                     } else {
-                        if (_items[item].item.bargain) {
+                        if (_items[item].item.bargain&&!Bargain.checkIsOverdue(_items[item].item.bargain)) {
                             // _this.checkIsLimitForLogin(_items[item].item.bargain);
                             _arr.push({
                                 itemID: _items[item].item.id,
@@ -699,7 +725,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     "express_fee_id": (_fee_id ? _fee_id : ''),
                     "items": _this.getItems(),
                     "buyer_address": _address,
-                    "frm": 2
+                    "frm": 2,
+                    "warrant": '' == _this.tradeplug.checkIsSelectTrade() ? 0 : _this.tradeplug.getSelectedTrade()
                 }
             };
             if (!!_this.favorableCode) _data.edata.code = _this.favorableCode;
@@ -726,11 +753,11 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     } else {
                         _sum += carts[cart].num * carts[cart].item.discount.price;
                     }
-                } else if (carts[cart].item.bargain) {
+                } else if (carts[cart].item.bargain&&!Bargain.checkIsOverdue(carts[cart].item.bargain)) {
                     if (!!carts[cart].sku && !!carts[cart].sku.id) {
-                        _sum += carts[cart].sku.bargain_price?carts[cart].num * carts[cart].sku.bargain_price:carts[cart].num * carts[cart].sku.price;
+                        _sum += carts[cart].sku.bargain_price ? carts[cart].num * carts[cart].sku.bargain_price : carts[cart].num * carts[cart].sku.price;
                     } else {
-                        _sum += carts[cart].bargain_price?carts[cart].num * carts[cart].bargain_price:carts[cart].num * carts[cart].price;
+                        _sum += carts[cart].bargain_price ? carts[cart].num * carts[cart].bargain_price : carts[cart].num * carts[cart].price;
                     }
                 } else {
                     _sum += carts[cart].num * carts[cart].price;

@@ -182,7 +182,7 @@ function noHaveTemplate($template){
     return $have;
 }
 function dateFormat($datetime){
-    return date('d/m H:i',strtotime($datetime));
+    return date('d/m H.i',strtotime($datetime));
 }
 function getCartId($carts){
     if($carts['sku'] && $carts['sku']['id']){

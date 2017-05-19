@@ -11,6 +11,9 @@ define([
 ], function (Base, Config, Ajax, Cache, Dialog, Lang) {
     'use strict';
     var Oauth = {
+        checkIsNeedLogin:function(shopData){
+            return shopData.buyer_login_flag||0;
+        },
         login: function (type) {
             var _reqData = {
                 url: location.href,
@@ -26,8 +29,19 @@ define([
                 default:
                     break;
             }
-            var reqUrl = Config.host.phpHost + Config.actions.oauth + "?param=" + encodeURIComponent(JSON.stringify(_reqData)) + "&timestamp=" + new Date().getTime();
+            var Debug = Config.getDebugEnv;
+            var reqUrl = Config.host.phpHost + Config.actions.oauth + "?param=" + encodeURIComponent(JSON.stringify(_reqData)) + "&timestamp=" + new Date().getTime()+"&_debug_env="+Debug;
             window.location.href = reqUrl;
+        },
+        signout:function(url){
+            var loginInfoFromCache = Cache.getSpace("LoginCache") || new Cache({
+                namespace: "LoginCache",
+                type: "local"
+            });
+            loginInfoFromCache.remove("loginInfo");
+            setTimeout(function(){
+                location.href = url;
+            },2000)
         },
         openDialog: function (type, opts) {
             Dialog.dialog({
@@ -47,7 +61,7 @@ define([
             var _htm = "";
             opts = opts || {}
             _htm = '<div>' +
-                '<div class="login-dialog-header">Untuk mengikuti promo ini, kamu harus login terlebih dahulu:</div>' +
+                '<div class="login-dialog-header">'+(opts.title||'Agar keamanan akun terjaga, kamu harus login terlebih dahulu')+'</div>' +
                 '<div>' +
                 '<div class="j_dialog_login_line j_dialog_login_btn ins-m-b-2" data-type="line">Login with Line</div>' +
                 '<div class="j_dialog_login_facebook j_dialog_login_btn ' + (type ? 'ins-m-b-2' : '') + '" data-type="facebook">Login with Facebook</div>' +
@@ -67,7 +81,7 @@ define([
             });
             try {
                 loginInfoFromCallBackPost = user_info;
-                if (!!loginInfoFromCallBackPost.buyer_id && !!loginInfoFromCallBackPost.name) {
+                if (!!loginInfoFromCallBackPost.buyer_id) {
                     // post 问题 fix
                     var localLoginInfo = loginInfoFromCache.find("loginInfo");
                     if (localLoginInfo) {
@@ -79,7 +93,10 @@ define([
                             }
                         }
                     }
-
+                    loginInfoFromCallBackPost.options = {
+                        plant:Base.others.getCurDateTime(),
+                        expire:2592000//30天-2592000
+                    }
                     loginInfoFromCache.set("loginInfo", loginInfoFromCallBackPost);
                     return {
                         result: true,
@@ -97,11 +114,28 @@ define([
                         result: false
                     };
                 } else {
-                    // 本地存储有 返回用户信息
-                    return {
-                        result: true,
-                        info: loginInfo
-                    };
+                    if(loginInfo.options){
+                        var curDateTime = Base.others.getCurDateTime();
+                        var plantTime = loginInfo.options.plant;
+                        if(~~(curDateTime-plantTime)<=~~loginInfo.options.expire){
+                            // 本地存储有 返回用户信息
+                            return {
+                                result: true,
+                                info: loginInfo
+                            };
+                        }else{
+                            return {
+                                result: false
+                            };
+                        }
+                    }else{
+                        // 本地存储有 返回用户信息
+                        return {
+                            result: true,
+                            info: loginInfo
+                        };
+                    }
+                    
                 }
             }
         }

@@ -5,6 +5,11 @@
         <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
         <div class="shop-info-wrap" flex="main:center cross:center">
             <div class="shop-info">
+                {if $INDEX_DATA.shop.warrant_flag == 1}
+                    <div class="secured-box">
+                        <i class="icon iconfont icon-secured"></i>
+                    </div>
+                {/if}
                 <div class="shop-img">
                     <img src="{$INDEX_DATA.shop.logo}"/>
                 </div>
@@ -113,6 +118,7 @@
             </div>
         </div>
     </div>
+    {*分类相关*}
     <section class="sort-list-wraper j_sort_box" data-spider="sort-list">
         <p>Kategori produk</p>
         <ul>
@@ -121,6 +127,9 @@
             {/foreach}
         </ul>
     </section>
+    <div class="sort-list-cover j_sort_cover">
+        <i class="icon iconfont icon-fold-font"></i>
+    </div>
     <!--新增3.5 功能点4需求-->
     <div class="index-btn-box" data-spider="set-up-shop">
         <div class="btn confirm-btn">
@@ -128,47 +137,20 @@
             <a spm-auto="我也要开店" spm-click="go-home" href="http://www.instashop.co.id/" onclick="trackOutboundLink('http://www.instashop.co.id/'); return false;" target="_self">Buat webstore gratis sekarang!</a>
         </div>
     </div>
-    <div class="sort-list-cover j_sort_cover">
-        <i class="icon iconfont icon-fold-font"></i>
+    {*底部浮动导航*}
+    {include file="../navbar.tpl"}
     </div>
-    <section class="index-footer" data-spider="foot-nav">
-        <div class="search-box" data-spider="go-search">
-            <a href="{$HOST_NAME}/html/search.php" class="search-btn block" spm-auto="搜索商品" spm-click="search-items">
-                <i class="iconfont icon-search-font"></i>
-            </a>
-        </div>
-        <ul class="b-top">
-            {if $INDEX_DATA.tag_list|@count}
-            <li class="j_category b-right" spm-auto="查看分类" spm-click="show-category">
-                <i class="icon iconfont icon-tag-font"></i> Kategori
-            </li>
-            {/if}
-            <li class="j_cart_wraper b-right" data-url="{$HOST_NAME}/html/cart.php" spm-auto="去购物车" spm-click="go-cart">
-                <i class="icon iconfont icon-i-shop-font"></i> Troli
-            </li>
-            <li>
-                {if $INDEX_DATA.shop.line_url} {if $INDEX_DATA.shop.phone}
-                <a spm-auto="查看联系方式" spm-click="check-contact" class="contact-services j_show_contact" data-type="all" href="javascript:;">
-                    <i class="icon iconfont icon-i-news-font"></i> Kontak
-                </a>
-                {else}
-                <a class="contact-services block j_goto_line" spm-auto="联系卖家line" spm-click="go-line" href="javascript:;">
-                    <i class="icon iconfont icon-i-news-font"></i> Kontak
-                </a>
-                {/if} {else} {if $INDEX_DATA.shop.phone}
-                <a spm-auto="查看联系方式" spm-click="check-contact" class="contact-services j_show_contact" data-type="tel" href="javascript:;">
-                    <i class="icon iconfont icon-i-news-font"></i> Kontak
-                </a>
-                {/if} {/if}
-            </li>
-        </ul>
-    </section>
-</div>
+    {include file="../indexdirection.tpl"}
 {else}
     <section class="no_item">Belum ada produk</section>
 {/if}
 <script>
-var init_data = {$INDEX_DATA_STR};
+    {*首页数据*}
+    var init_data = {$INDEX_DATA_STR};
+    {*登录信息*}
+    var user_info = {$INDEX_USER_INFO};
+</script>
+<script>
 var route_pt={$PT};var route_ct={$CT};var route_page_num={$PAGE_NUM};var route_page_size={$PAGE_SIZE};
 </script>
 {include file="../footer.tpl"}

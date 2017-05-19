@@ -259,7 +259,9 @@ define([
             // 登录
             $("body").on("click", ".j_user_login", function () {
                 PaqPush && PaqPush('登录-弹出登录框', '');
-                Oauth.openDialog();
+                Oauth.openDialog({
+                    title:Lang.BARGAIN_DETAIL_LOGIN_TIP
+                });
             })
             // 跳到买家版教程
             $("body").on("click", ".j_bargain_tip", function () {
@@ -302,7 +304,9 @@ define([
                     });
                 } else {
                     PaqPush && PaqPush('登录-弹出登录框', '');
-                    Oauth.openDialog();
+                    Oauth.openDialog({
+                        title:Lang.BARGAIN_DETAIL_LOGIN_TIP
+                    });
                 }
             })
             // 提交手机号

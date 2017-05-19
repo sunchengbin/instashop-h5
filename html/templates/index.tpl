@@ -6,6 +6,7 @@
         <section class="shop-header">
             <img class="shop-header-bg" data-img="{$INDEX_DATA.shop.front_cover|bg_img}" src="">
             <div class="clearfix shop-info">
+
                 <div class="shop-img">
                     <img data-img="{$INDEX_DATA.shop.logo}" src="" />
                 </div>
@@ -13,6 +14,11 @@
                 {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
                     {*是否有实体店标志*}
                     <span><i class="icon iconfont icon-shop-font"></i>Ada Outlet</span>
+                {/if}
+                {if $INDEX_DATA.shop.warrant_flag == 1}
+                <div class="secured-box">
+                    <i class="icon iconfont icon-secured"></i>
+                </div>
                 {/if}
             </div>
         </section>
@@ -141,50 +147,17 @@
                 <a spm-auto="我也要开店" spm-click="go-home" href="http://www.instashop.co.id/" onclick="trackOutboundLink('http://www.instashop.co.id/'); return false;" target="_self">Buat webstore gratis sekarang!</a>
             </div>
         </div>
-
-        <section class="index-footer" data-spider="foot-nav">
-            {*底部浮动导航*}
-            <div class="search-box" data-spider="go-search">
-                <a href="{$HOST_NAME}/html/search.php" class="search-btn block" spm-auto="搜索商品" spm-click="search-items">
-                    <i class="iconfont icon-search-font"></i>
-                </a>
-            </div>
-            <ul class="b-top">
-                {if $INDEX_DATA.tag_list|@count}
-                <li class="j_category b-right" spm-auto="查看分类" spm-click="show-category">
-                    <i class="icon iconfont icon-tag-font"></i> Kategori
-                </li>
-                {/if}
-                <li class="j_cart_wraper b-right" data-url="{$HOST_NAME}/html/cart.php" spm-auto="去购物车" spm-click="go-cart">
-                    <i class="icon iconfont icon-i-shop-font"></i> Troli
-                </li>
-                <li>
-                    {if $INDEX_DATA.shop.line_url}
-                        {if $INDEX_DATA.shop.phone}
-                            <a spm-auto="查看联系方式" spm-click="check-contact" class="contact-services j_show_contact" data-type="all" href="javascript:;">
-                                <i class="icon iconfont icon-i-news-font"></i> Kontak
-                            </a>
-                        {else}
-                            <a class="contact-services block j_goto_line" spm-auto="联系卖家line" spm-click="go-line" href="javascript:;">
-                                <i class="icon iconfont icon-i-news-font"></i> Kontak
-                            </a>
-                        {/if}
-                    {else}
-                        {if $INDEX_DATA.shop.phone}
-                        <a spm-auto="查看联系方式" spm-click="check-contact" class="contact-services j_show_contact" data-type="tel" href="javascript:;">
-                            <i class="icon iconfont icon-i-news-font"></i> Kontak
-                        </a>
-                        {/if}
-                    {/if}
-                </li>
-            </ul>
-        </section>
+        {*底部浮动导航*}
+        {include file="navbar.tpl"}
     </div>
     {/if}
+    {include file="indexdirection.tpl"}
 </body>
 <script>
     {*首页数据*}
     var init_data = {$INDEX_DATA_STR};
+    {*登录信息*}
+    var user_info = {$INDEX_USER_INFO};
 </script>
 <script>
     {*回退节点和翻页数据*}

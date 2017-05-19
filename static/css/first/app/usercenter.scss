@@ -1,0 +1,67 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../base/common/flex.scss";
+@import "../moudle/app/common/common.scss";
+$price-color:$base-color;
+body{
+  background-color: $header-bg-color;
+}
+.order-info{
+  @include fontDpr(14px);
+  @include remCalc(padding,0 30);
+  background-color: $white;
+  @include remCalc(margin-bottom,30);
+}
+.order-status{
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  color: $gray-color;
+}
+.order-status span{
+  float: right;
+  color: $base-btn-color;
+}
+.one-item{
+  @include remCalc(min-width,120);
+}
+.one-item img{
+  @include remCalc(width,100);
+  @include remCalc(height,100);
+}
+.one-item-explain{
+  word-break: break-all;
+  color: $info-color;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-height: 40px;
+
+}
+.total-price{
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  color: $price-color;
+  text-align: right;
+}
+.total-price i{
+  color: $base-btn-color;
+}
+.items-img img{
+  @include remCalc(width,100);
+  @include remCalc(height,100);
+  @include remCalc(margin-right,20);
+}
+.items-img,.one-item,.one-item-explain{
+  @include remCalc(padding-top,15);
+}
+.header-nav .icon-logout{
+  //font-size: 18px;
+}
+.no-order{
+  text-align:center;
+  @include fontDpr(18px);
+  color: $gray-color;
+  margin:50px 0;
+}

@@ -47,6 +47,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         var api_url_price = '<?php echo check_api($pathPrice, $paramsPrice); ?>';
         var express_data = JSON.parse(<?php echo get_init_data($path, $params); ?>);
         var price_data = JSON.parse(<?php echo get_init_data($pathPrice, $paramsPrice); ?>);
+        var user_info = <?php echo json_encode($_POST); ?>;
       </script>
 </head>
 <body data-spider="2cj9l5q4"></body>

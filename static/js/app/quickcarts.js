@@ -52,18 +52,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             })();
             //页面初始化
             _this.initLocalStorage(_address);
-            //var _hb_opts = {
-            //    carts: init_data.carts,
-            //    shop: init_data.shop,
-            //    address: _address,
-            //    name: '',
-            //    telephone: '',
-            //    host: Config.host,
-            //    lang: Lang
-            //};
-            //var _htm = Hbs.compile(QuickCarts)(_hb_opts);
-            //$('.j_php_loding').remove();
-            //$('body').prepend(_htm);
+
             if (_this['province']) {
                 _this.getLogistics();
             }
@@ -113,7 +102,6 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                     });
                 }
             }
-
         },
         initLocalStorage: function (address) { //根据本地地址数据自动填写用户信息
             address.name && $('.j_name').val(address.name);
@@ -460,7 +448,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                         localStorage.setItem('BankInfo', _bank_info);
                         localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
                         setTimeout(function () {
-                            location.href = Config.host.hrefUrl + 'ordersuccess.php?price=' + obj.order.total_price + '&detail=2&shop_id=' + init_data.shop.id + '&order_id=' + obj.order.id_hash + '&bname=' + _name + '&bphone=' + _telephone + '&sname=' + init_data.shop.name + '&time=' + (init_data.shop.cancel_coutdown / 86400);
+                            location.href = Config.host.hrefUrl + 'evidencepayment.php?price=' + obj.order.total_price + '&detail=2&shop_id=' + init_data.shop.id + '&order_id=' + obj.order.id_hash + '&bname=' + _name + '&bphone=' + _telephone + '&sname=' + init_data.shop.name + '&time=' + (init_data.shop.cancel_coutdown / 86400);
                         }, 100);
                     } else {
 

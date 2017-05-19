@@ -1,0 +1,117 @@
+/*选择交易类型样式*/
+
+.trade-plug {
+  @include remCalc(margin-bottom,30);
+}
+
+.trade-tip {
+  text-align: right;
+  @include remCalc(padding,0 30);
+  @include remCalc(height,90);
+  @include remCalc(line-height,90);
+  color: #4990E2;
+}
+
+.trade-box {
+  background: $white;
+}
+
+.trade-box-title {
+  position: relative;
+  //width: 100%;
+  @include remCalc(height,90);
+  @include remCalc(line-height,90);
+  @include remCalc(padding,0 30);
+  color: $gray-color;
+  font-size: 14px;
+}
+
+.divide {
+  width: 100%;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  border-bottom: 1px solid $border-color;
+}
+
+.trade-items {
+  @include remCalc(padding,0 30);
+}
+
+.trade-item {
+  width: 100%;
+  @include remCalc(height,90);
+  @include remCalc(line-height,90);
+}
+
+.checkbox-warp {
+  @include remCalc(width,30);
+  @include remCalc(height,30);
+  border: 1px solid $border-color;
+  border-radius: 100%;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  @include remCalc(margin-right,20);
+}
+
+.checkbox-warp:after {
+  content: '\00a0';
+  display: inline-block;
+  border: 2px solid #fff;
+  border-top-width: 0;
+  border-right-width: 0;
+  @include remCalc(width,14);
+  @include remCalc(height,7);
+  transform: rotate(-50deg);
+  -webkit-transform: rotate(-50deg);
+  position: absolute;
+  @include remCalc(top,5);
+  @include remCalc(left,4);
+}
+.checkbox-disabled {
+  color: #D1D1D1;
+}
+.checkbox-disabled .checkbox-warp {
+  background: #FAFAFA;
+  border: 1px solid #ECECEC;
+}
+.checkbox-warp.disable {
+  background: #f8f8f8;
+  border-color: #dcdcdc
+}
+
+.checkbox-warp.disable:after {
+  border-color: #dcdcdc
+}
+
+.checkbox-warp.active {
+  border-color: $base-btn-color;
+  background: $base-btn-color;
+}
+
+.checkbox-warp.active:after {
+  border-color: #ffffff;
+}
+
+.checkbox-div-inline {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.checkbox-div-inline .checkbox-warp {
+  margin-top: 0px!important;
+}
+
+.checkbox-warp input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 99;
+  margin-left: 0!important;
+}

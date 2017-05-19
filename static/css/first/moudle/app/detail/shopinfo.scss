@@ -43,9 +43,11 @@
   @include remCalc(margin-top,25);
   color: $gray-color;
 }
-
-
-
+.shop-info i.icon-secured{
+  color: #7ED321;
+  font-size: 25px;
+  vertical-align: middle;
+}
 .shop-info span {
   width: auto;
   @include remCalc(height,40);

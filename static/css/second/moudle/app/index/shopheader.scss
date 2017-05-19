@@ -10,14 +10,39 @@
   top:0;
   bottom: 0;
   text-align: center;
+  background-color: rgba(0,0,0,.3);
 }
 .shop-img{
   display: inline-block;
-  border:solid #fff;
+  border:solid $white;
   @include remCalc(border-width,5);
   border-radius: 50%;
   @include remCalc(width,130);
   overflow: hidden;
+  position: relative;
+}
+.shop-info{
+  position: relative;
+}
+.secured-box{
+  position: absolute;
+  border-radius: 50%;
+  //overflow: hidden;
+  background: $white;
+  @include remCalc(width,38);
+  @include remCalc(height,38);
+  z-index: 1;
+  left: 50%;
+  @include remCalc(margin-left,30);
+  @include remCalc(top,86);
+}
+.icon-secured{
+  @include remCalc(font-size,60);
+  position: absolute;
+  @include remCalc(left,-7.2);
+  @include remCalc(top,-25.2);
+  z-index: 2;
+  color:#7ED321;
 }
 .shop-seller-info p{
   @include remCalc(height,55);

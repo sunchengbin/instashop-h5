@@ -179,7 +179,9 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'fastclick', 'i
                 } else {
                     PaqPush && PaqPush('砍价邀请页-弹出登录框', '');
                     // 未登录
-                    Oauth.openDialog();
+                    Oauth.openDialog({
+                        title:Lang.BARGAIN_DETAIL_LOGIN_TIP
+                    });
                 }
 
             })

@@ -2,7 +2,6 @@
 .index-footer{
   position: fixed;
   @include remCalc(height,100);
-  //height: 4rem;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -26,18 +25,16 @@
   -ms-flex-negative: 1;
   flex-shrink: 1;
   @include remCalc(height,100);
-  @include remCalc(line-height,100);
-  //height: 4rem;
   box-sizing: border-box;
-  //line-height: 4rem;
   text-align: center;
   @include fontDpr(12px);
-  //font-size: 14px;
-  color: #fff;
+  color: $white;
 }
 .index-footer ul li i{
   @include fontDpr(16px);
   vertical-align: middle;
+  display: block;
+  line-height: normal;
 }
 .index-footer ul li a{
   color: $footer-color;
@@ -59,9 +56,10 @@
   background-color: $footer-num-bg;
   color: $footer-num-color;
   left: 50%;
-  @include remCalc(margin-left,-25);
+  @include remCalc(margin-left,3);
   //margin-left: -1.1rem;
-  @include remCalc(top,15);
+  top:0;
+  //@include remCalc(top,15);
   //top: .6rem;
   @include fontDpr(12px);
   //font-size: 12px;

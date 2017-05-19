@@ -1,0 +1,51 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/app/common/common.scss";
+body{
+  background-color: $white;
+  @include remCalc(padding-bottom,180);
+  //padding-bottom: 6rem;
+}
+section{
+  @include remCalc(padding,30);
+  @include fontDpr(14px);
+  background-color: $white;
+}
+.warrant-box{
+  text-align: center;
+  position: relative;
+  @include remCalc(padding,30 0);
+}
+
+
+.warrant-btn {
+  display: block;
+  text-decoration: none;
+  box-sizing: border-box;
+  border: 1px solid $base-btn-color;
+  border-radius: 4px;
+  @include remCalc(width,500);
+  @include remCalc(height,80);
+  @include remCalc(line-height,80);
+  @include fontDpr(14px);
+  margin:0 auto;
+}
+
+.warrant-btn-order {
+  @include remCalc(margin-top,54);
+  color:$base-btn-color;
+}
+.warrant-btn-evidence {
+  @include remCalc(margin-top,54);
+  background: $base-btn-color;
+  color:$white;
+}
+
+.warrant-logo i{
+  @include fontDpr(80px);
+  color:$base-btn-color;
+}
+.warrant-tip{
+  @include fontDpr(12px);
+  line-height: 1.4;
+}

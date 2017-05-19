@@ -1,0 +1,47 @@
+.share-dialog-box{
+  @include fontDpr(14px);
+  //font-size: 14px;
+}
+.share-info{
+  background-color: #f5f5f5;
+  @include remCalc(padding,30);
+  //padding:1rem 2rem;
+  color: $gray-color;
+  word-break: break-word;
+  //margin: -1rem -1rem 0;
+}
+.share-explain{
+  @include remCalc(padding,30);
+  //padding: 1rem;
+  color: $txt-color;
+  @include remCalc(margin-top,-30);
+}
+.share-operate a{
+  float: left;
+  width: 33.333%;
+  text-align: center;
+}
+.share-operate .iconfont{
+  display: inline-block;
+  font-size: 50px;
+  @include remCalc(height,150);
+}
+.share-operate a p{
+  color: $txt-color;
+  @include fontDpr(12px);
+  //font-size: 12px;
+}
+.icon-share-line {
+  color: #7EDB5C;
+}
+.icon-share-whatsapp {
+  color: #6ED65B;
+}
+.icon-share-bbm {
+  color: #38A6D7;
+}
+.share-dialog-title{
+  //font-size: 18px;
+  @include fontDpr(18px);
+  text-align: center;
+}
