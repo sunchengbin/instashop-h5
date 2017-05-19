@@ -10,6 +10,7 @@ then
     cd ../css
     node compress app
 
+    echo 'sass start compress'
     ./sasscompress.sh default
     ./sasscompress.sh first
     ./sasscompress.sh second
@@ -58,6 +59,7 @@ else
         node compress app
     fi
 
+    echo 'sass start compress'
     ./sasscompress.sh default
     ./sasscompress.sh first
     ./sasscompress.sh second
