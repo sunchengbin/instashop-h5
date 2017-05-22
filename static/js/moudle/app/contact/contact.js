@@ -85,6 +85,11 @@ define(['common','base','btn','lang','fastclick'],function(Common,Base,Btn,Lang,
                 +'<a href="javascript:;" spm-auto="联系卖家line" spm-click="go-line" class="j_goto_line">'+Lang.H5_LINE_CONTACT_ME+'</a>'
                 +'</li>';
             }
+            if(data.whatsapp){
+                _htm += '<li class="j_logistics_li b-bottom">'
+                    +'<a href="'+data.whatsapp+'" spm-auto="联系卖家whatsapp" spm-click="go-whatsapp">'+Lang.H5_LINE_CONTACT_ME+'</a>'
+                    +'</li>';
+            }
             if(data.tel){
                 _htm +='<li class="j_logistics_li b-bottom">'
                     +'<a spm-auto="给卖家打电话" spm-click="go-tel" href="tel:'+data.tel+'">'+Lang.H5_CALL_TELEPHONE+'</a>'

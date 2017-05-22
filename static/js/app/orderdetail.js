@@ -42,18 +42,11 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                 _this.contact = Contact({
                     data: {
                         tel: !init_data.order.shop_info.line_url && !init_data.order.shop_info.phone ? '' : init_data.order.shop_info.phone,
-                        line: init_data.order.shop_info.line_url
+                        line: init_data.order.shop_info.line_url,
+                        whatsapp:init_data.order.shop_info.whatsapp
                     },
-                    lang: Lang
-                });
-                $('body').on('click', '.j_show_contact', function () {
-                    _this.contact.createHtm({
-                        data: {
-                            tel: !init_data.order.shop_info.line_url && !init_data.order.shop_info.phone ? '' : init_data.order.shop_info.phone,
-                            line: init_data.order.shop_info.line_url
-                        },
-                        lang: Lang
-                    }).toShow();
+                    lang: Lang,
+                    btn:'.j_show_contact'
                 });
 
             }

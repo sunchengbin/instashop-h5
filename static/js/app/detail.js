@@ -11,6 +11,21 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             var _this = this,
                 _cart_num = Cart().getCartNum();
             if (init_data && init_data.code == 200) {
+
+                if ($('.j_show_contact').length) {
+                    var _contact_data = {
+                        tel: init_data.item.shop.phone,
+                        line: init_data.item.shop.line_url,
+                        whatsapp:init_data.item.shop.whatsapp
+                    };
+                    _this.contact = Contact({
+                        data: _contact_data,
+                        btn:'.j_show_contact',
+                        lang: Lang
+                    });
+
+                }
+
                 if (_cart_num != 0) {
                     $('.j_cart_wraper').append('<span class="cart-num">' + _cart_num + '</span>');
                 }
@@ -29,18 +44,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                                 data: execAfterData||init_data,
                                 noStockCallback: function () {
                                     if ($('.j_show_contact').length) {
-                                        _this.contact = Contact({
-                                            data: {
-                                                tel: init_data.item.shop.phone,
-                                                line: init_data.item.shop.line_url
-                                            },
-                                            lang: Lang
-                                        });
-                                        _this.contact.createHtm({
-                                            data: {
-                                                tel: init_data.item.shop.phone,
-                                                line: init_data.item.shop.line_url
-                                            },
+                                        _this.contact && _this.contact.createHtm({
+                                            data: _contact_data,
                                             lang: Lang
                                         }).toShow();
                                     } else {
@@ -54,18 +59,8 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                                 data: execAfterData,
                                 noStockCallback: function () {
                                     if ($('.j_show_contact').length) {
-                                        _this.contact = Contact({
-                                            data: {
-                                                tel: init_data.item.shop.phone,
-                                                line: init_data.item.shop.line_url
-                                            },
-                                            lang: Lang
-                                        });
-                                        _this.contact.createHtm({
-                                            data: {
-                                                tel: init_data.item.shop.phone,
-                                                line: init_data.item.shop.line_url
-                                            },
+                                        _this.contact && _this.contact.createHtm({
+                                            data: _contact_data,
                                             lang: Lang
                                         }).toShow();
                                     } else {
@@ -95,6 +90,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
 
         },
         handleFn: function () {
+            var _this = this;
             if ($('[data-time]').length) {
                 Item.changeTime();
             }
@@ -222,25 +218,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     coupon_url: Config.host.host + 'b/' + _coupon_id
                 });
             });
-            var _this = this;
-            if ($('.j_show_contact').length) {
-                _this.contact = Contact({
-                    data: {
-                        tel: init_data.item.shop.phone,
-                        line: init_data.item.shop.line_url
-                    },
-                    lang: Lang
-                });
-                $('body').on('click', '.j_show_contact', function () {
-                    _this.contact.createHtm({
-                        data: {
-                            tel: init_data.item.shop.phone,
-                            line: init_data.item.shop.line_url
-                        },
-                        lang: Lang
-                    }).toShow();
-                });
-            }
             $('body').on('click', '.j_goto_line', function () {
                 location.href = init_data.item.shop.line_url;
             })

@@ -630,18 +630,11 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 _this.contact = Contact({
                     data: {
                         tel: !init_data.shop.line_url && !init_data.shop.phone ? '' : init_data.shop.phone,
-                        line: init_data.shop.line_url
+                        line: init_data.shop.line_url,
+                        whatsapp:init_data.shop.whatsapp
                     },
-                    lang: Lang
-                });
-                $('body').on('click', '.j_show_contact', function () {
-                    _this.contact.createHtm({
-                        data: {
-                            tel: !init_data.shop.line_url && !init_data.shop.phone ? '' : init_data.shop.phone,
-                            line: init_data.shop.line_url
-                        },
-                        lang: Lang
-                    }).toShow();
+                    lang: Lang,
+                    btn:'.j_show_contact'
                 });
             }
             //修正因标签属性href有值的问题导致被追加spider参数 line中user not find的问题
