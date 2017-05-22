@@ -226,3 +226,8 @@ section{
 .checked-btn{
     color: #43CB9C;
 }
+/*没有上传商品*/
+.no_item{
+    padding: 3rem 1rem;
+    text-align: center;
+}

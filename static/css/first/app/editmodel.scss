@@ -166,3 +166,8 @@ section{
 .item-default-title{
   @include remCalc(padding-top,30);
 }
+/*没有上传商品*/
+.no_item{
+  @include remCalc(padding,100 30);
+  text-align: center;
+}
