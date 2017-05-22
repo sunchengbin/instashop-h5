@@ -318,7 +318,8 @@ function initPhpCss($css_name,$folder){
 }
 //方便调试统一修改皮肤
 function getTestSkin(){
-    return null;
+    $debug_skin = $_REQUEST['debug_skin'];
+    return $debug_skin;
     //return 'first';
     //return 'second';
 }
