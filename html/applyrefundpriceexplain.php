@@ -98,6 +98,9 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         }
         img{
             background-color:#f5f5f5;
+            margin-bottom:20px;
+            min-height:200px;
+            background-color:#f5f5f5;
         }
         .content{
             font-size:14px;
@@ -169,7 +172,10 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             padding-left: 2rem;
             color: #666;
         }
-
+        .content-ul li{
+            list-style-position:outside;
+            margin-left:15px;
+        }
     </style>
 </head>
 <body>
@@ -183,29 +189,70 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         <h1 id="first-type">Syarat Pengajuan Pengembalian Dana</h1>
         <ul>
             <li>
-               Melampirkan bukti d alasan kuat atas permintaan pengembalian dana tersebut. Isi deskripsi selengkap mungkin dan lampirkan gambar / foto jelas dari produk untuk dijadikan bahan pertimbangan penjual dan tim CS Instashop .
+               Melampirkan bukti dan alasan kuat atas permintaan pengembalian dana tersebut. Isi deskripsi selengkap mungkin dan lampirkan gambar / foto jelas dari produk untuk dijadikan bahan pertimbangan penjual dan tim CS Instashop.
             </li>
-            <li><strong>Jika produk belum dikirim oleh penjual (status: Menunggu Pengiriman)</strong>, maka jumlah maksimal dana yang dapat dikembalikan adalah senilai <strong>total harga pesanan (harga produk + ongkos kirim)</strong>.</li>
-            <li><strong>Jika produk sudah dikirim oleh penjual (status: Sudah Dikirim)</strong>, maka jumlah maksimal dana yang dapat dikembalikan hanya <strong>senilai harga produk</strong>, tidak termasuk ongkos kirim.</li>
+            <li><strong>Jika produk belum dikirim oleh penjual (status: Menunggu Pengiriman)</strong>, maka jumlah maksimal dana yang dapat dikembalikan adalah senilai <strong>total harga pesanan (harga produk + ongkos kirim)</strong></li>
+            <li><strong>Jika produk sudah dikirim oleh penjual (status: Sudah Dikirim)</strong>, maka jumlah maksimal dana yang dapat dikembalikan hanya <strong>senilai harga produk,</strong> tidak termasuk ongkos kirim</li>
             <li>Status Pengembalian Dana akan diperbaharui di halaman web ini.</li>
             <li>Penjual dapat menentukan untuk menerima atau menolak pengembalian dana. Jika pengembalian dana ditolak oleh penjual, tim CS Instashop akan membantu proses mediasi antara kamu dan penjual.</li>
         </ul>
         <h1 id="second-type">Bagaimana Alur Pengembalian Dana?</h1>
         <div>
-            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_all.png">
-            <p>1. Pembeli dapat mengajukan pengembalian dana setelah pembayaran terkonfirmasi.</p>
-            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_one.jpeg">
-            <p>2. Penjual dapat memilih untuk menerima atau menolak pengajuan pengembalian dana.</p>
-            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_two.jpeg">
-            <p>3. Jika pengajuan pengembalian dana ditolak, maka tim CS Instashop akan menghubungi pembeli dan penjual untuk melakukan mediasi. </p>
-            <p>Setelah mediasi mencapai kesepakatan, maka tim CS kami akan memproses pengembalian dana / pencairan dana sesuai hasil mediasi.</p>
-            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_three.jpeg">
-            <p>4. Pencairan dana diajukan ke bank. Dana akan sampai ke rekening dalam 2 (dua) hari kerja.</p>
-            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_four.jpeg">
-            <p>5. Transaksi Selesai.</p>
-            <img src="<?=STATIC_HOST?>/images/refundexplain/refund_process_five.jpeg">
+            <img data-img="<?=STATIC_HOST?>/images/refundexplain/11.png">
+            <p>1. Pembeli dapat mengajukan pengembalian dana setelah pembayaran terkonfirmasi:</p>
+            <ul class="content-ul">
+                <li>
+                    <p>Pembeli dapat klik tombol <strong>“Pengembalian Dana”</strong> untuk mengajukan permintaan pengembalian dana</p>
+                    <img data-img="<?=STATIC_HOST?>/images/refundexplain/12.jpg">
+                </li>
+                <li>
+                    <p>Isi lengkap <strong>jumlah pengembalian dana, alasan jelas pengembalian dana dan foto</strong> untuk memperkuat alasan pengembalian dana (misal: salah warna, produk cacat dll</p>
+                    <img data-img="<?=STATIC_HOST?>/images/refundexplain/13.png">
+                </li>
+                <li>
+                    <p>Isi Nomor Rekening untuk pengembalian dana. Pastikan <strong>nama pemilik rekening</strong> diisi sesuai yang tertera di <strong>buku tabungan</strong></p>
+                    <img data-img="<?=STATIC_HOST?>/images/refundexplain/14.png">
+                </li>
+                <li>
+                    <p>Pengembalian dana berhasil diajukan. Klik <strong>“Cek Status Pengembalian Dana”</strong> untuk melihat perkembangan pengembalian dana. <strong>SIMPAN/BOOKMARK LINK INI</strong> baik-baik ya, jangan sampai hilang!</p>
+                    <img data-img="<?=STATIC_HOST?>/images/refundexplain/15.png">
+                    <img data-img="<?=STATIC_HOST?>/images/refundexplain/16.jpg">
+                </li>
+            </ul>
+        </div>
+        <div>
+            <p>2. Verifikasi Penjual: Penjual dapat menerima atau menolak pengajuan pengembalian dana</p>
+            <ul class="content-ul">
+                <li>
+                    <p>Tampilan jika penjual <strong>menerima</strong> pengembalian dana</p>
+                    <img data-img="<?=STATIC_HOST?>/images/refundexplain/19.jpg">
+                </li>
+                <li>
+                    <p>Tampilan jika penjual <strong>menolak</strong> pengembalian dana</p>
+                    <img data-img="<?=STATIC_HOST?>/images/refundexplain/21.jpg">
+                </li>
+                <li>
+                    <p>Jika <strong>pengajuan pengembalian dana ditolak,</strong> maka tim CS Instashop akan menghubungi pembeli dan penjual untuk melakukan mediasi. </p>
+                </li>
+                <li>
+                    <p>Setelah mediasi mencapai kesepakatan, maka tim CS kami akan memproses pengembalian dana / pencairan dana sesuai hasil mediasi</p>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <p>3. Pencairan dana diajukan ke bank. Dana akan sampai ke rekening dalam 2 (dua) hari kerja</p>
+        </div>
+        <div>
+            <p>4. Transaksi Selesai</p>
         </div>
     </section>
+    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
+    <script src="<?=STATIC_HOST?>/js/base/require-config.js"></script>
+    <script>
+        require(['lazyload'],function(Lazyload){
+            Lazyload();
+        })
+    </script>
     <script>
        document.querySelector('.j_go_back') && document.querySelector('.j_go_back').addEventListener('click',function(){
             history.go(-1);
