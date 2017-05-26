@@ -7,8 +7,9 @@ define([
     'ajax',
     'cache',
     'dialog',
-    'lang'
-], function (Base, Config, Ajax, Cache, Dialog, Lang) {
+    'lang',
+    'cookie'
+], function (Base, Config, Ajax, Cache, Dialog, Lang,Cookie) {
     'use strict';
     var Oauth = {
         checkIsNeedLogin:function(shopData){
@@ -33,12 +34,14 @@ define([
             var reqUrl = Config.host.phpHost + Config.actions.oauth + "?param=" + encodeURIComponent(JSON.stringify(_reqData)) + "&timestamp=" + new Date().getTime()+"&_debug_env="+Debug;
             window.location.href = reqUrl;
         },
+        //退出登录
         signout:function(url){
             var loginInfoFromCache = Cache.getSpace("LoginCache") || new Cache({
                 namespace: "LoginCache",
                 type: "local"
             });
             loginInfoFromCache.remove("loginInfo");
+            Cookie.removeCookie('uss','',0,'/');
             setTimeout(function(){
                 location.href = url;
             },2000)
@@ -71,7 +74,9 @@ define([
             return _htm;
 
         },
+        //判断和获取是否登录
         checkIsLogin: function () {
+            var _time = (new Date()).getTime();
             // 获取回传的用户信息
             var loginInfoFromCallBackPost;
             // 获取存储空间 登录
@@ -98,6 +103,10 @@ define([
                         expire:2592000//30天-2592000
                     }
                     loginInfoFromCache.set("loginInfo", loginInfoFromCallBackPost);
+                    //把uss种到cookie中方便php接口请求中读取到
+                    console.log(loginInfoFromCallBackPost.uss);
+
+                    Cookie.setCookie('uss',loginInfoFromCallBackPost.uss,_time+2592000,'/');
                     return {
                         result: true,
                         info: loginInfoFromCallBackPost
@@ -119,6 +128,7 @@ define([
                         var plantTime = loginInfo.options.plant;
                         if(~~(curDateTime-plantTime)<=~~loginInfo.options.expire){
                             // 本地存储有 返回用户信息
+                            Cookie.setCookie('uss',loginInfo.uss,_time+2592000,'/');
                             return {
                                 result: true,
                                 info: loginInfo
@@ -130,6 +140,7 @@ define([
                         }
                     }else{
                         // 本地存储有 返回用户信息
+                        Cookie.setCookie('uss',loginInfo.uss,_time+2592000,'/');
                         return {
                             result: true,
                             info: loginInfo

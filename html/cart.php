@@ -1,33 +1,27 @@
-<!DOCTYPE html>
 <?php
-include_once( dirname(__FILE__).'/../html/router/common.php');
+    include_once( dirname(__FILE__).'/../html/router/common.php');
+    include_once( dirname(__FILE__).'/../html/router/util.php' );
+    include_once( dirname(__FILE__).'/../html/router/base.php');
+    $smarty = smartyCommon();
+
+    //登录信息
+    $smarty->assign('INDEX_USER_INFO',json_encode($_POST));
+    print_r($_COOKIE['uss']);
+    print_r($_COOKIE['buyer_id']);
+
+    //页面title
+    $smarty->assign('INDEX_TITLE','Keranjangku');
+
+    /*基础的js,css文件名*/
+    $smarty->assign('INDEX_JS_NAME','cartindex');
+    $smarty->assign('INDEX_CSS_NAME','cart');
+
+    //获取购物车商品信息
+    $goods = [];
+    $goods['data'] = [];
+    $goods['hasDistribution'] = true;
+    $smarty->assign('GOODS',$goods);
+
+
+    $smarty->display('cart.tpl');
 ?>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expect" content="0">
-    <?=initPhpCss('cart')?>
-    <script>
-        var user_info = <?php echo json_encode($_POST); ?>;
-    </script>
-
-    <title>Keranjangku</title>
-</head>
-<body data-spider="a5fivmur">
-    <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <?=initPhpJs('cartindex')?>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-78448705-7', 'auto');
-      ga('send', 'pageview');
-      <?=BI_SCRIPT?>
-    </script>
-</body>
-</html>

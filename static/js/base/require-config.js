@@ -17,6 +17,7 @@ require.config({
         slideselect:'moudle/ui/slideselect/slideselect',
         onoff:'moudle/ui/onoff/onoff',
         audio:'moudle/ui/audio/audio',
+        cookie:'moudle/ui/cookie/cookie',
         ajax:"moudle/ui/ajax/ajax",
         common:"moudle/app/common/common",
         buyplug:"moudle/app/buyplug/buyplug",

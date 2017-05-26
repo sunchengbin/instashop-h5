@@ -44,7 +44,14 @@ define(['base'],function(Base){
             getCoupon:'v1/coupon',//领取优惠券
             oauth:'v1/buyer',//登录
             bargain:"v1/bargain",//砍价
-            uploadimg:'instashop/item/pc/addImgs'//上传图片接口
+            uploadimg:'instashop/item/pc/addImgs',//上传图片接口
+            addToCart:'',//添加到购物车
+            getCartNum:'',//获取购物车商品数量
+            delItemFromCart:'',//删除购物车中商品
+            addNewAddress:'',//添加新地址
+            editOldAddress:''//编辑旧地址
+
+
 
         },
         businessCodes:{

@@ -299,7 +299,8 @@ define(['base', 'lang', 'fastclick'], function (base, Lang, Fastclick) {
             opts = $.extend({
                 show_footer: false,
                 show_top: false,
-                width: 0,
+                width: 100,
+                is_cover: true,
                 cover_event: true,
                 body_txt: loadHTM(),
                 wraper_css: {

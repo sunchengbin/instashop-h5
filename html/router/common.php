@@ -273,12 +273,25 @@ function getSkinInfo(){
         $seller_id = getUrlParam('seller_id');
     }
     $skin_path = 'v1/shopsSkin/';
-    $skin_ret = json_decode(get_init_php_data($skin_path, ["seller_id" => $seller_id]), true);
+    $param = [];
+    $param["seller_id"] = $seller_id;
+    $buyer_id = $_COOKIE['buyer_id'];
+    if($buyer_id){
+        $param["buyer_id"] = $buyer_id;
+    }
+    //print_r($_COOKIE['uss']);
+    $skin_ret = json_decode(get_init_php_data($skin_path,$param), true);
 
     $result = [];
+    //print_r($_COOKIE['uss']);
+    //print_r($skin_ret);
     if($skin_ret['code'] == 200){
         $result['skin_name'] = $skin_ret['shop_skin']['name'];
         $result['facebook_id'] = $skin_ret['shop_skin']['facebook_id'];
+        if(!$buyer_id){
+            $domain = get_top_domain($_SERVER['HTTP_HOST']);
+            setcookie('buyer_id', $skin_ret['shop_skin']['buyer_id'], time() + 3650*24*3600, '/', $domain);
+        }
     }else{
         $result['skin_name'] = 'default';
     }
@@ -325,10 +338,12 @@ function getTestSkin(){
     return $debug_skin;
 }
 //初始化smarty或者普通php页面中全局变量的方法
+$COMMON_INFO = getSkinInfo();
 function smartyCommon($folder,$default_css){
+    global $COMMON_INFO;
     require_once(__DIR__.'/../lib/libs/Smarty.class.php');
     $smarty = new Smarty();
-    $common_info = getSkinInfo();
+    $common_info = $COMMON_INFO;
     $folder_name = $common_info['skin_name'];
     $folder_name = $folder?$folder:$folder_name;
     $folder_name = getTestSkin()?getTestSkin():$folder_name;
@@ -372,6 +387,7 @@ function smartyCommon($folder,$default_css){
     return $smarty;
 }
 function setStaticConfig(){
+    global $COMMON_INFO;
     $prompt = is_https() ? 'https:' : 'http:';
     $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
 	$host_ext = C_RUNTIME_ONLINE ? (ENV == 'AWS' ? '-aws' : '') : (ENV == 'AWS' ? '-testaws' : '-test');
@@ -391,7 +407,7 @@ function setStaticConfig(){
     define('BI_SCRIPT', $bi_js);
     define('IS_DEBUG', isDebug());
     define('FLEXIBLE', flexible());
-    $common_info = getSkinInfo();
+    $common_info = $COMMON_INFO;
     $folder_name = $common_info['skin_name'];
     define('SKIN_INFO', $folder_name);
     $folder_name = getTestSkin()?getTestSkin():$folder_name;

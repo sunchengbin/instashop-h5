@@ -11,6 +11,7 @@
         "dialog" : "moudle/ui/dialog/dialog",
         "select" : "moudle/ui/select/select",
         "btn" : "moudle/ui/btn/btn",
+        "cookie" : "moudle/ui/cookie/cookie",
         "lazyload" : "moudle/ui/lazyload/lazyload",
         "slide" : "moudle/ui/slidebanner/slidebanner",
         "config" : "moudle/config/config",

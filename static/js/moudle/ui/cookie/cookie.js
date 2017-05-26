@@ -21,7 +21,7 @@ define(function(){
         setCookie : function(name,value,expires,path,domain,secure){
             var _cookie = name + '=' +value;
             if(expires instanceof Date){
-                _cookie += ';expires=' + expoires;
+                _cookie += ';expires=' + expires;
             }
             if(path){
                 _cookie += ';path=' + path;
