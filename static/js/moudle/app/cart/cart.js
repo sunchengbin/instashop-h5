@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 添加购物车相关
  */
-define(['base', 'lang', 'dialog', 'debug','ajax','config'], function (Base, Lang, Dialog, Debug,Ajax,Config) {
+define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (Base, Lang, Dialog, Debug,Ajax,Config,Cookie) {
     var Cart = function () {};
     Cart.prototype = {
         //把商品加入购物车验证
@@ -47,20 +47,32 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config'], function (Base, Lang
         //加入购物车
         addToCart: function (opts) {
             var _this = this,
-                _shop_id = opts.item.shop.id, //商铺id
-                _item_id = opts.item.id; //商品id
+                _seller_id = opts.item.shop.id, //店铺id
+                _item_id = opts.item.id,//商品id
+                _item_sku_id = opts.sku&&opts.sku.id?opts.sku.id:0,//商品sku_id
+                _num = opts.num,//商品数量
+                _uss = Cookie.getCookie('uss'),//登录的真实账户的uss
+                _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id'); //匿名买家id
+
             var _data = {
                 "edata": {
-
+                    "action": "update",
+                    "is_direct_buy": 0,
+                    "seller_id": _seller_id,
+                    "buyer_id": _buyer_id,
+                    "num": _num,
+                    "item_sku_id": _item_id,
+                    "item_id": _item_sku_id
                 }
             };
+            _uss && (_data.edata.uss = _uss);
             _this._loading = Dialog.loading();
             Ajax.postJsonp({
                 url: Config.actions.addToCart,
                 data: {
                     param: JSON.stringify(_data)
                 },
-                type: 'POST',
+                type: 'PUT',
                 timeout: 30000,
                 success: function (obj) {
                     _this._loading.remove();
@@ -163,7 +175,8 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config'], function (Base, Lang
                 timeout: 30000,
                 success: function (obj) {
                     if(obj.code == 200){
-                        callback && callback();
+
+                        callback && callback(obj.num||1);
                     }else{
                         Dialog.tip({
                             top_txt: '', //可以是html

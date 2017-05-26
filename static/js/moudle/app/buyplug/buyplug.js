@@ -326,9 +326,14 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
         resetNum: function () {
             var _this = this;
             if ($('.j_cart_wraper span').length) {
-                $('.j_cart_wraper span').html(Cart().getCartNum());
+                Cart().getCartNum(function(num){
+                    $('.j_cart_wraper span').html(num);
+                })
+
             } else {
-                $('.j_cart_wraper').prepend('<span class="cart-num">' + Cart().getCartNum() + '</span>');
+                Cart().getCartNum(function(num){
+                    $('.j_cart_wraper').prepend('<span class="cart-num">' + num + '</span>');
+                })
             }
         },
         createHtm: function (info) {

@@ -45,7 +45,7 @@ define(['base'],function(Base){
             oauth:'v1/buyer',//登录
             bargain:"v1/bargain",//砍价
             uploadimg:'instashop/item/pc/addImgs',//上传图片接口
-            addToCart:'',//添加到购物车
+            addToCart:'v1/buyerCart',//添加到购物车
             getCartNum:'',//获取购物车商品数量
             delItemFromCart:'',//删除购物车中商品
             addNewAddress:'',//添加新地址

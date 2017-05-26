@@ -42,6 +42,7 @@ define([
             });
             loginInfoFromCache.remove("loginInfo");
             Cookie.removeCookie('uss','',0,'/');
+            Cookie.removeCookie('uss_buyer_id','',0,'/');
             setTimeout(function(){
                 location.href = url;
             },2000)
@@ -104,9 +105,8 @@ define([
                     }
                     loginInfoFromCache.set("loginInfo", loginInfoFromCallBackPost);
                     //把uss种到cookie中方便php接口请求中读取到
-                    console.log(loginInfoFromCallBackPost.uss);
-
                     Cookie.setCookie('uss',loginInfoFromCallBackPost.uss,_time+2592000,'/');
+                    Cookie.setCookie('uss_buyer_id',loginInfoFromCallBackPost.buyer_id,_time+2592000,'/');
                     return {
                         result: true,
                         info: loginInfoFromCallBackPost

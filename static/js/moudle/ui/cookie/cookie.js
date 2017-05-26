@@ -14,7 +14,7 @@ define(function(){
                 if(_end == -1){
                     _end = cookies.length;
                 }
-                _c_val = decodeURIComponent(_c_name.substring(_index + _c_name.length,_end));
+                _c_val = decodeURIComponent(cookies.substring(_index + _c_name.length,_end));
             }
             return _c_val;
         },
