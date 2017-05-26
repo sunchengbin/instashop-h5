@@ -1,0 +1,63 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/app/common/common.scss";
+@import "../moudle/ui/dialog/dialog.scss";
+@import "../moudle/app/item/item.scss";
+//登录
+@import "../moudle/app/oauth/oauth.scss";
+body {
+  background: $cart-bg;
+}
+.cart-list{
+  @include remCalc(padding,0 30 60);
+}
+.confirm-btn{
+  @include remCalc(margin-top,60);
+}
+.empty-cart{
+  text-align: center;
+  @include fontDpr(16px);
+  @include remCalc(margin-top,60);
+  color: $gray-color;
+}
+.cart-supplier-list {
+  padding:0;
+}
+.cart-supplier-card {
+  background: $cart-bg;
+  color: $txt-color;
+  @include remCalc(padding-bottom,72);
+}
+.cart-supplier-card button {
+  margin: 0 auto;
+  @include remCalc(margin-top,30);
+  width: 100%;
+}
+.cart-supplier-card ul {
+  @include remCalc(padding,0 30);
+}
+.cart-supplier-card .j_del_cart {
+  color: $base-color;
+}
+.cart-supplier-list .j_del_cart {
+  color: $base-color;
+}
+.cart-supplier-header {
+  background: $white;
+  @include remCalc(height,90);
+  @include remCalc(line-height,90);
+  @include remCalc(padding,0 30);
+}
+.cart-supplier-header i {
+  color:$base-color;
+  @include remCalc(margin-right,50);
+}
+.icon-warehourse {
+  @include fontDpr(18px);
+}
+.hide {
+  display: none;
+}
+.no_goods_box {
+  @include remCalc(padding,0 30);
+}

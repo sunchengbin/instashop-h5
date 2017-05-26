@@ -106,9 +106,14 @@ define([
                     }
                     loginInfoFromCache.set("loginInfo", loginInfoFromCallBackPost);
                     //把uss种到cookie中方便php接口请求中读取到
-                    Cookie.setCookie('uss',loginInfoFromCallBackPost.uss,_time+2592000,'/');
-                    Cookie.setCookie('uss_buyer_id',loginInfoFromCallBackPost.buyer_id,_time+2592000,'/');
-                    _this.mergeBuyerAndUssBuyer(Cookie.getCookie('buyer_id'),loginInfoFromCallBackPost.buyer_id,loginInfoFromCallBackPost.uss);
+                    //第一次登录,或者换账号登录
+                    if(!Cookie.getCookie('uss') || (Cookie.getCookie('uss') && Cookie.getCookie('uss') != loginInfoFromCallBackPost.uss)){
+                        Cookie.setCookie('uss',loginInfoFromCallBackPost.uss,_time+2592000,'/');
+                        Cookie.setCookie('uss_buyer_id',loginInfoFromCallBackPost.buyer_id,_time+2592000,'/');
+                    }
+                    if(Cookie.getCookie('uss')){
+                        _this.mergeBuyerAndUssBuyer(Cookie.getCookie('buyer_id'),loginInfoFromCallBackPost.buyer_id,loginInfoFromCallBackPost.uss);
+                    }
                     return {
                         result: true,
                         info: loginInfoFromCallBackPost
