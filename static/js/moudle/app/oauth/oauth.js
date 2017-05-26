@@ -77,7 +77,8 @@ define([
         },
         //判断和获取是否登录
         checkIsLogin: function () {
-            var _time = (new Date()).getTime();
+            var _time = (new Date()).getTime(),
+                _this = this;
             // 获取回传的用户信息
             var loginInfoFromCallBackPost;
             // 获取存储空间 登录
@@ -107,6 +108,7 @@ define([
                     //把uss种到cookie中方便php接口请求中读取到
                     Cookie.setCookie('uss',loginInfoFromCallBackPost.uss,_time+2592000,'/');
                     Cookie.setCookie('uss_buyer_id',loginInfoFromCallBackPost.buyer_id,_time+2592000,'/');
+                    _this.mergeBuyerAndUssBuyer(Cookie.getCookie('buyer_id'),loginInfoFromCallBackPost.buyer_id,loginInfoFromCallBackPost.uss);
                     return {
                         result: true,
                         info: loginInfoFromCallBackPost
@@ -149,6 +151,33 @@ define([
                     
                 }
             }
+        },
+        //合并匿名用户和登录用户信息合并
+        mergeBuyerAndUssBuyer : function(buyer_id,uss_buyer_id,uss){
+            var _this = this;
+            var _data = {
+                "edata": {
+
+                }
+            };
+            Ajax.postJsonp({
+                url: Config.actions.mergeBuyerAndUssBuyer,
+                data: {
+                    param: JSON.stringify(_data)
+                },
+                type: 'PUT',
+                timeout: 30000,
+                success: function (obj) {
+                    if(obj.code == 200){
+
+                    }else{
+
+                    }
+                },
+                error: function (error) {
+
+                }
+            });
         }
     }
     return Oauth;
