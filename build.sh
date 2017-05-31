@@ -10,6 +10,11 @@ then
     cd ../css
     node compress app
 
+    echo 'sass start compress'
+    ./sasscompress.sh default
+    ./sasscompress.sh first
+    ./sasscompress.sh second
+
     echo 'change timestamp'
     cd ../../
     node js-version html
@@ -53,5 +58,11 @@ else
     else
         node compress app
     fi
+
+    echo 'sass start compress'
+    ./sasscompress.sh default
+    ./sasscompress.sh first
+    ./sasscompress.sh second
+
 fi
 echo 'compress end'

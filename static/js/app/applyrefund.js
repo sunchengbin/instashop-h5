@@ -33,17 +33,17 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
          //android机型键盘收缩
          Common.listenAndroidKeyboardToggle(function(){
              //alert(1);
-             $('.j_dialog_cover').css('bottom',0);
+             //$('.j_dialog_cover').css('bottom',0);
              Common.ScorllToBottom();
              setTimeout(function(){
-                 $('.j_dialog_cover').css('bottom',0);
+                 _this.resetDialogPosition();
              },100);
          },function(){
              //alert(2);
-             $('.j_dialog_cover').css('bottom',0);
+             //$('.j_dialog_cover').css('bottom',0);
              Common.ScorllToBottom();
              setTimeout(function(){
-                 $('.j_dialog_cover').css('bottom',0);
+                 _this.resetDialogPosition();
              },100);
          });
          $('body').on('click','.j_del_img',function(){
@@ -151,6 +151,34 @@ require(['hbs','uploadimg','config','lang','fastclick','dialog','btn','ajax','ba
                      return null;
                  }
              }
+         });
+     },
+     resetDialogPosition : function(){
+         var _sco_top = $(window).scrollTop(),
+             _sco_left = $(window).scrollLeft(),
+             _win_w = $(window).width(),
+             _win_h = $(window).height(),
+             _d_w = 300,
+             _wraper = $('.j_dialog_wraper'),
+             _d_h = _wraper.height(),
+             _top = 0,
+             _left = 0;
+         if (_d_h >= _win_h) {
+             _wraper.find('.j_d_body').css('maxHeight', (_win_h));
+             _top = 20 + _sco_top;
+         } else {
+             _top = (_win_h - _d_h) / 2 + _sco_top;
+         }
+         if (_d_w >= _win_w) {
+             _wraper.find('.j_d_body').css('maxWidth', _d_w);
+             _left = 10 + _sco_left;
+         } else {
+             _left = (_win_w - _d_w) / 2 + _sco_left;
+         }
+         $('.j_dialog_cover').css('height',$(window).height());
+         _wraper.css({
+             top: _top,
+             left: _left
          });
      },
      subRefund : function(_that,_step_one,dom){

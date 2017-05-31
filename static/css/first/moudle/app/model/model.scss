@@ -176,6 +176,9 @@
   @include remCalc(padding-right,56);
   @include fontDpr(14px);
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .nav-img-ul li.nav-img-titile span{
   display: inline-block;
