@@ -223,8 +223,8 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                 _this.config.noStockCallback && _this.config.noStockCallback();
                                 _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
                             },
-                            callback: function () {
-                                _this.addSuccessFn(_is_buy_now, _w_h);
+                            callback: function (num) {
+                                _this.addSuccessFn(_is_buy_now, _w_h,num);
                             }
                         });
                     } else {
@@ -237,8 +237,8 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                 _this.config.noStockCallback && _this.config.noStockCallback();
                                 _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
                             },
-                            callback: function () {
-                                _this.addSuccessFn(_is_buy_now, _w_h);
+                            callback: function (num) {
+                                _this.addSuccessFn(_is_buy_now, _w_h,num);
                             }
                         });
                     }
@@ -281,8 +281,8 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                         _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
                                     },
                                     num: _num,
-                                    callback: function () {
-                                        _this.addSuccessFn(_is_buy_now, _w_h);
+                                    callback: function (num) {
+                                        _this.addSuccessFn(_is_buy_now, _w_h,num);
                                     }
                                 });
                             } else {
@@ -301,8 +301,8 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                         _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
                                     },
                                     num: _num,
-                                    callback: function () {
-                                        _this.addSuccessFn(_is_buy_now, _w_h);
+                                    callback: function (num) {
+                                        _this.addSuccessFn(_is_buy_now, _w_h,num);
                                     }
                                 });
                             }
@@ -312,28 +312,23 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                 }
             });
         },
-        addSuccessFn: function (is_buy_now, wh) {
+        addSuccessFn: function (is_buy_now, wh,num) {
             var _this = this;
             if (is_buy_now == 'true') {
                 Common.saveCartFromUrl(function () {
                     location.href = Config.host.hrefUrl + 'cart.php';
                 });
             } else {
-                _this.resetNum.apply(this);
+                _this.resetNum.call(this,num);
                 _this.toHide(document.querySelector('.j_buy_plug'), wh);
             }
         },
-        resetNum: function () {
-            var _this = this;
+        resetNum: function (num) {
+            num = num > 9?'9+':num;
             if ($('.j_cart_wraper span').length) {
-                Cart().getCartNum(function(num){
-                    $('.j_cart_wraper span').html(num);
-                })
-
+                $('.j_cart_wraper span').html(num);
             } else {
-                Cart().getCartNum(function(num){
-                    $('.j_cart_wraper').prepend('<span class="cart-num">' + num + '</span>');
-                })
+                $('.j_cart_wraper').prepend('<span class="cart-num">' + num + '</span>');
             }
         },
         createHtm: function (info) {

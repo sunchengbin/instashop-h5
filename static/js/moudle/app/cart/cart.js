@@ -53,16 +53,16 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
                 _num = opts.num,//商品数量
                 _uss = Cookie.getCookie('uss'),//登录的真实账户的uss
                 _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id'); //匿名买家id
-
+            console.log(opts.isbuynow);
             var _data = {
                 "edata": {
                     "action": "update",
-                    "is_direct_buy": opts.isbuynow?1:0,//直接购买传1
+                    "is_direct_buy": opts.isbuynow == 'true'?1:0,//直接购买传1
                     "seller_id": _seller_id,
                     "buyer_id": _buyer_id,
                     "num": _num,
-                    "item_sku_id": _item_id,
-                    "item_id": _item_sku_id
+                    "item_id": _item_id,
+                    "item_sku_id": _item_sku_id
                 }
             };
             _uss && (_data.edata.uss = _uss);
@@ -77,8 +77,9 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
                 success: function (obj) {
                     _this._loading.remove();
                     if(obj.code == 200){
+                        var _num = obj.cartNum;
                         _this.addCartAnimate(function () {
-                            opts.callback && opts.callback.apply(_this);
+                            opts.callback && opts.callback.call(_this,_num);
                         }, opts.isbuynow, opts.item.img);
                     }else{
                         Dialog.tip({
