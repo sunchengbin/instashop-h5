@@ -111,7 +111,7 @@ define([
                         Cookie.setCookie('uss',loginInfoFromCallBackPost.uss,_time+2592000,'/');
                         Cookie.setCookie('uss_buyer_id',loginInfoFromCallBackPost.buyer_id,_time+2592000,'/');
                     }
-                    if(Cookie.getCookie('uss')){
+                    if(loginInfoFromCallBackPost.uss){
                         _this.mergeBuyerAndUssBuyer(Cookie.getCookie('buyer_id'),loginInfoFromCallBackPost.buyer_id,loginInfoFromCallBackPost.uss);
                     }
                     return {
@@ -119,6 +119,9 @@ define([
                         info: loginInfoFromCallBackPost
                     }
                 } else {
+                    if(Cookie.getCookie('uss')){
+                        _this.mergeBuyerAndUssBuyer(Cookie.getCookie('buyer_id'),Cookie.getCookie('uss_buyer_id'),Cookie.getCookie('uss'));
+                    }
                     throw new Error("uncheck login");
                 }
             } catch (e) {
@@ -166,6 +169,7 @@ define([
                 return;
             }else{
                 _cart_is_merged[uss_buyer_id] = uss_buyer_id;
+
             }
             var _data = {
                 "edata": {
@@ -184,8 +188,9 @@ define([
                 type: 'PUT',
                 timeout: 30000,
                 success: function (obj) {
+                    console.log(JSON.stringify(_cart_is_merged));
                     if(obj.code == 200){
-                        localStorage.setItem('cartIsMerged',_cart_is_merged);
+                        localStorage.setItem('cartIsMerged',JSON.stringify(_cart_is_merged));
                     }
                 },
                 error: function (error) {
