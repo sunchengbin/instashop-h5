@@ -29,7 +29,7 @@
     $ret = get_init_php_data($path, $params);
     $json = json_decode($ret, true);
     $goods = [];
-    print_r($json);
+    //print_r($json);
     $goods['data'] = $json['buyerCart'];
     $goods['hasDistribution'] = true;
 

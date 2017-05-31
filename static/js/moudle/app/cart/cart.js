@@ -133,7 +133,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
                     "action": "save",
                     "buyer_id": _buyer_id,
                     "delete_items": [id], //要删除的商品。传购物车里面每个商品的购物车id
-                    "edit_items": '',//要修改的商品
+                    "edit_items": [],//要修改的商品
                     "seller_id": JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id
                 }
             };

@@ -13,7 +13,7 @@
                 {/if}
                     <ul>
                         {foreach from=$items item=item}
-                            <li class="clearfix cart-item j_cart_item" data-id="{$item.item_id}">
+                            <li class="clearfix cart-item j_cart_item" data-id="{$item.id}">
                                 <i class="icon iconfont j_del_cart icon-delete-small" group-id="{$key}" data-id="{$item.id}"></i>
                                 <img src="{$item.img_head}">
                                 <div class="">
