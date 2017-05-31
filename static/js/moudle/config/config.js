@@ -45,12 +45,15 @@ define(['base'],function(Base){
             oauth:'v1/buyer',//登录
             bargain:"v1/bargain",//砍价
             uploadimg:'instashop/item/pc/addImgs',//上传图片接口
-            addToCart:'v1/buyerCart',//添加到购物车
-            mergeBuyerAndUssBuyer:'',//
-            getCartNum:'',//获取购物车商品数量
-            delItemFromCart:'',//删除购物车中商品
-            addNewAddress:'',//添加新地址
-            editOldAddress:''//编辑旧地址
+            cartAction:'v1/buyerCart',//购物车相关接口
+            //addToCart:'v1/buyerCart',//添加到购物车
+            //mergeBuyerAndUssBuyer:'v1/buyerCart',//匿名购物车合并到实名用户购物车
+            //getCartNum:'v1/buyerCart',//获取购物车商品数量
+            //delItemFromCart:'v1/buyerCart',//删除购物车中商品
+            addressAction:'v1/receiveAddresses'//地址相关接口
+            //addNewAddress:'v1/receiveAddresses',//添加新地址
+            //editOldAddress:'v1/receiveAddresses/',//编辑旧地址v1/receiveAddresses/7585
+            //delAddress:'v1/receiveAddresses/'
 
 
 

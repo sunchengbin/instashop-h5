@@ -8,8 +8,7 @@
 require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog', 'debug', 'sharecoupon', 'oauth', 'cache', 'bargain'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog, Debug, Sharecoupon, Oauth, Cache, Bargain) {
     var ITEM = {
         init: function () {
-            var _this = this,
-                _cart_num = Cart().getCartNum();
+            var _this = this;
             if (init_data && init_data.code == 200) {
 
                 if ($('.j_show_contact').length) {
@@ -25,10 +24,12 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     });
 
                 }
-
-                if (_cart_num != 0) {
-                    $('.j_cart_wraper').append('<span class="cart-num">' + _cart_num + '</span>');
-                }
+                Cart().getCartNum(function(num){//购物车商品数量
+                    if (num != 0) {
+                        num = num > 9?'9+':num;
+                        $('.j_cart_wraper').append('<span class="cart-num">' + num + '</span>');
+                    }
+                });
                 try {
                     Lazyload();
                     var _slide = Slide.createNew({

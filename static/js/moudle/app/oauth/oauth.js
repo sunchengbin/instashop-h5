@@ -159,14 +159,25 @@ define([
         },
         //合并匿名用户和登录用户信息合并
         mergeBuyerAndUssBuyer : function(buyer_id,uss_buyer_id,uss){
-            var _this = this;
+            var _cart_is_merged = localStorage.getItem('cartIsMerged');
+            _cart_is_merged = _cart_is_merged?JSON.parse(_cart_is_merged):{};
+            if(_cart_is_merged[uss_buyer_id]){
+                console.log('this uss '+uss_buyer_id+' is megred');
+                return;
+            }else{
+                _cart_is_merged[uss_buyer_id] = uss_buyer_id;
+            }
             var _data = {
                 "edata": {
-
+                    "action": "merge",
+                    "buyer_id": uss_buyer_id, //实名登录后的买家id
+                    "from_buyer_id": buyer_id,//匿名的买家id
+                    "seller_id": JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id
                 }
             };
+            uss && (_data.edata.uss = uss);
             Ajax.postJsonp({
-                url: Config.actions.mergeBuyerAndUssBuyer,
+                url: Config.actions.cartAction,
                 data: {
                     param: JSON.stringify(_data)
                 },
@@ -174,9 +185,7 @@ define([
                 timeout: 30000,
                 success: function (obj) {
                     if(obj.code == 200){
-
-                    }else{
-
+                        localStorage.setItem('cartIsMerged',_cart_is_merged);
                     }
                 },
                 error: function (error) {

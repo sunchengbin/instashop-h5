@@ -57,7 +57,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
             var _data = {
                 "edata": {
                     "action": "update",
-                    "is_direct_buy": 0,
+                    "is_direct_buy": opts.isbuynow?1:0,//直接购买传1
                     "seller_id": _seller_id,
                     "buyer_id": _buyer_id,
                     "num": _num,
@@ -68,7 +68,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
             _uss && (_data.edata.uss = _uss);
             _this._loading = Dialog.loading();
             Ajax.postJsonp({
-                url: Config.actions.addToCart,
+                url: Config.actions.cartAction,
                 data: {
                     param: JSON.stringify(_data)
                 },
@@ -125,19 +125,26 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
         },
         //删除商品
         removeItem: function (id, callback) {
-            var _this = this;
+            var _this = this,
+                _uss = Cookie.getCookie('uss'),//登录的真实账户的uss
+                _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id'); //匿名买家id
             var _data = {
                 "edata": {
-
+                    "action": "save",
+                    "buyer_id": _buyer_id,
+                    "delete_items": [id], //要删除的商品。传购物车里面每个商品的购物车id
+                    "edit_items": '',//要修改的商品
+                    "seller_id": JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id
                 }
             };
+            _uss && (_data.edata.uss = _uss);
             _this._loading = Dialog.loading();
             Ajax.postJsonp({
-                url: Config.actions.delItemFromCart,
+                url: Config.actions.cartAction,
                 data: {
                     param: JSON.stringify(_data)
                 },
-                type: 'POST',
+                type: 'PUT',
                 timeout: 30000,
                 success: function (obj) {
                     _this._loading.remove();
@@ -161,34 +168,39 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
         },
         //获取购物车中商品数量
         getCartNum: function (callback) {
+            var _this = this,
+                _uss = Cookie.getCookie('uss'),//登录的真实账户的uss
+                _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id'); //匿名买家id
             var _data = {
                 "edata": {
-
+                    "action":"num",
+                    "buyer_id": _buyer_id,
+                    "seller_id": JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id
                 }
             };
+            _uss && (_data.edata.uss = _uss);
             Ajax.postJsonp({
-                url: Config.actions.getCartNum,
+                url: Config.actions.cartAction,
                 data: {
                     param: JSON.stringify(_data)
                 },
-                type: 'POST',
+                type: 'GET',
                 timeout: 30000,
                 success: function (obj) {
                     if(obj.code == 200){
-
-                        callback && callback(obj.num||1);
+                        callback && callback(obj.cartNum||1);
                     }else{
-                        Dialog.tip({
-                            top_txt: '', //可以是html
-                            body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>'
-                        });
+                        //Dialog.tip({
+                        //    top_txt: '', //可以是html
+                        //    body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>'
+                        //});
                     }
                 },
                 error: function (error) {
-                    Dialog.tip({
-                        top_txt: '', //可以是html
-                        body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>'
-                    });
+                    //Dialog.tip({
+                    //    top_txt: '', //可以是html
+                    //    body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>'
+                    //});
                 }
             });
         }

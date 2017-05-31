@@ -4,48 +4,56 @@
         <i class="icon iconfont j_go_back icon-back-font"></i>
         Keranjangku
     </nav>
-    <section class="cart-list j_cart_list cart-supplier-list" data-spider="btn-box">
+    <section class="cart-list j_cart_list" data-spider="btn-box">
         {if $GOODS.data|count}
-            {if $GOODS.hasDistribution}
-                //有分销商品的
-                {foreach $GOODS.data as $item}
-                    <div class="cart-supplier-card" group-id="40732">
-                        <div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>仓库1</div>
-                        <ul>
-                            <li class="clearfix cart-item j_cart_item" data-id="4036204">
-                                <i class="icon iconfont j_del_cart icon-delete-small" group-id="40732" data-id="4036204"></i>
-                                <img src="https://imghk0.geilicdn.com/test_instashop40732-1459476494049-1.jpg?w=110&amp;h=110&amp;cp=1">
+            {foreach key=key item=items from=$GOODS.data name=goods}
+                {if $GOODS.data|count gt 1}
+                <div class="cart-supplier-card" group-id="{$key}">
+                    <div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>Gudang{$smarty.foreach.goods.index}</div>
+                {/if}
+                    <ul>
+                        {foreach from=$items item=item}
+                            <li class="clearfix cart-item j_cart_item" data-id="{$item.item_id}">
+                                <i class="icon iconfont j_del_cart icon-delete-small" group-id="{$key}" data-id="{$item.id}"></i>
+                                <img src="{$item.img_head}">
                                 <div class="">
                                     <p class="name">{$item.item_name}</p>
-                                    <p class="type">型号: 型号一</p>
-                                    <p class="num">数量: {$item.num}</p>
-                                    <p class="price">价格: Rp {$item.price|priceFormat}</p>
+                                    {if $item.item_sku_id}
+                                        <p class="type">Tipe: {$item.sku_title}</p>
+                                    {else}
+                                        <p class="type"></p>
+                                    {/if}
+                                    <p class="num">Stock: {$item.num}</p>
+                                    {if $item.is_discount and $item.discounting}
+                                        {if $item.discount.price lt 0}
+                                            <div class="price clearfix">
+                                                <span></span>
+                                        {else}
+                                            <div class="price clearfix">
+                                                <span>Harga: Rp {$item.discount.price|priceFormat}</span>
+                                        {/if}
+                                            </div>
+                                    {else}
+                                        {if $item.price lt 0}
+                                            <div class="price clearfix">
+                                                <span></span>
+                                        {else}
+                                            <div class="price clearfix">
+                                                <span>Harga: Rp {$item.price|priceFormat}</span>
+                                        {/if}
+                                            </div>
+                                    {/if}
                                 </div>
                             </li>
-                            <li>
-                                <button class="btn j_submit_btn confirm-btn" group-id="40732">去结算</button>
-                            </li>
-                        </ul>
-                    </div>
-                {/foreach}
-            {else}
-                <ul>
-                    <li class="clearfix cart-item j_cart_item" data-id="4036204">
-                        <i class="icon iconfont j_del_cart icon-delete-small" group-id="40732" data-id="4036204"></i>
-                        <img src="https://imghk0.geilicdn.com/test_instashop40732-1459476494049-1.jpg?w=110&amp;h=110&amp;cp=1">
-                        <div class="">
-                            <p class="name">{$item.item_name}</p>
-                            <p class="type">型号: 型号一</p>
-                            <p class="num">数量: {$item.num}</p>
-                            <p class="price">价格: Rp {$item.price|priceFormat}</p>
-                        </div>
-                    </li>
-                    <li>
-                        <button class="btn j_submit_btn confirm-btn" group-id="">去结算</button>
-                    </li>
-                </ul>
-                //没有分销商品
-            {/if}
+                        {/foreach}
+                        <li>
+                            <button class="btn j_submit_btn confirm-btn" group-id="{$key}">Checkout</button>
+                        </li>
+                    </ul>
+                {if $GOODS.data|count gt 1}
+                </div>
+                {/if}
+            {/foreach}
         {else}
             <ul>
                 <li class="empty-cart">Keranjang belanja Anda kosong</li>
