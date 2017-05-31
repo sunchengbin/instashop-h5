@@ -87,9 +87,9 @@ define(['base'],function(Base){
             };
         }
         return {
-            staticHost : 'staticaws.instashop.co.id',
-            apipHost : 'apipaws.instashop.co.id',
-            apiHost : 'apiaws.instashop.co.id'
+            staticHost : 'static-aws.instashop.co.id',
+            apipHost : 'apip-aws.instashop.co.id',
+            apiHost : 'api-aws.instashop.co.id'
         };
     }
     function setDebugEnv(){
