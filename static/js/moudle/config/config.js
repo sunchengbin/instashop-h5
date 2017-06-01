@@ -57,13 +57,13 @@ define(['base'],function(Base){
         }
     };
     function isAws(){
-        if(/testaws\./g.test(URL_HOST_NAME) || /\.aws\./g.test(URL_HOST_NAME)){
+        if(/\.testaws\./g.test(URL_HOST_NAME) || /\-testaws\./g.test(URL_HOST_NAME) || /\.aws\./g.test(URL_HOST_NAME) || /\-aws\./g.test(URL_HOST_NAME)){
             return true;
         }
         return false;
     }
     function getHongKongHostUrl(){//香港服务器
-        if(/test\.instashop/g.test(URL_HOST_NAME) || /test\./g.test(URL_HOST_NAME)){
+        if(/\.test\.instashop/g.test(URL_HOST_NAME) || /\-test\./g.test(URL_HOST_NAME)){
             //测试环境
             return {
                 staticHost : 'static-test.instashop.co.id',
@@ -78,7 +78,7 @@ define(['base'],function(Base){
         };
     }
     function getAwsHostUrl(){
-        if(/testaws\.instashop/g.test(URL_HOST_NAME) || /testaws\./g.test(URL_HOST_NAME)){
+        if(/\.testaws\.instashop/g.test(URL_HOST_NAME) || /\-testaws\./g.test(URL_HOST_NAME)){
             //测试环境
             return {
                 staticHost : 'static-testaws.instashop.co.id',
