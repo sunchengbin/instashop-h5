@@ -204,59 +204,10 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
         },
         // 对分库商品添加适配处理
         getItems: function (groupid) {
-            var _carts = this.isGroup ? this.GroupCart : this.carts,
-                _arr = [];
-            if (!_carts) {
-                Dialog.tip({
-                    top_txt: '', //可以是html
-                    body_txt: '<p class="dialog-body-p">' + Lang.H5_SHOPING_NO_GOODS + '?</p>'
-                });
-            } else {
-                var _items;
-                if (this.isGroup) {
-                    _items = _carts.group[groupid];
-                    console.log("是否分组")
-                    console.log(_items)
-                    for (var item in _items) {
-                        if (_items[item].sku) {
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                itemName: _items[item].item.item_name,
-                                itemNum: _items[item].num,
-                                item_sku: _items[item].sku.id,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
-                        } else {
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                itemName: _items[item].item.item_name,
-                                itemNum: _items[item].num,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
-                        }
-                    }
-                } else {
-                    _items = _carts;
-                    for (var item in _items) {
-                        if (_items[item].sku) {
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                itemName: _items[item].item.item_name,
-                                itemNum: _items[item].num,
-                                item_sku: _items[item].sku.id,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
-                        } else {
-                            _arr.push({
-                                itemID: _items[item].item.id,
-                                itemName: _items[item].item.item_name,
-                                itemNum: _items[item].num,
-                                discount_id: (_items[item].item.is_discount ? _items[item].item.discount.id : 0)
-                            });
-                        }
-                    }
-                }
-            }
+            var _arr = [];
+            $('.j_cart_item[group-id="'+groupid+'"]').each(function(i,item){
+                _arr.push($(item).attr('data-id'));
+            });
             return _arr;
         },
         subData: function (groupid) {
@@ -276,11 +227,11 @@ require(['hbs', 'text!views/app/cart.hbs', 'cart', 'dialog', 'ajax', 'config', '
                 }
             };
             Ajax.postJsonp({
-                url: Config.actions.testCart,
+                url: Config.actions.cartAction,
                 data: {
                     param: JSON.stringify(reqData)
                 },
-                type: 'POST',
+                type: 'GET',
                 success: function (obj) {
                     if (obj.code == 200) {
                         if (obj.carts) {

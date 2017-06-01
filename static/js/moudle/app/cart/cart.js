@@ -48,7 +48,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
         addToCart: function (opts) {
             var _this = this,
                 _seller_id = opts.item.shop.id, //店铺id
-                _item_id = opts.item.id,//商品id
+                _item_id = opts.item.id,//商品
                 _item_sku_id = opts.sku&&opts.sku.id?opts.sku.id:0,//商品sku_id
                 _num = opts.num,//商品数量
                 _uss = Cookie.getCookie('uss'),//登录的真实账户的uss
@@ -57,7 +57,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
             var _data = {
                 "edata": {
                     "action": "update",
-                    "is_direct_buy": opts.isbuynow == 'true'?1:0,//直接购买传1
+                    "is_direct_buy": 0,
                     "seller_id": _seller_id,
                     "buyer_id": _buyer_id,
                     "num": _num,

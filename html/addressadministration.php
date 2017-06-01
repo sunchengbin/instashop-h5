@@ -15,7 +15,19 @@
     $smarty->assign('INDEX_CSS_NAME','addressadministration');
 
     //获取地址列表信息
-    $address_list = [];
+
+    $params = [];
+    $uss = $_COOKIE['uss'];
+    if($uss){
+        $params['uss'] = $uss;
+        $params['buyer_id'] = $_COOKIE['uss_buyer_id'];
+    }else{
+        $params['buyer_id'] = $_COOKIE['buyer_id'];
+    }
+    $path = 'v1/receiveAddresses';
+    $ret = get_init_php_data($path, $params);
+    $json = json_decode($ret, true);
+    $address_list = $json['buyer_address']['list'];
     $smarty->assign('ADDRESS_LIST',$address_list);
 
     $smarty->display('addressadministration.tpl');

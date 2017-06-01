@@ -9,11 +9,11 @@
             {foreach key=key item=items from=$GOODS.data name=goods}
                 {if $GOODS.data|count gt 1}
                 <div class="cart-supplier-card" group-id="{$key}">
-                    <div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>Gudang{$smarty.foreach.goods.index}</div>
+                    <div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>Gudang{$smarty.foreach.goods.index + 1}</div>
                 {/if}
                     <ul>
                         {foreach from=$items item=item}
-                            <li class="clearfix cart-item j_cart_item" data-id="{$item.id}">
+                            <li class="clearfix cart-item j_cart_item" group-id="{$key}" data-id="{$item.id}">
                                 <i class="icon iconfont j_del_cart icon-delete-small" group-id="{$key}" data-id="{$item.id}"></i>
                                 <img src="{$item.img_head}">
                                 <div class="">
