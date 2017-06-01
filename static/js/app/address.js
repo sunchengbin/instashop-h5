@@ -5,11 +5,10 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
     var Address = {
         init: function () {
             var _this = this,
-                _data = localStorage.getItem('ShopData'),
-                _address = _data ? JSON.parse(_data).Address : null;
-            var _isGroup = _this.isGroup = Cart().getIsGroup();
-            var _groupid = _this._groupid = Base.others.getUrlPrem("groupid", location.href);
-            var _buyer_id = _this._buyer_id = Base.others.getUrlPrem("buyer_id", location.href) || "";
+                _address = EditAddress ? JSON.parse(EditAddress).address : null;
+            //var _isGroup = _this.isGroup = Cart().getIsGroup();
+            //var _groupid = _this._groupid = Base.others.getUrlPrem("groupid", location.href);
+            //var _buyer_id = _this._buyer_id = Base.others.getUrlPrem("buyer_id", location.href) || "";
             if (!_address) {
                 _address = {
                     "name": "",
@@ -42,12 +41,6 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
             $('body').on('click', '.j_go_back', function () {
                 PaqPush && PaqPush('返回', '');
                 history.back();
-                //var _fromurl = localStorage.getItem('FromUrl');
-                //if(!_fromurl){
-                //    location.href = Config.host.host+'s/'+JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id;
-                //}else{
-                //    location.href = Config.host.hrefUrl+'cart.php';
-                //}
             });
             $('body').on('click', '.j_user_address .act', function () {
                 var _name = $(this).attr('data-name');
@@ -243,7 +236,14 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
             }, function () {
                 Common.ScorllToBottom('.j_street');
             });
-
+            $('body').on('click','.j_set_default',function(){
+                var _dom = $(this);
+                if(_dom.is('.icon-radioed-font')){
+                    _dom.removeClass('icon-radioed-font').attr();
+                }else{
+                    _dom.addClass('icon-radioed-font').attr();
+                }
+            });
         },
         getAddressItems: function () {
             var _this = this,

@@ -189,7 +189,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
                 timeout: 30000,
                 success: function (obj) {
                     if(obj.code == 200){
-                        callback && callback(obj.cartNum||1);
+                        callback && callback(obj.cart_num||1);
                     }else{
                         //Dialog.tip({
                         //    top_txt: '', //可以是html

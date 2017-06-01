@@ -30,7 +30,7 @@
     $json = json_decode($ret, true);
     $goods = [];
     //print_r($json);
-    $goods['data'] = $json['buyerCart'];
+    $goods['data'] = $json['buyer_cart'];
     $goods['hasDistribution'] = true;
 
     $smarty->assign('GOODS',$goods);
