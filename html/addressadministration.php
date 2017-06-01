@@ -8,7 +8,8 @@
     $smarty->assign('INDEX_USER_INFO',json_encode($_POST));
 
     //页面title
-    $smarty->assign('INDEX_TITLE','地址管理');
+    $smarty->assign('INDEX_TITLE','<title>地址管理</title>');
+    $smarty->assign('INDEX_TITLE_STR','地址管理');
 
     /*基础的js,css文件名*/
     $smarty->assign('INDEX_JS_NAME','addressadministration');
@@ -27,8 +28,10 @@
     $path = 'v1/receiveAddresses';
     $ret = get_init_php_data($path, $params);
     $json = json_decode($ret, true);
+    print_r($json);
     $address_list = $json['buyer_address']['list'];
     $smarty->assign('ADDRESS_LIST',$address_list);
+    $smarty->assign('ADDRESS_ID',$_REQUEST['address_id']);
 
     $smarty->display('addressadministration.tpl');
 ?>

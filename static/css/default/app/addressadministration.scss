@@ -1,9 +1,33 @@
 @import "../base/base.scss";
+@import "../base/common/flex.scss";
 @import "../moudle/app/header/header.scss";
 @import "../moudle/app/common/common.scss";
 @import "../moudle/ui/dialog/dialog.scss";
 //登录
 @import "../moudle/app/oauth/oauth.scss";
 body {
-
+  background-color:$cart-bg;
+}
+.handle-btn{
+  position:fixed;
+  left: 0;
+  right:0;
+  bottom:0;
+  display: block;
+  @include remCalc(height,100);
+  @include remCalc(line-height,100);
+  @include fontDpr(16px);
+  text-align: center;
+  color:$base-btn-color;
+  background-color:$white;
+}
+.selected-icon{
+  @include remCalc(width,80);
+  color:$base-color;
+}
+.address-info-box{
+  @include remCalc(padding,30 40 30 30);
+}
+.selected-address .address-info-box{
+  padding-left:0;
 }

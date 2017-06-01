@@ -106,3 +106,7 @@ body .address-list{
 .user-tel input{
     padding-left: 3rem;
 }
+.set-default-box i{
+    color:#43CB9C;
+    font-size:18px;
+}

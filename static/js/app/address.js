@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastclick', 'dialog', 'cart', 'common', 'validator','bargain'], function (Base, Hbs, Addresshtm, City, Config, Lang, Fastclick, Dialog, Cart, Common, Validator,Bargain) {
+require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 'fastclick', 'dialog', 'cart', 'common', 'validator','bargain','ajax','cookie'], function (Base, Hbs, Addresshtm, City, Config, Lang, Fastclick, Dialog, Cart, Common, Validator,Bargain,Ajax,Cookie) {
     var Address = {
         init: function () {
             var _this = this,
@@ -109,7 +109,8 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                     _city = $.trim($('.j_city').html()),
                     _country = $.trim($('.j_country').html()),
                     _street = $.trim($('.j_street').val()),
-                    _post = $.trim($('.j_post').val());
+                    _post = $.trim($('.j_post').val()),
+                    _is_default = $('.j_set_default').is('.icon-radioed-font')?1:0;
                 //update by lanchenghao-https://trello.com/c/BF8TbDWE
                 //信息校验
                 try {
@@ -173,6 +174,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                             "telephone": _telephone,
                             "post": "",
                             "country_code": "62",
+                            "flag":_is_default, //1 为默认地址 ， 0 普通地址
                             "email": "",
                             "address": {
                                 "province": _province, //省
@@ -182,14 +184,9 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                                 "post": _post
                             }
                         };
-                        _data_json.Address = _address;
-                        localStorage.setItem('ShopData', JSON.stringify(_data_json));
-                        setTimeout(function () {
-                            var _data = JSON.parse(localStorage.getItem('ShopData')),
-                                _addr = _country + ',' + _city + ',' + _province;
-                            var _item_str = JSON.stringify(_this.getAddressItems());
-                            location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + _this._groupid + '&buyer_id=' + _this._buyer_id + '&items=' + encodeURIComponent(_item_str);
-                        }, 0);
+                        _this.saveAddress(_address,function(address_id){
+                            location.href = Config.host.hrefUrl + 'orderconfirm.php?address_id='+address_id+'&select_items='+Base.others.getUrlPrem('select_items');
+                        });
                     })) {
                     PaqPush && PaqPush('取消保存', '');
                     var _address = {
@@ -198,6 +195,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                         "post": "",
                         "country_code": "62",
                         "email": "",
+                        "flag":_is_default, //1 为默认地址 ， 0 普通地址
                         "address": {
                             "province": _province, //省
                             "city": _city, //市
@@ -206,14 +204,9 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                             "post": _post
                         }
                     };
-                    _data_json.Address = _address;
-                    localStorage.setItem('ShopData', JSON.stringify(_data_json));
-                    setTimeout(function () {
-                        var _data = JSON.parse(localStorage.getItem('ShopData')),
-                            _addr = _country + ',' + _city + ',' + _province;
-                        var _item_str = JSON.stringify(_this.getAddressItems());
-                        location.href = Config.host.hrefUrl + 'orderconfirm.php?seller_id=' + _data.ShopInfo.id + '&addr=' + encodeURIComponent(_addr) + '&groupid=' + _this._groupid + '&buyer_id=' + _this._buyer_id + '&items=' + encodeURIComponent(_item_str);
-                    }, 0);
+                    _this.saveAddress(_address,function(address_id){
+                        location.href = Config.host.hrefUrl + 'orderconfirm.php?address_id='+address_id+'&select_items='+Base.others.getUrlPrem('select_items');
+                    });
                 }
 
             });
@@ -242,6 +235,49 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                     _dom.removeClass('icon-radioed-font').attr();
                 }else{
                     _dom.addClass('icon-radioed-font').attr();
+                }
+            });
+        },
+        saveAddress : function(address_info,callback){
+            var _address_id = Base.others.getUrlPrem('address_id'),
+                _action_url = _address_id?Config.actions.addressAction+'/'+_address_id:Config.actions.addressAction;
+            var _this = this,
+                _uss = Cookie.getCookie('uss'),//登录的真实账户的uss
+                _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id'); //匿名买家id
+            var _data = {
+                "edata": address_info
+            };
+            _data.edata.buyer_id = _buyer_id;
+            _uss && (_data.edata.uss = _uss);
+            _this._loading = Dialog.loading();
+            Ajax.postJsonp({
+                url: _action_url,
+                data: {
+                    param: JSON.stringify(_data)
+                },
+                type: _address_id?'PUT':'POST',
+                timeout: 30000,
+                success: function (obj) {
+                    _this._loading.remove();
+                    if(obj.code == 200){
+                        console.log(obj);
+                        callback && callback(obj.buyer_address.id);
+                    }else{
+                        Dialog.tip({
+                            top_txt: '', //可以是html
+                            body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>'
+                        });
+                    }
+                },
+                error: function (error) {
+                    _this._loading.remove();
+                    Dialog.tip({
+                        top_txt: '', //可以是html
+                        body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
+                        auto_fn: function () {
+                            this.remove();
+                        }
+                    });
                 }
             });
         },
