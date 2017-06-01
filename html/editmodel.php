@@ -9,7 +9,6 @@
     }else{
         $smarty = smartyCommon($skin);
     }
-    $smarty = smartyCommon($skin);
     /*获取model页面的数据*/
 
     $params = getSellerInfo();
