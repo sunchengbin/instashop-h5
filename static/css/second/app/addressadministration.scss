@@ -5,7 +5,6 @@
 @import "../moudle/ui/dialog/dialog.scss";
 //登录
 @import "../moudle/app/oauth/oauth.scss";
-$explain-color:#70CAFE;
 body {
   background-color:$cart-bg;
   @include remCalc(padding-bottom,100);
@@ -36,7 +35,7 @@ body {
   padding-left:0;
 }
 .icon-phone-font,.icon-address-font{
-  color:$explain-color;
+  color:$base-color;
   @include remCalc(margin-right,15);
 }
 .flag-address{

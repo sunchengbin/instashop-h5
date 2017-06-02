@@ -18,7 +18,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
             error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
             ini_set('display_errors', 0);
             $address_id = $_REQUEST['address_id'];
-            $ret = 'null';
+            $ret = '';
             if($address_id){
                 $params = [];
                 $uss = $_COOKIE['uss'];
@@ -28,11 +28,12 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
                 }else{
                     $params['buyer_id'] = $_COOKIE['buyer_id'];
                 }
+                $params['address_id'] = $address_id;
                 $path = 'v1/receiveAddresses/'.$address_id;
                 $ret = get_init_php_data($path, $params);
             }
         ?>
-        var EditAddress = <?php echo $ret; ?>;
+        var EditAddress = '<?php echo $ret; ?>';
     </script>
 </head>
 <body data-spider="oxv83yea">

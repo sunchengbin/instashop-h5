@@ -25,11 +25,11 @@
     }else{
         $params['buyer_id'] = $_COOKIE['buyer_id'];
     }
+    $params['opt'] = 'cart';
     $path = 'v1/buyerCart/';
     $ret = get_init_php_data($path, $params);
     $json = json_decode($ret, true);
     $goods = [];
-    //print_r($json);
     $goods['data'] = $json['buyer_cart'];
     $goods['hasDistribution'] = true;
 

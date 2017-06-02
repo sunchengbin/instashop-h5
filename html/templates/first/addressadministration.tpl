@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="../header.tpl"}
 <body data-spider="">
     <nav class="header-nav clearfix" data-spider="header-nav">
         <i class="icon iconfont j_go_back icon-back-font"></i>
@@ -69,4 +69,4 @@
     <script>
     var user_info = {$INDEX_USER_INFO};
     </script>
-{include file="footer.tpl"}
+{include file="../footer.tpl"}

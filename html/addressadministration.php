@@ -28,7 +28,7 @@
     $path = 'v1/receiveAddresses';
     $ret = get_init_php_data($path, $params);
     $json = json_decode($ret, true);
-    print_r($json);
+    //print_r($json);
     $address_list = $json['buyer_address']['list'];
     $smarty->assign('ADDRESS_LIST',$address_list);
     $smarty->assign('ADDRESS_ID',$_REQUEST['address_id']);

@@ -5,7 +5,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
     var Address = {
         init: function () {
             var _this = this,
-                _address = EditAddress ? JSON.parse(EditAddress).address : null;
+                _address = EditAddress ? JSON.parse(EditAddress).buyer_address : null;
             //var _isGroup = _this.isGroup = Cart().getIsGroup();
             //var _groupid = _this._groupid = Base.others.getUrlPrem("groupid", location.href);
             //var _buyer_id = _this._buyer_id = Base.others.getUrlPrem("buyer_id", location.href) || "";
@@ -172,7 +172,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                         var _address = {
                             "name": _name,
                             "telephone": _telephone,
-                            "post": "",
+                            "post": _post,
                             "country_code": "62",
                             "flag":_is_default, //1 为默认地址 ， 0 普通地址
                             "email": "",
@@ -180,8 +180,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                                 "province": _province, //省
                                 "city": _city, //市
                                 "country": _country, //街道
-                                "street": _street, //详细地址
-                                "post": _post
+                                "street": _street //详细地址
                             }
                         };
                         _this.saveAddress(_address,function(address_id){
@@ -192,7 +191,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                     var _address = {
                         "name": _name,
                         "telephone": _telephone,
-                        "post": "",
+                        "post": _post,
                         "country_code": "62",
                         "email": "",
                         "flag":_is_default, //1 为默认地址 ， 0 普通地址
@@ -200,8 +199,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                             "province": _province, //省
                             "city": _city, //市
                             "country": _country, //街道
-                            "street": _street, //详细地址
-                            "post": _post
+                            "street": _street //详细地址
                         }
                     };
                     _this.saveAddress(_address,function(address_id){
@@ -247,6 +245,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
             var _data = {
                 "edata": address_info
             };
+            _address_id && (_data.edata.address_id = _address_id);
             _data.edata.buyer_id = _buyer_id;
             _uss && (_data.edata.uss = _uss);
             _this._loading = Dialog.loading();

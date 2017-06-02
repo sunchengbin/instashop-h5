@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1493285979230'); /* IE9*/
-  src: url('iconfont.eot?t=1493285979230#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1493285979230') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1493285979230') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1493285979230#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1496377082091'); /* IE9*/
+  src: url('iconfont.eot?t=1496377082091#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1496377082091') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1496377082091') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1496377082091#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -124,4 +124,6 @@
 .icon-applayrefundsuccess:before { content: "\e634"; }
 
 .icon-secured:before { content: "\e635"; }
+
+.icon-edit-address:before { content: "\e636"; }
 
