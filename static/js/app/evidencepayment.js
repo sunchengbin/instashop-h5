@@ -60,7 +60,7 @@ require(['lang','hbs','text!views/app/evidencepayment.hbs','config','fastclick',
                 IndexHtm = '<section class="item-out-stock">'
                     +'<i class="icon iconfont icon-error-font"></i>'
                     +'<p>'+Lang.H5_ERROR+'</p>'
-                    +'<p><a href="javascript:location.reload();" class="btn confirm-btn b-btn">'+Lang.H5_FRESHEN+'</a></p>'
+                    +'<p><a href="javascript:location.reload();" class="btn confirm-btn">'+Lang.H5_FRESHEN+'</a></p>'
                     +'</section>';
                 //IndexHtm = '<div>'+Lang.H5_ERROR+'</div>';
             }

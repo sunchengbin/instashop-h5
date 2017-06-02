@@ -120,7 +120,8 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                     "buyer_id": _buyer_id,
                     "is_direct_buy": 0, //如果是直接购买，则传1。普通情况传0
                     "seller_id": _seller_id,
-                    "select_items": _select_items
+                    "select_items": _select_items,
+                    "opt":'cart,address,price,express'
                 }
             };
             _uss && (_data.edata.uss = _uss);
@@ -134,8 +135,8 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                 success: function (obj) {
                     if (obj.code == 200) {
                         if(_this.testCarts(obj.buyer_cart[groupid])){
-                            if(obj.address && obj.address.id){
-                                location.href = Config.host.hostUrl+'orderconfirm.php?select_items='+JSON.stringify(_select_items)+'&address_id='+obj.address.id;
+                            if(obj.buyer_address && obj.buyer_address.id){
+                                location.href = Config.host.hostUrl+'orderconfirm.php?select_items='+JSON.stringify(_select_items)+'&address_id='+obj.buyer_address.id;
                             }else{
                                 location.href = Config.host.hostUrl+'address.php?select_items='+JSON.stringify(_select_items);
                             }

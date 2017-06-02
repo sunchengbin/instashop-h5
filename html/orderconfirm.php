@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <?php
-include_once( dirname(__FILE__).'/../html/router/common.php');
+    include_once( dirname(__FILE__).'/../html/router/common.php');
+    include_once( dirname(__FILE__).'/../html/router/util.php' );
+    error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+    ini_set('display_errors', 0);
+
+    $params = [];
+    $uss = $_COOKIE['uss'];
+    $params['seller_id'] = $_REQUEST['seller_id'];
+    $params['is_direct_buy'] = 0;
+    if($uss){
+        $params['uss'] = $uss;
+        $params['buyer_id'] = $_COOKIE['uss_buyer_id'];
+    }else{
+        $params['buyer_id'] = $_COOKIE['buyer_id'];
+    }
+    $params['opt'] = 'cart,address,price,express';
+    $params['select_items'] = json_decode($_REQUEST['select_items'], true);
+    $params['is_direct_buy'] = 0;
+    $params['buyer_address_id'] = $_REQUEST['address_id'];
+    $path = 'v1/buyerCart/';
+    $ret = get_init_php_data($path, $params);
+    $json = json_decode($ret, true);
 ?>
 <html lang="en">
 <head>
@@ -13,41 +34,11 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=initPhpCss('orderconfirm')?>
     <title>Order</title>
     <script>
-        <?php
-        include_once( dirname(__FILE__).'/../html/router/util.php' );
-        error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-        ini_set('display_errors', 0);
-
-        $seller_id = $_REQUEST['seller_id'];
-        $supply_shop_id = $_REQUEST['groupid'];
-        $addr = $_REQUEST['addr'];
-        $items = json_decode($_REQUEST['items'],true);
-        $new_addr = $_REQUEST['new_addr'];
-        if ($new_addr) {
-            $addr = $new_addr;
-        }
-        $params = [
-            'action' => 'express_fee',
-            'shop_id' => $seller_id,
-            'items' => $items,
-            'supply_shop_id'=>$supply_shop_id,
-            'receive_addr' => urlencode($addr)
-        ];
-        $path = 'v1/expresses';
-
-        $paramsPrice = [
-            'action' => 'price',
-            'seller_id' => $seller_id,
-            'items' => $items,
-            'buyer_id' => $_REQUEST['buyer_id']
-        ];
-        $pathPrice = 'v1/shopsDiscount';
-        ?>
-        var api_url = '<?php echo check_api($path, $params); ?>';
-        var api_url_price = '<?php echo check_api($pathPrice, $paramsPrice); ?>';
-        var express_data = JSON.parse(<?php echo get_init_data($path, $params); ?>);
-        var price_data = JSON.parse(<?php echo get_init_data($pathPrice, $paramsPrice); ?>);
-        var user_info = <?php echo json_encode($_POST); ?>;
+        var goods_data = <?php echo json_encode($json['buyer_cart']);?>;
+        var address_data = <?php echo json_encode($json['buyer_address']);?>;
+        var express_data = <?php echo json_encode($json['express']);?>;
+        var price_data = <?php echo json_encode($json['price']);?>;
+        var user_info = <?php echo json_encode($_POST);?>;
       </script>
 </head>
 <body data-spider="2cj9l5q4"></body>

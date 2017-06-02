@@ -5,33 +5,32 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
     var OrderConfirmHtm = {
         init: function () {
             var _this = this;
-            var _isGroup = _this.isGroup = Cart().getIsGroup();
-            var _groupid = _this._groupid = Base.others.getUrlPrem("groupid", location.href);
-            var _data = localStorage.getItem('ShopData');
-            var _carts;
+            //结算的商品
+            var _carts = goods_data;
+            _this.carts = _carts;
+            //砍价信息
             _this.bargainCache = Cache.getSpace("BargainCache") || new Cache({
                 namespace: "BargainCache",
                 type: "local"
             });
             _this.submitSwitch = true;
-            if (_isGroup) {
-                _carts = JSON.parse(_data).GroupCart[JSON.parse(_data).ShopInfo.id].group[_groupid];
-            } else {
-                _carts = Cart().getCarts();
-            }
+            //是否包邮
             var _express_free = _this.getExpressFreeType(_carts);
-            _this.carts = _carts;
+
             Debug.log({
                 title: "orderconfim init",
                 data: {
                     _express_free: _express_free,
                     carts: _carts
                 }
-            })
+            });
+            //结算总价
             var _sum = _this.countSum(_carts);
-            var _address = JSON.parse(_data).Address,
-                _htm = Hbs.compile(OrderConfirm)({
-                    data: JSON.parse(_data),
+            //地址信息
+            var _address = address_data;
+            //初始化页面
+            var _htm = Hbs.compile(OrderConfirm)({
+                    data: JSON.parse(localStorage.getItem('ShopData')),
                     carts: _carts,
                     sum: _sum,
                     favorable: (function () {
@@ -70,6 +69,8 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     })()
                 });
             $('body').prepend(_htm);
+
+            //如果不包邮并且存在运费信息,初始化物流选择插件
             if (_express_free == 0 && _this.testExpress(express_data.express_fee_list.list)) {
                 _this.logistics = Logistics({
                     data: express_data.express_fee_list.list,
@@ -77,7 +78,6 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
                     lang: Lang
                 });
             }
-
             // 添加对优惠券处理 -lanchenghao@weidian.com
             // 如果该有商品为砍价商品
             if (!Bargain.checkIsHaveBargainItem(_this.carts)) {
@@ -120,7 +120,7 @@ require(['hbs', 'text!views/app/orderconfirm.hbs', 'cart', 'dialog', 'ajax', 'co
             _this.tradeplug = Tradeplug({
                 insertAfterEl: ".address-box",
                 carts:_carts
-            })
+            });
             _this.handleFn();
         },
         //1免邮 0付费
