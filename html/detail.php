@@ -52,6 +52,9 @@
     $json = json_decode($ret, true);
     $smarty->assign('SHOP_INFO_DATA_STR',$ret);
     $smarty->assign('SHOP_INFO_DATA',$json["shop"]);
+    //获取购物车商品数量
+    $get_cart_num_path = 'v1/buyerCart';
+
 
 
     $smarty->display('detail.tpl');
