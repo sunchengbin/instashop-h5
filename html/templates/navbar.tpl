@@ -15,6 +15,9 @@
         </li>
         {/if}
         <li class="j_cart_wraper b-right" data-url="{$HOST_NAME}/html/cart.php" spm-auto="去购物车" spm-click="go-cart" flex="main:center cross:center">
+            {if $CART_NUM neq 0}
+                <span class="cart-num">{$CART_NUM}</span>
+            {/if}
             <div><i class="icon iconfont icon-i-shop-font"></i> Troli</div>
         </li>
         <li class="b-right" flex="main:center cross:center">

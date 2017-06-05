@@ -24,12 +24,12 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     });
 
                 }
-                Cart().getCartNum(function(num){//购物车商品数量
-                    if (num != 0) {
-                        num = num > 9?'9+':num;
-                        $('.j_cart_wraper').append('<span class="cart-num">' + num + '</span>');
-                    }
-                });
+                //Cart().getCartNum(function(num){//购物车商品数量
+                //    if (num != 0) {
+                //        num = num > 9?'9+':num;
+                //        $('.j_cart_wraper').append('<span class="cart-num">' + num + '</span>');
+                //    }
+                //});
                 try {
                     Lazyload();
                     var _slide = Slide.createNew({

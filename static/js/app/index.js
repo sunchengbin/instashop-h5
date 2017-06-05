@@ -40,12 +40,12 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                 //初始化店铺数据到localStorage
                 Common.initShopInfo(init_data);
                 //显示购物车角标
-                Cart().getCartNum(function(num){
-                    if (num != 0) {
-                        num = num > 9?'9+':num;
-                        $('.j_cart_wraper').append('<span class="cart-num">' + num + '</span>');
-                    }
-                });
+                //Cart().getCartNum(function(num){
+                //    if (num != 0) {
+                //        num = num > 9?'9+':num;
+                //        $('.j_cart_wraper').append('<span class="cart-num">' + num + '</span>');
+                //    }
+                //});
                 //插入模板中的轮播图js初始化
                 if (route_pt == 1 || route_pt == undefined) {
                     _this.initRotateBanner();

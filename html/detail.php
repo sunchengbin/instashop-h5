@@ -54,7 +54,23 @@
     $smarty->assign('SHOP_INFO_DATA',$json["shop"]);
     //获取购物车商品数量
     $get_cart_num_path = 'v1/buyerCart';
+    $cart_params = [];
+    $uss = $_COOKIE['uss'];
+    $cart_params['action'] = 'num';
+    $cart_params['seller_id'] = $_REQUEST['seller_id'];
+    $cart_params['is_direct_buy'] = 0;
+    if($uss){
+        $cart_params['uss'] = $uss;
+        $cart_params['buyer_id'] = $_COOKIE['uss_buyer_id'];
+    }else{
+        $cart_params['buyer_id'] = $_COOKIE['buyer_id'];
+    }
+    $cart_ret = get_init_php_data($get_cart_num_path, $cart_params);
+    $cart_json = json_decode($cart_ret, true);
 
+    $cart_num = $cart_json["cart_num"];
+    $cart_num = $cart_num?($cart_num>9?'9+':$cart_num):0;
+    $smarty->assign('CART_NUM',$cart_num);
 
 
     $smarty->display('detail.tpl');

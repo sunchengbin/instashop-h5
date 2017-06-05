@@ -26,8 +26,11 @@
     </div>
     <div class="fr">
         <button class="j_cart_wraper" data-url="{$HOST_NAME}/html/cart.php">
-                    <i class="icon iconfont icon-cart-font"></i>
-                </button>
+            {if $CART_NUM neq 0}
+                <span class="cart-num">{$CART_NUM}</span>
+            {/if}
+            <i class="icon iconfont icon-cart-font"></i>
+        </button>
         <div class="btn-cover"></div>
     </div>
 </nav>

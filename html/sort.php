@@ -31,8 +31,27 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $path = 'v1/tag/'.$sort_id.'/items';
         $ret = get_init_php_data($path, $params);
         $json = json_decode($ret, true);
+        //购物车商品数量
+        $get_cart_num_path = 'v1/buyerCart';
+        $cart_params = [];
+        $uss = $_COOKIE['uss'];
+        $cart_params['action'] = 'num';
+        $cart_params['seller_id'] = $_REQUEST['seller_id'];
+        $cart_params['is_direct_buy'] = 0;
+        if($uss){
+            $cart_params['uss'] = $uss;
+            $cart_params['buyer_id'] = $_COOKIE['uss_buyer_id'];
+        }else{
+            $cart_params['buyer_id'] = $_COOKIE['buyer_id'];
+        }
+        $cart_ret = get_init_php_data($get_cart_num_path, $cart_params);
+        $cart_json = json_decode($cart_ret, true);
+
+        $cart_num = $cart_json["cart_num"];
+        $cart_num = $cart_num?($cart_num>9?'9+':$cart_num):0;
+
         echo '<title>'.$json['tag']['name'].'</title>';
-        echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
+        echo '<script>var init_data = JSON.parse('.json_encode($ret).');var cart_num = "'.$cart_num.'"</script>';
     ?>
 </head>
 <body data-spider="v4ty5c2x">

@@ -13,7 +13,7 @@ require(['lang','lazyload','hbs','text!views/app/sort.hbs','ajax','config','base
                     name : init_data.tag.name,
                     lang : Lang,
                     hrefUrl : Config.host.hrefUrl,
-                    num : Cart().getCartNum()
+                    num : cart_num
                 });
             }else{
                 SortHtm = '<div>'+Lang.H5_ERROR+'</div>';
