@@ -58,6 +58,9 @@
   @include fontDpr(14px);
   color: $add-buy-color;
 }
+.cart-item .price{
+  color: $base-color;
+}
 .cart-item i{
   float: right;
   @include fontDpr(18px);

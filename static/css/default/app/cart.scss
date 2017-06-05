@@ -9,7 +9,7 @@ body {
   background: $cart-bg;
 }
 .cart-list{
-  @include remCalc(padding,0 30 60);
+  @include remCalc(padding,0 0 30);
 }
 .confirm-btn{
   @include remCalc(margin-top,60);
@@ -19,14 +19,16 @@ body {
   @include fontDpr(16px);
   @include remCalc(margin-top,60);
   color: $gray-color;
+
 }
 .cart-supplier-list {
   padding:0;
 }
 .cart-supplier-card {
-  background: $cart-bg;
+  background-color: $white;
   color: $txt-color;
-  @include remCalc(padding-bottom,72);
+  @include remCalc(padding,0 30 30);
+  @include remCalc(margin-bottom,30);
 }
 .cart-supplier-card button {
   margin: 0 auto;
@@ -37,10 +39,7 @@ body {
   @include remCalc(padding,0 30);
 }
 .cart-supplier-card .j_del_cart {
-  color: $base-color;
-}
-.cart-supplier-list .j_del_cart {
-  color: $base-color;
+  color: $cart-del;
 }
 .cart-supplier-header {
   background: $white;
@@ -49,8 +48,9 @@ body {
   @include remCalc(padding,0 30);
 }
 .cart-supplier-header i {
-  color:$base-color;
-  @include remCalc(margin-right,50);
+  color:$base-btn-color;
+  @include remCalc(margin-right,25);
+  vertical-align:middle;
 }
 .icon-warehourse {
   @include fontDpr(18px);

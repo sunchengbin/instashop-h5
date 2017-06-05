@@ -77,7 +77,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
                 success: function (obj) {
                     _this._loading.remove();
                     if(obj.code == 200){
-                        var _num = obj.cartNum;
+                        var _num = obj.cart_num;
                         _this.addCartAnimate(function () {
                             opts.callback && opts.callback.call(_this,_num);
                         }, opts.isbuynow, opts.item.img);
@@ -189,7 +189,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
                 timeout: 30000,
                 success: function (obj) {
                     if(obj.code == 200){
-                        callback && callback(obj.cart_num||1);
+                        callback && callback(obj.cart_num||0);
                     }else{
                         //Dialog.tip({
                         //    top_txt: '', //可以是html

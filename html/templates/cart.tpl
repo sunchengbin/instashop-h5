@@ -9,7 +9,7 @@
             {foreach key=key item=items from=$GOODS.data name=goods}
                 {if $GOODS.data|count gt 1}
                 <div class="cart-supplier-card" group-id="{$key}">
-                    <div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>Gudang{$smarty.foreach.goods.index + 1}</div>
+                    <div class="cart-supplier-header b-bottom"><i class="iconfont icon-warehourse"></i>Gudang{$smarty.foreach.goods.index + 1}</div>
                 {/if}
                     <ul>
                         {foreach from=$items item=item}

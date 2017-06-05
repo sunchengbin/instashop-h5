@@ -170,11 +170,11 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
             var _error_msgs = [],
                 _beal = true;
             Base.others.each(cart, function (item, j) {
-                if(item.item_status != 1){
-                    _error_msgs.push(item.item_status_msg);
+                if(item.status != 1){
+                    _error_msgs.push(item.status_txt);
                     _beal = false;
                     $('.j_cart_item[data-id="' + item.id + '"] .error-p').remove();
-                    $('.j_cart_item[data-id="' + item.id + '"]').append('<p class="error-p">' + _msg + '</p>');
+                    $('.j_cart_item[data-id="' + item.id + '"]').append('<p class="error-p">' + item.status_txt + '</p>');
                 }
             });
             if (!_beal) {
