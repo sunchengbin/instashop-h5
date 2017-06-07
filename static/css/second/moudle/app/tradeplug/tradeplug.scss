@@ -9,13 +9,14 @@
   @include remCalc(padding,0 30);
   @include remCalc(height,90);
   @include remCalc(line-height,90);
-  color: #4990E2;
 }
 
 .trade-box {
   background: $white;
 }
-
+.trade-tip a{
+  color: #4990E2;
+}
 .trade-box-title {
   position: relative;
   //width: 100%;

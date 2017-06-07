@@ -9,6 +9,9 @@
   @include remCalc(padding,0 30);
   @include remCalc(height,90);
   @include remCalc(line-height,90);
+
+}
+.trade-tip a{
   color: #4990E2;
 }
 
