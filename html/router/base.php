@@ -281,3 +281,12 @@ function checkBargainLegal($data){
         return true;
     }
 }
+function testExpress($list) {
+    $bool = false;
+    foreach($list as $express){
+        if (count($express) > 0) {
+            $bool = true;
+        }
+    }
+    return $bool;
+}

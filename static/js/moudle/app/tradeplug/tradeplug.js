@@ -2,7 +2,7 @@
  * Created by sunchengbin on 16/6/2.
  * 物流插件
  */
-define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oauth', 'dialog','config'], function (Common, Base, Hbs, TradeHtml, Lang, Oauth, Dialog,Config) {
+define(['common', 'base', 'lang', 'oauth', 'dialog','config'], function (Common, Base, Lang, Oauth, Dialog,Config) {
     var TradePlug = function (opts) {
         var _this = this;
         _this.config = $.extend({
@@ -54,9 +54,9 @@ define(['common', 'base', 'hbs', 'text!views/moudle/tradeplug.hbs', 'lang', 'oau
         },
         handelFn: function () {
             var _this = this;
-            this.createHtm({
-                isOpenWarrant: _this.checkShopIsOpenWarrant()
-            });
+            //this.createHtm({
+            //    isOpenWarrant: _this.checkShopIsOpenWarrant()
+            //});
             $("body").on("click", ".j_trade_sel", function () {
                 if (!$(this).hasClass("checkbox-disabled")) {
                     // 选担保交易

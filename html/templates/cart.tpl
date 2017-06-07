@@ -24,7 +24,7 @@
                                         <p class="type"></p>
                                     {/if}
                                     <p class="num">Stock: {$item.num}</p>
-                                    {if $item.is_discount and $item.discounting}
+                                    {if $item.discount}
                                         {if $item.discount.price lt 0}
                                             <div class="price clearfix">
                                                 <span></span>

@@ -529,44 +529,10 @@ define([
     // 检查是否含有砍价活动商品
     Bargain.checkIsHaveBargainItem = function (items) {
         var isHave = false;
-        var _localBargainCache = Cache.getSpace("BargainCache") || new Cache({
-            namespace: "BargainCache",
-            type: "local"
-        });
         if (items) {
             $.each(items, function (key, item) {
-                if (!!item.item.bargain) {
-                    var _localBargainCacheDetail = _localBargainCache.find("remote_bargain_detail");
-                    if (_localBargainCacheDetail) {
-                        if (item.item.bargain.id == _localBargainCacheDetail.id && _localBargainCacheDetail.bargain_result != "0.00") {
-                            if(Bargain.checkIsOverdue(item.item.bargain)){
-                                isHave = false;
-                            }else{
-                                isHave = true;
-                            }
-                            return;
-                        } else {
-                            isHave = false;
-                            return;
-                        }
-                    } else {
-                        // 检查本地的
-                        var _localSelfBargainPrice = _localBargainCache.find("bargain_price_self");
-                        if (_localSelfBargainPrice) {
-                            if (_localSelfBargainPrice[item.item.bargain.id] && _localSelfBargainPrice[item.item.bargain.id].amplitudeSelfPrice != "0") {
-                                isHave = true;
-                                return;
-                            } else {
-                                isHave = false;
-                                return;
-                            }
-                        } else {
-
-                            isHave = false;
-                            return;
-                        }
-                    }
-
+                if(item.discount && item.discount.bargain){
+                    isHave = true;
                 }
             })
         }
