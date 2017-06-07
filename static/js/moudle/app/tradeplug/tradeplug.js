@@ -91,7 +91,7 @@ define(['common', 'base', 'lang', 'oauth', 'dialog','config'], function (Common,
             var _htm = "";
             _htm = '<div style="text-align:center">' +
                 '   <p>' + Lang.TRADE_SUPPORT_NO_TIP + '</p>' +
-                '   <div class="j_btn_confrim_i_know">' + Lang.TRADE_IKNOW + '</div>' +
+                '   <div class="j_btn_confrim_i_know btn">' + Lang.TRADE_IKNOW + '</div>' +
                 '</div>'
             return _htm;
         },
