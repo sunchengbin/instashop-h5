@@ -9,7 +9,7 @@ body {
   background: $cart-bg;
 }
 .cart-list{
-  @include remCalc(padding,0 0 30);
+  @include remCalc(padding,0 30 30);
 }
 .confirm-btn{
   @include remCalc(margin-top,60);

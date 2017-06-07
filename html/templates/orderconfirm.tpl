@@ -57,7 +57,7 @@
     {*物流*}
     {if $DATA.express_free eq 0}
         {*不包邮*}
-        {if $DATA.express_fee_list.list|testExpress}
+        {if $DATA.buyer_cart|count and $DATA.express_fee_list.list|testExpress}
             <div class="logistics-box j_sel_logistics clearfix">
                 Pilih Jenis Paket Pengiriman
                 <div class="fr">
@@ -96,7 +96,7 @@
         </div>
         {if $DATA.express_free eq 0}
             {*不包邮*}
-            {if $DATA.express_fee_list.list|testExpress}
+            {if $DATA.buyer_cart|count and $DATA.express_fee_list.list|testExpress}
                 <button class="btn confirm-btn j_submit_buy">Ajukan Pesanan</button>
             {/if}
         {else}

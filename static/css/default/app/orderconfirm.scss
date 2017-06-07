@@ -80,7 +80,7 @@ body{
 }
 .logistics-box{
   @include fontDpr(14px);
-  @include remCalc(height,95);
+  @include remCalc(min-height,95);
   @include remCalc(line-height,95);
   @include remCalc(padding,0 30);
 }
@@ -109,7 +109,7 @@ body{
   @include remCalc(padding-top,30);
 }
 .order-info p span{
-  color: $base-btn-color;
+  color: $base-color;
 }
 .list-box{
   @include remCalc(padding-bottom,30);

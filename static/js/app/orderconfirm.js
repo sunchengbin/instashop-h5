@@ -59,9 +59,10 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn
             });
             _this.handleFn();
         },
-        transCartInfo:function(){
-            for(var groupid in ConfirmData.buyer_cart){
-               var _carts = ConfirmData.buyer_cart[groupid];
+        transCartInfo:function(data){
+            var _data = data || ConfirmData.buyer_cart;
+            for(var groupid in _data){
+               var _carts = _data[groupid];
             }
             return _carts||null;
         },
@@ -193,29 +194,27 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn
                 timeout: 30000,
                 success: function (obj) {
                     if (obj.code == 200) {
-                        if(_this.testCarts(obj.buyer_cart[''])){
-                            var _post_price = $('.j_logistics_info').attr('data-price'),
-                                _bank_info = JSON.stringify(obj.order.pay_info.banks),
-                                _total = (_post_price && _post_price > 0) ? (Number(_post_price) + Number(_this.countSum(Cart().getCarts()))) : _this.countSum(Cart().getCarts());
-                            localStorage.setItem('OrderTotal', _total);
-                            localStorage.setItem('BankInfo', _bank_info);
+                        if(_this.testCarts(_this.transCartInfo(obj.buyer_cart))){
+                            localStorage.setItem('OrderTotal', obj.order.real_price);
+                            localStorage.setItem('BankInfo', JSON.stringify(obj.order.pay_info.banks));
                             localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
                             _this.goToSuccess(obj);
                         }
                     } else {
-                        if ("server error" == obj.message) {
-                            //todo 遍历商品展示错误
-                        } else {
-                            Dialog.tip({
-                                top_txt: '', //可以是html
-                                body_txt: '<p class="dialog-body-p">' + obj.message + '</p>',
-                                after_fn: function () {
-                                    setTimeout(function () {
-                                        location.href = Config.host.hrefUrl + 'cart.php';
-                                    }, 2000);
-                                }
-                            });
-                        }
+                        //if ("server error" == obj.message) {
+                        //    //todo 遍历商品展示错误
+                        //} else {
+                        //
+                        //}
+                        Dialog.tip({
+                            top_txt: '', //可以是html
+                            body_txt: '<p class="dialog-body-p">' + obj.message + '</p>',
+                            after_fn: function () {
+                                setTimeout(function () {
+                                    location.href = Config.host.hrefUrl + 'cart.php';
+                                }, 2000);
+                            }
+                        });
                     }
                     callback && callback();
                 },
@@ -279,7 +278,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn
             var _data = {
                 "edata": {
                     "address_id": Base.others.getUrlPrem('address_id'),
-                    "select_items":Base.others.getUrlPrem('select_items'),
+                    "select_items":JSON.parse(Base.others.getUrlPrem('select_items')),
                     "note": "",
                     "pay_way": 11,
                     "pay_type": 1,
