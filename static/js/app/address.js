@@ -5,7 +5,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
     var Address = {
         init: function () {
             var _this = this,
-                _address = EditAddress ? JSON.parse(EditAddress).buyer_address : null;
+                _address = EditAddress ? EditAddress.buyer_address : null;
             //var _isGroup = _this.isGroup = Cart().getIsGroup();
             //var _groupid = _this._groupid = Base.others.getUrlPrem("groupid", location.href);
             //var _buyer_id = _this._buyer_id = Base.others.getUrlPrem("buyer_id", location.href) || "";

@@ -10,7 +10,8 @@ define([
     'lang',
     'oauth',
     'sharebargain',
-], function (Base, Config, Ajax, Cache, Dialog, Lang, Oauth, Sharebargain) {
+    'cookie'
+], function (Base, Config, Ajax, Cache, Dialog, Lang, Oauth, Sharebargain,Cookie) {
     'use strict';
     var Bargain = function (opts) {
         var _this = this;
@@ -154,6 +155,33 @@ define([
                 })
             }
         },
+        //匿名用户上传自砍一刀信息
+        bargainBySelf: function (selfBargainPrice,loading, callback) {
+            var _buyer_id = Cookie.getCookie('buyer_id'); //匿名买家id
+            var reqParams = {
+                edata: {
+                    "action": "h5_detail",
+                    "buyer_id": _buyer_id,
+                    "price": selfBargainPrice || 0 //自砍一刀的价格，如果没有自砍，就传0
+                }
+            }
+            var url = Config.host.actionUrl + Config.actions.bargain + "/" + init_data.item.bargain.id + "?param=" + JSON.stringify(reqParams);
+            Ajax.getJsonp(url, function (obj) {
+                if (200 == obj.code) {
+                    callback && callback(obj);
+                }else{
+                    Dialog.tip({
+                        body_txt: obj.message
+                    })
+                }
+                loading.remove();
+            }, function () {
+                loading.remove();
+                Dialog.tip({
+                    body_txt: Lang.H5_ERROR
+                })
+            })
+        },
         // 获取最新的砍价活动详情
         getLastBargainDetail: function (selfBargainPrice, callback) {
             var _this = this;
@@ -237,19 +265,22 @@ define([
                 //弹出 砍了多少钱 dialog
                 PaqPush && PaqPush('砍价-自砍一刀', '');
                 var _amplitude = _this.computeBargainPrice();
+                _this.loading = Dialog.loading();
                 Dialog.dialog({
                     body_txt: _this.createBargainPriceDialogHtm(),
                     show_footer: false,
                     cover_event: true,
                     body_fn: function () {
-                        // 回填自砍一刀的
-                        $(".j_bargain_amplitude_price").text(_amplitude.price_format);
-                        //本地存储这一刀
-                        var _curBargainSelfLocal = {};
-                        _curBargainSelfLocal[init_data.item.bargain.id] = {
-                            amplitudeSelfPrice: _amplitude.price_origin
-                        }
-                        _this.bargainCache.set("bargain_price_self", _curBargainSelfLocal);
+                        _this.bargainBySelf(_amplitude.price_origin,_this.loading,function(){
+                            // 回填自砍一刀的
+                            $(".j_bargain_amplitude_price").text(_amplitude.price_format);
+                            //本地存储这一刀
+                            var _curBargainSelfLocal = {};
+                            _curBargainSelfLocal[init_data.item.bargain.id] = {
+                                amplitudeSelfPrice: _amplitude.price_origin
+                            }
+                            _this.bargainCache.set("bargain_price_self", _curBargainSelfLocal);
+                        });
                     },
                     c_fn: function () {
                         location.reload();

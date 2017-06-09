@@ -33,7 +33,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
                 $ret = get_init_php_data($path, $params);
             }
         ?>
-        var EditAddress = '<?php echo $ret; ?>';
+        var EditAddress = <?php echo $ret; ?>;
     </script>
 </head>
 <body data-spider="oxv83yea">
