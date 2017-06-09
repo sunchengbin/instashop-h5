@@ -874,8 +874,9 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 for (var i in data[item]) {
                     var _cost_day = data[item][i].cost_days ? '(' + data[item][i].cost_days + Lang.H5_DAYS + ')' : '';
                     _htm += '<li class="j_logistics_li"  data-level="' + (data[item][i].level ? data[item][i].level : item) + '" data-id="' + data[item][i].id + '">' +
-                        '<i class="icon iconfont check-btn icon-radio-font" data-company="' + item + '" data-price="' + data[item][i].price + '"  data-level="' + (data[item][i].level ? data[item][i].level : item) + '" data-id="' + data[item][i].id + '"></i>' +
-                        item + (data[item][i].level || _cost_day ? ' ' : '') + data[item][i].level + _cost_day + ': Rp ' + Base.others.priceFormat(data[item][i].price) +
+                        '<i class="icon iconfont check-btn icon-radio-font" data-tax="'+(data[item][i].tax?data[item][i].tax:'0')+'" data-company="' + item + '" data-price="' + data[item][i].price + '"  data-level="' + (data[item][i].level ? data[item][i].level : item) + '" data-id="' + data[item][i].id + '"></i>' +
+                        item + (data[item][i].level || _cost_day ? ' ' : '') + data[item][i].level + _cost_day + ': Rp ' + Base.others.priceFormat(data[item][i].price)
+                        +(data[item][i].tax?' (Pajak: Rp '+data[item][i].tax+')':'')
                         '</li>';
                 }
             }
@@ -1034,7 +1035,8 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
         getTotalNoReduc: function () { //计算总额(出问题的商品价格不算到总额中)
             var _this = this,
                 _sum = 0,
-                _freight = 0;
+                _freight = 0,
+                _tax = 0;
             $('.j_item_num').each(function (i, item) {
                 var _num = Number($(item).val()),
                     _price = Number($(item).attr('data-price') || 0);
@@ -1049,6 +1051,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             });
             if ($('.icon-radioed-font').length) {
                 _freight = Number($('.icon-radioed-font').attr('data-price'));
+                _tax = Number($('.icon-radioed-font').attr('data-tax'));
             }
             Debug.log({
                 title: "getTotalNoReduc-_sum-_freight",
@@ -1059,7 +1062,14 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 }
             })
             var _favorablePrice = $(".j_favorable_price").attr('data-price') || 0;
-            $('.j_total').attr('data-price', Number(_sum + _freight - _favorablePrice)).html('Rp ' + Base.others.priceFormat((_sum + _freight - _favorablePrice)));
+            $('.j_total').attr('data-price', Number(_sum + _freight + _tax - _favorablePrice)).html('Rp ' + Base.others.priceFormat((_sum + _freight+_tax - _favorablePrice)));
+            if(_tax){
+                var _post_parent = $('.j_freight').parent('p');
+                $('<p class="total-p clearfix j_tax"><span class="fr j_tax">Rp '+Base.others.priceFormat(_tax)+'</span>Pajak: </p>').insertAfter(_post_parent);
+            }else{
+                $('.j_tax').remove();
+            }
+
             $('.j_freight').html('Rp ' + Base.others.priceFormat(_freight));
         },
         //满减
@@ -1096,15 +1106,23 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                     }
                     var _items_price = _res.price_info.items_price;
                     var _last_price = _res.price_info.total_price;
-                    var _freight = 0;
+                    var _freight = 0,
+                        _tax = 0;
                     $(".j_reduc_price").html('-Rp ' + Base.others.priceFormat(_items_price - _last_price));
 
                     if ($('.icon-radioed-font').length) {
                         _freight = Number($('.icon-radioed-font').attr('data-price'));
+                        _tax = Number($('.icon-radioed-font').attr('data-tax'));
                     }
                     $('.j_freight').html('Rp ' + Base.others.priceFormat(_freight));
                     var _favorablePrice = $(".j_favorable_price").attr('data-price') || 0;
-                    $('.j_total').attr('data-price', Number(_res.price_info.total_price + _freight - _favorablePrice)).html('Rp ' + Base.others.priceFormat(_res.price_info.total_price + _freight - _favorablePrice));
+                    if(_tax){
+                        var _post_parent = $('.j_freight').parent('p');
+                        $('<p class="total-p clearfix j_tax"><span class="fr ">Rp '+Base.others.priceFormat(_tax)+'</span>Pajak: </p>').insertAfter(_post_parent);
+                    }else{
+                        $('.j_tax').remove();
+                    }
+                    $('.j_total').attr('data-price', Number(_res.price_info.total_price + _freight+_tax - _favorablePrice)).html('Rp ' + Base.others.priceFormat(_res.price_info.total_price + _freight+_tax - _favorablePrice));
                 }
             }, function () {
                 Dialog.alert({
