@@ -11,23 +11,13 @@
                         <p class="type"></p>
                     {/if}
                     <p class="num">Stock: {$item.num}</p>
-                    {if $item.discount}
-                        {if $item.discount.price lt 0}
-                            <p class="price clearfix">
-                        {else}
-                            <p class="price clearfix">
-                                Harga: Rp {$item.discount.price|priceFormat}
-                        {/if}
-                            </p>
+                    {if $item.discount_price lt 0}
+                        <p class="price clearfix">
                     {else}
-                        {if $item.price lt 0}
-                            <p class="price clearfix">
-                        {else}
-                            <p class="price clearfix">
-                                Harga: Rp {$item.price|priceFormat}
-                        {/if}
-                            </p>
+                        <p class="price clearfix">
+                            Harga: Rp {$item.discount_price|priceFormat}
                     {/if}
+                        </p>
                 </div>
             </li>
         {/foreach}

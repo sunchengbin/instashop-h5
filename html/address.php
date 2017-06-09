@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <?php
-include_once( dirname(__FILE__).'/../html/router/common.php');
+    include_once( dirname(__FILE__).'/../html/router/common.php');
+    include_once( dirname(__FILE__).'/../html/router/util.php' );
+    error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+    ini_set('display_errors', 0);
+    $address_id = $_REQUEST['address_id'];
+    $ret = 'null';
+    if($address_id){
+        $params = [];
+        $uss = $_COOKIE['uss'];
+        if($uss){
+            $params['uss'] = $uss;
+            $params['buyer_id'] = $_COOKIE['uss_buyer_id'];
+        }else{
+            $params['buyer_id'] = $_COOKIE['buyer_id'];
+        }
+        $params['address_id'] = $address_id;
+        $path = 'v1/receiveAddresses/'.$address_id;
+        $ret = get_init_php_data($path, $params);
+    }
 ?>
 <html lang="en">
 <head>
@@ -13,27 +31,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <?=initPhpCss('address')?>
     <title>Address</title>
     <script>
-        <?php
-            include_once( dirname(__FILE__).'/../html/router/util.php' );
-            error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-            ini_set('display_errors', 0);
-            $address_id = $_REQUEST['address_id'];
-            $ret = '';
-            if($address_id){
-                $params = [];
-                $uss = $_COOKIE['uss'];
-                if($uss){
-                    $params['uss'] = $uss;
-                    $params['buyer_id'] = $_COOKIE['uss_buyer_id'];
-                }else{
-                    $params['buyer_id'] = $_COOKIE['buyer_id'];
-                }
-                $params['address_id'] = $address_id;
-                $path = 'v1/receiveAddresses/'.$address_id;
-                $ret = get_init_php_data($path, $params);
-            }
-        ?>
-        var EditAddress = <?php echo $ret; ?>;
+        var EditAddress = <?php echo $ret;?>;
     </script>
 </head>
 <body data-spider="oxv83yea">
