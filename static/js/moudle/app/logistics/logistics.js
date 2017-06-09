@@ -42,7 +42,9 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang','fa
                 var _check = $('.checked-btn'),
                     _len = $('.checked-btn').length,
                     _level = _check.attr('data-level'),
-                    _company = _check.attr('data-company');
+                    _company = _check.attr('data-company'),
+                    _price = Number(_check.attr('data-price')),
+                    _tax = Number(_check.attr('data-tax'));
                 if(_len){
                     $('.j_logistics_info').html(_company+' '+_level).attr({
                         'data-id' : _check.attr('data-id'),
@@ -52,9 +54,13 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang','fa
                     _this.toHide(document.querySelector('.j_logistics_plug'),_w_h);
                     //添加对优惠券存在时的处理 -lanchenghao@weidian.com
                     var _favorablePrice = $(".j_favorable_price").attr('data-price')||0;
-                    var _sum = Number(_config.sum)+Number(_check.attr('data-price'))-Number(_favorablePrice);
+                    var _sum = Number(_config.sum)+_price+_tax-Number(_favorablePrice);
                     $('.j_post').attr("data-price",_check.attr('data-price'));
-                    $('.j_post').html('Rp '+Base.others.priceFormat(_check.attr('data-price')));
+                    $('.j_post').html('Rp '+Base.others.priceFormat(_price));
+                    if(_tax){
+                        var _post_parent = $('.j_post').parent('p');
+                        $('<p class="clearfix"><span class="fr j_post">Rp '+Base.others.priceFormat(_tax)+'</span>Pajak: </p>').insertAfter(_post_parent);
+                    }
                     $('.j_sum').html('Rp '+Base.others.priceFormat(_sum));
                 }
             });
