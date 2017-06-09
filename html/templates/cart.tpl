@@ -24,26 +24,18 @@
                                         <p class="type"></p>
                                     {/if}
                                     <p class="num">Stock: {$item.num}</p>
-                                    {if $item.discount}
-                                        {if $item.discount.price lt 0}
-                                            <div class="price clearfix">
-                                                <span></span>
-                                        {else}
-                                            <div class="price clearfix">
-                                                <span>Harga: Rp {$item.discount.price|priceFormat}</span>
-                                        {/if}
-                                            </div>
+                                    {if $item.discount_price lt 0}
+                                        <div class="price clearfix">
+                                            <span></span>
                                     {else}
-                                        {if $item.price lt 0}
-                                            <div class="price clearfix">
-                                                <span></span>
-                                        {else}
-                                            <div class="price clearfix">
-                                                <span>Harga: Rp {$item.price|priceFormat}</span>
-                                        {/if}
-                                            </div>
+                                        <div class="price clearfix">
+                                            <span>Harga: Rp {$item.discount_price|priceFormat}</span>
                                     {/if}
+                                        </div>
                                 </div>
+                                {if $item.status neq 1}
+                                    <p class="error-p">{$item.status_txt}</p>
+                                {/if}
                             </li>
                         {/foreach}
                         <li>

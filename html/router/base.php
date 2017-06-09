@@ -290,3 +290,6 @@ function testExpress($list) {
     }
     return $bool;
 }
+function testCartBtnStatus(){
+
+}

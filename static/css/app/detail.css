@@ -1,4 +1,5 @@
 @import "../base/base.css";
+@import "../base/common/flex.css";
 @import "../moudle/app/header/header.css";
 @import "../moudle/app/common/common.css";
 @import "../moudle/app/buyplug/buyplug.css";
@@ -141,7 +142,7 @@ body{
     position: relative;
 }
 .ser-box i{
-    font-size: 18px;
+    font-size: 22px;
     color: #52CDF0;
 }
 .ser-box p{

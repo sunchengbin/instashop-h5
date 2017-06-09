@@ -54,6 +54,9 @@
                                             </div>
                                     {/if}
                                 </div>
+                                {if $item.status neq 1}
+                                    <p class="error-p">{$item.status_txt}</p>
+                                {/if}
                             </li>
                         {/foreach}
                         <li>

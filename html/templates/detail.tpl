@@ -131,9 +131,11 @@
         <section class="buy-box" data-spider="foot-nav">
             {if $INDEX_DATA.item.shop.line_url} 
                 {if $INDEX_DATA.item.shop.phone}
-                <a href="javascript:;" data-type="all" spm-auto="联系卖家" spm-click="get-contact" class="j_show_contact ser-box fl">
+                <a href="javascript:;" data-type="all" flex="main:center cross:center" spm-auto="联系卖家" spm-click="get-contact" class="j_show_contact ser-box fl">
+                    <div>
                     <i class="icon iconfont icon-news-font"></i>
                     <p>Kontak</p>
+                    </div>
                 </a>
                 {if $INDEX_DATA.item.stock le 0}
                     <div class="clearfix buy-btns no-buy have-contact">
@@ -145,9 +147,11 @@
                     {/if}
                 {/if} 
             {else}
-                <a href="javascript:;" spm-auto="联系卖家" spm-click="get-line" class="ser-box fl block j_goto_line">
+                <a href="javascript:;" spm-auto="联系卖家" flex="main:center cross:center" spm-click="get-line" class="ser-box fl block j_goto_line">
+                    <div>
                     <i class="icon iconfont icon-news-font"></i>
                     <p>Kontak</p>
+                    </div>
                 </a>
                 {if $INDEX_DATA.item.stock le 0}
                     <div class="clearfix buy-btns no-buy have-contact">
@@ -161,9 +165,11 @@
             {/if}
             {else} 
                 {if $INDEX_DATA.item.shop.phone}
-                    <a href="javascript:;" data-type="tel" spm-auto="联系卖家" spm-click="get-contact" class="j_show_contact ser-box fl">
+                    <a href="javascript:;" data-type="tel" flex="main:center cross:center" spm-auto="联系卖家" spm-click="get-contact" class="j_show_contact ser-box fl">
+                        <div>
                         <i class="icon iconfont icon-news-font"></i>
                         <p>Kontak</p>
+                        </div>
                     </a>
                     {if $INDEX_DATA.item.stock le 0 || $INDEX_DATA.item.status eq 2}
                         <div class="clearfix buy-btns no-buy have-contact">

@@ -265,7 +265,9 @@ define([
                 //弹出 砍了多少钱 dialog
                 PaqPush && PaqPush('砍价-自砍一刀', '');
                 var _amplitude = _this.computeBargainPrice();
-                _this.loading = Dialog.loading();
+                _this.loading = Dialog.loading({
+                    can_exist : true
+                });
                 Dialog.dialog({
                     body_txt: _this.createBargainPriceDialogHtm(),
                     show_footer: false,
