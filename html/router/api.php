@@ -54,7 +54,7 @@ function curl_post($url,$data)
     return $result;
 }
 
-$host_ext = C_RUNTIME_ONLINE ? (ENV == 'AWS' ? '-aws' : '') : (ENV == 'AWS' ? '-testaws' : '-test');
+$host_ext = C_RUNTIME_ONLINE ? '' : '-test';
 $host = 'https://apip'.$host_ext.'.instashop.co.id/instashop/';
 
 $api = trim($_GET['_path_'],' /');
