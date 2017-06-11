@@ -372,7 +372,7 @@ function smartyCommon($folder,$default_css){
 function setStaticConfig(){
     $prompt = is_https() ? 'https:' : 'http:';
     $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
-	$host_ext = C_RUNTIME_ONLINE ? (ENV == 'AWS' ? '-aws' : '') : (ENV == 'AWS' ? '-testaws' : '-test');
+	$host_ext = C_RUNTIME_ONLINE ? (ENV == 'AWS' ? '' : '') : (ENV == 'AWS' ? '-testaws' : '-test');
 
     $static_host = $prompt.'//static'.$host_ext.'.instashop.co.id';
     $static_ico_css = getIco($prompt.'//m'.$host_ext.'.instashop.co.id');
