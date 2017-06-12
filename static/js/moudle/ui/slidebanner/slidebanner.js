@@ -209,6 +209,10 @@ define(["dialog",'base','debug'],function (Dialog,Base,Debug) {
             var _this = this;
             var arrowContainer = document.querySelectorAll(".slide_arrow");
             Base.others.forEach(arrowContainer,function(i,ele){
+                if(ele.getAttribute('added-event')){
+                    return;
+                }
+                ele.setAttribute('added-event','true');
                 ele.addEventListener("click",function(event){
                     if(!!event.target&&!!event.target.parentElement){
                         var _curTarget = event.target.parentElement;
