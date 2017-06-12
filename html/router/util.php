@@ -10,7 +10,7 @@ if (!function_exists('deal_special_chars')) {
 }
 
 function check_api($path, $params){
-	$host_ext = C_RUNTIME_ONLINE ? (ENV == 'AWS' ? '-aws' : '') : (ENV == 'AWS' ? '-testaws' : '-test');
+	$host_ext = C_RUNTIME_ONLINE ? '' : '-test';
 	$host = 'https://apip'.$host_ext.'.instashop.co.id/instashop/';
 
     $api = $host.$path.'?param='.(json_encode([ 'edata' => $params  ]));
@@ -52,10 +52,10 @@ function deal_headers() {
 function get_init_php_data($path, $params){
     require_once('HttpProxy.php');
 
-	$host_ext = C_RUNTIME_ONLINE ? (ENV == 'AWS' ? '-aws' : '') : (ENV == 'AWS' ? '-testaws' : '-test');
+	$host_ext = C_RUNTIME_ONLINE ? '' : '-test';
 	$host = 'https://apip'.$host_ext.'.instashop.co.id/instashop/';
 
-	$cookie_name = C_RUNTIME_ONLINE ? (ENV == 'AWS' ? 'aws_browser_id' : 'browser_id') : (ENV == 'AWS' ? 'testaws_browser_id' : 'test_browser_id');
+	$cookie_name = C_RUNTIME_ONLINE ? 'browser_id' : 'test_browser_id';
 
 	$browser_id = null;
 	if (isset($_COOKIE[$cookie_name]))
