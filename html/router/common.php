@@ -271,12 +271,9 @@ function getSkinInfo(){
     if($buyer_id){
         $param["buyer_id"] = $buyer_id;
     }
-    //print_r($_COOKIE['uss']);
     $skin_ret = json_decode(get_init_php_data($skin_path,$param), true);
 
     $result = [];
-    //print_r($_COOKIE['uss']);
-    //print_r($skin_ret);
     if($skin_ret['code'] == 200){
         $result['skin_name'] = $skin_ret['shop_skin']['name'];
         $result['facebook_id'] = $skin_ret['shop_skin']['facebook_id'];

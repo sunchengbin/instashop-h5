@@ -125,7 +125,9 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                 }
             };
             _uss && (_data.edata.uss = _uss);
-            _this._loading = Dialog.loading();
+            _this._loading = Dialog.loading({
+                can_exist : true
+            });
             Ajax.postJsonp({
                 url: Config.actions.cartAction,
                 data: {
@@ -138,7 +140,16 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                             if(obj.buyer_address && obj.buyer_address.id){
                                 location.href = Config.host.hostUrl+'orderconfirm.php?select_items='+JSON.stringify(_select_items)+'&address_id='+obj.buyer_address.id;
                             }else{
-                                location.href = Config.host.hostUrl+'address.php?select_items='+JSON.stringify(_select_items);
+                                Dialog.confirm({
+                                    top_txt : '',//可以是html
+                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_ADDR_TIP+'</p>',
+                                    //cfb_txt : Lang.H5_GO_CONFIRM,//确定按钮文字
+                                    cover_event : true,
+                                    cf_fn : function(){
+                                        location.href = Config.host.hostUrl+'address.php?select_items='+JSON.stringify(_select_items);
+                                    }
+                                });
+
                             }
                         }
                     } else {
