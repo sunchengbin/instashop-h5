@@ -288,7 +288,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                         _this.indexItemsPagination.page_num++;
                         var _list_data = _this.transItems(obj.item_list.list);
                         if (_list_data.item.length) {
-                            $('.j_hot_list').append(Item.addItem(_list_data.item));
+                            $('.j_hot_list').append(Item.addItem(_list_data.item,_this.item_type));
                         }
                         if ($('[data-time]').length) {
                             Item.changeTime();
