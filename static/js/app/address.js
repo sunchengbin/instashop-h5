@@ -110,7 +110,7 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
                     _country = $.trim($('.j_country').html()),
                     _street = $.trim($('.j_street').val()),
                     _post = $.trim($('.j_post').val()),
-                    _is_default = $('.j_set_default').is('.icon-radioed-font')?1:0;
+                    _is_default = $('.j_set_default').is(':checked')?1:0;
                 //update by lanchenghao-https://trello.com/c/BF8TbDWE
                 //信息校验
                 try {
@@ -227,14 +227,14 @@ require(['base', 'hbs', 'text!views/app/address.hbs', 'city', 'config', 'lang', 
             }, function () {
                 Common.ScorllToBottom('.j_street');
             });
-            $('body').on('click','.j_set_default',function(){
-                var _dom = $(this);
-                if(_dom.is('.icon-radioed-font')){
-                    _dom.removeClass('icon-radioed-font').attr();
-                }else{
-                    _dom.addClass('icon-radioed-font').attr();
-                }
-            });
+            //$('body').on('click','.j_set_default',function(){
+            //    var _dom = $(this);
+            //    if(_dom.is('.icon-radioed-font')){
+            //        _dom.removeClass('icon-radioed-font').attr();
+            //    }else{
+            //        _dom.addClass('icon-radioed-font').attr();
+            //    }
+            //});
         },
         saveAddress : function(address_info,callback){
             var _address_id = Base.others.getUrlPrem('address_id'),

@@ -39,10 +39,11 @@
                 </div>
                 <div class="info-box b-top set-default-box clearfix">
                     设为默认
+
                     {{#eq flag 1}}
-                        <i class="icon iconfont fr icon-radioed-font icon-radio-font j_set_default"></i>
+                        <label flex="cross:center"><input class="mui-switch mui-switch-anim j_set_default" type="checkbox"></label>
                     {{else}}
-                        <i class="icon iconfont fr icon-radio-font j_set_default"></i>
+                        <label flex="cross:center"><input class="mui-switch mui-switch-anim j_set_default" checked type="checkbox"></label>
                     {{/eq}}
 
                 </div>

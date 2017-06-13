@@ -68,7 +68,7 @@ define(['base'],function(Base){
         }
     };
     function getHostUrl(){//香港服务器
-        if(/[\-\.]test\.instashop/g.test(URL_HOST_NAME)){
+        if(/[\-\.]test\./g.test(URL_HOST_NAME)){
             //测试环境
             return {
                 staticHost : 'static-test.instashop.co.id',

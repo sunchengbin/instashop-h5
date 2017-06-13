@@ -3,6 +3,8 @@
 @import "../moudle/ui/dialog/dialog.scss";
 @import "../moudle/app/common/common.scss";
 @import "../moudle/app/address/address.scss";
+@import "../moudle/ui/switchview/switchview.scss";
+@import "../base/common/flex.scss";
 body{
   background-color: #F5F5F5;
   width: 100%;
@@ -23,7 +25,7 @@ body .address-list{
   @include remCalc(padding,0 30);
   position: relative;
 }
-.info-box input{
+.info-box input[type="text"],.info-box input[type="tel"]{
   @include fontDpr(14px);
   @include remCalc(height,106);
   @include remCalc(line-height,106);
@@ -72,4 +74,10 @@ body .address-list{
 }
 .user-tel input{
   @include remCalc(padding-left,90);
+}
+.info-box label{
+  float:right;
+  @include remCalc(width,102);
+  @include remCalc(height,106);
+  @include remCalc(line-height,106);
 }
