@@ -7,7 +7,7 @@
 define(['base'],function(Base){
     var URL_HTTP_TYPE = location.protocol,
         URL_HOST_NAME = location.hostname,
-        HOST_URL = isAws()?getAwsHostUrl():getHongKongHostUrl(),
+        HOST_URL = getHongKongHostUrl(),
         HOST = {//线上环境
             hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
             host : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/',
@@ -92,9 +92,9 @@ define(['base'],function(Base){
         if(/[\-\.]testaws\./g.test(URL_HOST_NAME)){
             //测试环境
             return {
-                staticHost : 'static-testaws.instashop.co.id',
-                apipHost : 'apip-testaws.instashop.co.id',
-                apiHost : 'api-testaws.instashop.co.id'
+                staticHost : 'static-test.instashop.co.id',
+                apipHost : 'apip-test.instashop.co.id',
+                apiHost : 'api-test.instashop.co.id'
             };
         }
         return {
