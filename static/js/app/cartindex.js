@@ -5,6 +5,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
     var CartIndex = {
         init: function () {
             var _this = this;
+            _this.judageOauth = Oauth.checkIsLogin();
             _this.handleFn();
         },
         handleFn: function () {
@@ -62,7 +63,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                 // 4.7改造更新 判断用户是否需要登录
                 if (Oauth.checkIsNeedLogin(JSON.parse(localStorage.getItem('ShopData')).ShopInfo)) {
                     // 具备登录机制
-                    var _judageOauth = Oauth.checkIsLogin();
+                    var _judageOauth = _that.judageOauth;
                     if (_judageOauth.result) {
                         // 登录的 去结算
                         // 再请求一次活动明细

@@ -5,6 +5,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn
     var OrderConfirmHtm = {
         init: function () {
             var _this = this;
+            _this.loginResult = Oauth.checkIsLogin();
             //结算的商品
             _this.carts = _this.transCartInfo();
             //结算总价
@@ -138,7 +139,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn
                             return;
                         }
                         // 是否含有bargain商品 如果不含有直接去确认订单 如果有要登录后才能下单
-                        var loginResult = Oauth.checkIsLogin();
+                        var loginResult = _this.loginResult;
                         if (Bargain.checkIsHaveBargainItem(_this.carts)) {
                             if (loginResult.result) {
                                 _this.placeOrder(_data,function(){
