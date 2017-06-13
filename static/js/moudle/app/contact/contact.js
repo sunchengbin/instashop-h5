@@ -87,7 +87,7 @@ define(['common','base','btn','lang','fastclick'],function(Common,Base,Btn,Lang,
             }
             if(data.whatsapp){
                 _htm += '<li class="j_logistics_li b-bottom">'
-                    +'<a href="'+data.whatsapp+'" spm-auto="联系卖家whatsapp" spm-click="go-whatsapp">'+Lang.H5_LINE_CONTACT_ME+'</a>'
+                    +'<a href="'+data.whatsapp+'" spm-auto="联系卖家whatsapp" spm-click="go-whatsapp">whatsapp</a>'
                     +'</li>';
             }
             if(data.tel){

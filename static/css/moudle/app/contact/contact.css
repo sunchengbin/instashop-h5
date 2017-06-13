@@ -1,5 +1,6 @@
 .contact-plug {
     width: 100%;
+    max-width: 640px;
     position: fixed;
     background-color: #fff;
     padding-top:1rem;
