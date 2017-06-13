@@ -634,7 +634,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     data: {
                         tel: !init_data.shop.line_url && !init_data.shop.phone ? '' : init_data.shop.phone,
                         line: init_data.shop.line_url,
-                        whatsapp:init_data.shop.whatsapp
+                        whatsapp:init_data.shop.whatsapp_url
                     },
                     lang: Lang,
                     btn:'.j_show_contact'

@@ -15,7 +15,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     var _contact_data = {
                         tel: init_data.item.shop.phone,
                         line: init_data.item.shop.line_url,
-                        whatsapp:init_data.item.shop.whatsapp
+                        whatsapp:init_data.item.shop.whatsapp_url
                     };
                     _this.contact = Contact({
                         data: _contact_data,
