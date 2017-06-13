@@ -34,6 +34,20 @@ define([
             var reqUrl = Config.host.phpHost + Config.actions.oauth + "?param=" + encodeURIComponent(JSON.stringify(_reqData)) + "&timestamp=" + new Date().getTime()+"&_debug_env="+Debug;
             window.location.href = reqUrl;
         },
+        //重置登录信息,清空4.8版本以前用户登录状态
+        initSignOut:function(){
+            if(localStorage.getItem('InitSignOut')){
+                return;
+            }
+            var loginInfoFromCache = Cache.getSpace("LoginCache") || new Cache({
+                    namespace: "LoginCache",
+                    type: "local"
+                });
+            loginInfoFromCache.remove("loginInfo");
+            Cookie.removeCookie('uss','',0,'/');
+            Cookie.removeCookie('uss_buyer_id','',0,'/');
+            localStorage.setItem('InitSignOut','true');
+        },
         //退出登录
         signout:function(url){
             var loginInfoFromCache = Cache.getSpace("LoginCache") || new Cache({
@@ -79,6 +93,8 @@ define([
         checkIsLogin: function () {
             var _time = (new Date()).getTime(),
                 _this = this;
+            //重置登录信息,清空4.8版本以前用户登录状态
+            _this.initSignOut();
             // 获取回传的用户信息
             var loginInfoFromCallBackPost;
             // 获取存储空间 登录
