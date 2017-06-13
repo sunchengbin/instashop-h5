@@ -299,7 +299,8 @@ function initPhpJs($js_name){
     }
 }
 function initPhpCss($css_name,$folder){
-    $folder_name = TEMP_FOLDER;
+    global $TEMP_FOLDER;
+    $folder_name = $TEMP_FOLDER;
     if($folder && $folder_name == ''){
         $folder_name = $folder.'/';
     }
@@ -309,7 +310,7 @@ function initPhpCss($css_name,$folder){
         $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS;
     }
     if(isDebug()){
-        if(TEMP_FOLDER){
+        if($TEMP_FOLDER){
             return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1497338254837" rel="stylesheet"/>';
         }else{
             return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1497338254837" rel="stylesheet"/>';
@@ -331,7 +332,7 @@ function smartyCommon($folder,$default_css){
     $smarty = new Smarty();
     $common_info = $COMMON_INFO;
     $folder_name = $common_info['skin_name'];
-    $folder_name = $folder?$folder:$folder_name;
+    $folder_name = ($folder && $folder_name == 'default')?$folder:$folder_name;
     $folder_name = getTestSkin()?getTestSkin():$folder_name;
     $static_font_css = setStaticFontCss($folder_name);
     define('STATIC_FONT_CSS', $static_font_css);
@@ -372,8 +373,10 @@ function smartyCommon($folder,$default_css){
     }
     return $smarty;
 }
+$TEMP_FOLDER = '';
 function setStaticConfig(){
     global $COMMON_INFO;
+    global $TEMP_FOLDER;
     $prompt = is_https() ? 'https:' : 'http:';
     $host_name = $prompt.'//'. $_SERVER['HTTP_HOST'];
 	$host_ext = C_RUNTIME_ONLINE ? '' : '-test';
@@ -399,6 +402,7 @@ function setStaticConfig(){
     $folder_name = getTestSkin()?getTestSkin():$folder_name;
     if($folder_name != 'default'){
         define('TEMP_FOLDER', $folder_name.'/');
+        $TEMP_FOLDER = $folder_name.'/';
     }else{
         define('TEMP_FOLDER', '');
     }

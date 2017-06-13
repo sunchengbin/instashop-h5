@@ -107,7 +107,7 @@ define([
                     loginInfoFromCache.set("loginInfo", loginInfoFromCallBackPost);
                     //把uss种到cookie中方便php接口请求中读取到
                     //第一次登录,或者换账号登录
-                    if(!Cookie.getCookie('uss') || (Cookie.getCookie('uss') && Cookie.getCookie('uss') != loginInfoFromCallBackPost.uss)){
+                    if(!Cookie.getCookie('uss') || (Cookie.getCookie('uss') && Cookie.getCookie('uss') != loginInfoFromCallBackPost.uss) && loginInfoFromCallBackPost.buyer_id){
                         Cookie.setCookie('uss',loginInfoFromCallBackPost.uss,_time+2592000,'/');
                         Cookie.setCookie('uss_buyer_id',loginInfoFromCallBackPost.buyer_id,_time+2592000,'/');
                     }
@@ -119,7 +119,7 @@ define([
                         info: loginInfoFromCallBackPost
                     }
                 } else {
-                    if(Cookie.getCookie('uss')){
+                    if(Cookie.getCookie('uss') && Cookie.getCookie('uss_buyer_id') && Cookie.getCookie('buyer_id')){
                         _this.mergeBuyerAndUssBuyer(Cookie.getCookie('buyer_id'),Cookie.getCookie('uss_buyer_id'),Cookie.getCookie('uss'));
                     }
                     throw new Error("uncheck login");

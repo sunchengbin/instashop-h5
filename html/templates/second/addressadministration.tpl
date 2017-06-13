@@ -49,7 +49,7 @@
                             </div>
                             {if $address.flag eq 1}
                                 <div class="flag-address b-top clearfix">
-                                    <span>默认</span>
+                                    <span>Alamat Utama</span>
                                     <i class="icon iconfont fr icon-edit-address j_edit_address" data-id="{$address.id}"></i>
                                 </div>
                             {/if}

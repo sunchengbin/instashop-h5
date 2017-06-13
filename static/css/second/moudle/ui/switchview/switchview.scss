@@ -37,7 +37,7 @@ $checkedColor: $base-btn-color;
     box-shadow: $checkedColor 0 0 0 16px inset;
     background-color: $checkedColor;
     &:before {
-      left: 21px;
+      @include remCalc(left,51);
     }
   }
   &.mui-switch-animbg {

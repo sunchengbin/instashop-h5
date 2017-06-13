@@ -30,6 +30,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
         init: function (init_data) {
             var _this = this;
 
+            _this.loginResult = Oauth.checkIsLogin();
             _this.lazyload = Lazyload();
             if (!Base.others.getUrlPrem('pt')) {
                 localStorage.removeItem('index_route_info');
@@ -556,7 +557,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             $('body').on('click', '.j_my_order', function () {
                 var _this = $(this),
                     _url = _this.attr('data-url');
-                var loginResult = Oauth.checkIsLogin();
+                var loginResult = _that.loginResult;
                 if (loginResult.result) {
                     localStorage.setItem('ScrollTop', $(window).scrollTop());
                     _that.setRouteInfo();
