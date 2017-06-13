@@ -7,7 +7,7 @@
 define(['base'],function(Base){
     var URL_HTTP_TYPE = location.protocol,
         URL_HOST_NAME = location.hostname,
-        HOST_URL = getHongKongHostUrl(),
+        HOST_URL = getHostUrl(),
         HOST = {//线上环境
             hostUrl : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/html/',//内部router的路径
             host : URL_HTTP_TYPE+'//'+URL_HOST_NAME+'/',
@@ -67,29 +67,8 @@ define(['base'],function(Base){
             FILTER_TOP:1
         }
     };
-    function isAws(){
-        if(/[\-\.]testaws\./g.test(URL_HOST_NAME) || /[\-\.]aws\./g.test(URL_HOST_NAME)){
-            return true;
-        }
-        return false;
-    }
-    function getHongKongHostUrl(){//香港服务器
+    function getHostUrl(){//香港服务器
         if(/[\-\.]test\.instashop/g.test(URL_HOST_NAME)){
-            //测试环境
-            return {
-                staticHost : 'static-test.instashop.co.id',
-                apipHost : 'apip-test.instashop.co.id',
-                apiHost : 'api-test.instashop.co.id'
-            };
-        }
-        return {
-            staticHost : 'static.instashop.co.id',
-            apipHost : 'apip.instashop.co.id',
-            apiHost : 'api.instashop.co.id'
-        };
-    }
-    function getAwsHostUrl(){
-        if(/[\-\.]testaws\./g.test(URL_HOST_NAME)){
             //测试环境
             return {
                 staticHost : 'static-test.instashop.co.id',
