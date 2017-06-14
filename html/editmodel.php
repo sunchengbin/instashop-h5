@@ -3,8 +3,7 @@
     include_once( dirname(__FILE__).'/../html/router/common.php');
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     include_once( dirname(__FILE__).'/../html/router/base.php');
-    $skin = getUrlParam('skin');
-    $smarty = smartyCommon($skin);
+    $smarty = smartyCommon();
     /*获取model页面的数据*/
 
     $params = getSellerInfo();

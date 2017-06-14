@@ -321,7 +321,7 @@ function initPhpCss($css_name,$folder){
 }
 //方便调试统一修改皮肤
 function getTestSkin(){
-    $debug_skin = getUrlParam('debug_skin');
+    $debug_skin = getUrlParam('skin');
     return $debug_skin;
 }
 //初始化smarty或者普通php页面中全局变量的方法
