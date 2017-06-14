@@ -344,7 +344,7 @@ function smartyCommon($folder){
     }else{
         $smarty->setTemplateDir(__DIR__.'/../templates/');
         $smarty->setCompileDir(__DIR__.'/../templates_c/');
-        if($folder && $folder != 'default'){
+        if($folder && $folder == 'default_scss'){
             $smarty->assign('TEMP_FOLDER','default/');
             $smarty->assign('FLEXIBLE',FLEXIBLE);
         }else{
