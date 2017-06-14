@@ -709,8 +709,10 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                     var coverGuideArrowWidth = $coverGuideArrow.offset().width;
                     var coverGuideCoverWidth = ~~$orderGuideCover[0].style.width.replace("px", "");
 
+                    var window_width = $(window).width();
+                    var body_width = $('body').width();
                     var offsetRight = coverGuideArrowWidth + coverGuideCoverWidth;
-                    $coverInfoWrap.css("right", (offsetRight - 30) + "px")
+                    $coverInfoWrap.css("right", (offsetRight - 30 + (window_width - body_width)/2) + "px")
                     $coverGuideArrow.css("right", "-" + (coverGuideArrowWidth) + "px");
                     $(".order-guide-info-wrap").show();
                     _this.disablePageScroll();
