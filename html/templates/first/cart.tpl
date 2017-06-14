@@ -7,14 +7,13 @@
     <section class="cart-list j_cart_list" data-spider="btn-box">
         {if $GOODS.data|count}
             {foreach key=key item=items from=$GOODS.data name=goods}
-
                 {if $GOODS.data|count gt 1}
                 <div class="cart-supplier-card" group-id="{$key}">
-                    <div class="cart-supplier-header"><i class="iconfont icon-warehourse"></i>Gudang{$smarty.foreach.goods.index}</div>
+                    <div class="cart-supplier-header b-bottom"><i class="iconfont icon-warehourse"></i>Gudang{$smarty.foreach.goods.index + 1}</div>
                 {/if}
                     <ul>
                         {foreach from=$items item=item}
-                            <li class="clearfix cart-item j_cart_item" group-id="{$key}" data-id="{$item.item_id}">
+                            <li class="clearfix cart-item j_cart_item" group-id="{$key}" data-id="{$item.id}">
                                 <i class="icon iconfont j_del_cart icon-delete-small" group-id="{$key}" data-id="{$item.id}"></i>
                                 <img src="{$item.img_head}">
                                 <div class="">
@@ -25,34 +24,14 @@
                                         <p class="type"></p>
                                     {/if}
                                     <p class="num">Stock: {$item.num}</p>
-                                    {if $item.is_discount and $item.discounting}
-                                        {if $item.discount.price lt 0}
-                                            <div class="price clearfix">
-                                                <span></span>
-                                        {else}
-                                            <div class="price clearfix">
-                                                {if $item.discount.discount_type eq 'percent'}
-                                                    {if $item.item_sku_id}
-
-                                                    {else}
-                                                        <span>Harga: Rp {$item.discount.price|priceFormat}</span>
-                                                    {/if}
-
-                                                {else}
-                                                    <span>Harga: Rp {$item.discount.price|priceFormat}</span>
-                                                {/if}
-                                        {/if}
-                                            </div>
+                                    {if $item.discount_price lt 0}
+                                        <div class="price clearfix">
+                                            <span></span>
                                     {else}
-                                        {if $item.price lt 0}
-                                            <div class="price clearfix">
-                                                <span></span>
-                                        {else}
-                                            <div class="price clearfix">
-                                                <span>Harga: Rp {$item.price|priceFormat}</span>
-                                        {/if}
-                                            </div>
+                                        <div class="price clearfix">
+                                            <span>Harga: Rp {$item.discount_price|priceFormat}</span>
                                     {/if}
+                                        </div>
                                 </div>
                                 {if $item.status neq 1}
                                     <p class="error-p">{$item.status_txt}</p>
