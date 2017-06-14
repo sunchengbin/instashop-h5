@@ -181,7 +181,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
         testCarts: function (cart) {
             var _error_msgs = [],
                 _beal = true;
-            Base.others.each(cart, function (item, j) {
+            $.each(cart, function (i,item) {
                 if(item.status != 1){
                     _error_msgs.push(item.status_txt);
                     _beal = false;
