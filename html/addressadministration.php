@@ -2,7 +2,7 @@
     include_once( dirname(__FILE__).'/../html/router/common.php');
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     include_once( dirname(__FILE__).'/../html/router/base.php');
-    $smarty = smartyCommon('default');
+    $smarty = smartyCommon('default_scss');
 
     //登录信息
     $smarty->assign('INDEX_USER_INFO',json_encode($_POST));
