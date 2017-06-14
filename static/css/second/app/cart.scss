@@ -50,7 +50,8 @@ body {
 }
 .cart-supplier-header i {
   color:$base-color;
-  @include remCalc(margin-right,50);
+  @include remCalc(margin-right,25);
+  vertical-align:middle;
 }
 .icon-warehourse {
   @include fontDpr(18px);
