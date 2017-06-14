@@ -123,7 +123,7 @@ define([
                     loginInfoFromCache.set("loginInfo", loginInfoFromCallBackPost);
                     //把uss种到cookie中方便php接口请求中读取到
                     //第一次登录,或者换账号登录
-                    if(!Cookie.getCookie('uss') || (Cookie.getCookie('uss') && Cookie.getCookie('uss') != loginInfoFromCallBackPost.uss) && loginInfoFromCallBackPost.buyer_id){
+                    if(!Cookie.getCookie('uss') || (Cookie.getCookie('uss') && Cookie.getCookie('uss') != loginInfoFromCallBackPost.uss)){
                         Cookie.setCookie('uss',loginInfoFromCallBackPost.uss,_time+2592000,'/');
                         Cookie.setCookie('uss_buyer_id',loginInfoFromCallBackPost.buyer_id,_time+2592000,'/');
                     }
@@ -196,6 +196,7 @@ define([
                 }
             };
             uss && (_data.edata.uss = uss);
+            console.log(JSON.stringify(_data));
             Ajax.postJsonp({
                 url: Config.actions.cartAction,
                 data: {
