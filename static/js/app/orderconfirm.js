@@ -195,18 +195,13 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn
                 timeout: 30000,
                 success: function (obj) {
                     if (obj.code == 200) {
-                        if(_this.testCarts(_this.transCartInfo(obj.buyer_cart))){
+                        //if(_this.testCarts(_this.transCartInfo(obj.buyer_cart))){
                             localStorage.setItem('OrderTotal', obj.order.real_price);
                             localStorage.setItem('BankInfo', JSON.stringify(obj.order.pay_info.banks));
                             localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
                             _this.goToSuccess(obj);
-                        }
-                    } else {
-                        //if ("server error" == obj.message) {
-                        //    //todo 遍历商品展示错误
-                        //} else {
-                        //
                         //}
+                    } else {
                         Dialog.tip({
                             top_txt: '', //可以是html
                             body_txt: '<p class="dialog-body-p">' + obj.message + '</p>',
@@ -234,7 +229,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn
         testCarts: function (cart) {
             var _error_msgs = [],
                 _beal = true;
-            Base.others.each(cart, function (item, j) {
+            $.each(cart, function (i, item) {
                 if(item.status != 1){
                     _error_msgs.push(item.status_txt);
                     _beal = false;
