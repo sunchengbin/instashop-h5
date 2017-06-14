@@ -29,8 +29,6 @@
     $path = 'v1/buyerCart/';
     $ret = get_init_php_data($path, $params);
     $json = json_decode($ret, true);
-    print_r($params);
-    print_r($json);
     $goods = [];
     $goods['data'] = $json['buyer_cart'];
     $goods['hasDistribution'] = true;
