@@ -332,7 +332,7 @@ function smartyCommon($folder,$default_css){
     $smarty = new Smarty();
     $common_info = $COMMON_INFO;
     $folder_name = $common_info['skin_name'];
-    $folder_name = ($folder && $folder_name == 'default')?$folder:$folder_name;
+    $folder_name = $folder?$folder:$folder_name;
     $folder_name = getTestSkin()?getTestSkin():$folder_name;
     $static_font_css = setStaticFontCss($folder_name);
     define('STATIC_FONT_CSS', $static_font_css);
