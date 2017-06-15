@@ -57,6 +57,7 @@ define([
             loginInfoFromCache.remove("loginInfo");
             Cookie.removeCookie('uss','',0,'/');
             Cookie.removeCookie('uss_buyer_id','',0,'/');
+            localStorage.removeItem('cartIsMerged');
             setTimeout(function(){
                 location.href = url;
             },2000)
