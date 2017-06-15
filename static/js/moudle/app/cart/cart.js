@@ -53,7 +53,10 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
                 _num = opts.num,//商品数量
                 _uss = Cookie.getCookie('uss'),//登录的真实账户的uss
                 _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id'); //匿名买家id
-            console.log(opts.isbuynow);
+            console.log('uss='+Cookie.getCookie('uss'));
+            console.log('uss_buyer_id='+Cookie.getCookie('uss_buyer_id'));
+            console.log('buyer_id='+Cookie.getCookie('buyer_id'));
+            console.log('_buyer_id='+_buyer_id);
             var _data = {
                 "edata": {
                     "action": "update",
