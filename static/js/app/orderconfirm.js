@@ -24,7 +24,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn
                 _this.favorablePlugin = Favorable({
                     el: ".order-info",
                     price: $('.j_sum').attr('data-price'),
-                    seller_id: ConfirmData.self_id,
+                    seller_id: ConfirmData.shop_info.id,
                     usehandle: function (favorablePrice, favorableCode) {
                         var _postPrice = $(".j_post").attr("data-price") || 0,
                             _price = _sum - Number(favorablePrice) + Number(_postPrice);
@@ -42,7 +42,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn
                         _this.favorablePlugin = Favorable({
                             el: ".order-info",
                             price: _sum,
-                            seller_id: ConfirmData.self_id,
+                            seller_id: ConfirmData.shop_info.id,
                             usehandle: function (favorablePrice, favorableCode) {
                                 var _postPrice = $(".j_post").attr("data-price") || 0,
                                     _price = _sum - Number(favorablePrice) + Number(_postPrice);
@@ -260,7 +260,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn
                 _logistics_info = $('.j_logistics_info'),
                 _company = _logistics_info.length ? _logistics_info.attr('data-company') : '',
                 _fee_id = _logistics_info.length ? _logistics_info.attr('data-id') : '',
-                _seller_id = ConfirmData.self_id,
+                _seller_id = ConfirmData.shop_info.id,
                 _note = $.trim($('.j_buyer_note').val());
             if (!_company && _this.logistics) {
                 _this.logistics.createHtm({
