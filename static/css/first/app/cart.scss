@@ -21,12 +21,14 @@ body {
   color: $gray-color;
 }
 .cart-supplier-list {
-  padding:0;
+  padding-left:0;
+  padding-right:0;
 }
 .cart-supplier-card {
-  background: $cart-bg;
+  background-color: $white;
   color: $txt-color;
-  @include remCalc(padding-bottom,72);
+  @include remCalc(padding,0 30 30);
+  @include remCalc(margin-bottom,30);
 }
 .cart-supplier-card button {
   margin: 0 auto;

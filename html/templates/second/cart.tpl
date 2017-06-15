@@ -4,7 +4,7 @@
         <i class="icon iconfont j_go_back icon-back-font"></i>
         Keranjangku
     </nav>
-    <section class="cart-list j_cart_list" data-spider="btn-box">
+    <section class="cart-list j_cart_list cart-supplier-list" data-spider="btn-box">
         {if $GOODS.data|count}
             {foreach key=key item=items from=$GOODS.data name=goods}
                 {if $GOODS.data|count gt 1}

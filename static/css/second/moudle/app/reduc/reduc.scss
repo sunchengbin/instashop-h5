@@ -59,7 +59,7 @@
   /* line-height: 2rem; */
   box-sizing: border-box;
   display: block;
-  height: 2rem;
+  @include remCalc(padding-top,10);
   position: absolute;
   bottom: 0;
   top: 0;
