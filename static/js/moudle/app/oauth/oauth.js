@@ -197,7 +197,7 @@ define([
                 }
             };
             uss && (_data.edata.uss = uss);
-            alert(JSON.stringify(_data));
+            //alert(JSON.stringify(_data));
             Ajax.postJsonp({
                 url: Config.actions.cartAction,
                 data: {
