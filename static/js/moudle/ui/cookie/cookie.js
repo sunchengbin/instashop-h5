@@ -3,20 +3,11 @@
  * 关于cookie的一些操作
  */
 define(function(){
-    var cookies = document.cookie;
     var cookie = {
         getCookie : function(name){
-            var _c_name = encodeURIComponent(name)+'=',
-                _index = cookies.indexOf(_c_name),
-                _c_val = null;
-            if(_index > -1){
-                var _end = cookies.indexOf(';',_index);
-                if(_end == -1){
-                    _end = cookies.length;
-                }
-                _c_val = decodeURIComponent(cookies.substring(_index + _c_name.length,_end));
-            }
-            return _c_val;
+            var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+            if (arr != null) return unescape(arr[2]);
+            return null;
         },
         setCookie : function(name,value,expires,path,domain,secure){
             var _cookie = name + '=' +value;
