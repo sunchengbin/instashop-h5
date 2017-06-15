@@ -29,7 +29,7 @@
   color: $gray-color;
   @include fontDpr(14px);
 }
-.cart-item p.price{
+.cart-item .price{
   color: $base-color;
 }
 .cart-item p.price span,.cart-item p.discount-price span{
