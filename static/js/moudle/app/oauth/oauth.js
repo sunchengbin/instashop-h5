@@ -209,6 +209,9 @@ define([
                     console.log(JSON.stringify(_cart_is_merged));
                     if(obj.code == 200){
                         localStorage.setItem('cartIsMerged',JSON.stringify(_cart_is_merged));
+                        setTimeout(function(){
+                            location.reload();
+                        },100);
                     }
                 },
                 error: function (error) {
