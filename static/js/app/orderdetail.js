@@ -43,7 +43,7 @@ require(['lang', 'hbs', 'text!views/app/orderdetail.hbs', 'config', 'contact', '
                     data: {
                         tel: !init_data.order.shop_info.line_url && !init_data.order.shop_info.phone ? '' : init_data.order.shop_info.phone,
                         line: init_data.order.shop_info.line_url,
-                        whatsapp:init_data.order.shop_info.whatsapp
+                        whatsapp:init_data.order.shop_info.whatsapp_url
                     },
                     lang: Lang,
                     btn:'.j_show_contact'
