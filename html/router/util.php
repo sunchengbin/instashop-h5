@@ -66,7 +66,7 @@ function get_init_php_data($path, $params){
 
 	if (!C_RUNTIME_ONLINE )
 	{
-        $params['_debug_env'] = 'dev';
+        $params['_debug_env'] = 'master';
         if($_GET['_debug_env']){
             $params['_debug_env'] = $_GET['_debug_env'];
         }

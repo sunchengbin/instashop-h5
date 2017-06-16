@@ -22,7 +22,7 @@ define(['base'],function(Base){
         };
     var CONFIG = {
         host : HOST,
-        getDebugEnv:getDebugEnv('dev'),
+        getDebugEnv:getDebugEnv('master'),
         actions : {
             setUserName : 'set_user_memo',//设置app中用户的name
             getUserInfo : 'getUserInfo',//获取用户信息
