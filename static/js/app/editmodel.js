@@ -21,7 +21,6 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             _this.setBodyHeight();
             //_this.initHtml();
             Insjs.WebOnReady(function(bridge){
-                //alert(bridge);
                 _this.handelFn(bridge);
             },function(){
                 _this.handelFn();
@@ -253,10 +252,21 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     var _href = location.href,
                         _skin = $(dom).attr('data-skin');
                     PaqPush && PaqPush('切换皮肤',_skin);
-                    _this._loading = Dialog.loading({
-                        width: 100,
-                        is_cover: true
-                    });
+                    //_this._loading = Dialog.loading({
+                    //    width: 100,
+                    //    is_cover: true
+                    //});
+                    if(!/ios/g.test(navigator.userAgent)) {
+                        var _param = {
+                            param: {
+                                type: 'reload_loading',
+                                param: null
+                            }
+                        };
+                        bridge.callHandler('insSocket', _param, function (data) {
+                            return null;
+                        });
+                    }
                     switch(_skin){
                         case 'first':
                             location.href = _this.changeSkinUrlPram(_href,'first',1);

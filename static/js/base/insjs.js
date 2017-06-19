@@ -246,15 +246,11 @@ define([],function(){
                 }, 0);
             }else{
                 if (WIN.WebViewJavascriptBridge) {
-					alert('存在');
-					alert(WIN.WebViewJavascriptBridge);
                     callback(WebViewJavascriptBridge)
                 } else {
-					alert('不存在');
                     document.addEventListener(
                         'WebViewJavascriptBridgeReady'
                         , function() {
-							alert(WebViewJavascriptBridge);
                             callback(WebViewJavascriptBridge)
                         },
                         false
