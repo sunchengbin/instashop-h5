@@ -252,10 +252,10 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     var _href = location.href,
                         _skin = $(dom).attr('data-skin');
                     PaqPush && PaqPush('切换皮肤',_skin);
-                    //_this._loading = Dialog.loading({
-                    //    width: 100,
-                    //    is_cover: true
-                    //});
+                    _this._loading = Dialog.loading({
+                        width: 100,
+                        is_cover: true
+                    });
                     //alert(!/ios/g.test(navigator.userAgent));
                     if(!/ios/g.test(navigator.userAgent)) {
                         //alert('reload_loading');
