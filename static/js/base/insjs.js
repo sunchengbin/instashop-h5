@@ -251,6 +251,7 @@ define([],function(){
                     document.addEventListener(
                         'WebViewJavascriptBridgeReady'
                         , function() {
+							alert(WebViewJavascriptBridge);
                             callback(WebViewJavascriptBridge)
                         },
                         false
