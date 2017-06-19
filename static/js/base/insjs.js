@@ -245,13 +245,16 @@ define([],function(){
                     document.documentElement.removeChild(WVJBIframe)
                 }, 0);
             }else{
-				alert(WIN.WebViewJavascriptBridge);
                 if (WIN.WebViewJavascriptBridge) {
+					alert('存在');
+					alert(WIN.WebViewJavascriptBridge);
                     callback(WebViewJavascriptBridge)
                 } else {
+					alert('不存在');
                     document.addEventListener(
                         'WebViewJavascriptBridgeReady'
                         , function() {
+							alert(WebViewJavascriptBridge);
                             callback(WebViewJavascriptBridge)
                         },
                         false

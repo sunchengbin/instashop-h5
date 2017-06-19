@@ -21,6 +21,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
             _this.setBodyHeight();
             //_this.initHtml();
             Insjs.WebOnReady(function(bridge){
+                //alert(bridge);
                 _this.handelFn(bridge);
             },function(){
                 _this.handelFn();
