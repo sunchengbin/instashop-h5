@@ -245,6 +245,7 @@ define([],function(){
                     document.documentElement.removeChild(WVJBIframe)
                 }, 0);
             }else{
+				alert(WIN.WebViewJavascriptBridge);
                 if (WIN.WebViewJavascriptBridge) {
                     callback(WebViewJavascriptBridge)
                 } else {
