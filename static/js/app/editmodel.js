@@ -256,33 +256,34 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     //    width: 100,
                     //    is_cover: true
                     //});
-                    //if(!/ios/g.test(navigator.userAgent)) {
-                    //
-                    //}
-                    alert('reload_loading');
-                    var _param = {
-                        param: {
-                            type: 'reload_loading',
-                            param: null
-                        }
-                    };
-                    bridge.callHandler('insSocket', _param, function (data) {
-                        return null;
-                    });
-                    //switch(_skin){
-                    //    case 'first':
-                    //        location.href = _this.changeSkinUrlPram(_href,'first',1);
-                    //        break;
-                    //    case 'second':
-                    //        location.href = _this.changeSkinUrlPram(_href,'second',2);
-                    //        break;
-                    //    case 'default':
-                    //        location.href = _this.changeSkinUrlPram(_href,'default',0);
-                    //        break;
-                    //    default :
-                    //        location.href = _this.changeSkinUrlPram(_href,'default',0);
-                    //        break;
-                    //}
+                    alert(!/ios/g.test(navigator.userAgent));
+                    if(!/ios/g.test(navigator.userAgent)) {
+                        alert('reload_loading');
+                        var _param = {
+                            param: {
+                                type: 'reload_loading',
+                                param: null
+                            }
+                        };
+                        bridge.callHandler('insSocket', _param, function (data) {
+                            return null;
+                        });
+                    }
+
+                    switch(_skin){
+                        case 'first':
+                            location.href = _this.changeSkinUrlPram(_href,'first',1);
+                            break;
+                        case 'second':
+                            location.href = _this.changeSkinUrlPram(_href,'second',2);
+                            break;
+                        case 'default':
+                            location.href = _this.changeSkinUrlPram(_href,'default',0);
+                            break;
+                        default :
+                            location.href = _this.changeSkinUrlPram(_href,'default',0);
+                            break;
+                    }
 
                 }
             });
