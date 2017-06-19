@@ -256,9 +256,9 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     //    width: 100,
                     //    is_cover: true
                     //});
-                    alert(!/ios/g.test(navigator.userAgent));
+                    //alert(!/ios/g.test(navigator.userAgent));
                     if(!/ios/g.test(navigator.userAgent)) {
-                        alert('reload_loading');
+                        //alert('reload_loading');
                         var _param = {
                             param: {
                                 type: 'reload_loading',
