@@ -257,6 +257,7 @@ require(['base','dialog','slide','ajax','lang','common','lazyload','insjs','fast
                     //    is_cover: true
                     //});
                     if(!/ios/g.test(navigator.userAgent)) {
+                        alert('reload_loading');
                         var _param = {
                             param: {
                                 type: 'reload_loading',
