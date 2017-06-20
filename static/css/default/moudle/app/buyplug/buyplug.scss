@@ -189,6 +189,7 @@
   border-radius: 0;
   @include remCalc(line-height,90);
   @include remCalc(height,90);
+  background-color:$base-color;
 }
 .item-info-cont li.disable{
   color: $border-color;

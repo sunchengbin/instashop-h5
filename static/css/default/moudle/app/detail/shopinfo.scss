@@ -43,21 +43,23 @@
   @include remCalc(margin-top,25);
   color: $gray-color;
 }
-
-
-
+.shop-info i.icon-secured{
+  color: #7ED321;
+  font-size: 25px;
+  vertical-align: middle;
+}
 .shop-info span {
   width: auto;
   @include remCalc(height,40);
   @include remCalc(line-height,40);
-  border:1px solid $base-btn-color;
+  border:1px solid $base-color;
   display: inline-block;
   @include remCalc(border-radius,100);
-  color: $base-btn-color;
+  color: $base-color;
   @include remCalc(padding,0 15);
 }
 .shop-info span i {
-  color: $base-btn-color;
+  color: $base-color;
   @include remCalc(margin-right,15);
 }
 .shop-explain{

@@ -15,12 +15,12 @@
 }
 .ser-box i{
   @include fontDpr(22px);
-  color: $contact-color;
+  color: #52CDF0;
 }
 .ser-box p{
   @include fontDpr(12px);
   color: $gray-color;
-  @include remCalc(margin-top,-22);
+  @include remCalc(margin-top,-10);
 }
 .ser-icon{
   @include fontDpr(22px);
@@ -51,5 +51,5 @@
   background-color: $add-buy-color;
 }
 .buy-now{
-  background-color: $base-color;
+  background-color: $buy-now-color;
 }
