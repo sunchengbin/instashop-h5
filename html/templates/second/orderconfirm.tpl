@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="trade-tip">
-            <a href="{$HOST_NAME}/html/applyrefundtypeexplain.php" target="_blank">两种交易类型有何区别？</a>
+            <a href="{$HOST_NAME}/html/applyrefundtypeexplain.php" target="_blank">Klik untuk penjelasan lebih lanjut？</a>
         </div>
     </div>
 
