@@ -326,7 +326,7 @@ function getTestSkin(){
 }
 //初始化smarty或者普通php页面中全局变量的方法
 $COMMON_INFO = getSkinInfo();
-function smartyCommon($folder){
+function smartyCommon($folder,$use_default_tpl){
     global $COMMON_INFO;
     require_once(__DIR__.'/../lib/libs/Smarty.class.php');
     $smarty = new Smarty();
@@ -335,6 +335,7 @@ function smartyCommon($folder){
     $folder_name = getTestSkin()?getTestSkin():$folder_name;
     $static_font_css = setStaticFontCss($folder_name);
     define('STATIC_FONT_CSS', $static_font_css);
+    $folder_name = $use_default_tpl?'default':$folder_name;
     if($folder_name != 'default'){
         $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
         $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
