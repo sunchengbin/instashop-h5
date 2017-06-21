@@ -303,6 +303,10 @@ function initPhpCss($css_name,$folder){
     $folder_name = $TEMP_FOLDER;
     if($folder && $folder_name == ''){
         $folder_name = $folder.'/';
+    }else{
+        if($folder && $folder == 'default_app'){
+            $folder_name = 'default/';
+        }
     }
     if($folder_name){
         $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS.'<script>'.FLEXIBLE.'</script>';

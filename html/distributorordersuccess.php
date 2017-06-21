@@ -10,7 +10,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <meta name="format-detection" content="telephone=no" />
-    <?=initPhpCss('evidencepayment')?>
+    <?=initPhpCss('evidencepayment','default_app')?>
     <title>Informasi Pembayaran</title>
 </head>
 <body data-spider="de4cti31">
