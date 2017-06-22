@@ -130,41 +130,41 @@
         </section>
         <section class="buy-box" data-spider="foot-nav">
             {if $INDEX_DATA.item.shop.line_url} 
-                {if $INDEX_DATA.item.shop.phone}
-                <a href="javascript:;" data-type="all" flex="main:center cross:center" spm-auto="联系卖家" spm-click="get-contact" class="j_show_contact ser-box fl">
-                    <div>
-                    <i class="icon iconfont icon-news-font"></i>
-                    <p>Kontak</p>
-                    </div>
-                </a>
-                {if $INDEX_DATA.item.stock le 0}
-                    <div class="clearfix buy-btns no-buy have-contact">
-                {else}
-                    {if $INDEX_DATA.item.status eq 2}
+                {if $INDEX_DATA.item.shop.phone || $INDEX_DATA.item.shop.whatsapp_url}
+                    <a href="javascript:;" data-type="all" flex="main:center cross:center" spm-auto="联系卖家" spm-click="get-contact" class="j_show_contact ser-box fl">
+                        <div>
+                        <i class="icon iconfont icon-news-font"></i>
+                        <p>Kontak</p>
+                        </div>
+                    </a>
+                    {if $INDEX_DATA.item.stock le 0}
                         <div class="clearfix buy-btns no-buy have-contact">
                     {else}
-                        <div class="clearfix buy-btns have-contact">
+                        {if $INDEX_DATA.item.status eq 2}
+                            <div class="clearfix buy-btns no-buy have-contact">
+                        {else}
+                            <div class="clearfix buy-btns have-contact">
+                        {/if}
                     {/if}
-                {/if} 
-            {else}
-                <a href="javascript:;" spm-auto="联系卖家" flex="main:center cross:center" spm-click="get-line" class="ser-box fl block j_goto_line">
-                    <div>
-                    <i class="icon iconfont icon-news-font"></i>
-                    <p>Kontak</p>
-                    </div>
-                </a>
-                {if $INDEX_DATA.item.stock le 0}
-                    <div class="clearfix buy-btns no-buy have-contact">
                 {else}
-                    {if $INDEX_DATA.item.status eq 2}
+                    <a href="javascript:;" spm-auto="联系卖家" flex="main:center cross:center" spm-click="get-line" class="ser-box fl block j_goto_line">
+                        <div>
+                        <i class="icon iconfont icon-news-font"></i>
+                        <p>Kontak</p>
+                        </div>
+                    </a>
+                    {if $INDEX_DATA.item.stock le 0}
                         <div class="clearfix buy-btns no-buy have-contact">
                     {else}
-                        <div class="clearfix buy-btns have-contact">
+                        {if $INDEX_DATA.item.status eq 2}
+                            <div class="clearfix buy-btns no-buy have-contact">
+                        {else}
+                            <div class="clearfix buy-btns have-contact">
+                        {/if}
                     {/if}
-                {/if} 
-            {/if}
+                {/if}
             {else} 
-                {if $INDEX_DATA.item.shop.phone}
+                {if $INDEX_DATA.item.shop.phone || $INDEX_DATA.item.shop.whatsapp_url}
                     <a href="javascript:;" data-type="tel" flex="main:center cross:center" spm-auto="联系卖家" spm-click="get-contact" class="j_show_contact ser-box fl">
                         <div>
                         <i class="icon iconfont icon-news-font"></i>

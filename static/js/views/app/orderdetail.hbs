@@ -173,21 +173,39 @@
                     </div>
                 </a>
             {{else}}
-                <a href="javascript:;" spm-auto="查看联系方式" class="contact-user block j_goto_line fr">
-                    <div class="clearfix">
-                        <i class="icon iconfont icon-i-news-font"></i>
-                        {{lang.H5_CONNACT_SELLER}}
-                    </div>
-                </a>
+                {{#if data.order.shop_info.whatsapp_url}}
+                    <a data-type="all" href="javascript:;" spm-auto="查看联系方式" spm-click="check-contact" class="contact-user j_show_contact fr">
+                        <div class="clearfix">
+                            <i class="icon iconfont icon-i-news-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </div>
+                    </a>
+                {{else}}
+                    <a href="javascript:;" spm-auto="查看联系方式" class="contact-user block j_goto_line fr">
+                        <div class="clearfix">
+                            <i class="icon iconfont icon-i-news-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </div>
+                    </a>
+                {{/if}}
             {{/if}}
         {{else}}
             {{#if data.order.shop_info.phone}}
-                <a href="javascript:;" spm-auto="查看联系方式" data-type="tel" class="contact-user j_show_contact fr">
-                    <div class="clearfix">
-                        <i class="icon iconfont icon-i-news-font"></i>
-                        {{lang.H5_CONNACT_SELLER}}
-                    </div>
-                </a>
+                {{#if data.order.shop_info.whatsapp_url}}
+                    <a data-type="all" href="javascript:;" spm-auto="查看联系方式" spm-click="check-contact" class="contact-user j_show_contact fr">
+                        <div class="clearfix">
+                            <i class="icon iconfont icon-i-news-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </div>
+                    </a>
+                {{else}}
+                    <a href="javascript:;" spm-auto="查看联系方式" class="contact-user block j_goto_line fr">
+                        <div class="clearfix">
+                            <i class="icon iconfont icon-i-news-font"></i>
+                            {{lang.H5_CONNACT_SELLER}}
+                        </div>
+                    </a>
+                {{/if}}
             {{/if}}
         {{/if}}
     </div>

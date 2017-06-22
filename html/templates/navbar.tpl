@@ -22,7 +22,7 @@
         </li>
         <li class="b-right" flex="main:center cross:center">
             <div>
-            {if $INDEX_DATA.shop.line_url} {if $INDEX_DATA.shop.phone}
+            {if $INDEX_DATA.shop.line_url} {if $INDEX_DATA.shop.phone or $INDEX_DATA.shop.whatsapp_url}
             <a spm-auto="查看联系方式" spm-click="check-contact" class="contact-services j_show_contact" data-type="all" href="javascript:;">
                 <i class="icon iconfont icon-i-news-font"></i> Kontak
             </a>
@@ -30,7 +30,7 @@
             <a class="contact-services block j_goto_line" spm-auto="联系卖家line" spm-click="go-line" href="javascript:;">
                 <i class="icon iconfont icon-i-news-font"></i> Kontak
             </a>
-            {/if} {else} {if $INDEX_DATA.shop.phone}
+            {/if} {else} {if $INDEX_DATA.shop.phone or $INDEX_DATA.shop.whatsapp_url}
             <a spm-auto="查看联系方式" spm-click="check-contact" class="contact-services j_show_contact" data-type="tel" href="javascript:;">
                 <i class="icon iconfont icon-i-news-font"></i> Kontak
             </a>
