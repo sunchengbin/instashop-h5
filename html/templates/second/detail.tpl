@@ -130,7 +130,7 @@
         </section>
         <section class="buy-box" data-spider="foot-nav">
             {if $INDEX_DATA.item.shop.line_url} 
-                {if $INDEX_DATA.item.shop.phone}
+                {if $INDEX_DATA.item.shop.phone || $INDEX_DATA.item.shop.whatsapp_url}
                 <a href="javascript:;" data-type="all" flex="main:center cross:center" spm-auto="联系卖家" spm-click="get-contact" class="j_show_contact ser-box fl">
                     <div>
                     <i class="icon iconfont icon-news-font"></i>
@@ -164,7 +164,7 @@
                 {/if} 
             {/if}
             {else} 
-                {if $INDEX_DATA.item.shop.phone}
+                {if $INDEX_DATA.item.shop.phone || $INDEX_DATA.item.shop.whatsapp_url}
                     <a href="javascript:;" data-type="tel" flex="main:center cross:center" spm-auto="联系卖家" spm-click="get-contact" class="j_show_contact ser-box fl">
                         <div>
                         <i class="icon iconfont icon-news-font"></i>
