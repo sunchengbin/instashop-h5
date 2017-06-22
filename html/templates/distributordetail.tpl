@@ -20,14 +20,8 @@
     {else}
         {if $INDEX_DATA.code eq 200}
         <nav class="shop-header-nav clearfix" data-spider="header-nav">
-            <div class="fl">
-                <button class="j_go_back">
-                            <i class="icon iconfont icon-back-font"></i>
-                        </button>
-                <div class="btn-cover"></div>
-            </div>
             <div class="fr">
-                <button class="j_cart_wraper" data-url="{$HOST_NAME}/html/cart.php">
+                <button class="j_cart_wraper" data-url="{$HOST_NAME}/html/distributorcart.php?{$SEARCH_URL}">
                     {if $CART_NUM neq 0}
                     <span class="cart-num">{$CART_NUM}</span>
                     {/if}
@@ -91,7 +85,6 @@
                 {/if}
 
                 {*砍价活动功能区begin*}
-                {include file="bargain_explain.tpl"}
                 {*砍价活动功能区end*}
                 {include file="preferential.tpl"}
                 <a href="javascript:;" data-url="{$INDEX_DATA.item.shop.url}" spm-auto="去首页" spm-click="go-home" class="go-shop j_shop_info">
@@ -203,7 +196,7 @@
                     <a class="add-cart j_save_imgs" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="添加购物车" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
                     保存照片
                     </a>
-                    <a href="javascript:;" class="buy-now j_add_cart" spm-auto="立即购买" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
+                    <a href="javascript:;" class="buy-now j_add_cart" data-direct-buy="2" spm-auto="立即购买" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
                     Masuk keranjang
                     </a>
                 {/if}

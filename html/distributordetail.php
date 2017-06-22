@@ -58,7 +58,7 @@
     $uss = $_COOKIE['uss'];
     $cart_params['action'] = 'num';
     $cart_params['seller_id'] = $_REQUEST['seller_id'];
-    $cart_params['is_direct_buy'] = 0;
+    $cart_params['is_direct_buy'] = 2;
     if($uss){
         $cart_params['uss'] = $uss;
         $cart_params['buyer_id'] = $_COOKIE['uss_buyer_id'];
@@ -71,8 +71,7 @@
     $cart_num = $cart_json["cart_num"];
     $cart_num = $cart_num?($cart_num>9?'9+':$cart_num):0;
     $smarty->assign('CART_NUM',$cart_num);
-
-
+    $smarty->assign('SEARCH_URL',$_SERVER["QUERY_STRING"]);
     $smarty->display('distributordetail.tpl');
 
 

@@ -3,16 +3,8 @@
 <div class="address-wraper">
     <section class="address-form-box">
         <section class="address-wraper" data-spider="wraper-box">
-            <section class="cart-list">
-                <ul class="j_cart_list">
-                    {include file="carts.tpl" title="carts"}
-                </ul>
-            </section>
-            <div class="address-buyer-note user-info info-box">
-                <span>Keterangan:  </span>
-                <input class="j_buyer_note" type="text" value="" maxlength="500" placeholder="Tidak dapat melebihi 500 karakter"/>
-            </div>
-            <p class="address-title">Silakan isi alamat pengirimanmu</p>
+            {if $SHOW_SEND_USER_INFO eq 'self'}
+            <p class="address-title">发货人信息</p>
             <div class="user-info">
                 <div class="user-name info-box b-bottom">
                     <input class="j_name" type="text" value="" placeholder="Nama Anda" />
@@ -20,6 +12,17 @@
                 <div class="user-tel info-box b-bottom">
                     <span>+62</span>
                     <input class="j_tel" type="tel" value="" placeholder="No.Hp Anda" maxlength="20" />
+                </div>
+            </div>
+            {/if}
+            <p class="address-title">收货人信息</p>
+            <div class="user-info">
+                <div class="user-name info-box b-bottom">
+                    <input class="j_name" type="text" value="{$INDEX_DATA.buyer_address.name}" placeholder="Nama Anda" />
+                </div>
+                <div class="user-tel info-box b-bottom">
+                    <span>+62</span>
+                    <input class="j_tel" type="tel" value="{$INDEX_DATA.buyer_address.telephone}" placeholder="No.Hp Anda" maxlength="20" />
                 </div>
             </div>
             <div class="tel-msg-txt">
@@ -39,28 +42,29 @@
                     <p class="j_country"></p>
                 </div>
                 <div class="info-box-address clearfix">
-                    <textarea class="j_street" maxlength="400" placeholder="Alamat jelas"></textarea>
+                    <textarea class="j_street" maxlength="400" placeholder="Alamat jelas">{$INDEX_DATA.buyer_address.address.street}</textarea>
                 </div>
                 <div class="info-box b-top clearfix">
-                    <input class="j_post" maxlength="10" type="text" value="" placeholder="Kode Pos: Pilih, Sebaiknya diisi" />
+                    <input class="j_post" maxlength="10" type="text" value="{$INDEX_DATA.buyer_address.post}" placeholder="Kode Pos: Pilih, Sebaiknya diisi" />
                 </div>
             </div>
-            {if $INDEX_DATA.carts|isExistSupplyShop}
+            {if $DATA.express_free eq 0}
+                {*不包邮*}
                 <div class="hiden j_logistics">
                     <p class="address-title">Pilih Jenis Paket Pengiriman</p>
                     <ul class="logistics-list j_logistics_info">
                     </ul>
                 </div>
-                {else}
-                {if $INDEX_DATA.shop.express_free eq 0}
-                    <div class="hiden j_logistics">
-                        <p class="address-title">Pilih Jenis Paket Pengiriman</p>
-                        <ul class="logistics-list j_logistics_info">
-                        </ul>
-                    </div>
-                {/if}
             {/if}
-
+            <section class="cart-list">
+                <ul class="j_cart_list">
+                    {include file="distributorcarts.tpl" title="carts"}
+                </ul>
+            </section>
+            <div class="address-buyer-note user-info info-box">
+                <span>Keterangan:  </span>
+                <input class="j_buyer_note" type="text" value="" maxlength="500" placeholder="Tidak dapat melebihi 500 karakter"/>
+            </div>
             <div class="total-box">
                 {if $INDEX_DATA.shop.shop_discount}
                 <div class="reduc-info" style="display:none">
@@ -69,14 +73,10 @@
                 {/if}
                 <div class="total-ps b-top">
                     <p class="total-p clearfix"><span class="fr j_freight">Rp 0</span>Biaya Pengiriman: </p>
-                    <p class="total-p clearfix"><span class="fr j_total">Rp 0</span>Jumlah Total: </p>
+                    <p class="total-p clearfix"><span class="fr j_total" data-price="{$INDEX_DATA.price.total_price}">Rp {$INDEX_DATA.price.total_price|priceFormat}</span>Jumlah Total: </p>
                 </div>
             </div>
             <button class="btn confirm-btn j_submit_buy">Ajukan Pesanan</button>
-            <div class="agree-info clearfix">
-                <i class="icon iconfont fl icon-checked-font j_check_box"></i>
-                <p>Saya telah membaca dan memahami <a href="{$HOST_NAME}/html/agreeinfo.php" spm-auto="使用协议" spm-click="click" >syarat dan ketentuan penggunaan</a></p>
-            </div>
         </section>
     </section>
     <section class="address-list-box j_address_list_box">

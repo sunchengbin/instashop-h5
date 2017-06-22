@@ -7,10 +7,10 @@
     <section class="cart-list j_cart_list cart-supplier-list" data-spider="btn-box">
         {if $GOODS.data|count}
             {foreach key=key item=items from=$GOODS.data name=goods}
-                {if $GOODS.data|count gt 1}
+
                 <div class="cart-supplier-card" group-id="{$key}">
-                    <div class="cart-supplier-header b-bottom"><i class="iconfont icon-warehourse"></i>Gudang{$smarty.foreach.goods.index + 1}</div>
-                {/if}
+                    <div class="cart-supplier-header b-bottom"><i class="iconfont icon-warehourse"></i>{$items[0].shop_info.shop_name}</div>
+
                     <ul>
                         {foreach from=$items item=item}
                             <li class="clearfix cart-item j_cart_item" group-id="{$key}" data-id="{$item.id}">
@@ -39,12 +39,15 @@
                             </li>
                         {/foreach}
                         <li>
-                            <button class="btn j_submit_btn confirm-btn" group-id="{$key}">Checkout</button>
+                            <div class="button-box" flex="box:mean">
+                            <p><button class="btn j_submit_btn confirm-btn" data-type="self" group-id="{$key}">自己购买</button></p>
+                            <p><button class="btn j_submit_btn confirm-btn" data-type="others" group-id="{$key}">帮别人购买</button></p>
+                            </div>
                         </li>
                     </ul>
-                {if $GOODS.data|count gt 1}
+
                 </div>
-                {/if}
+
             {/foreach}
         {else}
             <ul>

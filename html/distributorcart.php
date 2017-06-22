@@ -18,7 +18,7 @@
     $params = [];
     $uss = $_COOKIE['uss'];
     $params['seller_id'] = $_REQUEST['seller_id'];
-    $params['is_direct_buy'] = 0;
+    $params['is_direct_buy'] = 2;
     if($uss){
         $params['uss'] = $uss;
         $params['buyer_id'] = $_COOKIE['uss_buyer_id'];
@@ -34,7 +34,6 @@
     $goods['hasDistribution'] = true;
 
     $smarty->assign('GOODS',$goods);
-
 
     $smarty->display('distributorcart.tpl');
 ?>

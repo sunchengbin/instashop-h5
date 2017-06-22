@@ -10,7 +10,8 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
             btn: '.j_add_cart',
             buyNow: '.j_buy_btn',
             closeBtn: '.j_close_btn',
-            transformSpeed: '.6s'
+            transformSpeed: '.6s',
+            is_direct_buy:0
         }, opts);
         _this.init();
     };
@@ -120,6 +121,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                     _sku_price = _type.length ? _type.attr('data-price') : init_data.item.price,
                     _sku_id = _type.length ? _type.attr('data-id') : null,
                     _sku_title = _type.length ? _type.html() : null,
+                    _is_direct_buy = _config.is_direct_buy,
                     _is_buy_now = $(this).attr('data-buynow');
                 if ($(this).is('.cancel-btn')) {
                     return;
@@ -139,6 +141,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                             price: _sku_price,
                             bargain_price: init_data.item.bargain.price,
                             isbuynow: _is_buy_now,
+                            is_direct_buy : _is_direct_buy,
                             noStockCallback: function () {
                                 _this.config.noStockCallback && _this.config.noStockCallback();
                                 _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
@@ -153,6 +156,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                             num: _num,
                             price: _sku_price,
                             isbuynow: _is_buy_now,
+                            is_direct_buy : _is_direct_buy,
                             noStockCallback: function () {
                                 _this.config.noStockCallback && _this.config.noStockCallback();
                                 _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
@@ -196,6 +200,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                     },
                                     price: _sku_price,
                                     isbuynow: _is_buy_now,
+                                    is_direct_buy : _is_direct_buy,
                                     noStockCallback: function () {
                                         _this.config.noStockCallback && _this.config.noStockCallback();
                                         _this.toHide(document.querySelector('.j_buy_plug'), _w_h);
@@ -216,6 +221,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                                     },
                                     price: _sku_price,
                                     isbuynow: _is_buy_now,
+                                    is_direct_buy : _is_direct_buy,
                                     noStockCallback: function () {
                                         _this.config.noStockCallback && _this.config.noStockCallback();
                                         _this.toHide(document.querySelector('.j_buy_plug'), _w_h);

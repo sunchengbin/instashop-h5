@@ -19,7 +19,6 @@
     $params = [];
     $uss = $_COOKIE['uss'];
     $params['seller_id'] = $_REQUEST['seller_id'];
-    $params['is_direct_buy'] = 0;
     if($uss){
         $params['uss'] = $uss;
         $params['buyer_id'] = $_COOKIE['uss_buyer_id'];
@@ -28,13 +27,22 @@
     }
     $params['opt'] = 'address,price,express';
     $params['select_items'] = json_decode($_REQUEST['select_items'], true);
-    $params['is_direct_buy'] = 0;
+    $params['is_direct_buy'] = 2;
     $params['buyer_address_id'] = $_REQUEST['address_id'];
     $path = 'v1/buyerCart/';
     $ret = get_init_php_data($path, $params);
     $json = json_decode($ret, true);
-    $smarty->assign('DATA',$json);
-    $smarty->assign('DATA_STR',$ret);
+    $json['carts']=setCarts($json['buyer_cart'])[0];
+    function setCarts($buyer_cart){
+        $result = [];
+        foreach ($buyer_cart as $carts){
+            $result[] = $carts;
+        }
+        return $result;
+    }
+    $smarty->assign('SHOW_SEND_USER_INFO',$_REQUEST['type']);
+    $smarty->assign('INDEX_DATA',$json);
+    $smarty->assign('INDEX_DATA_STR',$ret);
 
 
     $smarty->display('distributororderconfirm.tpl');

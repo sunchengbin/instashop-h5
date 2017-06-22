@@ -268,6 +268,9 @@ function getSkinInfo(){
     $param = [];
     $param["seller_id"] = $seller_id;
     $buyer_id = $_COOKIE['buyer_id'];
+    $uss = $_COOKIE['uss'];
+    $url_uss = $_REQUEST['uss'];
+    $url_uss_buyer_id = $_REQUEST['uss_buyer_id'];
     if($buyer_id){
         $param["buyer_id"] = $buyer_id;
     }
@@ -280,6 +283,12 @@ function getSkinInfo(){
         if(!$buyer_id){
             $domain = get_top_domain($_SERVER['HTTP_HOST']);
             setcookie('buyer_id', $skin_ret['shop_skin']['buyer_id'], time() + 3650*24*3600, '/', $domain);
+            //分销商webview页面初始用户信息
+            if($uss && $url_uss && $url_uss_buyer_id && $uss != $url_uss){
+                setcookie('uss', $url_uss, time() + 3650*24*3600, '/', $domain);
+                setcookie('uss_buyer_id', $url_uss_buyer_id, time() + 3650*24*3600, '/', $domain);
+            }
+
         }
     }else{
         $result['skin_name'] = 'default';

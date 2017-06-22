@@ -33,6 +33,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     //添加到购物车插件
                     Buyplug({
                         data:init_data,
+                        is_direct_buy:2,
                         noStockCallback: function () {
                             if ($('.j_show_contact').length) {
                                 _this.contact && _this.contact.createHtm({
@@ -97,6 +98,10 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             //通过line联系供货商
             $('body').on('click', '.j_goto_line', function () {
                 location.href = init_data.item.shop.line_url;
+            })
+            //保存商品照片
+            $('body').on('click', '.j_save_imgs', function () {
+
             })
         }
     };

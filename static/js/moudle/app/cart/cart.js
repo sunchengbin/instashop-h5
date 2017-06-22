@@ -61,7 +61,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
             var _data = {
                 "edata": {
                     "action": "update",
-                    "is_direct_buy": 0,
+                    "is_direct_buy": opts.is_direct_buy,
                     "seller_id": _seller_id,
                     "buyer_id": _buyer_id,
                     "num": _num,
