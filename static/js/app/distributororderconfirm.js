@@ -4,8 +4,8 @@
 /**
  * Created by sunchengbin on 16/7/26.
  */
-require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator', 'favorable', 'debug', 'bargain'], function (Cart, Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator, Favorable, Debug, Bargain) {
-    var QuickCartsHtm = {
+require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator', 'favorable', 'debug','cookie'], function ( Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator, Favorable, Debug,Cookie) {
+    var DistributorOrderConfirm = {
         init: function () {
             var _this = this,
                 _address = init_data.buyer_address;
@@ -135,7 +135,8 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                     $('.j_logistics_info').attr({
                         'data-id': $(this).find('.check-btn').attr('data-id'),
                         'data-company': $(this).find('.check-btn').attr('data-company'),
-                        'data-price': Number($(this).find('.check-btn').attr('data-price'))
+                        'data-price': Number($(this).find('.check-btn').attr('data-price')),
+                        'data-tax':Number($(this).find('.check-btn').attr('data-tax'))
                     });
                     _this.getTotal();
                 }
@@ -169,32 +170,10 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                             _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
                             return;
                         }
-                        if ($('.j_check_box').is('.icon-checkbox-font')) {
+                        _this.placeOrder(_data,function(){
                             _that.cancelDisable();
                             _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-                            Dialog.tip({
-                                top_txt: '', //可以是html
-                                body_txt: '<p class="dialog-body-p">aggree is must checked</p>'
-                            });
-                            return;
-                        }
-                        // 是否含有bargain商品 如果不含有直接去确认订单 如果有要登录后才能下单
-                        var loginResult = _this.loginResult;
-                        if (Bargain.checkIsHaveBargainItem(_this.carts)) {
-                            if (loginResult.result) {
-                                _this.placeOrder(_data,function(){
-                                    _that.cancelDisable();
-                                    _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-                                });
-                            } else {
-                                Oauth.openDialog();
-                            }
-                        } else {
-                            _this.placeOrder(_data,function(){
-                                _that.cancelDisable();
-                                _that.setBtnTxt(dom, Lang.H5_CREATE_ORDER);
-                            });
-                        }
+                        });
                     }catch(e){
                         Dialog.tip({
                             top_txt: '', //可以是html
@@ -214,6 +193,24 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 Common.ScorllToBottom('.j_street');
             });
         },
+        //动态修改总价
+        getTotal : function(){
+            var _sum = Number($('.j_total').attr('data-price'));
+            var _postage = Number($('.j_logistics_info').attr('data-price'));
+            var _tax = Number($('.j_logistics_info').attr('data-tax'));
+            _postage = _postage?_postage:0;
+            _tax = _tax?_tax:0;
+            _sum = _sum + _tax + _postage;
+            if(_tax){
+                var _post_parent = $('.j_freight').parent('p');
+                $('<p class="clearfix j_tax"><span class="fr">Rp '+Base.others.priceFormat(_tax)+'</span>Pajak: </p>').insertAfter(_post_parent);
+            }else{
+                $('.j_tax').remove();
+            }
+            $('.j_freight').html('Rp '+ Base.others.priceFormat(_postage));
+            $('.j_total').html('Rp '+ Base.others.priceFormat(_sum));
+        },
+        //商品信息数据结构转换
         transCartInfo:function(data){
             var _data = data || init_data.buyer_cart;
             for(var groupid in _data){
@@ -228,6 +225,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             $('.j_logistics_info').removeAttr('data-price');
             $('.j_logistics').hide();
         },
+        //创建地址选择列表
         CreateList: function (data, type) {
             var _htm = '';
             for (var i in data) {
@@ -235,58 +233,63 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
             }
             return _htm;
         },
+        //动态获取物流列表数据
         getLogistics: function (type) {
             var _this = this;
             var _province = $.trim($('.j_province').html()),
                 _city = $.trim($('.j_city').html()),
                 _country = $.trim($('.j_country').html()),
-                _addr = _country + ',' + _city + ',' + _province;
+                _street = $.trim($('.j_street').html());
             if (!_province || !_city || !_country) {
                 return;
             }
             _this.loading = Dialog.loading({
                 width: 100
             });
+            var _uss = Cookie.getCookie('uss'),
+                _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id');
             var _data = {
                 "edata": {
-                    "address_id": Base.others.getUrlPrem('address_id'),
-                    "select_items":JSON.parse(Base.others.getUrlPrem('select_items')),
-                    "note": "",
-                    "pay_way": 11,
-                    "pay_type": 1,
-                    "seller_id": _seller_id,
-                    "buyer_id": _buyer_id,
-                    "buyer_note": _note,
-                    "express_company": (_company ? _company : ''),
-                    "express_fee_id": (_fee_id ? _fee_id : ''),
-                    "frm": 2,
-                    "warrant": '' == _this.tradeplug.checkIsSelectTrade() ? 0 : _this.tradeplug.getSelectedTrade()
+                    seller_id:Base.others.getUrlPrem('seller_id'),
+                    uss:_uss,
+                    buyer_id:_buyer_id,
+                    opt:'express',
+                    select_items:JSON.parse(Base.others.getUrlPrem('select_items')),
+                    is_direct_buy:2,
+                    buyer_address: {
+                        "province":_province,
+                        "city":_city,
+                        "country":_country,
+                        "street":_street
+                    }
                 }
             };
-            Ajax.postJsonp({
-                url: Config.actions.orderConfirm,
-                data: {
-                    param: JSON.stringify(_data)
-                },
-                type: 'POST',
-                timeout: 30000,
-                success: function (obj) {
+            Ajax.getJsonp(Config.host.actionUrl + Config.actions.cartAction + '?param=' + JSON.stringify(_data),
+                function (obj) {
                     _this.loading.remove();
                     if (obj.code == 200) {
-
+                        if (obj.express_free == 0) {
+                            if (_this.testExpress(obj.express_fee_list.list)) {
+                                $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
+                                $('.j_logistics').show();
+                                $('.j_submit_buy').show();
+                                type && $('body').scrollTop(9999);
+                            } else {
+                                var _li = '<li class="no-logistic">' + Lang.H5_NO_LOGISTICS_COMPANY + '</li>';
+                                $('.j_logistics ul').html(_li);
+                                $('.j_logistics').show();
+                                $('.j_submit_buy').hide();
+                                //不能提交订单
+                            }
+                        }
                     } else {
                         Dialog.tip({
                             top_txt: '', //可以是html
-                            body_txt: '<p class="dialog-body-p">' + obj.message + '</p>',
-                            after_fn: function () {
-                                setTimeout(function () {
-                                    location.href = Config.host.hrefUrl + 'cart.php';
-                                }, 2000);
-                            }
+                            body_txt: '<p class="dialog-body-p">' + obj.message + '</p>'
                         });
                     }
                 },
-                error: function (error) {
+                function (error) {
                     _this.loading.remove();
                     Dialog.tip({
                         top_txt: '', //可以是html
@@ -295,9 +298,19 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                             this.remove();
                         }
                     });
-                }
-            });
+                });
         },
+        //验证物流信息
+        testExpress: function (list) {
+            var _bool = false;
+            for (var express in list) {
+                if (list[express].length) {
+                    _bool = true;
+                }
+            }
+            return _bool;
+        },
+        //创建物流选择列表
         createLogistics: function (data) {
             var _htm = '';
             for (var item in data) {
@@ -311,8 +324,113 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'f
                 }
             }
             return _htm;
-        }
+        },
         //选择地址相关结束
+        //获取订单数据
+        getData: function () {
+            var _this = this,
+                _logistics_info = $('.j_logistics_info'),
+                _company = _logistics_info.length ? _logistics_info.attr('data-company') : '',
+                _fee_id = _logistics_info.length ? _logistics_info.attr('data-id') : '',
+                _seller_id = init_data.shop_info.id,
+                _note = $.trim($('.j_buyer_note').val());
+            var _uss = Cookie.getCookie('uss'),
+                _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id'),
+                _shipper_name = $.trim($('.j_shipper_name').val()),
+                _shipper_tel = $.trim($('.j_shipper_tel').val());
+            var _province = $.trim($('.j_province').html()),
+                _city = $.trim($('.j_city').html()),
+                _country = $.trim($('.j_country').html()),
+                _street = $.trim($('.j_street').html()),
+                _post = $.trim($('.j_post').val()),
+                _name = $.trim($('.j_name').val()),
+                _telephone = $.trim($('.j_tel').val());
+            if(Base.others.getUrlPrem('type')!='self' && !_shipper_name && !_shipper_tel){
+                return null;
+            }
+            if(!_name && !_telephone){
+                return null;
+            }
+            if (!_company) {
+                return null;
+            }
+            var _data = {
+                "edata": {
+                    express_sender_name:_shipper_name,
+                    express_sender_phone:_shipper_tel,
+                    "select_items":JSON.parse(Base.others.getUrlPrem('select_items')),
+                    "note": _note,
+                    "pay_way": 11,
+                    "pay_type": 1,
+                    "seller_id": _seller_id,
+                    "buyer_id": _buyer_id,
+                    "buyer_note": _note,
+                    "express_company": (_company ? _company : ''),
+                    "express_fee_id": (_fee_id ? _fee_id : ''),
+                    "frm": 8
+                }
+            };
+            _data.edata.buyer_address = {
+                "name": _name,
+                "telephone": _telephone,
+                "post": _post,
+                "country_code": "62",
+                "email": "",
+                "address": {
+                    "province": _province, //省
+                    "city": _city, //市
+                    "country": _country, //街道
+                    "street": _street, //详细地址
+                    "post": _post //邮编
+                }
+            };
+            _uss && (_data.edata.uss = _uss);
+            return _data;
+        },
+        //下单
+        placeOrder : function(data,callback){
+            var _this = this;
+            PaqPush && PaqPush('下单', '');
+            Ajax.postJsonp({
+                url: Config.actions.orderConfirm,
+                data: {
+                    param: JSON.stringify(data)
+                },
+                type: 'POST',
+                timeout: 30000,
+                success: function (obj) {
+                    if (obj.code == 200) {
+                        localStorage.setItem('OrderTotal', obj.order.real_price);
+                        localStorage.setItem('BankInfo', JSON.stringify(obj.order.pay_info.banks));
+                        localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
+                        setTimeout(function () {
+                            location.href = Config.host.hrefUrl + 'distributorordersuccess.php?price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400)+'&detail=3';
+                        }, 100);
+                    } else {
+                        Dialog.tip({
+                            top_txt: '', //可以是html
+                            body_txt: '<p class="dialog-body-p">' + obj.message + '</p>',
+                            after_fn: function () {
+                                setTimeout(function () {
+                                    history.back();
+                                }, 2000);
+                            }
+                        });
+                    }
+                    callback && callback();
+                },
+                error: function (error) {
+                    Dialog.tip({
+                        top_txt: '', //可以是html
+                        body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
+                        auto_fn: function () {
+                            this.remove();
+                            callback && callback();
+                        }
+                    });
+                }
+            });
+        }
     };
-    QuickCartsHtm.init();
+    DistributorOrderConfirm.init();
 })

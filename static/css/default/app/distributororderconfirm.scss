@@ -94,7 +94,7 @@ body .address-list{
 }
 .confirm-btn{
   width: 88%;
-  @include remCalc(margin,0 auto);
+  @include remCalc(margin,0 auto 30);
   border-radius: 3px;
 }
 .empty-cart{
@@ -279,5 +279,5 @@ body .address-list{
   width: 100%!important;
 }
 .agree-info{
-  @include remCalc(margin,0 30);
+  @include remCalc(margin,0 30 30);
 }

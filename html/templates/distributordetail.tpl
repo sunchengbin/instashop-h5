@@ -40,10 +40,6 @@
             </div>
             <div class="info-box" data-spider="shop-info-box">
                 <p class="title">
-                    {*砍价活动*}
-                    {if $INDEX_DATA.item.bargain}
-                        <a href="javascript:;" class="ins-color-hightlight-blue j_bargain_tip">[Mau beli barang ini seharga Rp {$INDEX_DATA.item.bargain.base_price|priceFormat} rupiah saja? Cuss cek caranya!]</a>
-                    {/if}
                     {$INDEX_DATA.item.item_comment|nl2br}
                 </p>
                 {if $INDEX_DATA.item.is_discount}
@@ -65,12 +61,6 @@
                     {else}
                         <p class="price-lang">Rp {$INDEX_DATA.item.discount.min_price|priceFormat} - {$INDEX_DATA.item.discount.max_price|priceFormat}</p>
                     {/if}
-                    <p class="discount-info">
-                        <span>-{$INDEX_DATA.item.discount.value|abs}%</span>
-                    {if $INDEX_DATA.item.discounting} Time remaining :
-                        <span data-time="{$INDEX_DATA.item.discount.end_time|discountSecond}">{$INDEX_DATA.item.discount.end_time|discountTime}</span>
-                    {else} Start time {$INDEX_DATA.item.discount.start_time|transDate} WIB
-                    {/if}
                     </p>
                 {else}
                     {if $INDEX_DATA.item.bargain}
@@ -83,10 +73,6 @@
                         </p>
                     {/if}
                 {/if}
-
-                {*砍价活动功能区begin*}
-                {*砍价活动功能区end*}
-                {include file="preferential.tpl"}
                 <a href="javascript:;" data-url="{$INDEX_DATA.item.shop.url}" spm-auto="去首页" spm-click="go-home" class="go-shop j_shop_info">
                     <div class="clearfix shop-info">
                         <i class="icon iconfont fr icon-go-font"></i>

@@ -3,15 +3,15 @@
 <div class="address-wraper">
     <section class="address-form-box">
         <section class="address-wraper" data-spider="wraper-box">
-            {if $SHOW_SEND_USER_INFO eq 'self'}
+            {if $SHOW_SEND_USER_INFO neq 'self'}
             <p class="address-title">发货人信息</p>
             <div class="user-info">
                 <div class="user-name info-box b-bottom">
-                    <input class="j_name" type="text" value="" placeholder="Nama Anda" />
+                    <input class="j_shipper_name" type="text" value="" placeholder="Nama Anda" />
                 </div>
                 <div class="user-tel info-box b-bottom">
                     <span>+62</span>
-                    <input class="j_tel" type="tel" value="" placeholder="No.Hp Anda" maxlength="20" />
+                    <input class="j_shipper_tel" type="tel" value="" placeholder="No.Hp Anda" maxlength="20" />
                 </div>
             </div>
             {/if}
