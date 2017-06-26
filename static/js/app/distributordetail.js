@@ -2,7 +2,7 @@
  * Created by sunchengbin on 2017/6/20.
  * app内嵌分销商商品详情页js
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog', 'debug'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog, Debug) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog', 'debug','insjs'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog, Debug,Insjs) {
     var ITEM = {
         init: function () {
             var _this = this;
@@ -54,8 +54,11 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                         btn: '.slide_arrow',
                         images: init_data.item.imgs
                     }).init();
-
-                    _this.handleFn();
+                    Insjs.WebOnReady(function(bridge){
+                        _this.handelFn(bridge);
+                    },function(){
+                        _this.handelFn();
+                    });
                 } catch (error) {
                     Debug.log({
                         title: "item.js init fail",
@@ -65,7 +68,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             }
 
         },
-        handleFn: function () {
+        handleFn: function (bridge) {
             //初始化fastclick事件
             Fastclick.attach(document.body);
             var _this = this;
@@ -99,10 +102,19 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
             $('body').on('click', '.j_goto_line', function () {
                 location.href = init_data.item.shop.line_url;
             })
-            //保存商品照片
-            $('body').on('click', '.j_save_imgs', function () {
-
-            })
+            $('body').on('click','.j_save_imgs',function(){
+                var _param = {
+                    param:{
+                        type:'save_item_imgs',
+                        param:{
+                            imgs : init_data.item.imgs
+                        }
+                    }
+                };
+                bridge.callHandler('insSocket',_param, function(response) {
+                    return null;
+                });
+            });
         }
     };
     ITEM.init();

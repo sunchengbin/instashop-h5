@@ -65,6 +65,10 @@
  * bridge.callHandler('insSocket', {param:{type:'get_seller_info',param:null, function(response) {
  *      return null;
  * })
+ *  * save_item_imgs//保存商品图片
+ * bridge.callHandler('insSocket', {param:{type:'save_item_imgs',param:{imgs:[]}, function(response) {
+ *      return null;
+ * })
  * share//分享
  * var Param = {param:{
 		type : 'share',
