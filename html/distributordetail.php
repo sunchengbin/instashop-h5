@@ -57,7 +57,7 @@
     $cart_params = [];
     $uss = $_COOKIE['uss'];
     $cart_params['action'] = 'num';
-    $cart_params['seller_id'] = $_REQUEST['seller_id'];
+    $cart_params['seller_id'] = 0;
     $cart_params['is_direct_buy'] = 2;
     if($uss){
         $cart_params['uss'] = $uss;
