@@ -92,6 +92,9 @@ body .address-list{
   @include remCalc(padding,0 25);
   background-color: $white;
 }
+.no-items{
+  @include remCalc(padding,30 0);
+}
 .confirm-btn{
   width: 88%;
   @include remCalc(margin,0 auto 30);
@@ -100,8 +103,6 @@ body .address-list{
 .empty-cart{
   text-align: center;
   @include fontDpr(16px);
-  @include remCalc(margin-top,60);
-  margin-top: 2rem;
   color: $gray-color;
 }
 
