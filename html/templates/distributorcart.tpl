@@ -1,9 +1,5 @@
 {include file="header.tpl"}
 <body data-spider="a5fivmur">
-    <nav class="header-nav clearfix " data-spider="header-nav">
-        <i class="icon iconfont j_go_back icon-back-font"></i>
-        Keranjangku
-    </nav>
     <section class="cart-list j_cart_list cart-supplier-list" data-spider="btn-box">
         {if $GOODS.data|count}
             {foreach key=key item=items from=$GOODS.data name=goods}
@@ -52,9 +48,6 @@
         {else}
             <ul>
                 <li class="empty-cart">Keranjang belanja Anda kosong</li>
-                <li>
-                    <div class="no_goods_box"><button class="btn j_go_shop confirm-btn">Beli Lagi</button></div>
-                </li>
             </ul>
         {/if}
     </section>
