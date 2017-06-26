@@ -17,7 +17,7 @@
     //获取购物车商品信息
     $params = [];
     $uss = $_COOKIE['uss'];
-    $params['seller_id'] = $_REQUEST['seller_id'];
+    $params['seller_id'] = 0;
     $params['is_direct_buy'] = 2;
     if($uss){
         $params['uss'] = $uss;
