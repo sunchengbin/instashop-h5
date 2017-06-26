@@ -77,7 +77,10 @@
                     <p class="total-p clearfix"><span class="fr j_total" data-price="{$INDEX_DATA.price.total_price}">Rp {$INDEX_DATA.price.total_price|priceFormat}</span>Jumlah Total: </p>
                 </div>
             </div>
-            <button class="btn confirm-btn j_submit_buy">Ajukan Pesanan</button>
+            {if $INDEX_DATA.carts}
+                <button class="btn confirm-btn j_submit_buy">Ajukan Pesanan</button>
+            {/if}
+
         </section>
     </section>
     <section class="address-list-box j_address_list_box">
