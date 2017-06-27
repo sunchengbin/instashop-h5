@@ -14,7 +14,8 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
             Fastclick.attach(document.body);
             $('body').on('click', '.j_del_cart', function () {
                 var _this = $(this),
-                    _item_id = _this.attr('data-id');
+                    _item_id = _this.attr('data-id'),
+                    _group_id = _this.attr('group-id');
                 PaqPush && PaqPush('从购物车删除', 'itemId=' + _this.attr('data-id') + ',sellerId=' + Base.others.getUrlPrem('seller_id'));
                 Dialog.confirm({
                     cover_event: true,
@@ -23,10 +24,10 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                             //location.reload();
                             $('.j_cart_item[data-id="' + _item_id + '"]').remove();
                             if(!$('.j_cart_item').length){
-                                var _htm = '<ul class=""><li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li></ul><button class="btn j_go_shop confirm-btn">' + Lang.H5_BROWSE_SHOP + '</button>';
+                                var _htm = '<ul class=""><li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li></ul>';
                                 $('.j_cart_list').html(_htm);
                             }
-                        });
+                        },_group_id);
                     }
                 });
             });

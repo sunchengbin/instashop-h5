@@ -129,7 +129,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
             }
         },
         //删除商品
-        removeItem: function (id, callback) {
+        removeItem: function (id, callback,group_id) {
             var _this = this,
                 _uss = Cookie.getCookie('uss'),//登录的真实账户的uss
                 _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id'); //匿名买家id
@@ -139,7 +139,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
                     "buyer_id": _buyer_id,
                     "delete_items": [id], //要删除的商品。传购物车里面每个商品的购物车id
                     "edit_items": [],//要修改的商品
-                    "seller_id": JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id
+                    "seller_id": group_id?group_id:JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id
                 }
             };
             _uss && (_data.edata.uss = _uss);

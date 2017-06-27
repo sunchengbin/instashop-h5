@@ -260,6 +260,7 @@ function set_request_seller_id() {
 function getSkinInfo(){
     set_request_seller_id();
     include_once( dirname(__FILE__).'/util.php');
+
     $seller_id = $_REQUEST['seller_id'];
     if (!$seller_id) {
         $seller_id = getUrlParam('seller_id');
@@ -281,22 +282,30 @@ function getSkinInfo(){
         $result['skin_name'] = $skin_ret['shop_skin']['name'];
         $result['facebook_id'] = $skin_ret['shop_skin']['facebook_id'];
         if(!$buyer_id){
-            //$domain = get_top_domain($_SERVER['HTTP_HOST']);
-            setcookie('buyer_id', $skin_ret['shop_skin']['buyer_id'], time() + 3650*24*3600, '/');
+            $domain = get_top_domain($_SERVER['HTTP_HOST']);
+            setcookie('buyer_id', $skin_ret['shop_skin']['buyer_id'], time() + 3650*24*3600, '/', $domain);
             //分销商webview页面初始用户信息
             if($url_uss && $url_uss_buyer_id && $uss != $url_uss){
+
                 setcookie('uss', $url_uss, time() + 3650*24*3600, '/');
-                setcookie('uss_buyer_id', $url_uss_buyer_id, time() + 3650*24*3600, '/');
+                setcookie('uss_buyer_id', $url_uss_buyer_id, time() + 3650*24*3600, '/', $domain);
+                print_r(1);
+                print_r($url_uss);
+                print_r($url_uss_buyer_id);
             }
         }else{
             if($url_uss && $url_uss_buyer_id && $uss != $url_uss){
-                setcookie('uss', $url_uss, time() + 3650*24*3600, '/');
-                setcookie('uss_buyer_id', $url_uss_buyer_id, time() + 3650*24*3600, '/');
+             print_r(2);
+             print_r($url_uss);
+             print_r($url_uss_buyer_id);
+                setcookie('uss', $url_uss, time() + 3650*24*3600, '/', $domain);
+                setcookie('uss_buyer_id', $url_uss_buyer_id, time() + 3650*24*3600, '/', $domain);
             }
         }
     }else{
         $result['skin_name'] = 'default';
     }
+    print_r($_SERVER['HTTP_COOKIE']);
     return $result;
 }
 //普通php初始化js和css方法(应用在需要兼容模板的问题)
