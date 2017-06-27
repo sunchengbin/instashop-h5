@@ -6,18 +6,17 @@ require(['hbs','text!views/app/uploadprove.hbs','config','lang','fastclick','dia
     var UploadProve = {
         init : function(){
             var _this = this;
-            alert(JSON.stringify(init_data))
             try{
                 var _htm= Hbs.compile(UploadProveHtm)({
                     data : init_data,
                     lang : Lang,
                     isIns:Base.others.isInsBrowser()
                 });
+                alert($('body')[0])
                 $('body').prepend(_htm);
                 _this.handleFn();
             }
             catch(error){
-                alert(error)
             }
         },
         handleFn : function(){
