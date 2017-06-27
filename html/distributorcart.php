@@ -33,6 +33,5 @@
     $goods['data'] = $json['buyer_cart'];
     $goods['hasDistribution'] = true;
     $smarty->assign('GOODS',$goods);
-    print_r($_SERVER['HTTP_COOKIE']);
     $smarty->display('distributorcart.tpl');
 ?>
