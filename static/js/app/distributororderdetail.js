@@ -55,61 +55,6 @@ require(['lang', 'hbs', 'text!views/app/distributororderdetail.hbs', 'config', '
                 PaqPush && PaqPush('跳转到line', '');
                 location.href = init_data.order.shop_info.line_url;
             });
-            // 申请退款
-            $('body').on('click', '.j_apply_refund', function () {
-                PaqPush && PaqPush('去申请退款', '');
-                var $this = $(this),
-                    _url = $this.attr('data-url'),
-                    _item_id = $this.attr('data-item-id'),
-                    _item_sku_id = $this.attr('data-item-sku-id');
-                var loginResult = _this.loginResult;
-                if (loginResult.result) {
-                    var _urlParam = {
-                        buyer_id: loginResult.info.buyer_id,
-                        uss: loginResult.info.uss,
-                        item_id: _item_id,
-                        item_sku_id: _item_sku_id,
-                        order_id: init_data.order.id,
-                        seller_id: init_data.order.seller_id
-                    }
-                    var _urlParamStr = ""
-                    $.each(_urlParam, function (key, val) {
-                        _urlParamStr += key + "=" + val + "&";
-                        console.log(_urlParamStr)
-                    })
-                    location.href = _url + "?" + _urlParamStr.replace(/&$/, "");
-                } else {
-                    Oauth.openDialog();
-                }
-            });
-            // 查看退款进展
-            $('body').on('click', '.j_check_refund', function () {
-                PaqPush && PaqPush('查看退款进展', '');
-                var $this = $(this),
-                    _url = $this.attr('data-url'),
-                    _item_id = $this.attr('data-item-id'),
-                    _item_sku_id = $this.attr('data-item-sku-id');
-                var loginResult = _this.loginResult;
-                if (loginResult.result) {
-                    var _urlParam = {
-                        buyer_id: loginResult.info.buyer_id,
-                        uss: loginResult.info.uss,
-                        item_id: _item_id,
-                        item_sku_id: _item_sku_id,
-                        order_id: init_data.order.id,
-                        seller_id: init_data.order.seller_id
-                    }
-                    var _urlParamStr = ""
-                    $.each(_urlParam, function (key, val) {
-                        _urlParamStr += key + "=" + val + "&";
-                        console.log(_urlParamStr)
-                    })
-                    location.href = _url + "?" + _urlParamStr.replace(/&$/, "");
-                } else {
-                    Oauth.openDialog();
-                }
-            });
-
             $("body").on("click", ".j_order_op", function () {
                 var _op = $(this).attr("data-op");
                 var _reqData = {
@@ -128,9 +73,6 @@ require(['lang', 'hbs', 'text!views/app/distributororderdetail.hbs', 'config', '
                         _reqData.edata.action = "extend";
                         _this.extendReceiveTime(_reqData);
                         break;
-                    case "bindcard":
-                        _this.bindCard();
-                        break;
                     case "evidence":
                         _this.evidence();
                         break;
@@ -144,23 +86,6 @@ require(['lang', 'hbs', 'text!views/app/distributororderdetail.hbs', 'config', '
             $("body").on("click", ".order-login-btn", function () {
                 Oauth.openDialog();
             })
-            $("body").on("click", ".j_go_back", function () {
-                var _from = Base.others.getUrlPrem('from');
-                if (!!_from) {
-                    var _urlParam = {
-                        buyer_id: _this.loginResult.info.buyer_id,
-                        uss: _this.loginResult.info.uss,
-                        seller_id: init_data.order.seller_id
-                    }
-                    var _urlParamStr = ""
-                    $.each(_urlParam, function (key, val) {
-                        _urlParamStr += key + "=" + val + "&";
-                    })
-                    location.href = Config.host.hrefUrl + "usercenter.php?" + _urlParamStr.replace(/&$/, "");
-                } else {
-                    history.back();
-                }
-            })
         },
         // 如果有item_id跳到对应位置
         jumpToItemPosition: function () {
@@ -169,11 +94,6 @@ require(['lang', 'hbs', 'text!views/app/distributororderdetail.hbs', 'config', '
                 var _itemTop = ~~$("#"+_item_id).offset().top;
                 $(window).scrollTop(_itemTop);
             }
-        },
-        // 退款
-        bindCard: function () {
-            PaqPush && PaqPush('退款', '');
-            location.href = Config.host.hrefUrl + "refund.php?" + "order_id=" + init_data.order.id;
         },
         // 支付证明
         evidence: function () {
