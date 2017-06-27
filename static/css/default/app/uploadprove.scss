@@ -1,0 +1,51 @@
+@import "../base/base.scss";
+@import "../moudle/app/header/header.scss";
+@import "../moudle/ui/dialog/dialog.scss";
+@import "../moudle/app/common/common.scss";
+@import "../moudle/app/address/address.scss";
+html{
+    height: 100%;
+}
+body{
+    background-color:$header-bg-color;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    max-width: none;
+}
+body .address-list{
+    max-width: none;
+}
+.address-wraper{
+    height: 100%;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.form-box{
+    background-color:$white;
+}
+.form-li > div{
+    width: 50%;
+    box-sizing: border-box;
+    float: left;
+    @include remCalc(padding,10 5);
+    @include remCalc(height,50);
+    @include remCalc(line-height,30);
+}
+.form-li > div.form-titie{
+    line-height: normal;
+    @include remCalc(padding,10 10 0);
+}
+.form-li > div input{
+    width: 100%;
+    @include remCalc(height,30);
+    @include remCalc(padding,5);
+}
+.submit-btn{
+    width: 80%;
+    margin: 20px auto;
+}
+.g-color{
+    color: #999;
+}
