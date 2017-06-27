@@ -12,7 +12,7 @@ require(['hbs','text!views/app/uploadprove.hbs','config','lang','fastclick','dia
                     lang : Lang,
                     isIns:Base.others.isInsBrowser()
                 });
-                alert($('body')[0])
+                alert(UploadProveHtm)
                 $('body').prepend(_htm);
                 _this.handleFn();
             }
