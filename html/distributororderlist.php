@@ -6,7 +6,7 @@
     $smarty = smartyCommon('default_scss');
 
     $buyer_id = $_REQUEST['uss_buyer_id'];
-    $seller_id = $_REQUEST['seller_id'];
+    $seller_id = 0;
     $uss = $_REQUEST['uss'];
     $path = 'v1/orders';
     $params = [];
@@ -21,6 +21,7 @@
     $ret = get_init_php_data($path, $params);
     $json = json_decode($ret, true);
 
+    $smarty->assign('INDEX_DATA_STR',$ret);
     $smarty->assign('INDEX_DATA',$json["order_list"]["list"]);
 
     $index_title = '<title>Pesanan Saya</title>';

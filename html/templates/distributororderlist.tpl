@@ -1,10 +1,5 @@
 {include file="header.tpl"}
 <body data-spider="ixawcheq">
-    {*<nav class="header-nav clearfix" data-spider="header-nav">
-        <i class="icon iconfont j_log_out icon-logout fr" spm-auto="退出登录" spm-click="">Keluar</i>
-        <i class="icon iconfont j_go_back icon-back-font" spm-auto="回退" spm-click=""></i>
-        Pesanan Saya
-    </nav>*}
     <section class="content-box">
         {if $INDEX_DATA|count eq 0}
             <p class="no-order">Belum ada pesanan</p>
@@ -45,4 +40,8 @@
             </ul>
         {/if}
     </section>
+    <script>
+        {*购买记录数据*}
+        var init_data = {$INDEX_DATA_STR};
+    </script>
 {include file="footer.tpl"}
