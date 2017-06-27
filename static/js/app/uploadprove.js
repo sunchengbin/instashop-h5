@@ -13,7 +13,6 @@ require(['hbs', 'text!views/app/uploadprove.hbs', 'config', 'lang', 'fastclick',
             });
             $('body').prepend(_htm);
             _this.handleFn();
-            alert($("body").height());
         },
         handleFn: function () {
             var _this = this;
