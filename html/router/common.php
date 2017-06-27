@@ -289,10 +289,8 @@ function getSkinInfo(){
             setcookie('buyer_id', $skin_ret['shop_skin']['buyer_id'], time() + 3650*24*3600, '/', $domain);
             //分销商webview页面初始用户信息
             if($url_uss && $url_uss_buyer_id && $uss != $url_uss){
-
-                setcookie('uss', $url_uss, time() + 3650*24*3600, '/');
+                setcookie('uss', $url_uss, time() + 3650*24*3600, '/',$domain);
                 setcookie('uss_buyer_id', $url_uss_buyer_id, time() + 3650*24*3600, '/', $domain);
-
             }
         }else{
             if($url_uss && $url_uss_buyer_id && $uss != $url_uss){
