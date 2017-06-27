@@ -31,7 +31,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $json = json_decode($ret, true);
         echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
     ?>
-    <?=initPhpCss('uploadprove','default')?>
+    <?=initPhpCss('uploadprove')?>
 </head>
 <body data-spider="fa8uybh3">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
