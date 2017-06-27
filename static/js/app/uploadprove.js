@@ -9,7 +9,8 @@ require(['hbs','text!views/app/uploadprove.hbs','config','lang','fastclick','dia
             try{
                 var _htm= Hbs.compile(UploadProveHtm)({
                     data : init_data,
-                    lang : Lang
+                    lang : Lang,
+                    isIns:Base.others.isInsBrowser()
                 });
                 $('body').prepend(_htm);
                 _this.handleFn();
