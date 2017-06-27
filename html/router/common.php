@@ -289,11 +289,13 @@ function getSkinInfo(){
             setcookie('buyer_id', $skin_ret['shop_skin']['buyer_id'], time() + 3650*24*3600, '/', $domain);
             //分销商webview页面初始用户信息
             if($url_uss && $url_uss_buyer_id && $uss != $url_uss){
+            print_r(4);
                 setcookie('uss', $url_uss, time() + 3650*24*3600, '/',$domain);
                 setcookie('uss_buyer_id', $url_uss_buyer_id, time() + 3650*24*3600, '/', $domain);
             }
         }else{
             if($url_uss && $url_uss_buyer_id && $uss != $url_uss){
+            print_r(5);
                 setcookie('uss', $url_uss, time() + 3650*24*3600, '/', $domain);
                 setcookie('uss_buyer_id', $url_uss_buyer_id, time() + 3650*24*3600, '/', $domain);
             }
@@ -306,7 +308,7 @@ function getSkinInfo(){
     print_r($_COOKIE['uss']);
     print_r($_COOKIE['uss_buyer_id']);
     print_r(3);
-    print_r($_SERVER['HTTP_COOKIE']);
+
     return $result;
 }
 //普通php初始化js和css方法(应用在需要兼容模板的问题)
