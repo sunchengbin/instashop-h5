@@ -282,7 +282,7 @@ function getSkinInfo(){
         $result['facebook_id'] = $skin_ret['shop_skin']['facebook_id'];
         if(!$buyer_id){
             //$domain = get_top_domain($_SERVER['HTTP_HOST']);
-            setcookie('buyer_id', $skin_ret['shop_skin']['buyer_id'], time() + 3650*24*3600, '/', $domain);
+            setcookie('buyer_id', $skin_ret['shop_skin']['buyer_id'], time() + 3650*24*3600, '/');
             //分销商webview页面初始用户信息
             if($url_uss && $url_uss_buyer_id && $uss != $url_uss){
                 setcookie('uss', $url_uss, time() + 3650*24*3600, '/');
