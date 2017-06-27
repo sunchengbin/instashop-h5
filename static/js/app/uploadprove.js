@@ -6,6 +6,7 @@ require(['hbs','text!views/app/uploadprove.hbs','config','lang','fastclick','dia
     var UploadProve = {
         init : function(){
             var _this = this;
+            alert(JSON.stringify(init_data))
             try{
                 var _htm= Hbs.compile(UploadProveHtm)({
                     data : init_data,
@@ -16,9 +17,8 @@ require(['hbs','text!views/app/uploadprove.hbs','config','lang','fastclick','dia
                 _this.handleFn();
             }
             catch(error){
-
+                alert(error)
             }
-
         },
         handleFn : function(){
             var _this = this;
