@@ -47,15 +47,15 @@ require(['oauth','base','config','common','lazyload','ajax','dialog'],function(O
             if(!_this.get_more){return;}
             _this.get_more = false;
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.orderConfirm+'?param=' + JSON.stringify(reqData), function (obj) {
+                _this.get_more = true;
                 if (obj.code == 200) {
                     if (obj.order_list.list.length > 0) {
-                        _this.get_more = true;
                         $('.j_order_list').append(_this.createListHtml(obj.order_list.list));
                     } else {
-                        _this.get_more = false;
                         _this.no_have_data = true;
                     }
                 } else {
+                    alert(obj.msg)
                     Dialog.tip({
                         top_txt: '', //可以是html
                         body_txt: '<p class="dialog-body-p">'+obj.msg+'</p>'
