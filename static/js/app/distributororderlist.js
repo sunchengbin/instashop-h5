@@ -43,7 +43,7 @@ require(['oauth','base','config','common','lazyload','ajax','dialog'],function(O
                     uss:Base.others.getUrlPrem('uss')
                 }
             };
-            if(_this.no_have_data){return;}
+            // if(_this.no_have_data){return;}
             if(!_this.get_more){return;}
             _this.get_more = false;
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.orderConfirm+'?param=' + JSON.stringify(reqData), function (obj) {
