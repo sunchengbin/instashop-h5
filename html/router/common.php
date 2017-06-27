@@ -303,6 +303,11 @@ function getSkinInfo(){
     }else{
         $result['skin_name'] = 'default';
     }
+    print_r(2);
+    print_r($_COOKIE['uss']);
+    print_r($_COOKIE['uss_buyer_id']);
+    print_r(3);
+    print_r($_SERVER['HTTP_COOKIE']);
     return $result;
 }
 //普通php初始化js和css方法(应用在需要兼容模板的问题)
