@@ -98,7 +98,7 @@ require(['lang', 'hbs', 'text!views/app/distributororderdetail.hbs', 'config', '
         // 支付证明
         evidence: function () {
             PaqPush && PaqPush('上传支付证明', '');
-            location.href = Config.host.hrefUrl + "uploadprove.php?" + "order_id=" + init_data.order.id + "&hash=" + init_data.order.id_hash;
+            location.href = Config.host.hrefUrl + "uploadprove.php?" + "order_id=" + init_data.order.id + "&hash=" + init_data.order.id_hash+"&skin='default'";
         },
         // 延长收货时间
         extendReceiveTime: function (data) {
