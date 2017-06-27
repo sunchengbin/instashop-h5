@@ -3,13 +3,13 @@
 @import "../moudle/ui/dialog/dialog.css";
 @import "../moudle/app/common/common.css";
 @import "../moudle/app/address/address.css";
-html{
-    height: 100%;
-}
+/*html{*/
+    /*height: 100%;*/
+/*}*/
 body{
     background-color: #F5F5F5;
     overflow: hidden;
-    height: 100%;
+    /*height: 100%;*/
     width: 100%;
     max-width: none;
 }
