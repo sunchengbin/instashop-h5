@@ -332,7 +332,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                 _logistics_info = $('.j_logistics_info'),
                 _company = _logistics_info.length ? _logistics_info.attr('data-company') : '',
                 _fee_id = _logistics_info.length ? _logistics_info.attr('data-id') : '',
-                _seller_id = init_data.shop_info.id,
+                _seller_id = Base.others.getUrlPrem('group_id'),
                 _note = $.trim($('.j_buyer_note').val());
             var _uss = Cookie.getCookie('uss'),
                 _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id'),

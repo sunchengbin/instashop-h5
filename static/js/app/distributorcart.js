@@ -79,7 +79,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                     if (obj.code == 200) {
                         if(_this.testCarts(obj.buyer_cart[groupid])){
                             var _search_address = (obj.buyer_address && obj.buyer_address.id && type=='self')?'&address_id='+obj.buyer_address.id:'';
-                            location.href = Config.host.hostUrl+'distributororderconfirm.php'+location.search+'&select_items='+JSON.stringify(_select_items)+'&type='+type+_search_address;
+                            location.href = Config.host.hostUrl+'distributororderconfirm.php'+location.search+'&select_items='+JSON.stringify(_select_items)+'&type='+type+_search_address+'&group_id='+groupid;
                         }
                     } else {
                         Dialog.alert({
