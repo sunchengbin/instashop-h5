@@ -52,7 +52,8 @@ require(['lang','hbs','text!views/app/evidencepayment.hbs','config','fastclick',
                     num : _this.countBankNum(banksInfo),
                     orderUrl : _order_url,
                     shopUrl : shopUrl,
-                    detail:_detail
+                    detail:_detail,
+                    isIns:Base.others.isInsBrowser()
                 });
             }
             catch(error){

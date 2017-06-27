@@ -5,7 +5,7 @@
     include_once( dirname(__FILE__).'/../html/router/base.php');
     $smarty = smartyCommon('default_scss');
 
-    $buyer_id = $_REQUEST['buyer_id'];
+    $buyer_id = $_REQUEST['uss_buyer_id'];
     $seller_id = $_REQUEST['seller_id'];
     $uss = $_REQUEST['uss'];
     $path = 'v1/orders';
