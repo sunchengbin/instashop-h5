@@ -13,7 +13,7 @@ require(['hbs', 'text!views/app/uploadprove.hbs', 'config', 'lang', 'fastclick',
             });
             $('body').prepend(_htm);
             _this.handleFn();
-            alert($("link")[4].href)
+            alert($(".address-wraper").html());
         },
         handleFn: function () {
             var _this = this;
