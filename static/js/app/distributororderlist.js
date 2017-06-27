@@ -95,7 +95,7 @@ require(['oauth','base','config','common','lazyload','ajax','dialog'],function(O
                     page_size: 20,
                     page_num: ++_this.num,
                     seller_id:Base.others.getUrlPrem('seller_id'),
-                    buyer_id:Base.others.getUrlPrem('buyer_id'),
+                    buyer_id:Base.others.getUrlPrem('uss_buyer_id'),
                     uss:Base.others.getUrlPrem('uss')
                 }
             };
