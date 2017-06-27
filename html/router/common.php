@@ -354,11 +354,19 @@ function smartyCommon($folder,$use_default_tpl){
     define('STATIC_FONT_CSS', $static_font_css);
     $folder_name = $use_default_tpl?'default':$folder_name;
     if($folder_name != 'default'){
-        $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
-        $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
-        $smarty->assign('TEMP_FOLDER',$folder_name.'/');
-        $smarty->assign('CSS_DEBUG','debug');
-        $smarty->assign('FLEXIBLE',FLEXIBLE);
+        if($folder && $folder == 'default_scss'){
+            $smarty->setTemplateDir(__DIR__.'/../templates/');
+            $smarty->setCompileDir(__DIR__.'/../templates_c/');
+            $smarty->assign('TEMP_FOLDER','default/');
+            $smarty->assign('FLEXIBLE',FLEXIBLE);
+        }else{
+            $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
+            $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
+            $smarty->assign('TEMP_FOLDER',$folder_name.'/');
+            $smarty->assign('CSS_DEBUG','debug');
+            $smarty->assign('FLEXIBLE',FLEXIBLE);
+        }
+
     }else{
         $smarty->setTemplateDir(__DIR__.'/../templates/');
         $smarty->setCompileDir(__DIR__.'/../templates_c/');
