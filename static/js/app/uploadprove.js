@@ -11,7 +11,8 @@ require(['hbs', 'text!views/app/uploadprove.hbs', 'config', 'lang', 'fastclick',
                 lang: Lang,
                 isIns: Base.others.isInsBrowser()
             });
-            $('body').append(_htm);
+            alert(_htm);
+            $('body').prepend(_htm);
             _this.handleFn();
         },
         handleFn: function () {
