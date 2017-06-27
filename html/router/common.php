@@ -330,7 +330,6 @@ function initPhpCss($css_name,$folder){
     }else{
         $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS;
     }
-    echo $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1498553909555" rel="stylesheet"/>';
     if(isDebug()){
         if($TEMP_FOLDER){
             return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1498553909555" rel="stylesheet"/>';

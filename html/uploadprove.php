@@ -11,6 +11,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="expect" content="0">
     <meta name="format-detection" content="telephone=no" />
     <title>Bukti Pembayaran</title>
+    <?=initPhpCss('uploadprove')?>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );
         $order_id = $_REQUEST['order_id'];
@@ -31,7 +32,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $json = json_decode($ret, true);
         echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
     ?>
-    <?=initPhpCss('uploadprove')?>
 </head>
 <body data-spider="fa8uybh3">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
