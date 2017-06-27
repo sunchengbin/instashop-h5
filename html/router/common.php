@@ -301,6 +301,7 @@ function getSkinInfo(){
     }else{
         $result['skin_name'] = 'default';
     }
+    print_r($domain);
     print_r(2);
     print_r($_COOKIE['uss']);
     print_r($_COOKIE['uss_buyer_id']);
