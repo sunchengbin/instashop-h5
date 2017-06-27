@@ -10,11 +10,11 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expect" content="0">
     <meta name="format-detection" content="telephone=no" />
-    <?=initPhpCss('uploadprove')?>
     <title>Bukti Pembayaran</title>
     <?php
         include_once( dirname(__FILE__).'/../html/router/util.php' );
         $order_id = $_REQUEST['order_id'];
+        $where = $_REQUEST['where']=='webview'?'/':'';
         if (!$order_id) {
             $ss = split('\/', $_SERVER['REQUEST_URI']);
             if(split('\?', $_SERVER['REQUEST_URI']).length > 0){
@@ -32,6 +32,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         $json = json_decode($ret, true);
         echo '<script>var init_data = JSON.parse('.json_encode($ret).');</script>';
     ?>
+    <?=initPhpCss('uploadprove',$where)?>
 </head>
 <body data-spider="fa8uybh3">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
