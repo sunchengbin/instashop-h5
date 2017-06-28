@@ -6,7 +6,11 @@
 @import "../moudle/app/item/item.scss";
 //登录
 @import "../moudle/app/oauth/oauth.scss";
+html{
+  height:100%;
+}
 body {
+  min-height:100%;
   background: $cart-bg;
 }
 .cart-list{

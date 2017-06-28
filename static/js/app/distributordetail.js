@@ -69,10 +69,24 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
 
         },
         handleFn: function (bridge) {
-            console.log(bridge);
+            if(!bridge){
+                alert('not find bridge');
+                return;
+            }
+            (function(bridge){
+                var _close_param = {
+                    param:{
+                        type : 'close_loading',
+                        param : null
+                    }
+                };
+                //关闭webview的loading动画
+                bridge.callHandler('insSocket',_close_param, function(response) {
+                    return null;
+                });
+            })(bridge);
             //初始化fastclick事件
             Fastclick.attach(document.body);
-            var _this = this;
             //查看店铺描述
             if ($('.txt-hide').height() > 44) {
                 $('.down-btn').show();
