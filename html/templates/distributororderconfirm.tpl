@@ -4,7 +4,7 @@
     <section class="address-form-box">
         <section class="address-wraper" data-spider="wraper-box">
             {if $SHOW_SEND_USER_INFO neq 'self'}
-            <p class="address-title">发货人信息</p>
+            <p class="address-title">Silahkan isi informasi pengirim pesanan </p>
             <div class="user-info">
                 <div class="user-name info-box b-bottom">
                     <input class="j_shipper_name" type="text" value="" placeholder="Nama Anda" />
@@ -15,7 +15,7 @@
                 </div>
             </div>
             {/if}
-            <p class="address-title">收货人信息</p>
+            <p class="address-title">Penerima Pesanan</p>
             <div class="user-info">
                 <div class="user-name info-box b-bottom">
                     <input class="j_name" type="text" value="{$INDEX_DATA.buyer_address.name}" placeholder="Nama Anda" />

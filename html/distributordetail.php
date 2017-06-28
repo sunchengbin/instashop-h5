@@ -55,16 +55,11 @@
     //获取购物车商品数量
     $get_cart_num_path = 'v1/buyerCart';
     $cart_params = [];
-    $uss = $_COOKIE['uss'];
     $cart_params['action'] = 'num';
     $cart_params['seller_id'] = 0;
     $cart_params['is_direct_buy'] = 2;
-    if($uss){
-        $cart_params['uss'] = $uss;
-        $cart_params['buyer_id'] = $_COOKIE['uss_buyer_id'];
-    }else{
-        $cart_params['buyer_id'] = $_COOKIE['buyer_id'];
-    }
+    $cart_params['uss'] = $_REQUEST['uss'];
+    $cart_params['buyer_id'] = $_REQUEST['uss_buyer_id'];
     $cart_ret = get_init_php_data($get_cart_num_path, $cart_params);
     $cart_json = json_decode($cart_ret, true);
 

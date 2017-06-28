@@ -36,8 +36,8 @@
                         {/foreach}
                         <li>
                             <div class="button-box" flex="box:mean">
-                            <p><button class="btn j_submit_btn confirm-btn" data-type="self" group-id="{$key}">自己购买</button></p>
-                            <p><button class="btn j_submit_btn confirm-btn" data-type="others" group-id="{$key}">帮别人购买</button></p>
+                            <p><button class="btn j_submit_btn confirm-btn" data-type="self" group-id="{$key}">Kuantitas tidak boleh nol</button></p>
+                            <p><button class="btn j_submit_btn confirm-btn" data-type="others" group-id="{$key}">Kirim ke alamat lain</button></p>
                             </div>
                         </li>
                     </ul>

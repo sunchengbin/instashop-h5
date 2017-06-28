@@ -17,14 +17,9 @@
 
     //获取订单确认页信息
     $params = [];
-    $uss = $_COOKIE['uss'];
     $params['seller_id'] = 0;
-    if($uss){
-        $params['uss'] = $uss;
-        $params['buyer_id'] = $_COOKIE['uss_buyer_id'];
-    }else{
-        $params['buyer_id'] = $_COOKIE['buyer_id'];
-    }
+    $params['uss'] = $_REQUEST['uss'];
+    $params['buyer_id'] = $_REQUEST['uss_buyer_id'];
     $params['opt'] = 'address,price,express';
     $params['select_items'] = json_decode($_REQUEST['select_items'], true);
     $params['is_direct_buy'] = 2;

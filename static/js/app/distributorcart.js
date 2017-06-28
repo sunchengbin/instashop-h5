@@ -53,9 +53,9 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
         subData: function (groupid,type) {
             var _this = this,
                 _seller_id = Base.others.getUrlPrem('seller_id'),
-                _uss = Cookie.getCookie('uss'),//登录的真实账户的uss
+                _uss = Base.others.getUrlPrem('uss'),//登录的真实账户的uss
                 _select_items = _this.getItems(groupid),
-                _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id'); //匿名买家id
+                _buyer_id = Base.others.getUrlPrem('uss_buyer_id'); //匿名买家id
             var _data = {
                 "edata": {
                     "buyer_id": _buyer_id,

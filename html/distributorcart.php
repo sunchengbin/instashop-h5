@@ -16,15 +16,10 @@
 
     //获取购物车商品信息
     $params = [];
-    $uss = $_COOKIE['uss'];
     $params['seller_id'] = 0;
     $params['is_direct_buy'] = 2;
-    if($uss){
-        $params['uss'] = $uss;
-        $params['buyer_id'] = $_COOKIE['uss_buyer_id'];
-    }else{
-        $params['buyer_id'] = $_COOKIE['buyer_id'];
-    }
+    $params['uss'] = $_REQUEST['uss'];
+    $params['buyer_id'] = $_REQUEST['uss_buyer_id'];
     $params['opt'] = 'cart';
     $path = 'v1/buyerCart/';
     $ret = get_init_php_data($path, $params);

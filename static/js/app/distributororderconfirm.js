@@ -246,8 +246,8 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
             _this.loading = Dialog.loading({
                 width: 100
             });
-            var _uss = Cookie.getCookie('uss'),
-                _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id');
+            var _uss =Base.others.getUrlPrem('uss'),
+                _buyer_id = Base.others.getUrlPrem('uss_buyer_id');
             var _data = {
                 "edata": {
                     seller_id:Base.others.getUrlPrem('seller_id'),
@@ -328,14 +328,13 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
         //选择地址相关结束
         //获取订单数据
         getData: function () {
-            var _this = this,
-                _logistics_info = $('.j_logistics_info'),
+            var _logistics_info = $('.j_logistics_info'),
                 _company = _logistics_info.length ? _logistics_info.attr('data-company') : '',
                 _fee_id = _logistics_info.length ? _logistics_info.attr('data-id') : '',
                 _seller_id = Base.others.getUrlPrem('group_id'),
                 _note = $.trim($('.j_buyer_note').val());
-            var _uss = Cookie.getCookie('uss'),
-                _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id'),
+            var _uss = Base.others.getUrlPrem('uss'),
+                _buyer_id = Base.others.getUrlPrem('uss_buyer_id'),
                 _shipper_name = $.trim($('.j_shipper_name').val()),
                 _shipper_tel = $.trim($('.j_shipper_tel').val());
             var _province = $.trim($('.j_province').html()),
@@ -389,7 +388,6 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
         },
         //下单
         placeOrder : function(data,callback){
-            var _this = this;
             PaqPush && PaqPush('下单', '');
             Ajax.postJsonp({
                 url: Config.actions.orderConfirm,

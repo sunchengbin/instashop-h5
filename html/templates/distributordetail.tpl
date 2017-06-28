@@ -180,10 +180,10 @@
                 </a>
                 {else}
                     <a class="add-cart j_save_imgs" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="添加购物车" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
-                    保存照片
+                    Simpan ke galeri
                     </a>
                     <a href="javascript:;" class="buy-now j_add_cart" data-direct-buy="2" spm-auto="立即购买" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
-                    Masuk keranjang
+                    Beli
                     </a>
                 {/if}
             {/if}
