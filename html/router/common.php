@@ -321,8 +321,12 @@ function initPhpCss($css_name,$folder){
     if($folder && $folder_name == ''){
         $folder_name = $folder.'/';
     }else{
-        if($folder && $folder == 'default_app'){
-            $folder_name = 'default/';
+        if($folder){
+            if($folder == 'default_app'){
+                $folder_name = 'default/';
+            }else{
+                $folder_name = '';
+            }
         }
     }
     if($folder_name){
@@ -337,6 +341,9 @@ function initPhpCss($css_name,$folder){
             return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1498640147049" rel="stylesheet"/>';
         }
     }else{
+        if($_REQUEST['distributor']){
+            $folder_name = '';
+        }
         return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1498640147049" rel="stylesheet"/>';
     }
 }

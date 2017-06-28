@@ -423,7 +423,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                         localStorage.setItem('BankInfo', JSON.stringify(obj.order.pay_info.banks));
                         localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
                         setTimeout(function () {
-                            location.href = Config.host.hrefUrl + 'distributorordersuccess.php'+location.search+'&order_id='+obj.order.id+'&price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400)+'&detail=3';
+                            location.href = Config.host.hrefUrl + 'distributorordersuccess.php'+location.search+'&order_id='+obj.order.id+'&price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400)+'&detail=3&distributor=1';
                         }, 100);
                     } else {
                         Dialog.tip({
