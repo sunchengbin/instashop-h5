@@ -185,28 +185,47 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
   <body data-spider="s9xynf1c">
   <section>
     <h1>PANDUAN DROPSHIP DARI SISI DROPSHIPPER</h1>
-    <h1>CARA REGISTRASI JADI DROPSHIPPERnya SUPPLIER INSTASHOP</h1>
+    <h1>CARA MEN-DROPSHIP PRODUK SUPPLIER</h1>
     <h2>STEP 1:</h2>
     <p>
-        1. Download Instashop
-    </p>
-    <div class=" clearfix pc-download-app" data-spider="pc-download-box">
-    <a target="_blank" spm-auto="android-down" data-spider="dandroid-down" href="https://play.google.com/store/apps/details?id=com.instashop" class="pc-down-android"></a>
-    <a target="_blank" spm-auto="ios-down" data-spider="dios-down" href="https://itunes.apple.com/us/app/instashop-buat-webstore-gratis/id1105365362?l=zh&ls=1&mt=8" class="pc-down-ios"></a>
-    </div>
-    <div class="mobile-download-app clearfix " data-spider="mobile-download-box">
-    <div class="j_down_url mb-down-load">Download Gratis！</div>
-    </div>
-    <h2>STEP 2:</h2>
-    <p>
-     Klik menu “<strong>Supplierku dan Dropshipperku</strong>”, klik “<strong>Tambah Supplier</strong>”, lalu masukkan nomor ponsel suppliermu. <em>Pastikan suppliermu sudah meregistrasikan tokonya di Instashop juga ya!</em>
-    </p>
-    <img src="<?=HOST_URL?>/html/instructions/images/11.png" alt="">
-    <h2>STEP 3 :</h2>
-    <p>
-    Tinggal menunggu supplier kamu untuk menyetujui kamu untuk men-dropship produk dia. Setelah itu menuju ke <strong>"Produk Supplier"</strong> untuk men-dropship atau me-resell produk supplier.
+        Centang produk yang ingin kamu dropship dan klik tombol <strong>“Atur Harga Jual Massal”</strong>
     </p>
     <img src="<?=HOST_URL?>/html/instructions/images/12.png" alt="">
+    <h2>STEP 2:</h2>
+    <p>
+        Isi Harga Jual Kembalimu untuk masing-masing produk。
+    </p>
+    <p>
+        *Jika produk supplier memiliki banyak varian, klik tombol <strong>“Bedakan Harga Per Varian”</strong> untuk mengisi harga masing-masing varian
+    </p>
+    <img src="<?=HOST_URL?>/html/instructions/images/12.png" alt="">
+    <h2>STEP 4 :</h2>
+    <p>Selesai! Kini produk dari supplier sudah otomatis tampil di menu pengaturan produk dan <strong>halaman web kamu</strong>. Pembelimu bisa langsung berbelanja di halaman webmu.</p>
+    <img src="<?=HOST_URL?>/html/instructions/images/12.png" alt="">
+    <img src="<?=HOST_URL?>/html/instructions/images/12.png" alt="">
+    <h2>NOTE:</h2>
+    <p>1. Customer kamu TIDAK AKAN melihat maupun mengetahui informasi mengenai supplier kamu. Hanya kamu yang akan tahu siapa supplier produk kamu.</p>
+    <p>2. Harga modal supplier yang tertera di aplikasi BELUM TERMASUK harga ongkos kirim. Namun, ketika pembeli kamu berbelanja ongkos kirim akan otomatis dibebankan ke pembeli kamu.</p>
+    <p>3. Khusus untuk penjual yang hanya memiliki produk dropship maka tidak perlu melakukan pengaturan dibawah ini :</p>
+    <ul>
+        <li>
+        Berat Produk Standar
+        </li>
+        <li>
+        Pengaturan Ongkos Kirim
+        </li>
+        <li>
+        Batas Waktu Pembayaran
+        Karena ketika ini akan otomatis mengikuti pengaturan supplier kamu.
+        </li>
+    </ul>
+    <h2>BAGAIMANA CARA  MENGELOLA PESANAN DROPSHIP ?</h2>
+    <p><strong>ANS</strong> : Kamu tidak melakukan apa-apa ketika adanya pesanan dropship baru yang masuk (Iya hanya tinggal menunggu supplier mengirim barang dan tarik dana keuntungan saja! ) </p>
+    <p>MENGAPA ?</p>
+    <p>1. Karena jika ada yang membeli produk dropship kamu maka otomatis pesanan akan diforward ke supplier supaya pesanan bisa dikirim, kamu juga bisa mengecek status pesanan di <strong>"Pengaturan Pesanan"</strong></p>
+    <img src="<?=HOST_URL?>/html/instructions/images/12.png" alt="">
+    <p>2. Setelah status pesanan berubah menjadi "Selesai", Kamu dapat langsung menarik saldo bagian keuntunganmu di menu "Penghasilan". Dana modal dan ongkos kirim akan langsung masuk ke saldo supplier.</p>
+    <p>NOTE: Proses pencairan saldo membutuhkan pendaftaran rekening bank terlebih dahulu. Silakan daftarkan rekening bank kamu di menu Penghasilan. Demi kelancaran proses pencairan saldo, pastikan nomor rekening dan nama pemilik rekening yang diisi PERSIS SAMA (termasuk tanda titik, tanda koma dan huruf besar) dengan nama di buku tabunganmu.</p>
   </section>
   <div class="contact-us">
       <ul>
