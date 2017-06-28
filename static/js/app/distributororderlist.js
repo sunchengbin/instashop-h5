@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 2017/4/26.
  */
-require(['oauth','base','config','common','lazyload','ajax','dialog'],function(Oauth,Base,Config,Common,Lazyload,Ajax,Dialog){
+require(['oauth','base','config','common','lazyload','ajax','dialog','insjs'],function(Oauth,Base,Config,Common,Lazyload,Ajax,Dialog,Insjs){
     var UserCenter = {
         init : function(){
             var _this = this;
@@ -10,6 +10,22 @@ require(['oauth','base','config','common','lazyload','ajax','dialog'],function(O
             _this.get_more = true;
             Lazyload();
             this.handleFn();
+            Insjs.WebOnReady(function(bridge){
+                (function(bridge){
+                    var _close_param = {
+                        param:{
+                            type : 'close_loading',
+                            param : null
+                        }
+                    };
+                    //关闭webview的loading动画
+                    bridge.callHandler('insSocket',_close_param, function(response) {
+                        return null;
+                    });
+                })(bridge);
+            },function(){
+
+            });
         },
         handleFn : function(){
             var _this = this;
