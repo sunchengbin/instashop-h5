@@ -223,10 +223,10 @@
             <ul>
                 <li>Silakan screenshot atau salin informasi ini untuk kemudahan pembayaran.</li>
             {{#if detail}}
-                {{#lt detail 3}}
+                {{#gt 3 detail}}
                 <li>Informasi pembayaran ini juga akan kami kirimkan melalui SMS ke ponsel kamu.</li>
                 <li>Jika pembayaranmu sudah berhasil, kami akan mengirimkan SMS notifikasi ke ponsel kamu.</li>
-                {{/lt}}
+                {{/gt}}
             {{/if}}
             </ul>
         </div>
