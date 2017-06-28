@@ -4,14 +4,14 @@
 /**
  * Created by sunchengbin on 16/7/26.
  */
-require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator', 'favorable', 'debug','cookie'], function ( Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator, Favorable, Debug,Cookie) {
+require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator', 'favorable', 'debug','insjs'], function ( Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator, Favorable, Debug,Insjs) {
     var DistributorOrderConfirm = {
         init: function () {
             var _this = this,
-                _address = init_data.buyer_address.address;
+                _address = init_data.buyer_address;
             _this.carts = _this.transCartInfo();
             //初始化本地数据
-            if (!_address) {
+            if (!_address.address) {
                 //地址信息
                 _address = {
                     "name": "",
@@ -28,17 +28,22 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     }
                 };
             } else {
-                _this['province'] = _address.province;
-                _this['city'] = _address.city;
-                _this['country'] = _address.country;
-                _this['post'] = _address.post;
+                _this['province'] = _address.address.province;
+                _this['city'] = _address.address.city;
+                _this['country'] = _address.address.country;
+                _this['post'] = _address.address.post;
+                _this['street'] = _address.address.street;
             }
             //本地地址初始化
             _this.initLocalStorage(_address);
             if (_this['province']) {
                 _this.getLogistics();
             }
-            _this.handleFn();
+            Insjs.WebOnReady(function(bridge){
+                _this.handleFn(bridge);
+            },function(){
+                _this.handleFn();
+            });
         },
         initLocalStorage: function (address) { //根据本地地址数据自动填写用户信息
             address.name && $('.j_name').val(address.name);
@@ -64,8 +69,24 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                 $('.j_country').html(Lang.H5_DISTRICT);
             }
         },
-        handleFn: function () {
+        handleFn: function (bridge) {
             var _this = this;
+            if(!bridge){
+                alert('not find bridge');
+                return;
+            }
+            (function(bridge){
+                var _close_param = {
+                    param:{
+                        type : 'close_loading',
+                        param : null
+                    }
+                };
+                //关闭webview的loading动画
+                bridge.callHandler('insSocket',_close_param, function(response) {
+                    return null;
+                });
+            })(bridge);
             Fastclick.attach(document.body);
             $('body').on('click', '.j_user_address .act', function () {
                 var _name = $(this).attr('data-name');
@@ -402,7 +423,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                         localStorage.setItem('BankInfo', JSON.stringify(obj.order.pay_info.banks));
                         localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
                         setTimeout(function () {
-                            location.href = Config.host.hrefUrl + 'distributorordersuccess.php?price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400)+'&detail=3';
+                            location.href = Config.host.hrefUrl + 'distributorordersuccess.php'+location.search+'&order_id='+obj.order.id+'&price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400)+'&detail=3';
                         }, 100);
                     } else {
                         Dialog.tip({

@@ -145,6 +145,6 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
         <p>loading...</p>
     </section>
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
-    <script src="<?=STATIC_HOST?>/js/dist/app/usertest.js?v=1498631112971"></script>
+    <script src="<?=STATIC_HOST?>/js/dist/app/usertest.js?v=1498640146820"></script>
 </body>
 </html>

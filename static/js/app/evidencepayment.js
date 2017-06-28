@@ -4,7 +4,7 @@
 /**
  * Created by sunchengbin on 16/6/6.
  */
-require(['lang','hbs','text!views/app/evidencepayment.hbs','config','fastclick','common','base'],function(Lang,Hbs,EvidencePayment,Config,Fastclick,Common,Base){
+require(['lang','hbs','text!views/app/evidencepayment.hbs','config','fastclick','common','base','insjs'],function(Lang,Hbs,EvidencePayment,Config,Fastclick,Common,Base,Insjs){
     var I = {
         init : function(){
             var IndexHtm = '<div>'+Lang.H5_LOADING+'</div>';
@@ -22,8 +22,14 @@ require(['lang','hbs','text!views/app/evidencepayment.hbs','config','fastclick',
                     _o_url = OrderInfo?Config.host.host+'o/'+OrderInfo.id_hash:null,
                     _prompt = '';
                 if(_detail){
-                    var _order_url = _detail==1?Common.replaceUrlPrompt(_o_url):Config.host.host+'o/'+getUrlPrem('order_id'),
-                        shopUrl = _detail==1?(_isCustomHost?_url+OrderInfo.shop_info.id:_url):(_isCustomHost?_url+getUrlPrem('shop_id'):_url);
+                    if(_detail != 3){
+                        var _order_url = _detail==1?Common.replaceUrlPrompt(_o_url):Config.host.host+'o/'+getUrlPrem('order_id'),
+                            shopUrl = _detail==1?(_isCustomHost?_url+OrderInfo.shop_info.id:_url):(_isCustomHost?_url+getUrlPrem('shop_id'):_url);
+                    }else{
+                        var _order_url = Config.host.host+'html/distributororderdetail.php'+location.search,
+                            shopUrl = '';
+                    }
+
                 }else{
                     var _order_url = Common.replaceUrlPrompt(_o_url),
                         shopUrl = _isCustomHost?_url+OrderInfo.shop_info.id:_url;
@@ -66,7 +72,11 @@ require(['lang','hbs','text!views/app/evidencepayment.hbs','config','fastclick',
                 //IndexHtm = '<div>'+Lang.H5_ERROR+'</div>';
             }
             $('body').prepend(IndexHtm);
-            this.handleFn();
+            Insjs.WebOnReady(function(bridge){
+                _this.handleFn(bridge);
+            },function(){
+                _this.handleFn();
+            });
         },
         countBankNum : function(banks){
             var _num = 0;
@@ -77,7 +87,35 @@ require(['lang','hbs','text!views/app/evidencepayment.hbs','config','fastclick',
             }
             return _num;
         },
-        handleFn : function(){
+        handleFn : function(bridge){
+            if(bridge){
+                (function(bridge){
+                    var _close_param = {
+                        param:{
+                            type : 'close_loading',
+                            param : null
+                        }
+                    };
+                    //关闭webview的loading动画
+                    bridge.callHandler('insSocket',_close_param, function(response) {
+                        return null;
+                    });
+                    $('body').on('click','.j_distributor_order_detail',function(){
+                        var _close_param = {
+                            param:{
+                                type : 'show_order_detail',
+                                param : {
+                                    url : Config.host.host+'html/distributororderdetail.php'+location.search
+                                }
+                            }
+                        };
+                        //关闭webview的loading动画
+                        bridge.callHandler('insSocket',_close_param, function(response) {
+                            return null;
+                        });
+                    });
+                })(bridge);
+            }
             Fastclick.attach(document.body);
             var data = JSON.parse(localStorage.getItem('ShopData')),
                 from = getUrlPrem('detail',location.href),
@@ -125,6 +163,7 @@ require(['lang','hbs','text!views/app/evidencepayment.hbs','config','fastclick',
                 }
 
             });
+
         }
     };
     I.init();

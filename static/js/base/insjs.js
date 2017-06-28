@@ -69,6 +69,9 @@
  * bridge.callHandler('insSocket', {param:{type:'save_item_imgs',param:{imgs:[]}, function(response) {
  *      return null;
  * })
+ * *  *show_order_detail//下单成功页面点击查看订单详情页 * bridge.callHandler('insSocket', {param:{type:'show_order_detail',param:{url:}, function(response) {
+ *      return null;
+ * })
  * share//分享
  * var Param = {param:{
 		type : 'share',

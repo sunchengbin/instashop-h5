@@ -215,6 +215,9 @@ footer::before{
 footer .btn{
     width: 49%;
 }
+footer .distributor-order-detail{
+    width: 100%;
+}
 .hide{
     display: none;
 }
