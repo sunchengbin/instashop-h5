@@ -329,6 +329,9 @@ function initPhpCss($css_name,$folder){
             }
         }
     }
+    if($_REQUEST['distributor']){
+        $folder_name = '';
+    }
     if($folder_name){
         $static_info = STATIC_DNS.STATIC_ICO_CSS.STATIC_FONT_CSS.'<script>'.FLEXIBLE.'</script>';
     }else{
@@ -341,9 +344,7 @@ function initPhpCss($css_name,$folder){
             return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1498640147049" rel="stylesheet"/>';
         }
     }else{
-        if($_REQUEST['distributor']){
-            $folder_name = '';
-        }
+
         return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1498640147049" rel="stylesheet"/>';
     }
 }
