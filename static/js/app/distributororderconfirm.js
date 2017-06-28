@@ -28,10 +28,10 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     }
                 };
             } else {
-                _this['province'] = _address.address.province;
-                _this['city'] = _address.address.city;
-                _this['country'] = _address.address.country;
-                _this['post'] = _address.address.post;
+                _this['province'] = _address.province;
+                _this['city'] = _address.city;
+                _this['country'] = _address.country;
+                _this['post'] = _address.post;
             }
             //本地地址初始化
             _this.initLocalStorage(_address);
@@ -100,7 +100,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     _type = $(this).attr('data-type');
                 _this[_type] = _name;
                 $('.j_address_list_box').addClass('hide').removeClass('show');
-                $('body').scrollTop(9999);
+                //$('body').scrollTop(9999);
                 _this.clearAddress();
                 switch (_type) {
                     case 'province':

@@ -222,8 +222,12 @@
             <p>Catatan: </p>
             <ul>
                 <li>Silakan screenshot atau salin informasi ini untuk kemudahan pembayaran.</li>
+            {{#if detail}}
+                {{#neq detail 3}}
                 <li>Informasi pembayaran ini juga akan kami kirimkan melalui SMS ke ponsel kamu.</li>
                 <li>Jika pembayaranmu sudah berhasil, kami akan mengirimkan SMS notifikasi ke ponsel kamu.</li>
+                {{/neq}}
+            {{/if}}
             </ul>
         </div>
     </div>
@@ -232,6 +236,11 @@
     {{#eq detail 2}}
         <footer class="clearfix" data-spider="footer-nav">
             <a href="{{shopUrl}}" spm-auto="再逛逛" spm-click="go-home" class="btn fr confirm-btn">{{lang.H5_IN_SHOP}}</a>
+            <a href="{{orderUrl}}" spm-auto="查看订单" spm-click="check-order" class="btn fl j_plug_submit">{{lang.H5_LOOK_ORDER}}</a>
+        </footer>
+    {{/eq}}
+    {{#eq detail 3}}
+        <footer class="clearfix" data-spider="footer-nav">
             <a href="{{orderUrl}}" spm-auto="查看订单" spm-click="check-order" class="btn fl j_plug_submit">{{lang.H5_LOOK_ORDER}}</a>
         </footer>
     {{/eq}}
