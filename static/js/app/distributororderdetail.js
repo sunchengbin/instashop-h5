@@ -1,11 +1,27 @@
 /**
  * Created by sunchengbin on 16/6/15.
  */
-require(['lang', 'hbs', 'text!views/app/distributororderdetail.hbs', 'config', 'contact', 'base', 'oauth', 'cache', 'ajax', 'dialog'], function (Lang, Hbs, OrderDetail, Config, Contact, Base, Oauth, Cache, Ajax, Dialog) {
+require(['lang', 'hbs', 'text!views/app/distributororderdetail.hbs', 'config', 'contact', 'base', 'oauth', 'cache', 'ajax', 'dialog','insjs'], function (Lang, Hbs, OrderDetail, Config, Contact, Base, Oauth, Cache, Ajax, Dialog,Insjs) {
     var OD = {
         init: function () {
             var _this = this;
-            _this.loginResult = Oauth.checkIsLogin();
+            Insjs.WebOnReady(function(bridge){
+                (function(bridge){
+                    var _close_param = {
+                        param:{
+                            type : 'close_loading',
+                            param : null
+                        }
+                    };
+                    //关闭webview的loading动画
+                    bridge.callHandler('insSocket',_close_param, function(response) {
+                        return null;
+                    });
+                })(bridge);
+            },function(){
+
+            });
+            _this.loginResult = Base.others.getUrlPrem('uss');
             var ItemHtm = '<div>' + Lang.H5_LOADING + '</div>';
             if (init_data && init_data.code == 200) {
                 localStorage.setItem('BankInfo', JSON.stringify(init_data.order.pay_info.banks));
@@ -18,9 +34,10 @@ require(['lang', 'hbs', 'text!views/app/distributororderdetail.hbs', 'config', '
                     data: init_data,
                     lang: Lang,
                     isBack: Base.others.getUrlPrem('from'),
-                    isLogin: !_this.loginResult.result,
+                    isLogin: !_this.loginResult,
                     hrefUrl: Config.host.hrefUrl,
                     host: Config.host.host,
+                    detail:Base.others.getUrlPrem('detail'),
                     shopUrl: !Base.others.isCustomHost() ? Config.host.host : Config.host.host + 's/' + init_data.order.shop_info.id,
                     isHaveReduc: (function () {
                         if (!!init_data.order.shop_discount) {
@@ -37,24 +54,6 @@ require(['lang', 'hbs', 'text!views/app/distributororderdetail.hbs', 'config', '
                 }
             }
             $('body').prepend(ItemHtm);
-            _this.jumpToItemPosition();
-            if ($('.j_show_contact').length) {
-                _this.contact = Contact({
-                    data: {
-                        tel: !init_data.order.shop_info.line_url && !init_data.order.shop_info.phone ? '' : init_data.order.shop_info.phone,
-                        line: init_data.order.shop_info.line_url,
-                        whatsapp:init_data.order.shop_info.whatsapp_url
-                    },
-                    lang: Lang,
-                    btn:'.j_show_contact'
-                });
-
-            }
-            //修正因标签属性href有值的问题导致被追加spider参数 line中user not find的问题
-            $('body').on('click', '.j_goto_line', function () {
-                PaqPush && PaqPush('跳转到line', '');
-                location.href = init_data.order.shop_info.line_url;
-            });
             $("body").on("click", ".j_order_op", function () {
                 var _op = $(this).attr("data-op");
                 var _reqData = {

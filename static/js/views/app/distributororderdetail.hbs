@@ -1,7 +1,3 @@
-<nav class="header-nav clearfix">
-    {{#if isBack}}<i class="icon iconfont j_go_back icon-back-font"></i>{{/if}}
-    {{lang.H5_ORDER}}
-</nav>
 <section class="order-state" data-spider="order-state">
     <div>
         {{#eq data.order.state 0}}
@@ -37,7 +33,7 @@
         {{/eq}}
     </div>
     <p data-spider="bank-info">
-        <a spm-auto="查看收款账号" spm-click="check-bankinfo" href="{{hrefUrl}}evidencepayment.php?price={{data.order.total_price}}&detail=1" class="">
+        <a spm-auto="查看收款账号" spm-click="check-bankinfo" href="{{hrefUrl}}evidencepayment.php?price={{data.order.total_price}}&detail=4" class="">
             <i class="icon iconfont fr icon-go-font"></i>{{lang.H5_CHECK_ACCOUNT_RECEIVABLES}}
         </a>
     </p>
@@ -151,56 +147,6 @@
             <p class="clearfix"><span class="fr">Rp {{transprice data.order.total_price}}</span>{{lang.H5_ORDER_TOTAL_PRICE}}: </p>
         </div>
     </div>
-</section>
-<section class="shop-info-box" data-spider="operate-box">
-    <div class="shop-info clearfix">
-        <img src="{{data.order.shop_info.logo}}">
-        <p>{{data.order.shop_info.name}}</p>
-    </div>
-    <div class="href-box clearfix">
-        <a spm-auto="去首页" spm-click="go-home" href="javascript:void(0);" class="go-home">
-            <div class="clearfix">
-                <i class="icon iconfont icon-shop-font"></i>
-                {{lang.H5_ENTER_THE_SHOP}}
-            </div>
-        </a>
-        {{#if data.order.shop_info.line_url}}
-            {{#if data.order.shop_info.phone}}
-                <a data-type="all" href="javascript:;" spm-auto="查看联系方式" spm-click="check-contact" class="contact-user j_show_contact fr">
-                    <div class="clearfix">
-                        <i class="icon iconfont icon-i-news-font"></i>
-                        {{lang.H5_CONNACT_SELLER}}
-                    </div>
-                </a>
-            {{else}}
-                <a href="javascript:;" spm-auto="查看联系方式" class="contact-user block j_goto_line fr">
-                    <div class="clearfix">
-                        <i class="icon iconfont icon-i-news-font"></i>
-                        {{lang.H5_CONNACT_SELLER}}
-                    </div>
-                </a>
-            {{/if}}
-        {{else}}
-            {{#if data.order.shop_info.phone}}
-                <a href="javascript:;" spm-auto="查看联系方式" data-type="tel" class="contact-user j_show_contact fr">
-                    <div class="clearfix">
-                        <i class="icon iconfont icon-i-news-font"></i>
-                        {{lang.H5_CONNACT_SELLER}}
-                    </div>
-                </a>
-            {{/if}}
-        {{/if}}
-    </div>
-    {{!--{{#if data.order.buyer_op.can_bindcard}}
-        <div class="prove-btn">
-            <a spm-auto="退款" spm-click="refund" class="submit-btn btn confirm-btn" href="{{hrefUrl}}refund.php?order_id={{data.order.id}}">{{lang.H5_EDIT_REFUND_CARD}}</a>
-        </div>
-    {{/if}}
-    {{#neq data.order.order_status 3}}
-        <div class="prove-btn">
-            <a spm-auto="上传支付证明" spm-click="upload-prove" class="submit-btn btn confirm-btn" href="{{hrefUrl}}uploadprove.php?order_id={{data.order.id}}&hash={{data.order.id_hash}}">{{lang.H5_PAY_WARRANT}}</a>
-        </div>
-    {{/neq}}--}}
 </section>
 {{!--未登录都提示登录--}}
 {{#neq data.order.warrant_status "nowarrant"}}
