@@ -273,7 +273,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                                 $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
                                 $('.j_logistics').show();
                                 $('.j_submit_buy').show();
-                                type && $('body').scrollTop(9999);
+                                //type && $('body').scrollTop(9999);
                             } else {
                                 var _li = '<li class="no-logistic">' + Lang.H5_NO_LOGISTICS_COMPANY + '</li>';
                                 $('.j_logistics ul').html(_li);
