@@ -75,7 +75,6 @@
                 {/if}
                 <a href="javascript:;" data-url="{$INDEX_DATA.item.shop.url}" spm-auto="去首页" spm-click="go-home" class="go-shop j_shop_info">
                     <div class="clearfix shop-info">
-                        <i class="icon iconfont fr icon-go-font"></i>
                         <img class="fl" src="{$INDEX_DATA.item.shop.logo}" />
                         <p>{$INDEX_DATA.item.shop.name}</p>
                         {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
