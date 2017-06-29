@@ -282,3 +282,40 @@ body .address-list{
 .agree-info{
   @include remCalc(margin,0 30 30);
 }
+.logistics-box{
+  @include remCalc(padding,0 30);
+  background-color: $white;
+  @include remCalc(margin-bottom,30);
+  color: $info-color;
+}
+.logistics-box i{
+  @include fontDpr(14px);
+  color: $gray-color;
+}
+.logistics-box{
+  @include fontDpr(14px);
+  @include remCalc(min-height,95);
+  @include remCalc(line-height,95);
+  @include remCalc(padding,0 30);
+}
+.logistics-box div{
+  @include fontDpr(16px);
+  //font-size: 16px;
+  display: inline-block;
+  @include remCalc(height,95);
+}
+.logistics-box span{
+  margin-right: .5rem;
+  font-size: 14px;
+  display: inline-block;
+  @include remCalc(height,95);
+  color: $txt-color;
+  max-width: 85px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.class-error{
+  border: 1px solid #ff2d2d !important;
+  box-sizing: border-box;
+}

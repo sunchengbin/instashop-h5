@@ -7,22 +7,22 @@
             <p class="address-title">Silahkan isi informasi pengirim pesanan </p>
             <div class="user-info">
                 <div class="user-name info-box b-bottom">
-                    <input class="j_shipper_name" type="text" value="" placeholder="Nama Anda" />
+                    <input class="j_shipper_name" type="text" input-txt="" value="" placeholder="Nama Anda" />
                 </div>
                 <div class="user-tel info-box b-bottom">
                     <span>+62</span>
-                    <input class="j_shipper_tel" type="tel" value="" placeholder="No.Hp Anda" maxlength="20" />
+                    <input class="j_shipper_tel" input-txt="" type="tel" value="" placeholder="No.Hp Anda" maxlength="20" />
                 </div>
             </div>
             {/if}
             <p class="address-title">Penerima Pesanan</p>
             <div class="user-info">
                 <div class="user-name info-box b-bottom">
-                    <input class="j_name" type="text" value="{$INDEX_DATA.buyer_address.name}" placeholder="Nama Anda" />
+                    <input class="j_name" input-txt="" type="text" value="{$INDEX_DATA.buyer_address.name}" placeholder="Nama Anda" />
                 </div>
                 <div class="user-tel info-box b-bottom">
                     <span>+62</span>
-                    <input class="j_tel" type="tel" value="{$INDEX_DATA.buyer_address.telephone}" placeholder="No.Hp Anda" maxlength="20" />
+                    <input class="j_tel" input-txt="" type="tel" value="{$INDEX_DATA.buyer_address.telephone}" placeholder="No.Hp Anda" maxlength="20" />
                 </div>
             </div>
             <div class="tel-msg-txt">
@@ -42,21 +42,22 @@
                     <p class="j_country"></p>
                 </div>
                 <div class="info-box-address clearfix">
-                    <textarea class="j_street" maxlength="400" placeholder="Alamat jelas">{$INDEX_DATA.buyer_address.address.street}</textarea>
+                    <textarea class="j_street" input-txt="" maxlength="400" placeholder="Alamat jelas">{$INDEX_DATA.buyer_address.address.street}</textarea>
                 </div>
                 <div class="info-box b-top clearfix">
-                    <input class="j_post" maxlength="10" type="text" value="{$INDEX_DATA.buyer_address.post}" placeholder="Kode Pos: Pilih, Sebaiknya diisi" />
+                    <input class="j_post" input-txt="" maxlength="10" type="text" value="{$INDEX_DATA.buyer_address.post}" placeholder="Kode Pos: Pilih, Sebaiknya diisi" />
                 </div>
             </div>
             {if $DATA.express_free eq 0}
                 {*不包邮*}
-                <div class="hiden j_logistics">
-                    <p class="address-title">Pilih Jenis Paket Pengiriman</p>
-                    <ul class="logistics-list j_logistics_info">
-                    </ul>
+                <div class="logistics-box b-top b-bottom j_logistics j_sel_logistics clearfix">
+                    Pilih Jenis Paket Pengiriman
+                    <div class="fr">
+                        <i class="icon iconfont fr icon-go-font"></i>
+                        <span class="j_logistics_info"></span>
+                    </div>
                 </div>
             {/if}
-
             <section class="cart-list {if not $INDEX_DATA.carts}no-items b-top b-bottom{/if}">
                 <ul class="j_cart_list">
                     {include file="distributorcarts.tpl" title="carts"}
@@ -64,21 +65,18 @@
             </section>
             <div class="address-buyer-note user-info info-box">
                 <span>Keterangan:  </span>
-                <input class="j_buyer_note" type="text" value="" maxlength="500" placeholder="Tidak dapat melebihi 500 karakter"/>
+                <input class="j_buyer_note" input-txt="" type="text" value="" maxlength="500" placeholder="Tidak dapat melebihi 500 karakter"/>
             </div>
             <div class="total-box">
-                {if $INDEX_DATA.shop.shop_discount}
-                <div class="reduc-info" style="display:none">
-                    <p class="clearfix"><span class="fr j_reduc_price"></span>Potongan Harga: </p>
-                </div>
-                {/if}
                 <div class="total-ps b-top">
-                    <p class="total-p clearfix"><span class="fr j_freight">Rp 0</span>Biaya Pengiriman: </p>
-                    <p class="total-p clearfix"><span class="fr j_total" data-price="{$INDEX_DATA.price.total_price}">Rp {$INDEX_DATA.price.total_price|priceFormat}</span>Jumlah Total: </p>
+                    <p class="total-p clearfix"><span class="fr j_post j_freight">Rp 0</span>Biaya Pengiriman: </p>
+                    <p class="total-p clearfix"><span class="fr j_sum j_total" data-price="{$INDEX_DATA.price.total_price}">Rp {$INDEX_DATA.price.total_price|priceFormat}</span>Jumlah Total: </p>
                 </div>
             </div>
             {if $INDEX_DATA.carts}
                 <button class="btn confirm-btn j_submit_buy">Ajukan Pesanan</button>
+            {else}
+                <button class="btn confirm-btn j_submit_buy hidden">Ajukan Pesanan</button>
             {/if}
 
         </section>

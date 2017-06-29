@@ -7,29 +7,29 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
         init: function () {
             var _this = this;
             Insjs.WebOnReady(function(bridge){
-                _this.handleFn(bridge);
+                if(!bridge){
+                    alert('not find bridge');
+                    return;
+                }
+                (function(bridge){
+                    var _close_param = {
+                        param:{
+                            type : 'close_loading',
+                            param : null
+                        }
+                    };
+                    //关闭webview的loading动画
+                    bridge.callHandler('insSocket',_close_param, function(response) {
+                        return null;
+                    });
+                })(bridge);
             },function(){
-                _this.handleFn();
+
             });
+            _this.handleFn();
         },
         handleFn: function (bridge) {
             var _that = this;
-            if(!bridge){
-                alert('not find bridge');
-                return;
-            }
-            (function(bridge){
-                var _close_param = {
-                    param:{
-                        type : 'close_loading',
-                        param : null
-                    }
-                };
-                //关闭webview的loading动画
-                bridge.callHandler('insSocket',_close_param, function(response) {
-                    return null;
-                });
-            })(bridge);
             Fastclick.attach(document.body);
             $('body').on('click', '.j_del_cart', function () {
                 var _this = $(this),

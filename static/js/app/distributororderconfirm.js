@@ -4,7 +4,7 @@
 /**
  * Created by sunchengbin on 16/7/26.
  */
-require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator', 'favorable', 'debug','insjs'], function ( Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator, Favorable, Debug,Insjs) {
+require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclick', 'city', 'quickbuyplug', 'validator', 'favorable', 'debug','insjs','logistics'], function ( Dialog, Ajax, Config, Base, Common, Btn, Lang, Fastclick, City, QuickBuyplug, Validator, Favorable, Debug,Insjs,Logistics) {
     var DistributorOrderConfirm = {
         init: function () {
             var _this = this,
@@ -40,10 +40,26 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
             if (_this['province']) {
                 _this.getLogistics();
             }
+            _this.handleFn();
             Insjs.WebOnReady(function(bridge){
-                _this.handleFn(bridge);
+                if(!bridge){
+                    alert('not find bridge');
+                    return;
+                }
+                (function(bridge){
+                    var _close_param = {
+                        param:{
+                            type : 'close_loading',
+                            param : null
+                        }
+                    };
+                    //关闭webview的loading动画
+                    bridge.callHandler('insSocket',_close_param, function(response) {
+                        return null;
+                    });
+                })(bridge);
             },function(){
-                _this.handleFn();
+
             });
         },
         initLocalStorage: function (address) { //根据本地地址数据自动填写用户信息
@@ -70,45 +86,26 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                 $('.j_country').html(Lang.H5_DISTRICT);
             }
         },
-        handleFn: function (bridge) {
+        handleFn: function () {
             var _this = this;
-            if(!bridge){
-                alert('not find bridge');
-                return;
-            }
-            (function(bridge){
-                var _close_param = {
-                    param:{
-                        type : 'close_loading',
-                        param : null
-                    }
-                };
-                //关闭webview的loading动画
-                bridge.callHandler('insSocket',_close_param, function(response) {
-                    return null;
-                });
-            })(bridge);
             Fastclick.attach(document.body);
             $('body').on('click', '.j_user_address .act', function () {
                 var _name = $(this).attr('data-name');
+                $(window).scrollTop(0);
                 $('.j_tel').blur();
                 $('.j_name').blur();
-                $('body').scrollTop(0);
                 switch (_name) {
                     case 'province':
                         $('.j_list_box').html(_this.CreateList(City, 'province'));
                         $('.j_address_list_box').addClass('show').removeClass('hide');
-                        //$('.j_address_header').addClass('show').removeClass('hide');
                         break;
                     case 'city':
                         $('.j_list_box').html(_this.CreateList(City[_this['province']], 'city'));
                         $('.j_address_list_box').addClass('show').removeClass('hide');
-                        //$('.j_address_header').addClass('show').removeClass('hide');
                         break;
                     case 'country':
                         $('.j_list_box').html(_this.CreateList(City[_this['province']][_this['city']], 'country'));
                         $('.j_address_list_box').addClass('show').removeClass('hide');
-                        //$('.j_address_header').addClass('show').removeClass('hide');
                         break;
                     default:
                         break;
@@ -122,7 +119,6 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     _type = $(this).attr('data-type');
                 _this[_type] = _name;
                 $('.j_address_list_box').addClass('hide').removeClass('show');
-                //$('body').scrollTop(9999);
                 _this.clearAddress();
                 switch (_type) {
                     case 'province':
@@ -161,6 +157,12 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                         'data-tax':Number($(this).find('.check-btn').attr('data-tax'))
                     });
                     _this.getTotal();
+                }
+            });
+            $('body').on('blur','[input-txt]',function(){
+                var _val = $.trim($(this).val());
+                if(_val){
+                    $(this).removeClass('class-error');
                 }
             });
             Btn({
@@ -289,13 +291,24 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
             Ajax.getJsonp(Config.host.actionUrl + Config.actions.cartAction + '?param=' + JSON.stringify(_data),
                 function (obj) {
                     _this.loading.remove();
+                    $(window).scrollTop($('.j_street').offset().top);
                     if (obj.code == 200) {
                         if (obj.express_free == 0) {
                             if (_this.testExpress(obj.express_fee_list.list)) {
-                                $('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
+                                //$('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
+                                //var _sum = $('.j_sum').attr('data-price');
+                                //如果不包邮并且存在运费信息,初始化物流选择插件
+                                _this.express_fee_list = obj.express_fee_list.list;
+                                console.log(_this.express_fee_list);
+                                if (obj.express_free == 0 && _this.testExpress(obj.express_fee_list.list)) {
+                                    _this.logistics = Logistics({
+                                        data: obj.express_fee_list.list,
+                                        sum: $('.j_sum').attr('data-price'),
+                                        lang: Lang
+                                    });
+                                }
                                 $('.j_logistics').show();
                                 $('.j_submit_buy').show();
-                                //type && $('body').scrollTop(9999);
                             } else {
                                 var _li = '<li class="no-logistic">' + Lang.H5_NO_LOGISTICS_COMPANY + '</li>';
                                 $('.j_logistics ul').html(_li);
@@ -366,13 +379,32 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                 _post = $.trim($('.j_post').val()),
                 _name = $.trim($('.j_name').val()),
                 _telephone = $.trim($('.j_tel').val());
-            if(Base.others.getUrlPrem('type')!='self' && !_shipper_name && !_shipper_tel){
-                return null;
+            if(Base.others.getUrlPrem('type')!='self'){
+                if(!_shipper_name){
+                    $('.j_shipper_name').addClass('class-error');
+                    if(!_shipper_tel){
+                        $('.j_shipper_tel').addClass('class-error');
+                        $(window).scrollTop($('.class-error').eq(0).offset().top);
+                        return null;
+                    }
+                    $(window).scrollTop($('.class-error').eq(0).offset().top);
+                }
             }
-            if(!_name && !_telephone){
-                return null;
+            if(!_name){
+                $('.j_name').addClass('class-error');
+                if(!_telephone){
+                    $('.j_tel').addClass('class-error');
+                    $(window).scrollTop($('.class-error').eq(0).offset().top);
+                    return null;
+                }
+                $(window).scrollTop($('.class-error').eq(0).offset().top);
             }
-            if (!_company) {
+            var _this = this;
+            if (!_company && _this.logistics) {
+                _this.logistics.createHtm({
+                    data: _this.express_fee_list,
+                    lang: Lang
+                }).toShow();
                 return null;
             }
             var _data = {
