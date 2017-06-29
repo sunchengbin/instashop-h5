@@ -295,12 +295,9 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     if (obj.code == 200) {
                         if (obj.express_free == 0) {
                             if (_this.testExpress(obj.express_fee_list.list)) {
-                                //$('.j_logistics ul').html(_this.createLogistics(obj.express_fee_list.list));
-                                //var _sum = $('.j_sum').attr('data-price');
                                 //如果不包邮并且存在运费信息,初始化物流选择插件
                                 _this.express_fee_list = obj.express_fee_list.list;
-                                console.log(_this.express_fee_list);
-                                if (obj.express_free == 0 && _this.testExpress(obj.express_fee_list.list)) {
+                                if(obj.express_free == 0){
                                     _this.logistics = Logistics({
                                         data: obj.express_fee_list.list,
                                         sum: $('.j_sum').attr('data-price'),
@@ -310,8 +307,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                                 $('.j_logistics').show();
                                 $('.j_submit_buy').show();
                             } else {
-                                var _li = '<li class="no-logistic">' + Lang.H5_NO_LOGISTICS_COMPANY + '</li>';
-                                $('.j_logistics ul').html(_li);
+                                $('.j_logistics').html('Maaf, saat ini alamat tujuanmu belum dapat dijangkau');
                                 $('.j_logistics').show();
                                 $('.j_submit_buy').hide();
                                 //不能提交订单
