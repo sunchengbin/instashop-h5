@@ -9,7 +9,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
         init: function () {
             var _this = this,
                 _address = init_data.buyer_address;
-            alert(_address);
+            alert(JSON.stringify(_address));
             _this.carts = _this.transCartInfo();
             //初始化本地数据
             if (!_address.address) {
