@@ -42,7 +42,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                         Cart().removeItem(_item_id, function () {
                             $('.j_cart_item[data-id="' + _item_id + '"]').remove();
                             if($('.j_cart_item[group-id="' + _group_id + '"]').length == 0){
-                                $('.cart-supplier-card[group-id="' + _item_id + '"]').remove();
+                                $('.cart-supplier-card[group-id="' + _group_id + '"]').remove();
                             }
                             if(!$('.j_cart_item').length){
                                 var _htm = '<ul class=""><li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li></ul>';
