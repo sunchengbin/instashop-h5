@@ -40,9 +40,8 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                     cover_event: true,
                     cf_fn: function () {
                         Cart().removeItem(_item_id, function () {
-                            if($('.j_cart_item[group-id="' + _group_id + '"]').length > 1){
-                                $('.j_cart_item[data-id="' + _item_id + '"]').remove();
-                            }else{
+                            $('.j_cart_item[data-id="' + _item_id + '"]').remove();
+                            if($('.j_cart_item[group-id="' + _group_id + '"]').length == 0){
                                 $('.cart-supplier-card[group-id="' + _item_id + '"]').remove();
                             }
                             if(!$('.j_cart_item').length){
