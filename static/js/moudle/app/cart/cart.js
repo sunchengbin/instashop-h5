@@ -88,7 +88,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
                     }else{
                         Dialog.tip({
                             top_txt: '', //可以是html
-                            body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>'
+                            body_txt: '<p class="dialog-body-p">' + obj.message + '</p>'
                         });
                     }
                 },
