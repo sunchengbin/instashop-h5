@@ -384,22 +384,27 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     $('.j_shipper_name').addClass('class-error');
                     $(window).scrollTop($('.class-error').eq(0).offset().top);
                     return null;
-                    if(!_shipper_tel){
-                        $('.j_shipper_tel').addClass('class-error');
-                        $(window).scrollTop($('.class-error').eq(0).offset().top);
-                        return null;
-                    }
+                }
+                if(!_shipper_tel){
+                    $('.j_shipper_tel').addClass('class-error');
+                    $(window).scrollTop($('.class-error').eq(0).offset().top);
+                    return null;
                 }
             }
             if(!_name){
                 $('.j_name').addClass('class-error');
                 $(window).scrollTop($('.class-error').eq(0).offset().top);
                 return null;
-                if(!_telephone){
-                    $('.j_tel').addClass('class-error');
-                    $(window).scrollTop($('.class-error').eq(0).offset().top);
-                    return null;
-                }
+            }
+            if(!_telephone){
+                $('.j_tel').addClass('class-error');
+                $(window).scrollTop($('.class-error').eq(0).offset().top);
+                return null;
+            }
+            if(!_street){
+                $('.j_street').addClass('class-error');
+                $(window).scrollTop($('.class-error').eq(0).offset().top);
+                return null;
             }
             var _this = this;
             if (!_company && _this.logistics) {
