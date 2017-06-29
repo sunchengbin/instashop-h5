@@ -73,7 +73,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
         },
         subData: function (groupid,type) {
             var _this = this,
-                _seller_id = Base.others.getUrlPrem('seller_id'),
+                _seller_id = groupid,
                 _uss = Base.others.getUrlPrem('uss'),//登录的真实账户的uss
                 _select_items = _this.getItems(groupid),
                 _buyer_id = Base.others.getUrlPrem('uss_buyer_id'); //匿名买家id
@@ -83,7 +83,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                     "is_direct_buy": 2, //如果是直接购买，则传1。普通情况传0
                     "seller_id": _seller_id,
                     "select_items": _select_items,
-                    "opt":'cart,address,price,express'
+                    "opt":'cart'
                 }
             };
             _uss && (_data.edata.uss = _uss);
