@@ -59,8 +59,8 @@ require(['lang', 'hbs', 'text!views/app/distributororderdetail.hbs', 'config', '
                 var _reqData = {
                     edata: {
                         "action": "",
-                        "buyer_id": _this.loginResult.info ? _this.loginResult.info.buyer_id : '',
-                        "uss": _this.loginResult.info ? _this.loginResult.info.uss : ''
+                        "buyer_id": Base.others.getUrlPrem('buyer_id'),
+                        "uss": Base.others.getUrlPrem('uss')
                     }
                 }
                 switch (_op) {
