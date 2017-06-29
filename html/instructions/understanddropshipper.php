@@ -198,11 +198,11 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     <p>
         *Jika produk supplier memiliki banyak varian, klik tombol <strong>“Bedakan Harga Per Varian”</strong> untuk mengisi harga masing-masing varian
     </p>
-    <img src="<?=HOST_URL?>/html/instructions/images/12.png" alt="">
+    <img src="<?=HOST_URL?>/html/instructions/images/13.png" alt="">
     <h2>STEP 4 :</h2>
     <p>Selesai! Kini produk dari supplier sudah otomatis tampil di menu pengaturan produk dan <strong>halaman web kamu</strong>. Pembelimu bisa langsung berbelanja di halaman webmu.</p>
-    <img src="<?=HOST_URL?>/html/instructions/images/12.png" alt="">
-    <img src="<?=HOST_URL?>/html/instructions/images/12.png" alt="">
+    <img src="<?=HOST_URL?>/html/instructions/images/15.png" alt="">
+    <img src="<?=HOST_URL?>/html/instructions/images/16.png" alt="">
     <h2>NOTE:</h2>
     <p>1. Customer kamu TIDAK AKAN melihat maupun mengetahui informasi mengenai supplier kamu. Hanya kamu yang akan tahu siapa supplier produk kamu.</p>
     <p>2. Harga modal supplier yang tertera di aplikasi BELUM TERMASUK harga ongkos kirim. Namun, ketika pembeli kamu berbelanja ongkos kirim akan otomatis dibebankan ke pembeli kamu.</p>
@@ -223,9 +223,10 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     <p><strong>ANS</strong> : Kamu tidak melakukan apa-apa ketika adanya pesanan dropship baru yang masuk (Iya hanya tinggal menunggu supplier mengirim barang dan tarik dana keuntungan saja! ) </p>
     <p>MENGAPA ?</p>
     <p>1. Karena jika ada yang membeli produk dropship kamu maka otomatis pesanan akan diforward ke supplier supaya pesanan bisa dikirim, kamu juga bisa mengecek status pesanan di <strong>"Pengaturan Pesanan"</strong></p>
-    <img src="<?=HOST_URL?>/html/instructions/images/12.png" alt="">
+    <img src="<?=HOST_URL?>/html/instructions/images/18.png" alt="">
     <p>2. Setelah status pesanan berubah menjadi "Selesai", Kamu dapat langsung menarik saldo bagian keuntunganmu di menu "Penghasilan". Dana modal dan ongkos kirim akan langsung masuk ke saldo supplier.</p>
     <p>NOTE: Proses pencairan saldo membutuhkan pendaftaran rekening bank terlebih dahulu. Silakan daftarkan rekening bank kamu di menu Penghasilan. Demi kelancaran proses pencairan saldo, pastikan nomor rekening dan nama pemilik rekening yang diisi PERSIS SAMA (termasuk tanda titik, tanda koma dan huruf besar) dengan nama di buku tabunganmu.</p>
+    <img src="<?=HOST_URL?>/html/instructions/images/21.png" alt="">
   </section>
   <div class="contact-us">
       <ul>
