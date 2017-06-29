@@ -86,6 +86,7 @@ define(['base', 'lang', 'dialog', 'debug','ajax','config','cookie'], function (B
                             opts.callback && opts.callback.call(_this,_num);
                         }, opts.isbuynow, opts.item.img);
                     }else{
+                        alert( obj.message);
                         Dialog.tip({
                             top_txt: '', //可以是html
                             body_txt: '<p class="dialog-body-p">' + obj.message + '</p>'
