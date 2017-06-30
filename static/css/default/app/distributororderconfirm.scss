@@ -253,9 +253,6 @@ body .address-list{
   @include fontDpr(14px);
   @include remCalc(padding-top,15);
 }
-.total-p span{
-  color: $base-btn-color;
-}
 .disable-btn{
   width: 80%;
 }
