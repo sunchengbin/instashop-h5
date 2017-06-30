@@ -206,7 +206,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     <p>
     Tinggal menunggu supplier kamu untuk menyetujui kamu untuk men-dropship produk dia. Setelah itu menuju ke <strong>"Produk Supplier"</strong> untuk men-dropship atau me-resell produk supplier.
     </p>
-    <img src="<?=HOST_URL?>/html/instructions/images/22.png" alt="">
+    <img src="<?=HOST_URL?>/html/instructions/images/21.jpeg" alt="">
   </section>
   <div class="contact-us">
       <ul>

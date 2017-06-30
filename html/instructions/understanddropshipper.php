@@ -226,7 +226,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
     <img src="<?=HOST_URL?>/html/instructions/images/18.png" alt="">
     <p>2. Setelah status pesanan berubah menjadi "Selesai", Kamu dapat langsung menarik saldo bagian keuntunganmu di menu "Penghasilan". Dana modal dan ongkos kirim akan langsung masuk ke saldo supplier.</p>
     <p>NOTE: Proses pencairan saldo membutuhkan pendaftaran rekening bank terlebih dahulu. Silakan daftarkan rekening bank kamu di menu Penghasilan. Demi kelancaran proses pencairan saldo, pastikan nomor rekening dan nama pemilik rekening yang diisi PERSIS SAMA (termasuk tanda titik, tanda koma dan huruf besar) dengan nama di buku tabunganmu.</p>
-    <img src="<?=HOST_URL?>/html/instructions/images/21.png" alt="">
+    <img src="<?=HOST_URL?>/html/instructions/images/22.png" alt="">
   </section>
   <div class="contact-us">
       <ul>
