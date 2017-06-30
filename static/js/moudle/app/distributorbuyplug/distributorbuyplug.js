@@ -107,7 +107,7 @@ define(['common', 'base', 'hbs', 'text!views/moudle/distributorbuyplug.hbs', 'bt
                     }
                 }
                 _item_num.val(++_num);
-                if(_config.has_drop_price){
+                if(_config.data.item.drop_prices && _config.data.item.drop_prices.length > 1){
                     _this.changeDropPrice(_config,_num);
                 }
             });

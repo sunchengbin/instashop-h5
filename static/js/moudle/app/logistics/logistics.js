@@ -59,7 +59,7 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang','fa
                     $('.j_post').html('Rp '+Base.others.priceFormat(_price));
                     if(_tax){
                         var _post_parent = $('.j_post').parent('p');
-                        $('<p class="clearfix j_tax tax-p"><span class="fr">Rp '+Base.others.priceFormat(_tax)+'</span>Pajak: </p>').insertAfter(_post_parent);
+                        $('<p class="clearfix total-p j_tax"><span class="fr">Rp '+Base.others.priceFormat(_tax)+'</span>Pajak: </p>').insertAfter(_post_parent);
                     }else{
                         $('.j_tax').remove();
                     }

@@ -243,6 +243,9 @@ body .address-list{
   @include remCalc(padding,0 30);
   background: $white;
 }
+.total-box span{
+  color: $base-color;
+}
 .total-ps{
   @include remCalc(padding, 30 0);
 }
