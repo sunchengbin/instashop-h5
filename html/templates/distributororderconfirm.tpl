@@ -11,7 +11,7 @@
                 </div>
                 <div class="user-tel info-box b-bottom">
                     <span>+62</span>
-                    <input class="j_shipper_tel" input-txt="" type="tel" value="{$INDEX_DATA.shop_info.telphone}" placeholder="No.Hp Anda" maxlength="20" />
+                    <input class="j_shipper_tel" input-txt="" type="tel" value="{$INDEX_DATA.shop_info.telephone}" placeholder="No.Hp Anda" maxlength="20" />
                 </div>
             </div>
             {/if}

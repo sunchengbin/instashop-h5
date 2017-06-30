@@ -150,6 +150,14 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     $(this).removeClass('class-error');
                 }
             });
+            $('body').on('click','.j_sel_logistics',function(){
+                if(!_this.logistics){
+                    Dialog.tip({
+                        top_txt: '', //可以是html
+                        body_txt: '<p class="dialog-body-p">Silahkan mengisi alamat pengiriman</p>'
+                    });
+                }
+            });
             Btn({
                 wraper: 'body',
                 target: '.j_submit_buy',
