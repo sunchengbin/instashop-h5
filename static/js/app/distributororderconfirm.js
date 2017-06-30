@@ -274,7 +274,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                 _buyer_id = Base.others.getUrlPrem('uss_buyer_id');
             var _data = {
                 "edata": {
-                    seller_id:Base.others.getUrlPrem('seller_id'),
+                    seller_id:Base.others.getUrlPrem('group_id'),
                     uss:_uss,
                     buyer_id:_buyer_id,
                     opt:'express',
@@ -294,6 +294,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     $(window).scrollTop($('.j_street').offset().top);
                     if (obj.code == 200) {
                         alert(obj.express_free);
+                        _this.express_free = obj.express_free;
                         if (obj.express_free == 0) {
                             if (_this.testExpress(obj.express_fee_list.list)) {
                                 //如果不包邮并且存在运费信息,初始化物流选择插件
