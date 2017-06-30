@@ -55,6 +55,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
             $('body').on('click', '.j_submit_btn', function () {
                 var _groupid = $(this).attr('group-id'),
                     _type = $(this).attr('data-type');
+                //alert(_groupid);
                 _that.goClear(_groupid,_type);
 
             });
@@ -98,6 +99,8 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                 type: 'GET',
                 success: function (obj) {
                     if (obj.code == 200) {
+                        //alert(JSON.stringify(obj));
+                        //alert(JSON.stringify(obj.buyer_cart[groupid]));
                         if(_this.testCarts(obj.buyer_cart[groupid])){
                             var _search_address = (obj.buyer_address && obj.buyer_address.id && type=='self')?'&address_id='+obj.buyer_address.id:'';
                             location.href = Config.host.hostUrl+'distributororderconfirm.php'+location.search+'&select_items='+JSON.stringify(_select_items)+'&type='+type+_search_address+'&group_id='+groupid;

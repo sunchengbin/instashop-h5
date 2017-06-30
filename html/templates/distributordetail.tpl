@@ -138,10 +138,10 @@
                     </div>
                 </a>
                 {if $INDEX_DATA.item.stock le 0}
-                    <div class="clearfix buy-btns no-buy have-contact">
+                    <div class="clearfix buy-btns  have-contact">
                 {else}
                     {if $INDEX_DATA.item.status eq 2}
-                        <div class="clearfix buy-btns no-buy have-contact">
+                        <div class="clearfix buy-btns  have-contact">
                     {else}
                         <div class="clearfix buy-btns have-contact">
                     {/if}
@@ -154,10 +154,10 @@
                     </div>
                 </a>
                 {if $INDEX_DATA.item.stock le 0}
-                    <div class="clearfix buy-btns no-buy have-contact">
+                    <div class="clearfix buy-btns  have-contact">
                 {else}
                     {if $INDEX_DATA.item.status eq 2}
-                        <div class="clearfix buy-btns no-buy have-contact">
+                        <div class="clearfix buy-btns  have-contact">
                     {else}
                         <div class="clearfix buy-btns have-contact">
                     {/if}
@@ -172,20 +172,20 @@
                         </div>
                     </a>
                     {if $INDEX_DATA.item.stock le 0 || $INDEX_DATA.item.status eq 2}
-                        <div class="clearfix buy-btns no-buy have-contact">
+                        <div class="clearfix buy-btns  have-contact">
                     {else}
                         {if $INDEX_DATA.item.status eq 2}
-                            <div class="clearfix buy-btns no-buy have-contact">
+                            <div class="clearfix buy-btns  have-contact">
                         {else}
                             <div class="clearfix buy-btns have-contact">
                         {/if}
                     {/if}
                 {else}
                     {if $INDEX_DATA.item.stock le 0}
-                        <div class="clearfix buy-btns no-buy">
+                        <div class="clearfix buy-btns">
                     {else}
                         {if $INDEX_DATA.item.status eq 2}
-                            <div class="clearfix buy-btns no-buy">
+                            <div class="clearfix buy-btns ">
                         {else}
                             <div class="clearfix buy-btns">
                         {/if}
@@ -193,18 +193,24 @@
                 {/if}
             {/if}
             {if $INDEX_DATA.item.stock le 0}
-                <a class="add-cart disable-addnow disable-btn" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="已售完" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}">
-                    {if $INDEX_DATA.item.status eq 2}
-                        Sudah Digudangkan
-                    {else}
-                        Stok Habis
-                    {/if}
+                <a class="add-cart j_save_imgs" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="添加购物车" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
+                Simpan ke galeri
+                </a>
+                <a href="javascript:;" class=" disable-btn" spm-auto="立即购买" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
+                {if $INDEX_DATA.item.status eq 2}
+                    Sudah Digudangkan
+                {else}
+                    Stok Habis
+                {/if}
                 </a>
             {else}
                 {if $INDEX_DATA.item.status eq 2}
-                <a class="add-cart disable-addnow disable-btn" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="已下架" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}">
+                    <a class="add-cart j_save_imgs" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="添加购物车" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
+                    Simpan ke galeri
+                    </a>
+                    <a href="javascript:;" class=" disable-btn" spm-auto="立即购买" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
                     Sudah Digudangkan
-                </a>
+                    </a>
                 {else}
                     <a class="add-cart j_save_imgs" data-id="{$INDEX_DATA.item.id}" href="javascript:;" spm-auto="添加购物车" spm-click="itemId={$INDEX_DATA.item.id},sellerId={$INDEX_DATA.item.shop.id}" >
                     Simpan ke galeri

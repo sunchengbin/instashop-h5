@@ -7,11 +7,11 @@
             <p class="address-title">Silahkan isi informasi pengirim pesanan </p>
             <div class="user-info">
                 <div class="user-name info-box b-bottom">
-                    <input class="j_shipper_name" type="text" input-txt="" value="" placeholder="Nama Anda" />
+                    <input class="j_shipper_name" type="text" input-txt="" value="{$INDEX_DATA.shop_info.shop_name}" placeholder="Nama Anda" />
                 </div>
                 <div class="user-tel info-box b-bottom">
                     <span>+62</span>
-                    <input class="j_shipper_tel" input-txt="" type="tel" value="" placeholder="No.Hp Anda" maxlength="20" />
+                    <input class="j_shipper_tel" input-txt="" type="tel" value="{$INDEX_DATA.shop_info.telphone}" placeholder="No.Hp Anda" maxlength="20" />
                 </div>
             </div>
             {/if}

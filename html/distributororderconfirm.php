@@ -17,7 +17,7 @@
 
     //获取订单确认页信息
     $params = [];
-    $params['seller_id'] = 0;
+    $params['seller_id'] = $_REQUEST['group_id'];
     $params['uss'] = $_REQUEST['uss'];
     $params['buyer_id'] = $_REQUEST['uss_buyer_id'];
     $params['opt'] = 'address,price,express';

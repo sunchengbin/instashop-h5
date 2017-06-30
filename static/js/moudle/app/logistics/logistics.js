@@ -27,7 +27,8 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang','fa
             $(_config.wraper).on('click',_config.btn,function(){
                 _this.createHtm({
                     data : _config.data,
-                    lang : Lang
+                    lang : Lang,
+                    reset_html : _config.reset_html
                 }).toShow();
             });
             $(_config.wraper).on('click','.j_logistics_li',function(){
@@ -77,8 +78,15 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang','fa
         },
         createHtm : function(info){
             if($('.j_logistics_plug').length){
-                this.resetSelectLogistics();
-                return this;
+                if(!info.reset_html){
+                    console.log(1);
+                    this.resetSelectLogistics();
+                    return this;
+                }else{
+                    console.log(2);
+                    $('.j_logistics_plug').remove();
+                    $('.j_logistics_plug_cover').remove();
+                }
             }
             info.lang = Lang;
             var PlugHtm= Hbs.compile(Logistics)(info);

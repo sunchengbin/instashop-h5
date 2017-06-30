@@ -267,10 +267,13 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                                 //如果不包邮并且存在运费信息,初始化物流选择插件
                                 _this.express_fee_list = obj.express_fee_list.list;
                                 if(obj.express_free == 0){
+                                    $('.j_logistics_plug').remove();
+                                    $('.j_logistics_plug_cover').remove();
                                     _this.logistics = Logistics({
                                         data: obj.express_fee_list.list,
                                         sum: $('.j_sum').attr('data-price'),
-                                        lang: Lang
+                                        lang: Lang,
+                                        reset_html:true
                                     });
                                 }
                                 $('.j_logistics').show();
