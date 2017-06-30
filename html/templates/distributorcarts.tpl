@@ -6,7 +6,7 @@
             <img src="{$item.img_head}">
             <div class="">
                 <p class="name">{$item.item_name}</p>
-                <p class="num">{$item.num}</p>
+                <p class="num">Jumlah: {$item.num}</p>
                 {if $item.item_sku_id}
                     <p class="type">Tipe: {$item.sku_title}</p>
                 {else}
