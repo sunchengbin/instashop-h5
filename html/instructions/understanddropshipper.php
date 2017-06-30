@@ -199,7 +199,7 @@ include_once( dirname(__FILE__).'/../../html/router/common.php');
         *Jika produk supplier memiliki banyak varian, klik tombol <strong>“Bedakan Harga Per Varian”</strong> untuk mengisi harga masing-masing varian
     </p>
     <img src="<?=HOST_URL?>/html/instructions/images/13.png" alt="">
-    <h2>STEP 4 :</h2>
+    <h2>STEP 3 :</h2>
     <p>Selesai! Kini produk dari supplier sudah otomatis tampil di menu pengaturan produk dan <strong>halaman web kamu</strong>. Pembelimu bisa langsung berbelanja di halaman webmu.</p>
     <img src="<?=HOST_URL?>/html/instructions/images/15.png" alt="">
     <img src="<?=HOST_URL?>/html/instructions/images/16.png" alt="">
