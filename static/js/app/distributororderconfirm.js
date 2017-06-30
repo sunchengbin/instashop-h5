@@ -293,7 +293,6 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     _this.loading.remove();
                     $(window).scrollTop($('.j_street').offset().top);
                     if (obj.code == 200) {
-                        alert(obj.express_free);
                         _this.express_free = obj.express_free;
                         if (obj.express_free == 0) {
                             if (_this.testExpress(obj.express_fee_list.list)) {
