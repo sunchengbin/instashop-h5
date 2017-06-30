@@ -2,7 +2,7 @@
  * Created by sunchengbin on 2017/6/20.
  * app内嵌分销商商品详情页js
  */
-require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog', 'debug','insjs'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog, Debug,Insjs) {
+require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'distributorbuyplug', 'slide', 'cart', 'fastclick', 'contact', 'viewer', 'item', 'dialog', 'debug','insjs'], function (Lang, Lazyload, Ajax, Config, Base, Common, Buyplug, Slide, Cart, Fastclick, Contact, Viewer, Item, Dialog, Debug,Insjs) {
     var ITEM = {
         init: function () {
             var _this = this;
@@ -33,6 +33,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
                     //添加到购物车插件
                     Buyplug({
                         data:init_data,
+                        has_drop_price:init_data.item.drop_prices&&init_data.item.drop_prices.length>0,
                         is_direct_buy:2,
                         noStockCallback: function () {
                             if ($('.j_show_contact').length) {
@@ -69,10 +70,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
 
         },
         handleFn: function (bridge) {
-            if(!bridge){
-                alert('not find bridge');
-                return;
-            }
             (function(bridge){
                 var _close_param = {
                     param:{

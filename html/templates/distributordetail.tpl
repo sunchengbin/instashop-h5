@@ -63,14 +63,42 @@
                     {/if}
                     </p>
                 {else}
-                    {if $INDEX_DATA.item.bargain}
+                    {if $INDEX_DATA.item.drop_prices}
                         <p class="price bargain-price">
-                            {$INDEX_DATA.item|itemPrice}
+                           {$INDEX_DATA.item.drop_price|priceFormat}
                         </p>
                     {else}
-                        <p class="price discount-price">
-                            {$INDEX_DATA.item|itemPrice}
-                        </p>
+                        {if $INDEX_DATA.item.bargain}
+                            <p class="price bargain-price">
+                                {$INDEX_DATA.item|itemPrice}
+                            </p>
+                        {else}
+                            <p class="price discount-price">
+                                {$INDEX_DATA.item|itemPrice}
+                            </p>
+                        {/if}
+                    {/if}
+                    {if $INDEX_DATA.item.drop_prices|count gt 1}
+                    <ul class="combination-price">
+                        <li flex="box:mean">
+                            <div>Jumlah</div>
+                            <div>Grosir</div>
+                        </li>
+                        {foreach $INDEX_DATA.item.drop_prices as $drop_price}
+                            <li flex="box:mean">
+                                <div>
+                                    {if $drop_price.max_num eq 0}
+                                        ≥{$drop_price.min_num}
+                                    {else}
+                                        {$drop_price.min_num} ~ {$drop_price.max_num}
+                                    {/if}
+                                </div>
+                                <div>
+                                    {$drop_price.price|priceFormat}
+                                </div>
+                            </li>
+                        {/foreach}
+                    </ul>
                     {/if}
                 {/if}
                 <a href="javascript:;" data-url="{$INDEX_DATA.item.shop.url}" spm-auto="去首页" spm-click="go-home" class="go-shop j_shop_info">

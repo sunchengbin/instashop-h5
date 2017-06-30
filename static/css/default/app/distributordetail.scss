@@ -24,6 +24,24 @@
 //登录
 @import "../moudle/app/oauth/oauth.scss";
 
-
+.combination-price li div,.combination-price li{
+  box-sizing: border-box;
+}
+.combination-price{
+  border-top:1px solid $border-color;
+}
+.combination-price li{
+  border:1px solid $border-color;
+  border-top:none;
+  @include remCalc(height,60);
+  @include remCalc(line-height,60);
+  text-align: center;
+}
+.combination-price li div:nth-child(1){
+  border-right:1px solid $border-color;
+}
+.combination-price li div:nth-child(2){
+  color: $base-color;
+}
 
 

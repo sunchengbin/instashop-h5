@@ -359,7 +359,12 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
                 } else {
                     data_price = item.price;
                 }
-                _htm += '<li class="j_type_li ' + (item.stock == 0 || item.price < 0 ? 'disable' : '') + '" data-price="' + data_price + '" data-stock="' + item.stock + '" data-id="' + item.id + '">' + item.title + '</li>';
+                if(data.drop_prices && data.drop_prices.length>0){//分销商购物流程商品详情拥有批发价的时候
+                    _htm += '<li class="j_type_li ' + (item.stock == 0 || item.price < 0 ? 'disable' : '') + '" data-price="' + data.drop_price + '" data-stock="' + item.stock + '" data-id="' + item.id + '">' + item.title + '</li>';
+                }else{
+                    _htm += '<li class="j_type_li ' + (item.stock == 0 || item.price < 0 ? 'disable' : '') + '" data-price="' + data_price + '" data-stock="' + item.stock + '" data-id="' + item.id + '">' + item.title + '</li>';
+                }
+
             });
         }
         return _htm;

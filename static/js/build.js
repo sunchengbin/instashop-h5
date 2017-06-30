@@ -22,6 +22,7 @@
         "bankcity":"moudle/data/bankcity",
         "common":"moudle/app/common/common",
         "buyplug":"moudle/app/buyplug/buyplug",
+        "distributorbuyplug":"moudle/app/distributorbuyplug/distributorbuyplug",
         "item":"moudle/app/item/item",
         "quickbuyplug":"moudle/app/quickbuyplug/quickbuyplug",
         "cart":"moudle/app/cart/cart",

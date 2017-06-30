@@ -144,21 +144,6 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                         break;
                 }
             });
-            $('body').on('click', '.j_logistics_li', function () {
-                if ($(this).find('.check-btn').length) {
-                    $('.checked-btn').addClass('check-btn').removeClass('checked-btn');
-                    $(this).find('.check-btn').addClass('checked-btn');
-                    $('.icon-radioed-font').addClass('icon-radio-font').removeClass('icon-radioed-font');
-                    $(this).find('.check-btn').addClass('icon-radioed-font').removeClass('icon-radio-font');
-                    $('.j_logistics_info').attr({
-                        'data-id': $(this).find('.check-btn').attr('data-id'),
-                        'data-company': $(this).find('.check-btn').attr('data-company'),
-                        'data-price': Number($(this).find('.check-btn').attr('data-price')),
-                        'data-tax':Number($(this).find('.check-btn').attr('data-tax'))
-                    });
-                    _this.getTotal();
-                }
-            });
             $('body').on('blur','[input-txt]',function(){
                 var _val = $.trim($(this).val());
                 if(_val){
@@ -216,23 +201,6 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
             }, function () {
                 Common.ScorllToBottom('.j_street');
             });
-        },
-        //动态修改总价
-        getTotal : function(){
-            var _sum = Number($('.j_total').attr('data-price'));
-            var _postage = Number($('.j_logistics_info').attr('data-price'));
-            var _tax = Number($('.j_logistics_info').attr('data-tax'));
-            _postage = _postage?_postage:0;
-            _tax = _tax?_tax:0;
-            _sum = _sum + _tax + _postage;
-            if(_tax){
-                var _post_parent = $('.j_freight').parent('p');
-                $('<p class="clearfix j_tax"><span class="fr">Rp '+Base.others.priceFormat(_tax)+'</span>Pajak: </p>').insertAfter(_post_parent);
-            }else{
-                $('.j_tax').remove();
-            }
-            $('.j_freight').html('Rp '+ Base.others.priceFormat(_postage));
-            $('.j_total').html('Rp '+ Base.others.priceFormat(_sum));
         },
         //商品信息数据结构转换
         transCartInfo:function(data){
@@ -372,7 +340,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
             var _province = $.trim($('.j_province').html()),
                 _city = $.trim($('.j_city').html()),
                 _country = $.trim($('.j_country').html()),
-                _street = $.trim($('.j_street').html()),
+                _street = $.trim($('.j_street').val()),
                 _post = $.trim($('.j_post').val()),
                 _name = $.trim($('.j_name').val()),
                 _telephone = $.trim($('.j_tel').val());
