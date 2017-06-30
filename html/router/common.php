@@ -318,14 +318,16 @@ function initPhpJs($js_name){
 function initPhpCss($css_name,$folder){
     global $TEMP_FOLDER;
     $folder_name = $TEMP_FOLDER;
-    if($folder && $folder_name == ''){
-        $folder_name = $folder.'/';
-    }else{
-        if($folder){
-            if($folder == 'default_app'){
-                $folder_name = 'default/';
-            }else{
-                $folder_name = '';
+    if($folder){
+        if($folder_name == ''){
+            $folder_name = $folder.'/';
+        }else{
+            if($folder_name == 'default'){
+                if($folder == 'default_app'){
+                    $folder_name = 'default/';
+                }else{
+                    $folder_name = '';
+                }
             }
         }
     }
@@ -366,18 +368,11 @@ function smartyCommon($folder,$use_default_tpl){
     define('STATIC_FONT_CSS', $static_font_css);
     $folder_name = $use_default_tpl?'default':$folder_name;
     if($folder_name != 'default'){
-        if($folder && $folder == 'default_scss'){
-            $smarty->setTemplateDir(__DIR__.'/../templates/');
-            $smarty->setCompileDir(__DIR__.'/../templates_c/');
-            $smarty->assign('TEMP_FOLDER','default/');
-            $smarty->assign('FLEXIBLE',FLEXIBLE);
-        }else{
-            $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
-            $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
-            $smarty->assign('TEMP_FOLDER',$folder_name.'/');
-            $smarty->assign('CSS_DEBUG','debug');
-            $smarty->assign('FLEXIBLE',FLEXIBLE);
-        }
+        $smarty->setTemplateDir(__DIR__.'/../templates/'.$folder_name.'/');
+        $smarty->setCompileDir(__DIR__.'/../templates_c/'.$folder_name.'/');
+        $smarty->assign('TEMP_FOLDER',$folder_name.'/');
+        $smarty->assign('CSS_DEBUG','debug');
+        $smarty->assign('FLEXIBLE',FLEXIBLE);
 
     }else{
         $smarty->setTemplateDir(__DIR__.'/../templates/');

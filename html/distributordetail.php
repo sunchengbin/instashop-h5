@@ -3,7 +3,7 @@
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     include_once( dirname(__FILE__).'/../html/router/base.php');
 
-    $smarty = smartyCommon('default_scss');
+    $smarty = smartyCommon('default_scss','default_tpl');
 
     /*HOST_NAME*/
     $hostname=$_SERVER['SERVER_NAME'];
