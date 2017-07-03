@@ -42,7 +42,10 @@ require(['oauth','base','config','common','lazyload','ajax','dialog','insjs'],fu
             });
             $(".j_order_info").on("click",function(){
                 PaqPush && PaqPush('查看订单', '');
-                var _id = $(this).attr('data-id')
+                var _id = $(this).attr('data-id');
+                Dialog.loading({
+                    width: 100
+                });
                 var _url = Config.host.hrefUrl+"distributororderdetail.php?order_id="+_id;
                 location.href = _url;
             })
