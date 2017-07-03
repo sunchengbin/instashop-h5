@@ -7,11 +7,11 @@
             <p class="address-title">Silahkan isi informasi pengirim pesanan </p>
             <div class="user-info">
                 <div class="user-name info-box b-bottom">
-                    <input class="j_shipper_name" type="text" input-txt="" value="{$INDEX_DATA.instashop_telephone}" placeholder="Nama Anda" />
+                    <input class="j_shipper_name" type="text" input-txt="" value="{$INDEX_DATA.buyer_info.instashop_shop_name}" placeholder="Nama Anda" />
                 </div>
                 <div class="user-tel info-box b-bottom">
                     <span>+62</span>
-                    <input class="j_shipper_tel" input-txt="" type="tel" value="{$INDEX_DATA.instashop_telephone}" placeholder="No.Hp Anda" maxlength="20" />
+                    <input class="j_shipper_tel" input-txt="" type="tel" value="{$INDEX_DATA.buyer_info.instashop_telephone}" placeholder="No.Hp Anda" maxlength="20" />
                 </div>
             </div>
             {/if}

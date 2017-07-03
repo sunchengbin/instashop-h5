@@ -431,26 +431,38 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     "frm": 8
                 }
             };
-            if(Base.others.getUrlPrem('type')=='self' && init_data.buyer_address && init_data.buyer_address.id){
+            var _address_data = {
+                "name": _name,
+                "telephone": _telephone,
+                "post": _post,
+                "country_code": "62",
+                "email": "",
+                "address": {
+                    "province": _province, //省
+                    "city": _city, //市
+                    "country": _country, //街道
+                    "street": _street, //详细地址
+                    "post": _post //邮编
+                }
+            };
+            if(Base.others.getUrlPrem('type')=='self' && !_this.addressInfoIsEdit(_address_data)){
                 _data.edata.address_id = init_data.buyer_address.id;
             }else{
-                _data.edata.buyer_address = {
-                    "name": _name,
-                    "telephone": _telephone,
-                    "post": _post,
-                    "country_code": "62",
-                    "email": "",
-                    "address": {
-                        "province": _province, //省
-                        "city": _city, //市
-                        "country": _country, //街道
-                        "street": _street, //详细地址
-                        "post": _post //邮编
-                    }
-                };
+                _data.edata.buyer_address = _address_data;
             }
             _uss && (_data.edata.uss = _uss);
             return _data;
+        },
+        //验证地址信息是否修改过
+        addressInfoIsEdit : function(data){
+            var _is = false,
+                _old_address = init_data.buyer_address;
+            for(var key in _old_address){
+                if(_old_address[key] != data[key]){
+                    _is = true;
+                }
+            }
+            return _is;//true 修改过 false 未修改
         },
         //下单
         placeOrder : function(data,callback){
