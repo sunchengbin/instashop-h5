@@ -56,10 +56,40 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'distributorbuy
                         images: init_data.item.imgs
                     }).init();
                     Insjs.WebOnReady(function(bridge){
-                        _this.handleFn(bridge);
+                        (function(bridge){
+                            var _close_param = {
+                                param:{
+                                    type : 'close_loading',
+                                    param : null
+                                }
+                            };
+                            //关闭webview的loading动画
+                            bridge.callHandler('insSocket',_close_param, function(response) {
+                                return null;
+                            });
+                        })(bridge);
+                        $('body').on('click','.j_save_imgs',function(){
+                            if(bridge){
+                                var _param = {
+                                    param:{
+                                        type:'save_item_imgs',
+                                        param:{
+                                            imgs : init_data.item.imgs
+                                        }
+                                    }
+                                };
+                                bridge.callHandler('insSocket',_param, function(response) {
+                                    return null;
+                                });
+                            }
+                            else{
+                                console.log('没有bridge');
+                            }
+                        });
                     },function(){
-                        _this.handleFn();
+
                     });
+                    _this.handleFn();
                 } catch (error) {
                     Debug.log({
                         title: "item.js init fail",
@@ -69,19 +99,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'distributorbuy
             }
 
         },
-        handleFn: function (bridge) {
-            (function(bridge){
-                var _close_param = {
-                    param:{
-                        type : 'close_loading',
-                        param : null
-                    }
-                };
-                //关闭webview的loading动画
-                bridge.callHandler('insSocket',_close_param, function(response) {
-                    return null;
-                });
-            })(bridge);
+        handleFn: function () {
             //初始化fastclick事件
             Fastclick.attach(document.body);
             //查看店铺描述
@@ -115,24 +133,6 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'distributorbuy
                 //alert(init_data.item.shop.line_url);
                 location.href = init_data.item.shop.line_url;
             })
-            $('body').on('click','.j_save_imgs',function(){
-                if(bridge){
-                    var _param = {
-                        param:{
-                            type:'save_item_imgs',
-                            param:{
-                                imgs : init_data.item.imgs
-                            }
-                        }
-                    };
-                    bridge.callHandler('insSocket',_param, function(response) {
-                        return null;
-                    });
-                }
-                else{
-                    console.log('没有bridge');
-                }
-            });
         }
     };
     ITEM.init();
