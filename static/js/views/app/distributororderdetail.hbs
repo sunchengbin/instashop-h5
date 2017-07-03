@@ -51,6 +51,18 @@
         </div>
     {{/eq}}
 </section>
+{{#if data.order.partner_telephone}}
+    <section class="send-user-info">
+        <div class="send-info-title">Isi informasi pengirim pesanan </div>
+        <div class="clearfix user-info">
+            <span class="fr">{{data.order.partner_telephone}}</span>
+            <i class="icon iconfont fr icon-phone-font"></i>
+            <i class="icon iconfont fl icon-address-font"></i>
+            <span class="fl">{{data.order.partner_shop_name}}</span>
+        </div>
+    </section>
+{{/if}}
+
 <section class="user-info-box">
     <div class="address-box">
         <div class="clearfix user-info">

@@ -47,7 +47,7 @@
             {/foreach}
         {else}
             <ul>
-                <li class="empty-cart">Keranjang belanja Anda kosong</li>
+                <li class="empty-cart">Keranjangmu masih kosong</li>
             </ul>
         {/if}
     </section>

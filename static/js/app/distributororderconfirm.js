@@ -29,11 +29,28 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     }
                 };
             } else {
-                _this['province'] = _address.address.province;
-                _this['city'] = _address.address.city;
-                _this['country'] = _address.address.country;
-                _this['post'] = _address.address.post;
-                _this['street'] = _address.address.street;
+                if(Base.others.getUrlPrem('type')!='self'){
+                    _address = {
+                        "name": "",
+                        "telephone": "",
+                        "post": "",
+                        "country_code": "62",
+                        "email": "",
+                        "address": {
+                            "province": '', //省
+                            "city": '', //市
+                            "country": '', //街道
+                            "street": "", //详细地址
+                            "post": "" //邮编
+                        }
+                    };
+                }else{
+                    _this['province'] = _address.address.province;
+                    _this['city'] = _address.address.city;
+                    _this['country'] = _address.address.country;
+                    _this['post'] = _address.address.post;
+                    _this['street'] = _address.address.street;
+                }
             }
             //本地地址初始化
             _this.initLocalStorage(_address);
@@ -284,7 +301,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                                         reset_html:true
                                     });
                                 }
-                                $('.j_logistics').show();
+                                $('.j_logistics').html('Pilih Jenis Paket Pengiriman<div class="fr"><i class="icon iconfont fr icon-go-font"></i><span class="j_logistics_info"></span></div>').show();
                                 $('.j_submit_buy').show();
                             } else {
                                 $('.j_logistics').html('Maaf, saat ini alamat tujuanmu belum dapat dijangkau');
@@ -383,13 +400,21 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                 return null;
             }
             var _this = this;
-            if (!_company && _this.logistics) {
-                _this.logistics.createHtm({
-                    data: _this.express_fee_list,
-                    lang: Lang
-                }).toShow();
+            if(!_company){
+                if (_this.logistics) {
+                    _this.logistics.createHtm({
+                        data: _this.express_fee_list,
+                        lang: Lang
+                    }).toShow();
+                    return null;
+                }
+                Dialog.tip({
+                    top_txt: '', //可以是html
+                    body_txt: '<p class="dialog-body-p">Silahkan mengisi alamat pengiriman</p>'
+                });
                 return null;
             }
+
             var _data = {
                 "edata": {
                     express_sender_name:_shipper_name,
@@ -406,20 +431,24 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     "frm": 8
                 }
             };
-            _data.edata.buyer_address = {
-                "name": _name,
-                "telephone": _telephone,
-                "post": _post,
-                "country_code": "62",
-                "email": "",
-                "address": {
-                    "province": _province, //省
-                    "city": _city, //市
-                    "country": _country, //街道
-                    "street": _street, //详细地址
-                    "post": _post //邮编
-                }
-            };
+            if(Base.others.getUrlPrem('type')=='self' && init_data.buyer_address && init_data.buyer_address.id){
+                _data.edata.address_id = init_data.buyer_address.id;
+            }else{
+                _data.edata.buyer_address = {
+                    "name": _name,
+                    "telephone": _telephone,
+                    "post": _post,
+                    "country_code": "62",
+                    "email": "",
+                    "address": {
+                        "province": _province, //省
+                        "city": _city, //市
+                        "country": _country, //街道
+                        "street": _street, //详细地址
+                        "post": _post //邮编
+                    }
+                };
+            }
             _uss && (_data.edata.uss = _uss);
             return _data;
         },

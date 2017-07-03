@@ -468,7 +468,7 @@ define(['base'], function (Base) {
             'H5_SOLD_OUT': 'Produk telah habis terjual',
             'H5_OVER_INVENTORY': 'Melebihi jumlah stok',
             'H5_CONTACT_US': 'Kontak',
-            'H5_SHOPING_NO_GOODS': 'Keranjang belanja Anda kosong',
+            'H5_SHOPING_NO_GOODS': 'Keranjangmu masih kosong',
             'H5_SHOPPING_CART': 'Keranjangku',
             'H5_COUND_NOT_TALK_WITH_SELF': 'Anda tidak dapat mengirim pesan ke diri sendiri',
             "H5_ADD_TO_CART_SUCCESS": "Produk Berhasil Ditambahkan ke Keranjang",

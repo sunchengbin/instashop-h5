@@ -7,22 +7,22 @@
             <p class="address-title">Silahkan isi informasi pengirim pesanan </p>
             <div class="user-info">
                 <div class="user-name info-box b-bottom">
-                    <input class="j_shipper_name" type="text" input-txt="" value="{$INDEX_DATA.shop_info.shop_name}" placeholder="Nama Anda" />
+                    <input class="j_shipper_name" type="text" input-txt="" value="{$INDEX_DATA.instashop_telephone}" placeholder="Nama Anda" />
                 </div>
                 <div class="user-tel info-box b-bottom">
                     <span>+62</span>
-                    <input class="j_shipper_tel" input-txt="" type="tel" value="{$INDEX_DATA.shop_info.telephone}" placeholder="No.Hp Anda" maxlength="20" />
+                    <input class="j_shipper_tel" input-txt="" type="tel" value="{$INDEX_DATA.instashop_telephone}" placeholder="No.Hp Anda" maxlength="20" />
                 </div>
             </div>
             {/if}
             <p class="address-title">Penerima Pesanan</p>
             <div class="user-info">
                 <div class="user-name info-box b-bottom">
-                    <input class="j_name" input-txt="" type="text" value="{$INDEX_DATA.buyer_address.name}" placeholder="Nama Anda" />
+                    <input class="j_name" input-txt="" type="text" value="" placeholder="Nama Anda" />
                 </div>
                 <div class="user-tel info-box b-bottom">
                     <span>+62</span>
-                    <input class="j_tel" input-txt="" type="tel" value="{$INDEX_DATA.buyer_address.telephone}" placeholder="No.Hp Anda" maxlength="20" />
+                    <input class="j_tel" input-txt="" type="tel" value="" placeholder="No.Hp Anda" maxlength="20" />
                 </div>
             </div>
             <div class="tel-msg-txt">
