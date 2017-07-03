@@ -112,6 +112,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'distributorbuy
             });
             //通过line联系供货商
             $('body').on('click', '.j_goto_line', function () {
+                alert(init_data.item.shop.line_url);
                 location.href = init_data.item.shop.line_url;
             })
             $('body').on('click','.j_save_imgs',function(){
