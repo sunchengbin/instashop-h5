@@ -42,10 +42,10 @@
                     <p class="j_country"></p>
                 </div>
                 <div class="info-box-address clearfix">
-                    <textarea class="j_street" input-txt="" maxlength="400" placeholder="Alamat jelas">{$INDEX_DATA.buyer_address.address.street}</textarea>
+                    <textarea class="j_street" input-txt="" maxlength="400" placeholder="Alamat jelas"></textarea>
                 </div>
                 <div class="info-box b-top clearfix">
-                    <input class="j_post" input-txt="" maxlength="10" type="text" value="{$INDEX_DATA.buyer_address.post}" placeholder="Kode Pos: Pilih, Sebaiknya diisi" />
+                    <input class="j_post" input-txt="" maxlength="10" type="text" value="" placeholder="Kode Pos: Pilih, Sebaiknya diisi" />
                 </div>
             </div>
             {if $DATA.express_free eq 0}
