@@ -55,6 +55,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'distributorbuy
                         btn: '.slide_arrow',
                         images: init_data.item.imgs
                     }).init();
+                    _this.handleFn();
                     Insjs.WebOnReady(function(bridge){
                         (function(bridge){
                             var _close_param = {
@@ -89,7 +90,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'distributorbuy
                     },function(){
 
                     });
-                    _this.handleFn();
+
                 } catch (error) {
                     Debug.log({
                         title: "item.js init fail",
@@ -130,7 +131,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'distributorbuy
             });
             //通过line联系供货商
             $('body').on('click', '.j_goto_line', function () {
-                //alert(init_data.item.shop.line_url);
+                console.log(init_data.item.shop.line_url);
                 location.href = init_data.item.shop.line_url;
             })
         }
