@@ -3,7 +3,7 @@
     include_once( dirname(__FILE__).'/../html/router/common.php');
     include_once( dirname(__FILE__).'/../html/router/util.php' );
     include_once( dirname(__FILE__).'/../html/router/base.php');
-    $smarty = smartyCommon('default_scss');
+    $smarty = smartyCommon('default_scss','default_tpl');
 
     $buyer_id = $_REQUEST['uss_buyer_id'];
     $seller_id = 0;
