@@ -69,8 +69,8 @@ body {
   @include remCalc(padding,0 30);
 }
 .button-box p:nth-child(odd){
-  @include remCalc(padding-right,15);
+  @include remCalc(padding-right,5);
 }
 .button-box p:nth-child(even){
-  @include remCalc(padding-left,15);
+  @include remCalc(padding-left,5);
 }
