@@ -125,6 +125,9 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'distributorbuy
                 var _this = $(this),
                     _url = _this.attr('data-url');
                 PaqPush && PaqPush('查看购物车', '');
+                Dialog.loading({
+                    width: 100
+                });
                 Common.saveCartFromUrl(function () {
                     location.href = _url;
                 });
@@ -132,6 +135,9 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'distributorbuy
             //通过line联系供货商
             $('body').on('click', '.j_goto_line', function () {
                 console.log(init_data.item.shop.line_url);
+                Dialog.loading({
+                    width: 100
+                });
                 location.href = init_data.item.shop.line_url;
             })
         }
