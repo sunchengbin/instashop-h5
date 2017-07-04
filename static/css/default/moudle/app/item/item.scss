@@ -54,9 +54,9 @@
 
 }
 .cart-item p.error-p{
-  @include remCalc(padding,15 0 0 200);
+  @include remCalc(padding,15 0 0 0);
   @include fontDpr(14px);
-  color: $add-buy-color;
+  color: $error-color;
 }
 .cart-item .price{
   color: $base-color;
