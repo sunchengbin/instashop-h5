@@ -58,7 +58,7 @@
                     </div>
                 </div>
             {/if}
-            <section class="cart-list {if not $INDEX_DATA.carts}no-items b-top b-bottom{/if}">
+            <section class="cart-list {if not $INDEX_DATA.carts}no-items b-bottom{/if}">
                 <ul class="j_cart_list">
                     {include file="distributorcarts.tpl" title="carts"}
                 </ul>
