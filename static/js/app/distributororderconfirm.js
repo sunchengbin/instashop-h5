@@ -400,7 +400,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                 return null;
             }
             var _this = this;
-            if(!_company){
+            if(!_company && init_data.express_free == 0){
                 if (_this.logistics) {
                     _this.logistics.createHtm({
                         data: _this.express_fee_list,

@@ -48,7 +48,7 @@
                     <input class="j_post" input-txt="" maxlength="10" type="text" value="" placeholder="Kode Pos: Pilih, Sebaiknya diisi" />
                 </div>
             </div>
-            {if $DATA.express_free eq 0}
+            {if $INDEX_DATA.express_free eq 0}
                 {*不包邮*}
                 <div class="logistics-box b-top b-bottom j_logistics j_sel_logistics clearfix">
                     Pilih Jenis Paket Pengiriman
