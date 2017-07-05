@@ -20,14 +20,12 @@
                 <div class="user-name info-box b-bottom">
                     <input class="j_name" input-txt="" type="text" value="" placeholder="Nama Anda" />
                 </div>
-                <div class="user-tel info-box b-bottom">
+                <div class="user-tel info-box">
                     <span>+62</span>
                     <input class="j_tel" input-txt="" type="tel" value="" placeholder="No.Hp Anda" maxlength="20" />
                 </div>
             </div>
-            <div class="tel-msg-txt">
-                Pastikan nomor ponselmu sudah benar. Informasi nomor rekening dan pembayaran akan kami kirimkan ke nomor ponsel ini
-            </div>
+
             <div class="user-address j_user_address">
                 <div class="info-box b-bottom b-top act clearfix" data-name="province">
                     <i class="icon iconfont fr icon-go-font"></i>
