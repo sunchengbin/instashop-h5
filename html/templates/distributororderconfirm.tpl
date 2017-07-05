@@ -44,13 +44,13 @@
                 <div class="info-box-address clearfix">
                     <textarea class="j_street" input-txt="" maxlength="400" placeholder="Alamat jelas"></textarea>
                 </div>
-                <div class="info-box b-top clearfix">
+                <div class="info-box b-top b-bottom">
                     <input class="j_post" input-txt="" maxlength="10" type="text" value="" placeholder="Kode Pos: Pilih, Sebaiknya diisi" />
                 </div>
             </div>
             {if $INDEX_DATA.express_free eq 0}
                 {*不包邮*}
-                <div class="logistics-box b-top b-bottom j_logistics j_sel_logistics clearfix">
+                <div class="logistics-box b-bottom j_logistics j_sel_logistics clearfix">
                     Pilih Jenis Paket Pengiriman
                     <div class="fr">
                         <i class="icon iconfont fr icon-go-font"></i>
