@@ -11,6 +11,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                 _address = init_data.buyer_address;
             //alert(JSON.stringify(_address));
             _this.carts = _this.transCartInfo();
+            _this.express_free = init_data.express_free;
             //初始化本地数据
             if (!_address.address) {
                 //地址信息
@@ -287,30 +288,36 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     $(window).scrollTop($('.j_street').offset().top);
                     if (obj.code == 200) {
                         _this.express_free = obj.express_free;
-                        if (obj.express_free == 0) {
-                            if (_this.testExpress(obj.express_fee_list.list)) {
+                        if (_this.express_free == 0) {//非包邮
+                            console.log(_this.express_free);
+                            if (_this.testExpress(obj.express_fee_list.list)) {//有可选运费结果
                                 //如果不包邮并且存在运费信息,初始化物流选择插件
-                                _this.express_fee_list = obj.express_fee_list.list;
-                                if(obj.express_free == 0){
-                                    $('.j_logistics_plug').remove();
-                                    $('.j_logistics_plug_cover').remove();
-                                    _this.logistics = Logistics({
-                                        data: obj.express_fee_list.list,
-                                        sum: $('.j_sum').attr('data-price'),
-                                        lang: Lang,
-                                        reset_html:true
-                                    });
-                                }
+                                _this.express_fee_list = obj.express_fee_list.list;//保存运费列表,方便下单没有选择物流时初始化运费插件
+
+                                $('.j_logistics_plug').remove();
+                                $('.j_logistics_plug_cover').remove();
                                 $('.j_logistics').html('Pilih Jenis Paket Pengiriman<div class="fr"><i class="icon iconfont fr icon-go-font"></i><span class="j_logistics_info"></span></div>').show();
-                                $('.j_submit_buy').show();
-                            } else {
-                                $('.j_logistics').html('Maaf, saat ini alamat tujuanmu belum dapat dijangkau');
-                                $('.j_logistics').show();
-                                $('.j_submit_buy').hide();
+                                if(init_data.buyer_cart.length){
+                                    $('.j_submit_buy').removeClass('hidden');
+                                }
+                                console.log(2);
+                                _this.logistics = Logistics({
+                                    data: obj.express_fee_list.list,
+                                    sum: $('.j_sum').attr('data-price'),
+                                    lang: Lang,
+                                    reset_html:true
+                                });
+                            } else {// 如果运费列表没有数据
+                                $('.j_logistics').html('Maaf, saat ini alamat tujuanmu belum dapat dijangkau').show();
+                                $('.j_submit_buy').addClass('hidden');
                                 //不能提交订单
                             }
+                        }else{//包邮
+                            $('.j_logistics').hide();
+                            $('.j_submit_buy').removeClass('hidden');
                         }
                     } else {
+                        $('.j_submit_buy').addClass('hidden');
                         Dialog.tip({
                             top_txt: '', //可以是html
                             body_txt: '<p class="dialog-body-p">' + obj.message + '</p>'
@@ -400,20 +407,23 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                 return null;
             }
             var _this = this;
-            if(!_company && init_data.express_free == 0){
-                if (_this.logistics) {
-                    _this.logistics.createHtm({
-                        data: _this.express_fee_list,
-                        lang: Lang
-                    }).toShow();
+            if(Number(_this.express_free) == 0){//非包邮
+                if(!_company){//没有选择物流信息
+                    if (_this.logistics) {
+                        _this.logistics.createHtm({
+                            data: _this.express_fee_list,
+                            lang: Lang
+                        }).toShow();
+                        return null;
+                    }
+                    Dialog.tip({
+                        top_txt: '', //可以是html
+                        body_txt: '<p class="dialog-body-p">Silahkan mengisi alamat pengiriman</p>'
+                    });
                     return null;
                 }
-                Dialog.tip({
-                    top_txt: '', //可以是html
-                    body_txt: '<p class="dialog-body-p">Silahkan mengisi alamat pengiriman</p>'
-                });
-                return null;
             }
+
 
             var _data = {
                 "edata": {
