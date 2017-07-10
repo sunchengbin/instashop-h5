@@ -130,7 +130,7 @@ define(['common','base','hbs','text!views/moudle/logistics.hbs','btn','lang','fa
         toHide : function(plug_buy,height){
             var _this = this;
             _this.animate(plug_buy,height,true);
-            _this.cover.hide();
+            _this.cover && _this.cover.hide();
         }
     };
     return function(opts){

@@ -1,0 +1,25 @@
+@import "../base/base.scss";
+@import "../moudle/app/common/common.scss";
+@import "../base/common/flex.scss";
+@import "../moudle/app/contact/contact.scss";
+.main{
+  @include fontDpr(14px);
+  background-color: $white;
+  text-align: center;
+}
+.main div{
+  @include remCalc(padding,60 0 0);
+}
+footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  @include remCalc(padding,15 30 15 0);
+  background-color: $header-bg-color;
+}
+footer div{
+  box-sizing: border-box;
+  @include remCalc(padding-left,30);
+}

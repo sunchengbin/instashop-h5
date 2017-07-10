@@ -19,6 +19,7 @@ body{
   overflow-x: hidden;
   width: 100%;
   max-width: none;
+  background-color: $header-bg-color;
 }
 body .address-list{
   max-width: none;
@@ -97,7 +98,7 @@ body .address-list{
 }
 .confirm-btn{
   width: 88%;
-  @include remCalc(margin,0 auto 30);
+  @include remCalc(margin,0 auto);
   border-radius: 3px;
 }
 .empty-cart{
@@ -240,7 +241,7 @@ body .address-list{
   color: $base-btn-color;
 }
 .total-box{
-  @include remCalc(padding,0 30);
+  @include remCalc(padding,0 30 30);
   background: $white;
 }
 .total-box span{
@@ -283,25 +284,20 @@ body .address-list{
   @include remCalc(margin,0 30 30);
 }
 .logistics-box{
+  @include remCalc(min-height,95);
+  @include remCalc(line-height,95);
   @include remCalc(padding,0 30);
+  @include fontDpr(14px);
+  @include remCalc(margin,15 0);
   background-color: $white;
-  @include remCalc(margin-bottom,30);
   color: $info-color;
-  margin-bottom: 0;
 }
 .logistics-box i{
   @include fontDpr(14px);
   color: $gray-color;
 }
-.logistics-box{
-  @include fontDpr(14px);
-  @include remCalc(min-height,95);
-  @include remCalc(line-height,95);
-  @include remCalc(padding,0 30);
-}
 .logistics-box div{
   @include fontDpr(16px);
-  //font-size: 16px;
   display: inline-block;
   @include remCalc(height,95);
 }
@@ -325,4 +321,42 @@ body .address-list{
 }
 .hidden{
   display: none!important;
+}
+.pay-type-box{
+  background-color: $white;
+  @include remCalc(margin,15 0);
+}
+.pay-type{
+  @include remCalc(height,95);
+  @include remCalc(min-height,95);
+  @include remCalc(line-height,95);
+  @include remCalc(padding,0 30);
+}
+.pay-type i{
+  color: $gray-color;
+}
+.pay-way-dialog{
+  background-color: $white;
+  @include remCalc(padding,30);
+}
+.pay-way-dialog i{
+  color: $gray-color;
+  @include fontDpr(20px);
+  vertical-align: middle;
+  @include remCalc(margin-right,5);
+  display: inline-block;
+  @include remCalc(height,40);
+  @include remCalc(line-height,40);
+  position: absolute;
+  left: 0;
+  @include remCalc(top,15);
+}
+.pay-way-dialog li{
+  font-size: 14px;
+  position: relative;
+  line-height: 2;
+  @include remCalc(padding-left,60);
+}
+.pay-way-dialog li i.checked-btn{
+  color: $base-btn-color;
 }
