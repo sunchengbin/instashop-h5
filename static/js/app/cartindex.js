@@ -1,7 +1,7 @@
 /**
  * Created by sunchengbin on 16/6/12.
  */
-require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug', 'cache', 'oauth', 'bargain','cookie'], function (Cart, Dialog, Ajax, Config, Base, Lang, Fastclick, Debug, Cache, Oauth, Bargain,Cookie) {
+require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug', 'cache', 'oauth', 'bargain', 'cookie'], function (Cart, Dialog, Ajax, Config, Base, Lang, Fastclick, Debug, Cache, Oauth, Bargain, Cookie) {
     var CartIndex = {
         init: function () {
             var _this = this;
@@ -11,6 +11,34 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
         handleFn: function () {
             var _that = this;
             Fastclick.attach(document.body);
+            $('body').on('click', '.j_add_btn,.j_reduce_btn', function () {
+                var _is_add = $(this).attr("class").indexOf("add")==-1?false:true,
+                _item_num_input = $('.j_item_num'),
+                _item_num = $('.j_item_num').val(),
+                    _num = _is_add?1:-1,
+                    _item_id = $(this).attr('data-id'),
+                    _stock = $(this).attr('data-stock'),
+                    _item_sku_id = $(this).attr('data-sku-id');
+                if(!_is_add&&_item_num<=1)return;
+                if (_stock && _stock <= _num) {
+                    return;
+                }
+                _that.updateItemInCartNum({
+                    item_id:_item_id,
+                    num: _num,
+                    item_sku_id: _item_sku_id,
+                    noStockCallback: function () {},
+                    callback: function (num) {
+                        _item_num_input.val(~~_item_num+(_num));
+                    }
+                });
+
+            });
+            // $('body').on('click', '.j_reduce_btn', function () {
+            //     var _item_num = $('.j_item_num'),
+            //         _num = Number(_item_num.val());
+            //     _item_num.val((--_num > 0) ? _num : 1);
+            // });
             $('body').on('click', '.j_del_cart', function () {
                 var _this = $(this),
                     _item_id = _this.attr('data-id');
@@ -21,7 +49,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                         Cart().removeItem(_item_id, function () {
                             //location.reload();
                             $('.j_cart_item[data-id="' + _item_id + '"]').remove();
-                            if(!$('.j_cart_item').length){
+                            if (!$('.j_cart_item').length) {
                                 var _htm = '<ul class=""><li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li></ul><button class="btn j_go_shop confirm-btn">' + Lang.H5_BROWSE_SHOP + '</button>';
                                 $('.j_cart_list').html(_htm);
                             }
@@ -88,6 +116,63 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
             if (Base.others.getUrlPrem('error')) {
                 _that.subData();
             }
+        }, 
+        updateItemInCartNum: function (opts) {
+            var _this = this,
+                _seller_id = Base.others.getUrlPrem('seller_id'), //店铺id
+                _item_id = opts.item_id, //商品
+                _num = opts.num, //商品数量
+                _uss = Cookie.getCookie('uss'), //登录的真实账户的uss
+                _buyer_id = _uss ? Cookie.getCookie('uss_buyer_id') : Cookie.getCookie('buyer_id'); //匿名买家id
+
+            if (Base.others.getUrlPrem('uss')) {
+                _uss = Base.others.getUrlPrem('uss');
+                _buyer_id = Base.others.getUrlPrem('uss_buyer_id');
+            }
+            var _data = {
+                "edata": {
+                    "action": "update",
+                    "is_direct_buy": 0,
+                    "seller_id": _seller_id,
+                    "buyer_id": _buyer_id,
+                    "num": _num,
+                    "item_id": _item_id,
+                    "item_sku_id": opts.item_sku_id
+                }
+            };
+            _uss && (_data.edata.uss = _uss);
+            _this._loading = Dialog.loading();
+            Ajax.postJsonp({
+                url: Config.actions.cartAction,
+                data: {
+                    param: JSON.stringify(_data)
+                },
+                type: 'PUT',
+                timeout: 30000,
+                success: function (obj) {
+                    _this._loading.remove();
+                    if (obj.code == 200) {
+                        var _num = obj.cart_num;
+                        opts.callback && opts.callback();
+                    } else {
+                        //alert( obj.message);
+                        Dialog.tip({
+                            top_txt: '', //可以是html
+                            body_txt: '<p class="dialog-body-p">' + obj.message + '</p>'
+                        });
+                    }
+                },
+                error: function (error) {
+                    _this._loading.remove();
+                    Dialog.tip({
+                        top_txt: '', //可以是html
+                        body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
+                        auto_fn: function () {
+                            this.remove();
+                        }
+                    });
+                }
+            });
         },
         goClear: function (groupid) {
             var _that = this;
@@ -105,7 +190,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
         // 对分库商品添加适配处理
         getItems: function (groupid) {
             var _arr = [];
-            $('.j_cart_item[group-id="'+groupid+'"]').each(function(i,item){
+            $('.j_cart_item[group-id="' + groupid + '"]').each(function (i, item) {
                 _arr.push($(item).attr('data-id'));
             });
             return _arr;
@@ -113,21 +198,21 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
         subData: function (groupid) {
             var _this = this,
                 _seller_id = JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
-                _uss = Cookie.getCookie('uss'),//登录的真实账户的uss
+                _uss = Cookie.getCookie('uss'), //登录的真实账户的uss
                 _select_items = _this.getItems(groupid),
-                _buyer_id = _uss?Cookie.getCookie('uss_buyer_id'):Cookie.getCookie('buyer_id'); //匿名买家id
+                _buyer_id = _uss ? Cookie.getCookie('uss_buyer_id') : Cookie.getCookie('buyer_id'); //匿名买家id
             var _data = {
                 "edata": {
                     "buyer_id": _buyer_id,
                     "is_direct_buy": 0, //如果是直接购买，则传1。普通情况传0
                     "seller_id": _seller_id,
                     "select_items": _select_items,
-                    "opt":'cart,address,price,express'
+                    "opt": 'cart,address,price,express'
                 }
             };
             _uss && (_data.edata.uss = _uss);
             _this._loading = Dialog.loading({
-                can_exist : true
+                can_exist: true
             });
             Ajax.postJsonp({
                 url: Config.actions.cartAction,
@@ -137,17 +222,17 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                 type: 'GET',
                 success: function (obj) {
                     if (obj.code == 200) {
-                        if(_this.testCarts(obj.buyer_cart[groupid])){
-                            if(obj.buyer_address && obj.buyer_address.id){
-                                location.href = Config.host.hostUrl+'orderconfirm.php?select_items='+JSON.stringify(_select_items)+'&address_id='+obj.buyer_address.id;
-                            }else{
+                        if (_this.testCarts(obj.buyer_cart[groupid])) {
+                            if (obj.buyer_address && obj.buyer_address.id) {
+                                location.href = Config.host.hostUrl + 'orderconfirm.php?select_items=' + JSON.stringify(_select_items) + '&address_id=' + obj.buyer_address.id;
+                            } else {
                                 Dialog.confirm({
-                                    top_txt : '',//可以是html
-                                    body_txt : '<p class="dialog-body-p">'+Lang.H5_NO_ADDR_TIP+'</p>',
+                                    top_txt: '', //可以是html
+                                    body_txt: '<p class="dialog-body-p">' + Lang.H5_NO_ADDR_TIP + '</p>',
                                     //cfb_txt : Lang.H5_GO_CONFIRM,//确定按钮文字
-                                    cover_event : true,
-                                    cf_fn : function(){
-                                        location.href = Config.host.hostUrl+'address.php?select_items='+JSON.stringify(_select_items);
+                                    cover_event: true,
+                                    cf_fn: function () {
+                                        location.href = Config.host.hostUrl + 'address.php?select_items=' + JSON.stringify(_select_items);
                                     }
                                 });
 
@@ -181,8 +266,8 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
         testCarts: function (cart) {
             var _error_msgs = [],
                 _beal = true;
-            $.each(cart, function (i,item) {
-                if(item.status != 1){
+            $.each(cart, function (i, item) {
+                if (item.status != 1) {
                     _error_msgs.push(item.status_txt);
                     _beal = false;
                     $('.j_cart_item[data-id="' + item.id + '"] .error-p').remove();

@@ -184,6 +184,15 @@ function noHaveTemplate($template){
 function dateFormat($datetime){
     return date('d/m H.i',strtotime($datetime));
 }
+
+function getIsSku($carts){
+    if($carts['sku'] && $carts['sku']['id']){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
 function getCartId($carts){
     if($carts['sku'] && $carts['sku']['id']){
         return $carts['sku']['id'];
