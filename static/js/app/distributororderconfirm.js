@@ -569,7 +569,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                             }, 100);
                         }else{
                             setTimeout(function () {
-                                location.href = Config.host.hrefUrl + 'distributoraskforsuccess.php'+location.search+'&order_id='+obj.order.id+'&price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400)+'&detail=3&distributor=1';
+                                location.href = Config.host.hrefUrl + 'distributoraskforsuccess.php'+location.search+'&order_id='+obj.order.id;
                             }, 100);
                         }
 
