@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1496377082091'); /* IE9*/
-  src: url('iconfont.eot?t=1496377082091#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1496377082091') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1496377082091') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1496377082091#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1499762900497'); /* IE9*/
+  src: url('iconfont.eot?t=1499762900497#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1499762900497') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1499762900497') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1499762900497#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -126,4 +126,8 @@
 .icon-secured:before { content: "\e635"; }
 
 .icon-edit-address:before { content: "\e636"; }
+
+.icon-logistics:before { content: "\e637"; }
+
+.icon-askforsuccess:before { content: "\e638"; }
 

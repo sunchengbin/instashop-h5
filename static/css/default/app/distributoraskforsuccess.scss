@@ -7,17 +7,11 @@
   background-color: $white;
   text-align: center;
 }
-.main div{
-  @include remCalc(padding,60 0 0);
-}
 footer{
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
   box-sizing: border-box;
   @include remCalc(padding,15 30 15 0);
-  background-color: $header-bg-color;
+  @include remCalc(margin-top,30);
 }
 footer div{
   box-sizing: border-box;
@@ -25,4 +19,8 @@ footer div{
 }
 .item-out-stock{
   @include remCalc(padding,0 30);
+}
+.icon-askforsuccess{
+  @include fontDpr(60px);
+  color:#B8E986;
 }
