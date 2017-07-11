@@ -89,7 +89,7 @@ define(['common', 'base', 'lang', 'oauth', 'dialog','config'], function (Common,
         },
         createUnOpenWarrantHtm: function () {
             var _htm = "";
-            _htm = '<div style="text-align:center">' +
+            _htm = '<div class="warrant-dialog-body" style="text-align:center">' +
                 '   <p>' + Lang.TRADE_SUPPORT_NO_TIP + '</p>' +
                 '   <div class="j_btn_confrim_i_know btn">' + Lang.TRADE_IKNOW + '</div>' +
                 '</div>'

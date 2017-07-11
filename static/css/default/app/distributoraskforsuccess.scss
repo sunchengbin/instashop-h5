@@ -23,3 +23,6 @@ footer div{
   box-sizing: border-box;
   @include remCalc(padding-left,30);
 }
+.item-out-stock{
+  @include remCalc(padding,0 30);
+}

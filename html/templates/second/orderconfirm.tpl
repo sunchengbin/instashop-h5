@@ -40,7 +40,7 @@
                 </div>
                 <div class="divide"></div>
                 <div class="trade-item">
-                    <div class="checkbox-div {if $DATA.shop_info.warrant neq 1}checkbox-disabled{/if} j_trade_sel " data-tradetype="2">
+                    <div class="checkbox-div checkbox-disabled j_trade_sel " data-tradetype="2">
                         <div class="checkbox-warp">
                             <div class="checkbox"></div>
                         </div>
