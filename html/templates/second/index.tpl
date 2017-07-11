@@ -110,7 +110,7 @@
                     <section class="items-box j_hot_box j_box">
                         {if $RECOMMEND_ITEM|@getIsLast}
                             <div class="item-default-title">
-                                <img src="{$STATIC_HOST}/images/{$TEMP_FOLDER}/default_title.png"/>
+                                <img src="{$STATIC_HOST}/images/{$TEMP_FOLDER}/newupload_title.png"/>
                             </div>
                         {*<p class="item-title b-bottom">Rekomendasi Item</p>*}
                         {if $ITEMTYPE neq '3'}
