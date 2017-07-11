@@ -125,7 +125,7 @@
                         <p class="item-title b-bottom"><span></span>Last Item</p>
                         {if $ITEMTYPE neq '3'}
                         {*一行两列展示商品*}
-                        <ul class="items-list clearfix j_hot_list">
+                        <ul class="items-list clearfix j_hot_list j_last_list">
                             {foreach $RECOMMEND_ITEM as $item}
                             {if $item.is_top eq '0'}
                             <li>
