@@ -302,3 +302,23 @@ function testExpress($list) {
 function testCartBtnStatus(){
 
 }
+function getIsRecommend($items){
+    if(!count($items))return null;
+    $is_recommend = false;
+    for ($i=0; $i < count($items);$i++) {
+        if($items[$i]["is_top"] == '1') {
+            $is_recommend = true;
+        }
+    }
+    return $is_recommend;
+}
+function getIsLast($items){
+    if(!count($items))return null;
+    $is_last = false;
+    for ($i=0; $i < count($items);$i++) {
+        if($items[$i]["is_top"] == '0') {
+            $is_last = true;
+        }
+    }
+    return $is_last;
+}
