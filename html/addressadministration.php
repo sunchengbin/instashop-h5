@@ -8,8 +8,8 @@
     $smarty->assign('INDEX_USER_INFO',json_encode($_POST));
 
     //页面title
-    $smarty->assign('INDEX_TITLE','<title>地址管理</title>');
-    $smarty->assign('INDEX_TITLE_STR','地址管理');
+    $smarty->assign('INDEX_TITLE','<title>daftar alamat</title>');
+    $smarty->assign('INDEX_TITLE_STR','daftar alamat');
 
     /*基础的js,css文件名*/
     $smarty->assign('INDEX_JS_NAME','addressadministration');

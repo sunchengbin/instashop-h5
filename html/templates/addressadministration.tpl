@@ -7,7 +7,7 @@
 
     <section class="address-list j_address_list" data-spider="address-list-box">
         {if !$ADDRESS_LIST|count}
-            <div class="">还没有地址</div>
+            <div class="">Silakan atur 'barang dikirim dari' terlebih dahulu</div>
         {else}
             {foreach from=$ADDRESS_LIST item=address}
                 <div class="address-box j_address_wraper" data-id="{$address.id}">
@@ -64,7 +64,7 @@
         {/if}
     </section>
     <div class="add-address">
-        <a class="handle-btn j_add_address" href="javascript:;">添加地址</a>
+        <a class="handle-btn j_add_address" href="javascript:;">tambah alamat baru</a>
     </div>
     <script>
     var user_info = {$INDEX_USER_INFO};
