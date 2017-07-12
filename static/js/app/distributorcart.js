@@ -39,7 +39,6 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                 _item_num_input = $($_curCartItem.find('.j_item_num')),
                 _item_num = _item_num_input.val(),
                     _num = _is_add?1:-1,
-                    _item_id = $(this).attr('data-id'),
                     _stock = $(this).attr('data-stock'),
                     _direct_buy = $(this).attr('data-direct-buy'),
                     _seller_id = $(this).attr('data-seller-id'),
