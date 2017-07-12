@@ -75,9 +75,9 @@ function discountSecond($endTime){
 function priceFormat($price) {
     return number_format($price, 0, '.', '.');
 }
-function stockFormat($stock) {
-    if($stock>=9999999)return '';
-    return $stock;
+function getIsHaveStock($stock) {
+    if($stock>=9999999)return false;
+    return true;
 }
 function bg_img($imgurl, $w=500){
     $w = 750;
