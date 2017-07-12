@@ -5,6 +5,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
     var CartIndex = {
         init: function () {
             var _this = this;
+            _this.ShopInfo = JSON.parse(localStorage.getItem('ShopData')).ShopInfo;
             _this.judageOauth = Oauth.checkIsLogin();
             _this.handleFn();
         },
@@ -122,7 +123,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
         }, 
         updateItemInCartNum: function (opts) {
             var _this = this,
-                _seller_id = Base.others.getUrlPrem('seller_id'), //店铺id
+                _seller_id = _this.ShopInfo.id, //店铺id
                 _item_id = opts.item_id, //商品
                 _num = opts.num, //商品数量
                 _uss = Cookie.getCookie('uss'), //登录的真实账户的uss
