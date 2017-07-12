@@ -33,6 +33,7 @@
     $goods['data'] = $json['buyer_cart'];
     $goods['hasDistribution'] = true;
 
+    $smarty->assign('CART_DATA_STR',$ret);
     $smarty->assign('GOODS',$goods);
 
 

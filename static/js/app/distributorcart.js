@@ -31,6 +31,33 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
         handleFn: function (bridge) {
             var _that = this;
             Fastclick.attach(document.body);
+            $('body').on('click', '.j_add_btn,.j_reduce_btn', function () {
+                var _is_add = $(this).attr("class").indexOf("add")==-1?false:true,
+                _item_num_input = $('.j_item_num'),
+                _item_num = $('.j_item_num').val(),
+                    _num = _is_add?1:-1,
+                    _item_id = $(this).attr('data-id'),
+                    _stock = $(this).attr('data-stock'),
+                    _direct_buy = $(this).attr('data-direct-buy'),
+                    _seller_id = $(this).attr('data-seller-id'),
+                    _item_sku_id = $(this).attr('data-sku-id');
+                if(!_is_add&&_item_num<=1)return;
+                if (_stock && _stock <= _num) {
+                    return;
+                }
+                _that.updateItemInCartNum({
+                    item_id:_item_id,
+                    num: _num,
+                    item_sku_id: _item_sku_id,
+                    direct_buy:_direct_buy,
+                    seller_id:_seller_id,
+                    noStockCallback: function () {},
+                    callback: function (num) {
+                        _item_num_input.val(~~_item_num+(_num));
+                    }
+                });
+
+            });
             $('body').on('click', '.j_del_cart', function () {
                 var _this = $(this),
                     _item_id = _this.attr('data-id'),
@@ -58,6 +85,58 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                 //alert(_groupid);
                 _that.goClear(_groupid,_type);
 
+            });
+        },
+        updateItemInCartNum: function (opts) {
+            var _this = this,
+                _seller_id = 0, //店铺id
+                _item_id = opts.item_id, //商品
+                _num = opts.num, //商品数量
+                _uss = Base.others.getUrlPrem('uss'),
+                _buyer_id = Base.others.getUrlPrem('uss_buyer_id');
+            var _data = {
+                "edata": {
+                    "action": "update",
+                    "is_direct_buy": opts.direct_buy,
+                    "seller_id": opts.seller_id,
+                    "buyer_id": _buyer_id,
+                    "num": _num,
+                    "item_id": _item_id,
+                    "item_sku_id": opts.item_sku_id
+                }
+            };
+            _uss && (_data.edata.uss = _uss);
+            _this._loading = Dialog.loading();
+            Ajax.postJsonp({
+                url: Config.actions.cartAction,
+                data: {
+                    param: JSON.stringify(_data)
+                },
+                type: 'PUT',
+                timeout: 30000,
+                success: function (obj) {
+                    _this._loading.remove();
+                    if (obj.code == 200) {
+                        var _num = obj.cart_num;
+                        opts.callback && opts.callback();
+                    } else {
+                        //alert( obj.message);
+                        Dialog.tip({
+                            top_txt: '', //可以是html
+                            body_txt: '<p class="dialog-body-p">' + obj.message + '</p>'
+                        });
+                    }
+                },
+                error: function (error) {
+                    _this._loading.remove();
+                    Dialog.tip({
+                        top_txt: '', //可以是html
+                        body_txt: '<p class="dialog-body-p">' + Lang.H5_ORDER_TIMEOUT_ERROR + '</p>',
+                        auto_fn: function () {
+                            this.remove();
+                        }
+                    });
+                }
             });
         },
         goClear: function (groupid,type) {

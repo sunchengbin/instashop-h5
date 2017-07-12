@@ -28,5 +28,6 @@
     $goods['data'] = $json['buyer_cart'];
     $goods['hasDistribution'] = true;
     $smarty->assign('GOODS',$goods);
+    $smarty->assign('CART_GOODS',$ret);
     $smarty->display('distributorcart.tpl');
 ?>

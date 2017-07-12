@@ -1,0 +1,64 @@
+.cart-item .item-num-box {
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.cart-item .item-num-box::before {
+    border: 0;
+}
+
+.cart-item .item-num-box span {
+    display: block;
+    @include remCalc(width, 38);
+    @include remCalc(height, 38);
+    @include remCalc(line-height, 38);
+    text-align: center;
+    float: left;
+    position: relative;
+}
+
+.cart-item .item-num-box span i {
+    @include fontDpr(12px);
+    color: $gray-color;
+}
+
+.cart-item .item-num-box input {
+    text-align: center;
+    @include fontDpr(14px);
+    @include remCalc(height, 38);
+    @include remCalc(min-width, 48);
+    @include remCalc(max-width, 100);
+    @include remCalc(padding, 8);
+    position: relative;
+}
+
+.cart-item .j_reduce_btn {
+    border: 1px solid #d8d8d8;
+    border-radius: 50%;
+}
+
+.cart-item .j_add_btn {
+    border: 1px solid $base-btn-color;
+    border-radius: 50%;
+    background-color: $base-btn-color;
+}
+
+.cart-item .item-num-box span.j_add_btn i {
+    color: $white;;
+}
+
+.cart-item .item-num-box::before,
+.cart-item .item-num-box::after {
+    height: 0;
+}
+.item-num-box i {
+    float: none;
+    width:auto;
+    height:auto;
+    line-height:inherit;
+    position:relative;
+    top:auto;
+    right:auto;
+    margin:0;
+}

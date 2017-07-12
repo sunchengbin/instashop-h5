@@ -265,10 +265,34 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
             var $iframe = $(_googleMap$Dom);
             $(el).append($iframe);
         },
+        isSetTop:function(item){
+            return item.is_top==1?true:false;
+        },
+        getIsHaveLast:function(items){
+            var _this =this,_array = [],len = items.length;
+            for(var i = 0;i<len;i++){
+                if(!_this.isSetTop(items[i])){
+                    _array.push(items[i]);
+                }
+            }
+            return _array;
+        },
+        getIsHaveRecommend:function(items){
+            var _this =this,_array = [],len = items.length;
+            for(var i = 0;i<len;i++){
+                if(_this.isSetTop(items[i])){
+                    _array.push(items[i]);
+                }
+            }
+            return _array;
+        },
         //获取首页数据
         getRecommendItem: function (paginationOpt, callback) {
             //默认加载已经请求了第一页 所以从第二页开始
-            var _this = this;
+            var _this = this,needUpdate={
+                recommend:[],
+                last:[]
+            };
             if (!_this.indexItemsPagination.getData) return;
             _this.indexItemsPagination.getData = false;
             var reqData = {
@@ -292,7 +316,15 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                         _this.indexItemsPagination.page_num++;
                         var _list_data = _this.transItems(obj.item_list.list);
                         if (_list_data.item.length) {
-                            $('.j_hot_list').append(Item.addItem(_list_data.item,_this.item_type));
+                            // 分组处理 各加各的
+                            var _lasts = _this.getIsHaveLast(_list_data.item);
+                            var _recommends = _this.getIsHaveRecommend(_list_data.item);
+                            if(_lasts.length){
+                                $('.j_last_list').append(Item.addItem(_lasts,_this.item_type));
+                            }
+                            if(_recommends.length){
+                                $('.j_hot_list').append(Item.addItem(_recommends,_this.item_type));
+                            }
                         }
                         if ($('[data-time]').length) {
                             Item.changeTime();

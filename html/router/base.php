@@ -184,6 +184,15 @@ function noHaveTemplate($template){
 function dateFormat($datetime){
     return date('d/m H.i',strtotime($datetime));
 }
+
+function getIsSku($carts){
+    if($carts['sku'] && $carts['sku']['id']){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
 function getCartId($carts){
     if($carts['sku'] && $carts['sku']['id']){
         return $carts['sku']['id'];
@@ -292,4 +301,24 @@ function testExpress($list) {
 }
 function testCartBtnStatus(){
 
+}
+function getIsRecommend($items){
+    if(!count($items))return null;
+    $is_recommend = false;
+    for ($i=0; $i < count($items);$i++) {
+        if($items[$i]["is_top"] == '1') {
+            $is_recommend = true;
+        }
+    }
+    return $is_recommend;
+}
+function getIsLast($items){
+    if(!count($items))return null;
+    $is_last = false;
+    for ($i=0; $i < count($items);$i++) {
+        if($items[$i]["is_top"] == '0') {
+            $is_last = true;
+        }
+    }
+    return $is_last;
 }
