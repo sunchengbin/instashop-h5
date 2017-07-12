@@ -485,6 +485,14 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                         return null;
                     }
                 }
+            }else{
+                if(!$('[data-name="country"]').is('.act') ){
+                    Dialog.tip({
+                        top_txt: '', //可以是html
+                        body_txt: '<p class="dialog-body-p">Silahkan mengisi alamat pengiriman</p>'
+                    });
+                    return null;
+                }
             }
             var _data = {
                 "edata": {
@@ -517,7 +525,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                 }
             };
             //自己购买\地址没有编辑过\ATM支付,才可以传地址id
-            if(Base.others.getUrlPrem('type')=='self' && !_this.addressInfoIsEdit(_address_data)){
+            if(Base.others.getUrlPrem('type')=='self' && !_this.addressInfoIsEdit(_address_data) && init_data.buyer_address.id){
                 _data.edata.address_id = init_data.buyer_address.id;
             }else{
                 _data.edata.buyer_address = _address_data;
@@ -529,19 +537,21 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
         addressInfoIsEdit : function(data){
             var _is = false,
                 _old_address = init_data.buyer_address;
-            for(var key in data){
-                if(key != 'address'){
-                    if(_old_address[key] != data[key]){
-                        _is = true;
-                    }
-                }else{
-                    for(var address_key in data.address){
-                        if(_old_address.address[address_key] != data.address[address_key]){
+            if(_old_address.address){
+                for(var key in data){
+                    if(key != 'address'){
+                        if(_old_address[key] != data[key]){
                             _is = true;
                         }
+                    }else{
+                        for(var address_key in data.address){
+                            if(_old_address.address[address_key] != data.address[address_key]){
+                                _is = true;
+                            }
+                        }
                     }
-                }
 
+                }
             }
             return _is;//true 修改过 false 未修改
         },
