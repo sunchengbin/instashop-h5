@@ -46,6 +46,15 @@
                     <input class="j_post" input-txt="" maxlength="10" type="text" value="" placeholder="Kode Pos: Pilih, Sebaiknya diisi" />
                 </div>
             </div>
+            <div class="pay-type-box">
+                <div class="info-box j_pay_way_box pay-type clearfix" data-pay-way="11">
+                    选择支付方式
+                    <div class="fr">
+                        <i class="icon iconfont fr icon-go-font"></i>
+                        <span class="pay-way-content j_pay_way_content">ATM支付</span>
+                    </div>
+                </div>
+            </div>
             {if $INDEX_DATA.express_free eq 0}
                 {*不包邮*}
                 <div class="logistics-box b-bottom j_logistics j_sel_logistics clearfix">
@@ -70,13 +79,12 @@
                     <p class="total-p clearfix"><span class="fr j_post j_freight">Rp 0</span>Biaya Pengiriman: </p>
                     <p class="total-p clearfix"><span class="fr j_sum j_total" data-price="{$INDEX_DATA.price.total_price}">Rp {$INDEX_DATA.price.total_price|priceFormat}</span>Jumlah Total: </p>
                 </div>
+                {if $INDEX_DATA.carts}
+                    <button class="btn confirm-btn j_submit_buy">Ajukan Pesanan</button>
+                {else}
+                    <button class="btn confirm-btn j_submit_buy hidden">Ajukan Pesanan</button>
+                {/if}
             </div>
-            {if $INDEX_DATA.carts}
-                <button class="btn confirm-btn j_submit_buy">Ajukan Pesanan</button>
-            {else}
-                <button class="btn confirm-btn j_submit_buy hidden">Ajukan Pesanan</button>
-            {/if}
-
         </section>
     </section>
     <section class="address-list-box j_address_list_box">

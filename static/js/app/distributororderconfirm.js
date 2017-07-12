@@ -9,9 +9,9 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
         init: function () {
             var _this = this,
                 _address = init_data.buyer_address;
-            //alert(JSON.stringify(_address));
             _this.carts = _this.transCartInfo();
             _this.express_free = init_data.express_free;
+            _this.pay_way = 11;//默认是ATM支付
             //初始化本地数据
             if (!_address.address) {
                 //地址信息
@@ -176,6 +176,60 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     });
                 }
             });
+            $('body').on('click','.j_pay_way_box',function(){
+                var _htm = '<ul class="pay-way-dialog">' +
+                    '<li class="j_pay_way">' +
+                    '<i class="icon iconfont '+( _this.pay_way==11?'checked-btn icon-radioed-font':'check-btn icon-radio-font') +
+                    ' j_pay_way_dialog" data-content="ATM支付" data-pay-way="11"></i>' +
+                    'ATM支付' +
+                    '</li>' +
+                    '<li class="j_pay_way">' +
+                    '<i class="icon iconfont '+( _this.pay_way==23?'checked-btn icon-radioed-font':'check-btn icon-radio-font') +
+                    ' j_pay_way_dialog" data-content="到店自取" data-pay-way="23"></i>' +
+                    '到店自取' +
+                    '</li>' +
+                    '</ul>';
+                Dialog.confirm({
+                    top_txt: '', //可以是html
+                    body_txt: _htm,
+                    cf_fn: function(){
+                        var _pay_way = Number($('.checked-btn').attr('data-pay-way'));
+                        $('.j_pay_way_box').attr('data-pay-way',_pay_way);
+                        $('.j_pay_way_content').html($('.checked-btn').attr('data-content'));
+                        _this.pay_way = _pay_way;
+                        switch(_pay_way){
+                            case 11:
+                                if($('.j_sel_logistics').length){
+                                    _this.getLogistics();
+                                }
+                                break;
+                            case 23:
+                                $('.j_logistics_info').attr({
+                                    "data-price":0,
+                                    "data-company":0,
+                                    "data-id":0
+                                });
+                                $('.j_freight').length && $('.j_freight').html('Rp 0').attr('data-price',0);
+                                $('.j_tax').length && $('.j_tax').remove();
+                                $('.j_sum').html('Rp '+Base.others.priceFormat($('.j_sum').attr('data-price')));
+                                $('.j_sel_logistics').hide();
+                                break;
+                            default:
+                                $('.j_sel_logistics').show();
+                               break;
+                        }
+
+                    } //点击确定的回调函数
+                });
+            });
+            $('body').on('click', '.j_pay_way', function () {
+                if ($(this).find('.check-btn').length) {
+                    $('.checked-btn').addClass('check-btn').removeClass('checked-btn');
+                    $(this).find('.check-btn').addClass('checked-btn');
+                    $('.icon-radioed-font').addClass('icon-radio-font').removeClass('icon-radioed-font');
+                    $(this).find('.check-btn').addClass('icon-radioed-font').removeClass('icon-radio-font');
+                }
+            });
             Btn({
                 wraper: 'body',
                 target: '.j_submit_buy',
@@ -227,6 +281,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
             }, function () {
                 Common.ScorllToBottom('.j_street');
             });
+
         },
         //商品信息数据结构转换
         transCartInfo:function(data){
@@ -296,7 +351,10 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
 
                                 $('.j_logistics_plug').remove();
                                 $('.j_logistics_plug_cover').remove();
-                                $('.j_logistics').html('Pilih Jenis Paket Pengiriman<div class="fr"><i class="icon iconfont fr icon-go-font"></i><span class="j_logistics_info"></span></div>').show();
+                                $('.j_logistics').html('Pilih Jenis Paket Pengiriman<div class="fr"><i class="icon iconfont fr icon-go-font"></i><span class="j_logistics_info"></span></div>');
+                                if(_this.pay_way == 11){
+                                    $('.j_logistics').show();
+                                }
                                 if(init_data.buyer_cart.length){
                                     $('.j_submit_buy').removeClass('hidden');
                                 }
@@ -308,7 +366,10 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                                     reset_html:true
                                 });
                             } else {// 如果运费列表没有数据
-                                $('.j_logistics').html('Maaf, saat ini alamat tujuanmu belum dapat dijangkau').show();
+                                $('.j_logistics').html('Maaf, saat ini alamat tujuanmu belum dapat dijangkau');
+                                if(_this.pay_way == 11){
+                                    $('.j_logistics').show();
+                                }
                                 $('.j_submit_buy').addClass('hidden');
                                 //不能提交订单
                             }
@@ -407,31 +468,31 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                 return null;
             }
             var _this = this;
-            if(Number(_this.express_free) == 0){//非包邮
-                if(!_company){//没有选择物流信息
-                    if (_this.logistics) {
-                        _this.logistics.createHtm({
-                            data: _this.express_fee_list,
-                            lang: Lang
-                        }).toShow();
+            if(_this.pay_way == 11){
+                if(Number(_this.express_free) == 0){//非包邮
+                    if(!_company){//没有选择物流信息
+                        if (_this.logistics) {
+                            _this.logistics.createHtm({
+                                data: _this.express_fee_list,
+                                lang: Lang
+                            }).toShow();
+                            return null;
+                        }
+                        Dialog.tip({
+                            top_txt: '', //可以是html
+                            body_txt: '<p class="dialog-body-p">Silahkan mengisi alamat pengiriman</p>'
+                        });
                         return null;
                     }
-                    Dialog.tip({
-                        top_txt: '', //可以是html
-                        body_txt: '<p class="dialog-body-p">Silahkan mengisi alamat pengiriman</p>'
-                    });
-                    return null;
                 }
             }
-
-
             var _data = {
                 "edata": {
                     express_sender_name:_shipper_name,
                     express_sender_phone:_shipper_tel,
                     "select_items":JSON.parse(Base.others.getUrlPrem('select_items')),
                     "note": _note,
-                    "pay_way": 11,
+                    "pay_way":  _this.pay_way,
                     "pay_type": 1,
                     "seller_id": _seller_id,
                     "buyer_id": _buyer_id,
@@ -455,6 +516,7 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                     "post": _post //邮编
                 }
             };
+            //自己购买\地址没有编辑过\ATM支付,才可以传地址id
             if(Base.others.getUrlPrem('type')=='self' && !_this.addressInfoIsEdit(_address_data)){
                 _data.edata.address_id = init_data.buyer_address.id;
             }else{
@@ -467,16 +529,28 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
         addressInfoIsEdit : function(data){
             var _is = false,
                 _old_address = init_data.buyer_address;
-            for(var key in _old_address){
-                if(_old_address[key] != data[key]){
-                    _is = true;
+            for(var key in data){
+                if(key != 'address'){
+                    if(_old_address[key] != data[key]){
+                        _is = true;
+                    }
+                }else{
+                    for(var address_key in data.address){
+                        if(_old_address.address[address_key] != data.address[address_key]){
+                            _is = true;
+                        }
+                    }
                 }
+
             }
             return _is;//true 修改过 false 未修改
         },
         //下单
         placeOrder : function(data,callback){
+            var _this = this;
             PaqPush && PaqPush('下单', '');
+            //console.log(data);
+            //callback && callback();
             Ajax.postJsonp({
                 url: Config.actions.orderConfirm,
                 data: {
@@ -489,9 +563,16 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                         localStorage.setItem('OrderTotal', obj.order.real_price);
                         localStorage.setItem('BankInfo', JSON.stringify(obj.order.pay_info.banks));
                         localStorage.setItem('OrderInfo', JSON.stringify(obj.order));
-                        setTimeout(function () {
-                            location.href = Config.host.hrefUrl + 'distributorordersuccess.php'+location.search+'&order_id='+obj.order.id+'&price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400)+'&detail=3&distributor=1';
-                        }, 100);
+                        if(_this.pay_way == 11){
+                            setTimeout(function () {
+                                location.href = Config.host.hrefUrl + 'distributorordersuccess.php'+location.search+'&order_id='+obj.order.id+'&price=' + obj.order.total_price + '&time=' + (obj.order.shop_info.cancel_coutdown / 86400)+'&detail=3&distributor=1';
+                            }, 100);
+                        }else{
+                            setTimeout(function () {
+                                location.href = Config.host.hrefUrl + 'distributoraskforsuccess.php'+location.search+'&order_id='+obj.order.id;
+                            }, 100);
+                        }
+
                     } else {
                         Dialog.tip({
                             top_txt: '', //可以是html

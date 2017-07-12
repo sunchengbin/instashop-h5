@@ -1,0 +1,26 @@
+@import "../base/base.scss";
+@import "../moudle/app/common/common.scss";
+@import "../base/common/flex.scss";
+@import "../moudle/app/contact/contact.scss";
+.main{
+  @include fontDpr(14px);
+  background-color: $white;
+  text-align: center;
+}
+footer{
+  width: 100%;
+  box-sizing: border-box;
+  @include remCalc(padding,15 30 15 0);
+  @include remCalc(margin-top,30);
+}
+footer div{
+  box-sizing: border-box;
+  @include remCalc(padding-left,30);
+}
+.item-out-stock{
+  @include remCalc(padding,0 30);
+}
+.icon-askforsuccess{
+  @include fontDpr(60px);
+  color:#B8E986;
+}

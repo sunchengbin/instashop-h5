@@ -116,3 +116,6 @@
   z-index: 99;
   margin-left: 0!important;
 }
+.warrant-dialog-body p{
+  @include remCalc(padding,30 0);
+}

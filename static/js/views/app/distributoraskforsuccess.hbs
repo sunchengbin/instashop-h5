@@ -1,0 +1,43 @@
+<section class="main">
+    <div>
+        <i class="icon iconfont icon-askforsuccess"></i>
+    </div>
+    <div>请去供货商店铺付款取货</div>
+</section>
+<footer class="clearfix" data-spider="footer-nav" flex="box:mean">
+    <div>
+        <a href="javascript:;" spm-auto="查看订单" spm-click="check-order" class="btn j_distributor_order_detail">{{lang.H5_LOOK_ORDER}}</a>
+    </div>
+    <div>
+    {{#if data.shop_info.line_url}}
+        {{#if data.shop_info.phone}}
+            <a data-type="all" href="javascript:;" spm-auto="查看联系方式" spm-click="check-contact" class="contact-user btn j_show_contact">
+                {{lang.H5_CONNACT_SELLER}}
+            </a>
+        {{else}}
+            {{#if data.shop_info.whatsapp_url}}
+                <a data-type="all" href="javascript:;" spm-auto="查看联系方式" spm-click="check-contact" class="contact-user btn j_show_contact">
+                    {{lang.H5_CONNACT_SELLER}}
+                </a>
+            {{else}}
+                <a href="javascript:;" spm-auto="查看联系方式" class="contact-user btn block j_goto_line">
+                        {{lang.H5_CONNACT_SELLER}}
+                </a>
+            {{/if}}
+        {{/if}}
+    {{else}}
+        {{#if data.shop_info.phone}}
+            {{#if data.shop_info.whatsapp_url}}
+                <a data-type="all" href="javascript:;" spm-auto="查看联系方式" spm-click="check-contact" class="contact-user btn j_show_contact">
+                    {{lang.H5_CONNACT_SELLER}}
+                </a>
+            {{else}}
+                <a href="javascript:;" spm-auto="查看联系方式" class="contact-user block btn j_goto_line">
+                        {{lang.H5_CONNACT_SELLER}}
+                </a>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+    </div>
+
+</footer>

@@ -319,15 +319,18 @@ function initPhpCss($css_name,$folder){
     global $TEMP_FOLDER;
     $folder_name = $TEMP_FOLDER;
     if($folder){
+        //default皮肤
         if($folder_name == ''){
-            $folder_name = $folder.'/';
+            //只用default下默认皮肤
+            if($folder == 'default_app'){
+                $folder_name = 'default/';
+            }else{
+                $folder_name = $folder.'/';
+            }
         }else{
-            if($folder_name == 'default'){
-                if($folder == 'default_app'){
-                    $folder_name = 'default/';
-                }else{
-                    $folder_name = '';
-                }
+        //非默认皮肤
+            if($folder == 'default_app'){
+                $folder_name = 'default/';
             }
         }
     }
@@ -432,6 +435,7 @@ function setStaticConfig(){
         define('TEMP_FOLDER', $folder_name.'/');
         $TEMP_FOLDER = $folder_name.'/';
     }else{
+        $TEMP_FOLDER = '';
         define('TEMP_FOLDER', '');
     }
     $facebook_id = $common_info['facebook_id'];
