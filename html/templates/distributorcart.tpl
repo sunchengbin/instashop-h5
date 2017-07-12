@@ -30,7 +30,7 @@
                                         </div>
                                         {*购买数量*}
                                         <div class="item-num-box clearfix">
-                                            <span class="j_reduce_btn reduc-price" data-direct-buy="{$item.direct_buy}" data-sku-id="{$item.item_sku_id}" data-stock="{$item.stock}" data-seller-id="{$item.shop_info.id}" data-id="{$item.item_id}">
+                                            <span class="j_reduce_btn reduc-price" data-direct-buy="{$item.direct_buy}" data-sku-id="{$item.item_sku_id}" data-stock="{$item.stock}" data-seller-id="{$item.shop_info.id}" data-id="{$item.id}" data-item-id="{$item.item_id}">
                                                 <i class="icon iconfont icon-minus-font"></i>
                                             </span>
                                             {if $item.item_sku_id}
