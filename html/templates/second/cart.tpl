@@ -13,7 +13,7 @@
                 {/if}
                     <ul>
                         {foreach from=$items item=item}
-                            <li class="clearfix cart-item j_cart_item" group-id="{$key}" data-id="{$item.id}">
+                            <li class="clearfix cart-item j_cart_item" group-id="{$key}"  data-id="{$item.id}">
                                 <i class="icon iconfont j_del_cart icon-delete-small" group-id="{$key}" data-id="{$item.id}"></i>
                                 <img src="{$item.img_head}">
                                 <div class="">
@@ -34,7 +34,7 @@
                                         </div>
                                         {*购买数量*}
                                         <div class="item-num-box clearfix">
-                                            <span class="j_reduce_btn reduc-price" data-id="{$item.item_id}">
+                                            <span class="j_reduce_btn reduc-price" data-sku-id="{$item.item_sku_id}" data-id="{$item.id}" data-item-id="{$item.item_id}" data-stock="{$item.stock}">
                                                 <i class="icon iconfont icon-minus-font"></i>
                                             </span>
                                             {if $item.item_sku_id}
@@ -43,7 +43,7 @@
                                                 <input class="fl j_item_num" type="text" data-price="{$item.item.discount.price}" value="{$item.num}" readonly="readonly"/>
                                             {/if}
                                         
-                                            <span class="j_add_btn" data-sku-id="{$item.item_sku_id}" data-id="{$item.item_id}" data-stock="{$item.stock}">
+                                            <span class="j_add_btn" data-sku-id="{$item.item_sku_id}" data-id="{$item.id}" data-item-id="{$item.item_id}" data-stock="{$item.stock}">
                                                 <i class="icon iconfont icon-add-font"></i>
                                             </span>
                                         </div>
