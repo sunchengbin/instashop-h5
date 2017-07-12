@@ -272,7 +272,9 @@ define(['base'], function (Base) {
             REFUND_CLIENT_NAME:'账户名',
             REFUND_CLIENT_TELEPHONE:'手机号',
             REFUND_MONEY:'退款金额',
-            REFUND_EDIT_BTN_TXT:'修改'
+            REFUND_EDIT_BTN_TXT:'修改',
+            STOCK_IS_LITTLE:'有货,库存紧张,请尽快下单付款',
+            STOCK_IS_ENOUGH:'有货'
         },
 
         id: {
@@ -668,7 +670,9 @@ define(['base'], function (Base) {
             REFUND_CLIENT_NAME:'Nama Pemilik Rekening',
             REFUND_CLIENT_TELEPHONE:'Nomor Ponsel',
             REFUND_MONEY:'Jumlah Pengembalian Dana',
-            'REFUND_EDIT_BTN_TXT': 'Ubah'
+            'REFUND_EDIT_BTN_TXT': 'Ubah',
+            STOCK_IS_LITTLE:'有货,库存紧张,请尽快下单付款',
+            STOCK_IS_ENOUGH:'有货'
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[navigator.language.toLowerCase()] || Lang.id);

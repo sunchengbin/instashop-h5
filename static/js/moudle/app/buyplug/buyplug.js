@@ -74,7 +74,12 @@ define(['common', 'base', 'hbs', 'text!views/moudle/buyplug.hbs', 'btn', 'dialog
                         $('.j_buy_info_price').html('');
                     }
                     if (_that.attr('data-stock') < 9999999) {
-                        $('.j_buy_info_title').html(Lang.H5_STOCK + ': ' + _that.attr('data-stock'));
+                        if(_that.attr('data-stock') < 6){
+                            var _stock_htm = Lang.STOCK_IS_LITTLE;
+                        }else{
+                            var _stock_htm = Lang.STOCK_IS_ENOUGH;
+                        }
+                        $('.j_buy_info_title').html(_stock_htm);
                         $('.j_item_num').val(1);
 
                     } else {
