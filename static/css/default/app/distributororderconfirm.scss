@@ -345,16 +345,10 @@ body .address-list{
   vertical-align: middle;
   @include remCalc(margin-right,5);
   display: inline-block;
-  position: absolute;
-  left: 0;
-  @include remCalc(top,15);
 }
 .pay-way-dialog li{
   font-size: 14px;
   position: relative;
-  @include remCalc(height,40);
-  @include remCalc(line-height,40);
-  @include remCalc(padding-left,60);
 }
 .pay-way-dialog li i.checked-btn{
   color: $base-btn-color;
