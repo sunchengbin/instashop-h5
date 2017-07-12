@@ -345,8 +345,6 @@ body .address-list{
   vertical-align: middle;
   @include remCalc(margin-right,5);
   display: inline-block;
-  @include remCalc(height,40);
-  @include remCalc(line-height,40);
   position: absolute;
   left: 0;
   @include remCalc(top,15);
@@ -354,7 +352,8 @@ body .address-list{
 .pay-way-dialog li{
   font-size: 14px;
   position: relative;
-  line-height: 2;
+  @include remCalc(height,40);
+  @include remCalc(line-height,40);
   @include remCalc(padding-left,60);
 }
 .pay-way-dialog li i.checked-btn{
