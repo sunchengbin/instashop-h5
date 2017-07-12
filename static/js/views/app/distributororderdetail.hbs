@@ -32,13 +32,15 @@
             {{lang.H5_ORDER_STATUS}}: {{data.order.state_txt}}
         {{/eq}}
     </div>
-    <p data-spider="bank-info">
-        <a spm-auto="查看收款账号" spm-click="check-bankinfo" href="{{hrefUrl}}distributorordersuccess.php?price={{data.order.total_price}}&detail=4&distributor=1" class="">
-            <i class="icon iconfont fr icon-go-font"></i>{{lang.H5_CHECK_ACCOUNT_RECEIVABLES}}
-        </a>
-    </p>
+    {{#if data.order.bank_info}}
+        <p data-spider="bank-info">
+            <a spm-auto="查看收款账号" spm-click="check-bankinfo" href="{{hrefUrl}}distributorordersuccess.php?price={{data.order.total_price}}&detail=4&distributor=1" class="">
+                <i class="icon iconfont fr icon-go-font"></i>{{lang.H5_CHECK_ACCOUNT_RECEIVABLES}}
+            </a>
+        </p>
+    {{/if}}
     {{#eq data.order.ship_status 1}}
-        <div class="logistics-info">
+        <div class="logistics-info" {{#eq data.order.bank_info null}}style="border-top:none;"{{/eq}}>
             {{#eq data.order.logistics_info.express.express_company_id 0}}
                 <p style="line-height:3">Kirim Langsung</p>
             {{else}}
