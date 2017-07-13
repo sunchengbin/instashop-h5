@@ -10,11 +10,11 @@
                             <p class="title j_all_stock"></p>
                         {{else}}
                             <p class="title j_all_stock">
-                                {{#lt item.stock 6}}
+                                {{#elt item.stock 5}}
                                     {{lang.STOCK_IS_LITTLE}}
                                 {{else}}
                                     {{lang.STOCK_IS_ENOUGH}}
-                                {{/lt}}
+                                {{/elt}}
                             </p>
                         {{/eq}}
                     {{/elt}}
@@ -24,11 +24,11 @@
                             <p class="title j_all_stock"></p>
                         {{else}}
                             <p class="title j_all_stock">
-                                {{#lt item.stock 6}}
+                                {{#elt item.stock 5}}
                                     {{lang.STOCK_IS_LITTLE}}
                                 {{else}}
                                     {{lang.STOCK_IS_ENOUGH}}
-                                {{/lt}}
+                                {{/elt}}
                             </p>
                         {{/eq}}
                     {{/elt}}

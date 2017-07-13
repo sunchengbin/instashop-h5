@@ -67,9 +67,13 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
     });
     // 小于
     HBS.registerHelper('lt', function (a, b, options) {
+        console.log(a)
+        console.log(b)
         if (a > b) {
+            console.log(1)
             return options.inverse(this);
         } else {
+            console.log(2)
             return options.fn(this);
         }
     });
