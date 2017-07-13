@@ -218,9 +218,9 @@ function isDebug(){
 //获取初始化字体样式和ico
 function getFontCss($url,$folder_name){
     if($folder_name){
-        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1499392149803") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1499392149803#iconfont") format("svg");}</style>';
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/'.$folder_name.'/base/fonts/iconfont.ttf?v=1499824271754") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1499824271754#iconfont") format("svg");}</style>';
     }else{
-        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1499392149803") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1499392149803#iconfont") format("svg");}</style>';
+        return '<style>@font-face {font-family: "iconfont";src: url("'.$url.'/css/base/fonts/iconfont.ttf?v=1499824271754") format("truetype"),url("'.$url.'/css/base/fonts/iconfont.svg?v=1499824271754#iconfont") format("svg");}</style>';
     }
 }
 function getIco($url){
@@ -307,27 +307,30 @@ function getSkinInfo(){
 function initPhpJs($js_name){
     $skin_info = '<script>var SKIN="'.SKIN_INFO.'";</script>';
     if(isDebug()){
-        return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1499392149803"></script>';
+        return '<script src="'.STATIC_HOST.'/js/base/require-config.js"></script><script src="'.STATIC_HOST.'/js/app/'.$js_name.'.js?v=1499824271754"></script>';
     }else{
         if(FACEBOOK_JS){
             $skin_info = $skin_info.FACEBOOK_JS;
         }
-        return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1499392149803"></script>';
+        return $skin_info.'<script src="'.STATIC_HOST.'/js/dist/app/'.$js_name.'.js?v=1499824271754"></script>';
     }
 }
 function initPhpCss($css_name,$folder){
     global $TEMP_FOLDER;
     $folder_name = $TEMP_FOLDER;
     if($folder){
+        //default皮肤
         if($folder_name == ''){
-            $folder_name = $folder.'/';
+            //只用default下默认皮肤
+            if($folder == 'default_app'){
+                $folder_name = 'default/';
+            }else{
+                $folder_name = $folder.'/';
+            }
         }else{
-            if($folder_name == 'default'){
-                if($folder == 'default_app'){
-                    $folder_name = 'default/';
-                }else{
-                    $folder_name = '';
-                }
+        //非默认皮肤
+            if($folder == 'default_app'){
+                $folder_name = 'default/';
             }
         }
     }
@@ -341,13 +344,13 @@ function initPhpCss($css_name,$folder){
     }
     if(isDebug()){
         if($TEMP_FOLDER){
-            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1499392149803" rel="stylesheet"/>';
+            return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1499824271754" rel="stylesheet"/>';
         }else{
-            return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1499392149803" rel="stylesheet"/>';
+            return $static_info.'<link href="'.STATIC_HOST.'/css/app/'.$css_name.'.css?v=1499824271754" rel="stylesheet"/>';
         }
     }else{
 
-        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1499392149803" rel="stylesheet"/>';
+        return $static_info.'<link href="'.STATIC_HOST.'/css/dist/'.$folder_name.'app/'.$css_name.'.css?v=1499824271754" rel="stylesheet"/>';
     }
 }
 //方便调试统一修改皮肤
@@ -432,6 +435,7 @@ function setStaticConfig(){
         define('TEMP_FOLDER', $folder_name.'/');
         $TEMP_FOLDER = $folder_name.'/';
     }else{
+        $TEMP_FOLDER = '';
         define('TEMP_FOLDER', '');
     }
     $facebook_id = $common_info['facebook_id'];
