@@ -319,19 +319,15 @@ function initPhpCss($css_name,$folder){
     global $TEMP_FOLDER;
     $folder_name = $TEMP_FOLDER;
     if($folder){
-        if($folder){
-            if($folder_name == ''){ 
-                //只用default下默认皮肤 
-                if($folder == 'default_app'){ 
-                    $folder_name = 'default/'; 
-                }else{ 
-                    $folder_name = $folder.'/'; 
-                } 
-            }else{ 
-                //非默认皮肤 
-                if($folder == 'default_app'){ 
-                    $folder_name = 'default/'; 
-                } 
+        if($folder_name == ''){
+            $folder_name = $folder.'/';
+        }else{
+            if($folder_name == 'default'){
+                if($folder == 'default_app'){
+                    $folder_name = 'default/';
+                }else{
+                    $folder_name = '';
+                }
             }
         }
     }
