@@ -48,10 +48,10 @@
             </div>
             <div class="pay-type-box">
                 <div class="info-box j_pay_way_box pay-type clearfix" data-pay-way="11">
-                    选择支付方式
+                    Pilih Cara Pembayaran 
                     <div class="fr">
                         <i class="icon iconfont fr icon-go-font"></i>
-                        <span class="pay-way-content j_pay_way_content">ATM支付</span>
+                        <span class="pay-way-content j_pay_way_content">Transfer via ATM</span>
                     </div>
                 </div>
             </div>

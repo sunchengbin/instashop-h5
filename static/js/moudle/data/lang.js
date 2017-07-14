@@ -275,7 +275,10 @@ define(['base'], function (Base) {
             REFUND_EDIT_BTN_TXT:'修改',
             STOCK_IS_LITTLE:'有货,库存紧张,请尽快下单付款',
             STOCK_IS_ENOUGH:'有货',
-            ASKFOR_GOODS:'去供货商点付款取货'
+            ASKFOR_GOODS:'请去供货商店铺付款取货',
+            ATM_PAY_TYPE:'ATM转账',
+            ASKFOR_PAY_TYPE:'去供货商店铺付款取货',
+            CONNECT_SELLER:'联系供货商'
         },
 
         id: {
@@ -672,9 +675,12 @@ define(['base'], function (Base) {
             REFUND_CLIENT_TELEPHONE:'Nomor Ponsel',
             REFUND_MONEY:'Jumlah Pengembalian Dana',
             'REFUND_EDIT_BTN_TXT': 'Ubah',
-            STOCK_IS_LITTLE:'有货,库存紧张,请尽快下单付款',
-            STOCK_IS_ENOUGH:'有货',
-            ASKFOR_GOODS:'去供货商点付款取货'
+            STOCK_IS_LITTLE:'Stok terbatas, yuk buruan dibayar !',
+            STOCK_IS_ENOUGH:'Stok Tersedia',
+            ASKFOR_GOODS:'Silakan datang ke toko supplier untuk mengambil barang kamu',
+            ATM_PAY_TYPE:'Transfer via ATM',
+            ASKFOR_PAY_TYPE:'Bayar di Toko',
+            CONNECT_SELLER:'Hubungi Supplier'
         }
     };
     return (Lang[Base.others.getUrlPrem('language')] || Lang[navigator.language.toLowerCase()] || Lang.id);

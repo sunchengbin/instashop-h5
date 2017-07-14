@@ -2,7 +2,7 @@
     <div>
         <i class="icon iconfont icon-askforsuccess"></i>
     </div>
-    <div>请去供货商店铺付款取货</div>
+    <div>Silakan datang ke toko supplier untuk mengambil barang kamu</div>
 </section>
 <footer class="clearfix" data-spider="footer-nav" flex="box:mean">
     <div>
@@ -12,16 +12,16 @@
     {{#if data.shop_info.line_url}}
         {{#if data.shop_info.phone}}
             <a data-type="all" href="javascript:;" spm-auto="查看联系方式" spm-click="check-contact" class="contact-user btn j_show_contact">
-                {{lang.H5_CONNACT_SELLER}}
+                {{lang.CONNECT_SELLER}}
             </a>
         {{else}}
             {{#if data.shop_info.whatsapp_url}}
                 <a data-type="all" href="javascript:;" spm-auto="查看联系方式" spm-click="check-contact" class="contact-user btn j_show_contact">
-                    {{lang.H5_CONNACT_SELLER}}
+                    {{lang.CONNECT_SELLER}}
                 </a>
             {{else}}
                 <a href="javascript:;" spm-auto="查看联系方式" class="contact-user btn block j_goto_line">
-                        {{lang.H5_CONNACT_SELLER}}
+                        {{lang.CONNECT_SELLER}}
                 </a>
             {{/if}}
         {{/if}}
@@ -29,11 +29,11 @@
         {{#if data.shop_info.phone}}
             {{#if data.shop_info.whatsapp_url}}
                 <a data-type="all" href="javascript:;" spm-auto="查看联系方式" spm-click="check-contact" class="contact-user btn j_show_contact">
-                    {{lang.H5_CONNACT_SELLER}}
+                    {{lang.CONNECT_SELLER}}
                 </a>
             {{else}}
                 <a href="javascript:;" spm-auto="查看联系方式" class="contact-user block btn j_goto_line">
-                        {{lang.H5_CONNACT_SELLER}}
+                        {{lang.CONNECT_SELLER}}
                 </a>
             {{/if}}
         {{/if}}

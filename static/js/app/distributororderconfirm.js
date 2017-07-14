@@ -180,13 +180,13 @@ require([ 'dialog', 'ajax', 'config', 'base', 'common', 'btn', 'lang', 'fastclic
                 var _htm = '<ul class="pay-way-dialog">' +
                     '<li class="j_pay_way">' +
                     '<i class="icon iconfont '+( _this.pay_way==11?'checked-btn icon-radioed-font':'check-btn icon-radio-font') +
-                    ' j_pay_way_dialog" data-content="ATM支付" data-pay-way="11"></i>' +
-                    'ATM支付' +
+                    ' j_pay_way_dialog" data-content="'+Lang.ATM_PAY_TYPE+'" data-pay-way="11"></i>' +
+                    Lang.ATM_PAY_TYPE +
                     '</li>' +
                     '<li class="j_pay_way">' +
                     '<i class="icon iconfont '+( _this.pay_way==23?'checked-btn icon-radioed-font':'check-btn icon-radio-font') +
-                    ' j_pay_way_dialog" data-content="到店自取" data-pay-way="23"></i>' +
-                    '到店自取' +
+                    ' j_pay_way_dialog" data-content="'+Lang.ASKFOR_PAY_TYPE+'" data-pay-way="23"></i>' +
+                    Lang.ASKFOR_PAY_TYPE +
                     '</li>' +
                     '</ul>';
                 Dialog.confirm({
