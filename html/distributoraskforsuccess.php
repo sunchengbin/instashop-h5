@@ -11,7 +11,7 @@ include_once( dirname(__FILE__).'/../html/router/common.php');
     <meta http-equiv="expect" content="0">
     <meta name="format-detection" content="telephone=no" />
     <?=initPhpCss('distributoraskforsuccess','default_app')?>
-    <title>Informasi Pembayaran</title>
+    <title>Pengajuan Berhasil</title>
 </head>
 <body data-spider="de4cti31">
     <script src="<?=STATIC_HOST?>/js/base/require-zepto.js"></script>
