@@ -53,8 +53,9 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'lang', 'fastclick', 'debug
                         Cart().removeItem(_item_id, function () {
                             //location.reload();
                             $('.j_cart_item[data-id="' + _item_id + '"]').remove();
-                            if (!$('.j_cart_item').length) {
-                                var _htm = '<ul class=""><li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li></ul><button class="btn j_go_shop confirm-btn">' + Lang.H5_BROWSE_SHOP + '</button>';
+                            if(!$('.j_cart_item').length){
+                                var _htm = '<ul class=""><li class="empty-cart">' + Lang.H5_SHOPING_NO_GOODS + '</li>'
+                                    +'<li><div class="no_goods_box"><button class="btn j_go_shop confirm-btn">' + Lang.H5_BROWSE_SHOP + '</button>'+'</div></li></ul>';
                                 $('.j_cart_list').html(_htm);
                             }
                         });
