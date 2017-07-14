@@ -39,6 +39,13 @@
             </a>
         </p>
     {{/if}}
+    {{#eq data.order.pay_mode 1}}
+        <p data-spider="bank-info">
+            <a spm-auto="去供货商铺付款取货" spm-click="check-bankinfo" href="javascript:;" class="">
+                {{lang.ASKFOR_GOODS}}
+            </a>
+        </p>
+    {{/eq}}
     {{#eq data.order.ship_status 1}}
         <div class="logistics-info" {{#eq data.order.bank_info null}}style="border-top:none;"{{/eq}}>
             {{#eq data.order.logistics_info.express.express_company_id 0}}

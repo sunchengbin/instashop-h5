@@ -14,7 +14,13 @@
                         {{#eq item.stock 0}}
                             <p class="title j_all_stock"></p>
                         {{else}}
-                            <p class="title j_all_stock">{{lang.H5_STOCK}}: {{item.stock}}</p>
+                            <p class="title j_all_stock">
+                                {{#elt item.stock 5}}
+                                    {{lang.STOCK_IS_LITTLE}}
+                                {{else}}
+                                    {{lang.STOCK_IS_ENOUGH}}
+                                {{/elt}}
+                            </p>
                         {{/eq}}
                     {{/elt}}
                 {{else}}
@@ -22,7 +28,13 @@
                         {{#eq item.stock 0}}
                             <p class="title j_all_stock"></p>
                         {{else}}
-                            <p class="title j_all_stock">{{lang.H5_STOCK}}: {{item.stock}}</p>
+                            <p class="title j_all_stock">
+                                {{#elt item.stock 5}}
+                                    {{lang.STOCK_IS_LITTLE}}
+                                {{else}}
+                                    {{lang.STOCK_IS_ENOUGH}}
+                                {{/elt}}
+                            </p>
                         {{/eq}}
                     {{/elt}}
                 {{/empty}}
