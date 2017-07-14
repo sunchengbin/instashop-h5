@@ -10,7 +10,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'buyplug', 'sli
         init: function () {
             var _this = this;
             if (init_data && init_data.code == 200) {
-
+                Common.initShopInfo(init_data.item);
                 if ($('.j_show_contact').length) {
                     var _contact_data = {
                         tel: init_data.item.shop.phone,

@@ -4,6 +4,7 @@
 require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn', 'lang', 'fastclick', 'debug', 'favorable', 'cache', 'bargain', 'tradeplug','oauth','cookie'], function ( Cart, Dialog, Ajax, Config, Base, Logistics, Common, Btn, Lang, Fastclick, Debug, Favorable, Cache, Bargain, Tradeplug,Oauth,Cookie) {
     var OrderConfirmHtm = {
         init: function () {
+            console.log(1);
             var _this = this;
             _this.loginResult = Oauth.checkIsLogin();
             //结算的商品
@@ -120,6 +121,8 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn
                             return;
                         }
                         var _data = _this.getData();
+                        console.log(_data);
+                        //return;
                         Debug.log({
                             title: "下单开始-orderconfirm-j_submit_buy",
                             data: _data
@@ -260,7 +263,7 @@ require(['cart', 'dialog', 'ajax', 'config', 'base', 'logistics', 'common', 'btn
                 _logistics_info = $('.j_logistics_info'),
                 _company = _logistics_info.length ? _logistics_info.attr('data-company') : '',
                 _fee_id = _logistics_info.length ? _logistics_info.attr('data-id') : '',
-                _seller_id = ConfirmData.shop_info.id,
+                _seller_id = ConfirmData.shop_info.id || JSON.parse(localStorage.getItem('ShopData')).ShopInfo.id,
                 _note = $.trim($('.j_buyer_note').val());
             if (!_company && _this.logistics) {
                 _this.logistics.createHtm({
