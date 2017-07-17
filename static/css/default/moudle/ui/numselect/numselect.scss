@@ -26,10 +26,10 @@
 .cart-item .item-num-box input {
     text-align: center;
     @include fontDpr(14px);
-    @include remCalc(height, 38);
+    // @include remCalc(height, 38);
     @include remCalc(min-width, 48);
     @include remCalc(max-width, 100);
-    @include remCalc(padding, 8);
+    // @include remCalc(padding, 8);
     position: relative;
 }
 
