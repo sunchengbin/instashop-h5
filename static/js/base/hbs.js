@@ -57,7 +57,7 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
         }
     });
 
-    // 大于
+    // 大于a > b
     HBS.registerHelper('gt', function (a, b, options) {
         if (a > b) {
             return options.fn(this);
@@ -65,20 +65,16 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
             return options.inverse(this);
         }
     });
-    // 小于
+    // 小于a < b
     HBS.registerHelper('lt', function (a, b, options) {
-        console.log(a)
-        console.log(b)
-        if (a > b) {
-            console.log(1)
-            return options.inverse(this);
-        } else {
-            console.log(2)
+        if (b > a) {
             return options.fn(this);
+        } else {
+            return options.inverse(this);
         }
     });
 
-    // 大于等于
+    // 大于等于a >= b
     HBS.registerHelper('egt', function (a, b, options) {
         if (a >= b) {
             return options.fn(this);
@@ -86,12 +82,12 @@ define(['handlebars', 'base', 'config', 'lang', 'item', 'debug', 'cache', 'barga
             return options.inverse(this);
         }
     });
-    // 小于
+    // 小于等于a <= b
     HBS.registerHelper('elt', function (a, b, options) {
-        if (a >= b) {
-            return options.inverse(this);
-        } else {
+        if (b >= a) {
             return options.fn(this);
+        } else {
+            return options.inverse(this);
         }
     });
 
