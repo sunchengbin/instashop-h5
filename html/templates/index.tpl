@@ -122,7 +122,7 @@
                     </section>
                     <section class="items-box j_hot_box j_box">
                         {if $RECOMMEND_ITEM|@getIsLast}
-                        <p class="item-title b-bottom"><span></span>Last Item</p>
+                        <p class="item-title b-bottom"><span></span>New Arrival</p>
                         {if $ITEMTYPE neq '3'}
                         {*一行两列展示商品*}
                         <ul class="items-list clearfix j_hot_list j_last_list">
