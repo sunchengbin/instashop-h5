@@ -63,6 +63,7 @@ body{
 .search-box i{
   position: absolute;
   @include remCalc(left,25);
+  @include remCalc(line-height,72);
   color: $gray-color;
   @include fontDpr(22px);
 }
