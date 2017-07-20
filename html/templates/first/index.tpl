@@ -114,7 +114,7 @@
                             </div>
                             {*<p class="item-title b-bottom">Rekomendasi Item</p>*}
                             {if $ITEMTYPE neq '3'}
-                            <ul class="items-list clearfix j_hot_list j_last_list" >
+                            <ul class="items-list clearfix j_last_list" >
                                 {foreach $RECOMMEND_ITEM as $item}
                                 {if $item.is_top eq '0'}
                                 <li>
@@ -149,7 +149,7 @@
                                 {/foreach}
                             </ul>
                             {else}
-                            <ul class="three-items-list clearfix j_hot_list">
+                            <ul class="three-items-list clearfix j_last_list">
                                 {foreach $RECOMMEND_ITEM as $item}
                                 {if $item.is_top eq '0'}
                                 <li>
