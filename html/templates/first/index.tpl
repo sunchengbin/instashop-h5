@@ -107,8 +107,7 @@
                             </ul>
                             {/if} {/if}
                         </section>
-                        <section class="items-box j_hot_box j_box">
-                            {if $RECOMMEND_ITEM|@getIsLast}
+                        <section class="items-box j_hot_box j_box j_last_box {if !$RECOMMEND_ITEM|@getIsLast}hidden{/if}">
                             <div class="">
                                 <img src="{$STATIC_HOST}/images/{$TEMP_FOLDER}/newupload_title.png"/>
                             </div>
@@ -164,7 +163,8 @@
                                 {/if}
                                 {/foreach}
                             </ul>
-                            {/if} {/if}
+                            {/if}
+                            
                         </section>
                     </div>
                 </div>

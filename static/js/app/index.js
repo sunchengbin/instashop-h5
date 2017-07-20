@@ -321,6 +321,7 @@ require(['lang', 'lazyload', 'ajax', 'config', 'base', 'common', 'cart', 'fastcl
                             var _recommends = _this.getIsHaveRecommend(_list_data.item);
                             if(_lasts.length){
                                 $('.j_last_list').append(Item.addItem(_lasts,_this.item_type));
+                                $('.j_last_box').show();
                             }
                             if(_recommends.length){
                                 $('.j_hot_list').append(Item.addItem(_recommends,_this.item_type));

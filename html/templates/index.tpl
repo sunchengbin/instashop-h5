@@ -120,8 +120,7 @@
                         </ul>
                         {/if} {/if}
                     </section>
-                    <section class="items-box j_hot_box j_box">
-                        {if $RECOMMEND_ITEM|@getIsLast}
+                    <section class="items-box j_hot_box j_box j_last_box {if !$RECOMMEND_ITEM|@getIsLast}hidden{/if}">
                         <p class="item-title b-bottom"><span></span>New Arrival</p>
                         {if $ITEMTYPE neq '3'}
                         {*一行两列展示商品*}
@@ -185,7 +184,7 @@
                             {/if}
                             {/foreach}
                         </ul>
-                        {/if} {/if}
+                        {/if}
                     </section>
                 </div>
             </div>

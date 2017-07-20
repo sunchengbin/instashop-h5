@@ -35,6 +35,9 @@ img{
   background-color: $header-bg-color;
   background-size: contain;
 }
+.hidden {
+  display: none;
+}
 @media only screen and (min-width: 641px) {
   body {
     max-width: 640px;
