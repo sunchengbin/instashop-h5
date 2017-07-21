@@ -10,7 +10,7 @@
   box-sizing:border-box;
   position: relative;
   @include remCalc(border,5 solid #e6e6e6);
-  @include remCalc(padding,0 10 0 60);
+  @include remCalc(padding,0 10 0 10);
 }
 .reduc-box-wrap > div{
   @include remCalc(min-height,100);
@@ -63,7 +63,7 @@
   position: absolute;
   bottom: 0;
   top: 0;
-  right: 1rem;
+  @include remCalc(right,10);
   margin: auto;
 }
 

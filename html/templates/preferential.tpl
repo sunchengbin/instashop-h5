@@ -31,10 +31,9 @@
     <section class="reduc-box" data-spider="coupon_box">
         <div class="reduc-box-wrap j_share_btn" data-couponid="{$INDEX_DATA_SHOP.shop.coupon.id}">
             
-        <div>
-        <i class="iconfont icon-go-font fr reduc-box-go"></i>
-        <p class="reduc-box-info">
-            {*<i class="iconfont icon-bugle"></i>*}
+            <div>
+            <i class="iconfont icon-go-font fr reduc-box-go"></i>
+            <p class="reduc-box-info">
                 Voucher: Rp {$INDEX_DATA_SHOP.shop.coupon.amount|priceFormat}
             </p>
             <p class="reduc-expire">
