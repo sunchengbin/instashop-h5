@@ -517,3 +517,7 @@ img {
   width: 100%;
   border-radius: 2px;
 }
+
+.hidden {
+  display: none;
+}
