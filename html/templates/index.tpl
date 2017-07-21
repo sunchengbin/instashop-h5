@@ -15,11 +15,6 @@
                     {*是否有实体店标志*}
                     <span><i class="icon iconfont icon-shop-font"></i>Ada Outlet</span>
                 {/if}
-                {if $INDEX_DATA.shop.warrant_flag == 1}
-                <div class="secured-box">
-                    <i class="icon iconfont icon-secured"></i>
-                </div>
-                {/if}
             </div>
         </section>
         {*首页切换tab*}

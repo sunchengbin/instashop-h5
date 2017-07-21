@@ -102,9 +102,6 @@
                         {if $SHOP_INFO_DATA.realinfo.location.vicinity neq ''}
                         <span><i class="icon iconfont icon-shop-font"></i>Ada Outlet</span>
                         {/if}
-                        {if $INDEX_DATA.item.shop.warrant_flag == 1}
-                        <i class="icon iconfont icon-secured"></i>
-                        {/if}
                     </div>
                 </a>
             </div>
