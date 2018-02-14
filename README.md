@@ -15,9 +15,10 @@
 + nodejs
 
 ## 全局上线和构建
-
+```
 js和css的构建 ./build.sh
 一步上线 ./online.sh
+```
 
 ## js构建
 
